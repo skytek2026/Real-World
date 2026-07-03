@@ -84,6 +84,7 @@ const EVENTS = [
   { id:8,  name:'Turkey-Syria Earthquake',  type:'earthquake', location:'Kahramanmaraş, Turkey',               lat:37.6,  lng:36.8,   dateStart:'02/06/2023', dateEnd:null,          cat:null, updated:'Feb 10, 2023, 9:00 UTC'   },
   { id:9,  name:'Tropical Cyclone Freddy',  type:'cyclone',    location:'Quelimane, Mozambique',               lat:-17.9, lng:36.9,   dateStart:'03/12/2023', dateEnd:'03/15/2023',  cat:2, updated:'Mar 15, 2023, 7:00 UTC'   },
   { id:10, name:'Hurricane Michael',        type:'hurricane',  location:'Mexico Beach, Florida',               lat:29.9,  lng:-85.4,  dateStart:'10/10/2018', dateEnd:null,          cat:5, updated:'Oct 12, 2018, 18:00 UTC'  },
+  { id:11, name:'Venezuela Earthquake',     type:'earthquake', location:'Mérida, Venezuela',                   lat:8.6,   lng:-71.1,  dateStart:'03/24/2026', dateEnd:null,          cat:null, updated:'Mar 24, 2026, 11:42 UTC' },
 ];
 
 const TYPE_CFG = {
@@ -121,6 +122,7 @@ let ST = { query:'', year:'all', type:'all', selected:1 };
 let natMap = null, natTile = null;
 
 /* ── Helpers ──────────────────────────────────────────────────────────────── */
+function parseDate(d) { const [m,dd,y] = d.split('/'); return new Date(+y, +m-1, +dd); }
 function getFiltered() {
   return EVENTS.filter(e => {
     const q = ST.query.toLowerCase();
@@ -128,7 +130,7 @@ function getFiltered() {
     if (ST.type !== 'all' && e.type !== ST.type) return false;
     if (ST.year !== 'all' && !e.dateStart.includes(ST.year)) return false;
     return true;
-  });
+  }).sort((a,b) => parseDate(b.dateStart) - parseDate(a.dateStart));
 }
 
 function dots(cat, color) {

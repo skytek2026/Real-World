@@ -15,8 +15,8 @@
     theme: { extend: {
       fontFamily: { sans: ['Open Sans','ui-sans-serif','system-ui','sans-serif'], display: ['Exo','Open Sans','sans-serif'] },
       colors: {
-        brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
-        ink:   {900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'},
+        brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#bfdbfe',400:'#8ec5fd',500:'#51a2fc',600:'#2d7ffb',700:'#1d4ed8',800:'#1f5fc7'},
+        ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#475569',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
       },
       boxShadow: {
         'card':'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)',
@@ -29,34 +29,44 @@
   html, body { font-family:'Open Sans',system-ui,sans-serif; }
   h1,h2,h3,h4,h5,h6,.font-display,.tracking-micro { font-family:'Exo','Open Sans',sans-serif; }
   .tracking-micro { letter-spacing:.08em; }
-  .scroll-thin::-webkit-scrollbar { width:6px; height:6px; }
-  .scroll-thin::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:999px; }
+  /* Page root scrollbar — DS applies it automatically */
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
+  html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background:#f3f4f6; }
+  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
+  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  .scroll-thin::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { width:6px; height:6px; }
+  .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
+  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
   .pop-enter { animation: pop .16s cubic-bezier(.2,.8,.2,1); transform-origin: top right; }
   @keyframes pop { from {opacity:0;transform:translateY(-4px) scale(.98);} to {opacity:1;transform:translateY(0) scale(1);} }
   .dot-pulse { position:relative; }
   .dot-pulse::after { content:''; position:absolute; inset:-3px; border-radius:999px; box-shadow:0 0 0 0 rgba(239,68,68,.5); animation:pulse 1.8s infinite; }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(239,68,68,.55);} 70%{box-shadow:0 0 0 10px rgba(239,68,68,0);} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0);} }
   .tile-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:10.5px; padding:1px 5px; border:1px solid #e2e8f0; border-bottom-width:2px; border-radius:4px; background:#f8fafc; color:#475569; }
-  .ring-focus:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; border-radius:8px; }
+  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:10.5px; padding:1px 5px; border:1px solid #e5e7eb; border-bottom-width:2px; border-radius:4px; background:#f9fafb; color:#475569; }
+  .ring-focus:focus-visible { outline:2px solid #51a2fc; outline-offset:2px; border-radius:8px; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
   [data-density="compact"] .gap-density { gap:.75rem; }
   [data-density="comfortable"] .gap-density { gap:1rem; }
   /* Leaflet custom */
-  #marine-map { background:#0b1e2e; }
+  #marine-map { background:#0b1220; }
   #marine-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #marine-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
   /* Fullscreen button: standalone card, same width as Leaflet zoom bar, left-aligned with it */
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
-  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e2e8f0 !important; box-shadow: 0 1px 2px rgb(15 23 42 / .08) !important; border-radius: 8px !important; overflow:hidden; }
-  .leaflet-bar a { background:#fff !important; color:#334155 !important; }
-  .leaflet-bar a:hover { background:#f1f5f9 !important; }
+  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow: 0 1px 2px rgb(15 23 42 / .08) !important; border-radius: 8px !important; overflow:hidden; }
+  .leaflet-bar a { background:#fff !important; color:#374151 !important; }
+  .leaflet-bar a:hover { background:#f3f4f6 !important; }
   .leaflet-control-zoom a { display:flex !important; align-items:center; justify-content:center; padding:0 !important; }
   .leaflet-control-zoom a svg { width:16px; height:16px; }
-  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e2e8f0; border-radius:8px; color:#334155; box-shadow: 0 1px 2px rgb(15 23 42 / .08); }
-  .map-btn:hover { background:#f1f5f9; }
-  .map-btn:active { background:#e2e8f0; }
+  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow: 0 1px 2px rgb(15 23 42 / .08); }
+  .map-btn:hover { background:#f3f4f6; }
+  .map-btn:active { background:#e5e7eb; }
   /* Vessel name label next to marker on the map */
   .vessel-label-wrap { background:transparent !important; border:0 !important; }
   .vessel-label {
@@ -81,7 +91,7 @@
   .vessel-tip .vtip-row { display:flex; align-items:center; gap:6px; }
   .vessel-tip .vtip-flag { border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
   .vessel-tip .vtip-name { font-family:'Exo','Open Sans',sans-serif; font-weight:700; font-size:12px; letter-spacing:.01em; }
-  .vessel-tip .vtip-type { display:block; font-size:11px; color:#cbd5e1; margin-top:2px; }
+  .vessel-tip .vtip-type { display:block; font-size:11px; color:#d1d5db; margin-top:2px; }
   /* Hover state — white selection ring around the vessel icon (matches the focus reference) */
   .vessel-marker { position: relative; cursor: pointer; }
   .vessel-marker::after {
@@ -99,26 +109,26 @@
   .vessel-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .vessel-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Open Sans',system-ui,sans-serif; }
   .vessel-popup .leaflet-popup-tip { background:#fff; }
-  .vp { background:#fff; color:#0f172a; }
-  .vp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 14px 10px; display:flex; align-items:flex-start; justify-content:space-between; }
+  .vp { background:#fff; color:#111827; }
+  .vp-header { background:var(--brand-600,#2d7ffb); color:#fff; padding:12px 14px 10px; display:flex; align-items:flex-start; justify-content:space-between; }
   .vp-header-main { min-width:0; }
   .vp-title { font-family:'Exo','Open Sans',sans-serif; font-weight:800; font-size:15px; letter-spacing:.02em; display:flex; align-items:center; }
   .vp-subtitle { font-size:11.5px; color:rgba(255,255,255,.85); margin-top:2px; }
-  .vp-route { display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; padding:12px 14px; border-bottom:1px solid #e2e8f0; }
+  .vp-route { display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; padding:12px 14px; border-bottom:1px solid #e5e7eb; }
   .vp-port { text-align:center; }
-  .vp-port-code { font-family:'Exo','Open Sans',sans-serif; font-weight:800; font-size:15px; color:#0f172a; }
-  .vp-port-name { font-size:11.5px; color:#334155; margin-top:1px; }
-  .vp-port-time { font-size:10px; color:#64748b; margin-top:3px; letter-spacing:.02em; }
-  .vp-arrow { color:#64748b; font-size:16px; }
+  .vp-port-code { font-family:'Exo','Open Sans',sans-serif; font-weight:800; font-size:15px; color:#111827; }
+  .vp-port-name { font-size:11.5px; color:#374151; margin-top:1px; }
+  .vp-port-time { font-size:10px; color:#6b7280; margin-top:3px; letter-spacing:.02em; }
+  .vp-arrow { color:#6b7280; font-size:16px; }
   .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; padding:12px 14px; }
   .vp-grid > div { min-width:0; }
   .vp-span { grid-column:1 / -1; }
-  .vp-k { font-size:10.5px; color:#64748b; }
-  .vp-v { font-size:12.5px; color:#0f172a; margin-top:1px; font-weight:600; }
-  .vp-strong { font-weight:700; color:#0f172a; }
-  .vp-muted { color:#64748b; font-weight:500; font-size:11px; }
+  .vp-k { font-size:10.5px; color:#6b7280; }
+  .vp-v { font-size:12.5px; color:#111827; margin-top:1px; font-weight:600; }
+  .vp-strong { font-weight:700; color:#111827; }
+  .vp-muted { color:#6b7280; font-weight:500; font-size:11px; }
   .vp-nav { color:#16a34a; font-weight:700; }
-  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
+  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2d7ffb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
   .vp-cta:hover { background:var(--brand-50,#eff6ff); }
   .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:6px; opacity:.9; }
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
@@ -126,13 +136,13 @@
   #map-container.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; border:0; }
   #map-container.is-fullscreen > div { height:100vh !important; }
   /* Pill tabs (Skytek DS — animated pill via shared layout) */
-  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:9999px; }
+  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#64748b; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
-  .ds-tab:hover { color:#0f172a; }
+  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
+  .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
-  .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2563eb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
+  .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2d7ffb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
   .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:6px; }
   .ds-tab .tab-ico { display:inline-flex; }
@@ -144,8 +154,13 @@
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 5px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 5px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2d7ffb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
+
+  /* ── DS color conformance overrides ── */
+  .text-rose-500{color:#dc2626!important}.text-rose-600{color:#dc2626!important}.text-rose-700{color:#b91c1c!important}.bg-rose-100{background-color:#fee2e2!important}
+  .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}
+  .bg-emerald-100{background-color:#dcfce7!important}.text-emerald-700{color:#15803d!important}
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -203,12 +218,12 @@ const EXPOSURE_AGGREGATIONS = [
 ];
 
 const BENCHMARK = [
-  { kind:'Bulk Carrier',     count:'12,483', pct:24.6, color:'#3b82f6' },
-  { kind:'Tanker',           count:'8,021',  pct:17.8, color:'#ef4444' },
-  { kind:'Gas Carrier',      count:'3,456',  pct:6.8,  color:'#f97316' },
-  { kind:'LNG Carrier',      count:'2,876',  pct:5.7,  color:'#eab308' },
-  { kind:'General Cargo',    count:'6,788',  pct:13.6, color:'#22c55e' },
-  { kind:'Refrigerated Cargo',count:'2,134', pct:4.2,  color:'#06b6d4' },
+  { kind:'Bulk Carrier',     count:'12,483', pct:24.6, color:'#51a2fc' },
+  { kind:'Tanker',           count:'8,021',  pct:17.8, color:'#dc2626' },
+  { kind:'Gas Carrier',      count:'3,456',  pct:6.8,  color:'#d97706' },
+  { kind:'LNG Carrier',      count:'2,876',  pct:5.7,  color:'#65a30d' },
+  { kind:'General Cargo',    count:'6,788',  pct:13.6, color:'#16a34a' },
+  { kind:'Refrigerated Cargo',count:'2,134', pct:4.2,  color:'#0891b2' },
 ];
 
 const ALERTS = [
@@ -228,16 +243,16 @@ const ALERTS = [
 
 /* Vessels on the map — varied types scattered across the globe, oriented by heading. */
 const VESSEL_TYPES = [
-  { k:'Container',         color:'#2563eb' },
-  { k:'Bulk Carrier',      color:'#3b82f6' },
-  { k:'Tanker',            color:'#ef4444' },
-  { k:'Gas Carrier',       color:'#f97316' },
-  { k:'LNG Carrier',       color:'#eab308' },
-  { k:'General Cargo',     color:'#22c55e' },
-  { k:'Refrigerated Cargo',color:'#06b6d4' },
-  { k:'Cruise Passenger',  color:'#ec4899' },
-  { k:'Vehicle Carrier',   color:'#8b5cf6' },
-  { k:'Yacht',             color:'#f59e0b' },
+  { k:'Container',         color:'#2d7ffb' },
+  { k:'Bulk Carrier',      color:'#51a2fc' },
+  { k:'Tanker',            color:'#dc2626' },
+  { k:'Gas Carrier',       color:'#d97706' },
+  { k:'LNG Carrier',       color:'#65a30d' },
+  { k:'General Cargo',     color:'#16a34a' },
+  { k:'Refrigerated Cargo',color:'#0891b2' },
+  { k:'Cruise Passenger',  color:'#db2777' },
+  { k:'Vehicle Carrier',   color:'#9333ea' },
+  { k:'Yacht',             color:'#d97706' },
 ];
 const POLICY_TYPES = ['Hull','Cargo','Liability','War','Cyber','Hull & War'];
 function randV(seed){ // tiny LCG
@@ -381,19 +396,19 @@ function positionTabPills() {
 }
 
 function PortfolioCard() {
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
-  const sortIco = `<span style="font-size:10px;color:#94a3b8;vertical-align:middle;"> ↕</span>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
+  const sortIco = `<span style="font-size:10px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   const statsRow = `
     <div style="padding:10px 12px 0;">
       <div style="display:flex;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;">
         <div style="flex:1;padding:12px 16px;text-align:center;border-right:1px solid #dbeafe;">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Total Policies</div>
-          <div style="font-size:26px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">4,932</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Policies</div>
+          <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">4,932</div>
         </div>
         <div style="flex:1;padding:12px 16px;text-align:center;">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Total Exposure</div>
-          <div style="font-size:26px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$605.2B</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
+          <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$605.2B</div>
         </div>
       </div>
     </div>`;
@@ -408,7 +423,7 @@ function PortfolioCard() {
         <div class="border-b border-ink-100 last:border-0">
           <button data-group-idx="${gi}" class="w-full text-left px-3 py-2 hover:bg-ink-50 flex items-center justify-between gap-2 text-xs" style="gap:8px">
             <span class="inline-flex items-center gap-1.5 min-w-0 flex-1">
-              <span style="color:#94a3b8;flex-shrink:0">${chevron}</span>
+              <span style="color:#9ca3af;flex-shrink:0">${chevron}</span>
               ${folderIco}
               <span class="text-brand-600 font-semibold truncate hover:underline">${g.name}</span>
             </span>
@@ -486,8 +501,8 @@ function PortfolioCard() {
 }
 
 function RegionsCard() {
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
-  const sortIco = `<span style="font-size:10px;color:#94a3b8;vertical-align:middle;"> ↕</span>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
+  const sortIco = `<span style="font-size:10px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   if (state.regionTab === 'Exposure Aggregation') {
     return `
@@ -607,8 +622,8 @@ function AlertsCard() {
     { name:'Winter Storm Uri', winds:'65 knots',  region:'Gulf of Mexico',  date:'2024-11-03', cat:'Winter Storm',  catTone:'yellow' },
   ];
 
-  const catColor = { rose:'#dc2626', orange:'#ea580c', amber:'#d97706', yellow:'#ca8a04' };
-  const catBg    = { rose:'#fef2f2', orange:'#fff7ed', amber:'#fffbeb', yellow:'#fefce8' };
+  const catColor = { rose:'#dc2626', orange:'#b45309', amber:'#d97706', yellow:'#b45309' };
+  const catBg    = { rose:'#fef2f2', orange:'#fffbeb', amber:'#fffbeb', yellow:'#fffbeb' };
 
   const windIco = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`;
 
@@ -655,7 +670,7 @@ function AlertsCard() {
       </div>
       <div style="font-size:13px;font-weight:700;color:#dc2626;">Sanctioned</div>
     </div>
-    <div class="px-3 py-2 grid text-[11px] font-semibold tracking-micro uppercase text-ink-500" style="grid-template-columns:1fr auto auto;gap:0 16px;border-bottom:1px solid #f1f5f9;">
+    <div class="px-3 py-2 grid text-[11px] font-semibold tracking-micro uppercase text-ink-500" style="grid-template-columns:1fr auto auto;gap:0 16px;border-bottom:1px solid #f3f4f6;">
       <span>Vessel</span>
       <span>Date Imposed</span>
       <span>Portfolio</span>
@@ -765,9 +780,9 @@ function MapCard() {
             </div>
             <div class="py-1">
               ${[
-                { k:'Ok',         color:'#22c55e' },
-                { k:'Warning',    color:'#f59e0b' },
-                { k:'Sanctioned', color:'#ef4444' },
+                { k:'Ok',         color:'#16a34a' },
+                { k:'Warning',    color:'#d97706' },
+                { k:'Sanctioned', color:'#dc2626' },
               ].map(s => `
                 <label class="cs-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-compliance="${s.k}">
                   <input type="checkbox" class="cs-cb h-4 w-4 rounded border-ink-300 accent-brand-600" checked />
@@ -939,15 +954,15 @@ function initMap() {
     currentType = type;
     // Re-sync background color for gaps between tiles
     document.getElementById('marine-map').style.background =
-      type === 'street' ? '#e2e8f0' :
-      type === 'dark'   ? '#0b0f1a' :
-      type === 'light'  ? '#f1f5f9' : '#0b1e2e';
+      type === 'street' ? '#e5e7eb' :
+      type === 'dark'   ? '#0b1220' :
+      type === 'light'  ? '#f3f4f6' : '#0b1220';
     // Update menu active state (checkmark + bold label)
     document.querySelectorAll('[data-map-type]').forEach(b => {
       const isOn = b.dataset.mapType === type;
       const lbl   = b.querySelector('[data-label]');
       const check = b.querySelector('[data-check]');
-      if (lbl)   { lbl.style.color = isOn ? '#2563eb' : '#334155'; lbl.style.fontWeight = isOn ? '600' : '500'; }
+      if (lbl)   { lbl.style.color = isOn ? '#2d7ffb' : '#374151'; lbl.style.fontWeight = isOn ? '600' : '500'; }
       if (check) { check.style.opacity = isOn ? '1' : '0'; }
     });
   }
@@ -1175,7 +1190,7 @@ function initMap() {
     if (!labelsSw) return;
     const on = !!state.showLabels;
     labelsSw.setAttribute('aria-checked', on ? 'true' : 'false');
-    labelsSw.style.backgroundColor = on ? '#2563eb' : '#cbd5e1';
+    labelsSw.style.backgroundColor = on ? '#2d7ffb' : '#d1d5db';
     const knob = labelsSw.querySelector('span');
     if (knob) knob.style.transform = on ? 'translateX(22px)' : 'translateX(2px)';
   }
