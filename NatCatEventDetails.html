@@ -21,6 +21,11 @@
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e2e8f0!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#334155!important;line-height:30px!important}
   .leaflet-bar a:hover{background:#f1f5f9!important}
+  /* Zoom control: sit below the fullscreen button (top-left), left-aligned with it */
+  #detail-map .leaflet-top.leaflet-left{top:56px;left:2px}
+  #detail-map .leaflet-top.leaflet-left .leaflet-bar{margin:0 0 0 10px!important}
+  .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
+  .leaflet-control-zoom a svg{width:16px;height:16px}
   /* Damage bar animation */
   @keyframes growBar { from { width:0 } to { width:var(--bar-w) } }
   .dmg-fill { animation: growBar 700ms cubic-bezier(.34,1.1,.64,1) both; }
@@ -29,6 +34,16 @@
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer;transition:background .1s}
   .map-btn:hover{background:#f1f5f9}
   .map-btn.is-active{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:var(--brand-600,#2563eb)}
+  /* Affected properties list */
+  .prop-row{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;background:transparent;border:0;border-bottom:1px solid #f1f5f9;cursor:pointer;text-align:left;transition:background .1s;font-family:inherit;}
+  .prop-row:hover{background:#f8fafc;}
+  .prop-row.is-active{background:var(--brand-50,#eff6ff);}
+  .prop-rank{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#8b5cf6;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .prop-name{display:block;font-size:13px;font-weight:700;color:#0f172a;line-height:1.25;}
+  .prop-loc{display:block;font-size:11px;color:#64748b;margin-top:2px;}
+  .prop-note{display:block;font-size:11px;color:#94a3b8;margin-top:5px;line-height:1.4;}
+  .prop-chev{flex-shrink:0;color:#cbd5e1;margin-top:3px;}
+  .prop-row:hover .prop-chev{color:#8b5cf6;}
   /* Pre/post-event satellite imagery treatments */
   /* Date stamp badge that sits on the imagery patch */
   .imagery-stamp{
@@ -63,8 +78,11 @@
   /* Responsive */
   @media(max-width:767px){
     .analytics-panel{width:100%!important;min-width:0!important;border-right:0;border-bottom:1px solid #e2e8f0;max-height:55vh;}
-    .detail-main{flex-direction:column!important;}
-    .map-right{height:45vh!important;}
+    .detail-main{flex-direction:column!important;height:auto!important;}
+    .detail-main>div{width:100%!important;min-width:0!important;}
+    .detail-main>div:first-child{max-height:60vh;}
+    .map-right{height:60vh!important;flex:none!important;}
+    .natcat-content{overflow-y:auto!important;}
   }
 </style>
 </head>
@@ -118,7 +136,15 @@ const EVENT_DETAILS = {
   11: { people:'320,000',   area:'4,200',   rdsClass:'High',    rdsExp:'$1.8B',  props:6400,  damage:[30,32,26,12], desc:'A strong earthquake struck the Andean state of Mérida in western Venezuela on March 24, 2026, near the Boconó fault system. The tremor damaged homes and infrastructure across the mountainous region, triggering landslides that isolated several communities.', lat:8.6, lng:-71.1 },
 };
 
-/* ── Load event ────────────────────────────────────────────────────────────── */
+/* Collapsed / severely damaged buildings for the Venezuela Earthquake (event 11).
+   Clicking a row flies the map to the building location. */
+const EVENT_PROPERTIES = {
+  11: [
+    { rank:1, name:'Los Cocos (Hugo Chávez Housing Complex)', loc:'Los Cocos, La Guaira, Venezuela',            lat:10.6035, lng:-66.9315, note:'Six of eight residential towers collapsed — the deadliest single building complex in the disaster.' },
+    { rank:2, name:'Residential tower — Los Palos Grandes',   loc:'Los Palos Grandes, Chacao, Caracas, Venezuela', lat:10.4988, lng:-66.8485, note:'One of the first major collapses reported in Caracas. Numerous rescues were carried out here.' },
+    { rank:3, name:'Residencias Caribe',                      loc:'Caraballeda, La Guaira, Venezuela',            lat:10.6113, lng:-66.8527, note:'Multi-storey apartment building that suffered catastrophic collapse in Caraballeda.' },
+  ],
+};
 let ev = null;
 try { ev = JSON.parse(sessionStorage.getItem('selectedNatCatEvent') || 'null'); } catch(e) {}
 if (!ev) {
@@ -142,6 +168,8 @@ const IC = {
   filter:   `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>`,
   tag:      `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
   expand:   `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`,
+  chevRight:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
+  building: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>`,
 };
 
 /* ── Analytics panel HTML ──────────────────────────────────────────────────── */
@@ -270,10 +298,38 @@ function MapPanel() {
   </div>`;
 }
 
+/* ── Affected properties panel (event-specific) ────────────────────────────── */
+const EVENT_PROPS = EVENT_PROPERTIES[ev.id] || null;
+
+function PropertiesPanel() {
+  const rows = EVENT_PROPS.map(p => `
+    <button class="prop-row" data-prop-rank="${p.rank}" title="Zoom to ${p.name.replace(/"/g,'&quot;')}">
+      <span class="prop-rank">${p.rank}</span>
+      <span style="min-width:0;flex:1;text-align:left;">
+        <span class="prop-name">${p.name}</span>
+        <span class="prop-loc">${p.loc}</span>
+        <span class="prop-note">${p.note}</span>
+      </span>
+      <span class="prop-chev">${IC.chevRight}</span>
+    </button>`).join('');
+
+  return `
+  <div style="width:300px;min-width:300px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;">
+    <div style="padding:12px 16px;background:#fff;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+      ${IC.building}
+      <span style="font-size:14px;font-weight:600;color:#0f172a;">Affected Properties</span>
+      <span style="margin-left:auto;font-size:11px;font-weight:600;color:#64748b;background:#f1f5f9;border-radius:999px;padding:2px 8px;">${EVENT_PROPS.length}</span>
+    </div>
+    <div style="flex:1;overflow-y:auto;" class="scroll-thin">
+      ${rows}
+    </div>
+  </div>`;
+}
+
 /* ── Main content ──────────────────────────────────────────────────────────── */
 function Content() {
   return `
-  <div class="flex-1 min-h-0 overflow-hidden" style="padding:16px;">
+  <div class="flex-1 min-h-0 natcat-content" style="padding:16px;overflow:hidden;">
     <div class="detail-main" style="display:flex;height:100%;gap:16px;">
       <div style="width:300px;min-width:300px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;">
         ${AnalyticsPanel()}
@@ -281,6 +337,7 @@ function Content() {
       <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;" class="map-right">
         ${MapPanel()}
       </div>
+      ${EVENT_PROPS ? PropertiesPanel() : ''}
     </div>
   </div>`;
 }
@@ -310,6 +367,15 @@ const EVENT_IMAGERY_OVERRIDE = {
 };
 let activeTile = null;
 let currentMapType = 'street';
+
+/* Slippy-tile coords for a lat/lng at zoom z (for static Wayback thumbnails). */
+function lngLatToTile(lat, lng, z) {
+  const n = 2 ** z;
+  const x = Math.floor((lng + 180) / 360 * n);
+  const latR = lat * Math.PI / 180;
+  const y = Math.floor((1 - Math.log(Math.tan(latR) + 1 / Math.cos(latR)) / Math.PI) / 2 * n);
+  return { x, y, z };
+}
 
 function initDetailMap() {
   const el = document.getElementById('detail-map');
@@ -409,7 +475,6 @@ function initDetailMap() {
   // Push zoom control below expand btn
   setTimeout(() => {
     const zc = el.querySelector('.leaflet-control-zoom');
-    if (zc) zc.style.marginTop = '44px';
     const zin  = el.querySelector('.leaflet-control-zoom-in');
     const zout = el.querySelector('.leaflet-control-zoom-out');
     if (zin)  zin.innerHTML  = `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>`;
@@ -491,6 +556,61 @@ function initDetailMap() {
       }
       setTimeout(() => detailMap.invalidateSize(), 200);
     };
+  }
+
+  // Affected-property markers + click-to-zoom list wiring (event-specific)
+  if (EVENT_PROPS) {
+    const propMarkers = {};
+    EVENT_PROPS.forEach(p => {
+      // Satellite imagery patch around each property, so zooming in shows
+      // real overhead imagery rather than the street base map.
+      const propBounds = L.latLng(p.lat, p.lng).toBounds(2500);
+      L.tileLayer(TILE_URLS.satellite, {
+        attribution:'© Esri, Maxar, Earthstar Geographics',
+        bounds: propBounds, maxZoom: 19, maxNativeZoom: 19, zIndex: 210,
+      }).addTo(detailMap);
+
+      const icon = L.divIcon({
+        className: 'prop-marker',
+        html: `<div style="width:26px;height:26px;border-radius:50% 50% 50% 0;background:#8b5cf6;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);color:#fff;font-size:12px;font-weight:700;">${p.rank}</span></div>`,
+        iconSize: [26,26], iconAnchor: [13,26],
+      });
+      const m = L.marker([p.lat, p.lng], { icon }).addTo(detailMap);
+      // Before/after satellite popup — two dated captures from the Esri/Maxar
+      // World Imagery (Wayback) archive, bracketing the event.
+      const t = lngLatToTile(p.lat, p.lng, 18);
+      const wb = rel => `https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/tile/${rel}/${t.z}/${t.y}/${t.x}`;
+      const imgStyle = 'width:130px;height:130px;object-fit:cover;display:block;background:#0f172a;';
+      m.bindPopup(`
+        <div style="font-family:'Inter',sans-serif;width:280px;">
+          <div style="font-size:13px;font-weight:700;color:#0f172a;line-height:1.25;">${p.name}</div>
+          <div style="font-size:11px;color:#64748b;margin-top:2px;margin-bottom:8px;">${p.loc}</div>
+          <div style="display:flex;gap:6px;">
+            <figure style="margin:0;flex:1;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;">
+              <img src="${wb('60013')}" alt="Before" style="${imgStyle}" loading="lazy" />
+              <figcaption style="font-size:10px;font-weight:700;color:#475569;background:#f1f5f9;padding:4px 6px;text-align:center;">BEFORE · Mar 2024</figcaption>
+            </figure>
+            <figure style="margin:0;flex:1;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;">
+              <img src="${wb('32246')}" alt="After" style="${imgStyle}" loading="lazy" />
+              <figcaption style="font-size:10px;font-weight:700;color:#b91c1c;background:#fef2f2;padding:4px 6px;text-align:center;">AFTER · Jun 2026</figcaption>
+            </figure>
+          </div>
+          <div style="font-size:9.5px;color:#94a3b8;margin-top:6px;line-height:1.3;">Satellite imagery © Esri, Maxar — World Imagery (Wayback)</div>
+        </div>`, { minWidth: 296, maxWidth: 296 });
+      propMarkers[p.rank] = m;
+    });
+    document.querySelectorAll('.prop-row').forEach(row => {
+      row.onclick = () => {
+        const rank = +row.dataset.propRank;
+        const p = EVENT_PROPS.find(x => x.rank === rank);
+        if (!p) return;
+        document.querySelectorAll('.prop-row').forEach(r => r.classList.remove('is-active'));
+        row.classList.add('is-active');
+        detailMap.flyTo([p.lat, p.lng], 17, { duration: 0.8 });
+        const m = propMarkers[rank];
+        if (m) setTimeout(() => m.openPopup(), 850);
+      };
+    });
   }
 }
 

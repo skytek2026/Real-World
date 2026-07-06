@@ -179,6 +179,10 @@ let state = {
   withSanctionsCopy6: true,
   topRightTabCopy7: 'Risk Score',
   casualtyExpandedCopy7: new Set([0]),
+  withSanctionsCopy7: true,
+  topRightTabCopy8: 'Risk Score',
+  casualtyExpandedCopy8: new Set([0]),
+  withSanctionsCopy8: true,
   showAltDesigns: false,
 };
 
@@ -920,7 +924,7 @@ function CasualtyRiskCardCopy7() {
       }).join('')}
     </div>`;
   } else if (state.topRightTabCopy7 === 'Risk Score') {
-    const rsScore = 58, rs2025 = 32, rs2024 = 6, rs2023 = 4;
+    const rsScore = state.withSanctionsCopy7 ? 100 : 58, rs2025 = 32, rs2024 = 6, rs2023 = 4;
     const rsDelta25   = rsScore - rs2025;   // current (main gauge) vs 2025
     const rsDelta2025 = rs2025  - rs2024;   // 2025 card vs 2024
     const rsDelta24   = rs2024  - rs2023;   // 2024 card vs 2023
@@ -971,6 +975,15 @@ function CasualtyRiskCardCopy7() {
     const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
     body = `
     <div class="scroll-thin" style="padding:12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div style="font-size:12px;font-weight:700;color:#111827;">Risk Score</div>
+        <button data-sanctions-toggle-copy7 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Sanctions
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy7?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${state.withSanctionsCopy7?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+      </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <!-- Gauge -->
         <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;">
@@ -1011,7 +1024,10 @@ function CasualtyRiskCardCopy7() {
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
             <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
             <div style="font-size:9px;color:#6b7280;text-align:center;line-height:1.4;">Avg. Risk Score</div>
-            <div style="font-size:24px;font-weight:800;color:#111827;line-height:1;">${rs2025}</div>
+            <div style="position:relative;width:70px;height:70px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:50px;height:50px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:22px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
+            </div>
             <div style="background:${yearPill(rs2025).bg};color:${yearPill(rs2025).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2025).txt} 30%, transparent);font-size:14px;font-weight:700;padding:5px 13px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta2025}
@@ -1021,7 +1037,10 @@ function CasualtyRiskCardCopy7() {
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
             <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
             <div style="font-size:9px;color:#6b7280;text-align:center;line-height:1.4;">Avg. Risk Score</div>
-            <div style="font-size:24px;font-weight:800;color:#111827;line-height:1;">${rs2024}</div>
+            <div style="position:relative;width:70px;height:70px;border-radius:50%;background:conic-gradient(${yearColor(rs2024)} ${rs2024*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:50px;height:50px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:22px;font-weight:800;color:#111827;line-height:1;">${rs2024}</span>
+            </div>
             <div style="background:${yearPill(rs2024).bg};color:${yearPill(rs2024).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2024).txt} 30%, transparent);font-size:14px;font-weight:700;padding:5px 13px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta24}
@@ -1105,6 +1124,232 @@ function CasualtyRiskCardCopy7() {
   <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
     <div class="px-4 py-3 border-b border-ink-200">
       ${tabs(topRightTabs, state.topRightTabCopy7, 'data-top-right-tab-copy7', true)}
+    </div>
+    ${body}
+  </div>`;
+}
+
+function CasualtyRiskCardCopy8() {
+  const avgScore = 58;
+  const score2025 = 32;
+  // Match gauge colour: 0-25 green, 25-50 amber, 50+ red
+  const scoreTone = avgScore <= 25 ? { bg:'bg-green-100', text:'text-green-700' }
+                  : avgScore <= 50 ? { bg:'bg-amber-100',  text:'text-amber-700' }
+                  :                  { bg:'bg-red-100',    text:'text-red-700' };
+  const topRightTabs = [
+    { k:'Risk Score', scoreBadge: { value: avgScore, up: avgScore > score2025, tone: scoreTone } },
+    { k:'Casualty Data', badge: CASUALTY_DATA.length },
+  ];
+  
+  const severityBadge = (c) => {
+    const styles = {
+      'Severe':   { bg:'#fef3c7', text:'#b45309', dot:'#dc2626' },
+      'Moderate': { bg:'#fef3c7', text:'#b45309', dot:'#d97706' },
+      'Minor':    { bg:'#fef3c7', text:'#b45309', dot:'#d97706' },
+    };
+    const s = styles[c.severity] || styles['Minor'];
+    return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold" style="background:${s.bg}; color:${s.text};">
+      <span class="w-2 h-2 rounded-full" style="background:${s.dot};"></span>
+      ${c.severity}
+    </span>`;
+  };
+
+  let body = '';
+  if (state.topRightTabCopy8 === 'Casualty Data') {
+    body = `
+    <div class="flex-1 overflow-y-auto scroll-thin">
+      <div class="px-4 py-2 grid grid-cols-[1fr_auto_auto] gap-4 border-b border-ink-200 sticky top-0 bg-white">
+        <span class="text-xs font-semibold text-ink-900">Date</span>
+        <span class="text-xs font-semibold text-ink-900">Severity</span>
+        <span></span>
+      </div>
+      ${CASUALTY_DATA.map((c, i) => {
+        const expanded = state.casualtyExpandedCopy8.has(i);
+        return `
+        <div class="border-b border-ink-100 last:border-0">
+          <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
+            <span class="text-xs text-ink-700">${c.date}</span>
+            ${severityBadge(c)}
+            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy8="${i}">
+              ${expanded ? 'less' : 'more'}
+              <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+          </div>
+          ${expanded ? `
+          <div class="px-4 pb-3 space-y-1.5 text-xs">
+            <div><span class="font-semibold text-ink-900">Location:</span> <span class="text-ink-700">${c.location}</span></div>
+            <div><span class="font-semibold text-ink-900">Type:</span> <span class="text-ink-700">${c.type}</span></div>
+            <div class="font-semibold text-ink-900">Description:</div>
+            <div class="text-ink-500 leading-relaxed">${c.desc}</div>
+          </div>` : ''}
+        </div>`;
+      }).join('')}
+    </div>`;
+  } else if (state.topRightTabCopy8 === 'Risk Score') {
+    const rsScore = state.withSanctionsCopy8 ? 100 : 58, rs2025 = 32, rs2024 = 6, rs2023 = 4;
+    const rsDelta25   = rsScore - rs2025;   // current (main gauge) vs 2025
+    const rsDelta2025 = rs2025  - rs2024;   // 2025 card vs 2024
+    const rsDelta24   = rs2024  - rs2023;   // 2024 card vs 2023
+    const rsPct = Math.round(Math.abs(rsDelta25) / rs2025 * 100);
+    const risk = rsScore <= 25
+      ? { label:'GOOD', c:'#16a34a', glow:'#16a34a', pillBg:'#dcfce7', pillTxt:'#15803d' }
+      : rsScore <= 50
+      ? { label:'AVERAGE RISK', c:'#d97706', glow:'#fef3c7', pillBg:'#fef3c7', pillTxt:'#b45309' }
+      : { label:'BELOW AVERAGE', c:'#dc2626', glow:'#fee2e2', pillBg:'#fee2e2', pillTxt:'#dc2626' };
+    // Year score → band colour (matches the gauge bands: green ≤25, orange ≤50, red >50)
+    const yearColor = s => s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626';
+    const yearPill  = s => s <= 25 ? { bg:'#dcfce7', txt:'#15803d' } : s <= 50 ? { bg:'#fef3c7', txt:'#b45309' } : { bg:'#fee2e2', txt:'#dc2626' };
+    // Gauge geometry: 270° arc, start=135° (7:30 o'clock), sweep clockwise
+    const CX=100, CY=108, R=80, RO=95, SW=11;
+    const toRad = d => d * Math.PI / 180;
+    const pt = (a, r) => [+(CX + r*Math.cos(toRad(a))).toFixed(2), +(CY + r*Math.sin(toRad(a))).toFixed(2)];
+    const [sx,sy]   = pt(135, R);   // arc track start
+    const [ex,ey]   = pt(45,  R);   // arc track end (135+270=405≡45°)
+    const [sox,soy] = pt(135, RO);  // outer dot ring start
+    const [eox,eoy] = pt(45,  RO);  // outer dot ring end
+    // Smooth gradient gauge: 54 fine arc segments, each with interpolated color
+    const GAUGE_MAX = 100, GAUGE_START = 135, GAUGE_SWEEP_DEG = 270;
+    const gAngle = s => GAUGE_START + (Math.min(s, GAUGE_MAX) / GAUGE_MAX) * GAUGE_SWEEP_DEG;
+    const arcD = (a1, a2, r) => {
+      const [x1,y1] = pt(a1, r), [x2,y2] = pt(a2, r);
+      const sw = ((a2 - a1) % 360 + 360) % 360;
+      return `M ${x1},${y1} A ${r},${r} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
+    };
+    // Banded segment color: green ≤25, orange ≤50, red >50
+    const gaugeColor = s => (s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626');
+    const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    // Continuous band arcs — divider only between the main bands (at 25 & 50)
+    const BANDS = state.withSanctionsCopy8 ? [[0,100,'#dc2626']] : [[0,25,'#16a34a'],[25,50,'#d97706'],[50,100,'#dc2626']];
+    const BAND_GAP = 1.4; // degrees of separation between main bands
+    const segPaths = BANDS.map(([bs, be, col], bi) => {
+      const aStart = gAngle(bs) + (bi > 0 ? BAND_GAP / 2 : 0);
+      const aEnd   = gAngle(be) - (bi < BANDS.length - 1 ? BAND_GAP / 2 : 0);
+      const fillEnd = Math.max(bs, Math.min(rsScore, be));
+      const aFill = gAngle(fillEnd);
+      let out = '';
+      if (fillEnd > bs) out += `<path d="${arcD(aStart, Math.min(aFill, aEnd), R)}" fill="none" stroke="${col}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      if (fillEnd < be) out += `<path d="${arcD(Math.max(aFill, aStart), aEnd, R)}" fill="none" stroke="#e5e7eb" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      return out;
+    }).join('');
+    const glowColor = rsScore <= 25 ? '#16a34a' : rsScore <= 50 ? '#d97706' : '#fee2e2';
+    const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
+    const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
+    const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
+    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
+    body = `
+    <div style="padding:10px 12px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
+        <button data-sanctions-toggle-copy8 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Sanctions
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy8?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${state.withSanctionsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <!-- Gauge -->
+        <div style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;"><div style="position:absolute;top:6px;right:6px;z-index:5;">${rsInfoIcon('Current · Risk Score ' + rsScore)}</div>
+          <div style="position:relative;width:100%;max-width:188px;">
+            <svg viewBox="0 0 200 192" style="width:100%;height:auto;overflow:visible;" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <radialGradient id="rsGaugeGlowCopy8" cx="50%" cy="55%" r="42%">
+                  <stop offset="0%" stop-color="${risk.glow}" stop-opacity="0.55"/>
+                  <stop offset="100%" stop-color="${risk.glow}" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <!-- Soft glow behind fill -->
+              <ellipse cx="100" cy="108" rx="70" ry="60" fill="url(#rsGaugeGlowCopy8)"/>
+              <!-- Glow at fill tip -->
+              ${glowPath}
+              <!-- White casing behind segments for crisp separators -->
+              ${whiteCasing}
+              <!-- Banded fill segments (grey when unfilled) -->
+              ${segPaths}
+              <!-- Score number -->
+              <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#111827" font-family="Inter,sans-serif">${rsScore}</text>
+            </svg>
+          </div>
+          <div style="background:transparent;border:0;border-radius:8px;padding:2px 10px;text-align:center;width:100%;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;color:${risk.c};font-weight:700;font-size:13px;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              +${rsDelta25} (+${rsPct}%)
+            </div>
+          </div>
+        </div>
+        <!-- Year comparisons -->
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2025 · Avg. Risk Score ' + rs2025, 'l')}</div>
+            <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
+            </div>
+            <div style="background:${yearPill(rs2025).bg};color:${yearPill(rs2025).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2025).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta2025}
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2024 · Avg. Risk Score ' + rs2024, 'r')}</div>
+            <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2024)} ${rs2024*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2024}</span>
+            </div>
+            <div style="background:${yearPill(rs2024).bg};color:${yearPill(rs2024).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2024).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta24}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Risk Level Guide -->
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#dcfce7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">0 → 25</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#fef3c7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">25+ → 50</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#fee2e2;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              </div>
+              <div>
+                <div style="font-size:10px;font-weight:700;color:#dc2626;line-height:1.1;">Below Avg.</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">50+ → 100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+  
+  return `
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
+    <div class="px-4 py-3 border-b border-ink-200">
+      ${tabs(topRightTabs, state.topRightTabCopy8, 'data-top-right-tab-copy8', true)}
     </div>
     ${body}
   </div>`;
@@ -2594,7 +2839,7 @@ function InspectionTable() {
                   <span class="text-ink-700">${r.country}</span>
                 </div>
               </td>
-              <td class="px-3 py-2 text-ink-700">${r.port}${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</td>
+              <td class="px-3 py-2 text-ink-700"><a href="PortDetails.html" class="text-brand-600 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</td>
               <td class="px-3 py-2 text-ink-700">${r.psc}</td>
               <td class="px-3 py-2 text-ink-700">${r.type}</td>
               <td class="px-3 py-2 text-right text-ink-700">${r.defects}</td>
@@ -3195,7 +3440,7 @@ function Content() {
       <div class="md:col-span-4" style="height:400px;">${VesselDetailsCard()}</div>
       <div class="md:col-span-2" style="height:400px;">${PolicyDetailsCard()}</div>
       <div class="md:col-span-2" style="height:400px;">${PortCallsCard()}</div>
-      <div class="md:col-span-4" style="height:400px;">${CasualtyRiskCardCopy5()}</div>
+      <div class="md:col-span-4" style="height:400px;">${CasualtyRiskCardCopy8()}</div>
     </section>
     <div style="display:flex;justify-content:flex-start;">
       <button data-toggle-alt-designs style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#2d7ffb;font-family:inherit;padding:2px 0;">
@@ -3265,6 +3510,7 @@ window.render = function render() {
   wireTab('data-top-right-tab-copy5', 'topRightTabCopy5');
   wireTab('data-top-right-tab-copy6', 'topRightTabCopy6');
   wireTab('data-top-right-tab-copy7', 'topRightTabCopy7');
+  wireTab('data-top-right-tab-copy8', 'topRightTabCopy8');
   document.querySelectorAll('[data-casualty-copy7]').forEach(btn => {
     btn.onclick = () => {
       const i = parseInt(btn.getAttribute('data-casualty-copy7'));
@@ -3273,11 +3519,21 @@ window.render = function render() {
       render();
     };
   });
+  document.querySelectorAll('[data-casualty-copy8]').forEach(btn => {
+    btn.onclick = () => {
+      const i = parseInt(btn.getAttribute('data-casualty-copy8'));
+      if (state.casualtyExpandedCopy8.has(i)) state.casualtyExpandedCopy8.delete(i);
+      else state.casualtyExpandedCopy8.add(i);
+      render();
+    };
+  });
   document.querySelectorAll('[data-toggle-alt-designs]').forEach(btn => { btn.onclick = () => { state.showAltDesigns = !state.showAltDesigns; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy2]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy2 = !state.withSanctionsCopy2; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy3]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy3 = !state.withSanctionsCopy3; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy5]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy5 = !state.withSanctionsCopy5; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy6]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy6 = !state.withSanctionsCopy6; render(); }; });
+  document.querySelectorAll('[data-sanctions-toggle-copy7]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy7 = !state.withSanctionsCopy7; render(); }; });
+  document.querySelectorAll('[data-sanctions-toggle-copy8]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy8 = !state.withSanctionsCopy8; render(); }; });
   wireTab('data-section-tab',     'sectionTab');
   wireTab('data-bottom-left-tab', 'bottomLeftTab');
   const sectionTabSel = document.getElementById('section-tab-mobile-sel');

@@ -37,6 +37,11 @@
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e2e8f0!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#334155!important;line-height:30px!important}
   .leaflet-bar a:hover{background:#f1f5f9!important}
+  /* Zoom control: sit below the fullscreen button (top-left), left-aligned with it */
+  #nat-map .leaflet-top.leaflet-left{top:56px;left:2px}
+  #nat-map .leaflet-top.leaflet-left .leaflet-bar{margin:0 0 0 10px!important}
+  .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
+  .leaflet-control-zoom a svg{width:16px;height:16px}
   /* Event card */
   .ev-card{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f1f5f9;transition:background .1s}
   .ev-card:hover{background:#f8fafc}
@@ -48,6 +53,12 @@
   /* Map btn */
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
   .map-btn:hover{background:#f1f5f9}
+  /* Mobile: stack events + map cards */
+  @media(max-width:767px){
+    .natcat-main{flex-direction:column!important;overflow-y:auto!important;}
+    .natcat-events-card{width:100%!important;flex-shrink:0!important;max-height:60vh;}
+    .natcat-map-card{width:100%!important;flex:none!important;height:60vh!important;}
+  }
   /* Popup */
   .nat-popup .leaflet-popup-content-wrapper{padding:0;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.18)}
   .nat-popup .leaflet-popup-content{margin:0;width:260px!important;font-family:'Inter',sans-serif}
@@ -172,9 +183,6 @@ function initMap() {
     const zout = el.querySelector('.leaflet-control-zoom-out');
     if (zin)  zin.innerHTML  = `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>`;
     if (zout) zout.innerHTML = `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg></span>`;
-    // Push zoom well below fullscreen button (32px btn + 12px top + 8px gap)
-    const zoomControl = el.querySelector('.leaflet-control-zoom');
-    if (zoomControl) zoomControl.style.marginTop = '52px';
   }, 100);
 
   // Add markers for all events
@@ -275,10 +283,10 @@ window.render = function() {
     ${SC.Sidebar()}
     <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
       ${SC.Topbar()}
-      <main class="flex-1 overflow-hidden flex gap-3" style="min-height:0;background:#f1f5f9;padding:12px">
+      <main class="flex-1 overflow-hidden flex gap-3 natcat-main" style="min-height:0;background:#f1f5f9;padding:12px">
 
         <!-- Events card -->
-        <div style="width:320px;flex-shrink:0;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div class="natcat-events-card" style="width:320px;flex-shrink:0;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
 
           <!-- Header -->
           <div style="padding:16px 16px 10px">
@@ -315,7 +323,7 @@ window.render = function() {
         </div>
 
         <!-- Map card -->
-        <div style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden;min-width:0">
+        <div class="natcat-map-card" style="flex:1;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden;min-width:0">
           <!-- Map title bar -->
           <div style="height:48px;background:#fff;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0">
             ${BOLT_ICO}

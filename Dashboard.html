@@ -107,7 +107,7 @@ const CATEGORIES = [
 const QUICK = [
   { label:'Reports',         icon:'docs2',     href:'Reports.html' },
   { label:'Ports',           icon:'anchor2',   href:'Ports.html' },
-  { label:'Cargo',           icon:'cargo',     href:'CargoDashboard.html' },
+  { label:'Cargo',           icon:'cargo',     href:'CargoDashboard.html', locked:true },
   { label:'Regions',         icon:'pin',       href:'Regions.html' },
   { label:'Nat Cat Events',  icon:'cloudrain', href:'NatCatEvents.html', alert:true },
   { label:'Weather',         icon:'cloudicon', href:'Weather.html' },
@@ -140,12 +140,13 @@ function Content() {
       </div>
     </section>
 
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-density mb-6">
+    <section class="mb-6">
+      <div class="bg-white rounded-xl border border-ink-200 grid grid-cols-2 md:grid-cols-4 divide-y divide-x divide-ink-100 md:divide-y-0 overflow-hidden">
       ${KPIS.map(k => {
         const t = tone(k.tone);
         const deltaCls = k.dir==='up' ? (k.danger?'text-rose-600 bg-rose-50':'text-emerald-600 bg-emerald-50') : k.dir==='down' ? 'text-rose-600 bg-rose-50' : 'text-ink-500 bg-ink-100';
         const arrow = k.dir==='up' ? Ico.arrowUp : k.dir==='down' ? Ico.arrowDown : '';
-        return `<div class="relative text-left bg-white rounded-xl border border-ink-200 p-4">
+        return `<div class="relative text-left p-4">
           <div class="flex items-start justify-between">
             <div class="h-9 w-9 rounded-lg ${t.bg} ${t.text} flex items-center justify-center ring-1 ${t.ring}">${Ico[k.icon]}</div>
             ${k.delta ? `<span class="inline-flex items-center gap-1 text-[11px] font-semibold rounded-full px-1.5 py-0.5 ${deltaCls}">${arrow}${k.delta}</span>` : ''}
@@ -157,6 +158,7 @@ function Content() {
           </div>
         </div>`;
       }).join('')}
+      </div>
     </section>
 
     <section class="grid grid-cols-2 lg:grid-cols-4 gap-density mb-6">
@@ -176,7 +178,12 @@ function Content() {
     </section>
 
     <section class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-density mb-10">
-      ${QUICK.map(q => `<a href="${q.href}" class="quick-tile group relative bg-white rounded-xl border border-ink-200 p-5 shadow-card hover:shadow-card-hover tile-hover ring-focus flex flex-col items-center justify-center gap-2 min-h-[116px] no-underline transition-colors">
+      ${QUICK.map(q => q.locked ? `<div class="quick-tile-locked relative bg-ink-50 rounded-xl border border-ink-200 p-5 flex flex-col items-center justify-center gap-2 min-h-[116px] cursor-not-allowed select-none" aria-disabled="true" title="Not available to your organization">
+        <span class="absolute top-2 right-2.5 inline-flex items-center justify-center text-ink-400"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+        <div class="text-ink-400">${Ico[q.icon]}</div>
+        <div class="text-sm font-semibold text-ink-400">${q.label}</div>
+        <div class="text-[10px] text-ink-400 text-center leading-tight px-1">Not available to your organization</div>
+      </div>` : `<a href="${q.href}" class="quick-tile group relative bg-white rounded-xl border border-ink-200 p-5 shadow-card hover:shadow-card-hover tile-hover ring-focus flex flex-col items-center justify-center gap-2 min-h-[116px] no-underline transition-colors">
         <div class="text-brand-600 group-hover:text-white transition-colors">${Ico[q.icon]}</div>
         <div class="text-sm font-semibold text-brand-600 group-hover:text-white transition-colors">${q.label}</div>
         ${q.alert ? `<span class="absolute top-2 right-3 h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>` : ''}
