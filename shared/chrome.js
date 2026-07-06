@@ -43,6 +43,14 @@ try {
   (document.head || document.documentElement).appendChild(s);
 })();
 
+/* Apply persisted theme attribute ASAP to reduce flash-of-light on load */
+(function applyThemeAttrEarly() {
+  try {
+    const t = localStorage.getItem('rw_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch {}
+})();
+
 /* ------------------ SHARED CHROME (sidebar, topbar, tweaks, icons) ------------------ */
 /* Expects: window.PAGE = { id, title, crumb } set before this script loads */
 
@@ -73,14 +81,14 @@ const LUCIDE_NAMES = {
   compass:'Compass', maximize:'Maximize2', minimize:'Minimize2', alertTri:'AlertTriangle',
   radio:'RadioTower', check:'Check', cargo:'Container', tag:'Tag',
   clipboard:'Clipboard', users:'Users', leaf:'Leaf', fileText:'FileText', clock:'Clock',
-  office:'Building2',
+  office:'Building2', upload:'Upload',
 };
 const LUCIDE_SIZES = {
   ship:'h-10 w-10', building2:'h-10 w-10', plane2:'h-10 w-10', bolt2:'h-10 w-10',
   anchor2:'h-8 w-8', pin:'h-8 w-8', cloudrain:'h-8 w-8', cloudicon:'h-8 w-8',
   docs2:'h-8 w-8', search2:'h-8 w-8', factory:'h-8 w-8', cargo:'h-8 w-8',
   search:'h-4 w-4', chev:'h-4 w-4', chevDown:'h-4 w-4', plus:'h-4 w-4', minus:'h-4 w-4', x:'h-4 w-4',
-  arrowUp:'h-3 w-3', arrowDown:'h-3 w-3',
+  arrowUp:'h-3 w-3', arrowDown:'h-3 w-3', upload:'h-6 w-6',
 };
 function lucideIcon(alias) {
   const name = LUCIDE_NAMES[alias];
@@ -180,6 +188,12 @@ function Sidebar() {
         </${tag}>`;
       }).join('')}
     </nav>
+    <div class="sidebar-logo sidebar-footer" style="border-top:1px solid var(--slate-200,#e2e8f0);padding:14px 16px;opacity:0;pointer-events:none;transition:opacity 150ms;display:flex;flex-direction:column;align-items:center;gap:8px">
+      <a href="https://www.skytek.com" target="_blank" rel="noopener" title="skytek.com" style="display:block">
+        <img src="images/skytek-logo-stacked.png" alt="Skytek" style="width:76px;height:auto;display:block" />
+      </a>
+      <button type="button" id="sidebar-disclaimer-btn" style="background:none;border:0;color:var(--brand-600,#2563eb);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0">Disclaimer</button>
+    </div>
   </aside>`;
 }
 
@@ -201,6 +215,7 @@ function Topbar() {
       </div>
     </div>
     <div class="flex items-center gap-1 shrink-0">
+      <button id="theme-toggle-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Toggle dark mode"></button>
       <button id="notif-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Notifications">
         ${I.bell}<span class="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>
       </button>
@@ -260,6 +275,13 @@ function Topbar() {
 /* Tweaks */
 const TWEAK_DEFAULTS_SHARED = { density:'compact', accent:'blue', sidebarExpanded:false, showSparklines:true };
 let TWEAKS = { ...TWEAK_DEFAULTS_SHARED, ...(window.TWEAK_DEFAULTS || {}) };
+/* Sidebar open/closed is a cross-page runtime preference: a value saved to
+   localStorage overrides whatever default is baked into this page's TWEAK_DEFAULTS,
+   so collapsing it on one page keeps it collapsed everywhere. */
+try {
+  const savedSidebar = localStorage.getItem('rw_sidebar');
+  if (savedSidebar !== null) TWEAKS.sidebarExpanded = savedSidebar === 'true';
+} catch {}
 let editMode = false;
 
 function TweaksPanel() {
@@ -297,19 +319,274 @@ function TweaksPanel() {
 function getTheme() {
   try { return localStorage.getItem('rw_theme') || 'light'; } catch { return 'light'; }
 }
+const THEME_ACCENT = { sky:'sky', light:'azure', dark:'sky' };
 function setTheme(id) {
   try { localStorage.setItem('rw_theme', id); } catch {}
-  // Map theme to accent
-  const themeAccent = { sky:'sky', light:'blue', dark:'blue' };
-  TWEAKS.accent = themeAccent[id] || 'blue';
+  // Map theme to a distinct accent palette (light→dark blue ramp)
+  TWEAKS.accent = THEME_ACCENT[id] || 'sky';
   applyTweaks();
+}
+
+/* ── Dark theme: retrofit surface/text/border remap over the whole app ──────
+   The app is class-based (Tailwind ink/slate + .bg-white) with inline-hex
+   accents on detail pages. We remap both under html[data-theme="dark"]. */
+function buildDarkCss() {
+  const bg      = '#0d1420';  // app background
+  const surf    = '#161f2e';  // cards / bg-white
+  const surf2   = '#1e293b';  // raised: bg-ink-50/100, table headers
+  const surf3   = '#243044';  // hover raised
+  const bd      = '#2a374d';  // borders
+  const bdSoft  = '#212d40';  // subtle borders
+  const tx      = '#e7ecf4';  // primary text
+  const tx2     = '#c0c9d8';  // secondary text
+  const tx3     = '#93a0b4';  // muted text
+  const tx4     = '#6f7d93';  // faint text
+  const D = 'html[data-theme="dark"]';
+  return `
+  ${D} {
+    /* Light slate primitives → dark surfaces/borders (keep --white and dark
+       slates 700-900 intact so inverse text + dark tooltips stay correct) */
+    --slate-50:#1b2537; --slate-100:#202c40; --slate-150:#243044;
+    --slate-200:#2a374d; --slate-300:#34435c;
+    --slate-400:#7e8ca3; --slate-500:#93a0b4; --slate-600:#c0c9d8;
+    /* Semantic tokens overridden directly (win over their var() defaults) */
+    --bg-app:#0d1420; --bg-canvas:#0d1420; --bg-surface:${surf}; --bg-raised:${surf2};
+    --bg-sunken:${surf2}; --bg-muted:#202c40;
+    --border-subtle:${bdSoft}; --border-default:${bd}; --border-strong:#34435c;
+    --text-primary:${tx}; --text-secondary:${tx2}; --text-muted:${tx3}; --text-disabled:${tx4};
+    scrollbar-color:#3a4a66 transparent;
+  }
+  /* DS metric + table components */
+  ${D} .ds-metric-value, ${D} .ds-metric-value--neutral { color:${tx} !important; }
+  ${D} .ds-metric-label { color:${tx3} !important; }
+  ${D} .ds-table th { background-color:${surf2} !important; color:${tx3} !important; border-color:${bd} !important; }
+  ${D} .ds-table td { color:${tx2} !important; border-color:${bd} !important; }
+  ${D} .porto-table th { background-color:${surf2} !important; }
+  ${D} .porto-table th:first-child, ${D} .porto-table td:first-child { background-color:${surf} !important; box-shadow:1px 0 0 ${bd} !important; }
+  ${D} .porto-table tr:hover td, ${D} .porto-table tbody tr:hover td:first-child { background-color:${surf3} !important; }
+
+  /* Scrollbars — cover root (html/body), universal descendants, and the
+     DS scrollbar classes; pages style these brand-blue in light mode. */
+  ${D}::-webkit-scrollbar-thumb, ${D} body::-webkit-scrollbar-thumb, ${D} *::-webkit-scrollbar-thumb,
+  ${D} .scroll-thin::-webkit-scrollbar-thumb, ${D} .ds-scroll::-webkit-scrollbar-thumb { background:#3a4a66 !important; border-radius:999px; }
+  ${D}::-webkit-scrollbar-thumb:hover, ${D} body::-webkit-scrollbar-thumb:hover, ${D} *::-webkit-scrollbar-thumb:hover,
+  ${D} .scroll-thin::-webkit-scrollbar-thumb:hover, ${D} .ds-scroll::-webkit-scrollbar-thumb:hover { background:#4a5d80 !important; }
+  ${D}::-webkit-scrollbar-track, ${D} body::-webkit-scrollbar-track, ${D} *::-webkit-scrollbar-track,
+  ${D} .scroll-thin::-webkit-scrollbar-track, ${D} .ds-scroll::-webkit-scrollbar-track { background:transparent !important; }
+  ${D}, ${D} body, ${D} .scroll-thin, ${D} .ds-scroll { scrollbar-color:#3a4a66 transparent !important; }
+
+  /* Pastel brand/info strips (blue-tinted, not grayscale — scanner skips them) */
+  ${D} [style*="background:#eff6ff"], ${D} [style*="background:#EFF6FF"], ${D} [style*="background:#e0f2fe"],
+  ${D} [style*="background:#dbeafe"], ${D} [style*="background:#f0f9ff"], ${D} [style*="background:var(--brand-50"],
+  ${D} [style*="background:var(--brand-050"] { background-color:#15233c !important; }
+  /* Tailwind CDN blue/sky/indigo pastel tints (cross-origin sheet — scanner can't reach) */
+  ${D} .bg-blue-50, ${D} .bg-sky-50, ${D} .bg-indigo-50, ${D} .bg-cyan-50 { background-color:#15233c !important; }
+  ${D} .bg-blue-100, ${D} .bg-sky-100, ${D} .bg-indigo-100 { background-color:#1a2b47 !important; }
+  ${D} .border-blue-100, ${D} .border-sky-100, ${D} .border-indigo-100, ${D} .border-blue-200, ${D} .border-sky-200 { border-color:#2a3d5e !important; }
+  ${D} [style*="border:1px solid #dbeafe"], ${D} [style*="border-color:#dbeafe"], ${D} [style*="solid #e0eaff"],
+  ${D} [style*="border-color:#e0f2fe"] { border-color:${bd} !important; }
+
+  ${D} body, ${D} .bg-ink-100, ${D} .bg-slate-100, ${D} .bg-slate-50 { background-color:${bg} !important; color:${tx}; }
+  ${D} .bg-white { background-color:${surf} !important; }
+  ${D} .bg-ink-50, ${D} .bg-ink-50\\/60, ${D} .bg-ink-50\\/40 { background-color:${surf2} !important; }
+  ${D} .bg-ink-100 { background-color:${surf2} !important; }
+
+  ${D} .text-ink-900, ${D} .text-ink-800, ${D} .text-slate-900, ${D} .text-slate-800 { color:${tx} !important; }
+  ${D} .text-ink-700, ${D} .text-ink-600, ${D} .text-slate-700, ${D} .text-slate-600 { color:${tx2} !important; }
+  ${D} .text-ink-500, ${D} .text-ink-400, ${D} .text-slate-500, ${D} .text-slate-400 { color:${tx3} !important; }
+  ${D} .text-ink-300, ${D} .text-slate-300 { color:${tx4} !important; }
+
+  ${D} .border-ink-100, ${D} .border-ink-200, ${D} .border-slate-100, ${D} .border-slate-200,
+  ${D} .border, ${D} .border-b, ${D} .border-t, ${D} .border-l, ${D} .border-r,
+  ${D} .divide-ink-100 > * + *, ${D} .divide-ink-200 > * + * { border-color:${bd} !important; }
+
+  ${D} .shadow-card, ${D} .shadow-card-hover, ${D} .shadow-sm, ${D} .shadow { box-shadow:0 1px 3px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.4) !important; }
+
+  ${D} .hover\\:bg-ink-100:hover, ${D} .hover\\:bg-ink-50:hover, ${D} .hover\\:bg-slate-100:hover, ${D} .hover\\:bg-slate-50:hover { background-color:${surf3} !important; }
+  ${D} .hover\\:text-ink-800:hover, ${D} .hover\\:text-ink-900:hover { color:${tx} !important; }
+  ${D} .ring-white { --tw-ring-color:${surf2} !important; }
+  ${D} .divide-ink-100 { border-color:${bd}; }
+  ${D} .text-brand-600 { color:#2d7ffb !important; }
+
+  /* Selected tabs & active nav must stay white (beats the .text-ink-* / autogen remaps) */
+  ${D} .ds-tab[aria-selected="true"], ${D} .ds-tab[aria-selected="true"] .ds-tab-label,
+  ${D} .cat-tab[aria-selected="true"], ${D} .cat-tab[aria-selected="true"] .cat-tab-label,
+  ${D} .seg-tab.active, ${D} .ptab.active, ${D} .stab-btn.active,
+  ${D} [role="tab"][aria-selected="true"] { color:#fff !important; }
+  /* Segmented-toggle pill containers built on --brand-50 (a class, so the
+     var()-skipping scanner can't reach them) */
+  ${D} .stab, ${D} .seg, ${D} .segmented, ${D} .ptab-group { background-color:#15233c !important; }
+
+  /* Leaflet popups — wrapper/tip come from cross-origin Leaflet CSS (white),
+     while inline text is already remapped light → force a dark surface so the
+     popup body reads correctly. Coloured headers use inline var(--brand) → kept. */
+  ${D} .leaflet-popup-content-wrapper { background-color:${surf} !important; color:${tx} !important; }
+  ${D} .leaflet-popup-tip { background-color:${surf} !important; }
+  ${D} .leaflet-popup-content [style*="border-bottom:1px solid #f8fafc"],
+  ${D} .leaflet-popup-content [style*="border-bottom:1px solid #e2e8f0"],
+  ${D} .leaflet-popup-content [style*="border-top:1px solid #e2e8f0"] { border-color:${bd} !important; }
+  ${D} .leaflet-popup-content [style*="border-top:1.5px dashed #cbd5e1"],
+  ${D} .leaflet-popup-content [style*="dashed #cbd5e1"] { border-color:#3a4a66 !important; }
+  ${D} .leaflet-tooltip { background-color:${surf} !important; color:${tx} !important; border-color:${bd} !important; }
+  ${D} .leaflet-tooltip-top:before, ${D} .leaflet-tooltip-bottom:before,
+  ${D} .leaflet-tooltip-left:before, ${D} .leaflet-tooltip-right:before { border-top-color:${surf} !important; border-bottom-color:${surf} !important; }
+  ${D} .nav-item.is-nav-active, ${D} .nav-item.is-nav-active .nav-label,
+  ${D} .nav-item.is-nav-active .nav-ico { color:#fff !important; }
+
+  /* Sidebar + topbar chrome */
+  ${D} #sidebar, ${D} header.sticky { background-color:${surf} !important; border-color:${bd} !important; }
+
+  /* Common component classes shared across pages */
+  ${D} .form-input, ${D} .form-select, ${D} .form-date-input, ${D} .filt-sel, ${D} .sel,
+  ${D} .tab-dd, ${D} .mobile-tab-select, ${D} .map-btn, ${D} .reports-tabs-dd {
+    background-color:${surf2} !important; color:${tx} !important; border-color:${bd} !important;
+  }
+  ${D} .map-btn { color:${tx2} !important; }
+  ${D} .analytics-panel, ${D} .ev-card { background-color:${surf} !important; }
+  ${D} .ev-card { border-color:${bdSoft} !important; }
+  ${D} .ev-card:hover { background-color:${surf2} !important; }
+  ${D} .ev-card.active { background-color:${surf3} !important; }
+  ${D} .scroll-thin::-webkit-scrollbar-thumb { background:${surf3} !important; }
+
+  /* Inline-hex surfaces → dark. Semicolon/6-digit forms avoid matching #fff7ed etc. */
+  ${D} [style*="background:#fff;"], ${D} [style*="background: #fff;"],
+  ${D} [style*="background:#ffffff"], ${D} [style*="background: #ffffff"],
+  ${D} [style*="background-color:#fff;"], ${D} [style*="background-color:#ffffff"],
+  ${D} [style*="background:#fff "], ${D} [style*="background:#FFFFFF"],
+  ${D} [style*="background:#fff url"], ${D} [style*="background:white"] { background-color:${surf} !important; }
+
+  ${D} [style*="background:#f9fafb"], ${D} [style*="background:#f8fafc"], ${D} [style*="background:#f1f5f9"],
+  ${D} [style*="background:#f3f4f6"], ${D} [style*="background:#fafafa"], ${D} [style*="background:#f5f5f5"],
+  ${D} [style*="background:#eef2f6"], ${D} [style*="background:#F9FAFB"], ${D} [style*="background:#eceef2"],
+  ${D} [style*="background-color:#f9fafb"], ${D} [style*="background-color:#f1f5f9"] { background-color:${surf2} !important; }
+
+  /* Inline-hex text (dark → light) */
+  ${D} [style*="color:#0f172a"], ${D} [style*="color:#111827"], ${D} [style*="color:#1e293b"],
+  ${D} [style*="color:#0b1e2e"], ${D} [style*="color:#1f2937"], ${D} [style*="color:#0f1623"],
+  ${D} [style*="color: #0f172a"], ${D} [style*="color:#111"] { color:${tx} !important; }
+  ${D} [style*="color:#334155"], ${D} [style*="color:#374151"], ${D} [style*="color:#475569"],
+  ${D} [style*="color:#4b5563"], ${D} [style*="color: #334155"] { color:${tx2} !important; }
+  ${D} [style*="color:#64748b"], ${D} [style*="color:#6b7280"], ${D} [style*="color:#94a3b8"],
+  ${D} [style*="color:#9ca3af"], ${D} [style*="color:#cbd5e1"] { color:${tx3} !important; }
+
+  /* Inline-hex borders */
+  ${D} [style*="border-color:#e2e8f0"], ${D} [style*="border-color:#e5e7eb"], ${D} [style*="border-color:#f1f5f9"],
+  ${D} [style*="border-color:#f3f4f6"], ${D} [style*="border-color:#eceef2"], ${D} [style*="border-color:#eef2f6"],
+  ${D} [style*="solid #e2e8f0"], ${D} [style*="solid #e5e7eb"], ${D} [style*="solid #f1f5f9"],
+  ${D} [style*="solid #ECEEF2"], ${D} [style*="solid #eceef2"] { border-color:${bd} !important; }
+  `;
+}
+
+function applyDarkTheme(on) {
+  document.documentElement.setAttribute('data-theme', on ? 'dark' : 'light');
+  let s = document.getElementById('rw-dark-theme');
+  if (!s) { s = document.createElement('style'); s.id = 'rw-dark-theme'; document.head.appendChild(s); }
+  s.textContent = on ? buildDarkCss() : '';
+
+  // Auto-generated overrides for PAGE-LOCAL classes (e.g. .pcard{background:#fff})
+  // that neither .bg-white nor an inline style would catch. We scan every
+  // same-origin stylesheet for rules that set a light grayscale background or a
+  // dark grayscale text/border colour and emit a dark-scoped override with the
+  // same selector, so no light-on-light or dark-on-dark can survive.
+  let a = document.getElementById('rw-dark-autogen');
+  if (!a) { a = document.createElement('style'); a.id = 'rw-dark-autogen'; document.head.appendChild(a); }
+  a.textContent = on ? buildDarkAutogen() : '';
+}
+
+// --- colour helpers ---------------------------------------------------------
+function _dtParseColor(str) {
+  if (!str) return null;
+  str = str.trim();
+  if (str.indexOf('var(') !== -1 || str.indexOf('gradient') !== -1) return null;
+  let m = str.match(/^#([0-9a-f]{3})$/i);
+  if (m) { const h = m[1]; return { r:parseInt(h[0]+h[0],16), g:parseInt(h[1]+h[1],16), b:parseInt(h[2]+h[2],16) }; }
+  m = str.match(/^#([0-9a-f]{6})$/i);
+  if (m) { const h = m[1]; return { r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16) }; }
+  m = str.match(/^rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/i);
+  if (m) return { r:+m[1], g:+m[2], b:+m[3] };
+  return null;
+}
+function _dtLum(c) { return 0.299*c.r + 0.587*c.g + 0.114*c.b; }
+// "Neutral" = pure grey OR a cool slate tint (the slate ramp spans a spread of
+// up to ~40 between channels, e.g. #334155). We accept low-spread colours, and
+// slightly-higher-spread ones only when they lean cool (blue >= red), which
+// keeps warm accents (amber/red) and saturated blues out.
+function _dtGray(c) {
+  const spread = Math.max(c.r,c.g,c.b) - Math.min(c.r,c.g,c.b);
+  if (spread <= 26) return true;
+  if (spread <= 48 && c.b >= c.r - 4 && c.g >= c.r - 4) return true; // cool slate
+  return false;
+}
+
+function buildDarkAutogen() {
+  const surf   = '#161f2e', surf2 = '#1e293b';
+  const tx = '#e7ecf4', tx2 = '#c0c9d8', tx3 = '#93a0b4';
+  const bd = '#2a374d';
+  const DP = 'html[data-theme="dark"] ';
+  const out = [];
+  const skipIds = new Set(['rw-dark-theme','rw-dark-autogen','tweak-accent-style','rw-leaflet-stack','rw-font-overrides','chrome-ico-style']);
+
+  const scopeSel = (selText) => selText.split(',').map(p => {
+    p = p.trim();
+    if (!p) return '';
+    // Prefix each selector with the dark scope for specificity + gating.
+    return DP + p;
+  }).filter(Boolean).join(', ');
+
+  const handleRule = (rule) => {
+    const st = rule.style; if (!st) return '';
+    const decls = [];
+    // Background
+    const bgC = _dtParseColor(st.backgroundColor || (st.background && st.background.split(/\s+url|\s+linear|\s+radial/)[0]));
+    if (bgC && _dtGray(bgC)) {
+      const L = _dtLum(bgC);
+      if (L >= 251) decls.push(`background-color:${surf} !important`);
+      else if (L >= 205) decls.push(`background-color:${surf2} !important`);
+    }
+    // Text
+    const txC = _dtParseColor(st.color);
+    if (txC && _dtGray(txC)) {
+      const L = _dtLum(txC);
+      if (L <= 60) decls.push(`color:${tx} !important`);
+      else if (L <= 115) decls.push(`color:${tx2} !important`);
+      else if (L <= 150) decls.push(`color:${tx3} !important`);
+    }
+    // Borders
+    const bC = _dtParseColor(st.borderColor || st.borderTopColor || st.borderBottomColor || st.borderLeftColor || st.borderRightColor);
+    if (bC && _dtGray(bC) && _dtLum(bC) >= 200) decls.push(`border-color:${bd} !important`);
+    if (!decls.length) return '';
+    const sel = scopeSel(rule.selectorText || '');
+    if (!sel) return '';
+    return `${sel}{${decls.join(';')}}`;
+  };
+
+  const walk = (rules) => {
+    for (const rule of rules) {
+      if (rule.type === 1 /* STYLE_RULE */) {
+        const css = handleRule(rule);
+        if (css) out.push(css);
+      } else if (rule.type === 4 /* MEDIA_RULE */ && rule.cssRules) {
+        const inner = [];
+        for (const r2 of rule.cssRules) { if (r2.type === 1) { const c = handleRule(r2); if (c) inner.push(c); } }
+        if (inner.length) out.push(`@media ${rule.conditionText || (rule.media && rule.media.mediaText) || 'all'}{${inner.join('')}}`);
+      }
+    }
+  };
+
+  for (const sheet of document.styleSheets) {
+    try {
+      if (sheet.ownerNode && skipIds.has(sheet.ownerNode.id)) continue;
+      const rules = sheet.cssRules; // throws for cross-origin (Tailwind CDN) — skipped
+      if (rules) walk(rules);
+    } catch (e) { /* cross-origin or inaccessible — skip */ }
+  }
+  return out.join('\n');
 }
 
 function applyTweaks() {
   // Apply global theme from localStorage before resolving accent
   const storedTheme = getTheme();
-  const themeAccent = { sky:'sky', light:'blue', dark:'blue' };
-  if (storedTheme in themeAccent) TWEAKS.accent = themeAccent[storedTheme];
+  if (storedTheme in THEME_ACCENT) TWEAKS.accent = THEME_ACCENT[storedTheme];
 
   document.body.dataset.density = TWEAKS.density;
   const accentMap = {
@@ -317,7 +594,9 @@ function applyTweaks() {
     indigo: {50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3'},
     teal:   {50:'#f0fdfa',100:'#ccfbf1',200:'#99f6e4',300:'#5eead4',400:'#2dd4bf',500:'#14b8a6',600:'#0d9488',700:'#0f766e',800:'#115e59'},
     rose:   {50:'#fff1f2',100:'#ffe4e6',200:'#fecdd3',300:'#fda4af',400:'#fb7185',500:'#f43f5e',600:'#e11d48',700:'#be123c',800:'#9f1239'},
-    sky:    {50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985'},
+    sky:    {50:'#eff6ff',100:'#dbeafe',200:'#c3dafd',300:'#bfdbfe',400:'#8ec5fd',500:'#51a2fc',600:'#2d7ffb',700:'#1f5fc7',800:'#1a4fa0'},
+    azure:  {50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985'},
+    navy:   {50:'#eef2ff',100:'#dbe2f5',200:'#b6c4e8',300:'#8197cf',400:'#4f6bb0',500:'#2e4a8f',600:'#1e3a8a',700:'#172e6e',800:'#11224f'},
   };
   const c = accentMap[TWEAKS.accent] || accentMap.sky;
   let style = document.getElementById('tweak-accent-style');
@@ -343,6 +622,21 @@ function applyTweaks() {
     .topbar-brand-link{color:${c[600]};transition:color 120ms}
     .topbar-brand-link:hover{color:${c[700]}}
   `;
+
+  // ── Global dark theme ─────────────────────────────────────────────────────
+  applyDarkTheme(storedTheme === 'dark');
+
+  // Swap the sidebar Real World logo for the white variant in dark mode
+  const logoImg = document.querySelector('img.sidebar-logo');
+  if (logoImg) logoImg.src = storedTheme === 'dark'
+    ? 'images/skytek-realworld-landscape-white.png'
+    : 'images/skytek-realworld-landscape-color.png';
+  // Swap the footer Skytek stacked logo too
+  const footImg = document.querySelector('.sidebar-footer img');
+  if (footImg) footImg.src = storedTheme === 'dark'
+    ? 'images/skytek-logo-stacked-white.png'
+    : 'images/skytek-logo-stacked.png';
+
   const sb = document.getElementById('sidebar');
   if (sb) {
     sb.style.width = TWEAKS.sidebarExpanded ? '212px' : '56px';
@@ -397,6 +691,22 @@ function wireChrome() {
     TWEAKS.sidebarExpanded = !TWEAKS.sidebarExpanded;
     applyTweaks(); persistTweaks();
   };
+  // Disclaimer modal (link under the sidebar logo) — loads modals/DisclaimerModal.js on demand.
+  // Wire every time wireChrome runs so a re-rendered button stays functional.
+  const discBtn = document.getElementById('sidebar-disclaimer-btn');
+  if (discBtn) {
+    discBtn.onclick = () => {
+      if (window.DisclaimerModal) { window.DisclaimerModal.open(); return; }
+      let s = document.getElementById('disclaimer-modal-script');
+      if (!s) {
+        s = document.createElement('script');
+        s.id = 'disclaimer-modal-script';
+        s.src = 'modals/DisclaimerModal.js';
+        s.onload = () => { if (window.DisclaimerModal) window.DisclaimerModal.open(); };
+        document.body.appendChild(s);
+      }
+    };
+  }
 
   // Mobile drawer
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -446,6 +756,24 @@ function wireChrome() {
     if (userPop  && except!==userPop)  userPop.classList.add('hidden');
   }
   if (notifBtn) notifBtn.onclick = (e) => { e.stopPropagation(); closeAll(notifPop); notifPop.classList.toggle('hidden'); };
+
+  // Theme toggle (moon in light mode → dark; sun in dark mode → light)
+  const themeBtn = document.getElementById('theme-toggle-btn');
+  if (themeBtn) {
+    const MOON = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+    const SUN  = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+    const syncIcon = () => {
+      const dark = getTheme() === 'dark';
+      themeBtn.innerHTML = dark ? SUN : MOON;
+      themeBtn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    };
+    syncIcon();
+    themeBtn.onclick = (e) => {
+      e.stopPropagation();
+      setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+      syncIcon();
+    };
+  }
   if (userBtn)  userBtn.onclick  = (e) => { e.stopPropagation(); closeAll(userPop);  userPop.classList.toggle('hidden'); };
   document.addEventListener('click', () => closeAll());
 
@@ -464,6 +792,7 @@ function wireChrome() {
 }
 
 function persistTweaks() {
+  try { localStorage.setItem('rw_sidebar', TWEAKS.sidebarExpanded ? 'true' : 'false'); } catch {}
   try { window.parent.postMessage({ type:'__edit_mode_set_keys', edits: TWEAKS }, '*'); } catch {}
 }
 
