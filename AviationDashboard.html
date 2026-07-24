@@ -555,8 +555,10 @@ function AirportCard() {
         <div class="airport-row-grid px-3 py-2 hover:bg-ink-50 grid grid-cols-[1fr_auto_auto_auto_auto] gap-4 text-xs items-center">
           <div class="flex items-center gap-2 min-w-0">
             ${flag(a.flag)}
-            <span class="font-semibold text-brand-600">${a.code}</span>
-            <span class="text-ink-600 truncate">- ${a.name}</span>
+            <a href="AirportDetails.html" class="flex items-center gap-2 min-w-0 hover:underline">
+              <span class="font-semibold text-brand-600">${a.code}</span>
+              <span class="text-ink-600 truncate">- ${a.name}</span>
+            </a>
           </div>
           <span class="tabular-nums text-right font-semibold text-ink-900">${a.total}</span>
           <span class="is-mcol tabular-nums text-right text-ink-700">${a.chw}</span>

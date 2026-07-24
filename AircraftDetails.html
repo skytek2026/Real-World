@@ -302,7 +302,7 @@ function StatusBar() {
 function SectionMap() {
   const pinIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
   const fsIco  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`;
-  const stgIco = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`;
+  const stgIco = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>`;
   const altIco = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10M12 6a6 6 0 0 1 6 6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>`;
   const spdIco = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="15 8 19 12 15 16"/></svg>`;
   return `
@@ -324,6 +324,7 @@ function SectionMap() {
     <div class="relative" style="height:340px;">
       <div id="aircraft-map"></div>
       <button id="ac-fs-btn" class="map-btn absolute z-[400]" style="top:12px;left:12px;" title="Fullscreen">${fsIco}</button>
+      <div class="absolute z-[400]" style="top:12px;right:12px;">
         <div class="relative">
           <button id="map-layers-btn" class="map-btn" title="Map type">${stgIco}</button>
           <div id="map-layers-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[160px] bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden py-1">
@@ -419,7 +420,7 @@ function Content() {
   return `
   <div class="flex flex-col flex-1 min-h-0">
     <div class="flex flex-1 min-h-0 overflow-y-auto scroll-thin aircraft-body">
-      <div class="shrink-0 bg-ink-50 aircraft-left-panel" style="width:316px;border-right:1px solid #e2e8f0;min-height:100%;">
+      <div class="shrink-0 aircraft-left-panel" style="width:316px;min-height:100%;">
         <div class="p-3 flex flex-col gap-3">
           ${CardValue()}
           ${CardInfo()}
@@ -483,7 +484,7 @@ function initMap() {
       const wrap = document.getElementById('aircraft-map').parentElement;
       const isFs = wrap.classList.toggle('ac-is-fs');
       if (isFs) wrap.style.cssText = 'position:fixed;inset:0;z-index:9999;';
-      else wrap.style.cssText = '';
+      else wrap.style.cssText = 'height:340px;';
       acFsBtn.innerHTML = isFs ? MIN_ICO : MAX_ICO;
       setTimeout(() => acMap && acMap.invalidateSize(), 200);
     };

@@ -46,6 +46,9 @@
   .dot-pulse::after { content: ''; position: absolute; inset: -3px; border-radius: 999px; box-shadow: 0 0 0 0 rgba(239,68,68,0.5); animation: pulse 1.8s infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.55);} 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0);} 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0);} }
   .tile-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+  .kpi-spark { width:100%; }
+  .kpi-spark svg { width:100%; height:30px; display:block; }
+  body[data-sparklines="off"] .kpi-spark { display:none; }
   .tile-hover:hover { transform: translateY(-2px); }
   [data-density="comfortable"] .py-density { padding-top: 1.5rem; padding-bottom: 1.5rem; }
   [data-density="compact"] .py-density { padding-top: 1rem; padding-bottom: 1rem; }
@@ -93,9 +96,9 @@ const Ico = SC.I;
 const spark = SC.sparkline, tone = SC.toneClasses;
 
 const KPIS = [
-  { label:'Total Exposure', value:'$4.2B', hint:'USD', icon:'bolt', tone:'indigo', delta:'+2.4%', dir:'up' },
-  { label:'Active Policies', value:'156', hint:'renewals in 30d: 12', icon:'doc', tone:'emerald', delta:'+6', dir:'up' },
-  { label:'Risk Alerts', value:'12', hint:'3 critical · 9 watch', icon:'bolt', tone:'amber', delta:'+3', dir:'up', danger:true },
+  { label:'Total Exposure', value:'$4.2B', hint:'USD', icon:'bolt', tone:'indigo', delta:'+2.4%', dir:'up', spark:[28,30,29,33,31,36,34,40,38,44], sparkColor:'#6366f1' },
+  { label:'Active Policies', value:'156', hint:'renewals in 30d: 12', icon:'doc', tone:'emerald', delta:'+6', dir:'up', spark:[10,12,11,14,13,17,16,20,22,26], sparkColor:'#16a34a' },
+  { label:'Risk Alerts', value:'12', hint:'3 critical · 9 watch', icon:'bolt', tone:'amber', delta:'+3', dir:'up', danger:true, spark:[14,12,15,13,16,14,18,15,13,17], sparkColor:'#ef4444' },
   { label:'Global Regions', value:'24', hint:'across 4 continents', icon:'pin', tone:'rose', delta:'', dir:'' },
 ];
 const CATEGORIES = [
@@ -105,14 +108,14 @@ const CATEGORIES = [
   { id:'energy',    label:'Offshore/Energy', icon:'bolt2',    value:'$385M',  assets:'10',    portfolios:2,  trend:[4,5,7,6,8,10,9,11],    href:'OffshoreDashboard.html' },
 ];
 const QUICK = [
-  { label:'Reports',         icon:'docs2',     href:'Reports.html' },
-  { label:'Ports',           icon:'anchor2',   href:'Ports.html' },
+  { label:'Reports',         icon:'docs2',     href:'Reports.html', inline:true, metrics:[['Weekly Reports','24'],['Custom Reports','8']] },
+  { label:'Ports',           icon:'anchor2',   href:'Ports.html', inline:true, metrics:[['Major Ports','128'],['Minor Ports','342']] },
   { label:'Cargo',           icon:'cargo',     href:'CargoDashboard.html', locked:true },
-  { label:'Regions',         icon:'pin',       href:'Regions.html' },
-  { label:'Nat Cat Events',  icon:'cloudrain', href:'NatCatEvents.html', alert:true },
-  { label:'Weather',         icon:'cloudicon', href:'Weather.html' },
-  { label:'Asset Search',    icon:'search2',   href:'AssetsSearch.html' },
-  { label:'Company Search',  icon:'factory',   href:'Companies.html' },
+  { label:'Regions',         icon:'pin',       href:'Regions.html', inline:true, metrics:[['Monitored','18'],['Real World','24']] },
+  { label:'Nat Cat Events',  icon:'cloudrain', href:'NatCatEvents.html', alert:true, newCount:3, alertLabel:'New Events' },
+  { label:'Weather',         icon:'cloudicon', href:'Weather.html', alert:true, newCount:5, alertLabel:'Active Weather Alerts' },
+  { label:'Asset Search',    icon:'search2',   href:'AssetsSearch.html', metrics:[['Total Assets','6,214']] },
+  { label:'Company Search',  icon:'factory',   href:'Companies.html', metrics:[['Total Companies','1,480']] },
 ];
 // make sidebar-sized lucide icons available for category cards
 Object.assign(window.sharedChrome, { _ok:true });
@@ -155,6 +158,7 @@ function Content() {
             <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">${k.label}</div>
             <div class="mt-1 text-2xl font-bold tabular-nums" style="color:${k.danger?'#dc2626':'#0f172a'};font-family:Exo">${k.value}</div>
             <div class="text-[11px] text-ink-500 mt-0.5">${k.hint}</div>
+            ${k.spark ? `<div class="kpi-spark mt-2">${spark(k.spark, { w:150, h:30, color:k.sparkColor })}</div>` : ''}
           </div>
         </div>`;
       }).join('')}
@@ -186,7 +190,8 @@ function Content() {
       </div>` : `<a href="${q.href}" class="quick-tile group relative bg-white rounded-xl border border-ink-200 p-5 shadow-card hover:shadow-card-hover tile-hover ring-focus flex flex-col items-center justify-center gap-2 min-h-[116px] no-underline transition-colors">
         <div class="text-brand-600 group-hover:text-white transition-colors">${Ico[q.icon]}</div>
         <div class="text-sm font-semibold text-brand-600 group-hover:text-white transition-colors">${q.label}</div>
-        ${q.alert ? `<span class="absolute top-2 right-3 h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>` : ''}
+        ${q.alert ? `<div class="w-full mt-2 pt-2 border-t border-ink-100 group-hover:border-white/30 flex justify-center transition-colors"><span class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-rose-600 group-hover:text-white transition-colors"><span class="h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>${q.newCount} ${q.alertLabel}</span></div>` : ''}
+        ${q.metrics ? `<div class="w-full mt-2 pt-2 border-t border-ink-100 group-hover:border-white/30 ${q.inline ? 'flex justify-center gap-5' : 'flex flex-col gap-1'} text-[11px] transition-colors">${q.metrics.map(([k,v]) => q.inline ? `<div class="flex items-center gap-1.5"><span class="text-ink-500 group-hover:text-white/80 transition-colors">${k}</span><span class="font-semibold tabular-nums text-ink-800 group-hover:text-white transition-colors">${v}</span></div>` : `<div class="flex items-center justify-between gap-2"><span class="text-ink-500 group-hover:text-white/80 transition-colors">${k}</span><span class="font-semibold tabular-nums text-ink-800 group-hover:text-white transition-colors">${v}</span></div>`).join('')}</div>` : ''}
       </a>`).join('')}
     </section>
 

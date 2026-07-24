@@ -17,14 +17,24 @@
   .bg-ink-100  { background: #f1f5f9; } .bg-ink-50 { background: #f8fafc; }
   .border-ink-100 { border-color: #f1f5f9; } .border-ink-200 { border-color: #e2e8f0; }
   .text-brand  { color: var(--brand-600, #2563eb); }
-  .scroll-thin::-webkit-scrollbar { width: 5px; }
-  .scroll-thin::-webkit-scrollbar-track { background: transparent; }
-  .scroll-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
+  html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background:#f3f4f6; }
+  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
+  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  .scroll-thin::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { width:6px; height:6px; }
+  .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
+  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
 
   /* --- Asset type tab bar --- */
   .asset-tabs { position: relative; display: inline-flex; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 9999px; padding: 4px; gap: 4px; }
   .asset-tab  { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 7px; padding: 8px 20px; border-radius: 9999px; border: 0; background: transparent; color: #64748b; font-size: 13px; font-weight: 600; cursor: pointer; transition: color 140ms; font-family: inherit; }
   .asset-tab.active { background: transparent; color: #fff; }
+  /* Selected tab sits on the brand-blue pill — keep its text white even under the dark-mode retrofit. */
+  html[data-theme="dark"] .asset-tab.active { color: #fff !important; }
   .asset-tab:not(.active):hover { color: #0f172a; }
   .asset-tab svg { width: 15px; height: 15px; flex-shrink: 0; }
   .asset-pill { position: absolute; top: 4px; left: 0; height: calc(100% - 8px); background: var(--brand-600, #2563eb); border-radius: 999px; box-shadow: 0 1px 2px rgba(15,23,42,.12); z-index: 0; transition: transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); }
@@ -42,10 +52,69 @@
   .search-wrap input { width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 10px 6px 32px; font-size: 13px; color: #334155; background: #fff; outline: none; }
   .search-wrap input:focus { border-color: #93c5fd; box-shadow: 0 0 0 3px rgba(37,99,235,.08); }
   .search-wrap .search-ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94a3b8; pointer-events: none; }
-  .filter-btn { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
+  .filter-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
   .filter-btn:hover { border-color: #93c5fd; background: #f8fafc; }
+  .filter-btn.has-filter::after { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 9px solid #e11d48; border-left: 9px solid transparent; }
   .filter-btn.reset { color: #475569; }
   .filter-btn.edit-cols { font-weight: 600; color: #0f172a; border-color: #cbd5e1; }
+  .filter-menu-wrap { position: relative; display: inline-flex; }
+  .filter-menu { position: fixed; min-width: 210px; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; box-shadow: 0 8px 24px rgba(15,23,42,.12); padding: 5px; z-index: 200; display: none; flex-direction: column; }
+  .filter-menu.is-open { display: flex; }
+  .filter-menu-head { display: flex; gap: 4px; padding: 3px 4px 6px; margin-bottom: 3px; border-bottom: 1px solid #f1f5f9; }
+  .filter-menu-act { flex: 1; padding: 5px 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; font-size: 11.5px; font-weight: 600; color: #475569; cursor: pointer; }
+  .filter-menu-act:hover { background: #f8fafc; border-color: #93c5fd; color: var(--brand-700, #1d4ed8); }
+  .filter-menu-act:disabled { opacity: .45; cursor: default; pointer-events: none; }
+  .filter-menu-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 10px; border: 0; border-radius: 6px; background: transparent; font-size: 12.5px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; }
+  .filter-menu-item:hover { background: #f1f5f9; color: #0f172a; }
+  .filter-menu-item .ft-cb, .filter-menu-item input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--brand-600, #2563eb); cursor: pointer; margin: 0; }
+  .filter-menu-item .at-ico { display: inline-flex; flex-shrink: 0; }
+  .filter-menu-item .fm-flag { border-radius: 2px; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(15,23,42,.08); }
+  .filter-menu-list { display: flex; flex-direction: column; max-height: 260px; overflow-y: auto; }
+  .fm-count { font-weight: 700; color: var(--brand-600, #2563eb); }
+  .range-pop { min-width: 240px; }
+  .range-menu { padding: 6px 8px 8px; }
+  .range-vals { font-size: 13px; font-weight: 600; color: #0f172a; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .range-vals .rv-sep { color: #94a3b8; }
+  .range-track { position: relative; height: 20px; }
+  .range-track::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 4px; background: #e2e8f0; border-radius: 999px; }
+  .range-track .range-fill { position: absolute; top: 8px; height: 4px; background: var(--brand-600, #2563eb); border-radius: 999px; z-index: 1; }
+  .range-track input[type=range] { position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; background: none; pointer-events: none; -webkit-appearance: none; appearance: none; z-index: 2; }
+  .range-track input[type=range]::-webkit-slider-runnable-track { height: 4px; margin-top: 8px; background: transparent; border-radius: 999px; }
+  .range-track input[type=range]::-moz-range-track { height: 4px; background: transparent; border-radius: 999px; }
+  .range-track input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; pointer-events: auto; width: 15px; height: 15px; margin-top: -5.5px; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
+  .range-track input[type=range]::-moz-range-thumb { pointer-events: auto; width: 15px; height: 15px; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
+  .range-ends { display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-top: 8px; }
+  /* --- Filter drawer --- */
+  .filter-drawer { position: fixed; inset: 0; z-index: 300; visibility: hidden; }
+  .filter-drawer.open { visibility: visible; }
+  .filter-drawer .drawer-overlay { position: absolute; inset: 0; background: rgba(15,23,42,.38); opacity: 0; transition: opacity .25s ease; }
+  .filter-drawer.open .drawer-overlay { opacity: 1; }
+  .filter-drawer .drawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: 360px; max-width: 92vw; background: #fff; box-shadow: -10px 0 30px rgba(15,23,42,.16); display: flex; flex-direction: column; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); }
+  .filter-drawer.open .drawer-panel { transform: translateX(0); }
+  .drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #eef2f7; font-size: 15px; font-weight: 700; color: #0f172a; }
+  .drawer-close { border: 0; background: none; cursor: pointer; color: #64748b; padding: 5px; border-radius: 7px; display: inline-flex; }
+  .drawer-close:hover { background: #f1f5f9; color: #0f172a; }
+  .drawer-body { flex: 1; overflow-y: auto; padding: 4px 18px 12px; display: flex; flex-direction: column; }
+  .drawer-section { padding: 16px 0; border-bottom: 1px solid #f1f5f9; flex: 0 0 auto; transition: padding .2s ease; }
+  .drawer-section:not(.open) { padding: 11px 0; }
+  .drawer-section.open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  .drawer-section:last-child { border-bottom: 0; }
+  .drawer-acc-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; }
+  .drawer-acc-chev { color: var(--brand-600, #2563eb); transition: transform .2s ease; flex-shrink: 0; }
+  .drawer-section:not(.open) .drawer-sec-title { color: var(--brand-600, #2563eb); }
+  .drawer-section.open .drawer-acc-chev { transform: rotate(180deg); }
+  .drawer-acc-body { display: none; padding-top: 12px; }
+  .drawer-section.open .drawer-acc-body { display: flex; flex-direction: column; flex: 1; min-height: 0; animation: accIn .22s ease; }
+  @keyframes accIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .drawer-section.open .filter-menu-list { max-height: none; flex: 1 1 0; min-height: 0; }
+  .drawer-sec-title { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin: 0; display: flex; align-items: center; gap: 7px; }
+  .drawer-dot { width: 6px; height: 6px; border-radius: 999px; background: #e11d48; display: inline-block; }
+  .drawer-section .filter-menu-head { border-bottom: 0; padding: 0 0 8px; margin: 0; }
+  .drawer-section .filter-menu-list { max-height: 210px; }
+  .drawer-section .range-menu { padding: 4px 2px 0; }
+  .drawer-foot { display: flex; gap: 10px; padding: 14px 18px; border-top: 1px solid #eef2f7; }
+  .drawer-foot .filter-btn { flex: 1; justify-content: center; padding: 10px; overflow: visible; }
+  .drawer-foot .filter-btn:disabled { opacity: .45; cursor: default; pointer-events: none; }
 
   /* --- Mobile filter button + popover --- */
   .filter-row { position: relative; }
@@ -97,7 +166,9 @@
   .assets-table tbody tr:hover td:first-child { background: #f8fafc; }
 
   /* Type badges */
-  .badge { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 500; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 500; }
+  .badge .badge-ico { display: inline-flex; }
+  .badge .badge-ico svg { transform: rotate(45deg); }
   .badge-container { background: var(--brand-100, #dbeafe); color: var(--brand-700, #1d4ed8); }
   .badge-vehicle   { background: #dcfce7; color: #15803d; }
   .badge-bulk      { background: #fef9c3; color: #a16207; }
@@ -146,6 +217,47 @@ const ALL_VESSELS = [
   { name:'EVER GIVEN',          type:'Container',      flag:'pa', country:'Panama',           callsign:'HPOJ',  imo:'9811000',  mmsi:'353136000', owner:'Shoei Kisen Kaisha',          lastSeen:'2025-11-03', estValue:'$103.0M',length:399, grossTonnage:'219,079', dwtTonnage:'200,940', yob:2018 },
 ];
 
+const ALL_AIRCRAFT = [
+  { type:'Boeing 787-9',      reg:'G-ZBKF', operator:'British Airways', value:'$148.0M' },
+  { type:'Airbus A350-900',   reg:'OH-LWG', operator:'Finnair',         value:'$158.0M' },
+  { type:'Airbus A340-300',   reg:'D-AIHA', operator:'Lufthansa',       value:'$22.5M'  },
+  { type:'Airbus A320neo',    reg:'G-EZBY', operator:'easyJet',         value:'$52.0M'  },
+  { type:'Boeing 777-300ER',  reg:'A6-EQA', operator:'Emirates',        value:'$165.0M' },
+  { type:'Boeing 737 MAX 8',  reg:'EI-GKA', operator:'Ryanair',         value:'$54.5M'  },
+  { type:'Airbus A380-800',   reg:'F-HPJA', operator:'Air France',      value:'$180.0M' },
+  { type:'Boeing 787-10',     reg:'PH-BKA', operator:'KLM',             value:'$155.0M' },
+  { type:'Airbus A321neo',    reg:'G-NEOX', operator:'British Airways', value:'$61.0M'  },
+  { type:'Embraer E195-E2',   reg:'G-RJXA', operator:'Virgin Atlantic', value:'$41.0M'  },
+  { type:'ATR 72-600',        reg:'EI-FAT', operator:'Aer Lingus',      value:'$18.5M'  },
+  { type:'Boeing 747-8F',     reg:'PH-CKA', operator:'Martinair Cargo', value:'$135.0M' },
+];
+
+const ALL_PROPERTY = [
+  { name:'Empire State Building',   type:'Corporate & Office',     location:'New York',      cc:'us', country:'United States',       yearBuilt:1931, value:'$2.1B' },
+  { name:'22 Bishopsgate',          type:'Corporate & Office',     location:'London',        cc:'gb', country:'United Kingdom',      yearBuilt:2020, value:'$1.4B' },
+  { name:'IFC Two',                 type:'Corporate & Office',     location:'Hong Kong',     cc:'hk', country:'Hong Kong',           yearBuilt:2003, value:'$2.3B' },
+  { name:'Marina Bay Financial',    type:'Corporate & Office',     location:'Singapore',     cc:'sg', country:'Singapore',          yearBuilt:2010, value:'$1.7B' },
+  { name:'3 Infinite Loop',         type:'Industrial & Logistics', location:'Silicon Valley',cc:'us', country:'United States',       yearBuilt:2017, value:'$3.1B' },
+  { name:'Willis Tower',            type:'Corporate & Office',     location:'Chicago',       cc:'us', country:'United States',       yearBuilt:1973, value:'$1.5B' },
+  { name:'Barangaroo Tower',        type:'Corporate & Office',     location:'Sydney',        cc:'au', country:'Australia',          yearBuilt:2016, value:'$1.4B' },
+  { name:'Burj Khalifa Offices',    type:'Retail & Hospitality',   location:'Dubai',         cc:'ae', country:'United Arab Emirates',yearBuilt:2010, value:'$1.2B' },
+  { name:'Shinjuku Mitsui Building',type:'Corporate & Office',     location:'Tokyo',         cc:'jp', country:'Japan',              yearBuilt:1974, value:'$980M' },
+  { name:'TaunusTurm',              type:'Corporate & Office',     location:'Frankfurt',     cc:'de', country:'Germany',            yearBuilt:2014, value:'$890M' },
+  { name:'Wilshire Grand Center',   type:'Retail & Hospitality',   location:'Los Angeles',   cc:'us', country:'United States',       yearBuilt:2017, value:'$780M' },
+  { name:'Portside Towers',         type:'Retail & Hospitality',   location:'Cape Town',     cc:'za', country:'South Africa',       yearBuilt:2018, value:'$340M' },
+];
+
+const ALL_OFFSHORE = [
+  { name:'Buzzard Isle & Elevator', type:'Fixed Platform',            unitId:'UKCS-16/23a', cc:'gb', country:'United Kingdom', owner:'Harbour Energy',    operator:'Chrysaor Holdings', value:'$1.2B'  },
+  { name:'Barracouta',              type:'FPSO',                      unitId:'IMO 9245123', cc:'gb', country:'United Kingdom', owner:'MODEC Inc.',        operator:'Neptune Energy',    value:'$1.8B'  },
+  { name:'Auger Tension Leg Platform',type:'TLP',                     unitId:'GOM-AUGER-01',cc:'us', country:'United States',  owner:'Chevron Corp.',     operator:'Chevron',           value:'$2.4B'  },
+  { name:'Dorado Mjol Elevator',    type:'Semi-Submersible',          unitId:'IMO 8768901', cc:'us', country:'United States',  owner:'Transocean Ltd.',   operator:'Shell',             value:'$540M'  },
+  { name:'Teora Lopes Elevator',    type:'Mobile Production (MOPU)',  unitId:'IMO 9312456', cc:'br', country:'Brazil',         owner:'SBM Offshore',      operator:'Petrobras',         value:'$900M'  },
+  { name:'Hilo Subsea Vision',      type:'Subsea Installation',       unitId:'SUB-N2011',   cc:'gb', country:'United Kingdom', owner:'bp p.l.c.',         operator:'bp',                value:'$680M'  },
+  { name:'East Commander',          type:'Jack-Up Rig',               unitId:'IMO 8765432', cc:'no', country:'Norway',         owner:'Maersk Drilling',   operator:'Equinor',           value:'$220M'  },
+  { name:'Hopperish Deepwater',     type:'Drillship',                 unitId:'IMO 9456789', cc:'za', country:'South Africa',   owner:'Seadrill Ltd.',     operator:'TotalEnergies',     value:'$650M'  },
+];
+
 /* ─── State ─── */
 let currentTab     = 'marine';
 let searchQuery    = '';
@@ -153,6 +265,237 @@ let currentPage    = 1;
 const PAGE_SIZE    = 10;
 let sortCol        = null;
 let sortDir        = 'asc';
+let typeFilter     = new Set();
+let flagFilter     = new Set();
+let rangeFilter    = {};
+let hiddenCols     = new Set();
+let catFilter      = {};
+
+const RANGE_FILTERS = {
+  'Length':        { key:'length',       unit:'m',   step:1 },
+  'Gross Tonnage': { key:'grossTonnage', unit:'GT',  step:100 },
+  'Deadweight':    { key:'dwtTonnage',   unit:'DWT', step:100 },
+  'YOB':           { key:'yob',          unit:'',    step:1, raw:true },
+  'Year Built':    { key:'yearBuilt',    unit:'',    step:1, raw:true },
+  'Value':         { key:'value',        unit:'',    currency:true },
+};
+const CAT_FILTERS = {
+  'Type':         { get: r => r.type },
+  'Operator':     { get: r => r.operator },
+  'Owner':        { get: r => r.owner },
+  'Manufacturer': { get: r => String(r.type || '').split(' ')[0] },
+};
+function attrEsc(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;'); }
+function numOf(v) { if (v == null) return null; const n = parseFloat(String(v).replace(/[^0-9.]/g, '')); return isNaN(n) ? null : n; }
+function fmtNum(n) { return Number(n).toLocaleString('en-US'); }
+function fmtCurrency(n) {
+  if (n >= 1e9) return '$' + (n / 1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return '$' + (n / 1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return '$' + Math.round(n / 1e3) + 'K';
+  return '$' + n;
+}
+function rangeNum(v, currency) {
+  if (currency) { const n = currencyNum(v); return typeof n === 'number' ? n : null; }
+  return numOf(v);
+}
+function rangeBounds(cfg, key, currency) {
+  const nums = cfg.data.map(r => rangeNum(r[key], currency)).filter(n => n !== null);
+  if (!nums.length) return { min: 0, max: 0 };
+  return { min: Math.floor(Math.min(...nums)), max: Math.ceil(Math.max(...nums)) };
+}
+function rangeBody(rf, cfg) {
+  const { key, unit, currency } = rf;
+  const b = rangeBounds(cfg, key, currency);
+  const step = rf.step || Math.max(1, Math.round((b.max - b.min) / 100));
+  const fmt = currency ? fmtCurrency : (rf.raw ? (n => String(n)) : fmtNum);
+  const fmtKind = currency ? 'cur' : (rf.raw ? 'raw' : 'num');
+  const cur = rangeFilter[key] || { min: b.min, max: b.max };
+  return `<div class="range-menu" data-rkey="${key}" data-lo="${b.min}" data-hi="${b.max}" data-unit="${unit}" data-fmt="${fmtKind}" data-currency="${currency ? '1' : ''}">
+    <div class="range-vals"><span class="rv-min">${fmt(cur.min)}</span><span class="rv-sep">–</span><span class="rv-max">${fmt(cur.max)}${unit ? ' ' + unit : ''}</span></div>
+    <div class="range-track"><div class="range-fill"></div><input type="range" class="rg-min" min="${b.min}" max="${b.max}" step="${step}" value="${cur.min}"/><input type="range" class="rg-max" min="${b.min}" max="${b.max}" step="${step}" value="${cur.max}"/></div>
+    <div class="range-ends"><span>${fmt(b.min)}</span><span>${fmt(b.max)}</span></div>
+  </div>`;
+}
+function rangeMenu(label, rf, cfg) {
+  const { key, unit, currency } = rf;
+  const b = rangeBounds(cfg, key, currency);
+  const fmt = currency ? fmtCurrency : (rf.raw ? (n => String(n)) : fmtNum);
+  const cur = rangeFilter[key] || { min: b.min, max: b.max };
+  const active = cur.min > b.min || cur.max < b.max;
+  const chev = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+  return `<div class="filter-menu-wrap"><button class="filter-btn${active ? ' has-filter' : ''}" id="range-${key}-btn" aria-haspopup="true" aria-expanded="false">${label} ${chev}</button><div class="filter-menu range-pop" id="range-${key}-menu"><div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="reset">Reset range</button></div>${rangeBody(rf, cfg)}</div></div>`;
+}
+
+const VESSEL_TYPE_LIST = ['Container','Bulk Carrier','Tanker','Gas Carrier','LNG Carrier','General Cargo','Refrigerated Cargo','Cruise Passenger','Vehicle Carrier','Yacht'];
+function teardropIco(color) {
+  return `<span class="at-ico" style="color:${color}"><svg viewBox="0 0 24 24" width="13" height="13" style="transform:rotate(45deg)" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg></span>`;
+}
+function countryList(cfg) {
+  const seen = new Map();
+  cfg.data.forEach(r => { const cc = r.flag || r.cc; if (cc && !seen.has(cc)) seen.set(cc, r.country); });
+  EXTRA_FLAGS.forEach(([cc, nm]) => { if (!seen.has(cc)) seen.set(cc, nm); });
+  return [...seen.entries()].sort((a, b) => a[1].localeCompare(b[1]));
+}
+const EXTRA_FLAGS = [
+  ['gr','Greece'],['jp','Japan'],['sg','Singapore'],['hk','Hong Kong'],['lr','Liberia'],
+  ['mt','Malta'],['bs','Bahamas'],['no','Norway'],['dk','Denmark'],['de','Germany'],
+  ['gb','United Kingdom'],['it','Italy'],['nl','Netherlands'],['kr','South Korea'],['cn','China'],
+  ['us','United States'],['in','India'],['tr','Turkey'],['ru','Russia'],['id','Indonesia'],
+  ['ph','Philippines'],['bm','Bermuda'],['ky','Cayman Islands'],['pt','Portugal'],['fr','France'],
+  ['es','Spain'],['ae','United Arab Emirates'],['sa','Saudi Arabia'],['br','Brazil'],['vn','Vietnam'],
+];
+function menuWrap(id, label, count, items) {
+  const chev = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>`;
+  return `<div class="filter-menu-wrap"><button class="filter-btn${count ? ' has-filter' : ''}" id="${id}-btn" aria-haspopup="true" aria-expanded="false">${label} ${chev}</button><div class="filter-menu" id="${id}-menu"><div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="all">Select all</button><button class="filter-menu-act" data-fm-act="none">Clear</button></div><div class="filter-menu-list scroll-thin">${items}</div></div></div>`;
+}
+function filterMenu(f, chev, cfg) {
+  if (f === 'Asset Type') {
+    const items = VESSEL_TYPE_LIST.map(t => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="type" value="${t}" ${typeFilter.has(t) ? 'checked' : ''}/>${teardropIco(TYPE_COLORS[t] || '#64748b')}${t}</label>`).join('');
+    return menuWrap('asset-type', f, typeFilter.size, items);
+  }
+  if (f === 'Flag' || f === 'Country') {
+    const items = countryList(cfg).map(([cc, nm]) => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="flag" value="${cc}" ${flagFilter.has(cc) ? 'checked' : ''}/><img class="fm-flag" src="https://flagcdn.com/w20/${cc}.png" width="16"/>${nm}</label>`).join('');
+    return menuWrap('flag', f, flagFilter.size, items);
+  }
+  if (RANGE_FILTERS[f]) return rangeMenu(f, RANGE_FILTERS[f], cfg);
+  if (CAT_FILTERS[f]) {
+    const get = CAT_FILTERS[f].get;
+    const vals = [...new Set(cfg.data.map(get).filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b)));
+    const set = catFilter[f] || new Set();
+    const items = vals.map(v => `<label class="filter-menu-item"><input type="checkbox" class="cat-cb" data-cat="${attrEsc(f)}" value="${attrEsc(v)}" ${set.has(v) ? 'checked' : ''}/>${v}</label>`).join('');
+    return menuWrap('cat-' + f.toLowerCase().replace(/[^a-z]+/g, '-'), f, set.size, items);
+  }
+  return `<button class="filter-btn">${f} ${chev}</button>`;
+}
+function catItems(f, cfg) {
+  if (f === 'Asset Type') return VESSEL_TYPE_LIST.map(t => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="type" value="${t}" ${(typeFilter.size === 0 || typeFilter.has(t)) ? 'checked' : ''}/>${teardropIco(TYPE_COLORS[t] || '#64748b')}${t}</label>`).join('');
+  if (f === 'Flag' || f === 'Country') return countryList(cfg).map(([cc, nm]) => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="flag" value="${cc}" ${(flagFilter.size === 0 || flagFilter.has(cc)) ? 'checked' : ''}/><img class="fm-flag" src="https://flagcdn.com/w20/${cc}.png" width="16"/>${nm}</label>`).join('');
+  const get = CAT_FILTERS[f].get;
+  const vals = [...new Set(cfg.data.map(get).filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b)));
+  const set = catFilter[f] || new Set();
+  return vals.map(v => `<label class="filter-menu-item"><input type="checkbox" class="cat-cb" data-cat="${attrEsc(f)}" value="${attrEsc(v)}" ${(set.size === 0 || set.has(v)) ? 'checked' : ''}/>${v}</label>`).join('');
+}
+function allOptionsFor(kind, f, cfg) {
+  if (kind === 'type') return VESSEL_TYPE_LIST.slice();
+  if (kind === 'flag') return countryList(cfg).map(([cc]) => cc);
+  return [...new Set(cfg.data.map(CAT_FILTERS[f].get).filter(Boolean))];
+}
+function isFilterActive(f, cfg) {
+  if (f === 'Asset Type') return typeFilter.size > 0;
+  if (f === 'Flag' || f === 'Country') return flagFilter.size > 0;
+  if (RANGE_FILTERS[f]) return !!rangeFilter[RANGE_FILTERS[f].key];
+  return !!(catFilter[f] && catFilter[f].size);
+}
+function anyFilterActive(cfg) { return cfg.filters.some(f => isFilterActive(f, cfg)); }
+let drawerAccOpen = 0;
+function drawerSections(cfg) {
+  return cfg.filters.map((f, i) => {
+    const active = isFilterActive(f, cfg);
+    const dis = active ? '' : ' disabled';
+    let inner;
+    if (RANGE_FILTERS[f]) {
+      inner = `<div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="reset"${dis}>Reset</button></div>${rangeBody(RANGE_FILTERS[f], cfg)}`;
+    } else {
+      inner = `<div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="all"${dis}>Reset</button></div><div class="filter-menu-list scroll-thin">${catItems(f, cfg)}</div>`;
+    }
+    const open = i === drawerAccOpen;
+    return `<div class="drawer-section${open ? ' open' : ''}"><button type="button" class="drawer-acc-head"><span class="drawer-sec-title">${f}${active ? ' <span class="drawer-dot"></span>' : ''}</span><svg class="drawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="drawer-acc-body">${inner}</div></div>`;
+  }).join('');
+}
+function openFilterDrawer(cfg) {
+  const body = document.getElementById('drawer-body');
+  drawerAccOpen = 0;
+  body.innerHTML = drawerSections(cfg);
+  wireDrawerControls(cfg);
+  const ra = document.getElementById('drawer-reset');
+  if (ra) ra.disabled = !anyFilterActive(cfg);
+  const d = document.getElementById('filter-drawer');
+  d.classList.add('open'); d.setAttribute('aria-hidden', 'false');
+}
+function closeFilterDrawer() {
+  const d = document.getElementById('filter-drawer');
+  if (d) { d.classList.remove('open'); d.setAttribute('aria-hidden', 'true'); }
+}
+function refreshDrawerBody(cfg) {
+  const d = document.getElementById('filter-drawer');
+  if (!d || !d.classList.contains('open')) return;
+  const body = document.getElementById('drawer-body');
+  const st = body.scrollTop;
+  body.innerHTML = drawerSections(cfg);
+  wireDrawerControls(cfg);
+  body.scrollTop = st;
+  const ra = document.getElementById('drawer-reset');
+  if (ra) ra.disabled = !anyFilterActive(cfg);
+}
+function applyDrawerLive(cfg) {
+  currentPage = 1;
+  document.getElementById('main-content').innerHTML = renderTable();
+  wireTableEvents();
+  refreshDrawerBody(cfg);
+}
+function wireDrawerControls(cfg) {
+  const body = document.getElementById('drawer-body');
+  body.querySelectorAll('.drawer-acc-head').forEach(h => h.addEventListener('click', () => {
+    const sec = h.closest('.drawer-section');
+    const secs = [...body.querySelectorAll('.drawer-section')];
+    const willOpen = !sec.classList.contains('open');
+    secs.forEach(s => s.classList.remove('open'));
+    if (willOpen) { sec.classList.add('open'); drawerAccOpen = secs.indexOf(sec); sec.querySelectorAll('.range-menu').forEach(rm => rm._paint && rm._paint()); }
+    else drawerAccOpen = -1;
+  }));
+  body.querySelectorAll('.ft-cb').forEach(cb => cb.addEventListener('change', () => {
+    const kind = cb.dataset.fkey;
+    const set = kind === 'type' ? typeFilter : flagFilter;
+    const all = allOptionsFor(kind, null, cfg);
+    if (set.size === 0) all.forEach(v => set.add(v));
+    if (cb.checked) set.add(cb.value); else set.delete(cb.value);
+    if (set.size >= all.length) set.clear();
+    applyDrawerLive(cfg);
+  }));
+  body.querySelectorAll('.cat-cb').forEach(cb => cb.addEventListener('change', () => {
+    const f = cb.dataset.cat;
+    const set = catFilter[f] || (catFilter[f] = new Set());
+    const all = allOptionsFor('cat', f, cfg);
+    if (set.size === 0) all.forEach(v => set.add(String(v)));
+    if (cb.checked) set.add(cb.value); else set.delete(cb.value);
+    if (set.size >= all.length) delete catFilter[f];
+    applyDrawerLive(cfg);
+  }));
+  body.querySelectorAll('[data-fm-act]').forEach(act => act.addEventListener('click', () => {
+    const a = act.dataset.fmAct, sec = act.closest('.drawer-section');
+    if (a === 'reset') { const rm = sec.querySelector('.range-menu'); if (rm) delete rangeFilter[rm.dataset.rkey]; applyDrawerLive(cfg); return; }
+    /* 'all' = clear this section's filter (everything selected) */
+    const ft = sec.querySelector('.ft-cb');
+    if (ft) (ft.dataset.fkey === 'type' ? typeFilter : flagFilter).clear();
+    const c = sec.querySelector('.cat-cb');
+    if (c) delete catFilter[c.dataset.cat];
+    applyDrawerLive(cfg);
+  }));
+  body.querySelectorAll('.range-menu').forEach(rm => {
+    const key = rm.dataset.rkey, lo = +rm.dataset.lo, hi = +rm.dataset.hi, unit = rm.dataset.unit, currency = rm.dataset.currency === '1';
+    const fmt = rm.dataset.fmt === 'cur' ? fmtCurrency : (rm.dataset.fmt === 'raw' ? (n => String(n)) : fmtNum);
+    const rgMin = rm.querySelector('.rg-min'), rgMax = rm.querySelector('.rg-max');
+    const fill = rm.querySelector('.range-fill'), rvMin = rm.querySelector('.rv-min'), rvMax = rm.querySelector('.rv-max');
+    const span = (hi - lo) || 1, track = rm.querySelector('.range-track');
+    const paint = () => {
+      let a = +rgMin.value, b = +rgMax.value; if (a > b) [a, b] = [b, a];
+      const W = track.clientWidth, T = 15;
+      fill.style.left = (T / 2 + (a - lo) / span * (W - T)) + 'px';
+      fill.style.right = (W - (T / 2 + (b - lo) / span * (W - T))) + 'px';
+      rvMin.textContent = fmt(a); rvMax.textContent = fmt(b) + (unit ? ' ' + unit : '');
+    };
+    rgMin.addEventListener('input', () => { if (+rgMin.value > +rgMax.value) rgMin.value = rgMax.value; paint(); });
+    rgMax.addEventListener('input', () => { if (+rgMax.value < +rgMin.value) rgMax.value = rgMin.value; paint(); });
+    const commit = () => {
+      let a = +rgMin.value, b = +rgMax.value; if (a > b) [a, b] = [b, a];
+      if (a <= lo && b >= hi) delete rangeFilter[key]; else rangeFilter[key] = { min: a, max: b, currency };
+      applyDrawerLive(cfg);
+    };
+    rgMin.addEventListener('change', commit); rgMax.addEventListener('change', commit);
+    rm._paint = paint;
+    paint();
+  });
+}
 
 function lucideIco(name, size=15) {
   const d = window.lucide && window.lucide.icons && window.lucide.icons[name];
@@ -163,12 +506,74 @@ function lucideIco(name, size=15) {
   return `<${tag} ${a}>${inner}</${tag}>`;
 }
 
+/* Vessel-type colors — matched to the Marine Dashboard vessel markers */
+const TYPE_COLORS = {
+  'Container':       '#2d7ffb',
+  'Bulk Carrier':    '#51a2fc',
+  'Tanker':          '#dc2626',
+  'Vehicle Carrier': '#9333ea',
+  'Gas Carrier':     '#d97706',
+  'LNG Carrier':     '#65a30d',
+  'General Cargo':   '#16a34a',
+  'Refrigerated Cargo': '#0891b2',
+  'Cruise Passenger':   '#db2777',
+  'Yacht':              '#0d9488',
+};
+function typeIco(type) {
+  const c = TYPE_COLORS[type] || '#64748b';
+  return `<span class="badge-ico" style="color:${c}"><svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg></span>`;
+}
 function badgeHtml(type) {
-  if (type === 'Container')       return `<span class="badge badge-container">${type}</span>`;
-  if (type === 'Vehicle Carrier') return `<span class="badge badge-vehicle">${type}</span>`;
-  if (type === 'Bulk Carrier')    return `<span class="badge badge-bulk">${type}</span>`;
-  if (type === 'Tanker')          return `<span class="badge badge-tanker">${type}</span>`;
-  return `<span class="badge badge-other">${type}</span>`;
+  if (type === 'Container')       return `<span class="badge badge-container">${typeIco(type)}${type}</span>`;
+  if (type === 'Vehicle Carrier') return `<span class="badge badge-vehicle">${typeIco(type)}${type}</span>`;
+  if (type === 'Bulk Carrier')    return `<span class="badge badge-bulk">${typeIco(type)}${type}</span>`;
+  if (type === 'Tanker')          return `<span class="badge badge-tanker">${typeIco(type)}${type}</span>`;
+  return `<span class="badge badge-other">${typeIco(type)}${type}</span>`;
+}
+
+/* Aircraft-type badge — colored by manufacturer, with a plane icon */
+const AIRCRAFT_COLORS = {
+  'Boeing':  '#2d7ffb',
+  'Airbus':  '#9333ea',
+  'Embraer': '#16a34a',
+  'ATR':     '#d97706',
+};
+function aircraftBadge(type) {
+  const c = AIRCRAFT_COLORS[type.split(' ')[0]] || '#64748b';
+  const plane = lucideIco('Plane', 11);
+  return `<span class="badge" style="background:${c}1a;color:${c};"><span style="display:inline-flex;color:${c};">${plane}</span>${type}</span>`;
+}
+
+/* Property-type badge — colored by category, with a building icon */
+const PROPERTY_COLORS = {
+  'Corporate & Office':     '#2563eb',
+  'Industrial & Logistics': '#ea580c',
+  'Infrastructure & Energy':'#16a34a',
+  'Retail & Hospitality':   '#db2777',
+};
+function propertyBadge(type) {
+  const c = PROPERTY_COLORS[type] || '#64748b';
+  const bld = lucideIco('Building2', 11);
+  return `<span class="badge" style="background:${c}1a;color:${c};"><span style="display:inline-flex;color:${c};">${bld}</span>${type}</span>`;
+}
+
+/* Offshore / Energy type badge — colored by asset type, with an energy icon */
+const OFFSHORE_COLORS = {
+  'Fixed Platform':           '#ec4899',
+  'TLP':                      '#06b6d4',
+  'FPSO':                     '#8b5cf6',
+  'Subsea Installation':      '#06b6d4',
+  'Jack-Up Rig':              '#f59e0b',
+  'Semi-Submersible':         '#3b82f6',
+  'Drillship':                '#3b82f6',
+  'Mobile Production (MOPU)': '#ea580c',
+  'Windfarm':                 '#10b981',
+  'Oil Rig':                  '#ef4444',
+};
+function offshoreBadge(type) {
+  const c = OFFSHORE_COLORS[type] || '#64748b';
+  const ico = lucideIco('Zap', 11);
+  return `<span class="badge" style="background:${c}1a;color:${c};"><span style="display:inline-flex;color:${c};">${ico}</span>${type}</span>`;
 }
 
 function flagHtml(code, country) {
@@ -182,15 +587,111 @@ function sortIcon(col) {
   return window.dsSortInd(sortCol === col, sortDir === 'asc');
 }
 
-function filteredRows() {
-  let rows = [...ALL_VESSELS];
+function currencyNum(v) {
+  if (typeof v === 'string' && v.trim().startsWith('$')) {
+    const m = v.replace(/,/g, '').match(/\$([0-9.]+)\s*([BMK]?)/i);
+    if (m) {
+      const mult = { B: 1e9, M: 1e6, K: 1e3 }[m[2].toUpperCase()] || 1;
+      const n = parseFloat(m[1]) * mult;
+      return isNaN(n) ? v : n;
+    }
+  }
+  return v;
+}
+
+/* Per-tab table configuration */
+function tabConfig() {
+  if (currentTab === 'aviation') {
+    const link = 'color:var(--brand-600,#2563eb);text-decoration:none';
+    return {
+      data: ALL_AIRCRAFT,
+      searchPlaceholder: 'Search by registration, type or operator',
+      search: (r, q) => r.reg.toLowerCase().includes(q) || r.type.toLowerCase().includes(q) || r.operator.toLowerCase().includes(q),
+      filters: ['Manufacturer', 'Operator', 'Value'],
+      columns: [
+        { key:'type',     label:'Type',     sortable:true, td:r => `<td>${aircraftBadge(r.type)}</td>` },
+        { key:'reg',      label:'Reg. No.', sortable:true, td:r => `<td class="name-cell"><a href="AircraftDetails.html" style="${link}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.reg}</a></td>` },
+        { key:'operator', label:'Operator', sortable:true, td:r => `<td style="color:#334155;">${r.operator}</td>` },
+        { key:'value',    label:'Value',    sortable:true, td:r => `<td style="font-weight:600;color:#0f172a;">${r.value}</td>` },
+      ],
+    };
+  }
+  if (currentTab === 'offshore') {
+    const link = 'color:var(--brand-600,#2563eb);text-decoration:none';
+    return {
+      data: ALL_OFFSHORE,
+      searchPlaceholder: 'Search by asset name, type or operator',
+      search: (r, q) => r.name.toLowerCase().includes(q) || r.type.toLowerCase().includes(q) || r.unitId.toLowerCase().includes(q) || r.owner.toLowerCase().includes(q) || r.operator.toLowerCase().includes(q),
+      filters: ['Type', 'Flag', 'Owner', 'Operator', 'Value'],
+      columns: [
+        { key:'name',     label:'Name',                 sortable:true, td:r => `<td class="name-cell"><a href="AssetOffshoreDetails.html" style="${link}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a></td>` },
+        { key:'type',     label:'Type',                 sortable:true, td:r => `<td>${offshoreBadge(r.type)}</td>` },
+        { key:'unitId',   label:'Unit ID / CVN / IMO',  sortable:true, td:r => `<td style="color:#64748b;">${r.unitId}</td>` },
+        { key:'country',  label:'Flag',                 sortable:true, td:r => `<td>${flagHtml(r.cc, r.country)}</td>` },
+        { key:'owner',    label:'Owner',                sortable:true, td:r => `<td style="color:#334155;">${r.owner}</td>` },
+        { key:'operator', label:'Operator',             sortable:true, td:r => `<td style="color:#334155;">${r.operator}</td>` },
+        { key:'value',    label:'Value',                sortable:true, td:r => `<td style="font-weight:600;color:#0f172a;">${r.value}</td>` },
+      ],
+    };
+  }
+  if (currentTab === 'property') {
+    const link = 'color:var(--brand-600,#2563eb);text-decoration:none';
+    return {
+      data: ALL_PROPERTY,
+      searchPlaceholder: 'Search by property name, type or location',
+      search: (r, q) => r.name.toLowerCase().includes(q) || r.type.toLowerCase().includes(q) || r.location.toLowerCase().includes(q) || r.country.toLowerCase().includes(q),
+      filters: ['Type', 'Country', 'Year Built', 'Value'],
+      columns: [
+        { key:'name',      label:'Name',       sortable:true, td:r => `<td class="name-cell"><a href="PropertyDetails.html" style="${link}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a></td>` },
+        { key:'type',      label:'Type',       sortable:true, td:r => `<td>${propertyBadge(r.type)}</td>` },
+        { key:'location',  label:'Location',   sortable:true, td:r => `<td style="color:#334155;">${r.location}</td>` },
+        { key:'country',   label:'Country',    sortable:true, td:r => `<td>${flagHtml(r.cc, r.country)}</td>` },
+        { key:'yearBuilt', label:'Year Built', sortable:true, td:r => `<td style="tabular-nums;color:#334155;">${r.yearBuilt}</td>` },
+        { key:'value',     label:'Value',      sortable:true, td:r => `<td style="font-weight:600;color:#0f172a;">${r.value}</td>` },
+      ],
+    };
+  }
+  // Marine (default)
+  return {
+    data: ALL_VESSELS,
+    searchPlaceholder: 'Search by IMO or vessel name',
+    search: (r, q) => r.name.toLowerCase().includes(q) || r.imo.toLowerCase().includes(q) || r.mmsi.includes(q),
+    filters: ['Asset Type', 'Flag', 'Length', 'Gross Tonnage', 'Deadweight', 'YOB'],
+    columns: [
+      { key:'name',         label:'Name',          sortable:true,  td:r => `<td class="name-cell"><a href="VesselDetails.html" style="color:var(--brand-600,#2563eb);text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a></td>` },
+      { key:'type',         label:'Type',          sortable:true,  td:r => `<td>${badgeHtml(r.type)}</td>` },
+      { key:'country',      label:'Flag',          sortable:true,  td:r => `<td>${flagHtml(r.flag, r.country)}</td>` },
+      { key:null,           label:'Callsign',      sortable:false, td:r => `<td style="color:#64748b;">${r.callsign}</td>` },
+      { key:null,           label:'IMO',           sortable:false, td:r => `<td style="color:#64748b;">${r.imo}</td>` },
+      { key:null,           label:'MMSI',          sortable:false, td:r => `<td style="color:#64748b;">${r.mmsi}</td>` },
+      { key:'owner',        label:'Owner',         sortable:true,  td:r => `<td>${r.owner ? `<span class="lnk">${r.owner}</span>` : ''}</td>` },
+      { key:'lastSeen',     label:'Last Seen',     sortable:true,  td:r => `<td style="color:#64748b;">${r.lastSeen}</td>` },
+      { key:null,           label:'Est. Value',    sortable:false, td:r => `<td style="font-weight:600;color:${r.estValue.startsWith('$') ? '#0f172a' : '#94a3b8'};">${r.estValue}</td>` },
+      { key:'length',       label:'Length',        sortable:true,  td:r => `<td style="tabular-nums;">${r.length}</td>` },
+      { key:'grossTonnage', label:'Gross Tonnage', sortable:true,  td:r => `<td style="tabular-nums;color:${r.grossTonnage === 'N/A' ? '#94a3b8' : '#334155'};">${r.grossTonnage}</td>` },
+      { key:'dwtTonnage',   label:'DWT Tonnage',   sortable:true,  td:r => `<td style="tabular-nums;color:${r.dwtTonnage === 'N/A' ? '#94a3b8' : '#334155'};">${r.dwtTonnage}</td>` },
+      { key:'yob',          label:'YOB',           sortable:true,  td:r => `<td style="tabular-nums;color:${r.yob === null ? '#94a3b8' : '#334155'};">${r.yob || 'N/A'}</td>` },
+    ],
+  };
+}
+
+function filteredRows(cfg) {
+  let rows = [...cfg.data];
+  if (typeFilter.size) rows = rows.filter(r => typeFilter.has(r.type));
+  if (flagFilter.size) rows = rows.filter(r => flagFilter.has(r.flag || r.cc));
+  Object.entries(catFilter).forEach(([label, set]) => {
+    if (set.size && CAT_FILTERS[label]) { const get = CAT_FILTERS[label].get; rows = rows.filter(r => set.has(get(r))); }
+  });
+  Object.entries(rangeFilter).forEach(([key, r]) => {
+    rows = rows.filter(row => { const n = rangeNum(row[key], r.currency); return n !== null && n >= r.min && n <= r.max; });
+  });
   if (searchQuery) {
     const q = searchQuery.toLowerCase();
-    rows = rows.filter(r => r.name.toLowerCase().includes(q) || r.imo.toLowerCase().includes(q) || r.mmsi.includes(q));
+    rows = rows.filter(r => cfg.search(r, q));
   }
   if (sortCol) {
     rows.sort((a, b) => {
-      let av = a[sortCol], bv = b[sortCol];
+      let av = currencyNum(a[sortCol]), bv = currencyNum(b[sortCol]);
       if (av === null || av === 'N/A') av = sortDir === 'asc' ? Infinity : -Infinity;
       if (bv === null || bv === 'N/A') bv = sortDir === 'asc' ? Infinity : -Infinity;
       if (typeof av === 'string' && typeof bv === 'string') return sortDir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
@@ -201,7 +702,8 @@ function filteredRows() {
 }
 
 function renderTable() {
-  const rows = filteredRows();
+  const cfg = tabConfig();
+  const rows = filteredRows(cfg);
   const total = rows.length;
   const totalPages = Math.ceil(total / PAGE_SIZE);
   const pageRows = rows.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -220,21 +722,7 @@ function renderTable() {
   const chevLeft    = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>`;
   const chevRight   = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>`;
 
-  const colsMeta = [
-    { key:'name',         label:'Name',          sortable:true  },
-    { key:'type',         label:'Type',          sortable:true  },
-    { key:'country',      label:'Flag',          sortable:true  },
-    { key:null,           label:'Callsign',      sortable:false },
-    { key:null,           label:'IMO',           sortable:false },
-    { key:null,           label:'MMSI',          sortable:false },
-    { key:'owner',        label:'Owner',         sortable:true  },
-    { key:'lastSeen',     label:'Last Seen',     sortable:true  },
-    { key:null,           label:'Est. Value',    sortable:false },
-    { key:'length',       label:'Length',        sortable:true  },
-    { key:'grossTonnage', label:'Gross Tonnage', sortable:true  },
-    { key:'dwtTonnage',   label:'DWT Tonnage',   sortable:true  },
-    { key:'yob',          label:'YOB',           sortable:true  },
-  ];
+  const colsMeta = cfg.columns.filter(c => !hiddenCols.has(c.label));
 
   return `
     <!-- Tab bar -->
@@ -254,38 +742,34 @@ function renderTable() {
     <!-- Card -->
     <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(15,23,42,.07);overflow:hidden;">
       <!-- Card header -->
-      <div style="padding:14px 16px 12px;border-bottom:1px solid #f1f5f9;">
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:12px;">
+      <div style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">
+        <div style="display:flex;align-items:center;gap:7px;">
           ${sectionIcon}
           <span style="font-size:14px;font-weight:700;color:#0f172a;">
             ${tabLabels[currentTab]} Assets
           </span>
           <span style="font-size:13px;font-weight:400;color:#94a3b8;">(${total} result${total !== 1 ? 's' : ''})</span>
-        </div>
-        <!-- Search + filters -->
-        <div class="filter-row" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <div class="search-wrap">
-            <span class="search-ico">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </span>
-            <input id="asset-search" type="text" placeholder="Search by IMO or vessel name" value="${searchQuery}" />
-          </div>
-          <button class="filters-mobile-btn" id="filters-mobile-btn" aria-label="Show filters" aria-expanded="false">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-            ${(searchQuery || sortCol) ? '<span class="dot"></span>' : ''}
-          </button>
-          <div class="filter-controls" id="filter-controls">
-            <button class="filter-btn reset" id="reset-filters-btn">${filterIcon} Reset Filters</button>
-            <button class="filter-btn">Asset Type ${chevDown}</button>
-            <button class="filter-btn">Flag ${chevDown}</button>
-            <button class="filter-btn">Length ${chevDown}</button>
-            <button class="filter-btn">Gross Tonnage ${chevDown}</button>
-            <button class="filter-btn">Deadweight ${chevDown}</button>
-            <button class="filter-btn">YOB ${chevDown}</button>
-            <button class="filter-btn edit-cols" style="margin-left:auto;">Edit Columns</button>
+          <div style="margin-left:auto;display:inline-flex;align-items:stretch;gap:8px;">
+            <div class="search-wrap">
+              <span class="search-ico">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input id="asset-search" type="text" placeholder="${cfg.searchPlaceholder}" value="${searchQuery}" />
+            </div>
+            <button class="filter-btn edit-cols${anyFilterActive(cfg) ? ' has-filter' : ''}" id="filter-icon-btn" title="Filter" aria-label="Filter" style="padding:0 10px;">${filterIcon}</button>
+            <div class="filter-menu-wrap"><button class="filter-btn edit-cols" id="edit-cols-btn" aria-haspopup="true" aria-expanded="false" style="height:100%;">Edit Columns ${chevDown}</button><div class="filter-menu" id="edit-cols-menu"><div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="all">Show all</button><button class="filter-menu-act" data-fm-act="none">Hide all</button></div><div class="filter-menu-list scroll-thin">${cfg.columns.map(c => `<label class="filter-menu-item"><input type="checkbox" class="col-cb" value="${c.label}" ${hiddenCols.has(c.label) ? '' : 'checked'}/>${c.label}</label>`).join('')}</div></div></div>
           </div>
         </div>
       </div>
+
+      <!-- hidden filter dropdowns (may reuse) -->
+      <div style="display:none;">
+        <div class="filter-controls" id="filter-controls">
+            ${false ? `<button class="filter-btn reset" id="reset-filters-btn">${filterIcon} Reset Filters</button>` : ''}
+            ${false ? cfg.filters.map(f => filterMenu(f, chevDown, cfg)).join('') : ''}
+        </div>
+      </div>
+
 
       <!-- Table -->
       <div style="overflow-x:auto;" class="scroll-thin">
@@ -301,19 +785,7 @@ function renderTable() {
           <tbody>
             ${pageRows.map(r => `
               <tr>
-                <td class="name-cell"><a href="VesselDetails.html" style="color:var(--brand-600,#2563eb);text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a></td>
-                <td>${badgeHtml(r.type)}</td>
-                <td>${flagHtml(r.flag, r.country)}</td>
-                <td style="color:#64748b;">${r.callsign}</td>
-                <td style="color:#64748b;">${r.imo}</td>
-                <td style="color:#64748b;">${r.mmsi}</td>
-                <td>${r.owner ? `<span class="lnk">${r.owner}</span>` : ''}</td>
-                <td style="color:#64748b;">${r.lastSeen}</td>
-                <td style="font-weight:600;color:${r.estValue.startsWith('$') ? 'var(--brand-600, #2563eb)' : '#94a3b8'};">${r.estValue}</td>
-                <td style="tabular-nums;">${r.length}</td>
-                <td style="tabular-nums;color:${r.grossTonnage === 'N/A' ? '#94a3b8' : '#334155'};">${r.grossTonnage}</td>
-                <td style="tabular-nums;color:${r.dwtTonnage === 'N/A' ? '#94a3b8' : '#334155'};">${r.dwtTonnage}</td>
-                <td style="tabular-nums;color:${r.yob === null ? '#94a3b8' : '#334155'};">${r.yob || 'N/A'}</td>
+                ${colsMeta.map(c => c.td(r)).join('')}
               </tr>`).join('')}
           </tbody>
         </table>
@@ -349,9 +821,32 @@ window.render = function () {
       </div>
     </div>
     ${SC.TweaksPanel()}
+    <div id="filter-drawer" class="filter-drawer" aria-hidden="true">
+      <div class="drawer-overlay" id="drawer-overlay"></div>
+      <aside class="drawer-panel" role="dialog" aria-label="Filters">
+        <div class="drawer-head"><span>Filters</span><button class="drawer-close" id="drawer-close" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+        <div class="drawer-body scroll-thin" id="drawer-body"></div>
+        <div class="drawer-foot"><button class="filter-btn reset" id="drawer-reset">Reset all</button><button class="filter-btn edit-cols" id="drawer-done">Done</button></div>
+      </aside>
+    </div>
   `;
 
   SC.wireChrome();
+
+  const dClose = document.getElementById('drawer-close');
+  const dOverlay = document.getElementById('drawer-overlay');
+  const dDone = document.getElementById('drawer-done');
+  const dReset = document.getElementById('drawer-reset');
+  if (dClose) dClose.addEventListener('click', closeFilterDrawer);
+  if (dOverlay) dOverlay.addEventListener('click', closeFilterDrawer);
+  if (dDone) dDone.addEventListener('click', closeFilterDrawer);
+  if (dReset) dReset.addEventListener('click', () => {
+    searchQuery = ''; sortCol = null; sortDir = 'asc';
+    typeFilter = new Set(); flagFilter = new Set(); rangeFilter = {}; catFilter = {}; currentPage = 1;
+    document.getElementById('main-content').innerHTML = renderTable();
+    wireTableEvents();
+    refreshDrawerBody(tabConfig());
+  });
 
   /* Search */
   const searchEl = document.getElementById('asset-search');
@@ -406,6 +901,15 @@ function wireTableEvents() {
     btn.addEventListener('click', () => {
       currentTab  = btn.dataset.tab;
       currentPage = 1;
+      searchQuery = '';
+      typeFilter  = new Set();
+      flagFilter  = new Set();
+      rangeFilter = {};
+      catFilter   = {};
+      hiddenCols  = new Set();
+      sortCol     = null;
+      sortDir     = 'asc';
+      closeFilterDrawer();
       document.getElementById('main-content').innerHTML = renderTable();
       wireTableEvents();
     });
@@ -417,6 +921,15 @@ function wireTableEvents() {
     tabsDD.addEventListener('change', () => {
       currentTab  = tabsDD.value;
       currentPage = 1;
+      searchQuery = '';
+      typeFilter  = new Set();
+      flagFilter  = new Set();
+      rangeFilter = {};
+      catFilter   = {};
+      hiddenCols  = new Set();
+      sortCol     = null;
+      sortDir     = 'asc';
+      closeFilterDrawer();
       document.getElementById('main-content').innerHTML = renderTable();
       wireTableEvents();
     });
@@ -439,12 +952,18 @@ function wireTableEvents() {
   });
 
   /* Reset filters */
+  const filterIconBtn = document.getElementById('filter-icon-btn');
+  if (filterIconBtn) filterIconBtn.addEventListener('click', () => openFilterDrawer(tabConfig()));
   const resetBtn = document.getElementById('reset-filters-btn');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
       searchQuery = '';
       sortCol     = null;
       sortDir     = 'asc';
+      typeFilter  = new Set();
+      flagFilter  = new Set();
+      rangeFilter = {};
+      catFilter   = {};
       currentPage = 1;
       document.getElementById('main-content').innerHTML = renderTable();
       wireTableEvents();
@@ -456,6 +975,110 @@ function wireTableEvents() {
   const nextBtn = document.getElementById('pag-next');
   if (prevBtn) prevBtn.addEventListener('click', () => { currentPage--; document.getElementById('main-content').innerHTML = renderTable(); wireTableEvents(); });
   if (nextBtn) nextBtn.addEventListener('click', () => { currentPage++; document.getElementById('main-content').innerHTML = renderTable(); wireTableEvents(); });
+
+  /* Multi-select filter menus (Asset Type, Flag) — live-filter the table */
+  function applyFilterLive(menuId) {
+    currentPage = 1;
+    document.getElementById('main-content').innerHTML = renderTable();
+    wireTableEvents();
+    const m = document.getElementById(menuId);
+    if (m) {
+      m.classList.add('is-open');
+      const b = m.closest('.filter-menu-wrap').querySelector('.filter-btn');
+      b.setAttribute('aria-expanded', 'true');
+      const rm2 = m.querySelector('.range-menu');
+      let active;
+      if (rm2) { active = +m.querySelector('.rg-min').value > +rm2.dataset.lo || +m.querySelector('.rg-max').value < +rm2.dataset.hi; }
+      else { active = !!m.querySelector('.ft-cb:checked, .cat-cb:checked'); }
+      b.classList.toggle('has-filter', !!active);
+      positionMenu(b, m);
+    }
+  }
+  function positionMenu(btn, menu) {
+    const r = btn.getBoundingClientRect();
+    const mw = menu.offsetWidth;
+    let left = r.left;
+    if (left + mw > document.documentElement.clientWidth - 8) left = Math.max(8, r.right - mw);
+    menu.style.top = (r.bottom + 6) + 'px';
+    menu.style.left = left + 'px';
+    if (menu._paint) menu._paint();
+  }
+  document.querySelectorAll('.filter-menu-wrap').forEach(wrap => {
+    const btn  = wrap.querySelector('.filter-btn');
+    const menu = wrap.querySelector('.filter-menu');
+    const setOf = key => key === 'type' ? typeFilter : flagFilter;
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = !menu.classList.contains('is-open');
+      document.querySelectorAll('.filter-menu.is-open').forEach(m => {
+        if (m !== menu) { m.classList.remove('is-open'); m.closest('.filter-menu-wrap').querySelector('.filter-btn').setAttribute('aria-expanded', 'false'); }
+      });
+      menu.classList.toggle('is-open', willOpen);
+      btn.setAttribute('aria-expanded', String(willOpen));
+      if (willOpen) positionMenu(btn, menu);
+    });
+    menu.addEventListener('click', (e) => e.stopPropagation());
+    menu.querySelectorAll('.ft-cb').forEach(cb => cb.addEventListener('change', () => {
+      const set = setOf(cb.dataset.fkey);
+      if (cb.checked) set.add(cb.value); else set.delete(cb.value);
+      applyFilterLive(menu.id);
+    }));
+    menu.querySelectorAll('.col-cb').forEach(cb => cb.addEventListener('change', () => {
+      if (cb.checked) hiddenCols.delete(cb.value); else hiddenCols.add(cb.value);
+      applyFilterLive(menu.id);
+    }));
+    menu.querySelectorAll('.cat-cb').forEach(cb => cb.addEventListener('change', () => {
+      const set = catFilter[cb.dataset.cat] || (catFilter[cb.dataset.cat] = new Set());
+      if (cb.checked) set.add(cb.value); else set.delete(cb.value);
+      applyFilterLive(menu.id);
+    }));
+    menu.querySelectorAll('[data-fm-act]').forEach(act => act.addEventListener('click', () => {
+      const a = act.dataset.fmAct;
+      if (a === 'reset') { const rm = menu.querySelector('.range-menu'); if (rm) delete rangeFilter[rm.dataset.rkey]; applyFilterLive(menu.id); return; }
+      const on = a === 'all';
+      menu.querySelectorAll('.ft-cb').forEach(cb => { cb.checked = on; const set = setOf(cb.dataset.fkey); if (on) set.add(cb.value); else set.delete(cb.value); });
+      menu.querySelectorAll('.col-cb').forEach(cb => { cb.checked = on; if (on) hiddenCols.delete(cb.value); else hiddenCols.add(cb.value); });
+      menu.querySelectorAll('.cat-cb').forEach(cb => { cb.checked = on; const set = catFilter[cb.dataset.cat] || (catFilter[cb.dataset.cat] = new Set()); if (on) set.add(cb.value); else set.delete(cb.value); });
+      applyFilterLive(menu.id);
+    }));
+    const rm = menu.querySelector('.range-menu');
+    if (rm) {
+      const key = rm.dataset.rkey, lo = +rm.dataset.lo, hi = +rm.dataset.hi, unit = rm.dataset.unit, currency = rm.dataset.currency === '1';
+      const fmt = rm.dataset.fmt === 'cur' ? fmtCurrency : (rm.dataset.fmt === 'raw' ? (n => String(n)) : fmtNum);
+      const rgMin = rm.querySelector('.rg-min'), rgMax = rm.querySelector('.rg-max');
+      const fill = rm.querySelector('.range-fill'), rvMin = rm.querySelector('.rv-min'), rvMax = rm.querySelector('.rv-max');
+      const span = (hi - lo) || 1;
+      const track = rm.querySelector('.range-track');
+      const paint = () => {
+        let a = +rgMin.value, b = +rgMax.value; if (a > b) [a, b] = [b, a];
+        const W = track.clientWidth, T = 15;
+        const pa = T / 2 + (a - lo) / span * (W - T);
+        const pb = T / 2 + (b - lo) / span * (W - T);
+        fill.style.left = pa + 'px';
+        fill.style.right = (W - pb) + 'px';
+        rvMin.textContent = fmt(a); rvMax.textContent = fmt(b) + (unit ? ' ' + unit : '');
+      };
+      menu._paint = paint;
+      rgMin.addEventListener('input', () => { if (+rgMin.value > +rgMax.value) rgMin.value = rgMax.value; paint(); });
+      rgMax.addEventListener('input', () => { if (+rgMax.value < +rgMin.value) rgMax.value = rgMin.value; paint(); });
+      const commit = () => {
+        let a = +rgMin.value, b = +rgMax.value; if (a > b) [a, b] = [b, a];
+        if (a <= lo && b >= hi) delete rangeFilter[key]; else rangeFilter[key] = { min: a, max: b, currency };
+        applyFilterLive(menu.id);
+      };
+      rgMin.addEventListener('change', commit);
+      rgMax.addEventListener('change', commit);
+      paint();
+    }
+    document.addEventListener('click', (e) => {
+      if (!menu.classList.contains('is-open')) return;
+      if (menu.contains(e.target) || btn.contains(e.target)) return;
+      menu.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+    const mc = document.getElementById('main-content');
+    if (mc) mc.addEventListener('scroll', () => { if (menu.classList.contains('is-open')) positionMenu(btn, menu); });
+  });
 
   /* Mobile filters toggle */
   const fmBtn  = document.getElementById('filters-mobile-btn');

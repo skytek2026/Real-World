@@ -162,9 +162,6 @@ function typeIconCircle(type, size=36) {
 function mapMarkerHTML(type) {
   const cfg = TYPE_CFG[type] || TYPE_CFG.wildfire;
   const ico = ICON_SVG[type] || '';
-  if (type === 'earthquake') {
-    return `<div style="width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:32px solid ${cfg.color};position:relative;filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))"><span style="position:absolute;top:9px;left:-6px;color:#fff;font-size:11px;font-weight:900;line-height:1">!</span></div>`;
-  }
   return `<div style="width:34px;height:34px;border-radius:50%;background:${cfg.color};border:2.5px solid rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)">${ico}</div>`;
 }
 
@@ -188,11 +185,11 @@ function initMap() {
   // Add markers for all events
   EVENTS.forEach(e => {
     const cfg = TYPE_CFG[e.type] || TYPE_CFG.wildfire;
-    const anchor = e.type === 'earthquake' ? [18, 32] : [17, 17];
+    const anchor = [17, 17];
     const icon = L.divIcon({
       className: '',
       html: mapMarkerHTML(e.type),
-      iconSize: e.type === 'earthquake' ? [36, 32] : [34, 34],
+      iconSize: [34, 34],
       iconAnchor: anchor,
     });
 

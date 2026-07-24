@@ -49,7 +49,7 @@
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#334155;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f1f5f9}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
   /* Responsive top row */
-  .top-row-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}
+  .top-row-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:16px;align-items:stretch}
   .top-row-grid > .card{max-height:480px}
   @media(max-width:1023px){.top-row-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:639px){.top-row-grid{grid-template-columns:1fr}}
@@ -63,6 +63,24 @@
   }
   /* Pagination row */
   .pg-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid #e2e8f0}
+  /* Risk Score info popups */
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer;margin-top:1px;}
+  .rs-info:hover{color:#2563eb;}
+  .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
+  .rs-tip.c{left:50%;transform:translateX(-50%);}
+  .rs-tip.l{left:-6px;}
+  .rs-tip.r{right:-6px;}
+  .rs-tip::after{content:'';position:absolute;bottom:100%;width:9px;height:9px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:translateY(50%) rotate(45deg);}
+  .rs-tip.c::after{left:50%;margin-left:-4.5px;}
+  .rs-tip.l::after{left:14px;}
+  .rs-tip.r::after{right:14px;}
+  .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f1f5f9;}
+  .rs-tip-tbl th:first-child{text-align:left;}
+  .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
+  .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -152,6 +170,7 @@ let assetQuery   = '';
 let assetFilter  = 'all';
 let assetPage    = 1;
 let assetPerPage = 5;
+let coWithSanctions = false;
 
 /* ── SVG icons ────────────────────────────────────────────────────────────── */
 const IC = {
@@ -213,12 +232,17 @@ function DonutChart(risk) {
 
 /* ── Card: Company Details ───────────────────────────────────────────────── */
 function CardCompanyDetails() {
+  const complianceBadge = sanctioned
+    ? `<span style="display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:999px;background:#fee2e2;color:#dc2626;font-size:11px;font-weight:700;"><span style="width:6px;height:6px;border-radius:50%;background:#dc2626;"></span>Sanctioned</span>`
+    : `<span style="display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:999px;background:#dcfce7;color:#15803d;font-size:11px;font-weight:700;"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;"></span>Compliant</span>`;
+  const shieldIco = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/></svg>`;
   const fields = [
     { ico: IC.coIco,    lbl:'Name:',                 val: co.name || '—'       },
     { ico: IC.codeIco,  lbl:'Code:',                 val: coCode               },
     { ico: IC.tagIco,   lbl:'Type:',                 val: co.type || '—'       },
     { ico: IC.pinIco,   lbl:'Country Registration:', val: co.country || '—'    },
     { ico: IC.globeIco, lbl:'Country Control:',      val: countryControl       },
+    { ico: shieldIco,   lbl:'Overall Compliance:',   val: complianceBadge      },
   ];
   return `
   <div class="card flex flex-col" style="min-height:280px">
@@ -233,7 +257,7 @@ function CardCompanyDetails() {
       </div>`).join('')}
     </div>
     <div class="card-foot" style="justify-content:space-between;gap:10px">
-      <button class="foot-link">${IC.compare} Compare This Company</button>
+      <button class="foot-link" onclick="window.__goCompare()">${IC.compare} Compare This Company</button>
       <button class="foot-link">Find Similar ${IC.chevDown}</button>
     </div>
   </div>`;
@@ -241,50 +265,7 @@ function CardCompanyDetails() {
 
 /* ── Card: Risk Breakdown ────────────────────────────────────────────────── */
 function CardRiskBreakdown() {
-  const rsScore   = avgRisk;
-  const rs2024    = Math.max(0, Math.round(avgRisk * 0.78));
-  const rs2023    = Math.max(0, Math.round(avgRisk * 0.55));
-  const rsDelta25 = rsScore - rs2024;
-  const rsDelta24 = rs2024  - rs2023;
-  const rsPct     = rs2024 > 0 ? Math.round(Math.abs(rsDelta25) / rs2024 * 100) : 0;
-  const risk = rsScore <= 10
-    ? { label:'GOOD',         c:'#16a34a', glow:'#86efac', pillBg:'#dcfce7', pillTxt:'#15803d' }
-    : rsScore <= 25
-    ? { label:'AVERAGE RISK', c:'#f97316', glow:'#fed7aa', pillBg:'#fef3c7', pillTxt:'#b45309' }
-    : { label:'BELOW AVERAGE', c:'#ef4444', glow:'#fca5a5', pillBg:'#fee2e2', pillTxt:'#dc2626' };
-  // Gauge geometry: 270° arc, start=135° (7:30), sweep clockwise
-  const CX=100, CY=108, R=80, RO=95, SW=11;
-  const toRad = d => d * Math.PI / 180;
-  const pt    = (a, r) => [+(CX + r*Math.cos(toRad(a))).toFixed(2), +(CY + r*Math.sin(toRad(a))).toFixed(2)];
-  const [sox,soy] = pt(135, RO);
-  const [eox,eoy] = pt(45,  RO);
-  const GAUGE_MAX = 100, GAUGE_START = 135, GAUGE_SWEEP_DEG = 270;
-  const gAngle = s => GAUGE_START + (Math.min(s, GAUGE_MAX) / GAUGE_MAX) * GAUGE_SWEEP_DEG;
-  const arcD = (a1, a2, r) => {
-    const [x1,y1] = pt(a1, r), [x2,y2] = pt(a2, r);
-    const sw = ((a2 - a1) % 360 + 360) % 360;
-    return `M ${x1},${y1} A ${r},${r} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
-  };
-  // Banded segment color: green ≤10, orange ≤25, red >25 — matches the Risk Level Guide bands
-  const gaugeColor = s => (s <= 10 ? '#22c55e' : s <= 25 ? '#f97316' : '#ef4444');
-  const N = 26, SEG_GAP = 0.9;
-  const gaugeScore = Math.min(rsScore, GAUGE_MAX);
-  const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
-  const segPaths = Array.from({length: N}, (_, i) => {
-    const a1 = gAngle(i * GAUGE_MAX / N) + SEG_GAP;
-    const a2 = gAngle((i + 1) * GAUGE_MAX / N) - SEG_GAP;
-    const midScore = (i + 0.5) * GAUGE_MAX / N;
-    const filled = midScore <= gaugeScore;
-    return `<path d="${arcD(a1, a2, R)}" fill="none" stroke="${filled ? gaugeColor(midScore) : '#e2e8f0'}" stroke-width="${SW}" stroke-linecap="butt"/>`;
-  }).join('');
-  const glowColor = rsScore <= 10 ? '#86efac' : rsScore <= 25 ? '#fcd34d' : '#fca5a5';
-  const fillTipA  = gAngle(gaugeScore);
-  const fillTipB  = gAngle(Math.max(0, gaugeScore - GAUGE_MAX * 0.08));
-  const glowPath  = gaugeScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
-  // Distribution across the company's assets (mock; sums to 100)
-  const dist = { good: 14, avg: 55, below: 31 };
-  // Risk factor breakdown — company-level signals
-  const factors = [
+    const factors = [
     { name:'Sanctions Exposure',     score:0,  impact:0    },
     { name:'Beneficial Ownership',   score:18, impact:0.85 },
     { name:'AIS Coverage',           score:22, impact:1.10 },
@@ -293,16 +274,71 @@ function CardRiskBreakdown() {
     { name:'Minor Incidents',        score:12, impact:0.40 },
     { name:'Overall Compliance',     score:0,  impact:0    },
   ];
-  return `
-  <div class="card flex flex-col" style="min-height:0">
-    <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9">
-      <span style="font-size:14px;font-weight:700;color:#0f172a">Risk Breakdown</span>
-    </div>
-    <div style="padding:12px;flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:10px;" class="scroll-thin">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+  const rsScore = coWithSanctions ? 100 : avgRisk, rs2025 = Math.max(0,Math.round(avgRisk*0.78)), rs2024 = Math.max(0,Math.round(avgRisk*0.55)), rs2023 = Math.max(0,Math.round(avgRisk*0.4));
+    const rsDelta25   = rsScore - rs2025;   // current (main gauge) vs 2025
+    const rsDelta2025 = rs2025  - rs2024;   // 2025 card vs 2024
+    const rsDelta24   = rs2024  - rs2023;   // 2024 card vs 2023
+    const rsPct = Math.round(Math.abs(rsDelta25) / rs2025 * 100);
+    const risk = rsScore <= 25
+      ? { label:'GOOD', c:'#16a34a', glow:'#16a34a', pillBg:'#dcfce7', pillTxt:'#15803d' }
+      : rsScore <= 50
+      ? { label:'AVERAGE RISK', c:'#d97706', glow:'#fef3c7', pillBg:'#fef3c7', pillTxt:'#b45309' }
+      : { label:'BELOW AVERAGE', c:'#dc2626', glow:'#fee2e2', pillBg:'#fee2e2', pillTxt:'#dc2626' };
+    // Year score → band colour (matches the gauge bands: green ≤25, orange ≤50, red >50)
+    const yearColor = s => s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626';
+    const yearPill  = s => s <= 25 ? { bg:'#dcfce7', txt:'#15803d' } : s <= 50 ? { bg:'#fef3c7', txt:'#b45309' } : { bg:'#fee2e2', txt:'#dc2626' };
+    // Gauge geometry: 270° arc, start=135° (7:30 o'clock), sweep clockwise
+    const CX=100, CY=108, R=80, RO=95, SW=11;
+    const toRad = d => d * Math.PI / 180;
+    const pt = (a, r) => [+(CX + r*Math.cos(toRad(a))).toFixed(2), +(CY + r*Math.sin(toRad(a))).toFixed(2)];
+    const [sx,sy]   = pt(135, R);   // arc track start
+    const [ex,ey]   = pt(45,  R);   // arc track end (135+270=405≡45°)
+    const [sox,soy] = pt(135, RO);  // outer dot ring start
+    const [eox,eoy] = pt(45,  RO);  // outer dot ring end
+    // Smooth gradient gauge: 54 fine arc segments, each with interpolated color
+    const GAUGE_MAX = 100, GAUGE_START = 135, GAUGE_SWEEP_DEG = 270;
+    const gAngle = s => GAUGE_START + (Math.min(s, GAUGE_MAX) / GAUGE_MAX) * GAUGE_SWEEP_DEG;
+    const arcD = (a1, a2, r) => {
+      const [x1,y1] = pt(a1, r), [x2,y2] = pt(a2, r);
+      const sw = ((a2 - a1) % 360 + 360) % 360;
+      return `M ${x1},${y1} A ${r},${r} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
+    };
+    // Banded segment color: green ≤25, orange ≤50, red >50
+    const gaugeColor = s => (s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626');
+    const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    // Continuous band arcs — divider only between the main bands (at 25 & 50)
+    const BANDS = coWithSanctions ? [[0,100,'#dc2626']] : [[0,25,'#16a34a'],[25,50,'#d97706'],[50,100,'#dc2626']];
+    const BAND_GAP = 1.4; // degrees of separation between main bands
+    const segPaths = BANDS.map(([bs, be, col], bi) => {
+      const aStart = gAngle(bs) + (bi > 0 ? BAND_GAP / 2 : 0);
+      const aEnd   = gAngle(be) - (bi < BANDS.length - 1 ? BAND_GAP / 2 : 0);
+      const fillEnd = Math.max(bs, Math.min(rsScore, be));
+      const aFill = gAngle(fillEnd);
+      let out = '';
+      if (fillEnd > bs) out += `<path d="${arcD(aStart, Math.min(aFill, aEnd), R)}" fill="none" stroke="${col}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      if (fillEnd < be) out += `<path d="${arcD(Math.max(aFill, aStart), aEnd, R)}" fill="none" stroke="#e5e7eb" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      return out;
+    }).join('');
+    const glowColor = rsScore <= 25 ? '#16a34a' : rsScore <= 50 ? '#d97706' : '#fee2e2';
+    const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
+    const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
+    const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
+    const rsFactorRows = factors.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
+    let body = `
+    <div style="padding:10px 12px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
+        <button data-co-sanctions style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Sanctions
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${coWithSanctions?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${coWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
         <!-- Gauge -->
-        <div style="background:#f8fafc;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;">
-          <div style="position:relative;width:100%;max-width:185px;">
+        <div style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;"><div style="position:absolute;top:6px;right:6px;z-index:5;">${rsInfoIcon('Current · Risk Score ' + rsScore)}</div>
+          <div style="position:relative;width:100%;max-width:188px;">
             <svg viewBox="0 0 200 192" style="width:100%;height:auto;overflow:visible;" preserveAspectRatio="xMidYMid meet">
               <defs>
                 <radialGradient id="rsGaugeGlowCo" cx="50%" cy="55%" r="42%">
@@ -310,119 +346,96 @@ function CardRiskBreakdown() {
                   <stop offset="100%" stop-color="${risk.glow}" stop-opacity="0"/>
                 </radialGradient>
               </defs>
+              <!-- Soft glow behind fill -->
               <ellipse cx="100" cy="108" rx="70" ry="60" fill="url(#rsGaugeGlowCo)"/>
-              <path d="M ${sox},${soy} A ${RO},${RO} 0 1,1 ${eox},${eoy}"
-                fill="none" stroke="#dde4ef" stroke-width="1.5"
-                stroke-dasharray="3 8.2" stroke-linecap="round"/>
+              <!-- Glow at fill tip -->
               ${glowPath}
+              <!-- White casing behind segments for crisp separators -->
               ${whiteCasing}
+              <!-- Banded fill segments (grey when unfilled) -->
               ${segPaths}
-              <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#0f172a" font-family="Inter,sans-serif">${rsScore}</text>
+              <!-- Score number -->
+              <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#111827" font-family="Inter,sans-serif">${rsScore}</text>
             </svg>
           </div>
-          <div style="display:flex;align-items:center;gap:4px;margin-top:-14px;margin-bottom:7px;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${risk.c}" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.8" fill="${risk.c}"/></svg>
-            <span style="font-size:10px;font-weight:700;color:${risk.c};letter-spacing:0.06em;">${risk.label}</span>
-          </div>
-          <div style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:6px 10px;text-align:center;width:100%;">
+          <div style="background:transparent;border:0;border-radius:8px;padding:2px 10px;text-align:center;width:100%;">
             <div style="display:flex;align-items:center;justify-content:center;gap:3px;color:${risk.c};font-weight:700;font-size:13px;">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-              ${rsDelta25 >= 0 ? '+' : ''}${rsDelta25} (${rsDelta25 >= 0 ? '+' : ''}${rsPct}%)
+              +${rsDelta25} (+${rsPct}%)
             </div>
-            <div style="font-size:10px;color:#64748b;margin-top:1px;">vs 2024</div>
           </div>
         </div>
         <!-- Year comparisons -->
-        <div style="background:#f8fafc;border-radius:12px;padding:12px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:start;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <span style="background:#ef4444;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
-            <div style="font-size:9px;color:#64748b;text-align:center;line-height:1.4;">Avg. Risk Score</div>
-            <div style="font-size:34px;font-weight:800;color:${risk.c};line-height:1;">${rsScore}</div>
-            <div style="background:${risk.pillBg};color:${risk.pillTxt};font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;display:flex;align-items:center;gap:2px;white-space:nowrap;">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-              + ${rsDelta25}
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2025 · Avg. Risk Score ' + rs2025, 'l')}</div>
+            <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
             </div>
-            <div style="font-size:9px;color:#64748b;">vs 2024</div>
+            <div style="background:${yearPill(rs2025).bg};color:${yearPill(rs2025).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2025).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta2025}
+            </div>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <span style="background:#2563eb;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
-            <div style="font-size:9px;color:#64748b;text-align:center;line-height:1.4;">Avg. Risk Score</div>
-            <div style="font-size:34px;font-weight:800;color:#0f172a;line-height:1;">${rs2024}</div>
-            <div style="background:#dbeafe;color:#1d4ed8;font-size:10px;font-weight:700;padding:3px 9px;border-radius:999px;display:flex;align-items:center;gap:2px;white-space:nowrap;">
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2024 · Avg. Risk Score ' + rs2024, 'r')}</div>
+            <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2024)} ${rs2024*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2024}</span>
+            </div>
+            <div style="background:${yearPill(rs2024).bg};color:${yearPill(rs2024).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2024).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta24}
             </div>
-            <div style="font-size:9px;color:#64748b;">vs 2023</div>
           </div>
         </div>
       </div>
       <!-- Risk Level Guide -->
       <div>
-        <div style="font-size:12px;font-weight:700;color:#0f172a;margin-bottom:7px;">Risk Level Guide</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
-          <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:8px 7px;">
-            <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-              <div style="width:26px;height:26px;background:#dcfce7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#dcfce7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
-              <div style="min-width:0;flex:1;">
-                <div style="font-size:11px;font-weight:700;color:#16a34a;">Good</div>
-                <div style="font-size:9px;color:#64748b;">0 – 10</div>
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
-              <div style="font-size:13px;font-weight:800;color:#0f172a;flex-shrink:0;">${dist.good}%</div>
             </div>
-            <div style="height:4px;background:#e2e8f0;border-radius:999px;overflow:hidden;"><div style="width:${dist.good}%;height:100%;background:#16a34a;border-radius:999px;"></div></div>
           </div>
-          <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:8px 7px;">
-            <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-              <div style="width:26px;height:26px;background:#fef3c7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#fef3c7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
-              <div style="min-width:0;flex:1;">
-                <div style="font-size:11px;font-weight:700;color:#d97706;">Average</div>
-                <div style="font-size:9px;color:#64748b;">10 – 25</div>
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
-              <div style="font-size:13px;font-weight:800;color:#0f172a;flex-shrink:0;">${dist.avg}%</div>
             </div>
-            <div style="height:4px;background:#e2e8f0;border-radius:999px;overflow:hidden;"><div style="width:${dist.avg}%;height:100%;background:#f59e0b;border-radius:999px;"></div></div>
           </div>
-          <div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:10px;padding:8px 7px;">
-            <div style="display:flex;align-items:center;gap:5px;margin-bottom:5px;">
-              <div style="width:26px;height:26px;background:#fee2e2;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#fee2e2;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
               </div>
-              <div style="min-width:0;flex:1;">
-                <div style="font-size:10px;font-weight:700;color:#dc2626;white-space:nowrap;">Below Avg.</div>
-                <div style="font-size:9px;color:#64748b;">25 – 100</div>
+              <div>
+                <div style="font-size:10px;font-weight:700;color:#dc2626;line-height:1.1;">Below Avg.</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
-              <div style="font-size:13px;font-weight:800;color:#0f172a;flex-shrink:0;">${dist.below}%</div>
             </div>
-            <div style="height:4px;background:#e2e8f0;border-radius:999px;overflow:hidden;"><div style="width:${dist.below}%;height:100%;background:#ef4444;border-radius:999px;"></div></div>
           </div>
         </div>
       </div>
-
-      <!-- Risk Factor Breakdown table -->
-      <div style="margin-top:6px;">
-        <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
-          <thead>
-            <tr style="border-bottom:1px solid #e2e8f0;">
-              <th style="text-align:left;padding:7px 4px;font-size:11px;font-weight:700;color:#0f172a;">Name</th>
-              <th style="text-align:right;padding:7px 8px;font-size:11px;font-weight:700;color:#0f172a;">Score</th>
-              <th style="text-align:right;padding:7px 4px;font-size:11px;font-weight:700;color:#2563eb;">Impact</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${factors.map(r => `
-            <tr style="border-bottom:1px solid #f1f5f9;">
-              <td style="padding:8px 4px;color:#334155;font-size:12px;">${r.name}</td>
-              <td style="padding:8px 8px;text-align:right;font-weight:600;color:#0f172a;font-size:12px;">${r.score}</td>
-              <td style="padding:8px 4px;text-align:right;font-weight:600;color:${r.impact > 0 ? '#d97706' : '#94a3b8'};font-size:12px;">${r.impact > 0 ? r.impact.toFixed(2) : '0'}</td>
-            </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    </div>`;
+  return `
+  <div class="card flex flex-col" style="min-height:0;overflow:visible">
+    <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9"><span style="font-size:14px;font-weight:700;color:#0f172a">Risk Breakdown</span></div>
+    ${body}
   </div>`;
 }
 
@@ -535,7 +548,6 @@ function Content() {
     <div class="top-row-grid">
       ${CardCompanyDetails()}
       ${CardRiskBreakdown()}
-      ${CardCompliance()}
     </div>
     ${CardAssets()}
   </div>`;
@@ -551,6 +563,7 @@ function wireInteractions() {
   }
   const filterSel = document.getElementById('asset-filter');
   if (filterSel) filterSel.onchange = () => { assetFilter = filterSel.value; assetPage = 1; rc(); };
+  document.querySelectorAll('[data-co-sanctions]').forEach(b => b.onclick = () => { coWithSanctions = !coWithSanctions; rc(); });
   /* Pagination (DS-compliant) */
   dsWirePagination(document.querySelector('.ds-pagination-wrap'), {
     onPage:    (p) => { assetPage = p; rc(); },
@@ -564,6 +577,23 @@ function rc() {
   _main.innerHTML = Content();
   wireInteractions();
 }
+
+window.__goCompare = function() {
+  try {
+    const slug = co.name ? co.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') + '.com' : '—';
+    const c = {
+      name: co.name || 'Company', type: co.type || '—', country: co.country || '—',
+      flag: co.flag || '', code: co.code || co.reg || '—', fleet: co.fleet || 0,
+      fleetVal: co.fleetVal || '—', risk: (co.avgRisk !== undefined ? co.avgRisk : 55),
+      hq: co.hq || '—', established: co.est || '—',
+      countryControl: co.countryControl || co.country || '—', countryDomicile: co.country || '—',
+      website: co.website || slug, compliance: co.sanctioned ? 'Sanctioned' : 'Not Sanctioned',
+    };
+    sessionStorage.setItem('compareCompany', JSON.stringify(c));
+    sessionStorage.setItem('reportsTab', 'comp');
+  } catch(e){}
+  window.location.href = 'Reports.html';
+};
 
 window.render = function() {
   document.getElementById('app').innerHTML = `

@@ -41,6 +41,11 @@
   .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
   .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
   .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  /* Skeleton loading shimmer */
+  .sk { position:relative; overflow:hidden; background:#eef2f7; border-radius:6px; }
+  .sk::after { content:''; position:absolute; inset:0; transform:translateX(-100%); background:linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent); animation:sk-shimmer 1.3s infinite; }
+  @keyframes sk-shimmer { 100% { transform:translateX(100%); } }
+  @media (prefers-reduced-motion: reduce) { .sk::after { animation:none; } }
   .pop-enter { animation: pop .16s cubic-bezier(.2,.8,.2,1); transform-origin: top right; }
   @keyframes pop { from {opacity:0;transform:translateY(-4px) scale(.98);} to {opacity:1;transform:translateY(0) scale(1);} }
   .dot-pulse { position:relative; }
@@ -357,6 +362,7 @@ let state = {
   policyTypeFilter: new Set(POLICY_TYPES),
   showLabels: false,
   expandedGroups: new Set(),
+  loading: true,
 };
 
 // Flag icon helper — ISO 3166-1 alpha-2 code → flagcdn.com image.
@@ -831,7 +837,46 @@ function MapCard() {
 }
 
 /* ----------- CONTENT ----------- */
+function SkeletonCard() {
+  return `
+  <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="max-height:360px">
+    <div class="p-3 border-b border-ink-100 shrink-0"><div class="sk" style="height:30px;width:60%;"></div></div>
+    <div class="flex-1 p-3 flex flex-col gap-2.5 min-h-0">
+      ${Array.from({length:6}).map(() => `
+        <div class="flex items-center gap-3">
+          <div class="sk" style="height:32px;width:32px;border-radius:8px;flex-shrink:0;"></div>
+          <div class="flex-1 flex flex-col gap-1.5">
+            <div class="sk" style="height:11px;width:${60 + Math.round(Math.random()*30)}%;"></div>
+            <div class="sk" style="height:9px;width:${30 + Math.round(Math.random()*25)}%;"></div>
+          </div>
+          <div class="sk" style="height:14px;width:36px;flex-shrink:0;"></div>
+        </div>`).join('')}
+    </div>
+    <div class="ds-card-foot ds-card-foot--center shrink-0"><div class="sk" style="height:12px;width:70px;"></div></div>
+  </div>`;
+}
+function SkeletonMap() {
+  return `
+  <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden">
+    <div class="sk" style="height:667px;border-radius:0;"></div>
+  </div>`;
+}
+
 function Content() {
+  if (state.loading) {
+    return `
+  <div class="px-4 lg:px-6 py-density">
+    <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-density mb-4">
+      ${SkeletonCard()}
+      ${SkeletonCard()}
+      ${SkeletonCard()}
+      ${SkeletonCard()}
+    </section>
+    <section class="mb-6">
+      ${SkeletonMap()}
+    </section>
+  </div>`;
+  }
   return `
   <div class="px-4 lg:px-6 py-density">
     <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-density mb-4">
@@ -1275,6 +1320,11 @@ window.render = function render() {
   });
   requestAnimationFrame(positionTabPills);
   window.addEventListener('resize', positionTabPills, { passive: true });
+  // While the skeleton is showing, hold map init and flip to loaded after a beat.
+  if (state.loading) {
+    setTimeout(() => { state.loading = false; render(); }, 1400);
+    return;
+  }
   // init map (deferred so container has size)
   setTimeout(initMap, 50);
 };

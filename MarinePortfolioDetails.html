@@ -27,8 +27,17 @@
   html,body { font-family:'Open Sans',system-ui,sans-serif; }
   h1,h2,h3,h4,h5,h6,.font-display,.tracking-micro { font-family:'Exo','Open Sans',sans-serif; }
   .tracking-micro { letter-spacing:.08em; }
-  .scroll-thin::-webkit-scrollbar { width:5px; height:5px; }
-  .scroll-thin::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:999px; }
+  /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
+  html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background:#f3f4f6; }
+  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  .scroll-thin::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { width:6px; height:6px; }
+  .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
+  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
   .pop-enter { animation:pop .16s cubic-bezier(.2,.8,.2,1); }
   @keyframes pop { from{opacity:0;transform:translateY(-4px) scale(.98);} to{opacity:1;transform:translateY(0) scale(1);} }
   .dot-pulse::after { content:''; position:absolute; inset:-3px; border-radius:999px; box-shadow:0 0 0 0 rgba(239,68,68,.5); animation:pulse 1.8s infinite; }
@@ -77,7 +86,7 @@
   /* Compliance circle */
   .compliance-circle { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,#22c55e,#16a34a); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(22,163,74,.3); }
   /* Mobile responsive */
-  .top-panels-grid { grid-template-columns:minmax(0,5fr) minmax(0,9fr) minmax(0,5fr); }
+  .top-panels-grid { grid-template-columns:minmax(0,5fr) minmax(0,8fr) minmax(0,6fr); }
   .psc-grid { grid-template-columns:repeat(4,1fr); }
   @media(max-width:767px){
     .top-panels-grid { grid-template-columns:minmax(0,1fr); }
@@ -101,6 +110,24 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  /* Risk Score info popups (ported from Vessel Details) */
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer;margin-top:1px;}
+  .rs-info:hover{color:#2d7ffb;}
+  .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
+  .rs-tip.c{left:50%;transform:translateX(-50%);}
+  .rs-tip.l{left:-6px;}
+  .rs-tip.r{right:-6px;}
+  .rs-tip::after{content:'';position:absolute;bottom:100%;width:9px;height:9px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:translateY(50%) rotate(45deg);}
+  .rs-tip.c::after{left:50%;margin-left:-4.5px;}
+  .rs-tip.l::after{left:14px;}
+  .rs-tip.r::after{right:14px;}
+  .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f1f5f9;}
+  .rs-tip-tbl th:first-child{text-align:left;}
+  .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
+  .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900" data-density="compact">
@@ -129,8 +156,19 @@ const PORTFOLIO = (() => { try { const r = sessionStorage.getItem('selectedPortf
 
 /* ── State ── */
 let analysisTab = 'PSC Analysis';
+let activityTab = 'Portfolio Activity';
 let policyView  = 'details';
 let policyPage  = 1;
+let mpWithSanctions = false;
+const RS_FACTORS = [
+  { name:'AIS Coverage',      score:0,  impact:0    },
+  { name:'Days Loitering',     score:33, impact:0.50 },
+  { name:'Distance Sailed',    score:50, impact:0.75 },
+  { name:'Major Incidents',    score:0,  impact:0    },
+  { name:'Minor Incidents',    score:0,  impact:0    },
+  { name:'Overall Compliance', score:0,  impact:0    },
+  { name:'PSC Deficiencies',   score:44, impact:6.62 },
+];
 const POLICY_PAGE_SIZE = 10;
 
 /* ── Policy data ── */
@@ -235,9 +273,9 @@ function PanelPortfolioDetails() {
         <button class="ds-tab" aria-selected="false"><span class="ds-tab-label">Portfolio Groups</span></button>
       </div>
     </div>
-    <div class="mx-3 mt-3 rounded-lg bg-brand-50 border border-brand-100 px-4 py-3 text-center">
-      <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Our Aggregated Exposure</div>
-      <div style="font-size:26px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
+    <div class="mx-3 mt-3" style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 16px;text-align:center;">
+      <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
+      <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
     </div>
     <div class="flex-1 px-3 py-2 space-y-0">
       ${[
@@ -264,24 +302,55 @@ function PanelPortfolioDetails() {
   </div>`;
 }
 
-function PanelPortfolioActivity() {
+const PORT_CALLS_2025 = [
+  { port:'Singapore',   country:'Singapore',            cc:'sg', pct:16.2, no:156 },
+  { port:'Rotterdam',   country:'Netherlands',          cc:'nl', pct:14.9, no:143 },
+  { port:'Shanghai',    country:'China',                cc:'cn', pct:13.3, no:128 },
+  { port:'Antwerp',     country:'Belgium',              cc:'be', pct:11.7, no:112 },
+  { port:'Hamburg',     country:'Germany',              cc:'de', pct:10.2, no:98  },
+  { port:'Los Angeles', country:'United States',        cc:'us', pct:9.1,  no:87  },
+  { port:'Dubai',       country:'United Arab Emirates', cc:'ae', pct:7.8,  no:75  },
+  { port:'Busan',       country:'South Korea',          cc:'kr', pct:6.4,  no:61  },
+  { port:'Hong Kong',   country:'Hong Kong',            cc:'hk', pct:5.7,  no:55  },
+  { port:'Santos',      country:'Brazil',               cc:'br', pct:4.7,  no:45  },
+];
+
+function PortCallsContent() {
+  const max = Math.max(...PORT_CALLS_2025.map(p => p.pct));
   return `
-  <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0 overflow-hidden">
-    <div class="p-3 border-b border-ink-100 flex items-center justify-between gap-3 flex-wrap">
-      <div class="ds-tabs mobile-stretch" id="act-tabs">
-        <span class="ds-tab-pill is-init" data-tab-pill></span>
-        <button class="ds-tab" aria-selected="true"><span class="ds-tab-label">Portfolio Activity</span></button>
-        <button class="ds-tab" aria-selected="false"><span class="ds-tab-label">Port Calls</span></button>
-      </div>
-      <div class="flex items-center gap-2 shrink-0">
-        <label class="flex items-center gap-1.5 text-xs text-ink-600 font-medium">Year: <select class="sel">
-          <option>2025</option><option>2024</option><option>2023</option>
-        </select></label>
-        <label class="flex items-center gap-1.5 text-xs text-ink-600 font-medium">Region: <select class="sel">
-          <option>HRA's</option><option>North Atlantic</option><option>Pacific</option><option>Indian Ocean</option>
-        </select></label>
-      </div>
-    </div>
+  <div class="flex-1 p-3">
+    <div class="text-sm font-semibold text-ink-900 mb-3">Top ten ports visited in 2025</div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead>
+        <tr style="border-bottom:1px solid #e5e7eb;">
+          <th style="text-align:left;padding:8px 8px;font-size:12px;font-weight:600;color:#7f1d1d;">Port</th>
+          <th style="text-align:left;padding:8px 8px;font-size:12px;font-weight:600;color:#7f1d1d;">Country</th>
+          <th style="text-align:left;padding:8px 8px;font-size:12px;font-weight:600;color:#7f1d1d;">%</th>
+          <th style="text-align:right;padding:8px 8px;font-size:12px;font-weight:600;color:#7f1d1d;">No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${PORT_CALLS_2025.map(p => `
+        <tr style="border-bottom:1px solid #f1f5f9;">
+          <td style="padding:9px 8px;color:#2563eb;font-weight:600;cursor:pointer;">${p.port}</td>
+          <td style="padding:9px 8px;color:#334155;"><span style="display:inline-flex;align-items:center;gap:8px;"><img src="https://flagcdn.com/w20/${p.cc}.png" width="18" style="border-radius:2px;vertical-align:middle;flex-shrink:0;" alt="">${p.country}</span></td>
+          <td style="padding:9px 8px;color:#334155;">
+            <span style="display:inline-flex;align-items:center;gap:10px;">
+              <span style="display:inline-block;width:56px;height:6px;border-radius:999px;background:#eef2f7;position:relative;overflow:hidden;">
+                <span style="position:absolute;inset:0 auto 0 0;width:${(p.pct/max*100).toFixed(1)}%;background:#2563eb;border-radius:999px;"></span>
+              </span>
+              <span style="font-variant-numeric:tabular-nums;color:#1e3a8a;font-weight:500;">${p.pct.toFixed(1)}%</span>
+            </span>
+          </td>
+          <td style="padding:9px 8px;text-align:right;font-variant-numeric:tabular-nums;color:#1e3a8a;font-weight:600;">${p.no}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>`;
+}
+
+function ActivityGrid() {
+  return `
     <div class="flex-1 p-3 grid grid-cols-2 gap-x-4 gap-y-3 content-start">
       <!-- Row 1 -->
       <div>
@@ -325,57 +394,198 @@ function PanelPortfolioActivity() {
         <span class="stat-pill" style="width:auto;display:inline-block;padding:5px 14px;">127</span>
         <div class="text-[11px] text-brand-600 font-semibold mt-1.5 cursor-pointer hover:underline">MV Pacific Trader</div>
       </div>
+    </div>`;
+}
+
+function PanelPortfolioActivity() {
+  const acts = ['Portfolio Activity','Port Calls'];
+  return `
+  <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0 overflow-hidden">
+    <div class="p-3 border-b border-ink-100 flex items-center justify-between gap-3 flex-wrap">
+      <div class="ds-tabs mobile-stretch" id="act-tabs">
+        <span class="ds-tab-pill is-init" data-tab-pill></span>
+        ${acts.map(t => `<button class="ds-tab" aria-selected="${t===activityTab}" data-acttab="${t}"><span class="ds-tab-label">${t}</span></button>`).join('')}
+      </div>
+      <div class="flex items-center gap-2 shrink-0" ${activityTab==='Port Calls' ? 'style="display:none"' : ''}>
+        <label class="flex items-center gap-1.5 text-xs text-ink-600 font-medium">Year: <select class="sel">
+          <option>2025</option><option>2024</option><option>2023</option>
+        </select></label>
+        <label class="flex items-center gap-1.5 text-xs text-ink-600 font-medium">Region: <select class="sel">
+          <option>HRA's</option><option>North Atlantic</option><option>Pacific</option><option>Indian Ocean</option>
+        </select></label>
+      </div>
+    </div>
+    <div class="flex-1 flex flex-col min-w-0" style="min-height:0;position:relative;">
+      <div id="act-content" class="scroll-thin" style="position:absolute;inset:0;overflow-y:auto;">
+        ${activityTab==='Port Calls' ? PortCallsContent() : ActivityGrid()}
+      </div>
     </div>
   </div>`;
 }
 
 function PanelRiskBreakdown() {
-  return `
-  <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0 overflow-hidden">
-    <div class="px-4 pt-3 pb-2 border-b border-ink-100">
-      <div class="text-sm font-bold text-ink-900">Risk Breakdown</div>
-    </div>
-    <div class="flex-1 flex flex-col items-center justify-center p-3 gap-3">
-      ${DonutSVG()}
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;width:100%;">
-        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px 7px;">
-          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;">
-            <div style="width:26px;height:26px;background:#dcfce7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            </div>
-            <div>
-              <div style="font-size:11px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
-              <div style="font-size:9.5px;color:#64748b;margin-top:1px;">0 → 25</div>
+    const rsScore = mpWithSanctions ? 100 : 58, rs2025 = 32, rs2024 = 6, rs2023 = 4;
+    const rsDelta25   = rsScore - rs2025;   // current (main gauge) vs 2025
+    const rsDelta2025 = rs2025  - rs2024;   // 2025 card vs 2024
+    const rsDelta24   = rs2024  - rs2023;   // 2024 card vs 2023
+    const rsPct = Math.round(Math.abs(rsDelta25) / rs2025 * 100);
+    const risk = rsScore <= 25
+      ? { label:'GOOD', c:'#16a34a', glow:'#16a34a', pillBg:'#dcfce7', pillTxt:'#15803d' }
+      : rsScore <= 50
+      ? { label:'AVERAGE RISK', c:'#d97706', glow:'#fef3c7', pillBg:'#fef3c7', pillTxt:'#b45309' }
+      : { label:'BELOW AVERAGE', c:'#dc2626', glow:'#fee2e2', pillBg:'#fee2e2', pillTxt:'#dc2626' };
+    // Year score → band colour (matches the gauge bands: green ≤25, orange ≤50, red >50)
+    const yearColor = s => s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626';
+    const yearPill  = s => s <= 25 ? { bg:'#dcfce7', txt:'#15803d' } : s <= 50 ? { bg:'#fef3c7', txt:'#b45309' } : { bg:'#fee2e2', txt:'#dc2626' };
+    // Gauge geometry: 270° arc, start=135° (7:30 o'clock), sweep clockwise
+    const CX=100, CY=108, R=80, RO=95, SW=11;
+    const toRad = d => d * Math.PI / 180;
+    const pt = (a, r) => [+(CX + r*Math.cos(toRad(a))).toFixed(2), +(CY + r*Math.sin(toRad(a))).toFixed(2)];
+    const [sx,sy]   = pt(135, R);   // arc track start
+    const [ex,ey]   = pt(45,  R);   // arc track end (135+270=405≡45°)
+    const [sox,soy] = pt(135, RO);  // outer dot ring start
+    const [eox,eoy] = pt(45,  RO);  // outer dot ring end
+    // Smooth gradient gauge: 54 fine arc segments, each with interpolated color
+    const GAUGE_MAX = 100, GAUGE_START = 135, GAUGE_SWEEP_DEG = 270;
+    const gAngle = s => GAUGE_START + (Math.min(s, GAUGE_MAX) / GAUGE_MAX) * GAUGE_SWEEP_DEG;
+    const arcD = (a1, a2, r) => {
+      const [x1,y1] = pt(a1, r), [x2,y2] = pt(a2, r);
+      const sw = ((a2 - a1) % 360 + 360) % 360;
+      return `M ${x1},${y1} A ${r},${r} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
+    };
+    // Banded segment color: green ≤25, orange ≤50, red >50
+    const gaugeColor = s => (s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626');
+    const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    // Continuous band arcs — divider only between the main bands (at 25 & 50)
+    const BANDS = mpWithSanctions ? [[0,100,'#dc2626']] : [[0,25,'#16a34a'],[25,50,'#d97706'],[50,100,'#dc2626']];
+    const BAND_GAP = 1.4; // degrees of separation between main bands
+    const segPaths = BANDS.map(([bs, be, col], bi) => {
+      const aStart = gAngle(bs) + (bi > 0 ? BAND_GAP / 2 : 0);
+      const aEnd   = gAngle(be) - (bi < BANDS.length - 1 ? BAND_GAP / 2 : 0);
+      const fillEnd = Math.max(bs, Math.min(rsScore, be));
+      const aFill = gAngle(fillEnd);
+      let out = '';
+      if (fillEnd > bs) out += `<path d="${arcD(aStart, Math.min(aFill, aEnd), R)}" fill="none" stroke="${col}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      if (fillEnd < be) out += `<path d="${arcD(Math.max(aFill, aStart), aEnd, R)}" fill="none" stroke="#e5e7eb" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      return out;
+    }).join('');
+    const glowColor = rsScore <= 25 ? '#16a34a' : rsScore <= 50 ? '#d97706' : '#fee2e2';
+    const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
+    const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
+    const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
+    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
+    let body = `
+    <div style="padding:10px 12px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
+        <button data-mp-sanctions style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Sanctions
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+        <!-- Gauge -->
+        <div style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;"><div style="position:absolute;top:6px;right:6px;z-index:5;">${rsInfoIcon('Current · Risk Score ' + rsScore)}</div>
+          <div style="position:relative;width:100%;max-width:188px;">
+            <svg viewBox="0 0 200 192" style="width:100%;height:auto;overflow:visible;" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <radialGradient id="rsGaugeGlowMP" cx="50%" cy="55%" r="42%">
+                  <stop offset="0%" stop-color="${risk.glow}" stop-opacity="0.55"/>
+                  <stop offset="100%" stop-color="${risk.glow}" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <!-- Soft glow behind fill -->
+              <ellipse cx="100" cy="108" rx="70" ry="60" fill="url(#rsGaugeGlowMP)"/>
+              <!-- Glow at fill tip -->
+              ${glowPath}
+              <!-- White casing behind segments for crisp separators -->
+              ${whiteCasing}
+              <!-- Banded fill segments (grey when unfilled) -->
+              ${segPaths}
+              <!-- Score number -->
+              <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#111827" font-family="Inter,sans-serif">${rsScore}</text>
+            </svg>
+          </div>
+          <div style="background:transparent;border:0;border-radius:8px;padding:2px 10px;text-align:center;width:100%;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;color:${risk.c};font-weight:700;font-size:13px;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              +${rsDelta25} (+${rsPct}%)
             </div>
           </div>
         </div>
-        <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:9px 7px;">
-          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;">
-            <div style="width:26px;height:26px;background:#fef3c7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
+        <!-- Year comparisons -->
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2025 · Avg. Risk Score ' + rs2025, 'l')}</div>
+            <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
             </div>
-            <div>
-              <div style="font-size:11px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
-              <div style="font-size:9.5px;color:#64748b;margin-top:1px;">25+ → 50</div>
+            <div style="background:${yearPill(rs2025).bg};color:${yearPill(rs2025).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2025).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta2025}
             </div>
           </div>
-        </div>
-        <div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:10px;padding:9px 7px;">
-          <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;">
-            <div style="width:26px;height:26px;background:#fee2e2;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2024 · Avg. Risk Score ' + rs2024, 'r')}</div>
+            <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2024)} ${rs2024*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
+              <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
+              <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2024}</span>
             </div>
-            <div>
-              <div style="font-size:10px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
-              <div style="font-size:9.5px;color:#64748b;margin-top:1px;">50+ → 100</div>
+            <div style="background:${yearPill(rs2024).bg};color:${yearPill(rs2024).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2024).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta24}
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="ds-card-foot ds-card-foot--start mt-auto">
-      <button class="text-xs font-medium text-brand-600 hover:bg-brand-50 tracking-micro px-3 h-8 rounded-md transition-colors">VIEW DETAILS</button>
-    </div>
+      <!-- Risk Level Guide -->
+      <div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#dcfce7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">0 → 25</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#fef3c7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">25+ → 50</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
+            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
+              <div style="width:20px;height:20px;background:#fee2e2;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              </div>
+              <div>
+                <div style="font-size:10px;font-weight:700;color:#dc2626;line-height:1.1;">Below Avg.</div>
+                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">50+ → 100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  return `
+  <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0">
+    <div class="px-4 pt-3 pb-2 border-b border-ink-100"><div class="text-sm font-bold text-ink-900">Risk Score</div></div>
+    ${body}
   </div>`;
 }
 
@@ -772,6 +982,22 @@ window.render = function() {
   requestAnimationFrame(positionTabPills);
   window.addEventListener('resize', positionTabPills, { passive:true });
 
+  /* Portfolio Activity / Port Calls tabs */
+  document.querySelectorAll('[data-acttab]').forEach(btn => {
+    btn.onclick = () => {
+      activityTab = btn.dataset.acttab;
+      const group = btn.closest('.ds-tabs');
+      if (group) {
+        group.querySelectorAll('.ds-tab').forEach(t => t.setAttribute('aria-selected', String(t === btn)));
+        positionTabPills();
+      }
+      const ctrls = group && group.parentElement.querySelector('.shrink-0');
+      if (ctrls) ctrls.style.display = activityTab === 'Port Calls' ? 'none' : '';
+      const ac = document.getElementById('act-content');
+      if (ac) ac.innerHTML = activityTab === 'Port Calls' ? PortCallsContent() : ActivityGrid();
+    };
+  });
+
   /* Analysis tabs */
   document.querySelectorAll('[data-atab]').forEach(btn => {
     btn.onclick = () => {
@@ -801,6 +1027,9 @@ window.render = function() {
       if (ac) ac.innerHTML = analysisContentFor(analysisTab);
     };
   }
+
+  /* Risk Score — sanctions toggle */
+  document.querySelectorAll('[data-mp-sanctions]').forEach(b => b.onclick = () => { mpWithSanctions = !mpWithSanctions; window.render(); });
 
   /* Policy view switcher */
   document.querySelectorAll('[data-pvw]').forEach(btn => {

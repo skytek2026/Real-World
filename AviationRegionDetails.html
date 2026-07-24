@@ -303,6 +303,42 @@ function initMap() {
 }
 
 /* ── Render ────────────────────────────────────────────────────────────── */
+const AIRPORT_PORTFOLIOS = [
+  { name:'Aviation Fleet A',   hull:'$117.8M', chw:'70.7M',  hullw:'29.4M', tlohw:'17.7M' },
+  { name:'Emirates Portfolio', hull:'$225.5M', chw:'135.3M', hullw:'56.4M', tlohw:'33.8M' },
+  { name:'European Carriers',  hull:'$230.1M', chw:'138.1M', hullw:'57.5M', tlohw:'34.5M' },
+  { name:'Asia Pacific Routes',hull:'$199.3M', chw:'119.6M', hullw:'49.8M', tlohw:'29.9M' },
+];
+
+const ALERTS = [
+  { flight:'CA981', airline:'Air China',      aircraft:'Boeing 777-300ER', callsign:'CCA981', entry:'2026-07-06 09:20:38', exit:'2026-07-06 09:20:38', airport:'Beijing Capital International', status:'Landed' },
+  { flight:'MU242', airline:'China Eastern',  aircraft:'Airbus A350-900',  callsign:'CES242', entry:'2026-07-04 09:20:38', exit:'2026-07-04 09:20:38', airport:'Shanghai Pudong International', status:'Landed' },
+  { flight:'KE85',  airline:'Korean Air',     aircraft:'Boeing 747-8i',    callsign:'KAL085', entry:'2026-07-03 14:05:12', exit:'2026-07-03 22:41:59', airport:'Incheon International',       status:'In Transit' },
+  { flight:'JL772', airline:'Japan Airlines', aircraft:'Boeing 787-9',     callsign:'JAL772', entry:'2026-07-02 06:18:44', exit:'2026-07-02 15:02:20', airport:'Tokyo Haneda',               status:'Landed' },
+];
+
+function alertCard(al) {
+  const inTransit = al.status !== 'Landed';
+  const statusStyle = inTransit
+    ? 'color:#c2410c;border-color:#fed7aa;background:#fff7ed'
+    : 'color:#0f172a;border-color:#e2e8f0;background:#fff';
+  return `
+  <div class="airport-card" style="cursor:default;margin-bottom:10px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <span style="display:inline-flex;align-items:center;background:#dc2626;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;flex-shrink:0">Entry Alert</span>
+      <span style="font-size:13.5px;color:#0f172a"><strong style="font-weight:700">${al.flight}</strong> <span style="color:#94a3b8">•</span> <span style="color:#64748b">${al.airline}</span></span>
+      <span style="margin-left:auto;font-size:11px;font-weight:600;padding:3px 10px;border:1px solid;border-radius:6px;${statusStyle};flex-shrink:0">${al.status}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-top:14px">
+      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Aircraft:</div><div style="font-size:14px;font-weight:600;color:var(--brand-600,#2563eb)">${al.aircraft}</div></div>
+      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Call Sign:</div><div style="font-size:13px;font-weight:600;color:#0f172a;letter-spacing:.02em">${al.callsign}</div></div>
+      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Entry Date/Time:</div><div style="font-size:13px;font-weight:600;color:#0f172a">${al.entry}</div></div>
+      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Exit Date/Time:</div><div style="font-size:13px;font-weight:600;color:#0f172a">${al.exit}</div></div>
+      <div style="grid-column:1 / -1"><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Airport Name:</div><div style="font-size:13px;font-weight:700;color:#0f172a">${al.airport}</div></div>
+    </div>
+  </div>`;
+}
+
 function airportRow(a) {
   const open = expandedAirports.has(a.code);
   return `
@@ -313,7 +349,7 @@ function airportRow(a) {
         <div style="font-size:14px;font-weight:700;color:#0f172a">${a.name}</div>
         <div style="font-size:11.5px;color:#64748b;font-weight:600;letter-spacing:.04em">${a.code}</div>
       </div>
-      <button style="background:transparent;border:0;cursor:pointer;color:var(--brand-600,#2563eb);transform:${open?'rotate(180deg)':'rotate(0)'};transition:transform .15s">${CHEV_ICO}</button>
+      <button type="button" data-airport-toggle="${a.code}" aria-expanded="${open}" style="background:transparent;border:0;cursor:pointer;color:var(--brand-600,#2563eb);transform:${open?'rotate(180deg)':'rotate(0)'};transition:transform .15s">${CHEV_ICO}</button>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 16px;font-size:12px;color:#64748b;margin-top:12px">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Aircraft on Ground:</span><span class="spill-gray">${PLANE_ICO('#334155')}&nbsp;${a.aog}</span></div>
@@ -323,6 +359,30 @@ function airportRow(a) {
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total HULLW:</span><span class="spill-blue">${a.hullw}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total TLOHW:</span><span class="spill-blue">${a.tlohw}</span></div>
     </div>
+    ${open ? `
+    <div style="margin-top:14px;border-top:1px solid #f1f5f9;padding-top:12px">
+      <div style="font-size:12.5px;font-weight:600;color:#64748b;margin-bottom:8px">Portfolios:</div>
+      <div style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+        <table class="pf-tbl">
+          <thead><tr>
+            <th>Name</th>
+            <th style="text-align:right">Hull</th>
+            <th style="text-align:right"><span style="display:inline-flex;align-items:center;gap:4px">${INFO_ICO}CHW</span></th>
+            <th style="text-align:right"><span style="display:inline-flex;align-items:center;gap:4px">${INFO_ICO}HULLW</span></th>
+            <th style="text-align:right"><span style="display:inline-flex;align-items:center;gap:4px">${INFO_ICO}TLOHW</span></th>
+          </tr></thead>
+          <tbody>
+            ${AIRPORT_PORTFOLIOS.map(p => `<tr>
+              <td><span style="display:inline-flex;align-items:center;gap:6px;color:var(--brand-600,#2563eb);font-weight:500;cursor:pointer">${BRIEF_ICO}${p.name}</span></td>
+              <td style="text-align:right;font-weight:600">${p.hull}</td>
+              <td style="text-align:right">${p.chw}</td>
+              <td style="text-align:right">${p.hullw}</td>
+              <td style="text-align:right">${p.tlohw}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>` : ''}
   </div>`;
 }
 
@@ -373,9 +433,9 @@ function Content() {
             <thead><tr>
               <th>Name</th>
               <th>Total</th>
-              <th><span style="display:inline-flex;align-items:center;gap:4px">${INFO_ICO}CHW</span></th>
-              <th><span style="display:inline-flex;align-items:center;gap:4px">${INFO_ICO}HULLW</span></th>
-              <th><span style="display:inline-flex;align-items:center;gap:4px">${INFO_ICO}TLOHW</span></th>
+              <th><span style="display:inline-flex;align-items:center;gap:4px"><span title="Combined Hull War" style="display:inline-flex;cursor:help">${INFO_ICO}</span>CHW</span></th>
+              <th><span style="display:inline-flex;align-items:center;gap:4px"><span title="Hull War" style="display:inline-flex;cursor:help">${INFO_ICO}</span>HULLW</span></th>
+              <th><span style="display:inline-flex;align-items:center;gap:4px"><span title="Total Loss Only Hull War" style="display:inline-flex;cursor:help">${INFO_ICO}</span>TLOHW</span></th>
             </tr></thead>
             <tbody>
               ${PORTFOLIOS.map(p => `<tr>
@@ -388,7 +448,7 @@ function Content() {
             </tbody>
           </table>
         </div>
-        <div class="ds-card-foot">
+        <div class="ds-card-foot ds-card-foot--center">
           <button class="ds-foot-btn">View All Portfolios</button>
         </div>
       </div>
@@ -477,11 +537,7 @@ function Content() {
             <button class="ds-tab" aria-selected="${bottomLTab==='alerts'}"   data-btab="alerts"><span class="ds-tab-label">Alerts</span></button>
           </div>
         </div>
-        ${bottomLTab === 'airports' ? `
-        <div style="flex:1;overflow-y:auto;padding:12px 14px;background:#f8fafc" class="scroll-thin">
-          ${AIRPORTS.map(a => airportRow(a)).join('')}
-        </div>` : `
-        <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:13px;padding:48px">No active alerts</div>`}
+        <div id="btab-panel" style="flex:1;min-height:0;display:flex;flex-direction:column">${bottomPanel()}</div>
       </div>
 
       <!-- Coverage map -->
@@ -513,6 +569,42 @@ function Content() {
 
 /* ── Wire + render ─────────────────────────────────────────────────────── */
 let _main = null;
+function bottomPanel() {
+  return bottomLTab === 'airports'
+    ? `<div style="flex:1;overflow-y:auto;padding:12px 14px;background:#f8fafc" class="scroll-thin">${AIRPORTS.map(a => airportRow(a)).join('')}</div>`
+    : `<div style="flex:1;overflow-y:auto;padding:12px 14px;background:#f8fafc" class="scroll-thin">${ALERTS.map(al => alertCard(al)).join('')}</div>`;
+}
+function wireBottomToggles() {
+  document.querySelectorAll('[data-airport-toggle]').forEach(b => b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const code = b.dataset.airportToggle;
+    if (expandedAirports.has(code)) expandedAirports.delete(code); else expandedAirports.add(code);
+    refreshBottomPanel();
+  }));
+}
+function refreshBottomPanel() {
+  const panel = document.getElementById('btab-panel');
+  if (!panel) return;
+  panel.innerHTML = bottomPanel();
+  wireBottomToggles();
+}
+/* Smoothly slide an existing (persistent) pill to its active tab. The pill
+   already has a concrete width/transform, so simply reassigning them lets the
+   CSS transition animate from the current position — no rebuild dance. */
+function slidePill(groupId) {
+  const group  = document.getElementById(groupId);
+  if (!group) return;
+  const pill   = group.querySelector('[data-tab-pill]');
+  const active = group.querySelector('.ds-tab[aria-selected="true"]');
+  if (!pill || !active) return;
+  pill.classList.remove('is-init');
+  const g = group.getBoundingClientRect(), a = active.getBoundingClientRect();
+  const w = a.width, x = a.left - g.left;
+  pill.style.width = w + 'px';
+  pill.style.transform = `translateX(${x}px)`;
+  window._ardPillCache = window._ardPillCache || {};
+  window._ardPillCache[groupId] = { w, x };
+}
 function positionTabPills() {
   requestAnimationFrame(() => {
     document.querySelectorAll('.ds-tabs').forEach(group => {
@@ -552,14 +644,21 @@ function rc() {
   _main.innerHTML = Content();
   wire();
   positionTabPills();
-  if (bottomLTab === 'airports') setTimeout(initMap, 50);
+  setTimeout(initMap, 50);
 }
 
 function wire() {
   document.querySelectorAll('[data-ltab]').forEach(b => b.addEventListener('click', () => { leftTab  = b.dataset.ltab; rc(); }));
   document.querySelectorAll('[data-rtab]').forEach(b => b.addEventListener('click', () => { rightTab = b.dataset.rtab; rc(); }));
-  document.querySelectorAll('[data-btab]').forEach(b => b.addEventListener('click', () => { bottomLTab = b.dataset.btab; rc(); }));
+  document.querySelectorAll('[data-btab]').forEach(b => b.addEventListener('click', () => {
+    if (bottomLTab === b.dataset.btab) return;
+    bottomLTab = b.dataset.btab;
+    document.querySelectorAll('#btab-tabs .ds-tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.btab === bottomLTab)));
+    slidePill('btab-tabs');
+    refreshBottomPanel();
+  }));
   document.querySelectorAll('[data-cov]').forEach(b => b.addEventListener('click', () => { covTab = b.dataset.cov; rc(); }));
+  wireBottomToggles();
   const rtabSel = document.getElementById('rtab-sel');
   if (rtabSel) rtabSel.onchange = () => { rightTab = rtabSel.value; rc(); };
   window.addEventListener('resize', positionTabPills, { passive: true });

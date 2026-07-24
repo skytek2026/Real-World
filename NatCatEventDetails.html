@@ -75,6 +75,21 @@
   /* Download btn */
   .download-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 16px;background:var(--brand-600,#2563eb);color:#fff;border:0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
   .download-btn:hover{background:var(--brand-700,#1d4ed8)}
+
+  /* Before/after property popup */
+  .ba-popup .leaflet-popup-content-wrapper{padding:0;overflow:hidden;border-radius:12px;box-shadow:0 12px 32px -8px rgba(15,23,42,.35)}
+  .ba-popup .leaflet-popup-content{margin:0;width:384px!important}
+  .ba-popup a.leaflet-popup-close-button{top:9px;right:9px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:16px;font-weight:400;line-height:1;padding:0;transition:background .15s}
+  .ba-popup a.leaflet-popup-close-button:hover{background:rgba(255,255,255,.34);color:#fff}
+  .ba-hd{background:var(--brand-600,#2563eb);padding:10px 40px 10px 14px;color:#fff}
+  .ba-hd .ba-hd-name{font-size:13px;font-weight:700;line-height:1.25;color:#fff}
+  .ba-hd .ba-hd-loc{font-size:11px;color:rgba(255,255,255,.82);margin-top:2px}
+  .ba-dl-row{display:flex;align-items:center;gap:8px;margin-top:10px}
+  .ba-dl-label{font-size:11px;color:#94a3b8;font-weight:600;margin-right:auto}
+  .ba-dl-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid #e2e8f0;border-radius:7px;background:#fff;color:#475569;font-size:11px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+  .ba-dl-btn:hover{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:var(--brand-700,#1d4ed8)}
+  .ba-dl-btn svg{flex-shrink:0}
+  .ba-dl-tag{line-height:1}
   /* Responsive */
   @media(max-width:767px){
     .analytics-panel{width:100%!important;min-width:0!important;border-right:0;border-bottom:1px solid #e2e8f0;max-height:55vh;}
@@ -139,6 +154,10 @@ const EVENT_DETAILS = {
 /* Collapsed / severely damaged buildings for the Venezuela Earthquake (event 11).
    Clicking a row flies the map to the building location. */
 const EVENT_PROPERTIES = {
+  2: [
+    { rank:1, name:'1601 San Onofre Drive', loc:'Pacific Palisades, CA 90272',      lat:34.0410, lng:-118.5375, note:'Residential property within the Palisades Fire perimeter.' },
+    { rank:2, name:'1790 Alta Mura Rd',     loc:'Pacific Palisades, Los Angeles, CA', lat:34.062677189653364, lng:-118.50395589084899, note:'Residential property within the Palisades Fire perimeter.' },
+  ],
   11: [
     { rank:1, name:'Los Cocos (Hugo Chávez Housing Complex)', loc:'Los Cocos, La Guaira, Venezuela',            lat:10.6035, lng:-66.9315, note:'Six of eight residential towers collapsed — the deadliest single building complex in the disaster.' },
     { rank:2, name:'Residential tower — Los Palos Grandes',   loc:'Los Palos Grandes, Chacao, Caracas, Venezuela', lat:10.4988, lng:-66.8485, note:'One of the first major collapses reported in Caracas. Numerous rescues were carried out here.' },
@@ -578,25 +597,62 @@ function initDetailMap() {
       const m = L.marker([p.lat, p.lng], { icon }).addTo(detailMap);
       // Before/after satellite popup — two dated captures from the Esri/Maxar
       // World Imagery (Wayback) archive, bracketing the event.
-      const t = lngLatToTile(p.lat, p.lng, 18);
+      const t = lngLatToTile(p.lat, p.lng, 16);
       const wb = rel => `https://wayback.maptiles.arcgis.com/arcgis/rest/services/World_Imagery/MapServer/tile/${rel}/${t.z}/${t.y}/${t.x}`;
-      const imgStyle = 'width:130px;height:130px;object-fit:cover;display:block;background:#0f172a;';
+      if (!window.baDL) {
+        window.baDL = async function(btn, url, filename) {
+          try {
+            const res = await fetch(url, { mode: 'cors' });
+            if (!res.ok) throw new Error('fetch failed');
+            const blob = await res.blob();
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+          } catch (e) {
+            // CORS or network fallback — open the tile in a new tab so the user can save it manually
+            window.open(url, '_blank', 'noopener');
+          }
+        };
+      }
+      const BA_W = 384;
+      const IMG_W = BA_W - 28;
       m.bindPopup(`
-        <div style="font-family:'Inter',sans-serif;width:280px;">
-          <div style="font-size:13px;font-weight:700;color:#0f172a;line-height:1.25;">${p.name}</div>
-          <div style="font-size:11px;color:#64748b;margin-top:2px;margin-bottom:8px;">${p.loc}</div>
-          <div style="display:flex;gap:6px;">
-            <figure style="margin:0;flex:1;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;">
-              <img src="${wb('60013')}" alt="Before" style="${imgStyle}" loading="lazy" />
-              <figcaption style="font-size:10px;font-weight:700;color:#475569;background:#f1f5f9;padding:4px 6px;text-align:center;">BEFORE · Mar 2024</figcaption>
-            </figure>
-            <figure style="margin:0;flex:1;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;">
-              <img src="${wb('32246')}" alt="After" style="${imgStyle}" loading="lazy" />
-              <figcaption style="font-size:10px;font-weight:700;color:#b91c1c;background:#fef2f2;padding:4px 6px;text-align:center;">AFTER · Jun 2026</figcaption>
-            </figure>
+        <div style="font-family:'Inter',sans-serif;width:${BA_W}px;">
+          <div class="ba-hd">
+            <div class="ba-hd-name">${p.name}</div>
+            <div class="ba-hd-loc">${p.loc}</div>
           </div>
-          <div style="font-size:9.5px;color:#94a3b8;margin-top:6px;line-height:1.3;">Satellite imagery © Esri, Maxar — World Imagery (Wayback)</div>
-        </div>`, { minWidth: 296, maxWidth: 296 });
+          <div style="padding:12px 14px 14px;">
+          <div class="ba-slider" style="position:relative;width:${IMG_W}px;height:290px;border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;background:#0f172a;user-select:none;touch-action:none;">
+            <img src="${wb('32246')}" alt="After" style="position:absolute;inset:0;width:${IMG_W}px;height:100%;object-fit:cover;max-width:none;" loading="lazy" />
+            <div class="ba-before" style="position:absolute;top:0;bottom:0;left:0;width:50%;overflow:hidden;">
+              <img src="${wb('60013')}" alt="Before" style="position:absolute;top:0;left:0;width:${IMG_W}px;height:100%;object-fit:cover;max-width:none;" loading="lazy" />
+            </div>
+            <span style="position:absolute;top:8px;left:8px;font-size:10px;font-weight:700;color:#fff;background:rgba(15,23,42,.72);padding:3px 8px;border-radius:5px;letter-spacing:.02em;">BEFORE · Mar 2024</span>
+            <span style="position:absolute;top:8px;right:8px;font-size:10px;font-weight:700;color:#fff;background:rgba(185,28,28,.88);padding:3px 8px;border-radius:5px;letter-spacing:.02em;">AFTER · Jun 2026</span>
+            <div class="ba-divider" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 4px rgba(0,0,0,.55);">
+              <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 3 12 9 18"/><polyline points="15 6 21 12 15 18"/></svg>
+              </div>
+            </div>
+            <input type="range" min="0" max="100" value="50" aria-label="Before/after comparison" class="ba-range" oninput="var b=this.closest('.ba-slider');b.querySelector('.ba-before').style.width=this.value+'%';b.querySelector('.ba-divider').style.left=this.value+'%';" style="position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:ew-resize;" />
+          </div>
+          <div class="ba-dl-row">
+            <span class="ba-dl-label">Download</span>
+            <button type="button" class="ba-dl-btn" title="Download before image (Mar 2024)" aria-label="Download before image" onclick="window.baDL(this,'${wb('60013')}','before-${p.rank}-mar2024.jpg')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span class="ba-dl-tag">Before</span>
+            </button>
+            <button type="button" class="ba-dl-btn" title="Download after image (Jun 2026)" aria-label="Download after image" onclick="window.baDL(this,'${wb('32246')}','after-${p.rank}-jun2026.jpg')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span class="ba-dl-tag">After</span>
+            </button>
+          </div>
+          <div style="font-size:9.5px;color:#94a3b8;margin-top:8px;line-height:1.3;">Drag to compare · Satellite imagery © Esri, Maxar — World Imagery (Wayback)</div>
+          </div>
+        </div>`, { minWidth: BA_W, maxWidth: BA_W, className: 'ba-popup' });
       propMarkers[p.rank] = m;
     });
     document.querySelectorAll('.prop-row').forEach(row => {
