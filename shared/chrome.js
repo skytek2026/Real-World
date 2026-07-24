@@ -589,13 +589,14 @@ function applyTweaks() {
   if (storedTheme in THEME_ACCENT) TWEAKS.accent = THEME_ACCENT[storedTheme];
 
   document.body.dataset.density = TWEAKS.density;
+  document.body.dataset.sparklines = TWEAKS.showSparklines ? 'on' : 'off';
   const accentMap = {
     blue:   {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
     indigo: {50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3'},
     teal:   {50:'#f0fdfa',100:'#ccfbf1',200:'#99f6e4',300:'#5eead4',400:'#2dd4bf',500:'#14b8a6',600:'#0d9488',700:'#0f766e',800:'#115e59'},
     rose:   {50:'#fff1f2',100:'#ffe4e6',200:'#fecdd3',300:'#fda4af',400:'#fb7185',500:'#f43f5e',600:'#e11d48',700:'#be123c',800:'#9f1239'},
     sky:    {50:'#eff6ff',100:'#dbeafe',200:'#c3dafd',300:'#bfdbfe',400:'#8ec5fd',500:'#51a2fc',600:'#2d7ffb',700:'#1f5fc7',800:'#1a4fa0'},
-    azure:  {50:'#f0f9ff',100:'#e0f2fe',200:'#bae6fd',300:'#7dd3fc',400:'#38bdf8',500:'#0ea5e9',600:'#0284c7',700:'#0369a1',800:'#075985'},
+    azure:  {50:'#eff8fd',100:'#dceffb',200:'#b8ddf5',300:'#84c5ec',400:'#43a8df',500:'#1a92d1',600:'#1485c5',700:'#0f6aa0',800:'#0d5580'},
     navy:   {50:'#eef2ff',100:'#dbe2f5',200:'#b6c4e8',300:'#8197cf',400:'#4f6bb0',500:'#2e4a8f',600:'#1e3a8a',700:'#172e6e',800:'#11224f'},
   };
   const c = accentMap[TWEAKS.accent] || accentMap.sky;
@@ -654,6 +655,12 @@ function wireChrome() {
     const s = document.createElement('style');
     s.id = 'chrome-ico-style';
     s.textContent = `.nav-ico svg { width:20px !important; height:20px !important; }
+      .nav-item { transition: background-color .15s ease, color .15s ease, transform .18s cubic-bezier(.2,.8,.2,1); }
+      .nav-ico { transition: transform .2s cubic-bezier(.2,.8,.2,1); }
+      #sidebar[data-expanded="true"] .nav-item:not(.is-nav-active):hover { transform: translateX(3px); }
+      .nav-item:not(.is-nav-active):hover .nav-ico { transform: scale(1.15); }
+      .nav-item:not(.is-nav-active):active .nav-ico { transform: scale(.95); }
+      @media (prefers-reduced-motion: reduce) { .nav-item, .nav-ico { transition: none !important; } .nav-item:hover, .nav-item:hover .nav-ico { transform: none !important; } }
       #sidebar:not([data-expanded="true"]) .nav-item { justify-content:center; padding-left:0; padding-right:0; }
       #sidebar[data-expanded="true"] .nav-item { justify-content:flex-start; }
       #sidebar:not([data-expanded="true"]) .sidebar-logo { display:none !important; }
