@@ -214,12 +214,12 @@ function wire() {
   if (cancelBtn) cancelBtn.addEventListener('click', () => { ST.editMode = false; rc(); });
 
   /* Org selection */
-  document.querySelectorAll('[data-org]').forEach(row => {
+  document.querySelectorAll('.radio-row[data-org]').forEach(row => {
     row.addEventListener('click', () => { ST.selectedOrg = row.dataset.org; rc(); });
   });
 
   /* Theme selection */
-  document.querySelectorAll('[data-theme]').forEach(row => {
+  document.querySelectorAll('.radio-row[data-theme]').forEach(row => {
     row.addEventListener('click', () => {
       ST.selectedTheme = row.dataset.theme;
       SC.setTheme(row.dataset.theme);

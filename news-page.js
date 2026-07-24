@@ -69,6 +69,11 @@
           ${a.image ? `<img class="news-photo" src="${a.image}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.remove('has-photo')">` : ''}
           <div class="glyph">${CAT_GLYPH[a.cat] || ''}</div>
           <span class="news-cat">${catLabel(a.cat)}</span>
+          <div class="news-hover" aria-hidden="true">
+            <span class="news-hover-arrow">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
         </div>
         <div class="news-body">
           <h3 class="news-title">${a.title}</h3>

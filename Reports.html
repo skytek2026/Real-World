@@ -174,7 +174,7 @@ const SUGGESTED = [
 ];
 
 /* ── State ────────────────────────────────────────────────────────────────── */
-let activeTab  = 'builder';
+let activeTab  = (() => { try { const t = sessionStorage.getItem('reportsTab'); if (t) { sessionStorage.removeItem('reportsTab'); return t; } } catch(e){} return 'builder'; })();
 let messages   = [];
 let isLoading  = false;
 
@@ -209,6 +209,21 @@ const COMPETITOR_COMPANIES = [
 ];
 let compQuery = '';
 let compSelected = [];
+/* If arriving from a Company Details page via "Compare This Company", inject
+   that company and select it as the first card. */
+(function(){
+  try {
+    const raw = sessionStorage.getItem('compareCompany');
+    if (raw) {
+      sessionStorage.removeItem('compareCompany');
+      const c = JSON.parse(raw);
+      if (c && c.name) {
+        if (!COMPETITOR_COMPANIES.some(x => x.name === c.name)) COMPETITOR_COMPANIES.unshift(c);
+        compSelected = [c.name];
+      }
+    }
+  } catch(e){}
+})();
 let compDropdownOpen = false;
 let msgCounter = 0;
 
@@ -226,14 +241,17 @@ const CHECK   = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" str
 const AI_AV   = `<div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--brand-600,#2563eb),var(--brand-500,#3b82f6));flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 2l1.5 5.5L19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5L12 2z"/></svg></div>`;
 const USER_AV = `<div style="width:28px;height:28px;border-radius:50%;background:var(--brand-100,#dbeafe);flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>`;
 
+function luci(name, size=16, color='currentColor', sw=2) {
+  const d = window.lucide && window.lucide.icons && window.lucide.icons[name];
+  if (!d) return '';
+  const children = d[2] || [];
+  const inner = children.map(([t,a]) => `<${t} ${Object.entries(a).map(([k,v])=>`${k}="${v}"`).join(' ')}/>`).join('');
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+}
+
 function portfolioIcon(icon, color) {
-  const icons = {
-    ship:     `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2c1.3 0 1.9.5 2.5 1"/><path d="M19 15V6.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V15"/><path d="M5 15V6.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15"/><path d="M3 15h18"/></svg>`,
-    plane:    `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2c-.5.1-.9.5-.8 1 0 .2.2.4.3.6l5.6 5.6-1.6 7.9c-.1.4.1.8.5 1l.3.1.3-.1 5.6-2.8 5.6 2.8.3.1.3-.1c.4-.2.6-.6.5-1z"/></svg>`,
-    building: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>`,
-    bolt:     `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-  };
-  return icons[icon] || icons.ship;
+  const map = { ship:'Ship', plane:'Plane', building:'Building2', bolt:'Zap' };
+  return luci(map[icon] || 'Ship', 14, color, 2);
 }
 
 function today() {
@@ -282,7 +300,7 @@ function formHTML(q, fs) {
     <!-- Portfolios -->
     <div class="form-section">
       <div class="form-sec-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        ${luci('Folder',16,'var(--brand-600,#2563eb)')}
         Select Portfolios
       </div>
       <div style="position:relative;margin-bottom:10px">
@@ -305,7 +323,7 @@ function formHTML(q, fs) {
     <!-- High-Risk Areas -->
     <div class="form-section">
       <div class="form-sec-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${luci('MapPin',16,'#ef4444')}
         Select High-Risk Areas
       </div>
       <div style="position:relative;margin-bottom:10px">
@@ -332,7 +350,7 @@ function formHTML(q, fs) {
     <!-- Date Range -->
     <div class="form-section">
       <div class="form-sec-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        ${luci('Calendar',16,'var(--brand-600,#2563eb)')}
         Date Range
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
@@ -350,7 +368,7 @@ function formHTML(q, fs) {
     <!-- Asset Type -->
     <div class="form-section">
       <div class="form-sec-title">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        ${luci('Activity',16,'#16a34a')}
         Asset Type <span style="font-size:13px;font-weight:400;color:#94a3b8">(Optional)</span>
       </div>
       <div style="position:relative">
@@ -423,14 +441,14 @@ function chatHTML() {
     </div>` : ''}
   </div>
 
-  <!-- Input bar -->
+  ${formState ? '' : `<!-- Input bar -->
   <div style="padding:12px 20px;border-top:1px solid #f1f5f9;flex-shrink:0;background:#fff">
     <div style="position:relative;max-width:760px;margin:0 auto">
       <input id="chat-input" class="chat-input" type="text" placeholder="Ask a follow-up question..." ${isLoading?'disabled':''} />
       <button id="send-btn" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:8px;background:${isLoading?'var(--brand-300,#93c5fd)':'var(--brand-600,#2563eb)'};border:0;color:#fff;cursor:${isLoading?'not-allowed':'pointer'};display:flex;align-items:center;justify-content:center" ${isLoading?'disabled':''}>${SEND}</button>
     </div>
     <div style="font-size:11px;color:#94a3b8;text-align:center;margin-top:6px">AI can make mistakes. Verify important information.</div>
-  </div>`;
+  </div>`}`;
 }
 
 function welcomeHTML() {
@@ -523,7 +541,7 @@ function rerenderChat() {
   if (!area) return;
   area.innerHTML = messages.length === 0 ? welcomeHTML() : chatHTML();
   const msgs = document.getElementById('msg-scroll');
-  if (msgs) msgs.scrollTop = msgs.scrollHeight;
+  if (msgs && !formState) msgs.scrollTop = msgs.scrollHeight;
   wireChat();
 }
 
@@ -724,16 +742,16 @@ function wireFleetTab() {
 }
 
 /* ── Competitor Analysis tab ──────────────────────────────────────────── */
-function riskColor(r) { return r <= 10 ? '#16a34a' : r <= 25 ? '#f59e0b' : '#dc2626'; }
+function riskColor(r) { return r <= 25 ? '#16a34a' : r <= 50 ? '#f59e0b' : '#dc2626'; }
 // Banded gradient gauge — matches the Risk Score gauge on the Vessel Details page.
 let __caGaugeId = 0;
 function riskDonut(r) {
   const rsScore = Math.min(100, Math.max(0, r));
-  const risk = rsScore <= 10
-    ? { label:'GOOD', c:'#16a34a', glow:'#86efac' }
-    : rsScore <= 25
-    ? { label:'AVERAGE RISK', c:'#f97316', glow:'#fed7aa' }
-    : { label:'BELOW AVERAGE', c:'#ef4444', glow:'#fca5a5' };
+  const risk = rsScore <= 25
+    ? { label:'GOOD', c:'#16a34a', glow:'#16a34a' }
+    : rsScore <= 50
+    ? { label:'AVERAGE RISK', c:'#d97706', glow:'#fef3c7' }
+    : { label:'BELOW AVERAGE', c:'#dc2626', glow:'#fee2e2' };
   // Gauge geometry: 270° arc, start=135°, sweep clockwise
   const CX = 100, CY = 108, R = 80, RO = 95, SW = 11;
   const toRad = d => d * Math.PI / 180;
@@ -747,18 +765,20 @@ function riskDonut(r) {
     const sw = ((a2 - a1) % 360 + 360) % 360;
     return `M ${x1},${y1} A ${rr},${rr} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
   };
-  // Banded segment color: green ≤10, orange ≤25, red >25
-  const gaugeColor = s => (s <= 10 ? '#22c55e' : s <= 25 ? '#f97316' : '#ef4444');
-  const N = 26, SEG_GAP = 0.9;
   const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
-  const segPaths = Array.from({ length: N }, (_, i) => {
-    const a1 = gAngle(i * GAUGE_MAX / N) + SEG_GAP;
-    const a2 = gAngle((i + 1) * GAUGE_MAX / N) - SEG_GAP;
-    const midScore = (i + 0.5) * GAUGE_MAX / N;
-    const filled = midScore <= rsScore;
-    return `<path d="${arcD(a1, a2, R)}" fill="none" stroke="${filled ? gaugeColor(midScore) : '#e2e8f0'}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+  const BANDS = [[0,25,'#16a34a'],[25,50,'#d97706'],[50,100,'#dc2626']];
+  const BAND_GAP = 1.4;
+  const segPaths = BANDS.map(([bs, be, col], bi) => {
+    const aStart = gAngle(bs) + (bi > 0 ? BAND_GAP / 2 : 0);
+    const aEnd   = gAngle(be) - (bi < BANDS.length - 1 ? BAND_GAP / 2 : 0);
+    const fillEnd = Math.max(bs, Math.min(rsScore, be));
+    const aFill = gAngle(fillEnd);
+    let out = '';
+    if (fillEnd > bs) out += `<path d="${arcD(aStart, Math.min(aFill, aEnd), R)}" fill="none" stroke="${col}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    if (fillEnd < be) out += `<path d="${arcD(Math.max(aFill, aStart), aEnd, R)}" fill="none" stroke="#e5e7eb" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    return out;
   }).join('');
-  const glowColor = rsScore <= 10 ? '#86efac' : rsScore <= 25 ? '#fcd34d' : '#fca5a5';
+  const glowColor = rsScore <= 25 ? '#16a34a' : rsScore <= 50 ? '#d97706' : '#fee2e2';
   const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
   const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
   const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
@@ -773,8 +793,6 @@ function riskDonut(r) {
           </radialGradient>
         </defs>
         <ellipse cx="100" cy="108" rx="70" ry="60" fill="url(#${gid})"/>
-        <path d="M ${sox},${soy} A ${RO},${RO} 0 1,1 ${eox},${eoy}"
-          fill="none" stroke="#dde4ef" stroke-width="1.5" stroke-dasharray="3 8.2" stroke-linecap="round"/>
         ${glowPath}
         ${whiteCasing}
         ${segPaths}

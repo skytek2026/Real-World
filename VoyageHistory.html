@@ -71,7 +71,10 @@
   .vh-search input::placeholder { color:#9ca3af; }
   /* Map */
   #voyage-map { background:#dbeafe; position:absolute; inset:0; }
-  #voyage-map .leaflet-top.leaflet-left { top:56px; left:10px; }
+  .vh-map-col.is-fullscreen { position:fixed !important; inset:0 !important; z-index:9999 !important; min-height:0 !important; border-radius:0 !important; }
+  #voyage-map .leaflet-top.leaflet-left { top:56px; left:2px; }
+  #voyage-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  .leaflet-control-zoom a { width:34px !important; height:34px !important; line-height:34px !important; display:flex !important; align-items:center; justify-content:center; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42/.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
@@ -211,6 +214,8 @@ const IC = {
   barChart:'<path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="12" y="6" width="3" height="11"/><rect x="17" y="13" width="3" height="4"/>',
   pie:'<path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/>',
   layers:'<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>',
+  maximize:'<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>',
+  minimize:'<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>',
   sort:'<path d="M8 9l4-4 4 4M8 15l4 4 4-4"/>',
   position:'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
   currentVoyage:'<path d="M5 7h11a4 4 0 0 1 0 8H8M5 17h9"/><circle cx="4" cy="7" r="1.5"/><circle cx="4" cy="17" r="1.5"/>',
@@ -463,11 +468,13 @@ function currentVoyageCard() {
     </div>
     <div class="vh-map-col relative" style="min-height:560px;">
       <div id="voyage-map"></div>
-      <!-- top-left: date + status -->
-      <div style="position:absolute;top:12px;left:12px;z-index:500;display:flex;align-items:center;gap:8px;">
+      <!-- top-center: date + status -->
+      <div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:500;display:flex;align-items:center;gap:8px;">
         <span class="map-chip num">Tue, Oct 7, 2025, 01:00 AM</span>
         <span class="badge-status" style="box-shadow:0 1px 3px rgb(15 23 42/.12);"><span class="dot"></span>En Route</span>
       </div>
+      <!-- top-left: fullscreen (above zoom control) -->
+      <button id="map-fullscreen" class="map-btn" title="Toggle fullscreen" style="position:absolute;top:12px;left:12px;z-index:500;">${svg(IC.maximize,17)}</button>
       <!-- top-right: layers -->
       <div style="position:absolute;top:12px;right:12px;z-index:500;">
         <div style="position:relative;">
@@ -589,7 +596,7 @@ const MAP_TYPES = {
   light:     { url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', sub:'abcd' },
   dark:      { url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', sub:'abcd' },
 };
-let currentMapType = 'street';
+let currentMapType = 'satellite';
 function setMapType(type) {
   if (!map || !MAP_TYPES[type]) return;
   currentMapType = type;
@@ -609,7 +616,7 @@ function initMap() {
   }
   const current = [8.5667, 76.8833];   // current position (off SW India)
   map = L.map(c, { center: current, zoom: 4, zoomControl:true, scrollWheelZoom:true, attributionControl:false });
-  setMapType('street');
+  setMapType('satellite');
   const singapore = [1.29, 103.85], rotterdam = [51.95, 4.14];
   // Travelled (solid) Singapore → current
   L.polyline([singapore, [6.0, 95.0], [7.0, 82.0], current], { color:'#2d7ffb', weight:3, opacity:0.9 }).addTo(map);
@@ -647,6 +654,23 @@ function initMap() {
     lb.onclick = (e) => { e.stopPropagation(); lm.classList.toggle('hidden'); };
     lm.querySelectorAll('[data-map-type]').forEach(b => b.onclick = (e) => { e.stopPropagation(); setMapType(b.dataset.mapType); lm.classList.add('hidden'); });
     document.addEventListener('click', () => lm.classList.add('hidden'));
+  }
+
+  // Fullscreen toggle — expand the map column to fill the viewport
+  const fsBtn = document.getElementById('map-fullscreen');
+  const mapCol = c.closest('.vh-map-col');
+  if (fsBtn && mapCol) {
+    fsBtn.onclick = (e) => {
+      e.stopPropagation();
+      const isFs = mapCol.classList.toggle('is-fullscreen');
+      fsBtn.innerHTML = isFs ? svg(IC.minimize,17) : svg(IC.maximize,17);
+      fsBtn.title = isFs ? 'Exit fullscreen' : 'Toggle fullscreen';
+      document.body.style.overflow = isFs ? 'hidden' : '';
+      setTimeout(() => map && map.invalidateSize(), 260);
+    };
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mapCol.classList.contains('is-fullscreen')) fsBtn.onclick(e);
+    });
   }
 }
 

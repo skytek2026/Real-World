@@ -30,12 +30,20 @@ window.NEWS_CATEGORIES = [
 
 window.NEWS_ARTICLES = [
   {
+    id:'n0', cat:'marine', source:'gcaptain',
+    title:'Japan\u2019s Mideast crude supply to rebound in July as stranded vessels exit Hormuz',
+    snippet:'Two more stranded Japanese-owned supertankers carrying Saudi oil exited the Strait of Hormuz on Tuesday, lifting the volume of crude aboard Japan-linked vessels leaving the strait to 16 million barrels this week.',
+    url:'https://gcaptain.com/japans-mideast-crude-supply-to-rebound-in-july-as-stranded-vessels-exit-hormuz/',
+    image:'https://gcaptain.com/wp-content/uploads/2026/04/2026-03-27T105617Z_1558805781_RC2YCKA67KYS_RTRMADP_3_IRAN-CRISIS-JAPAN-OIL-scaled.jpg',
+    hoursAgo:1, featured:true,
+  },
+  {
     id:'n1', cat:'marine', source:'lloyds-list',
     title:'Red Sea attacks push hull war premiums to multi-decade highs as insurers reprice transit risk',
     snippet:'Underwriters are quoting additional war-risk premiums on Bab el-Mandeb voyages at levels not seen since the Iran-Iraq tanker war, with several syndicates pulling capacity entirely.',
     url:'https://www.lloydslist.com/LL1149999/Marine-insurance-rates-soar-as-Red-Sea-risk-escalates',
     image:'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=1200&q=80&auto=format&fit=crop',
-    hoursAgo:2, featured:true,
+    hoursAgo:2,
   },
   {
     id:'n2', cat:'property', source:'reinsurance-news',

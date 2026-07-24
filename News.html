@@ -70,6 +70,12 @@
   .news-thumb.has-photo .glyph{display:none}
   .news-thumb.has-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,.35) 0%,rgba(15,23,42,0) 35%,rgba(15,23,42,0) 100%);z-index:2;pointer-events:none}
   .news-cat{z-index:3}
+
+  /* Hover overlay: 50% black wash + centered right-arrow */
+  .news-hover{position:absolute;inset:0;z-index:4;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s ease;pointer-events:none}
+  .news-card:hover .news-hover{opacity:1}
+  .news-hover-arrow{display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:999px;background:rgba(255,255,255,.95);color:#0f172a;transform:scale(.85);transition:transform .2s ease}
+  .news-card:hover .news-hover-arrow{transform:scale(1)}
   .news-cat{position:absolute;top:10px;left:10px;padding:3px 10px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:rgba(255,255,255,.95);backdrop-filter:blur(4px);color:#0f172a;box-shadow:0 1px 2px rgba(15,23,42,.08)}
   .news-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .news-title{font-size:15px;font-weight:700;line-height:1.35;color:#0f172a;text-wrap:pretty;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
