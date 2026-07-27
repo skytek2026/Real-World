@@ -44,6 +44,9 @@
     .policy-header-tools > div { width: 100%; }
     .policy-header-tools .policy-search { width: 100% !important; }
     .policy-header-tools > button { width: 100%; justify-content: space-between; }
+    .pol-table-scroll { display: none; }
+    .pol-cards { display: block; }
+    .pol-edit-cols { display: none !important; }
   }
   #asset-map.no-labels .asset-label{display:none;}
   .asset-label{background:#1e293b;color:#fff;padding:2px 7px;border-radius:4px;font-size:10.5px;font-weight:600;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,.35);font-family:'Inter',sans-serif}
@@ -56,6 +59,26 @@
   .pol-table{width:100%;border-collapse:collapse;font-size:12px}
   .pol-table th{padding:9px 12px;text-align:left;font-size:11.5px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
   .pol-table th:hover{color:#2563eb}
+  /* Mobile policy cards */
+  .pol-cards{display:none}
+  .pcard{padding:14px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
+  .pcard:last-child{border-bottom:0}
+  .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
+  .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-600,#2563eb);text-decoration:none;word-break:break-word;cursor:pointer}
+  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#64748b}
+  .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+  .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .pcard-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8}
+  .pcard-v{font-size:13.5px;font-weight:500;color:#334155;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .pcard-v.is-strong{font-size:15px;font-weight:700;color:#0f172a}
+  .pcard-v.is-muted{color:#94a3b8}
+  .pcard-more{display:none}
+  .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e2e8f0;animation:pcardIn .22s ease}
+  @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--brand-600,#2563eb)}
+  .pcard-chev{transition:transform .2s ease}
+  .pcard.open .pcard-chev{transform:rotate(180deg)}
   .pol-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;color:#334155;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
   .pol-table tbody tr:hover td{background:#f8fafc}
@@ -81,9 +104,9 @@
 <script>
 window.PAGE = { id:'energy', title:'Offshore/Energy', crumb:'Portfolio Details' };
 window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "density": "compact",
-  "accent": "blue",
-  "sidebarExpanded": false,
+  "density": "comfortable",
+  "accent": "azure",
+  "sidebarExpanded": true,
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
@@ -361,7 +384,7 @@ function PolicyTable() {
           <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" placeholder="Search" class="policy-search pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
         </div>
-        <button class="flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+        <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
           Edit Columns
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
@@ -376,7 +399,7 @@ function PolicyTable() {
       <span class="text-xs text-ink-400">0 selected</span>
     </div>
     <!-- Table -->
-    <div class="overflow-x-auto scroll-thin">
+    <div class="overflow-x-auto scroll-thin pol-table-scroll">
       <table class="pol-table">
         <thead>
           <tr>
@@ -404,6 +427,35 @@ function PolicyTable() {
             </tr>`).join('')}
         </tbody>
       </table>
+    </div>
+    <div class="pol-cards">
+      ${ASSETS.map((a, i) => `
+        <article class="pcard">
+          <div class="pcard-top">
+            <div class="pcard-id">
+              <span class="pcard-title" data-asset-idx="${i}">${a.name}</span>
+              <div class="pcard-sub">${a.id}</div>
+            </div>
+            <span style="background:#eff6ff;color:#1d4ed8;font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${a.type}</span>
+          </div>
+          <div class="pcard-key">
+            <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${a.exposure}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Total Insured Value</span><span class="pcard-v is-muted">-</span></div>
+            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Coverage Period</span><span class="pcard-v is-muted">-</span></div>
+          </div>
+          <div class="pcard-more" id="pcard-more-${i}">
+            <div class="pcard-key">
+              <div class="pcard-kv"><span class="pcard-k">Policy Ref</span><span class="pcard-v is-muted">-</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Contract Details Ref</span><span class="pcard-v is-muted">-</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Signed Line</span><span class="pcard-v is-muted">-</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Year Exposure</span><span class="pcard-v is-muted">-</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Year Total Insured Value</span><span class="pcard-v is-muted">-</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Premium Details</span><span class="pcard-v is-muted">-</span></div>
+              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Policy</span><span class="pcard-v is-muted">-</span></div>
+            </div>
+          </div>
+          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="pcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </article>`).join('')}
     </div>
   </div>`;
 }
@@ -640,6 +692,12 @@ window.render = function() {
   setTimeout(initMap, 80);
 
   /* Asset name → details page */
+  document.querySelectorAll('.pcard-toggle').forEach(t => t.addEventListener('click', () => {
+    const card = t.closest('.pcard');
+    const open = card.classList.toggle('open');
+    t.setAttribute('aria-expanded', String(open));
+    t.querySelector('.pcard-toggle-txt').textContent = open ? 'Show less' : 'Show more';
+  }));
   document.querySelectorAll('[data-asset-idx]').forEach(td => {
     td.addEventListener('click', () => {
       const idx = parseInt(td.dataset.assetIdx);

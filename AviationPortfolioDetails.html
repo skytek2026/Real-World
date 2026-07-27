@@ -53,6 +53,26 @@
   .pol-table tbody tr:hover td{background:#f8fafc}
   .pol-table td.id-cell{color:#2563eb;font-weight:600;cursor:pointer}
   .pol-table td.id-cell:hover{color:#1d4ed8}
+  /* Mobile policy cards */
+  .pol-cards{display:none}
+  .pcard{padding:14px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
+  .pcard:last-child{border-bottom:0}
+  .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
+  .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:#2563eb;text-decoration:none;word-break:break-word}
+  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#64748b}
+  .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+  .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .pcard-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8}
+  .pcard-v{font-size:13.5px;font-weight:500;color:#334155;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .pcard-v.is-strong{font-size:15px;font-weight:700;color:#0f172a}
+  .pcard-v.is-mono{font-family:monospace;font-size:12px}
+  .pcard-more{display:none}
+  .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e2e8f0;animation:pcardIn .22s ease}
+  @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:#2563eb}
+  .pcard-chev{transition:transform .2s ease}
+  .pcard.open .pcard-chev{transform:rotate(180deg)}
   .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:3px;vertical-align:middle;opacity:.55}
   .sort-ico svg{width:7px;height:7px}
   /* Select */
@@ -70,6 +90,11 @@
     .stat-card{min-width:50%;border-right:1px solid #dbeafe;border-bottom:1px solid #dbeafe;}
     .stat-card:nth-child(2n){border-right:0;}
     .stat-card:nth-last-child(-n+2){border-bottom:0;}
+    .pol-table-scroll{display:none}
+    .pol-cards{display:block}
+    .pol-edit-cols{display:none!important}
+    .pol-toolbar{flex-wrap:wrap}
+    .pol-toolbar .relative,.pol-toolbar input[type=text]{width:100%}
   }
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
   .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
@@ -428,7 +453,7 @@ function PolicySection() {
   return `
   <div class="bg-white rounded-xl border border-ink-200" style="box-shadow:0 1px 2px rgba(15,23,42,.06);overflow:hidden;">
     <!-- View switcher + toolbar -->
-    <div class="flex items-center gap-3 px-4 py-3 border-b border-ink-100 flex-wrap">
+    <div class="pol-toolbar flex items-center gap-3 px-4 py-3 border-b border-ink-100 flex-wrap">
       <div class="tabs-desktop-wrap">
         <div class="ds-tabs" id="policy-view-tabs">
           <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -454,7 +479,7 @@ function PolicySection() {
         <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" placeholder="Search" class="pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
       </div>
-      <button class="flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
         Edit Columns
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
@@ -484,7 +509,7 @@ function PolicySection() {
     </div>
     ` : policyView === 'limits' ? `
     <!-- Policy Limits view -->
-    <div class="overflow-x-auto scroll-thin">
+    <div class="overflow-x-auto scroll-thin pol-table-scroll">
       <table class="pol-table" style="min-width:1400px;">
         <thead>
           <tr>
@@ -513,6 +538,30 @@ function PolicySection() {
         </tbody>
       </table>
     </div>
+    <div class="pol-cards">
+      ${LIMIT_POLICIES.slice((policyPage-1)*policyPerPage, policyPage*policyPerPage).map((l, i) => `
+        <article class="pcard">
+          <div class="pcard-top">
+            <div class="pcard-id">
+              <a class="pcard-title" href="#">${l.hdr}</a>
+              <div class="pcard-sub">${l.name}</div>
+            </div>
+            <span class="stat-badge" style="background:#eff6ff;color:#1d4ed8;font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${l.type}</span>
+          </div>
+          <div class="pcard-key">
+            <div class="pcard-kv"><span class="pcard-k">Limit Value</span><span class="pcard-v is-strong">${l.value}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Peril Id</span><span class="pcard-v">${l.peril}</span></div>
+          </div>
+          <div class="pcard-more" id="limcard-more-${i}">
+            <div class="pcard-key">
+              <div class="pcard-kv"><span class="pcard-k">Aviation Coverage IDs</span><span class="pcard-v">${l.covIds}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Aviation Coverage</span><span class="pcard-v">${l.cov}</span></div>
+              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">AV Portfolio</span><span class="pcard-v">${l.port}</span></div>
+            </div>
+          </div>
+          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="limcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </article>`).join('')}
+    </div>
     ${dsPagination({
       page: policyPage, totalPages: Math.ceil(LIMIT_POLICIES.length / policyPerPage),
       totalItems: LIMIT_POLICIES.length, perPage: policyPerPage,
@@ -521,7 +570,7 @@ function PolicySection() {
     })}
     ` : policyView === 'list' ? `
     <!-- List view: per-aircraft policy table -->
-    <div class="overflow-x-auto scroll-thin">
+    <div class="overflow-x-auto scroll-thin pol-table-scroll">
       <table class="pol-table" style="min-width:2200px;">
         <thead>
           <tr>
@@ -582,6 +631,43 @@ function PolicySection() {
         </tbody>
       </table>
     </div>
+    <div class="pol-cards">
+      ${LIST_POLICIES.slice((policyPage-1)*policyPerPage, policyPage*policyPerPage).map((p, i) => {
+        const cname = p.cc === 'fr' ? 'France' : p.cc === 'nl' ? 'Netherlands' : p.cc.toUpperCase();
+        const seats = [p.seating.first, p.seating.business, p.seating.economy].filter(Boolean).join(' / ') || '—';
+        return `
+        <article class="pcard">
+          <div class="pcard-top">
+            <div class="pcard-id">
+              <a class="pcard-title" href="#">${p.reg}</a>
+              <div class="pcard-sub"><img src="https://flagcdn.com/w20/${p.cc}.png" width="16" height="12" style="border-radius:2px;" alt="${cname}" />${p.airline}</div>
+            </div>
+            <span class="stat-badge" style="background:#eff6ff;color:#1d4ed8;font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${p.model}</span>
+          </div>
+          <div class="pcard-key">
+            <div class="pcard-kv"><span class="pcard-k">Policy Ref</span><span class="pcard-v is-strong">${p.ref}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Hull Insurance</span><span class="pcard-v is-strong">${p.hull}</span></div>
+            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Coverage Period</span><span class="pcard-v">${p.start} - ${p.end}</span></div>
+          </div>
+          <div class="pcard-more" id="listcard-more-${i}">
+            <div class="pcard-key">
+              <div class="pcard-kv"><span class="pcard-k">Skytek ID</span><span class="pcard-v">Policy ${p.id}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Asset</span><span class="pcard-v">${p.asset}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Seating (F/B/E)</span><span class="pcard-v">${seats}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Schedule Item</span><span class="pcard-v">${p.item}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Signed Line</span><span class="pcard-v">${p.line}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Country Reg.</span><span class="pcard-v">${cname}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Hex Identifier</span><span class="pcard-v is-mono">${p.hex}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Year Built</span><span class="pcard-v">${p.year}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Asset Type</span><span class="pcard-v">${p.type}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Lessor</span><span class="pcard-v">${p.lessor}</span></div>
+              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">AV Base Operations</span><span class="pcard-v">${p.base}</span></div>
+            </div>
+          </div>
+          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="listcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </article>`;
+      }).join('')}
+    </div>
     ${dsPagination({
       page: policyPage, totalPages: Math.ceil(TOTAL / policyPerPage),
       totalItems: TOTAL, perPage: policyPerPage,
@@ -598,7 +684,7 @@ function PolicySection() {
       <span class="text-xs text-ink-400">0 selected</span>
     </div>
     <!-- Table -->
-    <div class="overflow-x-auto scroll-thin">
+    <div class="overflow-x-auto scroll-thin pol-table-scroll">
       <table class="pol-table">
         <thead>
           <tr>
@@ -638,6 +724,35 @@ function PolicySection() {
             </tr>`).join('')}
         </tbody>
       </table>
+    </div>
+    <div class="pol-cards">
+      ${POLICIES.slice((policyPage-1)*policyPerPage, policyPage*policyPerPage).map((p, i) => `
+        <article class="pcard">
+          <div class="pcard-top">
+            <div class="pcard-id">
+              <a class="pcard-title" href="#">${p.id}</a>
+              <div class="pcard-sub">${p.ref}</div>
+            </div>
+          </div>
+          <div class="pcard-key">
+            <div class="pcard-kv"><span class="pcard-k">TIV</span><span class="pcard-v is-strong">${p.tiv}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Hull</span><span class="pcard-v is-strong">${p.hull}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Passenger Liability</span><span class="pcard-v">${p.pass}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Applicable Limits</span><span class="pcard-v">${p.appLim}</span></div>
+          </div>
+          <div class="pcard-more" id="detcard-more-${i}">
+            <div class="pcard-key">
+              <div class="pcard-kv"><span class="pcard-k">CHW</span><span class="pcard-v">${p.chw}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">HULLW</span><span class="pcard-v">${p.hullw}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">TLOHW</span><span class="pcard-v">${p.tlohw}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Baggage Liability</span><span class="pcard-v">${p.bag}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Cargo Liability</span><span class="pcard-v">${p.cargo}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Crew Liability</span><span class="pcard-v">${p.crew}</span></div>
+              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Hangar keepers Liability</span><span class="pcard-v">${p.hang}</span></div>
+            </div>
+          </div>
+          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="detcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </article>`).join('')}
     </div>
     <!-- Footer -->
     ${dsPagination({
@@ -771,6 +886,17 @@ window.render = function() {
   }
 
   /* Pagination (DS-compliant) */
+  if (!window.__pcardWired) {
+    window.__pcardWired = true;
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('.pcard-toggle');
+      if (!t) return;
+      const card = t.closest('.pcard');
+      const open = card.classList.toggle('open');
+      t.setAttribute('aria-expanded', String(open));
+      t.querySelector('.pcard-toggle-txt').textContent = open ? 'Show less' : 'Show more';
+    });
+  }
   dsWirePagination(document.querySelector('.ds-pagination-wrap'), {
     onPage:    (p) => { policyPage = p; window.render(); },
     onPerPage: (n) => { policyPerPage = n; policyPage = 1; window.render(); },

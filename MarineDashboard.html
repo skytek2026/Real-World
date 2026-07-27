@@ -138,6 +138,8 @@
   .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:6px; opacity:.9; }
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
   /* Fullscreen map mode */
+  /* Trap the map card's own controls (z-400) so they can't rise above the sticky topbar (z-30) */
+  #map-container:not(.is-fullscreen) { isolation:isolate; z-index:0; }
   #map-container.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; border:0; }
   #map-container.is-fullscreen > div { height:100vh !important; }
   /* Pill tabs (Skytek DS — animated pill via shared layout) */

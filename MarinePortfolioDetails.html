@@ -74,6 +74,26 @@
   .pol-table tr:hover td { background:#f8fafc; }
   .pol-table td.lnk { color:#2563eb; font-weight:600; cursor:pointer; }
   .pol-table td.lnk:hover { color:#1d4ed8; }
+  /* Mobile policy cards */
+  .pol-cards { display:none; }
+  .pcard { padding:14px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
+  .pcard:last-child { border-bottom:0; }
+  .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
+  .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:#2563eb; word-break:break-word; }
+  .pcard-sub { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#64748b; }
+  .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; }
+  .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .pcard-k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#94a3b8; }
+  .pcard-v { font-size:13.5px; font-weight:500; color:#334155; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .pcard-v.is-strong { font-size:15px; font-weight:700; color:#0f172a; }
+  .pcard-v.is-mono { font-family:monospace; font-size:12px; }
+  .pcard-more { display:none; }
+  .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e2e8f0; animation:pcardIn .22s ease; }
+  @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:12.5px; font-weight:600; color:#2563eb; }
+  .pcard-chev { transition:transform .2s ease; }
+  .pcard.open .pcard-chev { transform:rotate(180deg); }
   /* Stat badge */
   .stat-badge { display:inline-block; padding:1px 8px; border-radius:999px; font-size:12px; font-weight:700; }
   .stat-badge.blue   { background:#dbeafe; color:#1d4ed8; }
@@ -100,6 +120,11 @@
     /* Mobile: replace analysis tabs with a dropdown */
     .analysis-tabs-desktop { display:none !important; }
     .analysis-tabs-mobile  { display:block !important; }
+    .pol-table-scroll { display:none; }
+    .pol-cards { display:block; }
+    .pol-toolbar { flex-wrap:wrap; }
+    .pol-toolbar .relative, .pol-toolbar input[type=text] { width:100%; }
+    .pol-edit-cols { display:none !important; }
   }
   /* Mobile dropdown for analysis tabs (hidden by default) */
   .analysis-tabs-mobile { display:none; }
@@ -830,7 +855,7 @@ function PolicySection() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden">
     <!-- Toolbar -->
-    <div class="flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">
+    <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">
       <div class="ds-tabs shrink-0 mobile-stretch" id="policy-view-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         <button class="ds-tab" aria-selected="${policyView==='details'}" data-pvw="details">
@@ -868,7 +893,7 @@ function PolicySection() {
       <select class="sel text-xs py-1.5">
         <option>All Types</option><option>Hull &amp; Machinery</option><option>P&amp;I</option><option>War Risks</option>
       </select>
-      <button class="flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
         Edit Columns
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
@@ -882,7 +907,7 @@ function PolicySection() {
       <span class="text-xs text-ink-400">0 selected</span>
     </div>
     <!-- Table -->
-    <div class="overflow-x-auto scroll-thin">
+    <div class="overflow-x-auto scroll-thin pol-table-scroll">
       <table class="pol-table">
         <thead>
           <tr>
@@ -922,6 +947,35 @@ function PolicySection() {
             </tr>`).join('')}
         </tbody>
       </table>
+    </div>
+    <div class="pol-cards">
+      ${rows.map((p, i) => `
+        <article class="pcard">
+          <div class="pcard-top">
+            <div class="pcard-id">
+              <span class="pcard-title">${p.num}</span>
+              <div class="pcard-sub">${p.vessel}</div>
+            </div>
+            <span class="stat-badge" style="background:#eff6ff;color:#1d4ed8;font-size:11px;">${p.type}</span>
+          </div>
+          <div class="pcard-key">
+            <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${p.exp}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Total Insured Value</span><span class="pcard-v is-strong">${p.tiv}</span></div>
+            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Coverage Period</span><span class="pcard-v">${p.period}</span></div>
+          </div>
+          <div class="pcard-more" id="pcard-more-${i}">
+            <div class="pcard-key">
+              <div class="pcard-kv"><span class="pcard-k">Placement Type</span><span class="pcard-v">${p.placement}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Insurer Details</span><span class="pcard-v">${p.insurer}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Broker Details</span><span class="pcard-v">${p.broker}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Assured Details</span><span class="pcard-v">${p.assured}</span></div>
+              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">UMR</span><span class="pcard-v is-mono">${p.umr}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Delegate Details</span><span class="pcard-v">${p.delegate}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Underwriter</span><span class="pcard-v">${p.uw}</span></div>
+            </div>
+          </div>
+          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="pcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </article>`).join('')}
     </div>
     ${dsPagination({
       page: policyPage,
@@ -1045,6 +1099,17 @@ window.render = function() {
   });
 
   /* Policy pagination (DS-compliant) */
+  if (!window.__pcardWired) {
+    window.__pcardWired = true;
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('.pcard-toggle');
+      if (!t) return;
+      const card = t.closest('.pcard');
+      const open = card.classList.toggle('open');
+      t.setAttribute('aria-expanded', String(open));
+      t.querySelector('.pcard-toggle-txt').textContent = open ? 'Show less' : 'Show more';
+    });
+  }
   dsWirePagination(document.querySelector('.ds-pagination-wrap'), {
     onPage: (p) => { policyPage = p; window.render(); },
   });

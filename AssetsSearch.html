@@ -106,6 +106,35 @@
   .drawer-acc-body { display: none; padding-top: 12px; }
   .drawer-section.open .drawer-acc-body { display: flex; flex-direction: column; flex: 1; min-height: 0; animation: accIn .22s ease; }
   @keyframes accIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  /* --- Mobile asset cards --- */
+  .asset-cards { display: none; }
+  .acard { padding: 14px 16px; border-bottom: 1px solid #eef2f7; display: flex; flex-direction: column; gap: 12px; }
+  .acard:last-child { border-bottom: 0; }
+  .acard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .acard-id { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .acard-title { font-size: 16px; font-weight: 700; line-height: 1.25; word-break: break-word; }
+  .acard-sub { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12.5px; color: #64748b; }
+  .acard-sub-txt { color: #64748b; }
+  .acard-dot { color: #cbd5e1; }
+  .acard-key { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+  .acard-kv { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .acard-k { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; }
+  .acard-v { font-size: 13.5px; font-weight: 500; color: #334155; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .acard-v.is-strong { font-size: 15px; font-weight: 700; color: #0f172a; }
+  .acard-v.is-muted { color: #94a3b8; }
+  .acard-more { display: none; padding-top: 2px; border-top: 1px dashed #e2e8f0; margin-top: 2px; }
+  .acard.open .acard-more { display: block; padding-top: 12px; animation: accIn .22s ease; }
+  .acard-toggle { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 2px; border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 12.5px; font-weight: 600; color: var(--brand-600, #2563eb); }
+  .acard-chev { transition: transform .2s ease; }
+  .acard.open .acard-chev { transform: rotate(180deg); }
+  @media (max-width: 860px) {
+    .table-scroll { display: none; }
+    .asset-cards { display: block; }
+    #edit-cols-btn { display: none; }
+    .search-wrap { max-width: none; }
+    .acard-head-row { flex-wrap: wrap; }
+    .acard-head-row > div[style*="margin-left:auto"] { width: 100%; margin-left: 0 !important; }
+  }
   .drawer-section.open .filter-menu-list { max-height: none; flex: 1 1 0; min-height: 0; }
   .drawer-sec-title { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin: 0; display: flex; align-items: center; gap: 7px; }
   .drawer-dot { width: 6px; height: 6px; border-radius: 999px; background: #e11d48; display: inline-block; }
@@ -608,6 +637,14 @@ function tabConfig() {
       searchPlaceholder: 'Search by registration, type or operator',
       search: (r, q) => r.reg.toLowerCase().includes(q) || r.type.toLowerCase().includes(q) || r.operator.toLowerCase().includes(q),
       filters: ['Manufacturer', 'Operator', 'Value'],
+      card: {
+        href: 'AircraftDetails.html',
+        title: r => r.reg,
+        badge: r => aircraftBadge(r.type),
+        sub: r => `<span class="acard-sub-txt">${r.type}</span>`,
+        primary: r => [['Value', r.value, 'strong'], ['Operator', r.operator]],
+        secondary: r => [],
+      },
       columns: [
         { key:'type',     label:'Type',     sortable:true, td:r => `<td>${aircraftBadge(r.type)}</td>` },
         { key:'reg',      label:'Reg. No.', sortable:true, td:r => `<td class="name-cell"><a href="AircraftDetails.html" style="${link}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.reg}</a></td>` },
@@ -623,6 +660,14 @@ function tabConfig() {
       searchPlaceholder: 'Search by asset name, type or operator',
       search: (r, q) => r.name.toLowerCase().includes(q) || r.type.toLowerCase().includes(q) || r.unitId.toLowerCase().includes(q) || r.owner.toLowerCase().includes(q) || r.operator.toLowerCase().includes(q),
       filters: ['Type', 'Flag', 'Owner', 'Operator', 'Value'],
+      card: {
+        href: 'AssetOffshoreDetails.html',
+        title: r => r.name,
+        badge: r => offshoreBadge(r.type),
+        sub: r => flagHtml(r.cc, r.country),
+        primary: r => [['Value', r.value, 'strong'], ['Unit ID', r.unitId], ['Operator', r.operator]],
+        secondary: r => [['Owner', r.owner]],
+      },
       columns: [
         { key:'name',     label:'Name',                 sortable:true, td:r => `<td class="name-cell"><a href="AssetOffshoreDetails.html" style="${link}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a></td>` },
         { key:'type',     label:'Type',                 sortable:true, td:r => `<td>${offshoreBadge(r.type)}</td>` },
@@ -641,6 +686,14 @@ function tabConfig() {
       searchPlaceholder: 'Search by property name, type or location',
       search: (r, q) => r.name.toLowerCase().includes(q) || r.type.toLowerCase().includes(q) || r.location.toLowerCase().includes(q) || r.country.toLowerCase().includes(q),
       filters: ['Type', 'Country', 'Year Built', 'Value'],
+      card: {
+        href: 'PropertyDetails.html',
+        title: r => r.name,
+        badge: r => propertyBadge(r.type),
+        sub: r => flagHtml(r.cc, r.country),
+        primary: r => [['Value', r.value, 'strong'], ['Year Built', r.yearBuilt], ['Location', r.location]],
+        secondary: r => [],
+      },
       columns: [
         { key:'name',      label:'Name',       sortable:true, td:r => `<td class="name-cell"><a href="PropertyDetails.html" style="${link}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a></td>` },
         { key:'type',      label:'Type',       sortable:true, td:r => `<td>${propertyBadge(r.type)}</td>` },
@@ -657,6 +710,22 @@ function tabConfig() {
     searchPlaceholder: 'Search by IMO or vessel name',
     search: (r, q) => r.name.toLowerCase().includes(q) || r.imo.toLowerCase().includes(q) || r.mmsi.includes(q),
     filters: ['Asset Type', 'Flag', 'Length', 'Gross Tonnage', 'Deadweight', 'YOB'],
+    card: {
+      href: 'VesselDetails.html',
+      title: r => r.name,
+      badge: r => badgeHtml(r.type),
+      sub: r => `${flagHtml(r.flag, r.country)}<span class="acard-dot">·</span><span class="acard-sub-txt">IMO ${r.imo}</span>`,
+      primary: r => [
+        ['Est. Value', r.estValue, r.estValue.startsWith('$') ? 'strong' : 'muted'],
+        ['Length', r.length],
+        ['Gross Tonnage', r.grossTonnage],
+        ['YOB', r.yob || 'N/A'],
+      ],
+      secondary: r => [
+        ['Callsign', r.callsign], ['MMSI', r.mmsi], ['DWT Tonnage', r.dwtTonnage],
+        ['Owner', r.owner || '—'], ['Last Seen', r.lastSeen],
+      ],
+    },
     columns: [
       { key:'name',         label:'Name',          sortable:true,  td:r => `<td class="name-cell"><a href="VesselDetails.html" style="color:var(--brand-600,#2563eb);text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${r.name}</a></td>` },
       { key:'type',         label:'Type',          sortable:true,  td:r => `<td>${badgeHtml(r.type)}</td>` },
@@ -701,6 +770,28 @@ function filteredRows(cfg) {
   return rows;
 }
 
+function renderCards(cfg, pageRows) {
+  const c = cfg.card;
+  const link = 'color:var(--brand-600,#2563eb);text-decoration:none';
+  const kv = (rows) => rows.filter(([, v]) => v !== undefined && v !== null && v !== '').map(([k, v, tone]) =>
+    `<div class="acard-kv"><span class="acard-k">${k}</span><span class="acard-v${tone ? ' is-' + tone : ''}">${v}</span></div>`).join('');
+  return `<div class="asset-cards">${pageRows.map((r, i) => {
+    const sec = kv(c.secondary(r));
+    return `<article class="acard">
+      <div class="acard-top">
+        <div class="acard-id">
+          <a class="acard-title" href="${c.href}" style="${link}">${c.title(r)}</a>
+          <div class="acard-sub">${c.sub(r)}</div>
+        </div>
+        ${c.badge(r)}
+      </div>
+      <div class="acard-key">${kv(c.primary(r))}</div>
+      ${sec ? `<div class="acard-more" id="acard-more-${i}"><div class="acard-key">${sec}</div></div>
+      <button type="button" class="acard-toggle" data-acard="${i}" aria-expanded="false" aria-controls="acard-more-${i}"><span class="acard-toggle-txt">Show more</span><svg class="acard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>` : ''}
+    </article>`;
+  }).join('')}</div>`;
+}
+
 function renderTable() {
   const cfg = tabConfig();
   const rows = filteredRows(cfg);
@@ -743,7 +834,7 @@ function renderTable() {
     <div style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;box-shadow:0 1px 2px rgba(15,23,42,.07);overflow:hidden;">
       <!-- Card header -->
       <div style="padding:12px 16px;border-bottom:1px solid #e2e8f0;">
-        <div style="display:flex;align-items:center;gap:7px;">
+        <div class="acard-head-row" style="display:flex;align-items:center;gap:7px;">
           ${sectionIcon}
           <span style="font-size:14px;font-weight:700;color:#0f172a;">
             ${tabLabels[currentTab]} Assets
@@ -772,7 +863,7 @@ function renderTable() {
 
 
       <!-- Table -->
-      <div style="overflow-x:auto;" class="scroll-thin">
+      <div class="table-scroll scroll-thin" style="overflow-x:auto;">
         <table class="assets-table">
           <thead>
             <tr>
@@ -790,6 +881,7 @@ function renderTable() {
           </tbody>
         </table>
       </div>
+      ${renderCards(cfg, pageRows)}
 
       <!-- Pagination -->
       <div class="pag-wrap">
@@ -952,6 +1044,12 @@ function wireTableEvents() {
   });
 
   /* Reset filters */
+  document.querySelectorAll('.acard-toggle').forEach(t => t.addEventListener('click', () => {
+    const card = t.closest('.acard');
+    const open = card.classList.toggle('open');
+    t.setAttribute('aria-expanded', String(open));
+    t.querySelector('.acard-toggle-txt').textContent = open ? 'Show less' : 'Show more';
+  }));
   const filterIconBtn = document.getElementById('filter-icon-btn');
   if (filterIconBtn) filterIconBtn.addEventListener('click', () => openFilterDrawer(tabConfig()));
   const resetBtn = document.getElementById('reset-filters-btn');
