@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assets — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -299,6 +300,8 @@ let flagFilter     = new Set();
 let rangeFilter    = {};
 let hiddenCols     = new Set();
 let catFilter      = {};
+/* sentinel value held by a filter set when the user unselects every option in that filter */
+const FNONE = '\u0000none';
 
 const RANGE_FILTERS = {
   'Length':        { key:'length',       unit:'m',   step:1 },
@@ -425,7 +428,9 @@ function drawerSections(cfg) {
     if (RANGE_FILTERS[f]) {
       inner = `<div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="reset"${dis}>Reset</button></div>${rangeBody(RANGE_FILTERS[f], cfg)}`;
     } else {
-      inner = `<div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="all"${dis}>Reset</button></div><div class="filter-menu-list scroll-thin">${catItems(f, cfg)}</div>`;
+      const noneSet = f === 'Asset Type' ? typeFilter : (f === 'Flag' || f === 'Country') ? flagFilter : (catFilter[f] || new Set());
+      const isNone = noneSet.size === 1 && noneSet.has(FNONE);
+      inner = `<div class="filter-menu-head"><button class="filter-menu-act" data-fm-act="all"${dis}>Reset</button><button class="filter-menu-act" data-fm-act="none"${isNone ? ' disabled' : ''}>Unselect all</button></div><div class="filter-menu-list scroll-thin">${catItems(f, cfg)}</div>`;
     }
     const open = i === drawerAccOpen;
     return `<div class="drawer-section${open ? ' open' : ''}"><button type="button" class="drawer-acc-head"><span class="drawer-sec-title">${f}${active ? ' <span class="drawer-dot"></span>' : ''}</span><svg class="drawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="drawer-acc-body">${inner}</div></div>`;
@@ -476,27 +481,37 @@ function wireDrawerControls(cfg) {
     const kind = cb.dataset.fkey;
     const set = kind === 'type' ? typeFilter : flagFilter;
     const all = allOptionsFor(kind, null, cfg);
-    if (set.size === 0) all.forEach(v => set.add(v));
+    const wasNone = set.delete(FNONE);
+    if (!wasNone && set.size === 0) all.forEach(v => set.add(v));
     if (cb.checked) set.add(cb.value); else set.delete(cb.value);
-    if (set.size >= all.length) set.clear();
+    if (set.size === 0) set.add(FNONE);
+    else if (set.size >= all.length) set.clear();
     applyDrawerLive(cfg);
   }));
   body.querySelectorAll('.cat-cb').forEach(cb => cb.addEventListener('change', () => {
     const f = cb.dataset.cat;
     const set = catFilter[f] || (catFilter[f] = new Set());
     const all = allOptionsFor('cat', f, cfg);
-    if (set.size === 0) all.forEach(v => set.add(String(v)));
+    const wasNone = set.delete(FNONE);
+    if (!wasNone && set.size === 0) all.forEach(v => set.add(String(v)));
     if (cb.checked) set.add(cb.value); else set.delete(cb.value);
-    if (set.size >= all.length) delete catFilter[f];
+    if (set.size === 0) set.add(FNONE);
+    else if (set.size >= all.length) delete catFilter[f];
     applyDrawerLive(cfg);
   }));
   body.querySelectorAll('[data-fm-act]').forEach(act => act.addEventListener('click', () => {
     const a = act.dataset.fmAct, sec = act.closest('.drawer-section');
     if (a === 'reset') { const rm = sec.querySelector('.range-menu'); if (rm) delete rangeFilter[rm.dataset.rkey]; applyDrawerLive(cfg); return; }
-    /* 'all' = clear this section's filter (everything selected) */
     const ft = sec.querySelector('.ft-cb');
-    if (ft) (ft.dataset.fkey === 'type' ? typeFilter : flagFilter).clear();
     const c = sec.querySelector('.cat-cb');
+    if (a === 'none') {
+      /* unselect every option in this filter */
+      if (ft) { const s = ft.dataset.fkey === 'type' ? typeFilter : flagFilter; s.clear(); s.add(FNONE); }
+      if (c) catFilter[c.dataset.cat] = new Set([FNONE]);
+      applyDrawerLive(cfg); return;
+    }
+    /* 'all' = clear this section's filter (everything selected) */
+    if (ft) (ft.dataset.fkey === 'type' ? typeFilter : flagFilter).clear();
     if (c) delete catFilter[c.dataset.cat];
     applyDrawerLive(cfg);
   }));

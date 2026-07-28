@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aviation — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -555,7 +556,7 @@ function AirportCard() {
         <div class="airport-row-grid px-3 py-2 hover:bg-ink-50 grid grid-cols-[1fr_auto_auto_auto_auto] gap-4 text-xs items-center">
           <div class="flex items-center gap-2 min-w-0">
             ${flag(a.flag)}
-            <a href="AirportDetails.html" class="flex items-center gap-2 min-w-0 hover:underline">
+            <a href="AirportDetails.html" data-airport-code="${a.code}" class="flex items-center gap-2 min-w-0 hover:underline">
               <span class="font-semibold text-brand-600">${a.code}</span>
               <span class="text-ink-600 truncate">- ${a.name}</span>
             </a>
@@ -1077,6 +1078,14 @@ window.render = function render() {
   /* Alerts filter dropdown */
   const alertSel = document.getElementById('alert-filter-sel');
   if (alertSel) alertSel.onchange = () => { state.alertFilter = alertSel.value; render(); };
+
+  /* Airport links → store selected airport for AirportDetails */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest && e.target.closest('a[data-airport-code]');
+    if (!link) return;
+    const geo = AIRPORTS_LATLNG.find(x => x.code === link.dataset.airportCode);
+    if (geo) { try { sessionStorage.setItem('selectedAirport', JSON.stringify(geo)); } catch(err){} }
+  });
 
   /* Airport list search */
   const airportSearch = document.getElementById('airport-search');

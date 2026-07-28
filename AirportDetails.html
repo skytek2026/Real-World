@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Airport Details — Aviation — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -21,9 +22,17 @@
   .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
   .shadow-card{box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px rgba(15,23,42,.02)}
   .text-brand-600{color:var(--brand-600,#2563eb)}.bg-brand-600{background:var(--brand-600,#2563eb)}.bg-brand-050{background:var(--brand-50,#eff6ff)}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-track{background:transparent}
-  .scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
-  .scroll-thin::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+  /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
+  html{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
+  html::-webkit-scrollbar,body::-webkit-scrollbar{width:6px;height:6px}
+  html::-webkit-scrollbar-track,body::-webkit-scrollbar-track{background:#f3f4f6}
+  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}
+  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
+  .scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
+  .scroll-thin::-webkit-scrollbar,.ds-scroll::-webkit-scrollbar{width:6px;height:6px}
+  .scroll-thin::-webkit-scrollbar-track,.ds-scroll::-webkit-scrollbar-track{background:#f3f4f6}
+  .scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
   .tracking-micro{letter-spacing:0.04em}
   [data-density="compact"] .py-density{padding-top:.75rem;padding-bottom:.75rem}
   /* DS Tabs */
@@ -78,7 +87,7 @@
   /* Mobile responsive */
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   .airport-row1 { grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); }
-  .airport-row2 { grid-template-columns:minmax(0,1fr) minmax(0,2fr); }
+  .airport-row2 { grid-template-columns:calc((100% - 24px)/3) minmax(0,1fr); }
   /* Overflow guard: nothing in the page should bleed past the right edge on small viewports */
   .page-col, .page-content { min-width: 0; }
   @media(max-width:1023px){ .page-col, .page-content { overflow-x: hidden; } }
@@ -126,17 +135,63 @@ const AIRPORT = (() => {
 })();
 /* Terminals / gates / runways by airport code */
 const AIRPORT_DETAILS = {
-  LHR:{terminals:4,gates:115,runways:2,lat:51.47,lng:-0.45},   JFK:{terminals:5,gates:128,runways:4,lat:40.64,lng:-73.78},
-  DXB:{terminals:3,gates:184,runways:2,lat:25.25,lng:55.36},   SIN:{terminals:4,gates:140,runways:2,lat:1.35,lng:103.99},
-  ORD:{terminals:4,gates:213,runways:8,lat:41.98,lng:-87.90},  VIE:{terminals:3,gates:96,runways:2,lat:48.11,lng:16.57},
-  FRA:{terminals:2,gates:190,runways:4,lat:50.03,lng:8.57},    AMS:{terminals:1,gates:165,runways:6,lat:52.31,lng:4.77},
-  HND:{terminals:3,gates:114,runways:4,lat:35.55,lng:139.78},  IKA:{terminals:2,gates:24,runways:2,lat:35.42,lng:51.15},
-  SZX:{terminals:1,gates:62,runways:2,lat:22.31,lng:113.92},   PEK:{terminals:3,gates:120,runways:3,lat:39.86,lng:116.61},
-  PVG:{terminals:2,gates:218,runways:4,lat:31.14,lng:121.81},  RGN:{terminals:3,gates:20,runways:2,lat:16.90,lng:96.13},
-  FIH:{terminals:1,gates:8,runways:1,lat:-4.39,lng:15.44},     PAP:{terminals:1,gates:8,runways:1,lat:18.57,lng:-72.29},
-  CPT:{terminals:2,gates:30,runways:2,lat:-33.97,lng:18.60},   SYD:{terminals:3,gates:65,runways:3,lat:-33.94,lng:151.18},
-  MEL:{terminals:4,gates:56,runways:2,lat:-37.67,lng:144.84},  BKK:{terminals:2,gates:107,runways:2,lat:13.91,lng:100.61},
-  MEX:{terminals:2,gates:84,runways:2,lat:19.44,lng:-99.07},   CDG:{terminals:3,gates:104,runways:4,lat:49.01,lng:2.55},
+  LHR:{terminals:4,gates:115,runways:2,lat:51.47,lng:-0.45,icao:'EGLL'},   JFK:{terminals:5,gates:128,runways:4,lat:40.64,lng:-73.78,icao:'KJFK'},
+  DXB:{terminals:3,gates:184,runways:2,lat:25.25,lng:55.36,icao:'OMDB'},   SIN:{terminals:4,gates:140,runways:2,lat:1.35,lng:103.99,icao:'WSSS'},
+  ORD:{terminals:4,gates:213,runways:8,lat:41.98,lng:-87.90,icao:'KORD'},  VIE:{terminals:3,gates:96,runways:2,lat:48.11,lng:16.57,icao:'LOWW'},
+  FRA:{terminals:2,gates:190,runways:4,lat:50.03,lng:8.57,icao:'EDDF'},    AMS:{terminals:1,gates:165,runways:6,lat:52.31,lng:4.77,icao:'EHAM'},
+  HND:{terminals:3,gates:114,runways:4,lat:35.55,lng:139.78,icao:'RJTT'},  IKA:{terminals:2,gates:24,runways:2,lat:35.42,lng:51.15,icao:'OIIE'},
+  SZX:{terminals:1,gates:62,runways:2,lat:22.31,lng:113.92,icao:'ZGSZ'},   PEK:{terminals:3,gates:120,runways:3,lat:39.86,lng:116.61,icao:'ZBAA'},
+  PVG:{terminals:2,gates:218,runways:4,lat:31.14,lng:121.81,icao:'ZSPD'},  RGN:{terminals:3,gates:20,runways:2,lat:16.90,lng:96.13,icao:'VYYY'},
+  FIH:{terminals:1,gates:8,runways:1,lat:-4.39,lng:15.44,icao:'FZAA'},     PAP:{terminals:1,gates:8,runways:1,lat:18.57,lng:-72.29,icao:'MTPP'},
+  CPT:{terminals:2,gates:30,runways:2,lat:-33.97,lng:18.60,icao:'FACT'},   SYD:{terminals:3,gates:65,runways:3,lat:-33.94,lng:151.18,icao:'YSSY'},
+  MEL:{terminals:4,gates:56,runways:2,lat:-37.67,lng:144.84,icao:'YMML'},  BKK:{terminals:2,gates:107,runways:2,lat:13.91,lng:100.61,icao:'VTBS'},
+  MEX:{terminals:2,gates:84,runways:2,lat:19.44,lng:-99.07,icao:'MMMX'},   CDG:{terminals:3,gates:104,runways:4,lat:49.01,lng:2.55,icao:'LFPG'},
+  LAX:{terminals:9,gates:146,runways:4,lat:33.94,lng:-118.41,icao:'KLAX'},
+};
+/* Terminal detail by airport (source: internationalairportterminal.com airport guides) */
+const TERMINAL_INFO = {
+  JFK: { note:'Terminal 2 was demolished in 2023; The New Terminal One is under construction in its place. All terminals are linked by the AirTrain JFK — free between terminals, running 24/7.', list:[
+    { t:'T1', name:'Terminal 1', role:'European & Asian long-haul carriers', airlines:['Lufthansa','Air France','Japan Airlines','Korean Air','Turkish Airlines','Saudia'], note:'Being redeveloped into The New Terminal One. Primeclass Lounge, Lufthansa Senator Lounge, duty-free.' },
+    { t:'T4', name:'Terminal 4 — largest terminal', role:'International + domestic · 24/7 operations', airlines:['Delta','Emirates','Virgin Atlantic','KLM','Etihad','Singapore Airlines','Air India'], note:'Delta’s international hub; one of the largest Delta Sky Clubs in the world, plus Emirates and Virgin Atlantic lounges.' },
+    { t:'T5', name:'Terminal 5 — JetBlue hub', role:'Domestic + international', airlines:['JetBlue','Aer Lingus','Cape Air'], note:'Modern layout and fast security; connected by walkway to the TWA Hotel, JFK’s only on-airport hotel.' },
+    { t:'T7', name:'Terminal 7', role:'Select international carriers', airlines:['ANA','Icelandair','Condor'], note:'Smaller and less crowded, with compact navigation. Future redevelopment planned.' },
+    { t:'T8', name:'Terminal 8 — AA & BA', role:'Domestic + international · transatlantic hub', airlines:['American Airlines','British Airways','Qantas','Iberia','Finnair'], note:'American’s primary JFK hub, co-located with British Airways for oneworld connections. Flagship Lounge, Admirals Club, BA Chelsea Lounge.' },
+  ]},
+  LHR: { note:'Terminal 1 closed permanently in 2015. T2 ↔ T3 is a 10–15 min walk; T2/T3 ↔ T5 is 5–7 min by Heathrow Express or Elizabeth Line; T4 sits on a separate campus reached by a 20–25 min shuttle bus.', list:[
+    { t:'T2', name:'Terminal 2 — Queen’s Terminal', role:'Star Alliance hub · opened 2014', airlines:['Lufthansa','Air Canada','United','Singapore Airlines','Swiss','SAS','ANA','Turkish','Brussels Airlines'], note:'Lounges: United Club, Lufthansa Business & Senator, Plaza Premium. Heston Blumenthal’s Perfectionists’ Café.' },
+    { t:'T3', name:'Terminal 3 — long-haul hub', role:'Major long-haul: US, Australia, Middle East', airlines:['Virgin Atlantic','Emirates','Qantas','Delta','Cathay Pacific','Japan Airlines','American'], note:'Home to the Virgin Atlantic Clubhouse, plus Qantas, Emirates and Cathay Pacific lounges. Aerotel inside arrivals.' },
+    { t:'T4', name:'Terminal 4 — SkyTeam & Middle East', role:'Separate campus · shuttle required', airlines:['Qatar Airways','Etihad','KLM','Air France','Saudia','China Eastern','Korean Air'], note:'Allow 100–130 min for any T4 connection. Qatar Premium, Etihad and SkyTeam lounges; Hilton connected by walkway.' },
+    { t:'T5', name:'Terminal 5 — British Airways mega-hub', role:'Largest terminal · concourses T5A, T5B, T5C', airlines:['British Airways','Iberia'], note:'Concourses linked by automated transit. Concorde Room, Galleries First and Club lounges; Gordon Ramsay Plane Food.' },
+  ]},
+  LAX: { note:'Nine terminals in a U-shaped horseshoe. Most are linked by airside walkways (T2–T3, T3–TBIT, T4–TBIT, T4–T5, T5–T6, T6–T7/8); Terminal 1 has no airside connection — use the free A Shuttle.', list:[
+    { t:'T1', name:'Terminal 1', role:'Domestic', airlines:['Southwest'], note:'Recently renovated, fast security. No airside link to other terminals; closest to the LAX-it rideshare zone.' },
+    { t:'T2', name:'Terminal 2', role:'International + domestic', airlines:['Aer Lingus','Virgin Atlantic','WestJet','Delta'], note:'Connected to T3 by the Delta Sky Way walkway.' },
+    { t:'T3', name:'Terminal 3', role:'International + domestic · Delta', airlines:['Delta'], note:'Recently renovated; two-storey Delta Sky Club with outdoor Sky Deck. Connected to T2 and TBIT.' },
+    { t:'TB', name:'Terminal B (TBIT)', role:'Tom Bradley International Terminal', airlines:['Emirates','Qantas','British Airways','Lufthansa','Singapore Airlines','JAL','ANA','Qatar Airways'], note:'50+ international carriers and all international arrivals/CBP. Best lounges, dining and shopping at LAX; connected to T3 and T4.' },
+    { t:'T4', name:'Terminal 4', role:'International + domestic · American hub', airlines:['American Airlines'], note:'Flagship Lounge and Admirals Club. Direct airside walkway to TBIT (5–8 min).' },
+    { t:'T5', name:'Terminal 5', role:'Domestic', airlines:['JetBlue','Spirit','Frontier','Hawaiian'], note:'Budget and mid-range carriers. Connected to T4 and T6.' },
+    { t:'T6', name:'Terminal 6', role:'International + domestic', airlines:['Alaska Airlines','Delta','Air Canada'], note:'Alaska Lounge and Air Canada Maple Leaf Lounge. Connected to T5 and T7/8.' },
+    { t:'T7', name:'Terminal 7', role:'International + domestic · United hub', airlines:['United Airlines'], note:'United Club and Polaris Lounge. Connected to T6 and T8.' },
+    { t:'T8', name:'Terminal 8', role:'Domestic short-haul', airlines:['United Airlines'], note:'Extension of United’s T7 operation.' },
+  ]},
+  ORD: { note:'Terminals 1, 2 and 3 are connected airside — walk between them without re-clearing security. Terminal 5 is separate, reached by the ATS train (5 AM–10:30 PM) or a 24/7 shuttle bus. 191 gates across 9 concourses.', list:[
+    { t:'T1', name:'Terminal 1 — United hub', role:'Concourses B & C · 50 gates', airlines:['United Airlines','ANA','Lufthansa'], note:'Busiest terminal at ORD. United Club (B6, B18, C16) and United Polaris Lounge (C18).' },
+    { t:'T2', name:'Terminal 2', role:'Concourses E & F · 41 gates', airlines:['Delta','Air Canada','Alaska Airlines','United Express'], note:'CTA Blue Line station in the basement (24/7, $5 to the Loop) and the connected Hilton — the only on-airport hotel. To be replaced by the new Global Terminal.' },
+    { t:'T3', name:'Terminal 3 — American hub', role:'Concourses G, H, K, L · 79 gates · largest', airlines:['American Airlines','JetBlue','Spirit','British Airways'], note:'Best dining at ORD (65+ outlets). Admirals Clubs, Flagship Lounge and the Amex Centurion Lounge; Yoga Room on the mezzanine.' },
+    { t:'T5', name:'Terminal 5 — international', role:'Concourse M · 21 gates · 24-hour security', airlines:['Emirates','Qatar Airways','Turkish Airlines','Air France','KLM','Korean Air','Southwest','Frontier'], note:'All international arrivals clear US customs here. Swissport Lounge accepts Priority Pass. Being expanded with 10 new gates.' },
+  ]},
+  DXB: { note:'T1 and T3 are interconnected and both have Dubai Metro Red Line stations; T2 has no metro and needs a 20–30 min shuttle bus. Within T3, an airport train links Concourses A, B and C.', list:[
+    { t:'T1', name:'Terminal 1 — international hub', role:'Concourse D · ~20M passengers/yr', airlines:['Air France','Lufthansa','Qatar Airways','KLM','British Airways','Thai','Cathay Pacific'], note:'60+ global carriers. Marhaba, Plaza Premium and Ahlan lounges; Smart Gate immigration; metro access.' },
+    { t:'T2', name:'Terminal 2 — regional & low-cost', role:'Gates F1–F6 · ~10M passengers/yr', airlines:['FlyDubai','GCC budget & charter carriers'], note:'GCC, Middle East, South Asia and CIS routes. FlyDubai Business Lounge; compact with fast boarding. Shuttle bus only.' },
+    { t:'T3', name:'Terminal 3 — Emirates mega-terminal', role:'Concourses A, B, C · ~60M passengers/yr', airlines:['Emirates','Qantas'], note:'One of the largest terminals on earth. Concourse A was the world’s first A380-only concourse; Emirates First & Business lounges and the airside Dubai International Airport Hotel (no immigration needed).' },
+  ]},
+  CDG: { note:'Three terminal complexes; Terminal 2 splits into 2A–2G. The free CDGVAL shuttle links T1, T3 and Terminal 2’s TGV-RER station every 4 minutes, 24/7. Terminal 2G needs a dedicated bus from 2F — allow 25–30 min.', list:[
+    { t:'T1', name:'Terminal 1', role:'Star Alliance · international', airlines:['United Airlines','Swiss','TAP Portugal','Copa Airlines'], note:'Original circular satellite terminal, renovated retail. Lufthansa Senator Lounge and Priority Pass lounges. CDGVAL access.' },
+    { t:'2E', name:'Terminal 2E — Halls K, L, M', role:'Air France long-haul · best facilities', airlines:['Air France','Delta','Korean Air'], note:'Finest dining and duty-free at CDG, Air France La Première lounge and the airside YOTELAIR hotel.' },
+    { t:'2F', name:'Terminal 2F', role:'Air France medium-haul · European', airlines:['Air France','easyJet','Transavia'], note:'Direct airside link to 2E for international-to-Schengen connections. 24-hour medical centre.' },
+    { t:'2A', name:'Terminals 2A & 2C', role:'Schengen & regional European', airlines:['Air France','Corsair'], note:'2A and 2C are walkable in 5–7 minutes and usually have shorter security queues than 2E/2F.' },
+    { t:'T3', name:'Terminal 3', role:'Low-cost & charter', airlines:['Vueling','Ryanair','Wizz Air'], note:'Basic facilities and very limited food. Connected to Terminal 1 by CDGVAL — allow extra transfer time.' },
+  ]},
 };
 const COUNTRY_CC = {
   'United Kingdom':'gb','United States':'us','UAE':'ae','United Arab Emirates':'ae','Singapore':'sg',
@@ -257,8 +312,8 @@ function CardPortfolioGround() {
         <span class="hdr-badge hdr-badge-blue">$1.5B</span>
       </div>
     </div>
-    <div class="px-4 py-3 shrink-0">
-      <div class="rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-center">
+    <div class="px-4 py-3 shrink-0 flex justify-center">
+      <div class="rounded-lg border border-blue-100 bg-blue-50 px-8 py-3 text-center" style="min-width:180px">
         <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Total Exposure</div>
         <div style="font-size:26px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$1.5B</div>
       </div>
@@ -409,61 +464,73 @@ function CardGeneralInfo() {
   const iconTerminal = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.95 9.84173C24.838 9.43162 24.5684 9.0824 24.2001 8.87012C23.8317 8.65785 23.3944 8.59972 22.9834 8.7084L17.3167 10.2251L9.91671 3.3584L7.86671 3.9084L12.3 11.5584L6.98337 12.9751L4.88337 11.3417L3.33337 11.7584L6.10004 16.5584L23.8 11.8251C24.6667 11.5751 25.1667 10.6917 24.95 9.84173ZM35 16.6417L33.3334 19.9751H25L23.3334 16.6417L25 14.9751H28.3334V11.6417H30V14.9751H33.3334L35 16.6417ZM36.6667 33.3084V36.6417H3.33337V33.3084H25V21.6417H33.3334V33.3084H36.6667Z" fill="#153F5E"></path></svg>`;
   const iconGate = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M33.65 6.66675H6.66671C4.83337 6.66675 3.35004 8.16675 3.35004 10.0001V16.6667C5.18337 16.6667 6.66671 18.1667 6.66671 20.0001C6.66671 21.8334 5.18337 23.3334 3.33337 23.3334V30.0001C3.33337 31.8334 4.83337 33.3334 6.66671 33.3334H33.3334C35.1667 33.3334 36.6667 31.8334 36.6667 30.0001V10.0001C36.6667 8.16675 35.3167 6.66675 33.65 6.66675ZM29.55 22.1667L14.7834 26.1001L12.0167 21.3001L13.5667 20.8834L15.6667 22.5334L19.65 21.4667L15.65 14.5334L17.9834 13.9001L24.6667 20.1334L28.7334 19.0501C29.1444 18.9414 29.5817 18.9995 29.9501 19.2118C30.3184 19.4241 30.588 19.7733 30.7 20.1834C30.8028 20.5986 30.7403 21.0374 30.5258 21.4074C30.3112 21.7774 29.9614 22.0497 29.55 22.1667Z" fill="#153F5E"></path></svg>`;
   const iconRunway = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.9445 36.4671C19.4986 36.0192 19.3155 35.3277 19.2395 34.4235L15.3301 35.3045C15.1136 35.3896 15.024 35.2936 15.004 35.0976L15.0788 34.1574C15.1149 34.0079 15.1884 33.8867 15.3218 33.8106L18.7768 31.3552L18.5725 27.6953L8.93509 29.8813C8.70437 29.9413 8.59481 29.8562 8.63219 29.5952L8.79975 28.1039L18.3998 23.0442L18.247 19.5415C18.3475 18.1565 18.7826 17.1466 19.4715 16.729C19.853 16.4989 20.0515 16.4822 20.4318 16.6755C21.1768 17.0545 21.6479 18.0927 21.7529 19.5415L21.6002 23.0442L31.2002 28.1039L31.3678 29.5952C31.4051 29.8562 31.2956 29.9413 31.0648 29.8813L21.4281 27.6953L21.2232 31.3552L24.6782 33.8106C24.8116 33.8867 24.8857 34.0079 24.9211 34.1574L24.9959 35.0976C24.9759 35.2936 24.8863 35.3896 24.6704 35.3045L20.7604 34.4235C20.6844 35.3309 20.5007 36.0231 20.0502 36.4717C20.0083 36.5135 19.9845 36.5065 19.9445 36.4671ZM8.83906 26.4212L14.7482 3.5H15.9301L10.9194 25.3243L8.83906 26.4212ZM20.3944 3.5L20.4492 5.61901H19.4019L19.4921 3.5H20.3944ZM19.0365 12.2126H20.8133L20.9879 15.2964H20.9634C20.5929 15.1262 20.2584 15.0521 19.8659 15.0753C19.5604 15.094 19.2981 15.1675 19.0268 15.2964H18.8947L19.0365 12.2126ZM19.3761 6.93824H20.5168L20.7147 10.459H19.1686L19.3761 6.93824ZM25.3645 3.5L31.0378 26.3561L29.0593 25.3133L24.0969 3.5L25.3645 3.5Z" fill="#153F5E"></path></svg>`;
-  const icao = AIRPORT.icao || AIRPORT.code;
   const D = AIRPORT_DETAILS[AIRPORT.code] || {};
+  const icao = D.icao || AIRPORT.icao || '—';
   const terminals = D.terminals ?? AIRPORT.terminals ?? '—';
   const gates = D.gates ?? AIRPORT.gates ?? '—';
   const runways = D.runways ?? AIRPORT.runways ?? '—';
+  const TI = TERMINAL_INFO[AIRPORT.code];
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="height:493px;">
     <div class="px-4 py-3 border-b border-ink-100 shrink-0">
       <div class="text-sm font-semibold text-ink-900">General Information</div>
     </div>
     <div class="flex-1 overflow-y-auto scroll-thin p-4">
-      <div class="grid grid-cols-3 gap-2 mb-4 text-center">
-        <div class="flex flex-col items-center gap-1">
-          ${iconTerminal}
-          <div class="text-xl font-bold text-ink-900">${terminals}</div>
-          <div class="text-[11px] text-ink-500">Terminals</div>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-          ${iconGate}
-          <div class="text-xl font-bold text-ink-900">${gates}</div>
-          <div class="text-[11px] text-ink-500">Gates</div>
-        </div>
-        <div class="flex flex-col items-center gap-1">
-          ${iconRunway}
-          <div class="text-xl font-bold text-ink-900">${runways}</div>
-          <div class="text-[11px] text-ink-500">Runways</div>
-        </div>
+      <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;display:flex;" class="mb-4">
+        ${[['Terminals',terminals,iconTerminal],['Gates',gates,iconGate],['Runways',runways,iconRunway]].map(([l,v,ic],i)=>`
+        <div style="flex:1;padding:10px 8px;text-align:center;${i<2?'border-right:1px solid #dbeafe;':''}">
+          <div class="flex justify-center mb-1">${ic}</div>
+          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:3px;">${l}</div>
+          <div style="font-size:20px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${v}</div>
+        </div>`).join('')}
       </div>
-      <div class="border-t border-ink-100 pt-3 flex flex-col gap-3 text-sm">
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">IATA CODE:</div>
-            <div class="font-semibold text-ink-900">${AIRPORT.code}</div>
-          </div>
-          <div>
-            <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">ICAO CODE:</div>
-            <div class="font-semibold text-ink-900">${icao}</div>
-          </div>
+      <div class="border-t border-ink-100 pt-3 grid grid-cols-3 gap-x-4 gap-y-3 text-sm">
+        <div>
+          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">IATA</div>
+          <div class="font-semibold text-ink-900">${AIRPORT.code}</div>
         </div>
         <div>
-          <div class="text-[11px] text-ink-500 font-medium mb-0.5">Location:</div>
-          <div class="font-semibold text-ink-900" style="display:inline-flex;align-items:center;gap:5px;">${(AIRPORT.cc || COUNTRY_CC[AIRPORT.country]) ? `<img src="https://flagcdn.com/w20/${AIRPORT.cc || COUNTRY_CC[AIRPORT.country]}.png" width="16" style="border-radius:2px;vertical-align:middle;flex-shrink:0;" />` : ''}<span>${AIRPORT.country || 'Unknown'}</span></div>
+          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">ICAO</div>
+          <div class="font-semibold text-ink-900">${icao}</div>
         </div>
         <div>
-          <div class="text-[11px] text-ink-500 font-medium mb-0.5">Elevation:</div>
+          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Elevation</div>
           <div class="font-semibold text-ink-900">${AIRPORT.elev || 'N/A'}</div>
         </div>
+        <div class="col-span-2 min-w-0">
+          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Location</div>
+          <div class="font-semibold text-ink-900" style="display:flex;align-items:center;gap:5px;">${(AIRPORT.cc || COUNTRY_CC[AIRPORT.country]) ? `<img src="https://flagcdn.com/w20/${AIRPORT.cc || COUNTRY_CC[AIRPORT.country]}.png" width="16" style="border-radius:2px;flex-shrink:0;" />` : ''}<span style="text-wrap:pretty;">${AIRPORT.country || 'Unknown'}</span></div>
+        </div>
         <div>
-          <div class="text-[11px] text-ink-500 font-medium mb-0.5">Area:</div>
+          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Area</div>
           <div class="font-semibold text-ink-900">N/A</div>
         </div>
       </div>
       <div class="border-t border-ink-100 mt-4 pt-3">
+        <div class="text-sm font-semibold text-ink-900 mb-2">Weather</div>
+        <div id="ad-weather" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;">
+          <div class="text-[11px] text-ink-500">Loading current conditions…</div>
+        </div>
+      </div>
+      <div class="border-t border-ink-100 mt-4 pt-3">
         <div class="text-sm font-semibold text-ink-900 mb-2">Terminals</div>
-        <div class="text-xs text-ink-500">Information not available for this airport.</div>
+        ${TI ? `
+        <div class="flex flex-col" style="gap:8px;">
+          ${TI.list.map(t => `
+          <div style="display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:start;">
+            <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:6px;padding:4px 0;text-align:center;font-size:11px;font-weight:700;color:#153F5E;">${t.t}</div>
+            <div>
+              <div class="text-xs font-semibold text-ink-900">${t.name}</div>
+              <div class="text-[11px] text-ink-500 mb-1">${t.role}</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                ${t.airlines.map(a => `<span style="background:#f1f5f9;border-radius:999px;padding:2px 7px;font-size:10px;font-weight:500;color:#475569;">${a}</span>`).join('')}
+              </div>
+              ${t.note ? `<div class="text-[11px] text-ink-500 mt-1" style="line-height:1.4;">${t.note}</div>` : ''}
+            </div>
+          </div>`).join('')}
+        </div>
+        ${TI.note ? `<div class="text-[11px] text-ink-500 mt-3" style="line-height:1.45;">${TI.note}</div>` : ''}
+        ` : `<div class="text-xs text-ink-500">Information not available for this airport.</div>`}
       </div>
     </div>
   </div>`;
@@ -762,6 +829,114 @@ function wireInteractions() {
   positionTabPills();
 }
 
+const WX_CODES = {0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Freezing fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',56:'Freezing drizzle',57:'Freezing drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',66:'Freezing rain',67:'Freezing rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Rain showers',82:'Heavy showers',85:'Snow showers',86:'Snow showers',95:'Thunderstorm',96:'Thunderstorm, hail',99:'Thunderstorm, hail'};
+/* Primary runway magnetic heading per airport, for crosswind calculation */
+const RUNWAY_HDG = { LHR:270, JFK:40, DXB:300, SIN:20, ORD:280, VIE:290, FRA:250, AMS:180, HND:340, IKA:290, SZX:150, PEK:180, PVG:160, RGN:30, FIH:60, PAP:90, CPT:10, SYD:160, MEL:160, BKK:190, MEX:50, CDG:260, LAX:250 };
+function windDir(deg) {
+  const pts = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
+  return pts[Math.round(deg / 22.5) % 16];
+}
+/* Weather glyphs, sized by the size argument */
+function wxIcon(code, isDay, size) {
+  const S = size || 18, st = 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+  const open = '<svg width="' + S + '" height="' + S + '" viewBox="0 0 24 24" ' + st + '>';
+  const sun = '<circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2M12 19.4v2M2.6 12h2M19.4 12h2M5.4 5.4l1.4 1.4M17.2 17.2l1.4 1.4M18.6 5.4l-1.4 1.4M6.8 17.2l-1.4 1.4"/>';
+  const moon = '<path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>';
+  const cloud = '<path d="M6.5 18h11a3.5 3.5 0 0 0 .3-7 5.5 5.5 0 0 0-10.6-1.2A3.6 3.6 0 0 0 6.5 18z"/>';
+  const cloudSun = (isDay ? '<circle cx="8" cy="7.5" r="2.6"/><path d="M8 2.8v1.4M3.3 7.5H4.7M4.5 4l1 1"/>' : '<path d="M10.6 8.2A4.6 4.6 0 0 1 6.2 3a4.9 4.9 0 1 0 5.9 6"/>') + '<path d="M9 19h8.5a3.2 3.2 0 0 0 .2-6.4A5 5 0 0 0 8.4 11.6 3.4 3.4 0 0 0 9 19z"/>';
+  const rain = cloud + '<path d="M9 20.5l-.8 2M13 20.5l-.8 2M17 20.5l-.8 2"/>';
+  const snow = cloud + '<path d="M9 21h.01M13 21.6h.01M17 21h.01"/>';
+  const fog = '<path d="M5 9h14M4 13h16M6 17h12M8 21h9"/>';
+  const storm = cloud + '<path d="M12.5 20l-2.5 4h3l-1 3 3.5-4.6h-2.6l1.4-2.4z"/>';
+  const g = (code === 0 || code === 1) ? (isDay ? sun : moon)
+    : code === 2 ? cloudSun
+    : code === 3 ? cloud
+    : (code === 45 || code === 48) ? fog
+    : (code >= 95) ? storm
+    : ((code >= 71 && code <= 77) || code === 85 || code === 86) ? snow
+    : rain;
+  return open + g + '</svg>';
+}
+async function loadWeather() {
+  const el = document.getElementById('ad-weather');
+  if (!el) return;
+  const D = AIRPORT_DETAILS[AIRPORT.code] || {};
+  const lat = D.lat ?? AIRPORT.lat, lng = D.lng ?? AIRPORT.lng;
+  if (lat == null || lng == null) { el.innerHTML = '<div class="text-[11px] text-ink-500" style="padding:10px 12px;">Location unavailable for this airport.</div>'; return; }
+  try {
+    const url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lng
+      + '&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,visibility,is_day'
+      + '&hourly=temperature_2m,weather_code,is_day&forecast_hours=7&timezone=auto&wind_speed_unit=kn';
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('http ' + r.status);
+    const j = await r.json();
+    const c = j.current || {}, hr = j.hourly || {};
+    const day = c.is_day !== 0;
+    const temp = c.temperature_2m != null ? Math.round(c.temperature_2m) : null;
+    const spd = c.wind_speed_10m != null ? Math.round(c.wind_speed_10m) : null;
+    const dir = c.wind_direction_10m;
+    const vis = c.visibility != null ? (c.visibility >= 1000 ? Math.round(c.visibility / 1000) + ' km' : Math.round(c.visibility) + ' m') : '-';
+
+    /* Crosswind against the primary runway */
+    const rwy = RUNWAY_HDG[AIRPORT.code];
+    let xw = '';
+    if (rwy != null && spd != null && dir != null) {
+      const rad = (dir - rwy) * Math.PI / 180;
+      const cross = Math.abs(spd * Math.sin(rad)), head = spd * Math.cos(rad);
+      const tone = cross >= 25 ? { bg:'#fee2e2', fg:'#b91c1c', dot:'#dc2626' }
+        : cross >= 15 ? { bg:'#fef3c7', fg:'#b45309', dot:'#d97706' }
+        : { bg:'#dcfce7', fg:'#15803d', dot:'#16a34a' };
+      const rl = String(Math.round(rwy / 10)).padStart(2, '0');
+      xw = '<div style="display:flex;align-items:center;gap:7px;background:' + tone.bg + ';border-radius:6px;padding:6px 9px;margin-top:9px;">'
+        + '<span style="width:6px;height:6px;border-radius:999px;background:' + tone.dot + ';flex-shrink:0;"></span>'
+        + '<span style="font-size:10.5px;font-weight:700;color:' + tone.fg + ';">' + Math.round(cross) + ' kt crosswind</span>'
+        + '<span style="font-size:10px;color:' + tone.fg + ';opacity:.85;margin-left:auto;white-space:nowrap;">RWY ' + rl + ' &middot; ' + (head >= 0 ? 'head' : 'tail') + ' ' + Math.abs(Math.round(head)) + ' kt</span></div>';
+    }
+
+    /* Next 6 hours */
+    const times = hr.time || [];
+    let strip = '';
+    if (times.length > 2) {
+      const n = Math.min(7, times.length);
+      const temps = hr.temperature_2m.slice(1, n).map(t => Math.round(t));
+      const lo = Math.min.apply(null, temps), hi = Math.max.apply(null, temps), span = (hi - lo) || 1;
+      const pts = temps.map((t, i) => (i / ((temps.length - 1) || 1) * 100).toFixed(1) + ',' + (22 - (t - lo) / span * 18).toFixed(1)).join(' ');
+      strip = '<div style="margin-top:10px;padding-top:9px;border-top:1px solid ' + (day ? '#dbeafe' : '#dde3ec') + ';">'
+        + '<div class="text-[10px] font-semibold uppercase tracking-micro" style="color:#64748b;margin-bottom:5px;">Next 6 hours</div>'
+        + '<svg viewBox="0 0 100 26" preserveAspectRatio="none" style="width:100%;height:20px;display:block;color:var(--brand-600,#2563eb);overflow:visible;"><polyline points="' + pts + '" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>'
+        + '<div style="display:flex;justify-content:space-between;gap:2px;margin-top:3px;">'
+        + temps.map((t, i) => {
+            const hh = String(times[i + 1]).slice(11, 13);
+            return '<div style="flex:1;text-align:center;min-width:0;">'
+              + '<div style="color:#94a3b8;font-size:9.5px;line-height:1.3;">' + hh + '</div>'
+              + '<div style="color:#64748b;display:flex;justify-content:center;">' + wxIcon(hr.weather_code[i + 1], hr.is_day[i + 1] !== 0, 13) + '</div>'
+              + '<div style="font-size:10px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;line-height:1.3;">' + t + '&deg;</div></div>';
+          }).join('')
+        + '</div></div>';
+    }
+
+    const stat = (l, v) => '<div style="min-width:0;"><div class="text-[10px] font-medium uppercase tracking-micro" style="color:#94a3b8;line-height:1.3;">' + l + '</div>'
+      + '<div class="text-[11.5px] font-semibold text-ink-900" style="line-height:1.35;text-wrap:pretty;">' + v + '</div></div>';
+
+    el.style.background = day ? 'linear-gradient(180deg,#f0f7ff,#f8fafc)' : 'linear-gradient(180deg,#eef1f6,#f8fafc)';
+    el.style.border = '1px solid ' + (day ? '#dbeafe' : '#dde3ec');
+    el.innerHTML = '<div style="display:flex;align-items:center;gap:10px;">'
+      + '<div style="color:' + (day ? '#2d7ffb' : '#475569') + ';flex-shrink:0;">' + wxIcon(c.weather_code, day, 36) + '</div>'
+      + '<div style="min-width:0;">'
+      + '<div style="font-size:26px;font-weight:700;color:#0f172a;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;">' + (temp != null ? temp + '&deg;C' : '-') + '</div>'
+      + '<div style="font-size:11px;color:#475569;line-height:1.4;margin-top:3px;text-wrap:pretty;">' + (WX_CODES[c.weather_code] || '-')
+      + (c.apparent_temperature != null ? ' &middot; feels ' + Math.round(c.apparent_temperature) + '&deg;' : '') + '</div></div></div>'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;margin-top:10px;">'
+      + stat('Wind', spd != null ? spd + ' kt ' + windDir(dir || 0) : '-')
+      + stat('Visibility', vis)
+      + stat('Humidity', c.relative_humidity_2m != null ? c.relative_humidity_2m + '%' : '-')
+      + stat('Local time', c.time ? String(c.time).slice(11, 16) : '-')
+      + '</div>' + xw + strip;
+  } catch (e) {
+    el.innerHTML = '<div class="text-[11px] text-ink-500" style="padding:10px 12px;">Current conditions unavailable.</div>';
+  }
+}
+
 window.render = function() {
   document.getElementById('app').innerHTML = `
     ${SC.Sidebar()}
@@ -774,6 +949,7 @@ window.render = function() {
   SC.wireChrome();
   wireInteractions();
   setTimeout(initMap, 50);
+  loadWeather();
 };
 window.render();
 </script>
