@@ -74,6 +74,9 @@
   .pol-table tr:hover td { background:#f8fafc; }
   .pol-table td.lnk { color:#2563eb; font-weight:600; cursor:pointer; }
   .pol-table td.lnk:hover { color:#1d4ed8; }
+  .pol-table td.lnk a, .pcard-sub a.lnk { color:inherit; text-decoration:none; }
+  .pol-table td.lnk a:hover, .pcard-sub a.lnk:hover { color:#1d4ed8; text-decoration:underline; }
+  .pcard-sub a.lnk { color:#2563eb; font-weight:600; }
   /* Mobile policy cards */
   .pol-cards { display:none; }
   .pcard { padding:14px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
@@ -932,7 +935,7 @@ function PolicySection() {
             <tr>
               <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></td>
               <td class="lnk">${p.num}</td>
-              <td class="lnk">${p.vessel}</td>
+              <td class="lnk"><a href="VesselDetails.html">${p.vessel}</a></td>
               <td style="font-weight:600;">${p.exp}</td>
               <td>${p.tiv}</td>
               <td style="color:#64748b;font-size:11.5px;">${p.period}</td>
@@ -954,7 +957,7 @@ function PolicySection() {
           <div class="pcard-top">
             <div class="pcard-id">
               <span class="pcard-title">${p.num}</span>
-              <div class="pcard-sub">${p.vessel}</div>
+              <div class="pcard-sub"><a href="VesselDetails.html" class="lnk">${p.vessel}</a></div>
             </div>
             <span class="stat-badge" style="background:#eff6ff;color:#1d4ed8;font-size:11px;">${p.type}</span>
           </div>

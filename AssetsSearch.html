@@ -79,11 +79,11 @@
   .range-track { position: relative; height: 20px; }
   .range-track::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 4px; background: #e2e8f0; border-radius: 999px; }
   .range-track .range-fill { position: absolute; top: 8px; height: 4px; background: var(--brand-600, #2563eb); border-radius: 999px; z-index: 1; }
-  .range-track input[type=range] { position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; background: none; pointer-events: none; -webkit-appearance: none; appearance: none; z-index: 2; }
-  .range-track input[type=range]::-webkit-slider-runnable-track { height: 4px; margin-top: 8px; background: transparent; border-radius: 999px; }
+  .range-track input[type=range] { position: absolute; top: 2px; left: 0; width: 100%; height: 16px; margin: 0; background: none; pointer-events: none; -webkit-appearance: none; appearance: none; z-index: 2; }
+  .range-track input[type=range]::-webkit-slider-runnable-track { height: 16px; margin-top: 0; background: transparent; border-radius: 999px; }
   .range-track input[type=range]::-moz-range-track { height: 4px; background: transparent; border-radius: 999px; }
-  .range-track input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; pointer-events: auto; width: 15px; height: 15px; margin-top: -5.5px; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
-  .range-track input[type=range]::-moz-range-thumb { pointer-events: auto; width: 15px; height: 15px; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
+  .range-track input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; box-sizing: border-box; pointer-events: auto; width: 16px; height: 16px; margin-top: 0; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
+  .range-track input[type=range]::-moz-range-thumb { box-sizing: border-box; pointer-events: auto; width: 16px; height: 16px; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
   .range-ends { display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-top: 8px; }
   /* --- Filter drawer --- */
   .filter-drawer { position: fixed; inset: 0; z-index: 300; visibility: hidden; }
