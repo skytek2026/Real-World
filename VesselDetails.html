@@ -154,10 +154,45 @@
 const SC = window.sharedChrome;
 
 /* ----------- STATE ----------- */
+const AFFIL_ENTITIES = [
+  { k:'Owner',                name:'HS Star Limited',                tone:'ok',      status:'No issues found',            detail:'No sanctions identified across the seven sources we check.' },
+  { k:'Group Beneficial',     name:'Hennesea Holdings Limited',      tone:'bad',     status:'Currently sanctioned',       detail:'Active sanction in force.',
+    hits:[ { source:'US OFAC', state:'Active', added:'added Jan 18, 2024', text:'Company found on OFAC SDN sanction list under the name `HENNESEA HOLDINGS LIMITED (IMO 6466391)` (imposed on 2024-01-18)' } ],
+    fleet:[
+      { name:'Akkord',  imo:'9259599', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Aksel',   imo:'9410894', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Akvilon', imo:'9249087', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Alyssum', imo:'9314818', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Amur',    imo:'9296167', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Anadyr',  imo:'9372135', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Andizhan',imo:'9288871', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Argun',   imo:'9412416', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Astrakhan',imo:'9331246',type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+    ] },
+  { k:'Operator',             name:'Hennesea Tankers Corporation - FZCO', tone:'warn', status:'Linked to sanctioned vessels', detail:'Company itself is clear, but other vessels it manages are sanctioned.',
+    fleet:[
+      { name:'AKCENT',  imo:'9381732', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Akkord',  imo:'9259599', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Aksel',   imo:'9410894', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Akvilon', imo:'9249087', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Alyssum', imo:'9314818', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Amur',    imo:'9296167', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Anadyr',  imo:'9372135', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Andizhan',imo:'9288871', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Argun',   imo:'9412416', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+    ] },
+  { k:'Third Party Operator', name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No counterparty recorded — screening not possible.' },
+  { k:'Technical Manager',    name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No counterparty recorded — screening not possible.' },
+  { k:'DOC Company',          name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No counterparty recorded — screening not possible.' },
+  { k:'P&I club',             name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No cover confirmed for the current period.' },
+  { k:'Classification society', name:'Lloyd\'s Register',            tone:'ok',      status:'No issues found',            detail:'Class in force; no outstanding conditions recorded.' },
+];
+
 let state = {
   topTab: 'Vessel Details',
   topRightTab: 'Risk Score',
   sectionTab: 'Inspection Data',
+  affilTab: 'Owner',
   bottomLeftTab: 'Environmental Rating',
   timelinePos: 0.5,
   casualtyExpanded: new Set([0]),
@@ -408,7 +443,7 @@ function iconTabs(tabs, active, attr) {
 }
 
 function positionTabPills() {
-  requestAnimationFrame(() => {
+  const apply = () => {
     document.querySelectorAll('.ds-tabs').forEach(group => {
       const pill   = group.querySelector('[data-tab-pill]');
       const active = group.querySelector('.ds-tab[aria-selected="true"]');
@@ -418,9 +453,14 @@ function positionTabPills() {
       if (!aRect.width) return;
       pill.style.width     = aRect.width + 'px';
       pill.style.transform = `translateX(${aRect.left - gRect.left}px)`;
-      requestAnimationFrame(() => pill.classList.remove('is-init'));
+      void pill.offsetWidth;
+      setTimeout(() => pill.classList.remove('is-init'), 0);
     });
-  });
+  };
+  apply();
+  setTimeout(apply, 60);
+  if (typeof requestAnimationFrame === 'function') requestAnimationFrame(apply);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
 }
 
 /* ----------- CARDS ----------- */
@@ -2673,35 +2713,97 @@ function InspectionTable() {
     </div>
     <div class="overflow-x-auto">
       ${state.sectionTab === 'Affiliations' ? `
-      <table class="w-full text-xs min-w-[900px]">
-        <thead class="bg-ink-50">
-          <tr>
-            <th class="px-3 py-2 text-left">${sortHead('Association Type')}</th>
-            <th class="px-3 py-2 text-left">${sortHead('Entity Name')}</th>
-            <th class="px-3 py-2 text-left">${sortHead('Risk Category')}</th>
-            <th class="px-3 py-2 text-left">${sortHead('Jurisdiction')}</th>
-            <th class="px-3 py-2 text-left">${sortHead('Status')}</th>
-            <th class="px-3 py-2 text-right">${sortHead('Confidence')}</th>
-            <th class="px-3 py-2 text-right">${sortHead('Last Updated')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${ASSOCIATIONS.map((r, i) => {
-            const toneMap = { danger:'bg-red-100 text-red-700', warning:'bg-amber-100 text-amber-700', info:'bg-blue-100 text-blue-700', neutral:'bg-ink-100 text-ink-600', amber:'bg-yellow-100 text-yellow-700' };
-            const tone = toneMap[r.statusTone] || toneMap.neutral;
-            return `
-            <tr class="${i%2===0?'bg-white':'bg-ink-50'} hover:bg-brand-50 border-b border-ink-100 last:border-0">
-              <td class="px-3 py-2 font-semibold text-ink-900">${r.type}</td>
-              <td class="px-3 py-2 text-ink-700">${r.entity}</td>
-              <td class="px-3 py-2 text-ink-700">${r.risk}</td>
-              <td class="px-3 py-2 text-ink-700">${r.jurisdiction}</td>
-              <td class="px-3 py-2"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold ${tone}">${r.status}</span></td>
-              <td class="px-3 py-2 text-right font-semibold text-ink-900">${r.confidence}%</td>
-              <td class="px-3 py-2 text-right text-ink-600">${r.updated}</td>
-            </tr>`;
+      <div class="px-4 py-4">
+        <div class="flex items-center justify-between gap-3 mb-2">
+          <div class="text-sm font-semibold text-ink-900">Key findings</div>
+          <div class="text-[11px] text-ink-500">What this profile means at a glance</div>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          ${[
+            { label:'This Vessel', value:'Sanctioned', note:'Listed by 3 sources' },
+            { label:'Associated Companies Sanctioned', value:'1 of 4', note:'4 counterparties unknown · cannot be checked' },
+            { label:'Sanctioned Vessels in Associated Companies', value:'10 of 10', note:'Other vessels managed by the same companies — sanctioned ones flagged' },
+          ].map(f => `
+          <div class="rounded-lg border border-red-200 bg-red-50/60 border-t-[3px] border-t-red-600 px-4 py-3">
+            <div class="text-[11px] font-bold tracking-wider uppercase text-ink-600">${f.label}</div>
+            <div class="mt-1.5 flex items-center gap-2 text-red-700">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5h.01"/></svg>
+              <span class="text-2xl font-bold leading-none">${f.value}</span>
+            </div>
+            <div class="mt-2 text-xs text-ink-600">${f.note}</div>
+          </div>`).join('')}
+        </div>
+        <div class="mt-5 text-sm font-semibold text-ink-900">Ownership &amp; management</div>
+        <div class="mt-2 flex flex-wrap gap-1.5">
+          ${AFFIL_ENTITIES.map(e => {
+            const on = state.affilTab === e.k;
+            const dot = e.tone === 'ok' ? '#16a34a' : e.tone === 'bad' ? '#dc2626' : e.tone === 'warn' ? '#ea580c' : '';
+            const dotEl = dot
+              ? `<span class="w-2 h-2 rounded-full shrink-0" style="background:${dot}"></span>`
+              : `<span class="w-2 h-2 rounded-full shrink-0 border-[1.5px] border-ink-300"></span>`;
+            return `<button data-affil-tab="${e.k}" class="inline-flex items-center gap-2 h-8 px-3.5 rounded-full border text-xs font-semibold transition-colors ${on ? 'border-brand-600 bg-brand-50 text-brand-700' : 'border-ink-200 bg-white text-ink-600 hover:bg-ink-50'}">${dotEl}${e.k}</button>`;
           }).join('')}
-        </tbody>
-      </table>` : state.sectionTab === 'Sanction Compliance' ? `
+        </div>
+        ${(() => {
+          const e = AFFIL_ENTITIES.find(x => x.k === state.affilTab) || AFFIL_ENTITIES[0];
+          const ok = e.tone === 'ok';
+          const c = ok ? { fg:'#15803d', icon:'M9 12.5l2 2 4-4.5' } : e.tone === 'bad' ? { fg:'#b91c1c', icon:'M12 8v5M12 16.5h.01' } : e.tone === 'warn' ? { fg:'#c2410c', icon:'M12 8v5M12 16.5h.01' } : { fg:'#475569', icon:'M12 8v5M12 16.5h.01' };
+          const panel = e.tone === 'warn' ? 'border-orange-200 bg-orange-50/50 border-l-[3px] border-l-orange-500' : e.tone === 'bad' ? 'border-red-200 bg-red-50/40 border-l-[3px] border-l-red-600' : 'border-ink-200 bg-white';
+          const sanctionedCount = (e.fleet || []).filter(v => v.sanctioned).length;
+          const hits = e.hits ? `
+            <div class="mt-4 text-xs font-bold text-ink-900">Sanctions hits <span class="font-semibold text-ink-500">(${e.hits.length})</span></div>
+            <div class="mt-2 flex flex-col gap-2">
+              ${e.hits.map(hit => `
+              <div class="rounded-md border border-red-200 bg-red-100/50 px-3 py-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-bold text-red-700">${hit.source}</span>
+                  <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-600 text-white">${hit.state}</span>
+                  <span class="text-[11px] text-ink-600">${hit.added}</span>
+                </div>
+                <div class="mt-1 text-xs text-ink-700">${hit.text}</div>
+              </div>`).join('')}
+            </div>` : '';
+          const fleet = e.fleet ? `
+            <div class="mt-4 text-xs font-bold text-ink-900">Other vessels managed by this company <span class="font-semibold text-ink-500">(${e.fleet.length})</span> <span class="font-semibold text-red-700">· ${sanctionedCount} sanctioned</span></div>
+            <div class="mt-2 overflow-x-auto rounded-md border border-ink-200 bg-white">
+              <table class="w-full text-xs min-w-[680px]">
+                <thead class="bg-ink-50">
+                  <tr>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Vessel</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">IMO</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Type</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Flag</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${e.fleet.map(v => `
+                  <tr class="border-b border-ink-100 last:border-0 hover:bg-brand-50">
+                    <td class="px-3 py-2"><a href="VesselDetails.html" class="font-semibold ${v.sanctioned ? 'text-red-700' : 'text-brand-600'} hover:underline">${v.name}</a></td>
+                    <td class="px-3 py-2 font-mono text-ink-700">${v.imo}</td>
+                    <td class="px-3 py-2 text-ink-700">${v.type}</td>
+                    <td class="px-3 py-2 text-ink-700">${v.flag}</td>
+                    <td class="px-3 py-2">${v.sanctioned
+                      ? `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-100 text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-red-600"></span>Sanctioned</span>`
+                      : `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-green-100 text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>Clear</span>`}</td>
+                  </tr>`).join('')}
+                </tbody>
+              </table>
+            </div>` : '';
+          return `
+          <div class="mt-3 rounded-lg border ${panel} px-4 py-3">
+            <div class="text-xs text-ink-500">${e.k}</div>
+            <div class="mt-0.5 text-base font-bold text-ink-900">${e.name}</div>
+            <div class="mt-1.5 flex items-center gap-2 text-sm font-semibold" style="color:${c.fg}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="9"/><path d="${c.icon}"/></svg>
+              ${e.status}
+            </div>
+            <div class="mt-1.5 text-xs text-ink-600">${e.detail}</div>
+            ${hits}
+            ${fleet}
+          </div>`;
+        })()}
+      </div>` : state.sectionTab === 'Sanction Compliance' ? `
       <table class="w-full text-xs min-w-[800px]">
         <thead class="bg-ink-50">
           <tr>
@@ -2834,8 +2936,8 @@ function InspectionTable() {
             <th class="px-3 py-2 text-left">${sortHead('Port')}</th>
             <th class="px-3 py-2 text-left">${sortHead('PSC Organization')}</th>
             <th class="px-3 py-2 text-left">${sortHead('Type of Inspection')}</th>
-            <th class="px-3 py-2 text-right">${sortHead('Defects')}</th>
-            <th class="px-3 py-2 text-right">${sortHead('Detained')}</th>
+            <th class="px-3 py-2 text-left">${sortHead('Defects')}</th>
+            <th class="px-3 py-2 text-left">${sortHead('Detained')}</th>
           </tr>
         </thead>
         <tbody>
@@ -2851,14 +2953,14 @@ function InspectionTable() {
               <td class="px-3 py-2 text-ink-700"><a href="PortDetails.html" class="text-brand-600 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</td>
               <td class="px-3 py-2 text-ink-700">${r.psc}</td>
               <td class="px-3 py-2 text-ink-700">${r.type}</td>
-              <td class="px-3 py-2 text-right text-ink-700">${r.defects}</td>
-              <td class="px-3 py-2 text-right text-ink-700">${r.detained}</td>
+              <td class="px-3 py-2 text-left text-ink-700">${r.defects}</td>
+              <td class="px-3 py-2 text-left text-ink-700">${r.detained}</td>
             </tr>
           `).join('')}
         </tbody>
       </table>`}
     </div>
-    ${dsPagination({
+    ${state.sectionTab === 'Affiliations' ? '' : dsPagination({
       page: 1, totalPages: 2,
       totalItems: 6, perPage: 5,
       perPageOptions: [5, 10, 25],
@@ -3451,6 +3553,16 @@ function Content() {
       <div class="md:col-span-2" style="height:400px;">${PortCallsCard()}</div>
       <div class="md:col-span-4" style="height:400px;">${CasualtyRiskCardCopy8()}</div>
     </section>
+    <section>
+      ${InspectionTable()}
+    </section>
+    <section>
+      ${EnvironmentalRatingCard()}
+    </section>
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-3" style="min-height:500px;">
+      ${HistoricalEventsCard()}
+      ${VesselTrackingCard()}
+    </section>
     <div style="display:flex;justify-content:flex-start;">
       <button data-toggle-alt-designs style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#2d7ffb;font-family:inherit;padding:2px 0;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(${state.showAltDesigns?'90deg':'0deg'});transition:transform .15s;"><path d="M9 18l6-6-6-6"/></svg>
@@ -3471,16 +3583,6 @@ function Content() {
     <section class="grid grid-cols-1 md:grid-cols-12 gap-3">
       <div class="md:col-span-4" style="height:440px;">${CasualtyRiskCardCopy7()}</div>
     </section>` : ''}
-    <section>
-      ${InspectionTable()}
-    </section>
-    <section>
-      ${EnvironmentalRatingCard()}
-    </section>
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-3" style="min-height:500px;">
-      ${HistoricalEventsCard()}
-      ${VesselTrackingCard()}
-    </section>
   </div>`;
 }
 
@@ -3497,6 +3599,7 @@ window.render = function render() {
     ${SC.TweaksPanel()}
   `;
   SC.wireChrome();
+  positionTabPills();
   const wireTab = (attr, stateKey) => {
     document.querySelectorAll(`[${attr}]`).forEach(b => b.onclick = () => {
       const v = b.getAttribute(attr);
@@ -3544,6 +3647,7 @@ window.render = function render() {
   document.querySelectorAll('[data-sanctions-toggle-copy7]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy7 = !state.withSanctionsCopy7; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy8]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy8 = !state.withSanctionsCopy8; render(); }; });
   wireTab('data-section-tab',     'sectionTab');
+  document.querySelectorAll('[data-affil-tab]').forEach(b => { b.onclick = () => { state.affilTab = b.getAttribute('data-affil-tab'); render(); }; });
   wireTab('data-bottom-left-tab', 'bottomLeftTab');
   const sectionTabSel = document.getElementById('section-tab-mobile-sel');
   if (sectionTabSel) sectionTabSel.onchange = () => { state.sectionTab = sectionTabSel.value; render(); };
