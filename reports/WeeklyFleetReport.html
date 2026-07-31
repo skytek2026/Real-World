@@ -131,7 +131,17 @@
   .vd-mapbtn[aria-expanded="true"] svg.chev{transform:rotate(180deg)}
   .vd-mapwrap{display:none;padding:0 22px 18px}
   .vd-mapwrap.is-open{display:block}
-  .vd-map{height:320px;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;background:#eef2f7}
+  .vd-map{position:relative;height:320px;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;background:#eef2f7}
+  .vd-maptools{position:absolute;top:10px;right:10px;z-index:1000}
+  .vd-mapbtn-ico{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;color:#334155;cursor:pointer;box-shadow:0 1px 3px rgba(15,23,42,.12);padding:0}
+  .vd-mapbtn-ico:hover{background:#f8fafc}
+  .vd-layers-menu{position:absolute;top:0;right:calc(100% + 8px);z-index:1001;width:160px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 24px rgba(15,23,42,.16);overflow:hidden;padding:4px 0}
+  .vd-layers-menu.hidden{display:none}
+  .vd-layers-menu button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:8px;padding:7px 12px;font-family:inherit;font-size:12.5px;color:#334155;background:none;border:0;cursor:pointer}
+  .vd-layers-menu button:hover{background:#f8fafc}
+  .vd-layers-menu button[aria-checked="true"]{font-weight:700;color:#0f172a}
+  .vd-layers-menu .ck{color:var(--brand-600,#2563eb);opacity:0}
+  .vd-layers-menu button[aria-checked="true"] .ck{opacity:1}
   .vd-maplegend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:8px;font-size:11px;color:#64748b}
   .vd-maplegend .lg{display:inline-flex;align-items:center;gap:6px}
   .vd-maplegend .sw{width:14px;height:3px;border-radius:2px;background:var(--brand-600,#2563eb)}
@@ -200,6 +210,14 @@
   .hra-tl .span.open{border-top:0;height:2px;background:repeating-linear-gradient(to right,#cbd5e1 0 7px,transparent 7px 14px)}
   .hra-tl .lead{position:absolute;left:0;bottom:14px;height:2px;background:var(--brand-500,#3b82f6);border-radius:2px}
   .hra-tl.is-open .axis{left:84%}
+  .hra-tl.is-prior .axis{right:84%;background:repeating-linear-gradient(to right,#cbd5e1 0 7px,transparent 7px 14px)}
+  .hra-tl.is-prior .axis-tail{position:absolute;left:84%;right:0;bottom:14px;height:2px;background:var(--brand-500,#3b82f6);border-radius:2px}
+  .hra-tl.is-prior .axis-head{position:absolute;left:0;right:84%;bottom:14px;height:2px;background:repeating-linear-gradient(to right,#cbd5e1 0 7px,transparent 7px 14px)}
+  .hra-tl.is-prior.is-open .axis-tail{background:repeating-linear-gradient(to right,#cbd5e1 0 7px,transparent 7px 14px)}
+  .hra-tl.is-prior.is-open .axis2{background:repeating-linear-gradient(to right,#cbd5e1 0 7px,transparent 7px 14px)}
+  .hra-node.open .dot{border-color:#cbd5e1;border-style:dashed}
+  .hra-node.open .dt{color:#94a3b8}
+  .hra-node.open .lbl svg{color:#94a3b8}
   .hra-tl.is-open .axis2{position:absolute;left:84%;right:0;bottom:14px;height:2px;background:#e2e8f0;border-radius:2px}
   .hra-node{position:absolute;bottom:14px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
   .hra-node .lbl{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;white-space:nowrap}
@@ -955,7 +973,7 @@ const HRA_AREAS = [
 function vesselHRAs(v) {
   let seed = (parseInt(v.imo, 10) || 7919) ^ 0x5f3a;
   const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
-  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')} ${String(Math.floor(rnd() * 24)).padStart(2, '0')}:${String(Math.floor(rnd() * 12) * 5).padStart(2, '0')}`;
   const count = 1 + Math.floor(rnd() * 2);
   const out = [];
   const cursor = new Date(2026, 2, 5 + Math.floor(rnd() * 30));
@@ -970,24 +988,33 @@ function vesselHRAs(v) {
     out.push({ area: area.name, cc: area.cc, entry: iso(entry), exit: iso(exit), days });
   }
   cursor.setDate(cursor.getDate() + 14 + Math.floor(rnd() * 30));
+  const priorArea = HRA_AREAS[1 + Math.floor(rnd() * (HRA_AREAS.length - 1))];
+  const priorExit = new Date(cursor);
+  out.push({ area: priorArea.name, cc: priorArea.cc, entry: null, exit: iso(priorExit), days: 4 + Math.floor(rnd() * 6) });
+  cursor.setDate(cursor.getDate() + 10 + Math.floor(rnd() * 20));
+  const bothArea = HRA_AREAS[1 + Math.floor(rnd() * (HRA_AREAS.length - 1))];
+  out.push({ area: bothArea.name, cc: bothArea.cc, entry: null, exit: null });
+  cursor.setDate(cursor.getDate() + 8 + Math.floor(rnd() * 16));
   const openArea = HRA_AREAS[0];
   out.push({ area: openArea.name, cc: openArea.cc, entry: iso(cursor), exit: null });
   return out;
 }
 
 function HRATimeline(h) {
-  const open = !h.exit;
+  const open  = !h.exit;
+  const prior = !h.entry;
+  const badge = open && prior ? 'In area at start of week · vessel still in HRA' : open ? 'Vessel still in HRA' : prior ? `In area at start of week · ${h.days} days in area` : `${h.days} days in area`;
   return `
   <div class="hra-item">
-    <div class="hra-name"><span class="k">HRA:</span>${flagImg(h.cc, 40, h.area)}${h.area}<span class="dur${open ? ' open' : ''}">${open ? 'Vessel still in HRA' : `${h.days} days in area`}</span></div>
-    <div class="hra-tl${open ? ' is-open' : ''}">
+    <div class="hra-name"><span class="k">HRA:</span>${flagImg(h.cc, 40, h.area)}${h.area}<span class="dur${open || prior ? ' open' : ''}">${badge}</span></div>
+    <div class="hra-tl${open ? ' is-open' : ''}${prior ? ' is-prior' : ''}">
       <div class="axis"></div>
-      <div class="lead" style="right:84%"></div>
+      ${prior ? '' : '<div class="lead" style="right:84%"></div>'}
       ${open ? '<div class="axis2"></div>' : ''}
-      <div class="span${open ? ' open' : ''}" style="left:16%;right:16%"></div>
-      <div class="hra-node" style="left:16%">
+      ${prior ? '<div class="axis-head"></div><div class="axis-tail"></div>' : ''}      <div class="span${open || prior ? ' open' : ''}" style="left:16%;right:16%"></div>
+      <div class="hra-node${prior ? ' open' : ''}" style="left:16%">
         <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>Entry</span>
-        <span class="dt">${h.entry} (UTC)</span>
+        <span class="dt">${prior ? 'Prior to reporting period' : `${h.entry} (UTC)`}</span>
         <span class="stem"></span>
         <span class="dot"></span>
       </div>
@@ -1092,7 +1119,20 @@ function VesselDetailsCard(v, idx) {
       </button>
     </div>
     <div class="vd-mapwrap" id="vessel-map-wrap-${idx}">
-      <div class="vd-map" id="vessel-map-${idx}" data-vessel-idx="${idx}"></div>
+      <div class="vd-map" id="vessel-map-${idx}" data-vessel-idx="${idx}">
+        <div class="vd-maptools">
+          <button type="button" class="vd-mapbtn-ico" data-layers-btn="${idx}" title="Map type">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12.5l8.58 3.91a2 2 0 0 0 1.66 0L22 12.5"/><path d="M2 17.5l8.58 3.91a2 2 0 0 0 1.66 0L22 17.5"/></svg>
+          </button>
+          <div class="vd-layers-menu hidden" data-layers-menu="${idx}">
+            ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([id, label]) => `
+            <button type="button" data-map-type="${id}" data-map-idx="${idx}" role="menuitemradio" aria-checked="${id === 'light'}">
+              <span>${label}</span>
+              <svg class="ck" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </button>`).join('')}
+          </div>
+        </div>
+      </div>
       <div class="vd-maplegend">
         <span class="lg"><span class="sw"></span>AIS track (last 30 days)</span>
         <span class="lg"><span class="sw amber"></span>Possible GNSS jamming</span>
@@ -1108,6 +1148,10 @@ const HORMUZ_ROUTE = [
   [29.35, 48.95], [28.70, 49.90], [27.60, 51.30], [26.95, 53.20], [26.70, 54.60],
   [26.62, 55.55], [26.55, 56.28], [26.10, 56.60], [25.45, 56.90], [24.90, 57.40],
   [24.20, 58.30], [23.55, 59.30], [22.90, 60.40], [22.30, 61.60],
+  [21.40, 60.60], [19.80, 58.60], [17.20, 56.20], [15.00, 53.40], [13.60, 50.20],
+  [12.70, 47.20], [12.50, 44.60], [12.60, 43.40], [13.60, 42.70], [15.20, 41.60],
+  [17.00, 40.60], [19.20, 39.30], [21.40, 38.30], [23.60, 37.20], [25.80, 36.10],
+  [27.20, 34.60], [28.20, 33.60], [29.40, 32.80],
 ];
 function vesselTrack(idx, imo) {
   let seed = parseInt(imo, 10) || (idx + 1) * 7919;
@@ -1133,6 +1177,26 @@ function vesselTrack(idx, imo) {
 }
 
 const vesselMaps = {};
+const vesselTiles = {};
+const VD_TILES = {
+  satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attr:'Tiles \u00a9 Esri', bg:'#0b1220' },
+  street:    { url:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attr:'\u00a9 OpenStreetMap contributors', bg:'#e5e7eb' },
+  dark:      { url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', attr:'\u00a9 OpenStreetMap \u00a9 CARTO', bg:'#0b1220' },
+  light:     { url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', attr:'\u00a9 OpenStreetMap \u00a9 CARTO', bg:'#f3f4f6' },
+};
+function setVesselMapType(idx, type) {
+  const map = vesselMaps[idx];
+  const cfg = VD_TILES[type];
+  if (!map || !cfg) return;
+  if (vesselTiles[idx]) map.removeLayer(vesselTiles[idx]);
+  vesselTiles[idx] = L.tileLayer(cfg.url, { attribution: cfg.attr, maxZoom: 18 }).addTo(map);
+  vesselTiles[idx].bringToBack();
+  const el = document.getElementById(`vessel-map-${idx}`);
+  if (el) el.style.background = cfg.bg;
+  document.querySelectorAll(`[data-map-idx="${idx}"]`).forEach(b => {
+    b.setAttribute('aria-checked', String(b.getAttribute('data-map-type') === type));
+  });
+}
 function toggleVesselMap(idx) {
   const btn  = document.querySelector(`[data-map-toggle="${idx}"]`);
   const wrap = document.getElementById(`vessel-map-wrap-${idx}`);
@@ -1146,12 +1210,29 @@ function toggleVesselMap(idx) {
   if (!vesselMaps[idx]) {
     const track = vesselTrack(idx, v && v.imo);
     const map = L.map(`vessel-map-${idx}`, { scrollWheelZoom: false, attributionControl: true });
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 18,
-    }).addTo(map);
+    vesselMaps[idx] = map;
+    setVesselMapType(idx, 'light');
+    const tools = document.querySelector(`#vessel-map-${idx} .vd-maptools`);
+    if (tools) {
+      L.DomEvent.disableClickPropagation(tools);
+      L.DomEvent.disableScrollPropagation(tools);
+      const menu = tools.querySelector('.vd-layers-menu');
+      tools.querySelector('[data-layers-btn]').addEventListener('click', (ev) => {
+        ev.preventDefault(); ev.stopPropagation();
+        document.querySelectorAll('.vd-layers-menu').forEach(m => { if (m !== menu) m.classList.add('hidden'); });
+        menu.classList.toggle('hidden');
+      });
+      tools.querySelectorAll('[data-map-type]').forEach(opt => {
+        opt.addEventListener('click', (ev) => {
+          ev.preventDefault(); ev.stopPropagation();
+          setVesselMapType(idx, opt.getAttribute('data-map-type'));
+          menu.classList.add('hidden');
+        });
+      });
+    }
     L.polyline(track, { color: '#2563eb', weight: 3, opacity: .9 }).addTo(map);
-    const jamStart = Math.floor(track.length * 0.38);
-    const jamEnd = Math.floor(track.length * 0.58);
+    const jamStart = Math.floor(track.length * 0.14);
+    const jamEnd = Math.floor(track.length * 0.26);
     L.polyline(track.slice(jamStart, jamEnd + 1), { color: '#f59e0b', weight: 4, opacity: .95 })
       .addTo(map).bindTooltip('Possible GNSS jamming');
     L.circleMarker(track[0], { radius: 5, color: '#fff', weight: 2, fillColor: '#16a34a', fillOpacity: 1 })
@@ -1159,11 +1240,12 @@ function toggleVesselMap(idx) {
     L.circleMarker(track[track.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: '#dc2626', fillOpacity: 1 })
       .addTo(map).bindTooltip(`${v ? v.name : 'Vessel'} — current position`);
     map.fitBounds(L.latLngBounds(track).pad(0.25));
-    vesselMaps[idx] = map;
   }
   setTimeout(() => vesselMaps[idx].invalidateSize(), 60);
 }
 document.addEventListener('click', (e) => {
+  if (e.target.closest && e.target.closest('.vd-maptools')) return;
+  document.querySelectorAll('.vd-layers-menu').forEach(m => m.classList.add('hidden'));
   const b = e.target.closest && e.target.closest('[data-map-toggle]');
   if (b) toggleVesselMap(b.getAttribute('data-map-toggle'));
 });
