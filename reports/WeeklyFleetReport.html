@@ -123,6 +123,23 @@
   .rg-card .rg-name{font-size:11px;font-weight:700;line-height:1.1}
   .rg-card .rg-range{font-size:9.5px;color:#64748b;margin-top:1px}
 
+  /* View map expander */
+  .vd-mapfoot{display:flex;justify-content:center;padding:4px 22px 18px}
+  .vd-mapbtn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 16px;border-radius:999px;border:1px solid var(--brand-200,#bfdbfe);background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s}
+  .vd-mapbtn:hover{background:var(--brand-100,#dbeafe);border-color:var(--brand-300,#93c5fd)}
+  .vd-mapbtn svg.chev{transition:transform .18s}
+  .vd-mapbtn[aria-expanded="true"] svg.chev{transform:rotate(180deg)}
+  .vd-mapwrap{display:none;padding:0 22px 18px}
+  .vd-mapwrap.is-open{display:block}
+  .vd-map{height:320px;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;background:#eef2f7}
+  .vd-maplegend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:8px;font-size:11px;color:#64748b}
+  .vd-maplegend .lg{display:inline-flex;align-items:center;gap:6px}
+  .vd-maplegend .sw{width:14px;height:3px;border-radius:2px;background:var(--brand-600,#2563eb)}
+  .vd-maplegend .sw.amber{background:#f59e0b}
+  .vd-maplegend .sw.dot{width:9px;height:9px;border-radius:999px;background:#16a34a}
+  .vd-maplegend .sw.dot.end{background:#dc2626}
+  @media print{ .vd-mapfoot{display:none} }
+
   /* Property grid */
   .prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 28px}
   .prop{display:flex;flex-direction:column;gap:3px;min-width:0}
@@ -162,8 +179,42 @@
   .ra-table .dateloc-cell{font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:top}
   .ra-table .dateloc-cell .dl-date{color:#475569;font-size:11.5px}
   .ra-table .dateloc-cell .dl-loc{color:#94a3b8;font-size:11px;margin-top:3px}
+  .ra-table .port-sub{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:11px;color:#94a3b8;white-space:nowrap}
+  .ra-table .port-sub .flag-img{width:16px;height:12px;object-fit:cover;border:1px solid #e2e8f0;border-radius:2px;display:block;flex-shrink:0}
   .ra-table .ra-note{margin-top:5px;display:flex;align-items:flex-start;gap:5px;font-size:11px;font-weight:500;color:#e07d18;line-height:1.45}
   .ra-table .ra-note svg{width:13px;height:13px;flex-shrink:0;margin-top:1px}
+
+  /* HRA activity timelines */
+  .hra-wrap{border-top:1px solid #f1f5f9;padding:14px 22px 20px;background:#fff}
+  .hra-title{font-size:12.5px;font-weight:700;color:#0f172a;margin-bottom:14px;letter-spacing:.01em}
+  .hra-item{padding:2px 0 4px}
+  .hra-item + .hra-item{margin-top:26px;border-top:1px dashed #eef2f7;padding-top:18px}
+  .hra-name{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#334155;margin-bottom:6px}
+  .hra-name .k{color:#94a3b8;font-weight:500}
+  .hra-name .flag-img{width:20px;height:14px;object-fit:cover;border:1px solid #e2e8f0;border-radius:2px;display:block;flex-shrink:0}
+  .hra-name .dur{margin-left:auto;font-size:11px;font-weight:600;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:999px;padding:2px 9px;white-space:nowrap}
+  .hra-name .dur.open{color:#64748b;background:#f8fafc;border-color:#e2e8f0}
+  .hra-tl{position:relative;height:74px;margin:0 10px}
+  .hra-tl .axis{position:absolute;left:0;right:0;bottom:14px;height:2px;background:#e2e8f0;border-radius:2px}
+  .hra-tl .span{position:absolute;bottom:14px;height:2px;background:var(--brand-500,#3b82f6);border-radius:2px}
+  .hra-tl .span.open{border-top:0;height:2px;background:repeating-linear-gradient(to right,#cbd5e1 0 7px,transparent 7px 14px)}
+  .hra-tl .lead{position:absolute;left:0;bottom:14px;height:2px;background:var(--brand-500,#3b82f6);border-radius:2px}
+  .hra-tl.is-open .axis{left:84%}
+  .hra-tl.is-open .axis2{position:absolute;left:84%;right:0;bottom:14px;height:2px;background:#e2e8f0;border-radius:2px}
+  .hra-node{position:absolute;bottom:14px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
+  .hra-node .lbl{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;white-space:nowrap}
+  .hra-node .lbl svg{width:12px;height:12px;flex-shrink:0}
+  .hra-node .lbl svg{color:var(--brand-600,#2563eb)}
+  .hra-node.exit .lbl svg{color:#dc2626}
+  .hra-node.exit.open .lbl svg{color:#94a3b8}
+  .hra-node .dt{font-size:11px;font-weight:600;color:#0f172a;font-variant-numeric:tabular-nums;white-space:nowrap;margin-top:1px}
+  .hra-node .stem{width:2px;height:22px;background:#cbd5e1;margin-top:5px}
+  .hra-node .dot{width:11px;height:11px;border-radius:999px;background:#fff;border:2.5px solid var(--brand-600,#2563eb);margin-bottom:-6px}
+  .hra-node.exit .dot{border-color:#dc2626}
+  .hra-node.exit.open .dot{border-color:#cbd5e1;border-style:dashed}
+  .hra-node.exit.open .dt{color:#94a3b8}
+  .hra-node.exit .stem{background:#e2e8f0}
+  @media(max-width:640px){ .hra-node .lbl,.hra-node .dt{font-size:10px} .hra-tl{margin:0} }
 
   /* Risk Indicator Descriptions (blue card) */
   .rid-card{background:linear-gradient(180deg,var(--brand-800,#1e3a8a) 0%, var(--brand-700,#1e40af) 100%);border-radius:14px;padding:22px 26px;color:#fff;box-shadow:0 1px 3px rgba(15,23,42,.08)}
@@ -294,6 +345,8 @@
     "showSparklines": true
   }/*EDITMODE-END*/;
 </script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="../shared/chrome.js?v=12"></script>
 
@@ -526,6 +579,43 @@ const DETAILS = {
   },
 };
 
+/* Expand each vessel's sanctioned port-call history to a fuller 6-call record.
+   Deterministic (seeded by IMO) so the report is stable across renders. */
+(function expandPortCalls() {
+  const PORTS = ['Bandar Abbas, IR', 'Kharg Island, IR', 'Assaluyeh, IR', 'Bandar-e Mahshahr, IR', 'Sirri Island, IR', 'Nampo, KP', 'Songnim, KP', 'Wonsan, KP', 'Novorossiysk, RU', 'Primorsk, RU', 'Ust-Luga, RU', 'Nakhodka, RU', 'Tartus, SY', 'Banias, SY', 'Latakia, SY', 'Jose Terminal, VE', 'Puerto La Cruz, VE'];
+  const pad = n => String(n).padStart(2, '0');
+  const fmt = d => `${pad(d.getMonth() + 1)}/${pad(d.getDate())}/${d.getFullYear()}`;
+  VESSELS.forEach(v => {
+    const d = DETAILS[v.name];
+    if (!d) return;
+    let seed = parseInt(v.imo, 10) || 7919;
+    const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+    const existing = d.activity.filter(a => a.label === 'Sanctioned Port Call');
+    const cursor = new Date(2024, 6, 1 + Math.floor(rnd() * 40));
+    const calls = [];
+    for (let i = 0; i < 3; i++) {
+      cursor.setDate(cursor.getDate() + 9 + Math.floor(rnd() * 22));
+      const arrival = new Date(cursor);
+      const stay = 1 + Math.floor(rnd() * 5);
+      const departure = new Date(cursor);
+      departure.setDate(departure.getDate() + stay);
+      cursor.setDate(cursor.getDate() + stay);
+      calls.push({
+        tone: 'blue', label: 'Sanctioned Port Call',
+        date: `${fmt(arrival)} \u2014 ${fmt(departure)}`,
+        arrival: `${fmt(arrival)} ${pad(Math.floor(rnd() * 24))}:${pad(Math.floor(rnd() * 6) * 10)} UTC`,
+        departure: `${fmt(departure)} ${pad(Math.floor(rnd() * 24))}:${pad(Math.floor(rnd() * 6) * 10)} UTC`,
+        port: PORTS[Math.floor(rnd() * PORTS.length)],
+        detail: 'Port call detected at sanctioned port location',
+      });
+    }
+    const first = d.activity.findIndex(a => a.label === 'Sanctioned Port Call');
+    const rest = d.activity.filter(a => a.label !== 'Sanctioned Port Call');
+    const merged = calls.slice(0, 3);
+    d.activity = first === -1 ? rest.concat(merged) : rest.slice(0, first).concat(merged, rest.slice(first));
+  });
+})();
+
 const RISK_INDICATORS = [
   { icon:'<span class="icon-suspicious" style="width:26px;height:26px"></span>',   name:'SUSPICIOUS ACTIVITY', desc:'High probability of intentionally disabling AIS while still tracking to conceal one\u2019s area' },
   { icon:'<span class="icon-loitering" style="width:26px;height:26px"></span>', name:'LOITERING',         desc:'Anchoring or drifting in suspicious areas' },
@@ -558,18 +648,20 @@ function RiskGauge(score) {
     const sw = ((a2 - a1) % 360 + 360) % 360;
     return `M ${x1},${y1} A ${r},${r} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
   };
-  const gaugeColor = s => (s <= 25 ? '#22c55e' : s <= 50 ? '#f97316' : '#ef4444');
-  const N = 26;
-  const SEG_GAP = 0.9; // degrees of white separation between segments
   const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
-  const segPaths = Array.from({length: N}, (_, i) => {
-    const a1 = gAngle(i * GAUGE_MAX / N) + SEG_GAP;
-    const a2 = gAngle((i + 1) * GAUGE_MAX / N) - SEG_GAP;
-    const mid = (i + 0.5) * GAUGE_MAX / N;
-    const filled = mid <= score;
-    return `<path d="${arcD(a1, a2, R)}" fill="none" stroke="${filled ? gaugeColor(mid) : '#e2e8f0'}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+  const BANDS = [[0,25,'#16a34a'],[25,50,'#d97706'],[50,100,'#dc2626']];
+  const BAND_GAP = 1.4;
+  const segPaths = BANDS.map(([bs, be, col], bi) => {
+    const aStart = gAngle(bs) + (bi > 0 ? BAND_GAP / 2 : 0);
+    const aEnd   = gAngle(be) - (bi < BANDS.length - 1 ? BAND_GAP / 2 : 0);
+    const fillEnd = Math.max(bs, Math.min(score, be));
+    const aFill = gAngle(fillEnd);
+    let out = '';
+    if (fillEnd > bs) out += `<path d="${arcD(aStart, Math.min(aFill, aEnd), R)}" fill="none" stroke="${col}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    if (fillEnd < be) out += `<path d="${arcD(Math.max(aFill, aStart), aEnd, R)}" fill="none" stroke="#e5e7eb" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    return out;
   }).join('');
-  const glowColor = score <= 25 ? '#86efac' : score <= 50 ? '#fcd34d' : '#fca5a5';
+  const glowColor = score <= 25 ? '#16a34a' : score <= 50 ? '#d97706' : '#fee2e2';
   const fillTipA  = gAngle(Math.min(score, GAUGE_MAX));
   const fillTipB  = gAngle(Math.max(0, Math.min(score, GAUGE_MAX) - GAUGE_MAX * 0.08));
   const glowPath  = score > 0
@@ -585,8 +677,6 @@ function RiskGauge(score) {
       </radialGradient>
     </defs>
     <ellipse cx="100" cy="108" rx="70" ry="60" fill="url(#${gid})"/>
-    <path d="M ${sox},${soy} A ${RO},${RO} 0 1,1 ${eox},${eoy}"
-      fill="none" stroke="#dde4ef" stroke-width="1.5" stroke-dasharray="3 8.2" stroke-linecap="round"/>
     ${glowPath}
     ${whiteCasing}
     ${segPaths}
@@ -794,7 +884,7 @@ function deriveAlertLocation(a) {
   const s = a.label + '|' + a.date;
   for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) >>> 0; }
   if (L.includes('port call')) {
-    const ports = ['Bandar Abbas, IR', 'Kharg Island, IR', 'Tartus, SY', 'Nampo, KP', 'Bandar-e Mahshahr, IR', 'Banias, SY', 'Jose Terminal, VE'];
+    const ports = ['Bandar Abbas, IR', 'Kharg Island, IR', 'Tartus, SY', 'Nampo, KP', 'Bandar-e Mahshahr, IR', 'Banias, SY', 'Jose Terminal, VE', 'Novorossiysk, RU', 'Primorsk, RU', 'Ust-Luga, RU'];
     return ports[h % ports.length];
   }
   // Lat/Long for loitering, suspicious STS, suspicious activity, sanctioned location STS (Persian Gulf / Hormuz band)
@@ -835,6 +925,80 @@ function ActivityRow(a) {
     <td data-label="Type"><span class="notif"><span class="ni ${ic}">${chosen}</span>${a.label}</span></td>
     <td data-label="Details">${a.detail}${noteText ? `<div class="ra-note">${NOTE_TRI}<span>${noteText}</span></div>` : ''}</td>
   </tr>`;
+}
+
+function PortCallRow(a) {
+  const parts = String(a.date).split(/\s*[\u2014\u2013-]\s*(?=\d)/);
+  const arrival = a.arrival || (parts[0] || '\u2014').trim();
+  const departure = a.departure || (parts[1] || '\u2014').trim();
+  const port = a.port || deriveAlertLocation(a) || '\u2014';
+  const SANCTIONED = { IR:'Iran', KP:'North Korea', RU:'Russia', SY:'Syria', VE:'Venezuela', CU:'Cuba', BY:'Belarus' };
+  const m = port.match(/^(.*),\s*([A-Z]{2})$/);
+  const portName = m ? m[1] : port;
+  const country = m && SANCTIONED[m[2]];
+  const sub = country
+    ? `<div class="port-sub">Sanctioned country: ${flagImg(m[2].toLowerCase(), 40, country)}${country}</div>`
+    : '';
+  return `
+  <tr>
+    <td class="date" data-label="Arrival Date">${arrival}</td>
+    <td class="date" data-label="Departure Date">${departure}</td>
+    <td data-label="Port"><span class="notif"><span class="ni blue"><span class="icon-port-call"></span></span>${portName}</span>${sub}</td>
+  </tr>`;
+}
+
+/* HRA (High Risk Area) transits — deterministic per vessel, seeded by IMO. */
+const HRA_AREAS = [
+  { name:'Russia', cc:'ru' }, { name:'Iran', cc:'ir' }, { name:'North Korea', cc:'kp' },
+  { name:'Syria', cc:'sy' }, { name:'Venezuela', cc:'ve' }, { name:'Gulf of Aden', cc:'ye' },
+];
+function vesselHRAs(v) {
+  let seed = (parseInt(v.imo, 10) || 7919) ^ 0x5f3a;
+  const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const count = 1 + Math.floor(rnd() * 2);
+  const out = [];
+  const cursor = new Date(2026, 2, 5 + Math.floor(rnd() * 30));
+  for (let i = 0; i < count; i++) {
+    cursor.setDate(cursor.getDate() + 20 + Math.floor(rnd() * 60));
+    const entry = new Date(cursor);
+    const days = 3 + Math.floor(rnd() * 12);
+    const exit = new Date(cursor);
+    exit.setDate(exit.getDate() + days);
+    cursor.setDate(cursor.getDate() + days);
+    const area = HRA_AREAS[Math.floor(rnd() * HRA_AREAS.length)];
+    out.push({ area: area.name, cc: area.cc, entry: iso(entry), exit: iso(exit), days });
+  }
+  cursor.setDate(cursor.getDate() + 14 + Math.floor(rnd() * 30));
+  const openArea = HRA_AREAS[0];
+  out.push({ area: openArea.name, cc: openArea.cc, entry: iso(cursor), exit: null });
+  return out;
+}
+
+function HRATimeline(h) {
+  const open = !h.exit;
+  return `
+  <div class="hra-item">
+    <div class="hra-name"><span class="k">HRA:</span>${flagImg(h.cc, 40, h.area)}${h.area}<span class="dur${open ? ' open' : ''}">${open ? 'Vessel still in HRA' : `${h.days} days in area`}</span></div>
+    <div class="hra-tl${open ? ' is-open' : ''}">
+      <div class="axis"></div>
+      <div class="lead" style="right:84%"></div>
+      ${open ? '<div class="axis2"></div>' : ''}
+      <div class="span${open ? ' open' : ''}" style="left:16%;right:16%"></div>
+      <div class="hra-node" style="left:16%">
+        <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5"/><path d="M15 12H3"/></svg>Entry</span>
+        <span class="dt">${h.entry} (UTC)</span>
+        <span class="stem"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="hra-node exit${open ? ' open' : ''}" style="left:84%">
+        <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Exit</span>
+        <span class="dt">${open ? 'N/A' : `${h.exit} (UTC)`}</span>
+        <span class="stem"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>`;
 }
 
 function VesselDetailsCard(v, idx) {
@@ -902,18 +1066,107 @@ function VesselDetailsCard(v, idx) {
       </div>
     </div>
     <div class="ra-wrap">
-      <div class="ra-title">Alerts(${d.activity.filter(a => a.label !== 'Sanctioned Port AIS Declared Destination').length})</div>
+      <div class="ra-title">Sanctioned Port Call(${d.activity.filter(a => a.label === 'Sanctioned Port Call').length})</div>
       <table class="ra-table">
         <thead>
-          <tr><th>Date / Location</th><th>Type</th><th>Details</th></tr>
+          <tr><th>Arrival Date</th><th>Departure Date</th><th>Port</th></tr>
         </thead>
         <tbody>
-          ${d.activity.filter(a => a.label !== 'Sanctioned Port AIS Declared Destination').map(ActivityRow).join('')}
+          ${d.activity.filter(a => a.label === 'Sanctioned Port Call').map(PortCallRow).join('')}
         </tbody>
       </table>
     </div>
+    ${(() => {
+      const hras = vesselHRAs(v);
+      return `
+    <div class="hra-wrap">
+      <div class="hra-title">HRA Activity Alerts(${hras.length})</div>
+      ${hras.map(HRATimeline).join('')}
+    </div>`;
+    })()}
+    <div class="vd-mapfoot">
+      <button type="button" class="vd-mapbtn" data-map-toggle="${idx}" aria-expanded="false" aria-controls="vessel-map-wrap-${idx}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764V20M9 3.236V17.5"/></svg>
+        <span class="lbl">View Map</span>
+        <svg class="chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+    <div class="vd-mapwrap" id="vessel-map-wrap-${idx}">
+      <div class="vd-map" id="vessel-map-${idx}" data-vessel-idx="${idx}"></div>
+      <div class="vd-maplegend">
+        <span class="lg"><span class="sw"></span>AIS track (last 30 days)</span>
+        <span class="lg"><span class="sw amber"></span>Possible GNSS jamming</span>
+        <span class="lg"><span class="sw dot"></span>Track start</span>
+        <span class="lg"><span class="sw dot end"></span>Current position</span>
+      </div>
+    </div>
   </section>`;
 }
+
+/* Deterministic AIS-style track per vessel through the Strait of Hormuz, seeded from IMO. */
+const HORMUZ_ROUTE = [
+  [29.35, 48.95], [28.70, 49.90], [27.60, 51.30], [26.95, 53.20], [26.70, 54.60],
+  [26.62, 55.55], [26.55, 56.28], [26.10, 56.60], [25.45, 56.90], [24.90, 57.40],
+  [24.20, 58.30], [23.55, 59.30], [22.90, 60.40], [22.30, 61.60],
+];
+function vesselTrack(idx, imo) {
+  let seed = parseInt(imo, 10) || (idx + 1) * 7919;
+  const rnd = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+  const start = Math.floor(rnd() * 2);
+  const pts = [];
+  const route = HORMUZ_ROUTE.slice(start);
+  for (let i = 0; i < route.length - 1; i++) {
+    const a = route[i], b = route[i + 1];
+    for (let s = 0; s < 3; s++) {
+      const t = s / 3;
+      // tighter jitter inside the strait so the track stays in the shipping lane
+      const inStrait = a[1] > 54.5 && a[1] < 57.2;
+      const j = inStrait ? 0.035 : 0.10;
+      pts.push([
+        a[0] + (b[0] - a[0]) * t + (rnd() - 0.5) * j,
+        a[1] + (b[1] - a[1]) * t + (rnd() - 0.5) * j,
+      ]);
+    }
+  }
+  pts.push(route[route.length - 1].slice());
+  return pts;
+}
+
+const vesselMaps = {};
+function toggleVesselMap(idx) {
+  const btn  = document.querySelector(`[data-map-toggle="${idx}"]`);
+  const wrap = document.getElementById(`vessel-map-wrap-${idx}`);
+  if (!btn || !wrap) return;
+  const open = !wrap.classList.contains('is-open');
+  wrap.classList.toggle('is-open', open);
+  btn.setAttribute('aria-expanded', String(open));
+  btn.querySelector('.lbl').textContent = open ? 'Hide Map' : 'View Map';
+  if (!open || typeof L === 'undefined') return;
+  const v = VESSELS[idx];
+  if (!vesselMaps[idx]) {
+    const track = vesselTrack(idx, v && v.imo);
+    const map = L.map(`vessel-map-${idx}`, { scrollWheelZoom: false, attributionControl: true });
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 18,
+    }).addTo(map);
+    L.polyline(track, { color: '#2563eb', weight: 3, opacity: .9 }).addTo(map);
+    const jamStart = Math.floor(track.length * 0.38);
+    const jamEnd = Math.floor(track.length * 0.58);
+    L.polyline(track.slice(jamStart, jamEnd + 1), { color: '#f59e0b', weight: 4, opacity: .95 })
+      .addTo(map).bindTooltip('Possible GNSS jamming');
+    L.circleMarker(track[0], { radius: 5, color: '#fff', weight: 2, fillColor: '#16a34a', fillOpacity: 1 })
+      .addTo(map).bindTooltip('Track start');
+    L.circleMarker(track[track.length - 1], { radius: 6, color: '#fff', weight: 2, fillColor: '#dc2626', fillOpacity: 1 })
+      .addTo(map).bindTooltip(`${v ? v.name : 'Vessel'} — current position`);
+    map.fitBounds(L.latLngBounds(track).pad(0.25));
+    vesselMaps[idx] = map;
+  }
+  setTimeout(() => vesselMaps[idx].invalidateSize(), 60);
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest && e.target.closest('[data-map-toggle]');
+  if (b) toggleVesselMap(b.getAttribute('data-map-toggle'));
+});
 
 function RiskDescCard() {
   return `
