@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FRESH BREEZE — Affiliations — Real World</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { height:100%; }
+  body { font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+  .text-ink-900 { color:#111827; }
+  .text-ink-800 { color:#1f2937; }
+  .text-ink-700 { color:#374151; }
+  .text-ink-600 { color:#4b5563; }
+  .text-ink-500 { color:#6b7280; }
+  .text-ink-400 { color:#9ca3af; }
+  .text-ink-300 { color:#d1d5db; }
+  .text-ink-200 { color:#e5e7eb; }
+  .text-ink-100 { color:#f3f4f6; }
+  .bg-ink-100 { background:#f3f4f6; }
+  .bg-ink-50 { background:#f9fafb; }
+  .bg-ink-900 { background:#111827; }
+  .border-ink-100 { border-color:#f3f4f6; }
+  .border-ink-200 { border-color:#e5e7eb; }
+  .shadow-card { box-shadow:0 2px 4px 0 rgb(15 23 42 / 0.08), 0 1px 2px 0 rgb(15 23 42 / 0.06); }
+  .text-brand-600 { color:#2d7ffb; }
+  .bg-brand-600 { background:#2d7ffb; }
+  .bg-brand-050 { background:#eff6ff; }
+  /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
+  html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
+  html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background:#f3f4f6; }
+  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  .scroll-thin::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { width:6px; height:6px; }
+  .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
+  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  .tracking-micro { letter-spacing:0.04em; }
+  .ring-focus:focus-visible { outline:2px solid #2d7ffb; outline-offset:2px; border-radius:8px; }
+  /* Risk Score Trend node tooltips */
+  .rs-node{position:absolute;width:20px;height:20px;transform:translate(-50%,-50%);cursor:pointer;z-index:3;border-radius:50%;}
+  .rs-node:hover{background:rgba(45,127,251,0.12);}
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
+  .rs-node:hover .rs-tip{opacity:1;visibility:visible;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer;margin-top:1px;}
+  .rs-info:hover{color:#2d7ffb;}
+  .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
+  .rs-tip.c{left:50%;transform:translateX(-50%);}
+  .rs-tip.l{left:-6px;}
+  .rs-tip.r{right:-6px;}
+  .rs-tip::after{content:'';position:absolute;bottom:100%;width:9px;height:9px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:translateY(50%) rotate(45deg);}
+  .rs-tip.c::after{left:50%;margin-left:-4.5px;}
+  .rs-tip.l::after{left:14px;}
+  .rs-tip.r::after{right:14px;}
+  .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f1f5f9;}
+  .rs-tip-tbl th:first-child{text-align:left;}
+  .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
+  .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
+  [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
+  [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
+  [data-density="compact"] .gap-density { gap:.75rem; }
+  [data-density="comfortable"] .gap-density { gap:1rem; }
+  /* Pill tabs (Skytek DS — animated pill via shared layout) */
+  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
+  .ds-tabs.is-stretch { display:flex; }
+  .ds-tabs.is-stretch > .ds-tab { flex:1; }
+  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
+  .ds-tab:hover { color:#111827; }
+  .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
+  .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2d7ffb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
+  .ds-tab-pill.is-init { transition:none; }
+  .vaff-tabscroll{scrollbar-width:none;-ms-overflow-style:none}
+  .vaff-tabscroll::-webkit-scrollbar{height:0;display:none}
+  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:6px; }
+  .ds-tab[data-disabled="true"] { color:#d1d5db; cursor:not-allowed; }
+  /* DS Pagination — provided by shared/pagination.css */
+  #vessel-map { background:#0b1220; position:absolute; inset:0; }
+  #vessel-map .leaflet-top.leaflet-left { top:46px; left:2px; }
+  #vessel-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42/.08) !important; border-radius:8px !important; overflow:hidden; }
+  .leaflet-bar a { background:#fff !important; color:#374151 !important; }
+  .leaflet-bar a:hover { background:#f3f4f6 !important; }
+  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgb(15 23 42/.08); cursor:pointer; flex-shrink:0; }
+  .map-btn:hover { background:#f3f4f6; }
+  .map-btn svg { width:16px; height:16px; }
+  /* Fullscreen */
+  #vessel-tracking-card.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; }
+  #vessel-tracking-card.is-fullscreen #map-wrapper { min-height:0; flex:1; }
+  /* Timeline overlay */
+  .timeline-overlay { position:absolute; bottom:16px; left:12px; right:12px; z-index:400; background:rgba(15,23,42,.82); border-radius:12px; padding:10px 14px; backdrop-filter:blur(4px); }
+  .timeline-track { position:relative; height:6px; background:rgba(255,255,255,.25); border-radius:999px; cursor:pointer; flex:1; }
+  .timeline-fill  { position:absolute; left:0; top:0; bottom:0; background:#2d7ffb; border-radius:999px; pointer-events:none; }
+  .timeline-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; background:#fff; border:2px solid #2d7ffb; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,.4); pointer-events:none; cursor:grab; }
+  /* Mobile responsive */
+  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  @media(max-width:767px){
+    .mobile-tab-select{display:block!important;}
+    .tabs-desktop-wrap{display:none!important;}
+    .vessel-top-section>div{height:auto!important;min-height:300px;}
+    .hist-date-row{flex-direction:column!important;align-items:flex-start!important;gap:6px!important;}
+    .hist-date-row input{width:100%!important;box-sizing:border-box;}
+    .hist-date-arrow{display:none!important;}
+  }
+  /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
+  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot--start{justify-content:flex-start;}
+  .ds-card-foot--center{justify-content:center;}
+  .ds-card-foot--between{justify-content:space-between;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2d7ffb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1f5fc7);}
+
+  /* ── DS color conformance: override off-palette Tailwind utilities ── */
+  .bg-blue-100{background-color:#dbeafe!important}.text-blue-700{color:#1d4ed8!important}
+  .bg-blue-600{background-color:#2d7ffb!important}.text-blue-600{color:#2d7ffb!important}
+  .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}.text-amber-500{color:#d97706!important}
+  .bg-yellow-100{background-color:#fef3c7!important}.text-yellow-700{color:#b45309!important}
+  .bg-orange-50{background-color:#fffbeb!important}.bg-orange-500{background-color:#d97706!important}.text-orange-500{color:#d97706!important}.text-orange-600{color:#b45309!important}
+  .bg-green-50{background-color:#f0fdf4!important}.bg-green-100{background-color:#dcfce7!important}.bg-green-500{background-color:#16a34a!important}
+  .text-green-700{color:#15803d!important}.text-green-500{color:#16a34a!important}.border-green-200{border-color:#dcfce7!important}
+  .bg-red-50{background-color:#fef2f2!important}.bg-red-100{background-color:#fee2e2!important}.bg-red-500{background-color:#dc2626!important}
+  .text-red-700{color:#b91c1c!important}.text-red-600{color:#dc2626!important}.text-red-500{color:#dc2626!important}.text-red-400{color:#dc2626!important}
+  .bg-purple-100{background-color:#f3f4f6!important}.text-purple-700{color:#9333ea!important}
+  .bg-cyan-100{background-color:#f3f4f6!important}.text-cyan-700{color:#0891b2!important}
+  .bg-pink-100{background-color:#f3f4f6!important}.text-pink-700{color:#db2777!important}
+</style>
+</head>
+<body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
+<div id="app" class="min-h-screen w-full flex"></div>
+<script>
+  window.PAGE = { id:'marine', title:'Marine', crumb:'FRESH BREEZE — Affiliations' };
+  window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "density": "compact",
+    "accent": "sky",
+    "sidebarExpanded": false
+  }/*EDITMODE-END*/;
+</script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/chrome.js?v=12"></script>
+<link rel="stylesheet" href="shared/pagination.css" />
+<script src="shared/pagination.js"></script>
+<script>
+const SC = window.sharedChrome;
+const AFFIL_ENTITIES = [
+  { k:'Owner',                name:'HS Star Limited',                tone:'ok',      status:'No issues found',            detail:'No sanctions identified across the seven sources we check.' },
+  { k:'Group Beneficial',     name:'Hennesea Holdings Limited',      tone:'bad',     status:'Currently sanctioned',       detail:'Active sanction in force.',
+    hits:[ { source:'US OFAC', state:'Active', added:'added Jan 18, 2024', text:'Company found on OFAC SDN sanction list under the name `HENNESEA HOLDINGS LIMITED (IMO 6466391)` (imposed on 2024-01-18)' } ],
+    fleet:[
+      { name:'Akkord',  imo:'9259599', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Aksel',   imo:'9410894', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Akvilon', imo:'9249087', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Alyssum', imo:'9314818', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Amur',    imo:'9296167', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Anadyr',  imo:'9372135', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Andizhan',imo:'9288871', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Argun',   imo:'9412416', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Astrakhan',imo:'9331246',type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+    ] },
+  { k:'Operator',             name:'Hennesea Tankers Corporation - FZCO', tone:'warn', status:'Linked to sanctioned vessels', detail:'Company itself is clear, but other vessels it manages are sanctioned.',
+    fleet:[
+      { name:'AKCENT',  imo:'9381732', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Akkord',  imo:'9259599', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Aksel',   imo:'9410894', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Akvilon', imo:'9249087', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Alyssum', imo:'9314818', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Amur',    imo:'9296167', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+      { name:'Anadyr',  imo:'9372135', type:'Crude/Oil Products Tanker',  flag:'Russia', sanctioned:true },
+      { name:'Andizhan',imo:'9288871', type:'Chemical/Products Tanker',   flag:'Russia', sanctioned:true },
+      { name:'Argun',   imo:'9412416', type:'Crude Oil Tanker',           flag:'Russia', sanctioned:true },
+    ] },
+  { k:'Third Party Operator', name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No counterparty recorded — screening not possible.' },
+  { k:'Technical Manager',    name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No counterparty recorded — screening not possible.' },
+  { k:'DOC Company',          name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No counterparty recorded — screening not possible.' },
+  { k:'P&I club',             name:'Not reported',                   tone:'unknown', status:'Cannot be checked',          detail:'No cover confirmed for the current period.' },
+  { k:'Classification society', name:'Lloyd\'s Register',            tone:'ok',      status:'No issues found',            detail:'Class in force; no outstanding conditions recorded.' },
+];
+
+let state = { affilTab: 'Owner' };
+
+function tabs(items, active, attr) {
+  return `
+  <div class="ds-tabs" data-tab-group="${attr}">
+    <span class="ds-tab-pill is-init" data-tab-pill></span>
+    ${items.map(t => `
+      <button ${attr}="${t.k}" aria-selected="${t.k===active}" class="ds-tab" style="font-size:12px; padding:7px 14px;">
+        <span class="ds-tab-label">${t.dot}${t.k}</span>
+      </button>`).join('')}
+  </div>`;
+}
+
+function positionTabPills() {
+  const apply = () => {
+    document.querySelectorAll('.ds-tabs').forEach(group => {
+      const pill   = group.querySelector('[data-tab-pill]');
+      const active = group.querySelector('.ds-tab[aria-selected="true"]');
+      if (!pill || !active) return;
+      const gRect = group.getBoundingClientRect();
+      const aRect = active.getBoundingClientRect();
+      if (!aRect.width) return;
+      const w = aRect.width + 'px';
+      const x = `translateX(${aRect.left - gRect.left}px)`;
+      const settled = pill.dataset.placed === '1';
+      if (!settled) pill.classList.add('is-init');
+      pill.style.width = w;
+      pill.style.transform = x;
+      if (!settled) {
+        void pill.offsetWidth;
+        pill.dataset.placed = '1';
+        const release = () => pill.classList.remove('is-init');
+        setTimeout(release, 0);
+        if (typeof requestAnimationFrame === 'function') requestAnimationFrame(release);
+      }
+    });
+  };
+  apply();
+  requestAnimationFrame(apply);
+  setTimeout(apply, 60);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
+}
+
+function KeyFindingsCard() {
+  return `
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card">
+    <div class="px-4 py-3 border-b border-ink-200 flex items-center justify-between gap-3">
+      <div class="text-sm font-semibold text-ink-900">Key findings</div>
+    </div>
+      <div class="px-4 py-4">
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          ${[
+            { label:'This vessel', value:'Sanctioned', note:'Listed by 3 sources', icon:'flag', tone:'bad' },
+            { label:'Associated companies sanctioned', value:'1 of 4', note:'4 counterparties unknown · cannot be checked', icon:'building', tone:'bad' },
+            { label:'Sanctioned vessels in associated companies', value:'10 of 10', note:'Other vessels managed by the same companies — sanctioned ones flagged', icon:'ship', tone:'bad' },
+          ].map(f => {
+            const paths = {
+              flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',
+              building:'<rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/>',
+              ship:'<path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4M12 2v3"/>',
+            };
+            return `
+          <div class="rounded-lg border border-ink-200 bg-white px-3 py-3 flex items-start gap-3">
+            <span class="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-red-50">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths[f.icon]}</svg>
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] text-ink-600 leading-snug">${f.label}</div>
+              <div class="mt-0.5 text-xl font-bold leading-none text-red-700">${f.value}</div>
+              <div class="mt-1.5 text-[11px] text-ink-500 leading-snug">${f.note}</div>
+            </div>
+          </div>`;
+          }).join('')}
+        </div>
+      </div>
+  </div>`;
+}
+
+function OwnershipCard() {
+  const items = AFFIL_ENTITIES.map(e => {
+    const dot = e.tone === 'ok' ? '#16a34a' : e.tone === 'bad' ? '#dc2626' : e.tone === 'warn' ? '#ea580c' : '';
+    return { k: e.k, dot: dot
+      ? `<span class="w-2 h-2 rounded-full shrink-0" style="background:${dot}"></span>`
+      : `<span class="w-2 h-2 rounded-full shrink-0 border-[1.5px] border-current opacity-40"></span>` };
+  });
+  return `
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card mt-3">
+    <div class="px-4 py-3 border-b border-ink-200 overflow-x-auto vaff-tabscroll">
+      ${tabs(items, state.affilTab, 'data-affil-tab')}
+    </div>
+      <div class="px-4 py-4">
+        ${(() => {
+          const e = AFFIL_ENTITIES.find(x => x.k === state.affilTab) || AFFIL_ENTITIES[0];
+          const ok = e.tone === 'ok';
+          const c = ok ? { fg:'#15803d', icon:'M9 12.5l2 2 4-4.5' } : e.tone === 'bad' ? { fg:'#b91c1c', icon:'M12 8v5M12 16.5h.01' } : e.tone === 'warn' ? { fg:'#c2410c', icon:'M12 8v5M12 16.5h.01' } : { fg:'#475569', icon:'M12 8v5M12 16.5h.01' };
+          const panel = e.tone === 'warn' ? 'border-ink-200 bg-white border-l-[3px] border-l-orange-400' : e.tone === 'bad' ? 'border-ink-200 bg-white border-l-[3px] border-l-red-500' : 'border-ink-200 bg-white';
+          const sanctionedCount = (e.fleet || []).filter(v => v.sanctioned).length;
+          const hits = e.hits ? `
+            <div class="mt-4 text-xs font-bold text-ink-900">Sanctions hits <span class="font-semibold text-ink-500">(${e.hits.length})</span></div>
+            <div class="mt-2 flex flex-col gap-2">
+              ${e.hits.map(hit => `
+              <div class="rounded-md border border-ink-200 bg-white border-l-[3px] border-l-red-500 px-3 py-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-bold text-ink-900">${hit.source}</span>
+                  <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-50 text-red-700 border border-red-200">${hit.state}</span>
+                  <span class="text-[11px] text-ink-600">${hit.added}</span>
+                </div>
+                <div class="mt-1 text-xs text-ink-700">${hit.text}</div>
+              </div>`).join('')}
+            </div>` : '';
+          const fleet = e.fleet ? `
+            <div class="mt-4 text-xs font-bold text-ink-900">Other vessels managed by this company <span class="font-semibold text-ink-500">(${e.fleet.length})</span> <span class="font-semibold text-red-600">· ${sanctionedCount} sanctioned</span></div>
+            <div class="mt-2 overflow-x-auto rounded-md border border-ink-200 bg-white">
+              <table class="w-full text-xs min-w-[680px]">
+                <thead class="bg-ink-50">
+                  <tr>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Vessel</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">IMO</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Type</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Flag</th>
+                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${e.fleet.map(v => `
+                  <tr class="border-b border-ink-100 last:border-0 hover:bg-brand-50">
+                    <td class="px-3 py-2"><a href="VesselDetails.html" class="font-semibold text-brand-600 hover:underline">${v.name}</a></td>
+                    <td class="px-3 py-2 font-mono text-ink-700">${v.imo}</td>
+                    <td class="px-3 py-2 text-ink-700">${v.type}</td>
+                    <td class="px-3 py-2 text-ink-700">${v.flag}</td>
+                    <td class="px-3 py-2">${v.sanctioned
+                      ? `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`
+                      : `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Clear</span>`}</td>
+                  </tr>`).join('')}
+                </tbody>
+              </table>
+            </div>` : '';
+          return `
+          <div class="mt-3">
+            <div class="text-xs text-ink-500">${e.k}</div>
+            <div class="mt-0.5 text-base font-bold text-ink-900">${e.name}</div>
+            <div class="mt-1.5 flex items-center gap-2 text-sm font-semibold" style="color:${c.fg}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="9"/><path d="${c.icon}"/></svg>
+              ${e.status}
+            </div>
+            <div class="mt-1.5 text-xs text-ink-600">${e.detail}</div>
+            ${hits}
+            ${fleet}
+          </div>`;
+        })()}
+      </div>
+  </div>`;
+}
+
+function Content() {
+  return `
+  <main class="flex-1 min-w-0 overflow-y-auto scroll-thin p-4">
+    <div class="mb-3">
+      ${(() => {
+        const fromPortfolio = new URLSearchParams(location.search).get('from') === 'portfolio';
+        const href = fromPortfolio ? 'MarinePortfolioAffiliations.html' : 'VesselDetails.html';
+        const label = fromPortfolio ? 'BACK TO PORTFOLIO AFFILIATIONS' : 'BACK TO VESSEL';
+        return `
+      <a href="${href}" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        ${label}
+      </a>`;
+      })()}
+    </div>
+    ${KeyFindingsCard()}
+    ${OwnershipCard()}
+  </main>`;
+}
+
+window.render = function render() {
+  document.getElementById('app').innerHTML = `
+    ${SC.Sidebar()}
+    <div class="flex-1 min-w-0 flex flex-col">
+      ${SC.Topbar()}
+      ${Content()}
+    </div>
+    ${SC.TweaksPanel()}
+  `;
+  SC.wireChrome();
+  positionTabPills();
+  document.querySelectorAll('[data-affil-tab]').forEach(b => {
+    b.onclick = () => {
+      if (state.affilTab === b.getAttribute('data-affil-tab')) return;
+      state.affilTab = b.getAttribute('data-affil-tab');
+      const group = b.closest('.ds-tabs');
+      if (group) {
+        group.querySelectorAll('.ds-tab').forEach(t => t.setAttribute('aria-selected', String(t === b)));
+        const pill = group.querySelector('[data-tab-pill]');
+        if (pill) pill.classList.remove('is-init');
+        positionTabPills();
+        setTimeout(render, 200);
+        return;
+      }
+      render();
+    };
+  });
+};
+render();
+</script>
+</body>
+</html>

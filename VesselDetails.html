@@ -66,6 +66,17 @@
   .rs-tip-tbl th:first-child{text-align:left;}
   .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
+  .voyage-tabs .ds-tabs{width:100%;min-width:0;}
+  .voyage-tabs .ds-tab{font-size:10.5px !important;padding:5px 4px !important;min-width:0 !important;white-space:normal !important;overflow-wrap:break-word;line-height:1.15;text-align:center;justify-content:center;}
+  .voyage-tabs .ds-tab-label{font-size:10.5px !important;justify-content:center;text-align:center;white-space:normal !important;}
+  @media (min-width:1280px){.voyage-tabs .ds-tab,.voyage-tabs .ds-tab-label{font-size:11.5px !important;}.voyage-tabs .ds-tab{padding:6px 9px !important;}}
+  .voyage-tabs .ds-tab-label{justify-content:center;text-align:center;}
+  .rs-tip-lgd{display:flex;flex-direction:column;gap:3px;margin-top:7px;padding-top:6px;border-top:1px solid #f1f5f9;}
+  .rs-tip-lgd-h{font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;}
+  .rs-tip-lgd-r{display:flex;align-items:center;gap:6px;font-size:9.5px;color:#374151;}
+  .rs-tip-lgd-r span:first-child{width:7px;height:7px;border-radius:999px;flex-shrink:0;}
+  .rs-tip-lgd-r b{font-weight:700;}
+  .rs-tip-lgd-r i{margin-left:auto;font-style:normal;color:#6b7280;font-variant-numeric:tabular-nums;}
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
   [data-density="compact"] .gap-density { gap:.75rem; }
@@ -94,6 +105,9 @@
   /* Fullscreen */
   #vessel-tracking-card.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; }
   #vessel-tracking-card.is-fullscreen #map-wrapper { min-height:0; flex:1; }
+  .pulse-dot{width:7px;height:7px;border-radius:999px;background:#ef4444;flex-shrink:0;box-shadow:0 0 0 0 rgba(239,68,68,.6);animation:pulseDot 1.8s ease-out infinite;}
+  @keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 6px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
+  @media (prefers-reduced-motion: reduce){.pulse-dot{animation:none}}
   /* Timeline overlay */
   .timeline-overlay { position:absolute; bottom:16px; left:12px; right:12px; z-index:400; background:rgba(15,23,42,.82); border-radius:12px; padding:10px 14px; backdrop-filter:blur(4px); }
   .timeline-track { position:relative; height:6px; background:rgba(255,255,255,.25); border-radius:999px; cursor:pointer; flex:1; }
@@ -192,7 +206,9 @@ let state = {
   topTab: 'Vessel Details',
   topRightTab: 'Risk Score',
   sectionTab: 'Inspection Data',
+  voyageTab: 'Voyage',
   affilTab: 'Owner',
+  assocRoles: ['Owner','Registered Owner','Technical Manager','Commercial Manager','Operator','Charterer','Flag State','Classification Society','Associated Vessel','STS Partner','Corporate Relationship'],
   bottomLeftTab: 'Environmental Rating',
   timelinePos: 0.5,
   casualtyExpanded: new Set([0]),
@@ -437,6 +453,7 @@ function iconTabs(tabs, active, attr) {
         <span class="ds-tab-label">
           ${t.icon ? `<span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I[t.icon]}</span>` : ''}
           <span>${t.k}</span>
+          ${t.dot ? '<span class="pulse-dot" aria-hidden="true"></span>' : ''}
         </span>
       </button>`).join('')}
   </div>`;
@@ -530,9 +547,9 @@ function VesselDetailsCard() {
         ${row('In portfolios:', VESSEL.inPortfolios)}
       </div>`;
     footer = `
-    <div class="ds-card-foot ds-card-foot--center">
-      <button class="inline-flex items-center gap-1 text-xs text-brand-600 font-semibold hover:text-brand-700 tracking-micro">
-        <span class="inline-flex items-center [&_svg]:h-3.5 [&_svg]:w-3.5">${SC.I.plus}</span>
+    <div class="ds-card-foot ds-card-foot--between" style="gap:4px;padding-left:8px;padding-right:8px;">
+      <button style="padding:0 4px" class="inline-flex items-center gap-1 text-[11px] text-brand-600 font-semibold hover:text-brand-700 tracking-micro whitespace-nowrap">
+        <span class="inline-flex items-center [&_svg]:h-3 [&_svg]:w-3">${SC.I.plus}</span>
         <span>ADD TO PORTFOLIO</span>
       </button>
     </div>`;
@@ -593,13 +610,40 @@ function PolicyDetailsCard() {
   </div>`;
 }
 
+const PORT_CALL_LIST = [
+  { port:'Singapore',   cc:'sg', country:'Singapore',   arr:'2025-12-28 11:00', dep:'2025-12-30 18:30', days:'2.3' },
+  { port:'Fujairah',    cc:'ae', country:'UAE',         arr:'2025-12-14 06:20', dep:'2025-12-16 22:10', days:'2.7' },
+  { port:'Jebel Ali',   cc:'ae', country:'UAE',         arr:'2025-12-05 14:45', dep:'2025-12-07 09:05', days:'1.8' },
+  { port:'Mumbai',      cc:'in', country:'India',       arr:'2025-11-24 08:30', dep:'2025-11-27 17:40', days:'3.4' },
+  { port:'Colombo',     cc:'lk', country:'Sri Lanka',   arr:'2025-11-15 19:15', dep:'2025-11-17 04:50', days:'1.4' },
+  { port:'Port Said',   cc:'eg', country:'Egypt',       arr:'2025-11-02 03:10', dep:'2025-11-03 12:25', days:'1.4' },
+  { port:'Piraeus',     cc:'gr', country:'Greece',      arr:'2025-10-22 10:05', dep:'2025-10-25 08:15', days:'2.9' },
+  { port:'Valletta',    cc:'mt', country:'Malta',       arr:'2025-10-11 16:40', dep:'2025-10-13 05:30', days:'1.5' },
+  { port:'Algeciras',   cc:'es', country:'Spain',       arr:'2025-09-29 07:55', dep:'2025-10-01 20:20', days:'2.5' },
+  { port:'Rotterdam',   cc:'nl', country:'Netherlands', arr:'2025-09-18 12:30', dep:'2025-09-21 23:45', days:'3.5' },
+];
 function PortCallsCard() {
-  return `
-  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
-    <div class="px-4 py-3 border-b border-ink-200 shrink-0">
-      <div class="text-sm font-semibold text-ink-900">Port Calls</div>
-    </div>
-    <div class="px-4 py-2 flex-1 overflow-y-auto scroll-thin">
+  const voyageTabs = [
+    { k:'Voyage' },
+    { k:'Port Calls' },
+  ];
+  const body = state.voyageTab === 'Port Calls' ? `
+    <div class="flex-1 overflow-y-auto scroll-thin">
+      <div class="px-3 py-2 grid grid-cols-[1fr_auto] gap-3 border-b border-ink-200 sticky top-0 bg-white">
+        <span class="text-[11px] font-semibold tracking-wider uppercase text-ink-500">Port</span>
+        <span class="text-[11px] font-semibold tracking-wider uppercase text-ink-500">Days</span>
+      </div>
+      ${PORT_CALL_LIST.map(p => `
+      <div class="px-3 py-2.5 border-b border-ink-100 last:border-0 grid grid-cols-[1fr_auto] gap-3 items-start">
+        <div class="flex flex-col gap-1 min-w-0">
+          <span class="text-xs font-semibold text-ink-900 truncate">${p.port}</span>
+          <span class="flex items-center gap-1.5 text-[11px] text-ink-500">${flag(p.cc)}<span class="truncate">${p.country}</span></span>
+          <span class="text-[11px] text-ink-500">Arr: ${p.arr}</span>
+          <span class="text-[11px] text-ink-500">Dep: ${p.dep}</span>
+        </div>
+        <span class="text-xs font-semibold text-ink-700 whitespace-nowrap" style="font-variant-numeric:tabular-nums;">${p.days}d</span>
+      </div>`).join('')}
+    </div>` : `    <div class="px-4 py-2 flex-1 overflow-y-auto scroll-thin">
       <div class="flex flex-col items-center text-center space-y-1.5">
 
         <!-- Departure port outlined -->
@@ -649,6 +693,13 @@ function PortCallsCard() {
 
       </div>
     </div>
+`;
+  return `
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
+    <div class="px-4 py-3 border-b border-ink-200 shrink-0">
+      <div class="voyage-tabs">${tabs(voyageTabs, state.voyageTab, 'data-voyage-tab', true)}</div>
+    </div>
+    ${body}
     <div class="ds-card-foot ds-card-foot--center">
       <button onclick="window.location.href='VoyageHistory.html'" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
         <span>VOYAGE HISTORY</span>
@@ -1285,7 +1336,7 @@ function CasualtyRiskCardCopy8() {
     const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
     const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
     const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
-    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
+    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table><div class="rs-tip-lgd"><div class="rs-tip-lgd-h">Risk level guide</div><div class="rs-tip-lgd-r"><span style="background:#16a34a"></span><b style="color:#16a34a">Good</b><i>0 → 25</i></div><div class="rs-tip-lgd-r"><span style="background:#d97706"></span><b style="color:#d97706">Average</b><i>25+ → 50</i></div><div class="rs-tip-lgd-r"><span style="background:#dc2626"></span><b style="color:#dc2626">Below Avg.</b><i>50+ → 100</i></div></div></div></span>`;
     body = `
     <div style="padding:10px 12px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:8px;">
       <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
@@ -1350,44 +1401,6 @@ function CasualtyRiskCardCopy8() {
             <div style="background:${yearPill(rs2024).bg};color:${yearPill(rs2024).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2024).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta24}
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Risk Level Guide -->
-      <div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
-          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
-            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
-              <div style="width:20px;height:20px;background:#dcfce7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              </div>
-              <div>
-                <div style="font-size:11px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
-                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">0 → 25</div>
-              </div>
-            </div>
-          </div>
-          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
-            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
-              <div style="width:20px;height:20px;background:#fef3c7;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
-              </div>
-              <div>
-                <div style="font-size:11px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
-                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">25+ → 50</div>
-              </div>
-            </div>
-          </div>
-          <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:8px 5px;">
-            <div style="display:flex;flex-direction:row;align-items:center;text-align:left;gap:6px;">
-              <div style="width:20px;height:20px;background:#fee2e2;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-              </div>
-              <div>
-                <div style="font-size:10px;font-weight:700;color:#dc2626;line-height:1.1;">Below Avg.</div>
-                <div style="font-size:9.5px;color:#6b7280;margin-top:1px;">50+ → 100</div>
-              </div>
             </div>
           </div>
         </div>
@@ -2688,6 +2701,28 @@ function CasualtyRiskCardCopy6() {
   </div>`;
 }
 
+const ASSOC_RISK_COLOR = { Critical:'#dc2626', High:'#f97316', Medium:'#eab308', Low:'#16a34a', Informational:'#cbd5e1' };
+
+const ASSOC_ARROW = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400 shrink-0" style="display:inline-block;vertical-align:-2px;"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>';
+
+const ASSOC_ROLE_OPTS = ['Owner','Registered Owner','Technical Manager','Commercial Manager','Operator','Charterer','Flag State','Classification Society','Associated Vessel','STS Partner','Corporate Relationship'];
+
+const ASSOC_STS = '<span class="inline-flex items-center gap-1 shrink-0 text-ink-400"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg><span class="text-[10px] font-semibold tracking-wide uppercase">STS</span></span>';
+
+const ASSOC_ROWS = [
+  { role:'Registered Owner', entity:'Orion Maritime Holdings SA', type:'Company', risk:'Critical', evidence:'OFAC SDN match on registered owner',
+    rel:['MV Northern Star','Orion Maritime Holdings SA (sanctioned)'] },
+  { role:'Technical Manager', entity:'Global Marine Management Ltd', type:'Company', risk:'High', evidence:'Manager also manages 1 sanctioned vessel',
+    rel:['MV Northern Star','Global Marine Management Ltd','MV Volga Trader (sanctioned)'] },
+  { role:'Commercial Manager', entity:'Meridian Chartering Co', type:'Company', risk:'High', evidence:'2-hop STS with sanctioned vessel',
+    rel:['MV Northern Star','Meridian Chartering Co','MV Blue Horizon','STS','MV Kastor (sanctioned)'] },
+  { role:'STS Partner', entity:'MV Blue Horizon', type:'Vessel', risk:'High', evidence:'Direct STS transfer, 14 Jun 2026',
+    rel:['MV Northern Star','MV Blue Horizon','STS','MV Kastor (sanctioned)'] },
+  { role:'Owner', entity:'Pacific Shipping Holdings Ltd', type:'Company', risk:'Medium', evidence:'Downstream port call in sanctioned jurisdiction',
+    rel:['MV Northern Star','Pacific Shipping Holdings Ltd','MV Sea Lark','STS','MV Anadyr','Port call — Nakhodka, RU'] },
+  { role:'Operator', entity:'Levant Marine Services', type:'Company', risk:'Low', evidence:'Operator registered in country of interest',
+    rel:['MV Northern Star','Levant Marine Services','Syria (country of interest)'] },
+];
 function InspectionTable() {
   const sortHead = (label) => `
   <button class="inline-flex items-center gap-1 text-[11px] font-semibold tracking-wider uppercase text-ink-500 hover:text-ink-700">
@@ -2701,112 +2736,42 @@ function InspectionTable() {
       <div class="tabs-desktop-wrap">
         ${iconTabs([
           { k:'Inspection Data', icon:'clipboard' },
-          { k:'Affiliations', icon:'users' },
           { k:'Sanction Compliance', icon:'shield' },
           { k:'Ship-To-Ship', icon:'anchor' },
           { k:'Suspicious Activity', icon:'alertTri' },
+          { k:'Risk Associations', icon:'network', dot:true },
         ], state.sectionTab, 'data-section-tab')}
       </div>
       <select class="mobile-tab-select" id="section-tab-mobile-sel">
-        ${['Inspection Data','Affiliations','Sanction Compliance','Ship-To-Ship','Suspicious Activity'].map(t=>`<option value="${t}" ${t===state.sectionTab?'selected':''}>${t}</option>`).join('')}
+        ${['Inspection Data','Sanction Compliance','Ship-To-Ship','Suspicious Activity','Risk Associations'].map(t=>`<option value="${t}" ${t===state.sectionTab?'selected':''}>${t}</option>`).join('')}
       </select>
     </div>
     <div class="overflow-x-auto">
-      ${state.sectionTab === 'Affiliations' ? `
-      <div class="px-4 py-4">
-        <div class="flex items-center justify-between gap-3 mb-2">
-          <div class="text-sm font-semibold text-ink-900">Key findings</div>
-          <div class="text-[11px] text-ink-500">What this profile means at a glance</div>
+      ${state.sectionTab === 'Risk Associations' ? `
+      <div>
+        <div class="px-4 py-3 flex items-center justify-end border-b border-ink-200">${AssocRoleMenu()}</div>
+        <div class="overflow-x-auto scroll-thin">
+          <table class="w-full" style="border-collapse:collapse;min-width:720px;table-layout:fixed;">
+            <colgroup><col style="width:46%"><col style="width:20%"><col style="width:11%"><col style="width:23%"></colgroup>
+            <thead class="bg-ink-50">
+              <tr>
+                <th class="px-3 py-2 text-left"><span class="text-[11px] font-semibold tracking-wider uppercase text-ink-500">Relationship</span></th>
+                <th class="px-3 py-2 text-left"><span class="text-[11px] font-semibold tracking-wider uppercase text-ink-500">Connected Entity</span></th>
+                <th class="px-3 py-2 text-left"><span class="text-[11px] font-semibold tracking-wider uppercase text-ink-500">Entity Type</span></th>
+                <th class="px-3 py-2 text-left"><span class="text-[11px] font-semibold tracking-wider uppercase text-ink-500">Evidence</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              ${ASSOC_ROWS.filter(r => state.assocRoles.includes(r.role)).map(r => `
+              <tr class="border-b border-ink-100 last:border-0">
+                <td class="px-3 py-2.5 text-xs text-ink-700"><span class="inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5">${r.rel.map((p,idx)=> p==='STS' ? ASSOC_STS : (idx===0||r.rel[idx-1]==='STS'?'':ASSOC_ARROW)+`<span>${p}</span>`).join('')}</span></td>
+                <td class="px-3 py-2.5 text-xs text-ink-700">${r.entity}</td>
+                <td class="px-3 py-2.5 text-xs text-ink-700">${r.type}</td>
+                <td class="px-3 py-2.5 text-xs text-ink-700">${r.evidence}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
         </div>
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          ${[
-            { label:'This Vessel', value:'Sanctioned', note:'Listed by 3 sources' },
-            { label:'Associated Companies Sanctioned', value:'1 of 4', note:'4 counterparties unknown · cannot be checked' },
-            { label:'Sanctioned Vessels in Associated Companies', value:'10 of 10', note:'Other vessels managed by the same companies — sanctioned ones flagged' },
-          ].map((f, fi) => `
-          <div class="rounded-lg border border-ink-200 bg-white border-l-[3px] border-l-red-500 px-4 py-3">
-            <div class="text-[11px] font-bold tracking-wider uppercase text-ink-500">${f.label}</div>
-            <div class="mt-1.5 flex items-center gap-2 text-ink-900">
-              ${fi === 0
-                ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg>`
-                : fi === 1
-                ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"/></svg>`
-                : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4M12 2v3"/></svg>`}
-              <span class="text-base font-bold leading-none">${f.value}</span>
-            </div>
-            <div class="mt-2 text-xs text-ink-600">${f.note}</div>
-          </div>`).join('')}
-        </div>
-        <div class="mt-5 text-sm font-semibold text-ink-900">Ownership &amp; management</div>
-        <div class="mt-2 flex flex-wrap gap-1.5">
-          ${AFFIL_ENTITIES.map(e => {
-            const on = state.affilTab === e.k;
-            const dot = e.tone === 'ok' ? '#16a34a' : e.tone === 'bad' ? '#dc2626' : e.tone === 'warn' ? '#ea580c' : '';
-            const dotEl = dot
-              ? `<span class="w-2 h-2 rounded-full shrink-0" style="background:${dot}"></span>`
-              : `<span class="w-2 h-2 rounded-full shrink-0 border-[1.5px] border-ink-300"></span>`;
-            return `<button data-affil-tab="${e.k}" class="inline-flex items-center gap-2 h-8 px-3.5 rounded-full border text-xs font-semibold transition-colors ${on ? 'border-brand-600 bg-brand-50 text-brand-700' : 'border-ink-200 bg-white text-ink-600 hover:bg-ink-50'}">${dotEl}${e.k}</button>`;
-          }).join('')}
-        </div>
-        ${(() => {
-          const e = AFFIL_ENTITIES.find(x => x.k === state.affilTab) || AFFIL_ENTITIES[0];
-          const ok = e.tone === 'ok';
-          const c = ok ? { fg:'#15803d', icon:'M9 12.5l2 2 4-4.5' } : e.tone === 'bad' ? { fg:'#b91c1c', icon:'M12 8v5M12 16.5h.01' } : e.tone === 'warn' ? { fg:'#c2410c', icon:'M12 8v5M12 16.5h.01' } : { fg:'#475569', icon:'M12 8v5M12 16.5h.01' };
-          const panel = e.tone === 'warn' ? 'border-ink-200 bg-white border-l-[3px] border-l-orange-400' : e.tone === 'bad' ? 'border-ink-200 bg-white border-l-[3px] border-l-red-500' : 'border-ink-200 bg-white';
-          const sanctionedCount = (e.fleet || []).filter(v => v.sanctioned).length;
-          const hits = e.hits ? `
-            <div class="mt-4 text-xs font-bold text-ink-900">Sanctions hits <span class="font-semibold text-ink-500">(${e.hits.length})</span></div>
-            <div class="mt-2 flex flex-col gap-2">
-              ${e.hits.map(hit => `
-              <div class="rounded-md border border-ink-200 bg-white border-l-[3px] border-l-red-500 px-3 py-2">
-                <div class="flex flex-wrap items-center gap-2">
-                  <span class="text-xs font-bold text-ink-900">${hit.source}</span>
-                  <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-red-50 text-red-700 border border-red-200">${hit.state}</span>
-                  <span class="text-[11px] text-ink-600">${hit.added}</span>
-                </div>
-                <div class="mt-1 text-xs text-ink-700">${hit.text}</div>
-              </div>`).join('')}
-            </div>` : '';
-          const fleet = e.fleet ? `
-            <div class="mt-4 text-xs font-bold text-ink-900">Other vessels managed by this company <span class="font-semibold text-ink-500">(${e.fleet.length})</span> <span class="font-semibold text-red-600">· ${sanctionedCount} sanctioned</span></div>
-            <div class="mt-2 overflow-x-auto rounded-md border border-ink-200 bg-white">
-              <table class="w-full text-xs min-w-[680px]">
-                <thead class="bg-ink-50">
-                  <tr>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Vessel</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">IMO</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Type</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Flag</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${e.fleet.map(v => `
-                  <tr class="border-b border-ink-100 last:border-0 hover:bg-brand-50">
-                    <td class="px-3 py-2"><a href="VesselDetails.html" class="font-semibold text-brand-600 hover:underline">${v.name}</a></td>
-                    <td class="px-3 py-2 font-mono text-ink-700">${v.imo}</td>
-                    <td class="px-3 py-2 text-ink-700">${v.type}</td>
-                    <td class="px-3 py-2 text-ink-700">${v.flag}</td>
-                    <td class="px-3 py-2">${v.sanctioned
-                      ? `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`
-                      : `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Clear</span>`}</td>
-                  </tr>`).join('')}
-                </tbody>
-              </table>
-            </div>` : '';
-          return `
-          <div class="mt-3">
-            <div class="text-xs text-ink-500">${e.k}</div>
-            <div class="mt-0.5 text-base font-bold text-ink-900">${e.name}</div>
-            <div class="mt-1.5 flex items-center gap-2 text-sm font-semibold" style="color:${c.fg}">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="9"/><path d="${c.icon}"/></svg>
-              ${e.status}
-            </div>
-            <div class="mt-1.5 text-xs text-ink-600">${e.detail}</div>
-            ${hits}
-            ${fleet}
-          </div>`;
-        })()}
       </div>` : state.sectionTab === 'Sanction Compliance' ? `
       <table class="w-full text-xs min-w-[800px]">
         <thead class="bg-ink-50">
@@ -2964,12 +2929,35 @@ function InspectionTable() {
         </tbody>
       </table>`}
     </div>
-    ${state.sectionTab === 'Affiliations' ? '' : dsPagination({
+    ${state.sectionTab === 'Risk Associations' ? '' : dsPagination({
       page: 1, totalPages: 2,
       totalItems: 6, perPage: 5,
       perPageOptions: [5, 10, 25],
       label: 'results',
     })}
+  </div>`;
+}
+
+function AssocRoleMenu() {
+  const sel = state.assocRoles;
+  const all = ASSOC_ROLE_OPTS.every(o => sel.includes(o));
+  const summary = all ? 'All roles' : sel.length === 0 ? 'None' : sel.length === 1 ? sel[0] : `${sel.length} selected`;
+  const box = on => on
+    ? '<span class="w-3.5 h-3.5 rounded-[3px] bg-brand-600 inline-flex items-center justify-center shrink-0"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>'
+    : '<span class="w-3.5 h-3.5 rounded-[3px] border border-ink-300 bg-white inline-flex shrink-0"></span>';
+  return `
+  <div class="relative shrink-0" data-assoc-filter-wrap>
+    <button data-assoc-filter-btn class="h-8 inline-flex items-center gap-2 rounded-md border border-ink-200 bg-white px-2.5 text-xs font-medium text-ink-800 hover:bg-ink-50">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
+      <span class="text-ink-500">Role</span>
+      <span>${summary}</span>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div data-assoc-filter-menu class="hidden absolute right-0 top-[calc(100%+4px)] z-30 w-[220px] rounded-lg border border-ink-200 bg-white shadow-lg py-1 max-h-[380px] overflow-y-auto scroll-thin">
+      <button data-assoc-filter="__all" class="w-full flex items-center gap-2 px-3 py-1.5 text-left text-xs font-medium text-ink-700 hover:bg-ink-50">${box(all)}<span>All</span></button>
+      <div class="my-1 border-t border-ink-100"></div>
+      ${ASSOC_ROLE_OPTS.map(o => `<button data-assoc-filter="${o}" class="w-full flex items-center gap-2 px-3 py-1.5 text-left text-xs text-ink-700 hover:bg-ink-50">${box(sel.includes(o))}<span>${o}</span></button>`).join('')}
+    </div>
   </div>`;
 }
 
@@ -3650,8 +3638,29 @@ window.render = function render() {
   document.querySelectorAll('[data-sanctions-toggle-copy6]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy6 = !state.withSanctionsCopy6; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy7]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy7 = !state.withSanctionsCopy7; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy8]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy8 = !state.withSanctionsCopy8; render(); }; });
+  wireTab('data-voyage-tab',      'voyageTab');
   wireTab('data-section-tab',     'sectionTab');
   document.querySelectorAll('[data-affil-tab]').forEach(b => { b.onclick = () => { state.affilTab = b.getAttribute('data-affil-tab'); render(); }; });
+  const asBtn = document.querySelector('[data-assoc-filter-btn]');
+  const asMenu = document.querySelector('[data-assoc-filter-menu]');
+  if (asBtn && asMenu) {
+    asBtn.onclick = (ev) => { ev.stopPropagation(); asMenu.classList.toggle('hidden'); };
+    document.addEventListener('click', (ev) => { if (!ev.target.closest('[data-assoc-filter-wrap]')) asMenu.classList.add('hidden'); });
+  }
+  document.querySelectorAll('[data-assoc-filter]').forEach(b => {
+    b.onclick = (ev) => {
+      ev.stopPropagation();
+      const o = b.getAttribute('data-assoc-filter');
+      if (o === '__all') {
+        state.assocRoles = ASSOC_ROLE_OPTS.every(x => state.assocRoles.includes(x)) ? [] : ASSOC_ROLE_OPTS.slice();
+      } else {
+        state.assocRoles = state.assocRoles.includes(o) ? state.assocRoles.filter(x => x !== o) : state.assocRoles.concat([o]);
+      }
+      render();
+      const m = document.querySelector('[data-assoc-filter-menu]');
+      if (m) m.classList.remove('hidden');
+    };
+  });
   wireTab('data-bottom-left-tab', 'bottomLeftTab');
   const sectionTabSel = document.getElementById('section-tab-mobile-sel');
   if (sectionTabSel) sectionTabSel.onchange = () => { state.sectionTab = sectionTabSel.value; render(); };

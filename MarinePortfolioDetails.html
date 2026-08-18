@@ -301,7 +301,7 @@ function PanelPortfolioDetails() {
         <button class="ds-tab" aria-selected="false"><span class="ds-tab-label">Portfolio Groups</span></button>
       </div>
     </div>
-    <div class="mx-3 mt-3" style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 16px;text-align:center;">
+    <div class="mx-3 mt-3" style="width:fit-content;align-self:center;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 16px;text-align:center;">
       <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
       <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
     </div>
@@ -321,7 +321,7 @@ function PanelPortfolioDetails() {
         ${compBadge}
       </div>
     </div>
-    <div class="ds-card-foot ds-card-foot--start mt-auto">
+    <div class="ds-card-foot ds-card-foot--between mt-auto">
       <button class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span>DOWNLOAD</span>
@@ -639,7 +639,7 @@ function PanelCompliance() {
 }
 
 /* ── Analysis section ── */
-const ANALYSIS_TABS = ['PSC Analysis','Avg / Utilisation Report','Environmental Rating','Portfolio Casualties'];
+const ANALYSIS_TABS = ['PSC Analysis','Avg / Utilisation Report','Environmental Rating','Portfolio Casualties','Associations'];
 
 const ENV_RATING = {
   grade: 'B',
@@ -778,10 +778,51 @@ function UtilisationContent() {
   </div>`;
 }
 
+function AffiliationsContent() {
+  const ROLE_TILES = [
+    { label:'Registered owner',       n:21, of:21, missing:0, flag:'red' },
+    { label:'Group beneficial',       n:2,  of:21, missing:0, flag:'amber' },
+    { label:'Operator',               n:3,  of:21, missing:0, flag:'amber' },
+    { label:'Ship manager',           n:2,  of:21, missing:0, fleet:1 },
+    { label:'Technical manager',      n:3,  of:21, missing:0, flag:'amber' },
+    { label:'DOC company',            n:1,  of:20, missing:1, flag:'amber' },
+    { label:'P&I club',               n:2,  of:21, missing:0, fleet:9,   note:'not in summary', flag:'amber' },
+    { label:'Classification society', n:4,  of:21, missing:0, fleet:328, note:'not in summary' },
+  ];
+  const redFlag = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-px"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg>';
+  const amberFlag = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-px"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>';
+  return `
+  <div class="flex items-center justify-between gap-3 mb-3">
+    <div class="text-sm font-semibold text-ink-900">Key findings</div>
+    <div class="hidden md:block text-[11px] italic text-ink-500">What this portfolio means at a glance — company roles only, excluding the P&amp;I Club and the Classification Society</div>
+  </div>
+  <div class="grid gap-2.5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8">
+    ${ROLE_TILES.map(t => `
+      <div class="relative rounded-lg border border-ink-200 bg-white px-3 py-2.5">
+        ${t.note ? `<span class="absolute left-1/2 -translate-x-1/2 -top-[7px] inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider bg-ink-100 text-ink-500 whitespace-nowrap">${t.note}</span>` : ''}
+        <div class="flex items-start gap-1.5">
+          ${t.flag === 'red' ? redFlag : t.flag === 'amber' ? amberFlag : ''}
+          <span class="text-[12px] font-semibold text-ink-800 leading-snug">${t.label}</span>
+        </div>
+        <div class="mt-1 flex items-baseline gap-1">
+          <span class="text-xl font-bold leading-none tabular-nums ${t.flag === 'red' ? 'text-red-600' : t.flag === 'amber' ? 'text-amber-600' : 'text-ink-900'}">${t.n}</span>
+          <span class="text-xs font-medium text-ink-400 tabular-nums">/ ${t.of}</span>
+        </div>
+        <div class="mt-1.5 text-[11px] italic text-ink-500 leading-snug">${t.missing} of 21 not on file</div>
+        ${t.fleet ? `<div class="mt-0.5 text-[11px] italic text-ink-500 leading-snug">${t.fleet} sanctioned vessel${t.fleet === 1 ? '' : 's'} fleet wide</div>` : ''}
+      </div>`).join('')}
+  </div>
+  <p class="mt-4 text-xs leading-relaxed text-ink-600" style="text-wrap:pretty;">Each tile reads <strong class="font-semibold text-ink-800">unique companies / vessels with that role recorded</strong>. The denominator is <em>not</em> the whole portfolio — vessels with no value on file for the role are excluded and reported on a separate "not on file" line so the figures above aren't diluted by missing data. Placeholder entities ("Unknown", "Not Applicable", …) count as <em>no value on file</em>, not as companies. Tiles flagged <strong class="font-semibold text-red-600">red</strong> contain at least one sanctioned company; tiles flagged <strong class="font-semibold text-amber-600">amber</strong> contain a clean company that's linked to a sanctioned vessel in the portfolio. Tiles marked <em>not in summary</em> are excluded from the totals at the top of the page.</p>
+  <div class="mt-4 flex justify-center">
+    <button onclick="window.location.href='MarinePortfolioAffiliations.html'" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro"><span>VIEW DETAILS</span><span class="inline-flex items-center [&_svg]:h-3.5 [&_svg]:w-3.5">${SC.I.chev}</span></button>
+  </div>`;
+}
+
 function analysisContentFor(tab) {
   if (tab === 'PSC Analysis')             return PSCContent();
   if (tab === 'Avg / Utilisation Report') return UtilisationContent();
   if (tab === 'Environmental Rating')     return EnvironmentalRatingContent();
+  if (tab === 'Associations')             return AffiliationsContent();
   return `<div class="py-8 text-center text-ink-400 text-sm">${tab} — coming soon</div>`;
 }
 
@@ -789,8 +830,9 @@ function AnalysisTabBar() {
   const icons = {
     'PSC Analysis': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>`,
     'Avg / Utilisation Report': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>`,
-    'Environmental Rating': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C4 11 9 5 20 3c0 11-6 16-16 17Z"/><path d="M4 20c2.5-6 6-9.5 11-11"/></svg>`,
+    'Environmental Rating': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
     'Portfolio Casualties': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`,
+    'Associations': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>`,
   };
   return `
   <div class="p-3 border-b border-ink-100">

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Add Region — Real World</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] },
+    colors: {
+      brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+      ink:   {900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'},
+    },
+    boxShadow: { 'card':'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)' },
+  } } };
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-700,#1d4ed8)}
+  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .leaflet-control-zoom,.leaflet-bar{border:1px solid #e2e8f0!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
+  .leaflet-bar a{background:#fff!important;color:#334155!important;line-height:30px!important}
+  .leaflet-bar a:hover{background:#f1f5f9!important}
+  .cnr-label{font-size:13px;font-weight:500;color:#334155}
+  .cnr-input{width:100%;height:34px;border:1px solid #e2e8f0;border-radius:8px;padding:0 10px;font-size:13px;color:#0f172a;background:#fff;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s}
+  .cnr-input:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+  .cnr-input::placeholder{color:#94a3b8}
+  select.cnr-input{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:30px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center}
+  .cnr-tab{height:30px;padding:0 14px;border-radius:9999px;border:0;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;color:#64748b;background:transparent;transition:background .15s,color .15s}
+  .cnr-tab:hover:not(.active){color:#0f172a}
+  .cnr-tab.active{background:var(--brand-600,#2563eb);color:#fff}
+  .cnr-check{display:flex;align-items:center;gap:9px;font-size:13px;color:#334155;cursor:pointer;padding:5px 0}
+  .cnr-check input{width:15px;height:15px;accent-color:#2563eb;cursor:pointer;flex-shrink:0}
+  .cnr-btn{height:34px;padding:0 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s;display:inline-flex;align-items:center;gap:6px}
+  .cnr-btn-primary{background:var(--brand-600,#2563eb);color:#fff;border:1px solid var(--brand-600,#2563eb)}
+  .cnr-btn-primary:hover{background:var(--brand-700,#1d4ed8)}
+  .cnr-btn-ghost{background:#fff;color:#334155;border:1px solid #e2e8f0}
+  .cnr-btn-ghost:hover{background:#f8fafc}
+  .cnr-chip{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 6px 0 10px;border-radius:9999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:600}
+  .cnr-chip button{border:0;background:transparent;cursor:pointer;color:#60a5fa;display:flex;padding:2px;border-radius:9999px}
+  .cnr-chip button:hover{color:#1d4ed8;background:#dbeafe}
+  .cnr-draw{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;color:#334155;cursor:pointer;transition:background .15s,color .15s}
+  .cnr-draw:hover{background:#f1f5f9}
+  .cnr-draw.active{background:#eff6ff;color:#2563eb}
+  @media(max-width:900px){.cnr-cols{grid-template-columns:1fr!important}.cnr-map-wrap{height:340px!important}}
+</style>
+</head>
+<body class="bg-white text-slate-900">
+<div id="app" class="h-screen w-full flex overflow-hidden"></div>
+<script>
+window.PAGE = { id:'regions', title:'Add Region', crumb:'Regions' };
+window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "density": "compact",
+  "accent": "blue",
+  "sidebarExpanded": false
+}/*EDITMODE-END*/;
+</script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="shared/chrome.js?v=12"></script>
+<script type="text/babel" src="CreateNewRegion.tsx"></script>
+</body>
+</html>

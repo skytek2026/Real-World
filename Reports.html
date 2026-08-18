@@ -130,7 +130,7 @@
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 
 <script>
-window.PAGE = { id:'reports', title:'Reports', crumb:'Report Builder' };
+window.PAGE = { id:'reports', title:'Reports', crumb:'Report Builder V2' };
 window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "density": "compact",
   "accent": "blue",
@@ -142,6 +142,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/chrome.js?v=12"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
+<script src="shared/report-builder.js?v=8"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -1023,6 +1024,7 @@ window.__compClearAll = () => { compSelected = []; rerenderCompTab(false); };
 
 function tabContent() {
   if (activeTab === 'builder') return `<div id="chat-area" style="flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;background:#f8fafc"></div>`;
+  if (activeTab === 'builder1') return window.reportBuilder.content();
   if (activeTab === 'fleet')   return fleetTabContent();
   if (activeTab === 'comp')    return competitorTabContent();
   const icon  = CHT_ICO.replace('width="14"','width="24"').replace('height="14"','height="24"');
@@ -1047,8 +1049,11 @@ window.render = function() {
           <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:4px;flex-shrink:0">
             <div class="ds-tabs" id="reports-tabs">
               <span class="ds-tab-pill is-init" id="reports-pill"></span>
-              <button class="ds-tab" aria-selected="${activeTab==='builder'}" data-tab="builder">
+              <button class="ds-tab" aria-selected="${activeTab==='builder1'}" data-tab="builder1">
                 <span class="ds-tab-label">${STR_ICO} Report Builder</span>
+              </button>
+              <button class="ds-tab" aria-selected="${activeTab==='builder'}" data-tab="builder">
+                <span class="ds-tab-label">${STR_ICO} Report Builder V2</span>
               </button>
               <button class="ds-tab" aria-selected="${activeTab==='fleet'}" data-tab="fleet">
                 <span class="ds-tab-label">${DOC_ICO} Weekly Fleet Reports</span>
@@ -1058,7 +1063,8 @@ window.render = function() {
               </button>
             </div>
             <select id="reports-tabs-dd" class="reports-tabs-dd" aria-label="Section">
-              <option value="builder" ${activeTab==='builder'?'selected':''}>Report Builder</option>
+              <option value="builder1" ${activeTab==='builder1'?'selected':''}>Report Builder</option>
+              <option value="builder" ${activeTab==='builder'?'selected':''}>Report Builder V2</option>
               <option value="fleet"   ${activeTab==='fleet'  ?'selected':''}>Weekly Fleet Reports</option>
               <option value="comp"    ${activeTab==='comp'   ?'selected':''}>Competitor Analysis</option>
             </select>
@@ -1105,6 +1111,7 @@ window.render = function() {
     if (contentEl) {
       contentEl.innerHTML = tabContent();
       if (activeTab === 'builder') rerenderChat();
+      if (activeTab === 'builder1') window.reportBuilder.wire();
       if (activeTab === 'fleet')   wireFleetTab();
       if (activeTab === 'comp')    wireCompetitorTab();
     }
@@ -1130,11 +1137,13 @@ window.render = function() {
     if (contentEl) {
       contentEl.innerHTML = tabContent();
       if (activeTab === 'builder') rerenderChat();
+      if (activeTab === 'builder1') window.reportBuilder.wire();
       if (activeTab === 'fleet')   wireFleetTab();
       if (activeTab === 'comp')    wireCompetitorTab();
     }
   }));
   if (activeTab === 'builder') rerenderChat();
+  if (activeTab === 'builder1') window.reportBuilder.wire();
   if (activeTab === 'fleet')   wireFleetTab();
   if (activeTab === 'comp')    wireCompetitorTab();
 };
