@@ -3,10 +3,12 @@ const { useState, useEffect, useRef } = React;
 const SC = window.sharedChrome;
 
 const MAP_TILES = {
-  light:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-  street:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  dark:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  satellite:{ label:'Satellite',   url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#0b1220' },
+  street:   { label:'Street View', url:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',                    attr:'© OpenStreetMap contributors', bg:'#e8e2d8' },
+  dark:     { label:'Dark Mode',   url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',         attr:'© OpenStreetMap contributors © CARTO', bg:'#0b1220' },
+  light:    { label:'Light Mode',  url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',        attr:'© OpenStreetMap contributors © CARTO', bg:'#f3f4f6' },
 };
+const MAP_TYPE_ORDER = ['satellite','street','dark','light'];
 const REGION_TYPES = ['Monitored Region','Exclusion Region','Trading Area','War Risk Area','Sanctioned Area'];
 const REGION_GROUPS = ['Other','Oil Fields','Ports','War Zones','Piracy','Trade Lanes'];
 const COUNTRIES = ['Panama','Liberia','Marshall Islands','Singapore','Nigeria','Yemen','Somalia','Libya','Iran','Venezuela','Russia','Ukraine','Malta','Cyprus','Greece','Turkey'];
@@ -15,6 +17,9 @@ const HRAS = ['Gulf of Aden HRA','Indian Ocean HRA','Gulf of Guinea HRA','Southe
 const PORTS = ['Rotterdam','Singapore','Houston','Lagos','Novorossiysk','Fujairah','Santos','Shanghai'];
 const SEAS = ['Black Sea','Red Sea','Baltic Sea','South China Sea','Sea of Azov','Persian Gulf','Mediterranean Sea'];
 const COUNTRY_INCLUDES = ['Border','Internal Waters','Territorial Waters','EEZ','Border, Internal and Territorial Waters'];
+const REGION_LIMIT = 10;
+const QUOTA_KEY = 'rw_custom_regions_used';
+function loadUsed() { try { const v = parseInt(localStorage.getItem(QUOTA_KEY), 10); if (!isNaN(v)) return Math.min(v, REGION_LIMIT); } catch (e) {} return 7; }
 const DRAW_TOOLS = [
   { id:'rect',    label:'Draw rectangle',  icon:'Square' },
   { id:'polygon', label:'Draw polygon',    icon:'Pentagon' },
@@ -47,7 +52,8 @@ function RegionMap({ mapType, tool }) {
   useEffect(() => {
     const map = L.map(ref.current, { center:[24,10], zoom:2, zoomControl:true, scrollWheelZoom:true, worldCopyJump:true });
     mapRef.current = map;
-    L.tileLayer(MAP_TILES[mapType], { attribution:'', maxZoom:12 }).addTo(map);
+    L.tileLayer(MAP_TILES[mapType].url, { attribution:MAP_TILES[mapType].attr, maxZoom:16 }).addTo(map);
+    ref.current.style.background = MAP_TILES[mapType].bg;
     setTimeout(() => map.invalidateSize(), 120);
     return () => map.remove();
   }, [mapType]);
@@ -73,7 +79,20 @@ function AddRegion() {
   const [sea, setSea] = useState('');
   const [added, setAdded] = useState([]);
   const [mapType, setMapType] = useState('light');
+  const [layersOpen, setLayersOpen] = useState(false);
   const [tool, setTool] = useState(null);
+  const [used] = useState(loadUsed);
+  const remaining = Math.max(0, REGION_LIMIT - used);
+  const atLimit = remaining === 0;
+  const nearLimit = !atLimit && remaining <= 2;
+  const quotaTone = atLimit ? { fg:'#b91c1c', bg:'#fef2f2', bd:'#fecaca', dot:'#dc2626' }
+                  : nearLimit ? { fg:'#b45309', bg:'#fffbeb', bd:'#fde68a', dot:'#f59e0b' }
+                  : { fg:'var(--brand-700,#1d4ed8)', bg:'var(--brand-50,#eff6ff)', bd:'var(--brand-200,#bfdbfe)', dot:'var(--brand-600,#2563eb)' };
+  const saveRegion = () => {
+    if (atLimit) return;
+    try { localStorage.setItem(QUOTA_KEY, String(used + 1)); } catch (e) {}
+    window.location.href = 'Regions.html';
+  };
 
   const toggleInclude = (v) => setIncludes(s => s.includes(v) ? s.filter(x => x !== v) : [...s, v]);
   const pending = { HRA:hra, Port:port, Country:country, Sea:sea }[tab];
@@ -91,10 +110,33 @@ function AddRegion() {
           <span className="text-brand-600 flex">{icon('MapPlus',16) || icon('Map',16)}</span>
           <h1 className="text-sm font-semibold text-ink-900">Add Region</h1>
         </div>
-
         <div className="cnr-cols grid" style={{gridTemplateColumns:'minmax(0,1fr) minmax(0,1fr)'}}>
           {/* Form column */}
           <div className="p-4 flex flex-col gap-3 border-r border-ink-100">
+          <div className="flex items-center gap-3 px-3 py-2.5 flex-wrap rounded-lg" style={{background:quotaTone.bg,border:'1px solid '+quotaTone.bd}}>
+            <span style={{width:'30px',height:'30px',borderRadius:'8px',background:'#fff',border:'1px solid '+quotaTone.bd,color:quotaTone.dot,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+              {icon(atLimit ? 'CircleAlert' : nearLimit ? 'TriangleAlert' : 'Map', 16)}
+            </span>
+            <div className="min-w-0">
+              <div className="text-sm font-bold" style={{color:quotaTone.fg}}>
+                {atLimit ? 'Custom region limit reached — ' + REGION_LIMIT + ' of ' + REGION_LIMIT + ' used'
+                         : used + ' of ' + REGION_LIMIT + ' custom regions used'}
+              </div>
+              <div className="text-xs" style={{color:quotaTone.fg,opacity:.85}}>
+                {atLimit
+                  ? 'Delete an existing custom region on the Regions page before creating a new one.'
+                  : 'You can create ' + (remaining === 1 ? '1 more region' : remaining + ' more regions') + ' on this plan. This one will be number ' + (used + 1) + '.'}
+              </div>
+            </div>
+            <div className="ml-auto flex items-center gap-2.5">
+              <div className="flex items-center gap-[3px]" title={used + ' of ' + REGION_LIMIT + ' custom regions used'}>
+                {Array.from({length:REGION_LIMIT}).map((_,i) => (
+                  <span key={i} style={{width:'9px',height:'18px',borderRadius:'2px',background:i < used ? quotaTone.dot : '#fff',border:'1px solid '+(i < used ? quotaTone.dot : quotaTone.bd)}}></span>
+                ))}
+              </div>
+              <span className="text-lg font-extrabold whitespace-nowrap" style={{color:quotaTone.fg,fontVariantNumeric:'tabular-nums'}}>{used}<span className="text-sm font-bold" style={{opacity:.6}}>/{REGION_LIMIT}</span></span>
+            </div>
+          </div>
             <Field label="Name:">
               <input className="cnr-input" value={name} onChange={e=>setName(e.target.value)} placeholder="e.g. North Sea Block A" list="cnr-name-suggestions" />
               <datalist id="cnr-name-suggestions"><option>North Sea Block A</option><option>Gulf of Guinea Watch</option><option>Black Sea Exclusion</option></datalist>
@@ -179,10 +221,20 @@ function AddRegion() {
               </div>
             </div>
             <div className="absolute" style={{top:'12px',right:'12px',zIndex:400}}>
-              <div className="rounded-lg overflow-hidden border border-ink-200 shadow-card flex">
-                {Object.keys(MAP_TILES).map(k => (
-                  <button key={k} onClick={()=>setMapType(k)} className="px-2.5 h-8 text-[11px] font-semibold capitalize" style={{border:0,cursor:'pointer',fontFamily:'inherit',background:mapType===k?'#eff6ff':'#fff',color:mapType===k?'#2563eb':'#64748b'}}>{k}</button>
-                ))}
+              <div className="relative">
+                <button className="cnr-map-btn" title="Layers" aria-expanded={layersOpen} onClick={()=>setLayersOpen(o=>!o)}>{icon('Layers',16)}</button>
+                {layersOpen ? (
+                  <div className="absolute bg-white border border-ink-200 rounded-xl shadow-card overflow-hidden py-1" style={{top:0,right:'calc(100% + 8px)',width:'160px'}}>
+                    {MAP_TYPE_ORDER.map(k => (
+                      <button key={k} onClick={()=>{setMapType(k);setLayersOpen(false);}}
+                        className="w-full flex items-center justify-between gap-2 px-3 py-2 text-sm hover:bg-ink-50"
+                        style={{border:0,background:'transparent',cursor:'pointer',fontFamily:'inherit',color:'#334155',fontWeight:mapType===k?700:400}}>
+                        <span>{MAP_TILES[k].label}</span>
+                        <span style={{color:'var(--brand-600,#2563eb)',opacity:mapType===k?1:0,display:'flex'}}>{icon('Check',15)}</span>
+                      </button>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             </div>
             {tool ? (
@@ -195,7 +247,8 @@ function AddRegion() {
 
         <div className="px-4 py-3 border-t border-ink-200 bg-ink-50 flex items-center justify-end gap-2">
           <a href="Regions.html" className="cnr-btn cnr-btn-ghost" style={{textDecoration:'none'}}>Cancel</a>
-          <button className="cnr-btn cnr-btn-primary" onClick={()=>{window.location.href='Regions.html';}}>Save</button>
+          <span className="mr-auto text-xs text-ink-500">{atLimit ? 'No custom regions remaining' : remaining + ' of ' + REGION_LIMIT + ' custom regions remaining'}</span>
+          <button className="cnr-btn cnr-btn-primary" onClick={saveRegion} disabled={atLimit} title={atLimit ? 'Custom region limit reached' : 'Save region'} style={atLimit?{opacity:.45,cursor:'not-allowed'}:null}>Save</button>
         </div>
       </div>
     </div>

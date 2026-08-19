@@ -29,7 +29,10 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar{width:6px;height:6px}
+  .scroll-thin::-webkit-scrollbar-track{background:transparent}
+  .scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar-thumb:hover{background:#94a3b8}
   /* DS pill tabs — matching rest of system (defined in shared/chrome.js) */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px;}
   .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
@@ -41,7 +44,8 @@
   /* Responsive: swap pill tabs → dropdown on small screens */
   .reports-tabs-dd{display:none;width:100%;max-width:320px;height:36px;padding:0 32px 0 12px;border:1px solid #e2e8f0;border-radius:10px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;font:inherit;font-size:13px;font-weight:600;color:#0f172a;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;}
   .reports-tabs-dd:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12);}
-  @media (max-width: 640px){
+  .reports-tabs-row::-webkit-scrollbar{display:none}
+  @media (max-width: 980px){
     .ds-tabs#reports-tabs{display:none !important;}
     .reports-tabs-dd{display:block !important;}
   }
@@ -454,7 +458,8 @@ function chatHTML() {
 
 function welcomeHTML() {
   return `
-  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:40px 24px;text-align:center">
+  <div class="scroll-thin" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;flex:1;min-height:0;overflow-y:auto;padding:40px 24px;text-align:center">
+   <div style="margin:auto 0;display:flex;flex-direction:column;align-items:center;width:100%">
     <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--brand-600,#2563eb),var(--brand-500,#3b82f6));display:flex;align-items:center;justify-content:center;margin-bottom:20px;box-shadow:0 8px 24px rgba(37,99,235,.3)">${SPARKLE}</div>
     <h2 style="font-size:22px;font-weight:700;color:#0f172a;margin-bottom:10px">Welcome to AI Report Assistant</h2>
     <p style="font-size:14px;color:#64748b;max-width:500px;line-height:1.65;margin-bottom:28px">Ask me anything about your maritime portfolio, exposure risks, compliance, or performance metrics. I'll guide you through creating detailed reports.</p>
@@ -469,6 +474,7 @@ function welcomeHTML() {
         ${SUGGESTED.map((q,i) => `<button class="chip" data-q="${q.replace(/"/g,'&quot;')}" ${i===SUGGESTED.length-1&&SUGGESTED.length%2!==0?'style="grid-column:1"':''}>${q}</button>`).join('')}
       </div>
     </div>
+   </div>
   </div>`;
 }
 
@@ -903,6 +909,70 @@ function competitorCard(c) {
   </div>`;
 }
 
+/* ── Sample Reports ───────────────────────────────────────────────────── */
+const SAMPLE_REPORTS = [
+  { title:'Portfolio Executive Risk Report', type:'Portfolio', desc:'Portfolio-level breakdown of exposure by risk band, war risk and coverage status with quarter-on-quarter movement.', pages:12, updated:'2026-07-14', tags:['Risk bands','War risk','QoQ trend'], href:'reports/PortfolioExecutiveRiskReport.html' },
+  { title:'Individual Vessel Underwriting Report', type:'Asset', desc:'Single-vessel submission pack: particulars, ownership and management, risk score breakdown, voyage and port-call history, and sanctions screening.', pages:9, updated:'2026-08-11', tags:['Particulars','Ownership','Risk score','Screening'], href:'reports/IndividualVesselUnderwritingReport.html' },
+  { title:'Fleet Intelligence Report', type:'Fleet', desc:'Fleet-wide activity picture: current positions, high-risk area transits, ship-to-ship events and emerging behavioural flags across the monitored fleet.', pages:14, updated:'2026-08-17', tags:['Positions','HRA transits','STS events','Flags'], href:'reports/FleetIntelligenceReport.html' },
+  { title:'Portfolio / Fleet Casualty Report', type:'Portfolio', desc:'Casualty and incident record across a portfolio or fleet: event type and severity, vessels involved, claims status and exposure at the time of loss.', pages:11, updated:'2026-08-05', tags:['Incidents','Severity','Claims status','Exposure'], href:'reports/PortfolioFleetCasualtyReport.html' },
+  { title:'Regional Exposure & Aggregation Report', type:'Region', desc:'Aggregated insured value and vessel counts inside a chosen region, with peak accumulation windows, war-risk overlap and concentration by port.', pages:8, updated:'2026-07-29', tags:['Aggregation','Peak accumulation','War risk','By port'], href:'reports/RegionalExposureAggregationReport.html' },
+];
+const SAMPLE_TYPE_COLORS = {
+  Region:     { bg:'#eff6ff', bd:'#bfdbfe', fg:'#1d4ed8' },
+  Portfolio:  { bg:'#f5f3ff', bd:'#ddd6fe', fg:'#6d28d9' },
+  Asset:      { bg:'#ecfdf5', bd:'#a7f3d0', fg:'#047857' },
+  Fleet:      { bg:'#fff7ed', bd:'#fed7aa', fg:'#c2410c' },
+  Compliance: { bg:'#fef2f2', bd:'#fecaca', fg:'#b91c1c' },
+};
+function sampleTabContent() {
+  const rowBtn = (icon, label, href) => href ? `
+    <a href="${href}" class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .15s,border-color .15s;">${icon} ${label}</a>` : `
+    <button class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;">${icon} ${label}</button>`;
+  const row = (r) => {
+    const c = SAMPLE_TYPE_COLORS[r.type] || SAMPLE_TYPE_COLORS.Region;
+    return `
+    <tr class="fleet-row" style="border-bottom:1px solid #f1f5f9;">
+      <td style="padding:14px 20px;vertical-align:top;">
+        <div style="display:flex;align-items:center;gap:8px;">${FLEET_ICONS.doc}<span style="font-size:13.5px;font-weight:600;color:#0f172a;white-space:nowrap;">${r.title}</span></div>
+        <div style="font-size:12.5px;line-height:1.5;color:#64748b;margin-top:4px;max-width:420px;text-wrap:pretty;">${r.desc}</div>
+      </td>
+      <td style="padding:14px 16px;vertical-align:top;">
+        <span style="display:inline-block;padding:3px 9px;border-radius:9999px;font-size:11px;font-weight:600;background:${c.bg};border:1px solid ${c.bd};color:${c.fg};white-space:nowrap;">${r.type}</span>
+      </td>
+      <td style="padding:14px 16px;vertical-align:top;">
+        <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:260px;">
+          ${r.tags.map(t => `<span style="padding:3px 8px;background:#f1f5f9;border-radius:6px;font-size:11px;font-weight:500;color:#475569;white-space:nowrap;">${t}</span>`).join('')}
+        </div>
+      </td>
+      <td style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.pages}</td>
+      <td style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.updated}</td>
+      <td style="padding:14px 20px;vertical-align:top;text-align:right;white-space:nowrap;">
+        <div style="display:inline-flex;align-items:center;gap:6px;">${rowBtn(FLEET_ICONS.eye,'Preview',r.href)}${rowBtn(FLEET_ICONS.dl,'PDF')}</div>
+      </td>
+    </tr>`;
+  };
+  return `
+  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;background:#fff;">
+    <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;flex-shrink:0;">
+      <div style="font-size:13.5px;font-weight:600;color:#0f172a;">Sample Reports</div>
+      <div style="font-size:12.5px;color:#64748b;margin-top:3px;">Example outputs you can preview before building your own. Use one as a starting template in the Report Builder.</div>
+    </div>
+    <div style="flex:1;overflow:auto;" class="scroll-thin">
+      <table class="fleet-table" style="width:100%;border-collapse:collapse;font-size:13px;min-width:900px;">
+        <thead><tr style="border-bottom:1px solid #e2e8f0;">
+          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;padding:12px 20px;">Report</th>
+          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Type</th>
+          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Contents</th>
+          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Pages</th>
+          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Updated</th>
+          <th style="text-align:right;padding:12px 20px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Actions</th>
+        </tr></thead>
+        <tbody>${SAMPLE_REPORTS.map(row).join('')}</tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
 function competitorTabContent() {
   const q = compQuery.toLowerCase();
   const matches = q
@@ -928,7 +998,7 @@ function competitorTabContent() {
         <input id="comp-search" type="text" placeholder="Search by company name, type, or country..." value="${compQuery.replace(/"/g,'&quot;')}" autocomplete="off"
           style="width:100%;height:42px;padding:0 14px 0 40px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13.5px;color:#334155;outline:none;background:#f8fafc;font-family:inherit;transition:border-color .15s,box-shadow .15s,background .15s;" />
         ${showDropdown ? `
-        <div id="comp-dropdown" style="position:absolute;left:0;right:0;top:calc(100% + 6px);max-height:280px;overflow-y:auto;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 10px 30px rgba(15,23,42,.15);z-index:50;padding:4px;" class="scroll-thin">
+        <div id="comp-dropdown" class="scroll-thin" style="position:absolute;left:0;right:0;top:calc(100% + 6px);max-height:280px;overflow-y:auto;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 10px 30px rgba(15,23,42,.15);z-index:50;padding:4px;" class="scroll-thin">
           ${matches.map(c => `
           <button class="comp-dd-item" data-cname="${c.name.replace(/"/g,'&quot;')}" style="width:100%;display:flex;align-items:center;gap:10px;padding:9px 12px;background:transparent;border:0;border-radius:8px;cursor:pointer;font-family:inherit;text-align:left;transition:background .12s;">
             <span style="flex:1;min-width:0;">
@@ -1027,6 +1097,7 @@ function tabContent() {
   if (activeTab === 'builder1') return window.reportBuilder.content();
   if (activeTab === 'fleet')   return fleetTabContent();
   if (activeTab === 'comp')    return competitorTabContent();
+  if (activeTab === 'sample')  return sampleTabContent();
   const icon  = CHT_ICO.replace('width="14"','width="24"').replace('height="14"','height="24"');
   const title = 'Competitor Analysis';
   const desc  = 'Benchmarking and competitive fleet analytics will appear here once configured.';
@@ -1046,8 +1117,8 @@ window.render = function() {
       <main class="flex-1 overflow-hidden flex flex-col" style="min-height:0;background:#f1f5f9;padding:12px">
         <div style="flex:1;min-height:0;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
           <!-- DS pill tabs — matching rest of system -->
-          <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:4px;flex-shrink:0">
-            <div class="ds-tabs" id="reports-tabs">
+          <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:4px;flex-shrink:0;overflow-x:auto;min-width:0;scrollbar-width:none" class="reports-tabs-row">
+            <div class="ds-tabs" id="reports-tabs" style="flex-shrink:0">
               <span class="ds-tab-pill is-init" id="reports-pill"></span>
               <button class="ds-tab" aria-selected="${activeTab==='builder1'}" data-tab="builder1">
                 <span class="ds-tab-label">${STR_ICO} Report Builder</span>
@@ -1061,12 +1132,16 @@ window.render = function() {
               <button class="ds-tab" aria-selected="${activeTab==='comp'}" data-tab="comp">
                 <span class="ds-tab-label">${CHT_ICO} Competitor Analysis</span>
               </button>
+              <button class="ds-tab" aria-selected="${activeTab==='sample'}" data-tab="sample">
+                <span class="ds-tab-label">${DOC_ICO} Sample Reports</span>
+              </button>
             </div>
             <select id="reports-tabs-dd" class="reports-tabs-dd" aria-label="Section">
               <option value="builder1" ${activeTab==='builder1'?'selected':''}>Report Builder</option>
               <option value="builder" ${activeTab==='builder'?'selected':''}>Report Builder V2</option>
               <option value="fleet"   ${activeTab==='fleet'  ?'selected':''}>Weekly Fleet Reports</option>
               <option value="comp"    ${activeTab==='comp'   ?'selected':''}>Competitor Analysis</option>
+              <option value="sample"  ${activeTab==='sample' ?'selected':''}>Sample Reports</option>
             </select>
           </div>
           <div id="reports-content" style="flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden">

@@ -188,6 +188,20 @@ const PORT_CALLS = [
   { port:'Singapore',   cc:'sg', country:'Singapore',     arr:'2025-06-30 08:30', arrD:'9.4 m',  dep:'2025-07-02 14:10', depD:'15.0 m' },
 ];
 
+const TOP_PORTS = [
+  { port:'Singapore',   cc:'sg', country:'Singapore',     calls:14, days:'31.2', last:'2025-12-28' },
+  { port:'Fujairah',    cc:'ae', country:'UAE',           calls:11, days:'26.8', last:'2025-12-14' },
+  { port:'Rotterdam',   cc:'nl', country:'Netherlands',   calls:9,  days:'28.4', last:'2025-09-18' },
+  { port:'Jebel Ali',   cc:'ae', country:'UAE',           calls:8,  days:'15.1', last:'2025-12-05' },
+  { port:'Colombo',     cc:'lk', country:'Sri Lanka',     calls:7,  days:'10.6', last:'2025-11-15' },
+  { port:'Mumbai',      cc:'in', country:'India',         calls:6,  days:'19.7', last:'2025-11-24' },
+  { port:'Algeciras',   cc:'es', country:'Spain',         calls:5,  days:'12.3', last:'2025-09-29' },
+  { port:'Port Said',   cc:'eg', country:'Egypt',         calls:5,  days:'6.9',  last:'2025-11-02' },
+  { port:'Piraeus',     cc:'gr', country:'Greece',        calls:4,  days:'11.4', last:'2025-10-22' },
+  { port:'Valletta',    cc:'mt', country:'Malta',         calls:3,  days:'4.5',  last:'2025-10-11' },
+];
+const TOP_PORT_MAX = 14;
+
 const REGIONS = [
   { region:'US Exclusive Economic Zone', type:'EEZ',            entry:'2025-08-28 17:01', exit:'2025-09-19 01:28', dur:'21d 8h' },
   { region:'EU Waters',                  type:'Jurisdiction',   entry:'2025-07-18 22:30', exit:'2025-07-29 09:15', dur:'10d 11h' },
@@ -395,7 +409,39 @@ function voyageStatsBody() {
 }
 function portCallsBody() {
   return `
-  <div class="overflow-x-auto scroll-thin border-t border-ink-100">
+  <div class="border-t border-ink-100 px-4 py-3">
+    <div class="flex items-baseline justify-between mb-2">
+      <div class="text-[13px] font-semibold text-ink-900">Top 10 ports visited</div>
+      <div class="text-[11px] text-ink-500">Last 24 months</div>
+    </div>
+    <div class="overflow-x-auto scroll-thin">
+      <table class="vh-table">
+        <thead><tr>
+          <th style="width:36px;">#</th>
+          <th>Port</th>
+          <th>Country</th>
+          <th>Port Calls</th>
+          <th>Share of Calls</th>
+          <th>Days in Port</th>
+          <th>Last Visit</th>
+        </tr></thead>
+        <tbody>
+          ${TOP_PORTS.map((p,i) => `
+            <tr>
+              <td class="num text-ink-400">${i+1}</td>
+              <td><span class="inline-flex items-center gap-2.5"><span class="text-brand-600 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
+              <td><span class="inline-flex items-center gap-2 whitespace-nowrap">${flag(p.cc)}<span class="text-ink-700">${p.country}</span></span></td>
+              <td class="num font-semibold text-ink-900">${p.calls}</td>
+              <td><span class="inline-flex items-center gap-2" style="min-width:120px;"><span class="h-1.5 rounded-full bg-ink-100 overflow-hidden" style="width:80px;display:inline-block;"><span class="block h-full rounded-full" style="width:${Math.round(p.calls/TOP_PORT_MAX*100)}%;background:var(--brand-600,#2d7ffb);"></span></span><span class="num text-[11px] text-ink-500">${Math.round(p.calls/TOP_PORT_MAX*100)}%</span></span></td>
+              <td class="num text-ink-700 whitespace-nowrap">${p.days}</td>
+              <td class="num text-ink-700 whitespace-nowrap">${p.last}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="px-4 pt-1 pb-2 text-[13px] font-semibold text-ink-900 border-t border-ink-100 pt-3">Port call log</div>
+  <div class="overflow-x-auto scroll-thin">
     <table class="vh-table">
       <thead><tr>
         ${sortHead('Port','port','pc')}
