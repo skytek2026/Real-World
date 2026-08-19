@@ -89,10 +89,10 @@ window.PER = {
     { tone:'blue',  title:'37 vessels added to the portfolio',          d:'New tonnage arrives with an average score of 34.2, below the portfolio average, mildly diluting overall risk.', m:'avg 34.2' },
   ],
   attention: [
-    { name:'ATLAS TRIDENT', imo:'9483721', score:94, tone:'red', why:'Sanctioned STS event with an OFAC-listed counterparty on 14 July, followed by a 31-hour AIS gap in the southern Red Sea. Cover review required before next renewal.', action:'Escalate to compliance', due:'Due 22 Aug' },
-    { name:'HEDDA KNUTSEN', imo:'9512044', score:91, tone:'red', why:'Registered operator matched to a newly designated entity. Trading pattern unchanged since designation; no breach recorded yet.', action:'Confirm match', due:'Due 21 Aug' },
-    { name:'MERIDIAN PEARL', imo:'9377158', score:88, tone:'red', why:'Score up 14 points: second flag change in nine months plus three AIS gaps over six hours in a high-risk area.', action:'Request voyage evidence', due:'Due 25 Aug' },
-    { name:'DELTA HORIZON', imo:'9704412', score:64, tone:'amber', why:'Collision in the Singapore Strait on 19 July with a $7.4m reserve; survey pending. Score moved from 52 to 64 on the loss record.', action:'Await survey', due:'Due 29 Aug' },
-    { name:'KAPPA VOYAGER', imo:'9720145', score:79, tone:'amber', why:'Two port-state detentions in the period and a class survey now 34 days overdue.', action:'Warranty check', due:'Due 27 Aug' },
+    { name:'ATLAS TRIDENT', cc:'pa', country:'Panama', imo:'9483721', score:94, tone:'red', why:'Sanctioned STS event with an OFAC-listed counterparty on 14 July, followed by a 31-hour AIS gap in the southern Red Sea. Cover review required before next renewal.', action:'Escalate to compliance', due:'Due 22 Aug' },
+    { name:'HEDDA KNUTSEN', cc:'lr', country:'Liberia', imo:'9512044', score:91, tone:'red', why:'Registered operator matched to a newly designated entity. Trading pattern unchanged since designation; no breach recorded yet.', action:'Confirm match', due:'Due 21 Aug' },
+    { name:'MERIDIAN PEARL', cc:'cm', country:'Cameroon', imo:'9377158', score:88, tone:'red', why:'Score up 14 points: second flag change in nine months plus three AIS gaps over six hours in a high-risk area.', action:'Request voyage evidence', due:'Due 25 Aug' },
+    { name:'DELTA HORIZON', cc:'mh', country:'Marshall Islands', imo:'9704412', score:64, tone:'amber', why:'Collision in the Singapore Strait on 19 July with a $7.4m reserve; survey pending. Score moved from 52 to 64 on the loss record.', action:'Await survey', due:'Due 29 Aug' },
+    { name:'KAPPA VOYAGER', cc:'sg', country:'Singapore', imo:'9720145', score:79, tone:'amber', why:'Two port-state detentions in the period and a class survey now 34 days overdue.', action:'Warranty check', due:'Due 27 Aug' },
   ],
 };

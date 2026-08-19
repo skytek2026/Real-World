@@ -251,8 +251,8 @@
           ${P.attention.map(a => `
             <div class="att-item ${a.tone === 'amber' ? 'amber' : ''}">
               <div>
-                <div class="att-name">${a.name}</div>
-                <div class="att-meta num">IMO ${a.imo} &middot; Risk score ${a.score}</div>
+                <div class="att-name">${flag(a.cc)} ${a.name}</div>
+                <div class="att-meta"><span class="num">IMO ${a.imo}</span> &middot; ${a.country} &middot; <span class="num">Risk score ${a.score}</span></div>
                 <div class="att-why">${a.why}</div>
               </div>
               <div class="att-act">
