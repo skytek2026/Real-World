@@ -301,15 +301,15 @@
       return `
       <div class="doc-toolbar no-print">
         <div style="display:flex;align-items:center;gap:14px;min-width:0">
-          <a href="Reports.html" class="tb-btn" style="text-decoration:none">${ic(ICO.back, 14)} Reports</a>
+          <a href="Reports.html" class="tb-btn" style="text-decoration:none" title="Back to Reports" aria-label="Back to Reports">${ic(ICO.back, 14)}<span class="tb-lbl">Reports</span></a>
           <div style="min-width:0">
             <div class="tb-title">Fleet Intelligence Report</div>
             <div class="tb-sub num">${F.meta.fleet} &middot; ${F.meta.period} &middot; ${TOTAL} pages (A4)</div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px">
-          <button class="tb-btn" id="rp-print">${ic(ICO.print, 14)} Print</button>
-          <button class="tb-btn" id="rp-pdf">${ic(ICO.dl, 14)} PDF</button>
+          <button class="tb-btn" id="rp-print" title="Print" aria-label="Print">${ic(ICO.print, 14)}<span class="tb-lbl">Print</span></button>
+          <button class="tb-btn" id="rp-pdf" title="Download PDF" aria-label="Download PDF">${ic(ICO.dl, 14)}<span class="tb-lbl">PDF</span></button>
         </div>
       </div>`;
     },
