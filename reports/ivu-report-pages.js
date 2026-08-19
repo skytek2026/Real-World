@@ -166,7 +166,7 @@
             <div class="voy-meta num">ETA ${c.eta}</div>
           </div>
         </div>
-        <div class="ind-grid" style="grid-template-columns:repeat(6,1fr);margin-top:12px">
+        <div class="ind-grid cols-6" style="margin-top:12px">
           ${V.voyage.stats.map(s => `<div class="ind" style="padding:10px"><div class="iv num" style="font-size:18px">${s.v}</div><div class="ik" style="font-size:9px">${s.k}</div></div>`).join('')}
         </div>
         <table class="rt" style="margin-top:12px">

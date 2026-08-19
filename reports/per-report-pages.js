@@ -120,7 +120,7 @@
           </tbody>
         </table>`, 'Ranked by score at period end. Prev is the score carried in the previous report.')}
       ${sec(ICO.trend, 'Risk score changes since previous report', `
-        <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="kpi-grid cols-4">
           <div class="kpi"><div class="k">Scores increased</div><div class="v num">${c.summary.increased}</div><div class="d">vessels</div></div>
           <div class="kpi"><div class="k">Scores decreased</div><div class="v num">${c.summary.decreased}</div><div class="d">vessels</div></div>
           <div class="kpi"><div class="k">Unchanged</div><div class="v num">${c.summary.unchanged.toLocaleString()}</div><div class="d">vessels</div></div>

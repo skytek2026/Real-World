@@ -58,12 +58,12 @@
         <div><div class="k">Generated</div><div class="v num">${C.meta.generatedOn}</div></div>
       </div>
       ${sec(ICO.life, 'Total casualties, new casualties and vessels affected', `
-        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="kpi-grid cols-3">
           <div class="kpi accent"><div class="k">Total casualties (24m)</div><div class="v num">${s.total}</div><div class="d"><span class="delta-up">${s.totalDelta}</span> vs previous</div></div>
           <div class="kpi"><div class="k">New this period</div><div class="v num">${s.newThisPeriod}</div><div class="d"><span class="delta-up">${s.newDelta}</span> vs previous</div></div>
           <div class="kpi"><div class="k">Vessels affected</div><div class="v num">${s.vesselsAffected}</div><div class="d">${s.repeatVessels} with repeat events</div></div>
         </div>
-        <div class="kpi-grid" style="margin-top:10px;grid-template-columns:repeat(3,1fr)">
+        <div class="kpi-grid cols-3" style="margin-top:10px">
           <div class="kpi"><div class="k">Total reserve (24m)</div><div class="v num">${s.totalReserve}</div><div class="d">indicative</div></div>
           <div class="kpi"><div class="k">Reserve this period</div><div class="v num">${s.periodReserve}</div><div class="d">6 events</div></div>
           <div class="kpi"><div class="k">Average per event</div><div class="v num">${s.avgReserve}</div><div class="d"><span class="delta-up">+18%</span> over 6 months</div></div>

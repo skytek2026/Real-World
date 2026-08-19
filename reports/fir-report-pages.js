@@ -198,7 +198,7 @@
           </tbody>
         </table>`, 'Top eight of nine vessels scoring above 70. All appear in the exceptions list on page 6 unless already cleared.')}
       ${sec(ICO.life, 'Casualties', `
-        <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr)">
+        <div class="kpi-grid cols-5">
           <div class="kpi"><div class="k">Casualties</div><div class="v num">${cs.summary.total}</div><div class="d"><span class="delta-up">${cs.summary.vs12m}</span> vs 12m avg</div></div>
           <div class="kpi"><div class="k">Serious</div><div class="v num">${cs.summary.serious}</div><div class="d">of ${cs.summary.total}</div></div>
           <div class="kpi"><div class="k">Open claims</div><div class="v num">${cs.summary.openClaims}</div><div class="d">at period end</div></div>
@@ -246,7 +246,7 @@
           </tbody>
         </table>`)}
       ${sec(ICO.globe, 'Geographic activity', `
-        <div class="ind-grid" style="grid-template-columns:repeat(6,1fr)">
+        <div class="ind-grid cols-6">
           ${F.geographic.stats.map(s => `<div class="ind" style="padding:10px"><div class="iv num" style="font-size:18px">${s.v}</div><div class="ik" style="font-size:9px">${s.k}</div></div>`).join('')}
         </div>
         <div class="bar-list" style="margin-top:12px">
