@@ -117,11 +117,11 @@ window.FIR = {
     { name:'Black Sea',          vessels:9,  value:'$0.28bn', pct:20,  hra:true },
   ],
   exceptions: [
-    { name:'NORDWIND TITAN',    imo:'9418833', tone:'red',   rule:'Dark activity threshold', d:'Four AIS gaps over six hours inside a high-risk area in one period, against a fleet rule of two.', owner:'Compliance', due:'22 Aug' },
-    { name:'NORDWIND ATLAS',    imo:'9377611', tone:'red',   rule:'Sanctioned counterparty', d:'STS transfer with a counterparty designated after the transfer date; confirmation outstanding.', owner:'Compliance', due:'21 Aug' },
-    { name:'NORDWIND FALCON',   imo:'9502771', tone:'red',   rule:'Flag & class',            d:'Second flag change in nine months and class survey 41 days overdue; two detentions in the period.', owner:'Technical', due:'25 Aug' },
-    { name:'NORDWIND MERIDIAN', imo:'9288714', tone:'amber', rule:'Age exception',           d:'21 years old and trading outside the approved age limit for bulk tonnage; waiver expires 30 Sep 2026.', owner:'Underwriting', due:'30 Sep' },
-    { name:'NORDWIND CASTOR',   imo:'9455118', tone:'amber', rule:'War-risk notice',         d:'Entered the southern Red Sea listed area without prior notice on 11 Jul; AP raised.', owner:'Underwriting', due:'27 Aug' },
-    { name:'NORDWIND VEGA',     imo:'9188774', tone:'amber', rule:'PSC deficiencies',        d:'Seven open deficiencies across two inspections; none yet rectified at period end.', owner:'Technical', due:'29 Aug' },
+    { name:'NORDWIND TITAN',    cc:'cm', country:'Cameroon', imo:'9418833', tone:'red',   rule:'Dark activity threshold', d:'Four AIS gaps over six hours inside a high-risk area in one period, against a fleet rule of two.', owner:'Compliance', due:'22 Aug' },
+    { name:'NORDWIND ATLAS',    cc:'pa', country:'Panama', imo:'9377611', tone:'red',   rule:'Sanctioned counterparty', d:'STS transfer with a counterparty designated after the transfer date; confirmation outstanding.', owner:'Compliance', due:'21 Aug' },
+    { name:'NORDWIND FALCON',   cc:'cm', country:'Cameroon', imo:'9502771', tone:'red',   rule:'Flag & class',            d:'Second flag change in nine months and class survey 41 days overdue; two detentions in the period.', owner:'Technical', due:'25 Aug' },
+    { name:'NORDWIND MERIDIAN', cc:'pa', country:'Panama', imo:'9288714', tone:'amber', rule:'Age exception',           d:'21 years old and trading outside the approved age limit for bulk tonnage; waiver expires 30 Sep 2026.', owner:'Underwriting', due:'30 Sep' },
+    { name:'NORDWIND CASTOR',   cc:'mh', country:'Marshall Islands', imo:'9455118', tone:'amber', rule:'War-risk notice',         d:'Entered the southern Red Sea listed area without prior notice on 11 Jul; AP raised.', owner:'Underwriting', due:'27 Aug' },
+    { name:'NORDWIND VEGA',     cc:'gr', country:'Greece', imo:'9188774', tone:'amber', rule:'PSC deficiencies',        d:'Seven open deficiencies across two inspections; none yet rectified at period end.', owner:'Technical', due:'29 Aug' },
   ],
 };

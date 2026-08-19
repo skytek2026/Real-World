@@ -61,8 +61,6 @@
         <div><div class="k">Reporting period</div><div class="v num">${F.meta.period}</div></div>
         <div><div class="k">Compared with</div><div class="v num">${F.meta.previous}</div></div>
         <div><div class="k">Generated</div><div class="v num">${F.meta.generatedOn}</div></div>
-        <div><div class="k">Prepared for</div><div class="v">${F.meta.preparedFor}</div></div>
-        <div><div class="k">Report owner</div><div class="v">${F.meta.owner}</div></div>
       </div>
       ${sec(ICO.ship, 'Fleet composition', `
         <div class="kpi-grid">
@@ -281,8 +279,8 @@
           ${F.exceptions.map(e => `
             <div class="att-item ${e.tone === 'amber' ? 'amber' : ''}">
               <div>
-                <div class="att-name">${e.name} <span class="pill ${e.tone === 'red' ? 'pill-red' : 'pill-amber'}" style="margin-left:6px">${e.rule}</span></div>
-                <div class="att-meta num">IMO ${e.imo}</div>
+                <div class="att-name">${flag(e.cc)} ${e.name} <span class="pill ${e.tone === 'red' ? 'pill-red' : 'pill-amber'}">${e.rule}</span></div>
+                <div class="att-meta"><span class="num">IMO ${e.imo}</span> &middot; ${e.country}</div>
                 <div class="att-why">${e.d}</div>
               </div>
               <div class="att-act">
