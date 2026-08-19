@@ -127,6 +127,8 @@
     .fleet-table td.fleet-actions-cell::before{display:none;}
     .fleet-table td.fleet-actions-cell > div{display:flex !important;width:100%;gap:8px;}
     .fleet-table td.fleet-actions-cell .fleet-act-btn{flex:1 1 0;justify-content:center;}
+    .fleet-table td.sample-title-cell{display:block;padding:12px 14px 10px !important;}
+    .fleet-table td.sample-title-cell::before{display:none;}
   }
 </style>
 </head>
@@ -932,21 +934,23 @@ function sampleTabContent() {
     const c = SAMPLE_TYPE_COLORS[r.type] || SAMPLE_TYPE_COLORS.Region;
     return `
     <tr class="fleet-row" style="border-bottom:1px solid #f1f5f9;">
-      <td style="padding:14px 20px;vertical-align:top;">
-        <div style="display:flex;align-items:center;gap:8px;">${FLEET_ICONS.doc}<span style="font-size:13.5px;font-weight:600;color:#0f172a;white-space:nowrap;">${r.title}</span></div>
-        <div style="font-size:12.5px;line-height:1.5;color:#64748b;margin-top:4px;max-width:420px;text-wrap:pretty;">${r.desc}</div>
+      <td class="fleet-cell sample-title-cell" data-label="Report" style="padding:14px 20px;vertical-align:top;">
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;">${FLEET_ICONS.doc}<span style="font-size:13.5px;font-weight:600;color:#0f172a;">${r.title}</span></div>
+          <div style="font-size:12.5px;line-height:1.5;color:#64748b;margin-top:4px;max-width:420px;text-wrap:pretty;">${r.desc}</div>
+        </div>
       </td>
-      <td style="padding:14px 16px;vertical-align:top;">
+      <td class="fleet-cell" data-label="Type" style="padding:14px 16px;vertical-align:top;">
         <span style="display:inline-block;padding:3px 9px;border-radius:9999px;font-size:11px;font-weight:600;background:${c.bg};border:1px solid ${c.bd};color:${c.fg};white-space:nowrap;">${r.type}</span>
       </td>
-      <td style="padding:14px 16px;vertical-align:top;">
+      <td class="fleet-cell" data-label="Contents" style="padding:14px 16px;vertical-align:top;">
         <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:260px;">
           ${r.tags.map(t => `<span style="padding:3px 8px;background:#f1f5f9;border-radius:6px;font-size:11px;font-weight:500;color:#475569;white-space:nowrap;">${t}</span>`).join('')}
         </div>
       </td>
-      <td style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.pages}</td>
-      <td style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.updated}</td>
-      <td style="padding:14px 20px;vertical-align:top;text-align:right;white-space:nowrap;">
+      <td class="fleet-cell" data-label="Pages" style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.pages}</td>
+      <td class="fleet-cell" data-label="Updated" style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.updated}</td>
+      <td class="fleet-cell fleet-actions-cell" style="padding:14px 20px;vertical-align:top;text-align:right;white-space:nowrap;">
         <div style="display:inline-flex;align-items:center;gap:6px;">${rowBtn(FLEET_ICONS.eye,'Preview',r.href)}${rowBtn(FLEET_ICONS.dl,'PDF')}</div>
       </td>
     </tr>`;
