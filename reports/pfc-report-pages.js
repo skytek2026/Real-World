@@ -147,8 +147,6 @@
   /* ── Page 3 — vessel age, trends ── */
   function page3() {
     const maxAge = Math.max(...C.ages.map(a => a.count));
-    const h = 150, w = 660, maxT = Math.max(...C.trend.map(t => t.v));
-    const pts = C.trend.map((p, i) => `${((i / (C.trend.length - 1)) * w).toFixed(1)},${(h - p.v / maxT * h).toFixed(1)}`);
     const toneBg = { red:'#fef2f2', amber:'#fffbeb', green:'#f0fdf4', blue:'#eff6ff' };
     const toneFg = { red:'#b91c1c', amber:'#b45309', green:'#15803d', blue:'#1d4ed8' };
     return `
@@ -186,13 +184,24 @@
           </tbody>
         </table>`)}
       ${sec(ICO.trend, 'Casualty trends — 12 months', `
-        <div class="spark-wrap">
-          <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" class="spark">
-            ${[2, 4, 6].map(g => `<line x1="0" y1="${h - g / maxT * h}" x2="${w}" y2="${h - g / maxT * h}" stroke="#f1f5f9" stroke-width="1" />`).join('')}
-            <polyline points="${pts.join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
-            ${C.trend.map((p, i) => `<circle cx="${((i / (C.trend.length - 1)) * w).toFixed(1)}" cy="${(h - p.v / maxT * h).toFixed(1)}" r="3" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" />`).join('')}
+        <div class="chart-wrap">
+          <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Casualty count by month over twelve months">
+            ${[0, 2, 4, 6, 8].map(g => {
+              const y = 160 - g / 8 * 140;
+              return `<line x1="42" y1="${y}" x2="690" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
+            }).join('')}
+            <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="${(160 - 4.1 / 8 * 140).toFixed(1)}" x2="690" y2="${(160 - 4.1 / 8 * 140).toFixed(1)}" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6 5" />
+            <text x="686" y="${(160 - 4.1 / 8 * 140 - 5).toFixed(1)}" text-anchor="end" class="ax-lbl" style="fill:#b45309;font-weight:700">12-month mean 4.1</text>
+            <polyline points="${C.trend.map((x, i) => `${(42 + i / (C.trend.length - 1) * 648).toFixed(1)},${(160 - x.v / 8 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+            ${C.trend.map((x, i) => {
+              const cx = 42 + i / (C.trend.length - 1) * 648, cy = 160 - x.v / 8 * 140;
+              return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.2" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" /><text x="${cx.toFixed(1)}" y="${(cy - 9).toFixed(1)}" text-anchor="middle" class="pt-lbl">${x.v}</text>`;
+            }).join('')}
+            ${C.trend.map((x, i) => `<text x="${(42 + i / (C.trend.length - 1) * 648).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${x.m}</text>`).join('')}
+            <text x="10" y="94" text-anchor="middle" class="ax-title" transform="rotate(-90 10 94)">Casualties</text>
+            <text x="366" y="194" text-anchor="middle" class="ax-title">Month</text>
           </svg>
-          <div class="spark-x">${C.trend.map(p => `<span class="num">${p.m}</span>`).join('')}</div>
         </div>
         <div class="chg" style="margin-top:12px">
           ${C.trendNotes.map(n => `

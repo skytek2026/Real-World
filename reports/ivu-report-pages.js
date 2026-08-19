@@ -121,16 +121,22 @@
           </div>
         </div>`, 'The score is a weighted composite on a 0–100 scale; higher values indicate greater risk. Factor scores are shown with their contribution weight.')}
       ${sec(ICO.trend, 'Risk score history — 12 months', `
-        <div class="spark-wrap">
-          <svg viewBox="0 0 660 ${h}" preserveAspectRatio="none" class="spark">
-            ${[20, 40, 60, 80].map(g => `<line x1="0" y1="${h - g / max * h}" x2="660" y2="${h - g / max * h}" stroke="#f1f5f9" stroke-width="1" />`).join('')}
-            <polyline points="${pts.join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
-            ${s.history.map((p, i) => {
-              const x = (i / (s.history.length - 1)) * 660, y = h - (p.v / max) * h;
-              return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" />`;
+        <div class="chart-wrap">
+          <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Risk score history over twelve months">
+            ${[0, 20, 40, 60, 80, 100].map(g => {
+              const y = 160 - g / 100 * 140;
+              return `<line x1="42" y1="${y}" x2="690" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
+            <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <polyline points="${s.history.map((p, i) => `${(42 + i / (s.history.length - 1) * 648).toFixed(1)},${(160 - p.v / 100 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+            ${s.history.map((p, i) => {
+              const x = 42 + i / (s.history.length - 1) * 648, y = 160 - p.v / 100 * 140;
+              return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.2" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" /><text x="${x.toFixed(1)}" y="${(y - 9).toFixed(1)}" text-anchor="middle" class="pt-lbl">${p.v}</text>`;
+            }).join('')}
+            ${s.history.map((p, i) => `<text x="${(42 + i / (s.history.length - 1) * 648).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${p.m}</text>`).join('')}
+            <text x="10" y="94" text-anchor="middle" class="ax-title" transform="rotate(-90 10 94)">Risk score</text>
+            <text x="366" y="194" text-anchor="middle" class="ax-title">Month end</text>
           </svg>
-          <div class="spark-x">${s.history.map(p => `<span class="num">${p.m}</span>`).join('')}</div>
         </div>
         <div class="kpi-grid" style="margin-top:12px">
           <div class="kpi accent"><div class="k">Current</div><div class="v num">${s.current}</div><div class="d">${s.band} band</div></div>

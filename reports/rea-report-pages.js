@@ -160,9 +160,6 @@
   /* ── Page 3 — share of portfolio, exposure over time ── */
   function page3() {
     const s = R.share, hs = R.history;
-    const h = 150, w = 660;
-    const maxV = Math.max(...hs.map(x => x.value));
-    const pts = hs.map((x, i) => `${((i / (hs.length - 1)) * w).toFixed(1)},${(h - x.value / maxV * h).toFixed(1)}`);
     const toneBg = { red:'#fef2f2', amber:'#fffbeb', green:'#f0fdf4' };
     const toneFg = { red:'#b91c1c', amber:'#b45309', green:'#15803d' };
     return `
@@ -189,13 +186,22 @@
           </tbody>
         </table>`, 'Value share is disproportionate to count: tankers are 60% of the vessels inside but 67% of the exposed value.')}
       ${sec(ICO.chart, 'Exposure changes over time — 12 months', `
-        <div class="spark-wrap">
-          <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" class="spark">
-            ${[0.4, 0.8, 1.2].map(g => `<line x1="0" y1="${(h - g / maxV * h).toFixed(1)}" x2="${w}" y2="${(h - g / maxV * h).toFixed(1)}" stroke="#f1f5f9" stroke-width="1" />`).join('')}
-            <polyline points="${pts.join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
-            ${hs.map((x, i) => `<circle cx="${((i / (hs.length - 1)) * w).toFixed(1)}" cy="${(h - x.value / maxV * h).toFixed(1)}" r="3" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" />`).join('')}
+        <div class="chart-wrap">
+          <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Exposed insured value by month over twelve months">
+            ${[0, 0.4, 0.8, 1.2, 1.6].map(g => {
+              const y = 160 - g / 1.6 * 140;
+              return `<line x1="46" y1="${y}" x2="690" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="38" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g.toFixed(1)}</text>`;
+            }).join('')}
+            <line x1="46" y1="20" x2="46" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <polyline points="${hs.map((x, i) => `${(46 + i / (hs.length - 1) * 644).toFixed(1)},${(160 - x.value / 1.6 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+            ${hs.map((x, i) => {
+              const cx = 46 + i / (hs.length - 1) * 644, cy = 160 - x.value / 1.6 * 140;
+              return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.2" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" /><text x="${cx.toFixed(1)}" y="${(cy - 9).toFixed(1)}" text-anchor="middle" class="pt-lbl">${x.value.toFixed(2)}</text>`;
+            }).join('')}
+            ${hs.map((x, i) => `<text x="${(46 + i / (hs.length - 1) * 644).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${x.m}</text>`).join('')}
+            <text x="10" y="94" text-anchor="middle" class="ax-title" transform="rotate(-90 10 94)">Value ($bn)</text>
+            <text x="368" y="194" text-anchor="middle" class="ax-title">Month end</text>
           </svg>
-          <div class="spark-x">${hs.map(x => `<span class="num">${x.m}</span>`).join('')}</div>
         </div>
         <div class="chg" style="margin-top:12px">
           ${R.historyNotes.map(n => `
