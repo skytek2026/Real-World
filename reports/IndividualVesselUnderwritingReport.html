@@ -194,6 +194,12 @@
   @media(max-width:900px){.spec-grid{grid-template-columns:1fr}.score-hero{grid-template-columns:1fr}.voy-card{grid-template-columns:1fr}.voy-end.r{text-align:left}.pos{grid-template-columns:1fr}}
 
   @media(max-width:900px){
+    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .table-scroll .rt{min-width:640px}
+    .table-scroll .rt.compact{min-width:560px}
+    .doc-toolbar{flex-direction:column;align-items:stretch;gap:10px}
+    .doc-toolbar>div{flex-wrap:wrap}
+    .doc-toolbar>div:last-child{justify-content:flex-end}
     .page{width:100%;min-height:0;padding:26px 22px 48px}
     .page-foot{position:static;left:auto;right:auto;bottom:auto;margin-top:8px}
     .kpi-grid{grid-template-columns:repeat(2,1fr)}
@@ -212,6 +218,8 @@
     .page{width:210mm;height:297mm;min-height:0;border:0;border-radius:0;box-shadow:none;padding:12mm 12mm 10mm;overflow:hidden;break-after:page;page-break-after:always}
     .page:last-child{break-after:auto;page-break-after:auto}
     .page-foot{position:absolute;left:12mm;right:12mm;bottom:6mm}
+    .table-scroll{overflow:visible!important}
+    .table-scroll .rt,.table-scroll .rt.compact{min-width:0!important}
     .kpi,.kpi.accent,.score,.pill,.dist-bar,.bl-fill,.chg-ico,.att-item{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
 </style>
@@ -259,6 +267,13 @@ window.render = function () {
       img.setAttribute('src', '../' + s);
     });
   };
+  document.querySelectorAll('.page .rt').forEach(t => {
+    if (t.parentElement && t.parentElement.classList.contains('table-scroll')) return;
+    const w = document.createElement('div');
+    w.className = 'table-scroll scroll-thin';
+    t.parentNode.insertBefore(w, t);
+    w.appendChild(t);
+  });
   rebase(); setTimeout(rebase, 0);
   const pb = document.getElementById('rp-print'); if (pb) pb.onclick = () => window.print();
   const db = document.getElementById('rp-pdf');   if (db) db.onclick = () => window.print();

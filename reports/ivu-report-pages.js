@@ -32,7 +32,6 @@
   const foot = (n) => `
     <div class="page-foot">
       <span>Individual Vessel Underwriting Report &middot; Real World</span>
-      <span>Confidential &mdash; prepared for ${V.meta.preparedFor}</span>
       <span class="num">Page ${n} of ${TOTAL}</span>
     </div>`;
   const sec = (icon, title, body, note) => `

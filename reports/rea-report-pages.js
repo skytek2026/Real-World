@@ -31,7 +31,6 @@
   const foot = (n) => `
     <div class="page-foot">
       <span>Regional Exposure &amp; Aggregation Report &middot; Real World</span>
-      <span>Confidential &mdash; prepared for ${R.meta.preparedFor}</span>
       <span class="num">Page ${n} of ${TOTAL}</span>
     </div>`;
   const sec = (icon, title, body, note) => `

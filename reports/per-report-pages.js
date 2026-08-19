@@ -30,7 +30,6 @@
   const foot = (n) => `
     <div class="page-foot">
       <span>Portfolio Executive Risk Report &middot; Real World</span>
-      <span>Confidential &mdash; prepared for ${P.meta.preparedFor}</span>
       <span class="num">Page ${n} of ${TOTAL}</span>
     </div>`;
   const sec = (icon, title, body, note) => `
