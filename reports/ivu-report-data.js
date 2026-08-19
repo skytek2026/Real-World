@@ -118,7 +118,7 @@ window.IVU = {
     note: 'One entry into the southern Red Sea listed area on 08 Jul 2026 was recorded without prior notice under the war-risk warranty. Additional premium raised on 15 Jul 2026.',
   },
   position: {
-    lat: '35.5° N', lon: '24.0° E', area: 'Eastern Mediterranean, 62 nm S of Crete',
+    lat: '35.5° N', lon: '24.0° E', area: 'Eastern Mediterranean',
     speed: '8.2 kts', course: '287°', draught: '16.8 m', status: 'Under way using engine',
     lastSignal: '2026-08-19 09:12 UTC', destination: 'Rotterdam', eta: '2026-08-24 06:00',
     nextRegion: 'Strait of Gibraltar — est. 2026-08-21',

@@ -16,11 +16,9 @@ window.PER = {
     avgRisk: 41.6, avgRiskDelta: '+1.8',
   },
   distribution: [
-    { band: 'Very low', range: '0–20',   count: 214, pct: 16.7, color: '#15803d' },
-    { band: 'Low',      range: '21–40',  count: 468, pct: 36.4, color: '#65a30d' },
-    { band: 'Moderate', range: '41–60',  count: 372, pct: 29.0, color: '#d97706' },
-    { band: 'High',     range: '61–80',  count: 168, pct: 13.1, color: '#ea580c' },
-    { band: 'Severe',   range: '81–100', count: 62,  pct: 4.8,  color: '#b91c1c' },
+    { band: 'Good',       range: '0 → 25',    count: 574, pct: 44.7, color: '#16a34a' },
+    { band: 'Average',    range: '25+ → 50',  count: 480, pct: 37.4, color: '#d97706' },
+    { band: 'Below Avg.', range: '50+ → 100', count: 230, pct: 17.9, color: '#dc2626' },
   ],
   highest: [
     { name:'ATLAS TRIDENT',   imo:'9483721', cc:'pa', type:'Crude Oil Tanker',  score:94, prev:88, drivers:'Sanctioned STS, dark activity' },

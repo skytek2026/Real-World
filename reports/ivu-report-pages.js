@@ -66,8 +66,6 @@
       <div class="cover-meta">
         <div><div class="k">Reporting period</div><div class="v num">${V.meta.period}</div></div>
         <div><div class="k">Generated</div><div class="v num">${V.meta.generatedOn}</div></div>
-        <div><div class="k">Prepared for</div><div class="v">${V.meta.preparedFor}</div></div>
-        <div><div class="k">Report owner</div><div class="v">${V.meta.owner}</div></div>
       </div>
       ${sec(ICO.ship, 'Vessel particulars', `
         <div class="spec-grid">
@@ -109,7 +107,6 @@
           <div class="score-big">
             <div class="sb-num num">${s.current}</div>
             <div class="sb-band">${s.band}</div>
-            <div class="sb-sub num">Previous report ${s.prev} &middot; <span class="delta-up">+${s.current - s.prev}</span></div>
           </div>
           <div class="factor-list">
             ${s.factors.map(f => `
@@ -125,15 +122,15 @@
           <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Risk score history over twelve months">
             ${[0, 20, 40, 60, 80, 100].map(g => {
               const y = 160 - g / 100 * 140;
-              return `<line x1="42" y1="${y}" x2="690" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
             <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
-            <polyline points="${s.history.map((p, i) => `${(42 + i / (s.history.length - 1) * 648).toFixed(1)},${(160 - p.v / 100 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+            <polyline points="${s.history.map((p, i) => `${(42 + i / (s.history.length - 1) * 624).toFixed(1)},${(160 - p.v / 100 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
             ${s.history.map((p, i) => {
-              const x = 42 + i / (s.history.length - 1) * 648, y = 160 - p.v / 100 * 140;
+              const x = 42 + i / (s.history.length - 1) * 624, y = 160 - p.v / 100 * 140;
               return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.2" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" /><text x="${x.toFixed(1)}" y="${(y - 9).toFixed(1)}" text-anchor="middle" class="pt-lbl">${p.v}</text>`;
             }).join('')}
-            ${s.history.map((p, i) => `<text x="${(42 + i / (s.history.length - 1) * 648).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${p.m}</text>`).join('')}
+            ${s.history.map((p, i) => `<text x="${(42 + i / (s.history.length - 1) * 624).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${p.m}</text>`).join('')}
             <text x="10" y="94" text-anchor="middle" class="ax-title" transform="rotate(-90 10 94)">Risk score</text>
             <text x="366" y="194" text-anchor="middle" class="ax-title">Month end</text>
           </svg>
@@ -144,14 +141,7 @@
           <div class="kpi"><div class="k">12-month low</div><div class="v num">${s.low}</div><div class="d">Aug 2025</div></div>
           <div class="kpi"><div class="k">Net 12-month move</div><div class="v num">+16</div><div class="d">from 42</div></div>
         </div>
-        <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Date</th><th>Score-moving event</th><th class="r">Impact</th></tr></thead>
-          <tbody>
-            ${s.events.map(e => `
-              <tr><td class="num" style="white-space:nowrap">${e.d}</td><td>${e.t}</td>
-              <td class="r num ${e.delta.startsWith('+') ? 'delta-up' : 'delta-down'}">${e.delta}</td></tr>`).join('')}
-          </tbody>
-        </table>`)}
+        `)}
       ${foot(2)}
     </article>`;
   }
@@ -170,10 +160,7 @@
             <div class="voy-port">${c.from}</div>
             <div class="voy-meta num">${c.departed}</div>
           </div>
-          <div class="voy-mid">
-            <div class="voy-track"><span class="voy-done" style="width:${c.progress}%"></span><span class="voy-dot" style="left:0"></span><span class="voy-dot cur" style="left:${c.progress}%"></span><span class="voy-dot end" style="left:100%"></span></div>
-            <div class="voy-mid-meta"><span>${c.laden} &middot; ${c.cargo}</span><span class="num">${c.progress}% complete</span></div>
-          </div>
+          <div class="voy-mid"><div class="voy-mid-meta" style="justify-content:center"><span>${c.laden} &middot; ${c.cargo}</span></div></div>
           <div class="voy-end r">
             <div class="voy-lbl">Destination</div>
             <div class="voy-port">${c.to}</div>
@@ -184,7 +171,7 @@
           ${V.voyage.stats.map(s => `<div class="ind" style="padding:10px"><div class="iv num" style="font-size:18px">${s.v}</div><div class="ik" style="font-size:9px">${s.k}</div></div>`).join('')}
         </div>
         <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Port</th><th>Country</th><th>Arrival</th><th>Departure</th><th class="r">Days</th><th>Note</th></tr></thead>
+          <thead><tr><th>Port</th><th>Country</th><th>Arrival</th><th>Departure</th><th class="r">Days</th></tr></thead>
           <tbody>
             ${V.voyage.ports.map(p => `
               <tr>
@@ -193,13 +180,12 @@
                 <td class="num" style="white-space:nowrap">${p.arr}</td>
                 <td class="num" style="white-space:nowrap">${p.dep}</td>
                 <td class="r num">${p.days}</td>
-                <td style="color:#64748b">${p.note}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Six most recent port calls of 26 in the period. Full call history is available in the vessel voyage history.')}
       ${sec(ICO.life, 'Casualty history', `
         <table class="rt">
-          <thead><tr><th>Date</th><th>Event</th><th>Severity</th><th>Location</th><th>Status</th><th class="r">Reserve</th></tr></thead>
+          <thead><tr><th>Date</th><th>Event</th><th>Severity</th><th>Location</th><th class="r">Reserve</th></tr></thead>
           <tbody>
             ${V.casualties.map(x => `
               <tr>
@@ -207,10 +193,9 @@
                 <td class="vn">${x.type}</td>
                 <td>${sevPill(x.sev)}</td>
                 <td style="color:#475569">${x.loc}</td>
-                <td><span class="pill ${x.status === 'Claim open' ? 'pill-amber' : 'pill-green'}">${x.status}</span></td>
                 <td class="r num" style="font-weight:600;color:#0f172a">${x.est}</td>
               </tr>
-              <tr><td></td><td colspan="5" style="padding-top:0;color:#64748b;font-size:10.5px;border-bottom:1px solid #f1f5f9">${x.note}</td></tr>`).join('')}
+              <tr><td></td><td colspan="4" style="padding-top:0;color:#64748b;font-size:10.5px;border-bottom:1px solid #f1f5f9">${x.note}</td></tr>`).join('')}
           </tbody>
         </table>`, 'Five-year record. One claim remains open with a $2.2m reserve.')}
       ${foot(3)}
@@ -232,7 +217,7 @@
           <p class="sb-d">The vessel and its ownership chain return no list matches. Monitoring is in place because the disclosed charterer operates from a jurisdiction under enhanced review, and one port call in the period was in a sanctioned jurisdiction.</p>
         </div>
         <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Screening list</th><th>Result</th><th>Scope</th><th>Last checked</th></tr></thead>
+          <thead><tr><th>Screening list</th><th>Result</th><th>Scope</th><th>Date imposed</th></tr></thead>
           <tbody>
             ${sa.checks.map(c => `
               <tr>
@@ -254,7 +239,7 @@
         </div>`)}
       ${sec(ICO.swap, 'Ship-to-ship activity', `
         <table class="rt">
-          <thead><tr><th>Date</th><th>Counterparty</th><th>Compliance</th><th>Region</th><th class="r">Duration</th><th>Note</th></tr></thead>
+          <thead><tr><th>Date</th><th>Counterparty</th><th>Compliance</th><th>Region</th><th class="r">Duration</th></tr></thead>
           <tbody>
             ${V.sts.map(t => `
               <tr>
@@ -263,7 +248,6 @@
                 <td><span class="pill ${t.status === 'Ok' ? 'pill-green' : 'pill-amber'}">${t.status}</span></td>
                 <td style="color:#475569;white-space:nowrap">${t.region}</td>
                 <td class="r num">${t.duration}</td>
-                <td style="color:#64748b">${t.note}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Three transfers detected in the period. None involved a currently listed counterparty.')}
@@ -293,7 +277,7 @@
             </div>`).join('')}
         </div>
         <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Listed area</th><th class="r">Transits</th><th class="r">Days inside</th><th>Last entry</th><th>Notice given</th></tr></thead>
+          <thead><tr><th>Listed area</th><th class="r">Transits</th><th class="r">Days inside</th><th>Last entry</th></tr></thead>
           <tbody>
             ${w.zones.map((z, i) => `
               <tr>
@@ -301,7 +285,6 @@
                 <td class="r num">${z.transits}</td>
                 <td class="r num">${z.days}</td>
                 <td class="num">${z.last}</td>
-                <td>${i === 0 ? '<span class="pill pill-red">1 breach</span>' : '<span class="pill pill-green">Yes</span>'}</td>
               </tr>`).join('')}
           </tbody>
         </table>
@@ -319,7 +302,6 @@
             <div class="spec-row"><span class="spec-k">Draught</span><span class="spec-v num">${p.draught}</span></div>
             <div class="spec-row"><span class="spec-k">Destination</span><span class="spec-v">${p.destination}</span></div>
             <div class="spec-row"><span class="spec-k">ETA</span><span class="spec-v num">${p.eta}</span></div>
-            <div class="spec-row"><span class="spec-k">Next monitored region</span><span class="spec-v">${p.nextRegion}</span></div>
           </div>
         </div>`, 'Position derived from the latest terrestrial and satellite AIS fix at the generation timestamp.')}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${V.meta.generatedOn}.</p>

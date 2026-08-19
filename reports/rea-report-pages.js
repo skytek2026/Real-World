@@ -54,7 +54,6 @@
         <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
           <span class="font-display" style="font-size:17px;font-weight:800;color:var(--brand-600,#2d7ffb)">${R.meta.region}</span>
           <span class="pill pill-red">${R.meta.regionType}</span>
-          <span class="pill pill-slate num">${R.meta.bounds}</span>
         </div>
         <p class="cover-sub">Who is inside the region right now, who moved through it, when concentration peaked, how much of the portfolio it represents, and the vessel-by-vessel detail behind the aggregate.</p>
       </div>
@@ -63,8 +62,6 @@
         <div><div class="k">Reporting period</div><div class="v num">${R.meta.period}</div></div>
         <div><div class="k">Compared with</div><div class="v num">${R.meta.previous}</div></div>
         <div><div class="k">Generated</div><div class="v num">${R.meta.generatedOn}</div></div>
-        <div><div class="k">Prepared for</div><div class="v">${R.meta.preparedFor}</div></div>
-        <div><div class="k">Report owner</div><div class="v">${R.meta.owner}</div></div>
       </div>
       ${sec(ICO.ship, 'Vessels currently in the selected region', `
         <div class="kpi-grid">
@@ -103,14 +100,12 @@
   /* ── Page 2 — recent crossings, peak concentration ── */
   function page2() {
     const p = R.peak, f = R.flow;
-    const max = Math.max(...p.daily.map(d => d.v));
-    const h = 160, w = 660;
     return `
     <article class="page" data-screen-label="Page 2">
       ${head('Crossings &amp; peak concentration')}
       ${sec(ICO.swap, 'Most recent boundary crossings', `
         <table class="rt">
-          <thead><tr><th>Direction</th><th>Date / time</th><th>Vessel</th><th>IMO</th><th>Flag</th><th>Adjacent region</th><th class="r">Insured value</th></tr></thead>
+          <thead><tr><th>Direction</th><th>Date / time</th><th>Vessel</th><th>IMO</th><th>Flag</th><th class="r">Insured value</th></tr></thead>
           <tbody>
             ${f.recent.map(x => `
               <tr>
@@ -119,7 +114,6 @@
                 <td class="vn">${x.name}</td>
                 <td class="num">${x.imo}</td>
                 <td>${flag(x.cc)}</td>
-                <td style="color:#475569">${x.from}</td>
                 <td class="r num" style="font-weight:600;color:#0f172a">${x.value}</td>
               </tr>`).join('')}
           </tbody>
@@ -131,25 +125,33 @@
           <div class="kpi"><div class="k">Aggregation threshold</div><div class="v num">${p.threshold}</div><div class="d">vessels, fleet rule</div></div>
           <div class="kpi"><div class="k">Threshold breaches</div><div class="v num">${p.breaches}</div><div class="d">days above limit</div></div>
         </div>
-        <div class="spark-wrap" style="margin-top:12px">
-          <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" class="spark" style="height:160px">
-            <line x1="0" y1="${(h - p.threshold / max * h).toFixed(1)}" x2="${w}" y2="${(h - p.threshold / max * h).toFixed(1)}" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="6 5" />
-            ${p.daily.map((d, i) => {
-              const bw = w / p.daily.length, x = i * bw, bh = d.v / max * h;
-              return `<rect x="${(x + 3).toFixed(1)}" y="${(h - bh).toFixed(1)}" width="${(bw - 6).toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="${d.v > p.threshold ? '#b91c1c' : 'var(--brand-600,#2d7ffb)'}" />`;
+        <div class="chart-wrap" style="margin-top:12px">
+          <div class="chart-legend"><span class="cl-item"><span class="cl-sw"></span>Vessels inside region</span><span class="cl-item"><span class="cl-sw red"></span>Above threshold</span><span class="cl-item"><span class="cl-line dash"></span>Aggregation threshold ${p.threshold}</span></div>
+          <svg viewBox="0 0 700 190" class="linechart" role="img" aria-label="Simultaneous vessel count by day, bar chart">
+            ${[0, 10, 20, 30, 40].map(g => {
+              const y = 150 - g / 48 * 130;
+              return `<line x1="42" y1="${y.toFixed(1)}" x2="690" y2="${y.toFixed(1)}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${(y + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
+            <line x1="42" y1="14" x2="42" y2="150" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="${(150 - p.threshold / 48 * 130).toFixed(1)}" x2="690" y2="${(150 - p.threshold / 48 * 130).toFixed(1)}" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="6 5" />
+            ${p.daily.map((d, i) => {
+              const slot = 648 / p.daily.length, bw = Math.min(slot - 6, 26);
+              const cx = 42 + slot * i + slot / 2, bh = d.v / 48 * 130;
+              return `<rect x="${(cx - bw / 2).toFixed(1)}" y="${(150 - bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="${d.v > p.threshold ? '#b91c1c' : 'var(--brand-600,#2d7ffb)'}" /><text x="${cx.toFixed(1)}" y="${(150 - bh - 5).toFixed(1)}" text-anchor="middle" class="pt-lbl" style="font-size:8.5px">${d.v}</text>`;
+            }).join('')}
+            ${p.daily.map((d, i) => { const slot = 648 / p.daily.length; return `<text x="${(42 + slot * i + slot / 2).toFixed(1)}" y="166" text-anchor="middle" class="ax-lbl">${d.d}</text>`; }).join('')}
+            <text x="10" y="86" text-anchor="middle" class="ax-title" transform="rotate(-90 10 86)">Vessels</text>
+            <text x="366" y="184" text-anchor="middle" class="ax-title">Day of month (July 2026)</text>
           </svg>
-          <div class="spark-x">${p.daily.map(d => `<span class="num">${d.d}</span>`).join('')}</div>
         </div>
         <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Accumulation window</th><th class="r">Peak vessels</th><th class="r">Value at peak</th><th>Driver</th></tr></thead>
+          <thead><tr><th>Accumulation window</th><th class="r">Peak vessels</th><th class="r">Value at peak</th></tr></thead>
           <tbody>
             ${p.windows.map(x => `
               <tr>
                 <td class="num" style="white-space:nowrap">${x.start} → ${x.end}</td>
                 <td class="r num" style="font-weight:700;color:${x.peak > p.threshold ? '#b91c1c' : '#0f172a'}">${x.peak}</td>
                 <td class="r num" style="font-weight:600;color:#0f172a">${x.value}</td>
-                <td style="color:#64748b">${x.note}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Daily simultaneous vessel count at 14:00 UTC. Dashed line is the 40-vessel aggregation threshold; red bars exceed it.')}
@@ -173,7 +175,7 @@
           <div class="kpi accent"><div class="k">Exposed by value</div><div class="v num">${R.current.valueSharePct}%</div><div class="d">${s.regionValue} inside region</div></div>
         </div>
         <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Vessel type</th><th class="r">Vessels inside</th><th class="r">Insured value</th><th class="r">Share of region value</th><th>Mix</th></tr></thead>
+          <thead><tr><th>Vessel type</th><th class="r">Vessels inside</th><th class="r">Insured value</th><th class="r">Share of region value</th></tr></thead>
           <tbody>
             ${s.byType.map(t => `
               <tr>
@@ -181,36 +183,28 @@
                 <td class="r num">${t.vessels}</td>
                 <td class="r num" style="font-weight:600;color:#0f172a">${t.value}</td>
                 <td class="r num">${(parseFloat(t.value.replace(/[^0-9.]/g, '')) / 1.42 * 100).toFixed(1)}%</td>
-                <td style="min-width:120px"><span class="bl-track"><span class="bl-fill" style="width:${t.pct}%"></span></span></td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Value share is disproportionate to count: tankers are 60% of the vessels inside but 67% of the exposed value.')}
       ${sec(ICO.chart, 'Exposure changes over time — 12 months', `
         <div class="chart-wrap">
-          <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Exposed insured value by month over twelve months">
+          <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Exposed insured value by month over twelve months, bar chart">
             ${[0, 0.4, 0.8, 1.2, 1.6].map(g => {
               const y = 160 - g / 1.6 * 140;
-              return `<line x1="46" y1="${y}" x2="690" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="38" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g.toFixed(1)}</text>`;
+              return `<line x1="46" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="38" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g.toFixed(1)}</text>`;
             }).join('')}
             <line x1="46" y1="20" x2="46" y2="160" stroke="#cbd5e1" stroke-width="1" />
-            <polyline points="${hs.map((x, i) => `${(46 + i / (hs.length - 1) * 644).toFixed(1)},${(160 - x.value / 1.6 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
             ${hs.map((x, i) => {
-              const cx = 46 + i / (hs.length - 1) * 644, cy = 160 - x.value / 1.6 * 140;
-              return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.2" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" /><text x="${cx.toFixed(1)}" y="${(cy - 9).toFixed(1)}" text-anchor="middle" class="pt-lbl">${x.value.toFixed(2)}</text>`;
+              const slot = 620 / hs.length, bw = Math.min(slot - 8, 34);
+              const cx = 46 + slot * i + slot / 2, bh = x.value / 1.6 * 140;
+              return `<rect x="${(cx - bw / 2).toFixed(1)}" y="${(160 - bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="var(--brand-600,#2d7ffb)" /><text x="${cx.toFixed(1)}" y="${(160 - bh - 5).toFixed(1)}" text-anchor="middle" class="pt-lbl">${x.value.toFixed(2)}</text>`;
             }).join('')}
-            ${hs.map((x, i) => `<text x="${(46 + i / (hs.length - 1) * 644).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${x.m}</text>`).join('')}
+            ${hs.map((x, i) => { const slot = 620 / hs.length; return `<text x="${(46 + slot * i + slot / 2).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${x.m}</text>`; }).join('')}
             <text x="10" y="94" text-anchor="middle" class="ax-title" transform="rotate(-90 10 94)">Value ($bn)</text>
             <text x="368" y="194" text-anchor="middle" class="ax-title">Month end</text>
           </svg>
         </div>
-        <div class="chg" style="margin-top:12px">
-          ${R.historyNotes.map(n => `
-            <div class="chg-row">
-              <span class="chg-ico" style="background:${toneBg[n.tone]};color:${toneFg[n.tone]}">${ic(n.tone === 'green' ? ICO.peak : ICO.alert, 12)}</span>
-              <div><div class="chg-t">${n.t}</div><div class="chg-d">${n.d}</div></div>
-              <div class="chg-m" style="color:${toneFg[n.tone]};font-weight:700">${n.m}</div>
-            </div>`).join('')}
-        </div>`, 'Line shows month-end exposed insured value in $bn. Counts are vessels inside the region at month end.')}
+        `, 'Bars show month-end exposed insured value in $bn.')}
       ${foot(3)}
     </article>`;
   }
@@ -285,16 +279,6 @@
               </tr>`).join('')}
           </tbody>
         </table>`)}
-      ${sec(ICO.shield, 'Method and caveats', `
-        <div class="status-banner">
-          <div><div class="sb-k">Data basis</div><div class="sb-t">${v.coveragePct}% declared coverage</div></div>
-          <p class="sb-d">${v.method}</p>
-        </div>
-        <div class="ind-grid" style="margin-top:10px">
-          <div class="ind"><div class="iv num">${v.withoutData}</div><div class="ik">Values outstanding</div><div class="id">Requested from the broker on 04 Aug 2026.</div></div>
-          <div class="ind"><div class="iv num">3</div><div class="ik">Values older than 12 months</div><div class="id">Flagged for refresh at renewal.</div></div>
-          <div class="ind"><div class="iv num">1</div><div class="ik">Values under endorsement</div><div class="id">KAPPA VOYAGER — increase pending.</div></div>
-        </div>`)}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Aggregation figures are indicative and depend on the completeness of declared values. Region boundaries follow the Real World definition for ${R.meta.region} (${R.meta.bounds}) as at ${R.meta.generatedOn}.</p>
       ${foot(5)}
     </article>`;

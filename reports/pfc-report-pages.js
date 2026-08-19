@@ -20,7 +20,6 @@
   const flag = cc => cc ? `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="19" height="13" />` : '';
   const scoreChip = n => `<span class="score ${n >= 80 ? 'sc-high' : n >= 50 ? 'sc-med' : 'sc-low'}">${n}</span>`;
   const sevPill = s => `<span class="pill ${s === 'Serious' ? 'pill-red' : s === 'Moderate' ? 'pill-amber' : 'pill-slate'}">${s}</span>`;
-  const stPill = s => `<span class="pill ${s === 'Claim open' ? 'pill-amber' : s === 'Surveying' ? 'pill-blue' : 'pill-green'}">${s}</span>`;
   const head = (title) => `
     <div class="page-head">
       <div>
@@ -58,25 +57,21 @@
         <div><div class="k">Reporting period</div><div class="v num">${C.meta.period}</div></div>
         <div><div class="k">Casualty window</div><div class="v num">${C.meta.window}</div></div>
         <div><div class="k">Generated</div><div class="v num">${C.meta.generatedOn}</div></div>
-        <div><div class="k">Prepared for</div><div class="v">${C.meta.preparedFor}</div></div>
-        <div><div class="k">Report owner</div><div class="v">${C.meta.owner}</div></div>
       </div>
       ${sec(ICO.life, 'Total casualties, new casualties and vessels affected', `
-        <div class="kpi-grid">
+        <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr)">
           <div class="kpi accent"><div class="k">Total casualties (24m)</div><div class="v num">${s.total}</div><div class="d"><span class="delta-up">${s.totalDelta}</span> vs previous</div></div>
           <div class="kpi"><div class="k">New this period</div><div class="v num">${s.newThisPeriod}</div><div class="d"><span class="delta-up">${s.newDelta}</span> vs previous</div></div>
           <div class="kpi"><div class="k">Vessels affected</div><div class="v num">${s.vesselsAffected}</div><div class="d">${s.repeatVessels} with repeat events</div></div>
-          <div class="kpi"><div class="k">Open claims</div><div class="v num">${s.openClaims}</div><div class="d">of ${s.total} events</div></div>
         </div>
-        <div class="kpi-grid" style="margin-top:10px">
+        <div class="kpi-grid" style="margin-top:10px;grid-template-columns:repeat(3,1fr)">
           <div class="kpi"><div class="k">Total reserve (24m)</div><div class="v num">${s.totalReserve}</div><div class="d">indicative</div></div>
           <div class="kpi"><div class="k">Reserve this period</div><div class="v num">${s.periodReserve}</div><div class="d">6 events</div></div>
           <div class="kpi"><div class="k">Average per event</div><div class="v num">${s.avgReserve}</div><div class="d"><span class="delta-up">+18%</span> over 6 months</div></div>
-          <div class="kpi"><div class="k">Serious share</div><div class="v num">${s.seriousShare}%</div><div class="d">of all events</div></div>
         </div>`)}
       ${sec(ICO.alert, 'New casualties this period', `
         <table class="rt">
-          <thead><tr><th>Date</th><th>Vessel</th><th>Flag</th><th class="r">Age</th><th>Event</th><th>Severity</th><th>Status</th><th class="r">Reserve</th></tr></thead>
+          <thead><tr><th>Date</th><th>Vessel</th><th>Flag</th><th class="r">Age</th><th>Event</th><th>Severity</th><th class="r">Reserve</th></tr></thead>
           <tbody>
             ${C.newCasualties.map(r => `
               <tr>
@@ -86,7 +81,6 @@
                 <td class="r num">${r.age}</td>
                 <td>${r.type}</td>
                 <td>${sevPill(r.sev)}</td>
-                <td>${stPill(r.status)}</td>
                 <td class="r num" style="font-weight:600;color:#0f172a">${r.est}</td>
               </tr>`).join('')}
           </tbody>
@@ -123,23 +117,6 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Machinery damage leads on frequency; collision and grounding lead on severity and reserve.')}
-      ${sec(ICO.pin, 'Date and location', `
-        <table class="rt">
-          <thead><tr><th>Date</th><th>Vessel</th><th>IMO</th><th>Event</th><th>Location</th><th>Severity</th><th class="r">Reserve</th></tr></thead>
-          <tbody>
-            ${C.newCasualties.map(r => `
-              <tr>
-                <td class="num" style="white-space:nowrap">${r.date}</td>
-                <td class="vn">${r.name}</td>
-                <td class="num">${r.imo}</td>
-                <td>${r.type}</td>
-                <td style="color:#475569">${r.loc}</td>
-                <td>${sevPill(r.sev)}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${r.est}</td>
-              </tr>`).join('')}
-          </tbody>
-        </table>
-        `, 'Locations recorded at the position of the incident, not the port of repair.')}
       ${foot(2)}
     </article>`;
   }
@@ -147,8 +124,6 @@
   /* ── Page 3 — vessel age, trends ── */
   function page3() {
     const maxAge = Math.max(...C.ages.map(a => a.count));
-    const toneBg = { red:'#fef2f2', amber:'#fffbeb', green:'#f0fdf4', blue:'#eff6ff' };
-    const toneFg = { red:'#b91c1c', amber:'#b45309', green:'#15803d', blue:'#1d4ed8' };
     return `
     <article class="page" data-screen-label="Page 3">
       ${head('Vessel age &amp; casualty trends')}
@@ -185,32 +160,24 @@
         </table>`)}
       ${sec(ICO.trend, 'Casualty trends — 12 months', `
         <div class="chart-wrap">
-          <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Casualty count by month over twelve months">
+          <div class="chart-legend"><span class="cl-item"><span class="cl-sw"></span>Monthly casualties</span><span class="cl-item"><span class="cl-line dash"></span>12-month mean 4.1</span></div>
+          <svg viewBox="0 0 700 180" class="linechart" role="img" aria-label="Casualty count by month over twelve months, bar chart">
             ${[0, 2, 4, 6, 8].map(g => {
               const y = 160 - g / 8 * 140;
-              return `<line x1="42" y1="${y}" x2="690" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
             <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
-            <line x1="42" y1="${(160 - 4.1 / 8 * 140).toFixed(1)}" x2="690" y2="${(160 - 4.1 / 8 * 140).toFixed(1)}" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6 5" />
-            <text x="686" y="${(160 - 4.1 / 8 * 140 - 5).toFixed(1)}" text-anchor="end" class="ax-lbl" style="fill:#b45309;font-weight:700">12-month mean 4.1</text>
-            <polyline points="${C.trend.map((x, i) => `${(42 + i / (C.trend.length - 1) * 648).toFixed(1)},${(160 - x.v / 8 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
+            <line x1="42" y1="${(160 - 4.1 / 8 * 140).toFixed(1)}" x2="666" y2="${(160 - 4.1 / 8 * 140).toFixed(1)}" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6 5" />
             ${C.trend.map((x, i) => {
-              const cx = 42 + i / (C.trend.length - 1) * 648, cy = 160 - x.v / 8 * 140;
-              return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.2" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" /><text x="${cx.toFixed(1)}" y="${(cy - 9).toFixed(1)}" text-anchor="middle" class="pt-lbl">${x.v}</text>`;
+              const slot = 624 / C.trend.length, bw = Math.min(slot - 8, 30);
+              const cx = 42 + slot * i + slot / 2, bh = x.v / 8 * 140;
+              return `<rect x="${(cx - bw / 2).toFixed(1)}" y="${(160 - bh).toFixed(1)}" width="${bw.toFixed(1)}" height="${bh.toFixed(1)}" rx="3" fill="var(--brand-600,#2d7ffb)" /><text x="${cx.toFixed(1)}" y="${(160 - bh - 5).toFixed(1)}" text-anchor="middle" class="pt-lbl">${x.v}</text>`;
             }).join('')}
-            ${C.trend.map((x, i) => `<text x="${(42 + i / (C.trend.length - 1) * 648).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${x.m}</text>`).join('')}
-            <text x="10" y="94" text-anchor="middle" class="ax-title" transform="rotate(-90 10 94)">Casualties</text>
-            <text x="366" y="194" text-anchor="middle" class="ax-title">Month</text>
+            ${C.trend.map((x, i) => { const slot = 624 / C.trend.length; return `<text x="${(42 + slot * i + slot / 2).toFixed(1)}" y="176" text-anchor="middle" class="ax-lbl">${x.m}</text>`; }).join('')}
+            <text x="10" y="90" text-anchor="middle" class="ax-title" transform="rotate(-90 10 90)">Casualties</text>
           </svg>
         </div>
-        <div class="chg" style="margin-top:12px">
-          ${C.trendNotes.map(n => `
-            <div class="chg-row">
-              <span class="chg-ico" style="background:${toneBg[n.tone]};color:${toneFg[n.tone]}">${ic(n.tone === 'green' ? ICO.trend : ICO.alert, 12)}</span>
-              <div><div class="chg-t">${n.t}</div><div class="chg-d">${n.d}</div></div>
-              <div class="chg-m" style="color:${toneFg[n.tone]};font-weight:700">${n.m}</div>
-            </div>`).join('')}
-        </div>`, 'Monthly event counts across the book. Twelve-month mean is 4.1 events per month.')}
+        `, 'Monthly event counts across the book. Twelve-month mean is 4.1 events per month.')}
       ${foot(3)}
     </article>`;
   }
@@ -244,13 +211,6 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Top five of nine repeat vessels by event count. Repeat involvement is a scoring factor and feeds the casualty component of the Real World Risk Score.')}
-      ${sec(ICO.alert, 'Pattern observations', `
-        <div class="ind-grid">
-          <div class="ind"><div class="iv num">4</div><div class="ik">Repeat vessels over 15 years</div><div class="id">Of five listed above, four are 15 years or older.</div></div>
-          <div class="ind"><div class="iv num">3</div><div class="ik">Navigational repeats</div><div class="id">Groundings and collisions recurring on the same trade lanes.</div></div>
-          <div class="ind"><div class="iv num">2</div><div class="ik">Same-manager clusters</div><div class="id">Two repeat vessels share one technical manager.</div></div>
-        </div>
-        <p class="sec-note" style="margin-top:10px">ARCTIC MARINER is the clearest outlier: four events, two of them groundings in Baltic approaches, on a 20-year-old hull with an ageing special survey. It is examined on page 5.</p>`)}
       ${foot(4)}
     </article>`;
   }
@@ -280,7 +240,7 @@
         </div>`, 'Particulars as recorded at period end. Shown for the highest repeat-involvement vessel in the book.')}
       ${sec(ICO.life, 'Casualty record for this vessel', `
         <table class="rt">
-          <thead><tr><th>Date</th><th>Event</th><th>Severity</th><th>Location</th><th>Status</th><th class="r">Reserve</th></tr></thead>
+          <thead><tr><th>Date</th><th>Event</th><th>Severity</th><th>Location</th><th class="r">Reserve</th></tr></thead>
           <tbody>
             ${d.events.map(e => `
               <tr>
@@ -288,17 +248,11 @@
                 <td class="vn">${e.type}</td>
                 <td>${sevPill(e.sev)}</td>
                 <td style="color:#475569">${e.loc}</td>
-                <td>${stPill(e.status)}</td>
                 <td class="r num" style="font-weight:600;color:#0f172a">${e.est}</td>
               </tr>
-              <tr><td></td><td colspan="5" style="padding-top:0;color:#64748b;font-size:10.5px;border-bottom:1px solid #f1f5f9">${e.note}</td></tr>`).join('')}
+              <tr><td></td><td colspan="4" style="padding-top:0;color:#64748b;font-size:10.5px;border-bottom:1px solid #f1f5f9">${e.note}</td></tr>`).join('')}
           </tbody>
         </table>`)}
-      ${sec(ICO.alert, 'Findings and recommendation', `
-        <div class="status-banner">
-          <div><div class="sb-k">Assessment</div><div class="sb-t">Condition survey recommended before renewal</div></div>
-          <p class="sb-d">${d.findings}</p>
-        </div>`)}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Reserves are indicative and subject to survey and adjustment. Real World Risk Scores are derived from vessel behaviour, compliance screening, casualty record and ownership data, and do not constitute underwriting advice.</p>
       ${foot(5)}
     </article>`;

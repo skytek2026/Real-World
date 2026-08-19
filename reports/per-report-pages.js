@@ -18,7 +18,7 @@
     back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
   };
   const flag = cc => `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="19" height="13" />`;
-  const scoreChip = n => `<span class="score ${n >= 80 ? 'sc-high' : n >= 50 ? 'sc-med' : 'sc-low'}">${n}</span>`;
+  const scoreChip = n => `<span class="score ${n > 50 ? 'sc-high' : n > 25 ? 'sc-med' : 'sc-low'}">${n}</span>`;
   const head = (title) => `
     <div class="page-head">
       <div>
@@ -57,8 +57,6 @@
         <div><div class="k">Reporting period</div><div class="v num">${P.meta.period}</div></div>
         <div><div class="k">Compared with</div><div class="v num">${P.meta.previous}</div></div>
         <div><div class="k">Generated</div><div class="v num">${P.meta.generatedOn}</div></div>
-        <div><div class="k">Prepared for</div><div class="v">${P.meta.preparedFor}</div></div>
-        <div><div class="k">Report owner</div><div class="v">${P.meta.owner}</div></div>
       </div>
       ${sec(ICO.ship, 'Vessels &amp; assets under management', `
         <div class="kpi-grid">
@@ -83,9 +81,9 @@
             ${P.distribution.map(d => `
               <div class="legend-row"><span class="sw" style="background:${d.color}"></span>${d.band} (${d.range})<span class="lv num">${d.pct}%</span></div>`).join('')}
             <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f1f5f9">Portfolio average<span class="lv num">${k.avgRisk}</span></div>
-            <div class="legend-row">Above 80 (severe)<span class="lv num">${P.distribution[4].count} vessels</span></div>
+            <div class="legend-row">Below average (50+)<span class="lv num">${P.distribution[2].count} vessels</span></div>
           </div>
-        </div>`, 'Score bands follow the Real World scale: 0–20 very low through 81–100 severe. Counts are vessels holding cover at period end.')}
+        </div>`, 'Score bands follow the Real World scale: good 0–25, average 25+–50, below average 50+–100. Counts are vessels holding cover at period end.')}
       ${foot(1)}
     </article>`;
   }
@@ -107,7 +105,7 @@
         <table class="rt">
           <thead><tr>
             <th style="width:26px">#</th><th>Vessel</th><th>IMO</th><th>Flag</th><th>Type</th>
-            <th class="r">Score</th><th class="r">Prev</th><th>Primary drivers</th>
+            <th class="r">Score</th><th class="r">Prev</th>
           </tr></thead>
           <tbody>
             ${P.highest.map((v, i) => `
@@ -119,7 +117,6 @@
                 <td style="white-space:nowrap">${v.type}</td>
                 <td class="r">${scoreChip(v.score)}</td>
                 <td class="r num" style="color:#64748b">${v.prev}</td>
-                <td style="color:#475569">${v.drivers}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Ranked by score at period end. Prev is the score carried in the previous report.')}
@@ -159,21 +156,10 @@
           ${cm.indicators.map(i => `
             <div class="ind"><div class="iv num">${i.v}</div><div class="ik">${i.k}</div><div class="id">${i.d}</div></div>`).join('')}
         </div>
-        <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Screening list</th><th class="r">Matches</th><th>Status</th><th>Note</th></tr></thead>
-          <tbody>
-            ${cm.screening.map(s => `
-              <tr>
-                <td class="vn">${s.list}</td>
-                <td class="r num">${s.hits}</td>
-                <td><span class="pill pill-${s.tone}">${s.status}</span></td>
-                <td style="color:#64748b">${s.status === 'Escalated' ? 'Referred to compliance for confirmation' : s.status === 'Under review' ? 'Awaiting owner documentation' : 'No action required this period'}</td>
-              </tr>`).join('')}
-          </tbody>
-        </table>`, 'Indicator counts cover events inside the reporting period. Matches are screened against the vessel, its registered owner, operator and disclosed charterer.')}
+        `)}
       ${sec(ICO.life, 'Recent casualties', `
         <table class="rt">
-          <thead><tr><th>Date</th><th>Vessel</th><th>Event</th><th>Severity</th><th>Location</th><th>Status</th><th class="r">Reserve</th></tr></thead>
+          <thead><tr><th>Date</th><th>Vessel</th><th>Event</th><th>Severity</th><th>Location</th></tr></thead>
           <tbody>
             ${P.casualties.map(c => `
               <tr>
@@ -182,11 +168,9 @@
                 <td>${c.type}</td>
                 <td>${sevPill(c.sev)}</td>
                 <td style="color:#475569">${c.loc}</td>
-                <td>${stPill(c.status)}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${c.est}</td>
               </tr>`).join('')}
           </tbody>
-        </table>`, 'Five casualties reported in the period against a trailing twelve-month average of 3.4 per month. Reserves are indicative and subject to survey.')}
+        </table>`, 'Five casualties reported in the period against a trailing twelve-month average of 3.4 per month.')}
       ${foot(3)}
     </article>`;
   }
@@ -238,14 +222,14 @@
     </article>`;
   }
 
-  /* ── Page 5 — significant changes, vessels requiring attention ── */
+  /* ── Page 5 — changes since previous report ── */
   function page5() {
     const toneBg = { red:'#fef2f2', amber:'#fffbeb', green:'#f0fdf4', blue:'#eff6ff' };
     const toneFg = { red:'#b91c1c', amber:'#b45309', green:'#15803d', blue:'#1d4ed8' };
     return `
     <article class="page" data-screen-label="Page 5">
-      ${head('Significant changes')}
-      ${sec(ICO.trend, 'Significant changes since previous report', `
+      ${head('Changes since previous report')}
+      ${sec(ICO.trend, 'Changes since previous report', `
         <div class="chg">
           ${P.significant.map(s => `
             <div class="chg-row">
@@ -273,9 +257,8 @@
                 <div class="att-why">${a.why}</div>
               </div>
               <div class="att-act">
+                <span class="att-act-lbl">Risk Score</span>
                 ${scoreChip(a.score)}
-                <span class="pill ${a.tone === 'red' ? 'pill-red' : 'pill-amber'}">${a.action}</span>
-                <span style="font-size:10px;color:#94a3b8" class="num">${a.due}</span>
               </div>
             </div>`).join('')}
         </div>`, 'Ordered by score. Each item carries an owner action and a committee due date; unresolved items roll forward into the next report.')}
