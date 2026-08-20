@@ -103,17 +103,15 @@
       ${sec(ICO.alert, 'Highest Real World Risk Score vessels', `
         <table class="rt">
           <thead><tr>
-            <th style="width:26px">#</th><th>Vessel</th><th>IMO</th><th>Flag</th><th>Type</th>
+            <th style="width:26px">#</th><th>Vessel</th><th>Flag</th>
             <th class="r">Score</th><th class="r">Prev</th>
           </tr></thead>
           <tbody>
             ${P.highest.map((v, i) => `
               <tr>
                 <td class="num" style="color:#94a3b8">${i + 1}</td>
-                <td class="vn">${v.name}</td>
-                <td class="num">${v.imo}</td>
+                <td class="vn"><span class="v-stack"><span class="v-name">${v.name}</span><span class="v-sub"><span class="num">IMO ${v.imo}</span> &middot; ${v.type}</span></span></td>
                 <td>${flag(v.cc)}</td>
-                <td style="white-space:nowrap">${v.type}</td>
                 <td class="r">${scoreChip(v.score)}</td>
                 <td class="r num" style="color:#64748b">${v.prev}</td>
               </tr>`).join('')}
@@ -158,12 +156,13 @@
         `)}
       ${sec(ICO.life, 'Recent casualties', `
         <table class="rt">
-          <thead><tr><th>Date</th><th>Vessel</th><th>Event</th><th>Severity</th><th>Location</th></tr></thead>
+          <thead><tr><th>Date</th><th>Vessel</th><th>Flag</th><th>Event</th><th>Severity</th><th>Location</th></tr></thead>
           <tbody>
             ${P.casualties.map(c => `
               <tr>
                 <td class="num" style="white-space:nowrap">${c.date}</td>
-                <td class="vn">${c.name}</td>
+                <td class="vn"><span class="v-stack"><span class="v-name">${c.name}</span><span class="v-sub"><span class="num">IMO ${c.imo}</span> &middot; ${c.vtype}</span></span></td>
+                <td>${flag(c.cc)}</td>
                 <td>${c.type}</td>
                 <td>${sevPill(c.sev)}</td>
                 <td style="color:#475569">${c.loc}</td>

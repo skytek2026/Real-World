@@ -65,6 +65,7 @@
     search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
     check:'<path d="M20 6 9 17l-5-5"/>',
     doc:'<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>',
+    mail:'<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
   };
   const ic = (d, s) => `<svg width="${s||15}" height="${s||15}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
 
@@ -94,6 +95,8 @@
     { id:'m12', label:'Last 12 months',from: () => monthsBack(12) },
     { id:'ytd', label:'Year to date',  from: () => iso(new Date(new Date().getFullYear(), 0, 1)) },
   ];
+
+  const ACCOUNT_EMAIL = 'p.kiernan@skytek.com';
 
   const state = { open:false, preset:'', name:'', typeId:'', query:'', picked:[], from:'', to:'', showErrors:false };
   const errors = () => ({
@@ -150,12 +153,12 @@
         <div class="cnr-head">
           <div>
             <div class="cnr-title" id="cnr-title">${state.phase === 'form' ? 'Create New Report' : 'Report generation'}</div>
-            <div class="cnr-sub">${state.phase === 'form' ? 'Name the report, pick a type, then set its scope and period.' : 'You can close this window at any time.'}</div>
+            <div class="cnr-sub">${state.phase === 'form' ? 'Name the report, pick a type, then set its scope and period.' : 'Your request has been submitted.'}</div>
           </div>
           <button type="button" class="cnr-x" id="cnr-close" aria-label="Close">${ic(ICO.x, 16)}</button>
         </div>
         ${state.phase !== 'form' ? `<div class="cnr-body scroll-thin">${statusBody()}</div>
-        <div class="cnr-foot"><button type="button" class="cnr-btn primary" id="cnr-status-btn">${state.phase === 'done' ? 'View in My Reports' : 'Run in background'}</button></div>` : `
+        <div class="cnr-foot"><button type="button" class="cnr-btn primary" id="cnr-status-btn">Done</button></div>` : `
         <div class="cnr-body scroll-thin">
           <div class="cnr-field">
             <label class="cnr-lbl" for="cnr-name">Report name</label>
@@ -195,14 +198,12 @@
 
   function close() { state.open = false; state.phase = 'form'; render(); }
 
-  const STEPS = ['Resolving scope', 'Gathering vessel data', 'Scoring and aggregating', 'Composing pages'];
-
   let job = null;
 
   function finishJob(j) {
     if (j.added) return;
     j.added = true;
-    if (window.addSampleReport) window.addSampleReport(j.pending);
+    if (window.markSampleReportReady) window.markSampleReportReady(j.pending.title);
     if (!state.open) {
       if (window.showReportToast) window.showReportToast(`“${j.pending.title}” is ready in My Reports`);
       job = null;
@@ -221,43 +222,25 @@
         desc: `${c.name} covering ${picks.length} ${picks.length === 1 ? c.scopeLabel.replace(/s$/, '').toLowerCase() : c.scopeLabel.toLowerCase()}, ${fmt(state.from)} to ${fmt(state.to)}.`,
         pages: PAGE_COUNT[c.id] || 6, updated: TODAY,
         tags: picks.slice(0, 3).map(i => i.name).concat(picks.length > 3 ? [`+${picks.length - 3} more`] : []),
+        status: 'generating',
       },
     };
-    state.phase = 'generating';
+    state.phase = 'queued';
     render();
     const j = job;
-    const tick = () => {
-      if (job !== j) return;
-      j.step += 1;
-      if (j.step >= STEPS.length) {
-        j.delivered = true;
-        if (state.open) { state.phase = 'done'; render(); }
-        finishJob(j);
-        return;
-      }
-      if (state.open) render();
-      setTimeout(tick, 700);
-    };
-    setTimeout(tick, 700);
+    if (window.addSampleReport) window.addSampleReport(j.pending);
+    setTimeout(() => { j.delivered = true; finishJob(j); }, 6000);
   }
 
   function statusBody() {
     const j = job;
     if (!j) return '';
-    const done = state.phase === 'done';
     return `
     <div class="cnr-status">
-      <div class="cnr-status-ico ${done ? 'ok' : ''}">${done ? ic(ICO.check, 22) : '<span class="cnr-spinner"></span>'}</div>
-      <div class="cnr-status-t">${done ? 'Report generated' : 'Generating your report'}</div>
-      <div class="cnr-status-d">${done
-        ? `“${j.pending.title}” is ready and has been added to My Reports.`
-        : `“${j.pending.title}” — ${j.typeName}. This usually takes a few moments; you can close this window and it will keep running.`}</div>
-      <div class="cnr-steps">
-        ${STEPS.map((s, i) => {
-          const st = done || i < j.step ? 'ok' : i === j.step ? 'now' : '';
-          return `<div class="cnr-step ${st}"><span class="cnr-step-dot">${done || i < j.step ? ic(ICO.check, 10) : ''}</span>${s}</div>`;
-        }).join('')}
-      </div>
+      <div class="cnr-status-ico ok">${ic(ICO.check, 22)}</div>
+      <div class="cnr-status-t">Report queued for generation</div>
+      <div class="cnr-status-d">&ldquo;${j.pending.title}&rdquo; &mdash; ${j.typeName}. We will email you as soon as it has been generated, and it will appear in My Reports.</div>
+      <div class="cnr-note">${ic(ICO.mail, 15)}<span>A notification will be sent to <strong>${ACCOUNT_EMAIL}</strong>.</span></div>
     </div>`;
   }
 
@@ -266,13 +249,9 @@
     const shut = () => {
       const j = job;
       close();
-      if (!j) return;
-      if (j.delivered) {
-        if (window.showReportToast) window.showReportToast(`“${j.pending.title}” is ready in My Reports`);
-        job = null;
-      } else if (window.showReportToast) {
-        window.showReportToast(`“${j.pending.title}” is still generating — it will appear in My Reports when done`);
-      }
+      if (!j || !window.showReportToast) return;
+      if (j.delivered) { window.showReportToast(`“${j.pending.title}” is ready in My Reports`); job = null; }
+      else window.showReportToast(`“${j.pending.title}” is generating — we will email you when it is ready`);
     };
     g('cnr-close').onclick = shut;
     g('cnr-scrim').onclick = e => { if (e.target.id === 'cnr-scrim') shut(); };

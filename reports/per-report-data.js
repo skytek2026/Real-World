@@ -53,11 +53,11 @@ window.PER = {
     ],
   },
   casualties: [
-    { date:'2026-07-27', name:'BALTIC ENVOY',   type:'Machinery damage', sev:'Moderate', loc:'Kiel Canal',        status:'Claim open',   est:'$1.8m' },
-    { date:'2026-07-19', name:'DELTA HORIZON',  type:'Collision',        sev:'Serious',  loc:'Singapore Strait',  status:'Claim open',   est:'$7.4m' },
-    { date:'2026-07-11', name:'ARCTIC MARINER', type:'Grounding',        sev:'Serious',  loc:'Gulf of Bothnia',   status:'Surveying',    est:'$5.1m' },
-    { date:'2026-07-04', name:'PACIFIC WREN',   type:'Fire / explosion', sev:'Minor',    loc:'Port of Busan',     status:'Closed',       est:'$0.4m' },
-    { date:'2026-07-02', name:'IBERIAN STAR',   type:'Contact damage',   sev:'Minor',    loc:'Algeciras',         status:'Closed',       est:'$0.3m' },
+    { date:'2026-07-27', name:'BALTIC ENVOY',   imo:'9634118', cc:'lr', vtype:'Product Tanker',  type:'Machinery damage', sev:'Moderate', loc:'Kiel Canal',        status:'Claim open',   est:'$1.8m' },
+    { date:'2026-07-19', name:'DELTA HORIZON',  imo:'9704412', cc:'mh', vtype:'Container Ship',  type:'Collision',        sev:'Serious',  loc:'Singapore Strait',  status:'Claim open',   est:'$7.4m' },
+    { date:'2026-07-11', name:'ARCTIC MARINER', imo:'9188006', cc:'gr', vtype:'Bulk Carrier',    type:'Grounding',        sev:'Serious',  loc:'Gulf of Bothnia',   status:'Surveying',    est:'$5.1m' },
+    { date:'2026-07-04', name:'PACIFIC WREN',   imo:'9526344', cc:'pa', vtype:'Crude Oil Tanker',type:'Fire / explosion', sev:'Minor',    loc:'Port of Busan',     status:'Closed',       est:'$0.4m' },
+    { date:'2026-07-02', name:'IBERIAN STAR',   imo:'9581702', cc:'mt', vtype:'Bulk Carrier',    type:'Contact damage',   sev:'Minor',    loc:'Algeciras',         status:'Closed',       est:'$0.3m' },
   ],
   regions: [
     { name:'Singapore Strait',    vessels:186, value:'$2.9bn', pct:100 },

@@ -35,8 +35,8 @@ window.PFC = {
     { date:'2026-07-22', name:'DELTA HORIZON',   imo:'9704412', cc:'mh', age:11, type:'Collision',        sev:'Serious',  loc:'Singapore Strait',       status:'Claim open', est:'$6.8m' },
     { date:'2026-07-18', name:'ARCTIC MARINER',  imo:'9188006', cc:'gr', age:20, type:'Grounding',        sev:'Serious',  loc:'Gulf of Bothnia, Sweden',status:'Surveying',  est:'$4.2m' },
     { date:'2026-07-12', name:'FRESH BREEZE',    imo:'9438712', cc:'es', age:15, type:'Cargo damage',     sev:'Minor',    loc:'Fujairah, UAE',          status:'Claim open', est:'$0.9m' },
-    { date:'2026-07-06', name:'IBERIAN STAR',    imo:'9377158', cc:'mt', age:17, type:'Contact damage',   sev:'Minor',    loc:'Rotterdam, Netherlands', status:'Claim open', est:'$0.4m' },
-    { date:'2026-07-03', name:'PACIFIC WREN',    imo:'9455901', cc:'pa', age:19, type:'Fire / explosion', sev:'Minor',    loc:'Port of Busan, Korea',   status:'Closed',     est:'$0.2m' },
+    { date:'2026-07-06', name:'IBERIAN STAR',    imo:'9581702', cc:'mt', age:17, type:'Contact damage',   sev:'Minor',    loc:'Rotterdam, Netherlands', status:'Claim open', est:'$0.4m' },
+    { date:'2026-07-03', name:'PACIFIC WREN',    imo:'9526344', cc:'pa', age:19, type:'Fire / explosion', sev:'Minor',    loc:'Port of Busan, Korea',   status:'Closed',     est:'$0.2m' },
   ],
   ages: [
     { band:'0–5 yrs',   count:3,  pct:4.7,  color:'#15803d', reserve:'$2.1m' },
@@ -58,9 +58,9 @@ window.PFC = {
   ],
   repeats: [
     { name:'ARCTIC MARINER', imo:'9188006', cc:'gr', age:20, events:4, types:'Grounding ×2, machinery, hull', last:'2026-07-18', reserve:'$11.4m', score:77 },
-    { name:'PACIFIC WREN',   imo:'9455901', cc:'pa', age:19, events:3, types:'Fire, machinery ×2',            last:'2026-07-03', reserve:'$3.9m',  score:52 },
+    { name:'PACIFIC WREN',   imo:'9526344', cc:'pa', age:19, events:3, types:'Fire, machinery ×2',            last:'2026-07-03', reserve:'$3.9m',  score:52 },
     { name:'DELTA HORIZON',  imo:'9704412', cc:'mh', age:11, events:3, types:'Collision ×2, contact',         last:'2026-07-22', reserve:'$12.6m', score:64 },
-    { name:'IBERIAN STAR',   imo:'9377158', cc:'mt', age:17, events:2, types:'Contact, cargo',                last:'2026-07-06', reserve:'$1.1m',  score:46 },
+    { name:'IBERIAN STAR',   imo:'9581702', cc:'mt', age:17, events:2, types:'Contact, cargo',                last:'2026-07-06', reserve:'$1.1m',  score:46 },
     { name:'FRESH BREEZE',   imo:'9438712', cc:'es', age:15, events:2, types:'Machinery, cargo',              last:'2026-07-12', reserve:'$3.1m',  score:58 },
   ],
   detail: {

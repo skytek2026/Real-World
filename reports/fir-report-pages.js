@@ -177,44 +177,39 @@
       ${sec(ICO.alert, 'Highest Real World Risk Score vessels', `
         <table class="rt">
           <thead><tr>
-            <th style="width:24px">#</th><th>Vessel</th><th>IMO</th><th>Flag</th><th>Type</th>
-            <th class="r">Age</th><th class="r">Score</th><th class="r">Prev</th><th>Primary drivers</th>
+            <th style="width:24px">#</th><th>Vessel</th><th>Flag</th>
+            <th class="r">Age</th><th class="r">Score</th><th class="r">Prev</th>
           </tr></thead>
           <tbody>
             ${F.highest.map((v, i) => `
               <tr>
                 <td class="num" style="color:#94a3b8">${i + 1}</td>
-                <td class="vn">${v.name}</td>
-                <td class="num">${v.imo}</td>
+                <td class="vn"><span class="v-stack"><span class="v-name">${v.name}</span><span class="v-sub num">IMO ${v.imo} &middot; ${v.type}</span></span></td>
                 <td>${flag(v.cc)}</td>
-                <td style="white-space:nowrap">${v.type}</td>
                 <td class="r num">${v.age}</td>
                 <td class="r">${scoreChip(v.score)}</td>
                 <td class="r num" style="color:#64748b">${v.prev}</td>
-                <td style="color:#475569">${v.drivers}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Top eight of nine vessels scoring above 70. All appear in the exceptions list on page 6 unless already cleared.')}
       ${sec(ICO.life, 'Casualties', `
-        <div class="kpi-grid cols-5">
+        <div class="kpi-grid cols-4">
           <div class="kpi"><div class="k">Casualties</div><div class="v num">${cs.summary.total}</div><div class="d"><span class="delta-up">${cs.summary.vs12m}</span> vs 12m avg</div></div>
           <div class="kpi"><div class="k">Serious</div><div class="v num">${cs.summary.serious}</div><div class="d">of ${cs.summary.total}</div></div>
-          <div class="kpi"><div class="k">Open claims</div><div class="v num">${cs.summary.openClaims}</div><div class="d">at period end</div></div>
           <div class="kpi accent"><div class="k">Total reserve</div><div class="v num">${cs.summary.reserve}</div><div class="d">indicative</div></div>
           <div class="kpi"><div class="k">Vessels involved</div><div class="v num">6</div><div class="d">no repeats</div></div>
         </div>
         <table class="rt" style="margin-top:12px">
-          <thead><tr><th>Date</th><th>Vessel</th><th>Event</th><th>Severity</th><th>Location</th><th>Status</th><th class="r">Reserve</th></tr></thead>
+          <thead><tr><th>Date</th><th>Vessel</th><th>Flag</th><th>Event</th><th>Severity</th><th>Location</th></tr></thead>
           <tbody>
             ${cs.rows.map(r => `
               <tr>
                 <td class="num" style="white-space:nowrap">${r.date}</td>
-                <td class="vn">${r.name}</td>
+                <td class="vn"><span class="v-stack"><span class="v-name">${r.name}</span><span class="v-sub"><span class="num">IMO ${r.imo}</span> &middot; ${r.vtype}</span></span></td>
+                <td>${flag(r.cc)}</td>
                 <td>${r.type}</td>
                 <td>${sevPill(r.sev)}</td>
                 <td style="color:#475569">${r.loc}</td>
-                <td><span class="pill ${r.status === 'Claim open' ? 'pill-amber' : r.status === 'Surveying' ? 'pill-blue' : 'pill-green'}">${r.status}</span></td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${r.est}</td>
               </tr>`).join('')}
           </tbody>
         </table>`)}
@@ -244,7 +239,7 @@
           </tbody>
         </table>`)}
       ${sec(ICO.globe, 'Geographic activity', `
-        <div class="ind-grid cols-6">
+        <div class="ind-grid cols-5">
           ${F.geographic.stats.map(s => `<div class="ind" style="padding:10px"><div class="iv num" style="font-size:18px">${s.v}</div><div class="ik" style="font-size:9px">${s.k}</div></div>`).join('')}
         </div>
         <div class="bar-list" style="margin-top:12px">

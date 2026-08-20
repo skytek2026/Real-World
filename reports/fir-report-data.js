@@ -68,12 +68,12 @@ window.FIR = {
   casualties: {
     summary: { total:6, serious:2, openClaims:4, reserve:'$14.6m', vs12m:'+41%' },
     rows: [
-      { date:'2026-07-29', name:'NORDWIND LYRA',     type:'Machinery damage', sev:'Moderate', loc:'Suez Canal',        status:'Claim open', est:'$2.1m' },
-      { date:'2026-07-22', name:'NORDWIND AURORA',   type:'Collision',        sev:'Serious',  loc:'Singapore Strait',  status:'Claim open', est:'$6.8m' },
-      { date:'2026-07-18', name:'NORDWIND MERIDIAN', type:'Grounding',        sev:'Serious',  loc:'Gulf of Bothnia',   status:'Surveying',  est:'$4.2m' },
-      { date:'2026-07-12', name:'NORDWIND CASTOR',   type:'Cargo damage',     sev:'Minor',    loc:'Fujairah',          status:'Claim open', est:'$0.9m' },
-      { date:'2026-07-06', name:'NORDWIND FALCON',   type:'Contact damage',   sev:'Minor',    loc:'Rotterdam',         status:'Claim open', est:'$0.4m' },
-      { date:'2026-07-03', name:'NORDWIND VEGA',     type:'Fire / explosion', sev:'Minor',    loc:'Port of Busan',     status:'Closed',     est:'$0.2m' },
+      { date:'2026-07-29', name:'NORDWIND LYRA',     imo:'9720661', vtype:'Container Ship', cc:'sg',     type:'Machinery damage', sev:'Moderate', loc:'Suez Canal',        status:'Claim open', est:'$2.1m' },
+      { date:'2026-07-22', name:'NORDWIND AURORA',   imo:'9611402', vtype:'Product Tanker', cc:'lr',   type:'Collision',        sev:'Serious',  loc:'Singapore Strait',  status:'Claim open', est:'$6.8m' },
+      { date:'2026-07-18', name:'NORDWIND MERIDIAN', imo:'9288714', vtype:'Bulk Carrier', cc:'pa', type:'Grounding',        sev:'Serious',  loc:'Gulf of Bothnia',   status:'Surveying',  est:'$4.2m' },
+      { date:'2026-07-12', name:'NORDWIND CASTOR',   imo:'9455118', vtype:'Crude Oil Tanker', cc:'mh',   type:'Cargo damage',     sev:'Minor',    loc:'Fujairah',          status:'Claim open', est:'$0.9m' },
+      { date:'2026-07-06', name:'NORDWIND FALCON',   imo:'9502771', vtype:'General Cargo', cc:'cm',   type:'Contact damage',   sev:'Minor',    loc:'Rotterdam',         status:'Claim open', est:'$0.4m' },
+      { date:'2026-07-03', name:'NORDWIND VEGA',     imo:'9188774', vtype:'Bulk Carrier', cc:'gr',     type:'Fire / explosion', sev:'Minor',    loc:'Port of Busan',     status:'Closed',     est:'$0.2m' },
     ],
   },
   compliance: [
@@ -98,7 +98,6 @@ window.FIR = {
       { k:'Sea days', v:'3,914' },
       { k:'Regions entered', v:'34' },
       { k:'HRA transits', v:'46' },
-      { k:'Canal transits', v:'29' },
     ],
     trades: [
       { name:'Europe – Far East',   vessels:41, calls:118, pct:100 },
@@ -119,9 +118,9 @@ window.FIR = {
   exceptions: [
     { name:'NORDWIND TITAN',    cc:'cm', country:'Cameroon', imo:'9418833', tone:'red',   rule:'Dark activity threshold', d:'Four AIS gaps over six hours inside a high-risk area in one period, against a fleet rule of two.', owner:'Compliance', due:'22 Aug' },
     { name:'NORDWIND ATLAS',    cc:'pa', country:'Panama', imo:'9377611', tone:'red',   rule:'Sanctioned counterparty', d:'STS transfer with a counterparty designated after the transfer date; confirmation outstanding.', owner:'Compliance', due:'21 Aug' },
-    { name:'NORDWIND FALCON',   cc:'cm', country:'Cameroon', imo:'9502771', tone:'red',   rule:'Flag & class',            d:'Second flag change in nine months and class survey 41 days overdue; two detentions in the period.', owner:'Technical', due:'25 Aug' },
-    { name:'NORDWIND MERIDIAN', cc:'pa', country:'Panama', imo:'9288714', tone:'amber', rule:'Age exception',           d:'21 years old and trading outside the approved age limit for bulk tonnage; waiver expires 30 Sep 2026.', owner:'Underwriting', due:'30 Sep' },
-    { name:'NORDWIND CASTOR',   cc:'mh', country:'Marshall Islands', imo:'9455118', tone:'amber', rule:'War-risk notice',         d:'Entered the southern Red Sea listed area without prior notice on 11 Jul; AP raised.', owner:'Underwriting', due:'27 Aug' },
-    { name:'NORDWIND VEGA',     cc:'gr', country:'Greece', imo:'9188774', tone:'amber', rule:'PSC deficiencies',        d:'Seven open deficiencies across two inspections; none yet rectified at period end.', owner:'Technical', due:'29 Aug' },
+    { name:'NORDWIND FALCON',   imo:'9502771', vtype:'General Cargo', cc:'cm', country:'Cameroon', imo:'9502771', tone:'red',   rule:'Flag & class',            d:'Second flag change in nine months and class survey 41 days overdue; two detentions in the period.', owner:'Technical', due:'25 Aug' },
+    { name:'NORDWIND MERIDIAN', imo:'9288714', vtype:'Bulk Carrier', cc:'pa', country:'Panama', imo:'9288714', tone:'amber', rule:'Age exception',           d:'21 years old and trading outside the approved age limit for bulk tonnage; waiver expires 30 Sep 2026.', owner:'Underwriting', due:'30 Sep' },
+    { name:'NORDWIND CASTOR',   imo:'9455118', vtype:'Crude Oil Tanker', cc:'mh', country:'Marshall Islands', imo:'9455118', tone:'amber', rule:'War-risk notice',         d:'Entered the southern Red Sea listed area without prior notice on 11 Jul; AP raised.', owner:'Underwriting', due:'27 Aug' },
+    { name:'NORDWIND VEGA',     imo:'9188774', vtype:'Bulk Carrier', cc:'gr', country:'Greece', imo:'9188774', tone:'amber', rule:'PSC deficiencies',        d:'Seven open deficiencies across two inspections; none yet rectified at period end.', owner:'Technical', due:'29 Aug' },
   ],
 };
