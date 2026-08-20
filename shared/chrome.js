@@ -81,7 +81,7 @@ const LUCIDE_NAMES = {
   compass:'Compass', maximize:'Maximize2', minimize:'Minimize2', alertTri:'AlertTriangle',
   radio:'RadioTower', check:'Check', cargo:'Container', tag:'Tag',
   clipboard:'Clipboard', users:'Users', leaf:'Leaf', fileText:'FileText', clock:'Clock',
-  office:'Building2', upload:'Upload',
+  office:'Building2', upload:'Upload', network:'Network',
 };
 const LUCIDE_SIZES = {
   ship:'h-10 w-10', building2:'h-10 w-10', plane2:'h-10 w-10', bolt2:'h-10 w-10',
@@ -168,7 +168,7 @@ function Sidebar() {
   <div id="sidebar-backdrop" class="hidden md:!hidden fixed inset-0 bg-black/40 z-[1999]"></div>
   <aside id="sidebar" class="shrink-0 bg-white border-r border-ink-200 h-screen sticky top-0 flex flex-col transition-[width,transform] duration-200 max-md:fixed max-md:left-0 max-md:top-0 max-md:-translate-x-full" style="width:56px; z-index:2000">
     <div class="h-14 flex items-center border-b border-ink-200 px-2 gap-2">
-      <img src="images/skytek-realworld-landscape-color.png" alt="Real World" class="sidebar-logo" style="height:28px;object-fit:contain;opacity:0;pointer-events:none;transition:opacity 150ms;flex:1;min-width:0;" />
+      <img src="${(window.__resources&&window.__resources.logoLandscape)||'images/skytek-realworld-landscape-color.png'}" alt="Real World" class="sidebar-logo" style="height:28px;object-fit:contain;opacity:0;pointer-events:none;transition:opacity 150ms;flex:1;min-width:0;" />
       <button id="collapse-btn" class="shrink-0 p-2 rounded-lg hover:bg-ink-100 text-ink-700 ring-focus" title="Toggle menu">${I.menu}</button>
     </div>
     <nav class="flex-1 py-3 flex flex-col items-stretch gap-0.5 px-2 overflow-y-auto scroll-thin">
@@ -190,7 +190,7 @@ function Sidebar() {
     </nav>
     <div class="sidebar-logo sidebar-footer" style="border-top:1px solid var(--slate-200,#e2e8f0);padding:14px 16px;opacity:0;pointer-events:none;transition:opacity 150ms;display:flex;flex-direction:column;align-items:center;gap:8px">
       <a href="https://www.skytek.com" target="_blank" rel="noopener" title="skytek.com" style="display:block">
-        <img src="images/skytek-logo-stacked.png" alt="Skytek" style="width:76px;height:auto;display:block" />
+        <img src="${(window.__resources&&window.__resources.logoStacked)||'images/skytek-logo-stacked.png'}" alt="Skytek" style="width:76px;height:auto;display:block" />
       </a>
       <button type="button" id="sidebar-disclaimer-btn" style="background:none;border:0;color:var(--brand-600,#2563eb);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0">Disclaimer</button>
     </div>
@@ -226,7 +226,7 @@ function Topbar() {
           <div class="text-[11px] text-ink-500">Risk Manager</div>
         </div>
         <div class="h-8 w-8 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
-          <img src="images/avatar-paul-kiernan.avif" alt="Paul Kiernan" style="width:100%;height:100%;object-fit:cover" />
+          <img src="${(window.__resources&&window.__resources.avatarPaul)||'images/avatar-paul-kiernan.avif'}" alt="Paul Kiernan" style="width:100%;height:100%;object-fit:cover" />
         </div>
       </button>
     </div>
