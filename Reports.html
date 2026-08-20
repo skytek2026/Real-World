@@ -44,6 +44,76 @@
   /* Responsive: swap pill tabs → dropdown on small screens */
   .reports-tabs-dd{display:none;width:100%;max-width:320px;height:36px;padding:0 32px 0 12px;border:1px solid #e2e8f0;border-radius:10px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;font:inherit;font-size:13px;font-weight:600;color:#0f172a;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;}
   .reports-tabs-dd:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+  #sample-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:240;max-width:min(560px,calc(100vw - 32px));padding:11px 16px;background:#0f172a;color:#fff;border-radius:10px;font-size:12.5px;font-weight:600;box-shadow:0 14px 34px rgba(15,23,42,.3);opacity:0;visibility:hidden;transition:opacity .16s ease,transform .16s ease;text-align:center}
+  #sample-toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  .sample-select{height:36px;padding:0 32px 0 12px;background:#f8fafc url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 11px center;border:1px solid #e2e8f0;border-radius:9999px;font-size:12.5px;font-weight:500;color:#334155;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;max-width:100%}
+  .sample-select:hover{border-color:#cbd5e1}
+  .sample-select:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(45,127,251,.12)}
+  #cnr-host .cnr-presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px}
+  #cnr-host .cnr-preset{height:26px;padding:0 10px;background:#fff;border:1px solid #e2e8f0;border-radius:9999px;font-size:11.5px;font-weight:600;color:#475569;cursor:pointer;font-family:inherit;white-space:nowrap}
+  #cnr-host .cnr-preset:hover{background:#f8fafc;border-color:#cbd5e1}
+  #cnr-host .cnr-preset.on{background:var(--brand-600,#2d7ffb);border-color:var(--brand-600,#2d7ffb);color:#fff}
+  #cnr-host .cnr-input.has-err{border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.12)}
+  #cnr-host .cnr-list.has-err{border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.1)}
+  #cnr-host .cnr-empty.has-err{border-color:#dc2626;color:#b91c1c}
+  #cnr-host .cnr-date.has-err input{border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.12)}
+  #cnr-host .cnr-date.has-err>span{color:#b91c1c}
+  #cnr-host .cnr-err{font-size:11.5px;font-weight:600;color:#b91c1c;margin-top:5px}
+  #cnr-host .cnr-status{display:flex;flex-direction:column;align-items:center;text-align:center;gap:9px;padding:16px 6px 6px}
+  #cnr-host .cnr-status-ico{width:46px;height:46px;border-radius:9999px;display:flex;align-items:center;justify-content:center;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2d7ffb)}
+  #cnr-host .cnr-status-ico.ok{background:#dcfce7;color:#16a34a}
+  #cnr-host .cnr-spinner{width:20px;height:20px;border-radius:9999px;border:2.5px solid rgba(45,127,251,.25);border-top-color:var(--brand-600,#2d7ffb);animation:cnrspin .7s linear infinite}
+  @keyframes cnrspin{to{transform:rotate(360deg)}}
+  #cnr-host .cnr-status-t{font-size:15px;font-weight:700;color:#0f172a}
+  #cnr-host .cnr-status-d{font-size:12.5px;color:#64748b;line-height:1.5;max-width:400px;text-wrap:pretty}
+  #cnr-host .cnr-steps{width:100%;max-width:340px;display:flex;flex-direction:column;gap:8px;margin-top:8px;text-align:left}
+  #cnr-host .cnr-step{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#94a3b8}
+  #cnr-host .cnr-step.now{color:#0f172a;font-weight:600}
+  #cnr-host .cnr-step.ok{color:#475569}
+  #cnr-host .cnr-step-dot{width:17px;height:17px;flex-shrink:0;border-radius:9999px;border:1.5px solid #cbd5e1;display:inline-flex;align-items:center;justify-content:center;color:#fff}
+  #cnr-host .cnr-step.now .cnr-step-dot{border-color:var(--brand-600,#2d7ffb);box-shadow:inset 0 0 0 3px var(--brand-600,#2d7ffb)}
+  #cnr-host .cnr-step.ok .cnr-step-dot{background:#16a34a;border-color:#16a34a}
+  /* Create New Report modal */
+  #cnr-host .cnr-scrim{position:fixed;inset:0;z-index:200;background:rgba(15,23,42,.45);display:flex;align-items:center;justify-content:center;padding:24px}
+  #cnr-host .cnr-modal{width:100%;max-width:560px;max-height:88vh;background:#fff;border-radius:14px;box-shadow:0 24px 60px rgba(15,23,42,.28);display:flex;flex-direction:column;overflow:hidden}
+  #cnr-host .cnr-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 18px 14px;border-bottom:1px solid #f1f5f9}
+  #cnr-host .cnr-title{font-size:15px;font-weight:700;color:#0f172a}
+  #cnr-host .cnr-sub{font-size:12px;color:#64748b;margin-top:3px}
+  #cnr-host .cnr-x{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:0;border-radius:7px;color:#64748b;cursor:pointer;flex-shrink:0}
+  #cnr-host .cnr-x:hover{background:#f1f5f9;color:#0f172a}
+  #cnr-host .cnr-body{padding:16px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:15px}
+  #cnr-host .cnr-field{display:flex;flex-direction:column;gap:5px}
+  #cnr-host .cnr-lbl{font-size:11.5px;font-weight:600;color:#334155}
+  #cnr-host .cnr-count{font-weight:500;color:#94a3b8}
+  #cnr-host .cnr-hint{font-size:11.5px;color:#64748b;line-height:1.45}
+  #cnr-host .cnr-input{height:36px;padding:0 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:inherit;color:#0f172a;outline:none}
+  #cnr-host select.cnr-input{height:36px;cursor:pointer}
+  #cnr-host .cnr-input:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(45,127,251,.12)}
+  #cnr-host .cnr-search{display:flex;align-items:center;gap:7px;height:34px;padding:0 10px;border:1px solid #e2e8f0;border-radius:8px;color:#94a3b8;margin-top:2px}
+  #cnr-host .cnr-search:focus-within{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(45,127,251,.12)}
+  #cnr-host .cnr-search input{flex:1;min-width:0;border:0;outline:none;font-size:12.5px;font-family:inherit;color:#0f172a;background:transparent}
+  #cnr-host .cnr-list{margin-top:6px;max-height:196px;overflow-y:auto;border:1px solid #e2e8f0;border-radius:9px;display:flex;flex-direction:column}
+  #cnr-host .cnr-item{display:flex;align-items:center;gap:10px;padding:9px 11px;background:transparent;border:0;border-bottom:1px solid #f1f5f9;text-align:left;cursor:pointer;font-family:inherit;width:100%}
+  #cnr-host .cnr-item:last-child{border-bottom:0}
+  #cnr-host .cnr-item:hover{background:#f8fafc}
+  #cnr-host .cnr-item.on{background:var(--brand-50,#eff6ff)}
+  #cnr-host .cnr-box{width:16px;height:16px;flex-shrink:0;border:1px solid #cbd5e1;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#fff}
+  #cnr-host .cnr-item.on .cnr-box{background:var(--brand-600,#2d7ffb);border-color:var(--brand-600,#2d7ffb)}
+  #cnr-host .cnr-item-txt{display:flex;flex-direction:column;gap:1px;min-width:0}
+  #cnr-host .cnr-item-name{font-size:12.5px;font-weight:600;color:#0f172a}
+  #cnr-host .cnr-item-meta{font-size:11px;color:#64748b}
+  #cnr-host .cnr-none{padding:16px;text-align:center;font-size:12px;color:#94a3b8}
+  #cnr-host .cnr-empty{display:flex;flex-direction:column;align-items:center;gap:8px;padding:26px 16px;border:1px dashed #e2e8f0;border-radius:10px;color:#94a3b8;font-size:12.5px;text-align:center}
+  #cnr-host .cnr-dates{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px}
+  #cnr-host .cnr-date{display:flex;flex-direction:column;gap:4px;font-size:11px;font-weight:600;color:#64748b}
+  #cnr-host .cnr-date input{height:34px;padding:0 10px;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-family:inherit;color:#0f172a;outline:none}
+  #cnr-host .cnr-date input:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(45,127,251,.12)}
+  #cnr-host .cnr-foot{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:13px 18px;border-top:1px solid #f1f5f9;background:#f8fafc}
+  #cnr-host .cnr-btn{height:34px;padding:0 14px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:600;color:#334155;cursor:pointer;font-family:inherit}
+  #cnr-host .cnr-btn:hover{background:#f1f5f9}
+  #cnr-host .cnr-btn.primary{background:var(--brand-600,#2d7ffb);border-color:var(--brand-600,#2d7ffb);color:#fff}
+  #cnr-host .cnr-btn.primary:disabled{opacity:.5;cursor:not-allowed}
+  @media (max-width:560px){#cnr-host .cnr-scrim{padding:0}#cnr-host .cnr-modal{max-width:none;max-height:100vh;height:100vh;border-radius:0}#cnr-host .cnr-dates{grid-template-columns:1fr}}
   .reports-tabs-row::-webkit-scrollbar{display:none}
   @media (max-width: 980px){
     .ds-tabs#reports-tabs{display:none !important;}
@@ -127,7 +197,7 @@
     .fleet-table td.fleet-actions-cell::before{display:none;}
     .fleet-table td.fleet-actions-cell > div{display:flex !important;width:100%;gap:8px;}
     .fleet-table td.fleet-actions-cell .fleet-act-btn{flex:1 1 0;justify-content:center;}
-    .fleet-table td.sample-title-cell{display:block;padding:12px 14px 10px !important;}
+    .fleet-table td.sample-title-cell{display:block;padding:12px 14px 10px !important;text-align:left !important;}
     .fleet-table td.sample-title-cell::before{display:none;}
   }
 </style>
@@ -149,6 +219,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/report-builder.js?v=8"></script>
+<script src="shared/create-report-modal.js"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -181,7 +252,7 @@ const SUGGESTED = [
 ];
 
 /* ── State ────────────────────────────────────────────────────────────────── */
-let activeTab  = (() => { try { const t = sessionStorage.getItem('reportsTab'); if (t) { sessionStorage.removeItem('reportsTab'); return t; } } catch(e){} return 'builder'; })();
+let activeTab  = (() => { try { const t = sessionStorage.getItem('reportsTab'); if (t) { sessionStorage.removeItem('reportsTab'); return t; } } catch(e){} return 'sample'; })();
 let messages   = [];
 let isLoading  = false;
 
@@ -911,27 +982,43 @@ function competitorCard(c) {
   </div>`;
 }
 
-/* ── Sample Reports ───────────────────────────────────────────────────── */
+/* ── My Reports ───────────────────────────────────────────────────────── */
 const SAMPLE_REPORTS = [
-  { title:'Portfolio Executive Risk Report', type:'Portfolio', desc:'Portfolio-level breakdown of exposure by risk band, war risk and coverage status with quarter-on-quarter movement.', pages:12, updated:'2026-07-14', tags:['Risk bands','War risk','QoQ trend'], href:'reports/PortfolioExecutiveRiskReport.html' },
-  { title:'Individual Vessel Underwriting Report', type:'Asset', desc:'Single-vessel submission pack: particulars, ownership and management, risk score breakdown, voyage and port-call history, and sanctions screening.', pages:9, updated:'2026-08-11', tags:['Particulars','Ownership','Risk score','Screening'], href:'reports/IndividualVesselUnderwritingReport.html' },
-  { title:'Fleet Intelligence Report', type:'Fleet', desc:'Fleet-wide activity picture: current positions, high-risk area transits, ship-to-ship events and emerging behavioural flags across the monitored fleet.', pages:14, updated:'2026-08-17', tags:['Positions','HRA transits','STS events','Flags'], href:'reports/FleetIntelligenceReport.html' },
-  { title:'Portfolio / Fleet Casualty Report', type:'Portfolio', desc:'Casualty and incident record across a portfolio or fleet: event type and severity, vessels involved, claims status and exposure at the time of loss.', pages:11, updated:'2026-08-05', tags:['Incidents','Severity','Claims status','Exposure'], href:'reports/PortfolioFleetCasualtyReport.html' },
-  { title:'Regional Exposure & Aggregation Report', type:'Region', desc:'Aggregated insured value and vessel counts inside a chosen region, with peak accumulation windows, war-risk overlap and concentration by port.', pages:8, updated:'2026-07-29', tags:['Aggregation','Peak accumulation','War risk','By port'], href:'reports/RegionalExposureAggregationReport.html' },
+  { title:'Portfolio Executive Risk Report', type:'Portfolio Executive Risk Report', desc:'Portfolio-level breakdown of exposure by risk band, war risk and coverage status with quarter-on-quarter movement.', pages:12, updated:'2026-07-14', tags:['Risk bands','War risk','QoQ trend'], href:'reports/PortfolioExecutiveRiskReport.html' },
+  { title:'Individual Vessel Underwriting Report', type:'Individual Vessel Underwriting Report', desc:'Single-vessel submission pack: particulars, ownership and management, risk score breakdown, voyage and port-call history, and sanctions screening.', pages:9, updated:'2026-08-11', tags:['Particulars','Ownership','Risk score','Screening'], href:'reports/IndividualVesselUnderwritingReport.html' },
+  { title:'Fleet Intelligence Report', type:'Fleet Intelligence Report', desc:'Fleet-wide activity picture: current positions, high-risk area transits, ship-to-ship events and emerging behavioural flags across the monitored fleet.', pages:14, updated:'2026-08-17', tags:['Positions','HRA transits','STS events','Flags'], href:'reports/FleetIntelligenceReport.html' },
+  { title:'Portfolio / Fleet Casualty Report', type:'Portfolio / Fleet Casualty Report', desc:'Casualty and incident record across a portfolio or fleet: event type and severity, vessels involved, claims status and exposure at the time of loss.', pages:11, updated:'2026-08-05', tags:['Incidents','Severity','Claims status','Exposure'], href:'reports/PortfolioFleetCasualtyReport.html' },
+  { title:'Regional Exposure & Aggregation Report', type:'Regional Exposure & Aggregation Report', desc:'Aggregated insured value and vessel counts inside a chosen region, with peak accumulation windows, war-risk overlap and concentration by port.', pages:8, updated:'2026-07-29', tags:['Aggregation','Peak accumulation','War risk','By port'], href:'reports/RegionalExposureAggregationReport.html' },
+];
+const PLUS_ICO = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>';
+const REPORT_TYPE_NAMES = [
+  'Portfolio Executive Risk Report',
+  'Individual Vessel Underwriting Report',
+  'Fleet Intelligence Report',
+  'Portfolio / Fleet Casualty Report',
+  'Regional Exposure & Aggregation Report',
 ];
 const SAMPLE_TYPE_COLORS = {
-  Region:     { bg:'#eff6ff', bd:'#bfdbfe', fg:'#1d4ed8' },
-  Portfolio:  { bg:'#f5f3ff', bd:'#ddd6fe', fg:'#6d28d9' },
-  Asset:      { bg:'#ecfdf5', bd:'#a7f3d0', fg:'#047857' },
-  Fleet:      { bg:'#fff7ed', bd:'#fed7aa', fg:'#c2410c' },
-  Compliance: { bg:'#fef2f2', bd:'#fecaca', fg:'#b91c1c' },
+  'Portfolio Executive Risk Report':       { bg:'#f5f3ff', bd:'#ddd6fe', fg:'#6d28d9' },
+  'Individual Vessel Underwriting Report': { bg:'#ecfdf5', bd:'#a7f3d0', fg:'#047857' },
+  'Fleet Intelligence Report':             { bg:'#fff7ed', bd:'#fed7aa', fg:'#c2410c' },
+  'Portfolio / Fleet Casualty Report':     { bg:'#fef2f2', bd:'#fecaca', fg:'#b91c1c' },
+  'Regional Exposure & Aggregation Report':{ bg:'#eff6ff', bd:'#bfdbfe', fg:'#1d4ed8' },
 };
+let sampleQuery = '';
+let sampleType = 'All';
+
 function sampleTabContent() {
+  const q = sampleQuery.trim().toLowerCase();
+  const types = ['All'].concat(REPORT_TYPE_NAMES);
+  const rows = SAMPLE_REPORTS
+    .filter(r => sampleType === 'All' || r.type === sampleType)
+    .filter(r => !q || r.title.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q) || r.tags.join(' ').toLowerCase().includes(q));
   const rowBtn = (icon, label, href) => href ? `
     <a href="${href}" class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .15s,border-color .15s;">${icon} ${label}</a>` : `
     <button class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;">${icon} ${label}</button>`;
   const row = (r) => {
-    const c = SAMPLE_TYPE_COLORS[r.type] || SAMPLE_TYPE_COLORS.Region;
+    const c = SAMPLE_TYPE_COLORS[r.type] || SAMPLE_TYPE_COLORS['Regional Exposure & Aggregation Report'];
     return `
     <tr class="fleet-row" style="border-bottom:1px solid #f1f5f9;">
       <td class="fleet-cell sample-title-cell" data-label="Report" style="padding:14px 20px;vertical-align:top;">
@@ -941,7 +1028,7 @@ function sampleTabContent() {
         </div>
       </td>
       <td class="fleet-cell" data-label="Type" style="padding:14px 16px;vertical-align:top;">
-        <span style="display:inline-block;padding:3px 9px;border-radius:9999px;font-size:11px;font-weight:600;background:${c.bg};border:1px solid ${c.bd};color:${c.fg};white-space:nowrap;">${r.type}</span>
+        <span style="display:inline-block;padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;background:${c.bg};border:1px solid ${c.bd};color:${c.fg};line-height:1.35;max-width:190px;text-wrap:balance;">${r.type}</span>
       </td>
       <td class="fleet-cell" data-label="Contents" style="padding:14px 16px;vertical-align:top;">
         <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:260px;">
@@ -957,9 +1044,23 @@ function sampleTabContent() {
   };
   return `
   <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;background:#fff;">
-    <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;flex-shrink:0;">
-      <div style="font-size:13.5px;font-weight:600;color:#0f172a;">Sample Reports</div>
-      <div style="font-size:12.5px;color:#64748b;margin-top:3px;">Example outputs you can preview before building your own. Use one as a starting template in the Report Builder.</div>
+    <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;">
+      <div style="flex:1 1 260px;min-width:0;">
+        <div style="font-size:13.5px;font-weight:600;color:#0f172a;">My Reports</div>
+        <div style="font-size:12.5px;color:#64748b;margin-top:3px;">Reports you have created. Preview or download any of them, or create a new one.</div>
+      </div>
+      <button type="button" id="sample-new-report" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;background:var(--brand-600,#2d7ffb);border:1px solid var(--brand-600,#2d7ffb);border-radius:8px;font-size:12.5px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit;flex-shrink:0;transition:background .15s;">${PLUS_ICO} Create New Report</button>
+    </div>
+    <div style="padding:12px 20px;border-bottom:1px solid #f1f5f9;flex-shrink:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div style="position:relative;flex:1 1 220px;min-width:0;">
+        <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);display:flex;pointer-events:none;color:#94a3b8;">${FLEET_ICONS.search}</span>
+        <input id="sample-search" type="text" placeholder="Search reports..." value="${sampleQuery.replace(/"/g,'&quot;')}"
+          style="width:100%;height:36px;padding:0 12px 0 38px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;color:#334155;outline:none;background:#f8fafc;font-family:inherit;" />
+      </div>
+      <select id="sample-type" class="sample-select" aria-label="Filter by report type">
+        ${types.map(t => `<option value="${t}" ${sampleType === t ? 'selected' : ''}>${t === 'All' ? 'All report types' : t}</option>`).join('')}
+      </select>
+      <span style="font-size:11.5px;color:#94a3b8;white-space:nowrap;margin-left:auto;">${rows.length} of ${SAMPLE_REPORTS.length}</span>
     </div>
     <div style="flex:1;overflow:auto;" class="scroll-thin">
       <table class="fleet-table" style="width:100%;border-collapse:collapse;font-size:13px;min-width:900px;">
@@ -971,10 +1072,43 @@ function sampleTabContent() {
           <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Updated</th>
           <th style="text-align:right;padding:12px 20px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Actions</th>
         </tr></thead>
-        <tbody>${SAMPLE_REPORTS.map(row).join('')}</tbody>
+        <tbody>${rows.length ? rows.map(row).join('') : `<tr><td colspan="6" style="padding:48px;text-align:center;color:#94a3b8;font-size:13.5px;">No reports match your search.</td></tr>`}</tbody>
       </table>
     </div>
   </div>`;
+}
+
+function showReportToast(msg) {
+  let t = document.getElementById('sample-toast');
+  if (!t) { t = document.createElement('div'); t.id = 'sample-toast'; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.classList.add('on');
+  clearTimeout(showReportToast._t);
+  showReportToast._t = setTimeout(() => t.classList.remove('on'), 4200);
+}
+window.showReportToast = showReportToast;
+
+window.addSampleReport = function (r) {
+  SAMPLE_REPORTS.unshift(r);
+  const el = document.getElementById('reports-content');
+  if (el && activeTab === 'sample') { el.innerHTML = tabContent(); wireSampleTab(); }
+};
+
+function rerenderSampleTab(focusSearch) {
+  const el = document.getElementById('reports-content');
+  if (!el) return;
+  el.innerHTML = tabContent();
+  wireSampleTab();
+  if (focusSearch) { const s = document.getElementById('sample-search'); if (s) { s.focus(); s.selectionStart = s.selectionEnd = s.value.length; } }
+}
+
+function wireSampleTab() {
+  const btn = document.getElementById('sample-new-report');
+  if (btn) btn.onclick = () => window.createNewReport.open();
+  const search = document.getElementById('sample-search');
+  if (search) search.oninput = () => { sampleQuery = search.value; rerenderSampleTab(true); };
+  const typeSel = document.getElementById('sample-type');
+  if (typeSel) typeSel.onchange = () => { sampleType = typeSel.value; rerenderSampleTab(false); };
 }
 
 function competitorTabContent() {
@@ -1137,7 +1271,7 @@ window.render = function() {
                 <span class="ds-tab-label">${CHT_ICO} Competitor Analysis</span>
               </button>
               <button class="ds-tab" aria-selected="${activeTab==='sample'}" data-tab="sample">
-                <span class="ds-tab-label">${DOC_ICO} Sample Reports</span>
+                <span class="ds-tab-label">${DOC_ICO} My Reports</span>
               </button>
             </div>
             <select id="reports-tabs-dd" class="reports-tabs-dd" aria-label="Section">
@@ -1145,7 +1279,7 @@ window.render = function() {
               <option value="builder" ${activeTab==='builder'?'selected':''}>Report Builder V2</option>
               <option value="fleet"   ${activeTab==='fleet'  ?'selected':''}>Weekly Fleet Reports</option>
               <option value="comp"    ${activeTab==='comp'   ?'selected':''}>Competitor Analysis</option>
-              <option value="sample"  ${activeTab==='sample' ?'selected':''}>Sample Reports</option>
+              <option value="sample"  ${activeTab==='sample' ?'selected':''}>My Reports</option>
             </select>
           </div>
           <div id="reports-content" style="flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden">
@@ -1193,6 +1327,7 @@ window.render = function() {
       if (activeTab === 'builder1') window.reportBuilder.wire();
       if (activeTab === 'fleet')   wireFleetTab();
       if (activeTab === 'comp')    wireCompetitorTab();
+      if (activeTab === 'sample')  wireSampleTab();
     }
   }
   if (tabDD) tabDD.addEventListener('change', () => switchTab(tabDD.value));
@@ -1219,12 +1354,14 @@ window.render = function() {
       if (activeTab === 'builder1') window.reportBuilder.wire();
       if (activeTab === 'fleet')   wireFleetTab();
       if (activeTab === 'comp')    wireCompetitorTab();
+      if (activeTab === 'sample')  wireSampleTab();
     }
   }));
   if (activeTab === 'builder') rerenderChat();
   if (activeTab === 'builder1') window.reportBuilder.wire();
   if (activeTab === 'fleet')   wireFleetTab();
   if (activeTab === 'comp')    wireCompetitorTab();
+  if (activeTab === 'sample')  wireSampleTab();
 };
 
 window.render();
