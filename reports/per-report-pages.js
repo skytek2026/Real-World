@@ -1,7 +1,8 @@
 /* Portfolio Executive Risk Report — page composition */
 (function () {
   const P = window.PER;
-  const TOTAL = 6;
+  const RF = window.reportFront;
+  const TOTAL = 9;
   const ic = (d, s) => `<svg width="${s||15}" height="${s||15}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
   const ICO = {
     ship:'<path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
@@ -44,19 +45,8 @@
     const k = P.kpi;
     const max = Math.max(...P.distribution.map(d => d.count));
     return `
-    <article class="page" data-screen-label="Page 1">
-      ${head('Executive summary')}
-      <div style="display:flex;flex-direction:column;gap:13px">
-        <span class="cover-mark">${ic(ICO.shield,15)} Real World Intelligence</span>
-        <h1 class="cover-title">Portfolio Executive<br />Risk Report</h1>
-        <p class="cover-sub">A month-end view of portfolio composition, Real World Risk Score distribution, compliance exposure and the assets that need underwriting attention before the next committee.</p>
-      </div>
-      <div class="cover-meta">
-        <div><div class="k">Portfolio</div><div class="v">${P.meta.portfolio}</div></div>
-        <div><div class="k">Reporting period</div><div class="v num">${P.meta.period}</div></div>
-        <div><div class="k">Compared with</div><div class="v num">${P.meta.previous}</div></div>
-        <div><div class="k">Generated</div><div class="v num">${P.meta.generatedOn}</div></div>
-      </div>
+    <article class="page" data-screen-label="Page 4">
+      ${head('Portfolio composition &amp; risk distribution')}
       ${sec(ICO.ship, 'Vessels &amp; assets under management', `
         <div class="kpi-grid">
           <div class="kpi accent"><div class="k">Vessels</div><div class="v num">${k.vessels.toLocaleString()}</div><div class="d"><span class="delta-up">${k.vesselsDelta}</span> vs previous</div></div>
@@ -83,7 +73,7 @@
             <div class="legend-row">Below average (50+)<span class="lv num">${P.distribution[2].count} vessels</span></div>
           </div>
         </div>`, 'Score bands follow the Real World scale: good 0–25, average 25+–50, below average 50+–100. Counts are vessels holding cover at period end.')}
-      ${foot(1)}
+      ${foot(4)}
     </article>`;
   }
 
@@ -98,7 +88,7 @@
         <td class="r"><span class="${dir === 'up' ? 'delta-up' : 'delta-down'} num">${dir === 'up' ? '+' : '−'}${Math.abs(r.to - r.from)}</span></td>
       </tr>`;
     return `
-    <article class="page" data-screen-label="Page 2">
+    <article class="page" data-screen-label="Page 5">
       ${head('Risk score detail')}
       ${sec(ICO.alert, 'Highest Real World Risk Score vessels', `
         <table class="rt">
@@ -136,7 +126,7 @@
             <tbody>${c.down.map(r => movRow(r, 'down')).join('')}</tbody></table>
           </div>
         </div>`)}
-      ${foot(2)}
+      ${foot(5)}
     </article>`;
   }
 
@@ -146,7 +136,7 @@
     const sevPill = s => `<span class="pill ${s === 'Serious' ? 'pill-red' : s === 'Moderate' ? 'pill-amber' : 'pill-slate'}">${s}</span>`;
     const stPill = s => `<span class="pill ${s === 'Claim open' ? 'pill-amber' : s === 'Surveying' ? 'pill-blue' : 'pill-green'}">${s}</span>`;
     return `
-    <article class="page" data-screen-label="Page 3">
+    <article class="page" data-screen-label="Page 6">
       ${head('Compliance &amp; casualties')}
       ${sec(ICO.shield, 'Sanctions and compliance indicators', `
         <div class="ind-grid">
@@ -169,7 +159,7 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Five casualties reported in the period against a trailing twelve-month average of 3.4 per month.')}
-      ${foot(3)}
+      ${foot(6)}
     </article>`;
   }
 
@@ -177,7 +167,7 @@
   function page4() {
     const w = P.war;
     return `
-    <article class="page" data-screen-label="Page 4">
+    <article class="page" data-screen-label="Page 7">
       ${head('Concentration &amp; war risk')}
       ${sec(ICO.globe, 'Regional concentrations', `
         <div class="bar-list">
@@ -216,7 +206,7 @@
               <span class="bl-val">${z.vessels} &middot; ${z.value}</span>
             </div>`).join('')}
         </div>`, 'Listed areas follow the current Joint War Committee list. Breach notifications are entries recorded without prior notice under the war-risk warranty.')}
-      ${foot(4)}
+      ${foot(7)}
     </article>`;
   }
 
@@ -225,7 +215,7 @@
     const toneBg = { red:'#fef2f2', amber:'#fffbeb', green:'#f0fdf4', blue:'#eff6ff' };
     const toneFg = { red:'#b91c1c', amber:'#b45309', green:'#15803d', blue:'#1d4ed8' };
     return `
-    <article class="page" data-screen-label="Page 5">
+    <article class="page" data-screen-label="Page 8">
       ${head('Changes since previous report')}
       ${sec(ICO.trend, 'Changes since previous report', `
         <div class="chg">
@@ -236,14 +226,14 @@
               <div class="chg-m" style="color:${toneFg[s.tone]};font-weight:700">${s.m}</div>
             </div>`).join('')}
         </div>`, `Measured against the ${P.meta.previous} report.`)}
-      ${foot(5)}
+      ${foot(8)}
     </article>`;
   }
 
   /* ── Page 6 — vessels requiring attention ── */
   function page6() {
     return `
-    <article class="page" data-screen-label="Page 6">
+    <article class="page" data-screen-label="Page 9">
       ${head('Vessels requiring attention')}
       ${sec(ICO.flag2, 'Vessels requiring attention', `
         <div class="att">
@@ -261,8 +251,60 @@
             </div>`).join('')}
         </div>`, 'Ordered by score. Each item carries an owner action and a committee due date; unresolved items roll forward into the next report.')}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${P.meta.generatedOn}.</p>
-      ${foot(6)}
+      ${foot(9)}
     </article>`;
+  }
+
+  /* ── Front matter ── */
+  function frontCover() {
+    return RF.cover({
+      classLabel: 'Confidential',
+      eyebrow: 'Monthly portfolio report',
+      title: 'Portfolio Executive<br />Risk Report',
+      sub: 'A month-end view of portfolio composition, Real World Risk Score distribution, compliance exposure and the assets that need underwriting attention before the next committee.',
+      subject: { k:'Portfolio', v:P.meta.portfolio, d:`${P.kpi.vessels.toLocaleString()} vessels &middot; ${P.kpi.otherAssets} other assets &middot; ${P.kpi.insuredValue} insured value` },
+      meta: [['Reporting period', P.meta.period], ['Compared with', P.meta.previous], ['Prepared for', P.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      reportId: P.meta.reportId, owner: P.meta.owner, generatedOn: P.meta.generatedOn,
+    });
+  }
+
+  function frontToc() {
+    return RF.toc({
+      head: head('Contents'), foot: foot(2),
+      note: 'Sections follow the underwriting committee running order. Page numbers refer to this document.',
+      rows: [
+        { front:true, title:'Executive summary', sub:'Portfolio position at a glance, headline findings for the period.', page:3 },
+        { n:'01', title:'Portfolio composition &amp; risk distribution', sub:'Vessels and assets under management, insured value, Real World Risk Score bands.', page:4 },
+        { n:'02', title:'Risk score detail', sub:'Highest-scoring vessels and the largest score movements since the previous report.', page:5 },
+        { n:'03', title:'Compliance &amp; casualties', sub:'Sanctions and compliance indicators, casualties reported in the period.', page:6 },
+        { n:'04', title:'Concentration &amp; war risk', sub:'Regional concentrations, peak accumulation and Joint War Committee listed-area exposure.', page:7 },
+        { n:'05', title:'Changes since previous report', sub:'Material movements measured against the prior reporting period.', page:8 },
+        { n:'06', title:'Vessels requiring attention', sub:'Assets carrying an open action ahead of the next committee.', page:9 },
+      ],
+    });
+  }
+
+  function frontExec() {
+    const k = P.kpi, d = P.distribution, w = P.war;
+    const maxD = Math.max(...d.map(x => x.count));
+    const maxR = Math.max(...P.regions.map(r => r.vessels));
+    return RF.exec({
+      head: head('Executive summary'), foot: foot(3),
+      standfirst: `Position at ${P.meta.period.split('–')[1].trim()} against the ${P.meta.previous} report. Figures cover vessels holding cover at period end.`,
+      hero: [
+        { cls:'lead', k:'Average Real World Risk Score', v:k.avgRisk, d:`<span class="delta-up">${k.avgRiskDelta}</span> vs previous period`,
+          meter:{ pinPct:k.avgRisk, scale:[{at:0,l:'0'},{at:25,l:'25'},{at:50,l:'50'},{at:100,l:'100'}], segments:[{pct:25,color:'#16a34a'},{pct:25,color:'#d97706'},{pct:50,color:'#dc2626'}] } },
+        { k:'Vessels', v:k.vessels.toLocaleString(), d:`<span class="delta-up">${k.vesselsDelta}</span> &middot; ${k.otherAssets} other assets` },
+        { k:'Insured value', v:k.insuredValue, d:`<span class="delta-up">${k.insuredValueDelta}</span> vs previous` },
+        { cls:'warn', k:'Below-average vessels', v:d[2].count, d:`${d[2].pct}% of the portfolio scoring 50+` },
+        { k:'War-risk exposed value', v:w.exposedValue, d:`${w.exposedVessels} vessels &middot; ${w.sharePct}% of book` },
+        { cls:'warn', k:'Sanctions escalations', v:P.compliance.screening.filter(s => s.status === 'Escalated').reduce((a,s) => a + s.hits, 0), d:`${P.compliance.indicators[0].v} vessels with listed-entity links` },
+        { k:'Casualties in period', v:P.casualties.length, d:`${P.casualties.filter(c => c.sev === 'Serious').length} serious &middot; 12-month avg 3.4` },
+      ],
+      left: { title:'Risk score distribution', rows:d.map(x => ({ n:`${x.band} (${x.range})`, pct:Math.round(x.count / maxD * 100), v:x.count, color:x.color })) },
+      right: { title:'Largest regional concentrations', rows:P.regions.slice(0,4).map(r => ({ n:r.name, pct:Math.round(r.vessels / maxR * 100), v:r.vessels })) },
+      findings: { rows:P.significant.slice(0,4).map(s => ({ tone:s.tone, t:s.title, d:s.d, m:s.m })) },
+    });
   }
 
   window.perReport = {
@@ -283,7 +325,7 @@
       </div>`;
     },
     Pages() {
-      return [page1(), page2(), page3(), page4(), page5(), page6()].join('');
+      return [frontCover(), frontToc(), frontExec(), page1(), page2(), page3(), page4(), page5(), page6()].join('');
     },
   };
 })();

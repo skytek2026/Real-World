@@ -1,7 +1,8 @@
 /* Individual Vessel Underwriting Report — page composition */
 (function () {
   const V = window.IVU;
-  const TOTAL = 5;
+  const RF = window.reportFront;
+  const TOTAL = 8;
   const ic = (d, s) => `<svg width="${s||15}" height="${s||15}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
   const ICO = {
     ship:'<path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
@@ -49,23 +50,8 @@
         ${rows.map(([k, v]) => `<div class="spec-row"><span class="spec-k">${k}</span><span class="spec-v">${v}</span></div>`).join('')}
       </div>`;
     return `
-    <article class="page" data-screen-label="Page 1">
+    <article class="page" data-screen-label="Page 4">
       ${head('Vessel particulars &amp; ownership')}
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="cover-mark">${ic(ICO.shield,15)} Real World Intelligence</span>
-        <h1 class="cover-title">Individual Vessel<br />Underwriting Report</h1>
-        <div style="display:flex;align-items:center;gap:10px">
-          ${flag('es')}
-          <span class="font-display" style="font-size:19px;font-weight:800;color:var(--brand-600,#2d7ffb);letter-spacing:.02em">${V.meta.vessel}</span>
-          <span class="pill pill-slate num">IMO ${V.meta.imo}</span>
-          <span class="pill pill-slate num">MMSI ${V.meta.mmsi}</span>
-        </div>
-        <p class="cover-sub">Submission pack for ${V.meta.submission}: particulars, ownership chain, Real World Risk Score and its history, trading and port activity, casualty record, sanctions position and current location.</p>
-      </div>
-      <div class="cover-meta">
-        <div><div class="k">Reporting period</div><div class="v num">${V.meta.period}</div></div>
-        <div><div class="k">Generated</div><div class="v num">${V.meta.generatedOn}</div></div>
-      </div>
       ${sec(ICO.ship, 'Vessel particulars', `
         <div class="spec-grid">
           ${col(V.particulars.slice(0, half))}
@@ -85,7 +71,7 @@
               </tr>`).join('')}
           </tbody>
         </table>`)}
-      ${foot(1)}
+      ${foot(4)}
     </article>`;
   }
 
@@ -99,7 +85,7 @@
       return `${x.toFixed(1)},${y.toFixed(1)}`;
     });
     return `
-    <article class="page" data-screen-label="Page 2">
+    <article class="page" data-screen-label="Page 5">
       ${head('Real World Risk Score')}
       ${sec(ICO.gauge, 'Current Real World Risk Score', `
         <div class="score-hero">
@@ -141,7 +127,7 @@
           <div class="kpi"><div class="k">Net 12-month move</div><div class="v num">+16</div><div class="d">from 42</div></div>
         </div>
         `)}
-      ${foot(2)}
+      ${foot(5)}
     </article>`;
   }
 
@@ -150,7 +136,7 @@
     const c = V.voyage.current;
     const sevPill = s => `<span class="pill ${s === 'Serious' ? 'pill-red' : s === 'Moderate' ? 'pill-amber' : 'pill-slate'}">${s}</span>`;
     return `
-    <article class="page" data-screen-label="Page 3">
+    <article class="page" data-screen-label="Page 6">
       ${head('Trading activity &amp; casualty record')}
       ${sec(ICO.route, 'Recent voyage and port activity', `
         <div class="voy-card">
@@ -197,7 +183,7 @@
               <tr><td></td><td colspan="4" style="padding-top:0;color:#64748b;font-size:10.5px;border-bottom:1px solid #f1f5f9">${x.note}</td></tr>`).join('')}
           </tbody>
         </table>`, 'Five-year record. One claim remains open with a $2.2m reserve.')}
-      ${foot(3)}
+      ${foot(6)}
     </article>`;
   }
 
@@ -205,7 +191,7 @@
   function page4() {
     const sa = V.sanctions;
     return `
-    <article class="page" data-screen-label="Page 4">
+    <article class="page" data-screen-label="Page 7">
       ${head('Sanctions &amp; ship-to-ship activity')}
       ${sec(ICO.shield, 'Sanctions status', `
         <div class="status-banner ${sa.tone}">
@@ -250,7 +236,7 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Three transfers detected in the period. None involved a currently listed counterparty.')}
-      ${foot(4)}
+      ${foot(7)}
     </article>`;
   }
 
@@ -258,7 +244,7 @@
   function page5() {
     const w = V.warRisk, p = V.position;
     return `
-    <article class="page" data-screen-label="Page 5">
+    <article class="page" data-screen-label="Page 8">
       ${head('War risk &amp; current position')}
       ${sec(ICO.swords, 'War and high-risk region activity', `
         <div class="kpi-grid">
@@ -304,8 +290,64 @@
           </div>
         </div>`, 'Position derived from the latest terrestrial and satellite AIS fix at the generation timestamp.')}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${V.meta.generatedOn}.</p>
-      ${foot(5)}
+      ${foot(8)}
     </article>`;
+  }
+
+  /* ── Front matter ── */
+  function frontCover() {
+    return RF.cover({
+      classLabel: 'Confidential',
+      eyebrow: `Submission pack — ${V.meta.submission}`,
+      title: 'Individual Vessel<br />Underwriting Report',
+      sub: `Submission pack for ${V.meta.submission}: particulars, ownership chain, Real World Risk Score and its history, trading and port activity, casualty record, sanctions position and current location.`,
+      subject: { k:'Vessel', v:`${flag('es')} ${V.meta.vessel}`, d:`IMO ${V.meta.imo} &middot; MMSI ${V.meta.mmsi} &middot; Crude Oil Tanker &middot; Risk score ${V.score.current} (${V.score.band})` },
+      meta: [['Reporting period', V.meta.period], ['Submission', V.meta.submission], ['Prepared for', V.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      reportId: V.meta.reportId, owner: V.meta.owner, generatedOn: V.meta.generatedOn,
+    });
+  }
+
+  function frontToc() {
+    return RF.toc({
+      head: head('Contents'), foot: foot(2),
+      note: 'Page numbers refer to this document. All screening reflects list data as published at generation.',
+      rows: [
+        { front:true, title:'Executive summary', sub:'Underwriting position at a glance, headline findings for the submission.', page:3 },
+        { n:'01', title:'Vessel particulars &amp; ownership', sub:'Technical particulars, class and the full ownership and management chain.', page:4 },
+        { n:'02', title:'Real World Risk Score', sub:'Current score with contributing factors and twelve-month history.', page:5 },
+        { n:'03', title:'Trading activity &amp; casualty record', sub:'Current voyage, port calls, behaviour statistics and past casualties.', page:6 },
+        { n:'04', title:'Sanctions &amp; ship-to-ship activity', sub:'Screening results, sanctions-relevant events and STS transfers.', page:7 },
+        { n:'05', title:'War risk &amp; current position', sub:'Listed-area transits, warranty position and last reported location.', page:8 },
+      ],
+    });
+  }
+
+  function frontExec() {
+    const s = V.score, w = V.warRisk;
+    const maxF = Math.max(...s.factors.map(f => f.v));
+    const openClaims = V.casualties.filter(c => c.status === 'Claim open').length;
+    return RF.exec({
+      head: head('Executive summary'), foot: foot(3),
+      standfirst: `${V.meta.vessel} over ${V.meta.period}. Score is the Real World Risk Score on a 0–100 scale, where lower is better.`,
+      hero: [
+        { cls:'lead', k:'Real World Risk Score', v:s.current, d:`${s.band} band &middot; <span class="delta-up">+${s.current - s.prev}</span> vs report open (${s.prev}) &middot; 12m range ${s.low}–${s.peak}`,
+          meter:{ pinPct:s.current, scale:[{at:0,l:'0'},{at:25,l:'25'},{at:50,l:'50'},{at:100,l:'100'}], segments:[{pct:25,color:'#16a34a'},{pct:25,color:'#d97706'},{pct:50,color:'#dc2626'}] } },
+        { cls:'warn', k:'Sanctions position', v:'Monitored', d:'No list matches; charterer jurisdiction on watch' },
+        { k:'Casualties (24m)', v:V.casualties.length, d:`${openClaims} claim open &middot; 1 serious historic` },
+        { cls:'warn', k:'War-risk transits', v:w.transits, d:`${w.daysInside} days inside listed areas` },
+        { cls:'warn', k:'Warranty breaches', v:w.breaches, d:'AP raised 15 Jul 2026' },
+        { k:'AIS gaps over 6h', v:V.voyage.stats.find(x => x.k === 'AIS gaps > 6h').v, d:`${V.voyage.stats.find(x => x.k === 'Loitering events').v} loitering events (12m)` },
+        { k:'Port calls (12m)', v:V.voyage.stats[0].v, d:`${V.voyage.stats[1].v} distinct ports &middot; 1 sanctioned jurisdiction` },
+      ],
+      left: { title:'Score contribution by factor', rows:s.factors.map(f => ({ n:`${f.k} (${f.w})`, pct:Math.round(f.v / maxF * 100), v:f.v, color:f.v > 50 ? '#dc2626' : f.v > 25 ? '#d97706' : '#16a34a' })) },
+      right: { title:'War-risk area activity', rows:w.zones.map(z => ({ n:z.name, pct:z.pct, v:`${z.transits}×`, color:z.tone })) },
+      findings: { rows:[
+        { tone:'red',   t:'Score up seven points on a single AIS gap', d:'A 31-hour gap in the southern Red Sea on 08 Jul 2026 drove the move from 51 to 58. Owner cites equipment fault; no counterparty identified.', m:'+7' },
+        { tone:'red',   t:'One war-risk warranty breach in the period', d:w.note, m:'1 breach' },
+        { tone:'amber', t:'Charterer jurisdiction under monitoring', d:'Levant Energy Trading DMCC added as disclosed charterer in March 2026; jurisdiction placed on watch and the score weighting for compliance is the largest single contributor at 72.', m:'since Mar 26' },
+        { tone:'green', t:'Clean against every sanctions list', d:'Five of six screening checks return no match across the full ownership chain, re-screened December 2025. Ownership stable since 2019 with no flag changes.', m:'no matches' },
+      ] },
+    });
   }
 
   window.ivuReport = {
@@ -325,6 +367,6 @@
         </div>
       </div>`;
     },
-    Pages() { return [page1(), page2(), page3(), page4(), page5()].join(''); },
+    Pages() { return [frontCover(), frontToc(), frontExec(), page1(), page2(), page3(), page4(), page5()].join(''); },
   };
 })();

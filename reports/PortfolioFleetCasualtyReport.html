@@ -236,6 +236,7 @@
     .kpi,.kpi.accent,.score,.pill,.dist-bar,.bl-fill,.chg-ico,.att-item{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
 </style>
+<link rel="stylesheet" href="report-front.css" />
 </head>
 <body class="bg-ink-100 text-ink-900" data-density="comfortable">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
@@ -251,6 +252,7 @@
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="../shared/chrome.js?v=12"></script>
 <script src="pfc-report-data.js"></script>
+<script src="report-front.js"></script>
 <script src="pfc-report-pages.js"></script>
 <script>
 const SC = window.sharedChrome;
@@ -264,6 +266,7 @@ window.render = function () {
         <div class="desk">${window.pfcReport.Pages()}</div>
       </main>
     </div>
+    ${window.reportFront.PageNav()}
     ${SC.TweaksPanel()}
   `;
   SC.wireChrome();
@@ -280,6 +283,7 @@ window.render = function () {
       img.setAttribute('src', '../' + s);
     });
   };
+  document.querySelectorAll('.desk .page').forEach((p, i) => { p.id = 'page-' + (i + 1); });
   document.querySelectorAll('.page .rt').forEach(t => {
     if (t.parentElement && t.parentElement.classList.contains('table-scroll')) return;
     const w = document.createElement('div');
@@ -288,6 +292,7 @@ window.render = function () {
     w.appendChild(t);
   });
   rebase(); setTimeout(rebase, 0);
+  window.reportFront.wirePageNav();
   const pb = document.getElementById('rp-print'); if (pb) pb.onclick = () => window.print();
   const db = document.getElementById('rp-pdf');   if (db) db.onclick = () => window.print();
 };

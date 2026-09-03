@@ -1,7 +1,8 @@
 /* Fleet Intelligence Report — page composition */
 (function () {
   const F = window.FIR;
-  const TOTAL = 6;
+  const RF = window.reportFront;
+  const TOTAL = 9;
   const ic = (d, s) => `<svg width="${s||15}" height="${s||15}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
   const ICO = {
     ship:'<path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
@@ -49,19 +50,8 @@
   function page1() {
     const c = F.composition;
     return `
-    <article class="page" data-screen-label="Page 1">
-      ${head('Executive summary')}
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="cover-mark">${ic(ICO.shield,15)} Real World Intelligence</span>
-        <h1 class="cover-title">Fleet Intelligence<br />Report</h1>
-        <p class="cover-sub">A month-end intelligence picture of the managed fleet: what it is made of, how it scores, where it trades, and which vessels sit outside fleet rules.</p>
-      </div>
-      <div class="cover-meta">
-        <div><div class="k">Fleet</div><div class="v">${F.meta.fleet}</div></div>
-        <div><div class="k">Reporting period</div><div class="v num">${F.meta.period}</div></div>
-        <div><div class="k">Compared with</div><div class="v num">${F.meta.previous}</div></div>
-        <div><div class="k">Generated</div><div class="v num">${F.meta.generatedOn}</div></div>
-      </div>
+    <article class="page" data-screen-label="Page 4">
+      ${head('Fleet composition')}
       ${sec(ICO.ship, 'Fleet composition', `
         <div class="kpi-grid">
           <div class="kpi accent"><div class="k">Vessels in fleet</div><div class="v num">${c.vessels}</div><div class="d"><span class="delta-up">${c.vesselsDelta}</span> vs previous</div></div>
@@ -69,7 +59,7 @@
           <div class="kpi"><div class="k">Average age</div><div class="v num">${c.avgAge}</div><div class="d"><span class="delta-down">${c.avgAgeDelta}</span> years vs previous</div></div>
           <div class="kpi"><div class="k">Insured value</div><div class="v num">${c.insuredValue}</div><div class="d">${c.flags} flags &middot; ${c.managers} managers</div></div>
         </div>`)}
-      ${foot(1)}
+      ${foot(4)}
     </article>`;
   }
 
@@ -77,7 +67,7 @@
   function page2() {
     const maxAge = Math.max(...F.ages.map(a => a.count));
     return `
-    <article class="page" data-screen-label="Page 2">
+    <article class="page" data-screen-label="Page 5">
       ${head('Vessel type &amp; age')}
       ${sec(ICO.layers, 'Vessel type', `
         <div class="bar-list">
@@ -120,7 +110,7 @@
             <div class="legend-row">Over 20 years<span class="lv num">${F.ages[4].count} vessels</span></div>
           </div>
         </div>`, 'Vessels over 20 years old carry an age exception requirement under fleet rules; 14 vessels currently qualify.')}
-      ${foot(2)}
+      ${foot(5)}
     </article>`;
   }
 
@@ -128,7 +118,7 @@
   function page3() {
     const max = Math.max(...F.distribution.map(d => d.count));
     return `
-    <article class="page" data-screen-label="Page 3">
+    <article class="page" data-screen-label="Page 6">
       ${head('Flags &amp; risk score profile')}
       ${sec(ICO.flag2, 'Flags', `
         <table class="rt">
@@ -163,7 +153,7 @@
             <div class="legend-row">Move vs previous<span class="lv num delta-up">${F.avgScoreDelta}</span></div>
           </div>
         </div>`)}
-      ${foot(3)}
+      ${foot(6)}
     </article>`;
   }
 
@@ -172,7 +162,7 @@
     const cs = F.casualties;
     const sevPill = s => `<span class="pill ${s === 'Serious' ? 'pill-red' : s === 'Moderate' ? 'pill-amber' : 'pill-slate'}">${s}</span>`;
     return `
-    <article class="page" data-screen-label="Page 4">
+    <article class="page" data-screen-label="Page 7">
       ${head('Highest scores &amp; casualties')}
       ${sec(ICO.alert, 'Highest Real World Risk Score vessels', `
         <table class="rt">
@@ -213,14 +203,14 @@
               </tr>`).join('')}
           </tbody>
         </table>`)}
-      ${foot(4)}
+      ${foot(7)}
     </article>`;
   }
 
   /* ── Page 5 — compliance, geographic activity ── */
   function page5() {
     return `
-    <article class="page" data-screen-label="Page 5">
+    <article class="page" data-screen-label="Page 8">
       ${head('Compliance &amp; geographic activity')}
       ${sec(ICO.shield, 'Sanctions and compliance indicators', `
         <div class="ind-grid">
@@ -250,14 +240,14 @@
               <span class="bl-val num">${t.vessels} vessels &middot; ${t.calls} calls</span>
             </div>`).join('')}
         </div>`, 'Trade lanes derived from voyage patterns in the period; a vessel may appear in more than one lane.')}
-      ${foot(5)}
+      ${foot(8)}
     </article>`;
   }
 
   /* ── Page 6 — regional exposure, fleet exceptions ── */
   function page6() {
     return `
-    <article class="page" data-screen-label="Page 6">
+    <article class="page" data-screen-label="Page 9">
       ${head('Regional exposure &amp; exceptions')}
       ${sec(ICO.pin, 'Regional exposure', `
         <div class="bar-list">
@@ -285,8 +275,67 @@
             </div>`).join('')}
         </div>`, 'Exceptions are vessels breaching a fleet rule at period end. Each carries an owning team and a due date; unresolved items roll forward.')}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${F.meta.generatedOn}.</p>
-      ${foot(6)}
+      ${foot(9)}
     </article>`;
+  }
+
+  /* ── Front matter ── */
+  function frontCover() {
+    const c = F.composition;
+    return RF.cover({
+      classLabel: 'Confidential',
+      eyebrow: 'Monthly fleet report',
+      title: 'Fleet Intelligence<br />Report',
+      sub: 'A month-end intelligence picture of the managed fleet: what it is made of, how it scores, where it trades, and which vessels sit outside fleet rules.',
+      subject: { k:'Fleet', v:F.meta.fleet, d:`${c.vessels} vessels &middot; ${c.totalGt} &middot; ${c.insuredValue} insured value &middot; ${c.flags} flags` },
+      meta: [['Reporting period', F.meta.period], ['Compared with', F.meta.previous], ['Prepared for', F.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      reportId: F.meta.reportId, owner: F.meta.owner, generatedOn: F.meta.generatedOn,
+    });
+  }
+
+  function frontToc() {
+    return RF.toc({
+      head: head('Contents'), foot: foot(2),
+      note: 'Page numbers refer to this document. Figures cover vessels under management at period end.',
+      rows: [
+        { front:true, title:'Executive summary', sub:'Fleet position at a glance, headline findings for the period.', page:3 },
+        { n:'01', title:'Fleet composition', sub:'Vessels under management, tonnage, average age and insured value.', page:4 },
+        { n:'02', title:'Vessel type &amp; age', sub:'Type mix with tonnage and average score; age band profile.', page:5 },
+        { n:'03', title:'Flags &amp; risk score profile', sub:'Flag registries and their standing; Real World Risk Score distribution.', page:6 },
+        { n:'04', title:'Highest scores &amp; casualties', sub:'Highest-scoring vessels and the casualty record for the period.', page:7 },
+        { n:'05', title:'Compliance &amp; geographic activity', sub:'Sanctions indicators, screening results, port calls and trade lanes.', page:8 },
+        { n:'06', title:'Regional exposure &amp; exceptions', sub:'Regions entered and vessels sitting outside fleet rules.', page:9 },
+      ],
+    });
+  }
+
+  function frontExec() {
+    const c = F.composition, d = F.distribution, cs = F.casualties.summary;
+    const maxD = Math.max(...d.map(x => x.count));
+    const maxT = Math.max(...F.types.map(t => t.count));
+    const severe = d[3].count + d[4].count;
+    return RF.exec({
+      head: head('Executive summary'), foot: foot(3),
+      standfirst: `Fleet position at period end against the ${F.meta.previous} report. Scores are Real World Risk Scores on a 0–100 scale.`,
+      hero: [
+        { cls:'lead', k:'Average Real World Risk Score', v:F.avgScore, d:`<span class="delta-up">${F.avgScoreDelta}</span> vs previous period`,
+          meter:{ pinPct:F.avgScore, scale:[{at:0,l:'0'},{at:25,l:'25'},{at:50,l:'50'},{at:100,l:'100'}], segments:[{pct:25,color:'#16a34a'},{pct:25,color:'#d97706'},{pct:50,color:'#dc2626'}] } },
+        { k:'Vessels in fleet', v:c.vessels, d:`<span class="delta-up">${c.vesselsDelta}</span> &middot; ${c.totalGt}` },
+        { k:'Insured value', v:c.insuredValue, d:`${c.flags} flags &middot; ${c.managers} managers` },
+        { cls:'warn', k:'High &amp; severe vessels', v:severe, d:`${(severe / c.vessels * 100).toFixed(1)}% of the fleet scoring 61+` },
+        { k:'Average age', v:c.avgAge, d:`<span class="delta-down">${c.avgAgeDelta}</span> years vs previous` },
+        { cls:'warn', k:'Casualties in period', v:cs.total, d:`${cs.serious} serious &middot; ${cs.reserve} reserve (<span class="delta-up">${cs.vs12m}</span>)` },
+        { cls:'warn', k:'Open rule exceptions', v:F.exceptions.length, d:`${F.exceptions.filter(e => e.tone === 'red').length} requiring immediate action` },
+      ],
+      left: { title:'Risk score distribution', rows:d.map(x => ({ n:`${x.band} (${x.range})`, pct:Math.round(x.count / maxD * 100), v:x.count, color:x.color })) },
+      right: { title:'Fleet by vessel type', rows:F.types.slice(0,5).map(t => ({ n:t.type, pct:Math.round(t.count / maxT * 100), v:t.count })) },
+      findings: { rows:[
+        { tone:'red',   t:'Nine vessels now score in the severe band', d:`${d[4].count} vessels score 81–100 and ${d[3].count} score 61–80 — together ${(severe / c.vessels * 100).toFixed(1)}% of the fleet, concentrated in tankers and older general cargo tonnage.`, m:`${severe} vessels` },
+        { tone:'red',   t:'Casualty frequency well above the trailing average', d:`${cs.total} casualties with ${cs.openClaims} open claims and ${cs.reserve} reserved; two are serious navigational events in the Singapore Strait and Gulf of Bothnia.`, m:cs.vs12m },
+        { tone:'amber', t:'Monitored-flag tonnage carries the worst scores', d:'Nine vessels on the Cameroon registry average 68 against a fleet mean of 43.8, and account for three of the six open rule exceptions.', m:'avg 68' },
+        { tone:'green', t:'Average age improving as newbuilds arrive', d:`Six vessels added in the period bring average age down to ${c.avgAge} years; the 0–10 year cohort is now ${F.ages[0].count + F.ages[1].count} of ${c.vessels} hulls.`, m:c.avgAgeDelta + ' yrs' },
+      ] },
+    });
   }
 
   window.firReport = {
@@ -306,6 +355,6 @@
         </div>
       </div>`;
     },
-    Pages() { return [page1(), page2(), page3(), page4(), page5(), page6()].join(''); },
+    Pages() { return [frontCover(), frontToc(), frontExec(), page1(), page2(), page3(), page4(), page5(), page6()].join(''); },
   };
 })();

@@ -1,7 +1,8 @@
 /* Regional Exposure & Aggregation Report — page composition */
 (function () {
   const R = window.REA;
-  const TOTAL = 5;
+  const RF = window.reportFront;
+  const TOTAL = 8;
   const ic = (d, s) => `<svg width="${s||15}" height="${s||15}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
   const ICO = {
     pin:'<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
@@ -45,23 +46,8 @@
     const c = R.current, f = R.flow;
     const maxW = Math.max(...f.byWeek.map(w => Math.max(w.in, w.out)));
     return `
-    <article class="page" data-screen-label="Page 1">
+    <article class="page" data-screen-label="Page 4">
       ${head('Current position &amp; flow')}
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="cover-mark">${ic(ICO.shield,15)} Real World Intelligence</span>
-        <h1 class="cover-title">Regional Exposure &amp;<br />Aggregation Report</h1>
-        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
-          <span class="font-display" style="font-size:17px;font-weight:800;color:var(--brand-600,#2d7ffb)">${R.meta.region}</span>
-          <span class="pill pill-red">${R.meta.regionType}</span>
-        </div>
-        <p class="cover-sub">Who is inside the region right now, who moved through it, when concentration peaked, how much of the portfolio it represents, and the vessel-by-vessel detail behind the aggregate.</p>
-      </div>
-      <div class="cover-meta">
-        <div><div class="k">Portfolio</div><div class="v">${R.meta.portfolio}</div></div>
-        <div><div class="k">Reporting period</div><div class="v num">${R.meta.period}</div></div>
-        <div><div class="k">Compared with</div><div class="v num">${R.meta.previous}</div></div>
-        <div><div class="k">Generated</div><div class="v num">${R.meta.generatedOn}</div></div>
-      </div>
       ${sec(ICO.ship, 'Vessels currently in the selected region', `
         <div class="kpi-grid">
           <div class="kpi accent"><div class="k">Vessels inside now</div><div class="v num">${c.vessels}</div><div class="d"><span class="delta-up">${c.vesselsDelta}</span> vs previous</div></div>
@@ -92,7 +78,7 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Blue bar is vessels entering, grey is vessels leaving. A vessel crossing the boundary twice is counted twice.')}
-      ${foot(1)}
+      ${foot(4)}
     </article>`;
   }
 
@@ -100,7 +86,7 @@
   function page2() {
     const p = R.peak, f = R.flow;
     return `
-    <article class="page" data-screen-label="Page 2">
+    <article class="page" data-screen-label="Page 5">
       ${head('Crossings &amp; peak concentration')}
       ${sec(ICO.swap, 'Most recent boundary crossings', `
         <table class="rt">
@@ -154,7 +140,7 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Daily simultaneous vessel count at 14:00 UTC. Dashed line is the 40-vessel aggregation threshold; red bars exceed it.')}
-      ${foot(2)}
+      ${foot(5)}
     </article>`;
   }
 
@@ -164,7 +150,7 @@
     const toneBg = { red:'#fef2f2', amber:'#fffbeb', green:'#f0fdf4' };
     const toneFg = { red:'#b91c1c', amber:'#b45309', green:'#15803d' };
     return `
-    <article class="page" data-screen-label="Page 3">
+    <article class="page" data-screen-label="Page 6">
       ${head('Share of portfolio &amp; exposure over time')}
       ${sec(ICO.pie, 'Percentage of portfolio exposed', `
         <div class="kpi-grid">
@@ -204,14 +190,14 @@
           </svg>
         </div>
         `, 'Bars show month-end exposed insured value in $bn.')}
-      ${foot(3)}
+      ${foot(6)}
     </article>`;
   }
 
   /* ── Page 4 — underlying vessel list ── */
   function page4() {
     return `
-    <article class="page" data-screen-label="Page 4">
+    <article class="page" data-screen-label="Page 7">
       ${head('Underlying vessel list')}
       ${sec(ICO.list, 'Underlying vessel list', `
         <table class="rt compact">
@@ -241,7 +227,7 @@
           <div class="ind"><div class="iv num">2</div><div class="ik">Without declared values</div><div class="id">Shown as estimates and excluded from declared aggregates.</div></div>
           <div class="ind"><div class="iv num">5.1</div><div class="ik">Longest dwell (days)</div><div class="id">MERIDIAN PEARL, still inside at period end.</div></div>
         </div>`)}
-      ${foot(4)}
+      ${foot(7)}
     </article>`;
   }
 
@@ -249,7 +235,7 @@
   function page5() {
     const v = R.values;
     return `
-    <article class="page" data-screen-label="Page 5">
+    <article class="page" data-screen-label="Page 8">
       ${head('Insured values &amp; data coverage')}
       ${sec(ICO.coins, 'Insured values where client data is available', `
         <div class="kpi-grid">
@@ -279,8 +265,60 @@
           </tbody>
         </table>`)}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Aggregation figures are indicative and depend on the completeness of declared values. Region boundaries follow the Real World definition for ${R.meta.region} (${R.meta.bounds}) as at ${R.meta.generatedOn}.</p>
-      ${foot(5)}
+      ${foot(8)}
     </article>`;
+  }
+
+  /* ── Front matter ── */
+  function frontCover() {
+    const c = R.current;
+    return RF.cover({
+      classLabel: 'Confidential',
+      eyebrow: 'Monthly aggregation report',
+      title: 'Regional Exposure &amp;<br />Aggregation Report',
+      sub: 'Who is inside the region right now, who moved through it, when concentration peaked, how much of the portfolio it represents, and the vessel-by-vessel detail behind the aggregate.',
+      subject: { k:'Region', v:R.meta.region, d:`${R.meta.regionType} &middot; ${R.meta.bounds} &middot; ${c.vessels} vessels inside &middot; ${c.insuredValue} exposed` },
+      meta: [['Portfolio', R.meta.portfolio], ['Reporting period', R.meta.period], ['Compared with', R.meta.previous], ['Pages', `${TOTAL} (A4)`]],
+      reportId: R.meta.reportId, owner: R.meta.owner, generatedOn: R.meta.generatedOn,
+    });
+  }
+
+  function frontToc() {
+    return RF.toc({
+      head: head('Contents'), foot: foot(2),
+      note: 'Page numbers refer to this document. Declared and estimated insured values are always reported separately.',
+      rows: [
+        { front:true, title:'Executive summary', sub:'Regional exposure at a glance, headline findings for the period.', page:3 },
+        { n:'01', title:'Current position &amp; flow', sub:'Vessels inside the region now, and the crossings in and out over the period.', page:4 },
+        { n:'02', title:'Crossings &amp; peak concentration', sub:'Most recent boundary crossings and the windows where accumulation peaked.', page:5 },
+        { n:'03', title:'Share of portfolio &amp; exposure over time', sub:'Regional share of the book by count and value, and the twelve-month trend.', page:6 },
+        { n:'04', title:'Underlying vessel list', sub:'Vessel-by-vessel detail behind the aggregate figures.', page:7 },
+        { n:'05', title:'Insured values &amp; data coverage', sub:'Declared values, estimates, value tiers and data-coverage caveats.', page:8 },
+      ],
+    });
+  }
+
+  function frontExec() {
+    const c = R.current, f = R.flow, p = R.peak, s = R.share;
+    const maxT = Math.max(...s.byType.map(t => t.vessels));
+    const maxW = Math.max(...f.byWeek.map(w => w.end));
+    return RF.exec({
+      head: head('Executive summary'), foot: foot(3),
+      standfirst: `Aggregation position for ${R.meta.region} over ${R.meta.period}, against the ${R.meta.previous} report. Values are declared unless labelled as estimates.`,
+      hero: [
+        { cls:'lead', k:'Insured value inside the region', v:c.insuredValue, d:`<span class="delta-up">${c.insuredValueDelta}</span> vs previous &middot; ${c.valueSharePct}% of portfolio value &middot; ${p.value} at peak` },
+        { cls:'warn', k:'Vessels inside now', v:c.vessels, d:`<span class="delta-up">${c.vesselsDelta}</span> vs previous &middot; peaked at ${p.vessels} on ${p.at.slice(0,10)}`,
+          meter:{ pinPct:p.vessels / 50 * 100, scale:[{at:0,l:'0 vessels'},{at:80,l:`limit ${p.threshold}`},{at:100,l:'50'}], segments:[{pct:80,color:'#16a34a'},{pct:8,color:'#d97706'},{pct:12,color:'#dc2626'}] } },
+        { k:'Average risk score', v:c.avgRisk, d:'vs 41.6 portfolio-wide' },
+        { cls:'warn', k:'Peak concentration', v:p.vessels, d:`${p.value} on ${p.at.slice(0,10)} &middot; <span class="delta-up">${p.vsAverage}</span> vs average` },
+        { cls:'warn', k:'Threshold breaches', v:p.breaches, d:`against a ${p.threshold}-vessel aggregation limit` },
+        { k:'Crossings in period', v:`${f.entered}/${f.left}`, d:`in / out &middot; ${f.transits} full transits, avg ${f.avgTransit}` },
+        { k:'Declared-value coverage', v:`${c.coveragePct}%`, d:`${c.withClientValues} of ${c.vessels} vessels with client values` },
+      ],
+      left: { title:'Exposure by vessel type', rows:s.byType.map(t => ({ n:t.type, pct:Math.round(t.vessels / maxT * 100), v:t.value })) },
+      right: { title:'Vessels inside at week end', rows:f.byWeek.map(w => ({ n:w.w, pct:Math.round(w.end / maxW * 100), v:w.end })) },
+      findings: { rows:R.historyNotes.map(n => ({ tone:n.tone, t:n.t, d:n.d, m:n.m })) },
+    });
   }
 
   window.reaReport = {
@@ -300,6 +338,6 @@
         </div>
       </div>`;
     },
-    Pages() { return [page1(), page2(), page3(), page4(), page5()].join(''); },
+    Pages() { return [frontCover(), frontToc(), frontExec(), page1(), page2(), page3(), page4(), page5()].join(''); },
   };
 })();

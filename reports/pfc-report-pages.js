@@ -1,7 +1,8 @@
 /* Portfolio / Fleet Casualty Report — page composition */
 (function () {
   const C = window.PFC;
-  const TOTAL = 5;
+  const RF = window.reportFront;
+  const TOTAL = 8;
   const ic = (d, s) => `<svg width="${s||15}" height="${s||15}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
   const ICO = {
     life:'<circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/>',
@@ -44,19 +45,8 @@
   function page1() {
     const s = C.summary;
     return `
-    <article class="page" data-screen-label="Page 1">
+    <article class="page" data-screen-label="Page 4">
       ${head('Casualty summary')}
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="cover-mark">${ic(ICO.shield,15)} Real World Intelligence</span>
-        <h1 class="cover-title">Portfolio / Fleet<br />Casualty Report</h1>
-        <p class="cover-sub">Casualty record for the book over a rolling 24-month window: what happened, to which vessels, where and when, how it is trending, and which vessels keep coming back.</p>
-      </div>
-      <div class="cover-meta">
-        <div><div class="k">Scope</div><div class="v">${C.meta.scope}</div></div>
-        <div><div class="k">Reporting period</div><div class="v num">${C.meta.period}</div></div>
-        <div><div class="k">Casualty window</div><div class="v num">${C.meta.window}</div></div>
-        <div><div class="k">Generated</div><div class="v num">${C.meta.generatedOn}</div></div>
-      </div>
       ${sec(ICO.life, 'Total casualties, new casualties and vessels affected', `
         <div class="kpi-grid cols-3">
           <div class="kpi accent"><div class="k">Total casualties (24m)</div><div class="v num">${s.total}</div><div class="d"><span class="delta-up">${s.totalDelta}</span> vs previous</div></div>
@@ -84,14 +74,14 @@
               </tr>`).join('')}
           </tbody>
         </table>`)}
-      ${foot(1)}
+      ${foot(4)}
     </article>`;
   }
 
   /* ── Page 2 — casualty type, date/location ── */
   function page2() {
     return `
-    <article class="page" data-screen-label="Page 2">
+    <article class="page" data-screen-label="Page 5">
       ${head('Casualty type, date &amp; location')}
       ${sec(ICO.layers, 'Casualty type', `
         <div class="bar-list">
@@ -116,7 +106,7 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Machinery damage leads on frequency; collision and grounding lead on severity and reserve.')}
-      ${foot(2)}
+      ${foot(5)}
     </article>`;
   }
 
@@ -124,7 +114,7 @@
   function page3() {
     const maxAge = Math.max(...C.ages.map(a => a.count));
     return `
-    <article class="page" data-screen-label="Page 3">
+    <article class="page" data-screen-label="Page 6">
       ${head('Vessel age &amp; casualty trends')}
       ${sec(ICO.cal, 'Vessel age at time of casualty', `
         <div class="dist">
@@ -177,14 +167,14 @@
           </svg>
         </div>
         `, 'Monthly event counts across the book. Twelve-month mean is 4.1 events per month.')}
-      ${foot(3)}
+      ${foot(6)}
     </article>`;
   }
 
   /* ── Page 4 — repeated involvement ── */
   function page4() {
     return `
-    <article class="page" data-screen-label="Page 4">
+    <article class="page" data-screen-label="Page 7">
       ${head('Repeated casualty involvement')}
       ${sec(ICO.repeat, 'Vessels with repeated casualty involvement', `
         <div class="kpi-grid">
@@ -210,7 +200,7 @@
               </tr>`).join('')}
           </tbody>
         </table>`, 'Top five of nine repeat vessels by event count. Repeat involvement is a scoring factor and feeds the casualty component of the Real World Risk Score.')}
-      ${foot(4)}
+      ${foot(7)}
     </article>`;
   }
 
@@ -223,7 +213,7 @@
         ${rows.map(([k, v]) => `<div class="spec-row"><span class="spec-k">${k}</span><span class="spec-v">${v}</span></div>`).join('')}
       </div>`;
     return `
-    <article class="page" data-screen-label="Page 5">
+    <article class="page" data-screen-label="Page 8">
       ${head('Underlying vessel details')}
       ${sec(ICO.ship, `Underlying vessel details — ${d.name}`, `
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
@@ -253,8 +243,60 @@
           </tbody>
         </table>`)}
       <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Reserves are indicative and subject to survey and adjustment. Real World Risk Scores are derived from vessel behaviour, compliance screening, casualty record and ownership data, and do not constitute underwriting advice.</p>
-      ${foot(5)}
+      ${foot(8)}
     </article>`;
+  }
+
+  /* ── Front matter ── */
+  function frontCover() {
+    const s = C.summary;
+    return RF.cover({
+      classLabel: 'Confidential',
+      eyebrow: 'Rolling 24-month casualty review',
+      title: 'Portfolio / Fleet<br />Casualty Report',
+      sub: 'Casualty record for the book over a rolling 24-month window: what happened, to which vessels, where and when, how it is trending, and which vessels keep coming back.',
+      subject: { k:'Scope', v:C.meta.scope, d:`${s.total} casualties &middot; ${s.vesselsAffected} vessels affected &middot; ${s.totalReserve} reserved` },
+      meta: [['Reporting period', C.meta.period], ['Casualty window', C.meta.window], ['Prepared for', C.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      reportId: C.meta.reportId, owner: C.meta.owner, generatedOn: C.meta.generatedOn,
+    });
+  }
+
+  function frontToc() {
+    return RF.toc({
+      head: head('Contents'), foot: foot(2),
+      note: 'Page numbers refer to this document. Reserves are indicative and move with survey outcomes.',
+      rows: [
+        { front:true, title:'Executive summary', sub:'Casualty position at a glance, headline findings for the period.', page:3 },
+        { n:'01', title:'Casualty summary', sub:'Totals, reserves and the casualties newly reported this period.', page:4 },
+        { n:'02', title:'Casualty type, date &amp; location', sub:'Event types with severity and reserve; where and when losses occurred.', page:5 },
+        { n:'03', title:'Vessel age &amp; casualty trends', sub:'Age at time of casualty and the twelve-month frequency trend.', page:6 },
+        { n:'04', title:'Repeated casualty involvement', sub:'Vessels with more than one event in the window.', page:7 },
+        { n:'05', title:'Underlying vessel details', sub:`Full record for ${C.detail.name}, the most frequently involved vessel.`, page:8 },
+      ],
+    });
+  }
+
+  function frontExec() {
+    const s = C.summary;
+    const maxT = Math.max(...C.types.map(t => t.count));
+    const maxA = Math.max(...C.ages.map(a => a.count));
+    return RF.exec({
+      head: head('Executive summary'), foot: foot(3),
+      standfirst: `Casualty position over ${C.meta.window.toLowerCase()}, with the ${C.meta.period} period called out separately.`,
+      hero: [
+        { cls:'lead', k:'Casualties in the 24-month window', v:s.total, d:`<span class="delta-up">${s.totalDelta}</span> vs previous report &middot; ${s.seriousShare}% serious`,
+          meter:{ pinPct:s.seriousShare, scale:[{at:0,l:'0%'},{at:25,l:'25%'},{at:50,l:'50%'},{at:100,l:'100% serious'}], segments:[{pct:25,color:'#16a34a'},{pct:25,color:'#d97706'},{pct:50,color:'#dc2626'}] } },
+        { cls:'warn', k:'New this period', v:s.newThisPeriod, d:`<span class="delta-up">${s.newDelta}</span> vs previous &middot; ${s.periodReserve} reserved` },
+        { k:'Vessels affected', v:s.vesselsAffected, d:`<span class="delta-up">${s.vesselsDelta}</span> vs previous report` },
+        { k:'Total reserve', v:s.totalReserve, d:`${s.avgReserve} average per event` },
+        { cls:'warn', k:'Open claims', v:s.openClaims, d:'awaiting survey or settlement' },
+        { cls:'warn', k:'Repeat-event vessels', v:s.repeatVessels, d:`${(s.repeatVessels / s.vesselsAffected * 100).toFixed(0)}% of affected vessels` },
+        { k:'Most common event', v:C.types[0].count, d:`${C.types[0].type} &middot; ${C.types[0].reserve} reserved` },
+      ],
+      left: { title:'Casualties by type', rows:C.types.slice(0,5).map(t => ({ n:t.type, pct:Math.round(t.count / maxT * 100), v:t.count })) },
+      right: { title:'Vessel age at time of casualty', rows:C.ages.map(a => ({ n:a.band, pct:Math.round(a.count / maxA * 100), v:a.count, color:a.color })) },
+      findings: { rows:C.trendNotes.map(n => ({ tone:n.tone, t:n.t, d:n.d, m:n.m })) },
+    });
   }
 
   window.pfcReport = {
@@ -274,6 +316,6 @@
         </div>
       </div>`;
     },
-    Pages() { return [page1(), page2(), page3(), page4(), page5()].join(''); },
+    Pages() { return [frontCover(), frontToc(), frontExec(), page1(), page2(), page3(), page4(), page5()].join(''); },
   };
 })();

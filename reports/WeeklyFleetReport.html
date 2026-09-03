@@ -1200,9 +1200,9 @@ const vesselMaps = {};
 const vesselTiles = {};
 const VD_TILES = {
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attr:'Tiles \u00a9 Esri', bg:'#0b1220' },
-  street:    { url:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attr:'\u00a9 OpenStreetMap contributors', bg:'#e5e7eb' },
-  dark:      { url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', attr:'\u00a9 OpenStreetMap \u00a9 CARTO', bg:'#0b1220' },
-  light:     { url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', attr:'\u00a9 OpenStreetMap \u00a9 CARTO', bg:'#f3f4f6' },
+  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png', attr:'\u00a9 OpenStreetMap contributors', bg:'#e5e7eb' },
+  dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', attr:'Tiles \u00a9 Esri', bg:'#0b1220' },
+  light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', attr:'Tiles \u00a9 Esri', bg:'#f3f4f6' },
 };
 function setVesselMapType(idx, type) {
   const map = vesselMaps[idx];
