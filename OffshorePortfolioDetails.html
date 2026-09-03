@@ -180,9 +180,9 @@ function mapAssetType(t) {
 
 const MAP_TYPES = {
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg:'#0b1d2a' },
-  street:    { url:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',                                              bg:'#dbeafe' },
-  dark:      { url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',                                  bg:'#0f172a' },
-  light:     { url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',                                 bg:'#f8fafc' },
+  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',                                              bg:'#dbeafe' },
+  dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                  bg:'#0f172a' },
+  light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                 bg:'#f8fafc' },
 };
 
 const mapState = {

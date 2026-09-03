@@ -44,13 +44,49 @@
   /* Responsive: swap pill tabs → dropdown on small screens */
   .reports-tabs-dd{display:none;width:100%;max-width:320px;height:36px;padding:0 32px 0 12px;border:1px solid #e2e8f0;border-radius:10px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;font:inherit;font-size:13px;font-weight:600;color:#0f172a;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;}
   .reports-tabs-dd:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12);}
+  .reports-cardhead{padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-shrink:0;flex-wrap:wrap}
+  .rc-designs-bar{flex-shrink:0;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 2px 0}
+  .rc-dd-menu--up{top:auto;bottom:calc(100% + 6px)}
+  .reports-cardhead .rc-title{display:flex;align-items:center;gap:9px;font-family:'Exo','Inter',sans-serif;font-size:15px;font-weight:700;color:#0f172a;min-width:0}
+  .reports-cardhead .rc-title svg{color:var(--brand-600,#2d7ffb);flex-shrink:0}
+  .rc-designs{display:flex;align-items:center;gap:8px;flex-shrink:0}
+  .rc-designs-lbl{font-size:11px;font-weight:700;color:#64748b;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+  .rc-designs-sel{width:auto;min-width:190px}
+  .rc-dd{position:relative;flex-shrink:0}
+  .rc-dd-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:200px;height:32px;padding:0 10px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:12.5px;font-weight:500;color:#0f172a;cursor:pointer;transition:background .15s,border-color .15s}
+  .rc-dd-btn:hover{background:#f8fafc;border-color:#cbd5e1}
+  .rc-dd-btn svg{color:#94a3b8;flex-shrink:0}
+  .rc-dd-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:238px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.12);padding:4px 0;z-index:200;overflow:hidden}
+  .rc-dd-opt{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;background:transparent;border:0;font-family:inherit;font-size:13px;font-weight:400;color:#334155;cursor:pointer;text-align:left}
+  .rc-dd-opt:hover:not(:disabled){background:#f8fafc}
+  .rc-dd-opt[aria-selected="true"]{font-weight:600;color:#0f172a}
+  .rc-dd-opt[aria-selected="true"] svg{color:var(--brand-600,#2d7ffb)}
+  .rc-dd-opt.is-locked{color:#94a3b8;cursor:not-allowed}
+  .rc-dd-opt.is-locked svg{color:#cbd5e1}
+  @media(max-width:560px){.rc-designs{width:100%}.rc-designs-sel{flex:1;min-width:0}}
   #sample-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:240;max-width:min(560px,calc(100vw - 32px));padding:11px 16px;background:#0f172a;color:#fff;border-radius:10px;font-size:12.5px;font-weight:600;box-shadow:0 14px 34px rgba(15,23,42,.3);opacity:0;visibility:hidden;transition:opacity .16s ease,transform .16s ease;text-align:center}
   #sample-toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
   .sample-gen{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fffbeb;border:1px solid #fde68a;border-radius:9999px;font-size:12px;font-weight:600;color:#b45309;white-space:nowrap}
   .sample-gen-ico{flex-shrink:0}
-  .sample-select{height:36px;padding:0 32px 0 12px;background:#f8fafc url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 11px center;border:1px solid #e2e8f0;border-radius:9999px;font-size:12.5px;font-weight:500;color:#334155;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;max-width:100%}
-  .sample-select:hover{border-color:#cbd5e1}
-  .sample-select:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(45,127,251,.12)}
+  .sample-group-row{background:#fff}
+  .sample-group{padding:22px 20px 9px;background:#fff;border:0}
+  .sample-group-row:first-child .sample-group{padding-top:16px}
+  .sg-inner{display:flex;align-items:center;gap:10px;min-width:0}
+  .sg-chip{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:999px;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-200,#bfdbfe);font-size:11px;font-weight:700;color:var(--brand-700,#1d4ed8);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+  .sg-n{font-size:10px;font-weight:700;color:var(--brand-600,#2d7ffb);opacity:.65;letter-spacing:0}
+  .sg-rule{flex:1;height:1px;background:#e2e8f0;min-width:12px}
+  .sample-group-empty{padding:2px 20px 14px 22px;font-size:12.5px;color:#94a3b8;border:0;font-style:italic}
+  .sample-sort{display:inline-flex;align-items:center;gap:5px;padding:0;background:none;border:0;font:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:inherit;cursor:pointer;transition:color .12s}
+  .sample-sort:hover{color:var(--text-primary,#111827)}
+  .sample-sort svg{color:var(--border-strong,#D1D5DB);flex-shrink:0}
+  .sample-sort:hover svg{color:var(--text-muted,#6B7280)}
+  .sample-sort.on,.sample-sort.on svg{color:var(--brand-600,#2d7ffb)}
+  .ds-input{font-family:inherit;font-size:13px;height:32px;padding:0 10px;width:100%;border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:var(--text-primary,#111827);transition:border-color .12s ease-out,box-shadow .12s ease-out;outline:0}
+  .ds-input::placeholder{color:var(--text-muted,#6B7280)}
+  .ds-input:hover{border-color:var(--border-strong,#D1D5DB)}
+  .ds-input:focus{border-color:var(--brand-400,#8ec5fd);box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .ds-select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='none' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' d='M3 4.5l3 3 3-3'/></svg>");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;cursor:pointer}
+  .ds-input-search{padding-left:30px}
   #cnr-host .cnr-presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px}
   #cnr-host .cnr-preset{height:26px;padding:0 10px;background:#fff;border:1px solid #e2e8f0;border-radius:9999px;font-size:11.5px;font-weight:600;color:#475569;cursor:pointer;font-family:inherit;white-space:nowrap}
   #cnr-host .cnr-preset:hover{background:#f8fafc;border-color:#cbd5e1}
@@ -168,6 +204,8 @@
     .fleet-table{min-width:0 !important;display:block;}
     .fleet-table thead{display:none;}
     .fleet-table tbody{display:block;}
+    .fleet-table tr.sample-group-row,.fleet-table tr.sample-group-empty-row{display:block;}
+    .fleet-table td.sample-group,.fleet-table td.sample-group-empty{display:block;width:auto;white-space:normal;}
     .fleet-table tr.fleet-row{
       display:block;
       border:1px solid #e2e8f0 !important;
@@ -211,7 +249,18 @@
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 
 <script>
-window.PAGE = { id:'reports', title:'Reports', crumb:'Report Builder V2' };
+window.TAB_CRUMBS = { sample:'My Reports', builder1:'Report Builder', builder:'Report Builder V2', fleet:'Weekly Fleet Reports', comp:'Competitor Analysis' };
+const DESIGN_OPTIONS = [
+  { id:'sample',   label:'My Reports' },
+  { id:'builder1', label:'Report Builder',       locked:true },
+  { id:'builder',  label:'Report Builder V2',    locked:true },
+  { id:'fleet',    label:'Weekly Fleet Reports', locked:true },
+  { id:'comp',     label:'Competitor Analysis',  locked:true },
+];
+const LOCK_ICO = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>';
+const CHECK_ICO = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+const CHEV_DOWN_ICO = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+window.PAGE = { id:'reports', title:'Reports', crumb:(function(){ try { return window.TAB_CRUMBS[sessionStorage.getItem('reportsTab')] || 'My Reports'; } catch(e) { return 'My Reports'; } })() };
 window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "density": "compact",
   "accent": "blue",
@@ -224,7 +273,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/report-builder.js?v=8"></script>
-<script src="shared/create-report-modal.js"></script>
+<script src="modals/CreateReportModal.js"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -257,7 +306,7 @@ const SUGGESTED = [
 ];
 
 /* ── State ────────────────────────────────────────────────────────────────── */
-let activeTab  = (() => { try { const t = sessionStorage.getItem('reportsTab'); if (t) { sessionStorage.removeItem('reportsTab'); return t; } } catch(e){} return 'sample'; })();
+let activeTab  = (() => { try { const t = sessionStorage.getItem('reportsTab'); if (t) { sessionStorage.removeItem('reportsTab'); const o = DESIGN_OPTIONS.find(d => d.id === t); if (o && !o.locked) return t; } } catch(e){} return 'sample'; })();
 let messages   = [];
 let isLoading  = false;
 
@@ -316,7 +365,7 @@ let formState  = null; // null when no form shown
 /* ── Helpers ──────────────────────────────────────────────────────────────── */
 const SPARKLE = `<svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 2l1.5 5.5L19 9l-5.5 1.5L12 16l-1.5-5.5L5 9l5.5-1.5L12 2z"/><path d="M5 17l.8 2.2L8 20l-2.2.8L5 23l-.8-2.2L2 20l2.2-.8L5 17z" opacity=".6"/><path d="M19 3l.5 1.6 1.6.5-1.6.5L19 7.2l-.5-1.6L16.9 5l1.6-.5L19 3z" opacity=".5"/></svg>`;
 const SEND    = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
-const DOC_ICO = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`;
+const DOC_ICO = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M8 18v-2"/><path d="M12 18v-4"/><path d="M16 18v-6"/></svg>`;
 const CHT_ICO = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`;
 const STR_ICO = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`;
 const SRCH    = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`;
@@ -687,7 +736,7 @@ function wireChat() {
 /* ── Tab content ──────────────────────────────────────────────────────────── */
 /* ── Weekly Fleet Reports table ───────────────────────────────────────── */
 const FLEET_ICONS = {
-  doc:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+  doc:    `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M8 18v-2"/><path d="M12 18v-4"/><path d="M16 18v-6"/></svg>`,
   anchor: `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>`,
   search: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
   eye:    `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
@@ -737,7 +786,7 @@ function fleetTabContent() {
     </div>
 
     <div style="flex:1;overflow:auto;" class="scroll-thin">
-      <table class="fleet-table" style="width:100%;border-collapse:collapse;font-size:13px;min-width:840px;">
+      <table class="fleet-table" style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead>
           <tr style="border-bottom:1px solid #e2e8f0;">
             <th style="text-align:left;padding:12px 20px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Report Title</th>
@@ -989,11 +1038,11 @@ function competitorCard(c) {
 
 /* ── My Reports ───────────────────────────────────────────────────────── */
 const SAMPLE_REPORTS = [
-  { title:'Portfolio Executive Risk Report', type:'Portfolio Executive Risk Report', desc:'Portfolio-level breakdown of exposure by risk band, war risk and coverage status with quarter-on-quarter movement.', pages:12, updated:'2026-07-14', tags:['Risk bands','War risk','QoQ trend'], href:'reports/PortfolioExecutiveRiskReport.html' },
-  { title:'Individual Vessel Underwriting Report', type:'Individual Vessel Underwriting Report', desc:'Single-vessel submission pack: particulars, ownership and management, risk score breakdown, voyage and port-call history, and sanctions screening.', pages:9, updated:'2026-08-11', tags:['Particulars','Ownership','Risk score','Screening'], href:'reports/IndividualVesselUnderwritingReport.html' },
-  { title:'Fleet Intelligence Report', type:'Fleet Intelligence Report', desc:'Fleet-wide activity picture: current positions, high-risk area transits, ship-to-ship events and emerging behavioural flags across the monitored fleet.', pages:14, updated:'2026-08-17', tags:['Positions','HRA transits','STS events','Flags'], href:'reports/FleetIntelligenceReport.html' },
-  { title:'Portfolio / Fleet Casualty Report', type:'Portfolio / Fleet Casualty Report', desc:'Casualty and incident record across a portfolio or fleet: event type and severity, vessels involved, claims status and exposure at the time of loss.', pages:11, updated:'2026-08-05', tags:['Incidents','Severity','Claims status','Exposure'], href:'reports/PortfolioFleetCasualtyReport.html' },
-  { title:'Regional Exposure & Aggregation Report', type:'Regional Exposure & Aggregation Report', desc:'Aggregated insured value and vessel counts inside a chosen region, with peak accumulation windows, war-risk overlap and concentration by port.', pages:8, updated:'2026-07-29', tags:['Aggregation','Peak accumulation','War risk','By port'], href:'reports/RegionalExposureAggregationReport.html' },
+  { title:'Portfolio Executive Risk Report', type:'Portfolio Executive Risk Report', desc:'Portfolio-level breakdown of exposure by risk band, war risk and coverage status with quarter-on-quarter movement.', pages:12, updated:'2026-07-14', tags:['Global Hull & Machinery 2026','Tanker Book — Europe','War Risk Facility 2026'], href:'reports/PortfolioExecutiveRiskReport.html' },
+  { title:'Individual Vessel Underwriting Report', type:'Individual Vessel Underwriting Report', desc:'Single-vessel submission pack: particulars, ownership and management, risk score breakdown, voyage and port-call history, and sanctions screening.', pages:9, updated:'2026-08-11', tags:['FRESH BREEZE'], href:'reports/IndividualVesselUnderwritingReport.html' },
+  { title:'Fleet Intelligence Report', type:'Fleet Intelligence Report', desc:'Fleet-wide activity picture: current positions, high-risk area transits, ship-to-ship events and emerging behavioural flags across the monitored fleet.', pages:14, updated:'2026-08-17', tags:['Nordwind Shipping Group','Aegean Dry Bulk','Meridian Ship Management'], href:'reports/FleetIntelligenceReport.html' },
+  { title:'Portfolio / Fleet Casualty Report', type:'Portfolio / Fleet Casualty Report', desc:'Casualty and incident record across a portfolio or fleet: event type and severity, vessels involved, claims status and exposure at the time of loss.', pages:11, updated:'2026-08-05', tags:['Global Hull & Machinery 2026','Nordwind Shipping Group','Asia Container Programme'], href:'reports/PortfolioFleetCasualtyReport.html' },
+  { title:'Regional Exposure & Aggregation Report', type:'Regional Exposure & Aggregation Report', desc:'Aggregated insured value and vessel counts inside a chosen region, with peak accumulation windows, war-risk overlap and concentration by port.', pages:8, updated:'2026-07-29', tags:['Southern Red Sea & Bab-el-Mandeb','Strait of Hormuz','Gulf of Aden','+1 more'], href:'reports/RegionalExposureAggregationReport.html' },
 ];
 const PLUS_ICO = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>';
 const REPORT_TYPE_NAMES = [
@@ -1010,8 +1059,16 @@ const SAMPLE_TYPE_COLORS = {
   'Portfolio / Fleet Casualty Report':     { bg:'#fef2f2', bd:'#fecaca', fg:'#b91c1c' },
   'Regional Exposure & Aggregation Report':{ bg:'#eff6ff', bd:'#bfdbfe', fg:'#1d4ed8' },
 };
+const REPORT_GROUPS = [
+  { name:'Portfolio &amp; Underwriting',             types:['Portfolio Executive Risk Report'] },
+  { name:'Vessel, Fleet &amp; Management',          types:['Individual Vessel Underwriting Report','Fleet Intelligence Report'] },
+  { name:'Sanctions &amp; Compliance',              types:[] },
+  { name:'Casualty Intelligence',               types:['Portfolio / Fleet Casualty Report'] },
+  { name:'Regional Aggregation &amp; Accumulation', types:['Regional Exposure & Aggregation Report'] },
+];
 let sampleQuery = '';
 let sampleType = 'All';
+let sampleSort = { key:null, dir:'asc' };
 
 function sampleTabContent() {
   const q = sampleQuery.trim().toLowerCase();
@@ -1019,6 +1076,21 @@ function sampleTabContent() {
   const rows = SAMPLE_REPORTS
     .filter(r => sampleType === 'All' || r.type === sampleType)
     .filter(r => !q || r.title.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q) || r.tags.join(' ').toLowerCase().includes(q));
+  if (sampleSort.key) {
+    const k = sampleSort.key === 'created' ? 'updated' : 'type', s = sampleSort.dir === 'asc' ? 1 : -1;
+    rows.sort((a, b) => s * String(a[k]).localeCompare(String(b[k]), undefined, { numeric:true }));
+  }
+  const sortIco = (dir) => dir === 'asc'
+    ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>'
+    : dir === 'desc'
+    ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>'
+    : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>';
+  const sortTh = (label, key) => {
+    const on = sampleSort.key === key;
+    return `<th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">
+            <button type="button" class="sample-sort${on ? ' on' : ''}" data-sort="${key}" aria-label="Sort by ${label}">${label}${sortIco(on ? sampleSort.dir : null)}</button>
+          </th>`;
+  };
   const rowBtn = (icon, label, href) => href ? `
     <a href="${href}" class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .15s,border-color .15s;">${icon} ${label}</a>` : `
     <button class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;">${icon} ${label}</button>`;
@@ -1027,21 +1099,17 @@ function sampleTabContent() {
     return `
     <tr class="fleet-row" style="border-bottom:1px solid #f1f5f9;">
       <td class="fleet-cell sample-title-cell" data-label="Report" style="padding:14px 20px;vertical-align:top;">
-        <div>
-          <div style="display:flex;align-items:center;gap:8px;">${FLEET_ICONS.doc}<span style="font-size:13.5px;font-weight:600;color:#0f172a;">${r.title}</span></div>
-          <div style="font-size:12.5px;line-height:1.5;color:#64748b;margin-top:4px;max-width:420px;text-wrap:pretty;">${r.desc}</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:center;gap:8px;">${FLEET_ICONS.doc}<span style="font-size:13.5px;font-weight:600;color:#0f172a;white-space:nowrap;">${r.title}</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;">
+            ${r.tags.map(t => `<span style="padding:3px 8px;background:#f1f5f9;border-radius:6px;font-size:11px;font-weight:500;color:#475569;white-space:nowrap;">${t}</span>`).join('')}
+          </div>
         </div>
       </td>
       <td class="fleet-cell" data-label="Type" style="padding:14px 16px;vertical-align:top;">
-        <span style="display:inline-block;padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;background:${c.bg};border:1px solid ${c.bd};color:${c.fg};line-height:1.35;max-width:190px;text-wrap:balance;">${r.type}</span>
+        <span style="display:inline-block;padding:5px 10px;border-radius:7px;font-size:11px;font-weight:600;background:${c.bg};border:1px solid ${c.bd};color:${c.fg};line-height:1.35;text-wrap:balance;">${r.type}</span>
       </td>
-      <td class="fleet-cell" data-label="Contents" style="padding:14px 16px;vertical-align:top;">
-        <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:260px;">
-          ${r.tags.map(t => `<span style="padding:3px 8px;background:#f1f5f9;border-radius:6px;font-size:11px;font-weight:500;color:#475569;white-space:nowrap;">${t}</span>`).join('')}
-        </div>
-      </td>
-      <td class="fleet-cell" data-label="Pages" style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.pages}</td>
-      <td class="fleet-cell" data-label="Updated" style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.updated}</td>
+      <td class="fleet-cell" data-label="Created" style="padding:14px 16px;vertical-align:top;color:#475569;white-space:nowrap;">${r.updated}</td>
       <td class="fleet-cell fleet-actions-cell" data-label="Actions" style="padding:14px 20px;vertical-align:top;text-align:right;white-space:nowrap;">
         <div style="display:inline-flex;align-items:center;gap:6px;">${r.status === 'generating'
           ? '<span class="sample-gen"><svg class="sample-gen-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 7.38 16.75"/><path d="M12 6v6l4 2"/><path d="M2.5 8.875a10 10 0 0 0-.5 3"/><path d="M2.83 16a10 10 0 0 0 2.43 3.4"/><path d="M4.636 5.235a10 10 0 0 1 .891-.857"/><path d="M8.644 21.42a10 10 0 0 0 7.631-.38"/></svg>Pending</span>'
@@ -1049,37 +1117,45 @@ function sampleTabContent() {
       </td>
     </tr>`;
   };
+  const filtering = !!q || sampleType !== 'All';
+  const grouped = REPORT_GROUPS.map(g => ({ name:g.name, rows:rows.filter(r => g.types.indexOf(r.type) !== -1) }));
+  const ungrouped = rows.filter(r => !REPORT_GROUPS.some(g => g.types.indexOf(r.type) !== -1));
+  if (ungrouped.length) grouped.push({ name:'Other reports', rows:ungrouped });
+  const groupHead = (name, n) => `
+    <tr class="sample-group-row"><td colspan="4" class="sample-group">
+      <div class="sg-inner">
+        <span class="sg-chip">${name}<span class="sg-n num">${n}</span></span>
+        <span class="sg-rule"></span>
+      </div>
+    </td></tr>`;
+  const groupEmpty = `
+    <tr class="sample-group-empty-row"><td colspan="4" class="sample-group-empty">No reports available</td></tr>`;
+  const body = grouped
+    .filter(g => g.rows.length || !filtering)
+    .map(g => groupHead(g.name, g.rows.length) + (g.rows.length ? g.rows.map(row).join('') : groupEmpty))
+    .join('');
   return `
   <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;background:#fff;">
-    <div style="padding:16px 20px;border-bottom:1px solid #f1f5f9;flex-shrink:0;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;">
-      <div style="flex:1 1 260px;min-width:0;">
-        <div style="font-size:13.5px;font-weight:600;color:#0f172a;">My Reports</div>
-        <div style="font-size:12.5px;color:#64748b;margin-top:3px;">Reports you have created. Preview or download any of them, or create a new one.</div>
-      </div>
-      <button type="button" id="sample-new-report" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;background:var(--brand-600,#2d7ffb);border:1px solid var(--brand-600,#2d7ffb);border-radius:8px;font-size:12.5px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit;flex-shrink:0;transition:background .15s;">${PLUS_ICO} Create New Report</button>
-    </div>
     <div style="padding:12px 20px;border-bottom:1px solid #f1f5f9;flex-shrink:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
       <div style="position:relative;flex:1 1 220px;min-width:0;">
-        <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);display:flex;pointer-events:none;color:#94a3b8;">${FLEET_ICONS.search}</span>
-        <input id="sample-search" type="text" placeholder="Search reports..." value="${sampleQuery.replace(/"/g,'&quot;')}"
-          style="width:100%;height:36px;padding:0 12px 0 38px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;color:#334155;outline:none;background:#f8fafc;font-family:inherit;" />
+        <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);display:flex;pointer-events:none;color:var(--text-muted,#6B7280);">${FLEET_ICONS.search}</span>
+        <input id="sample-search" class="ds-input ds-input-search" type="text" placeholder="Search reports…" value="${sampleQuery.replace(/"/g,'&quot;')}" />
       </div>
-      <select id="sample-type" class="sample-select" aria-label="Filter by report type">
+      <select id="sample-type" class="ds-input ds-select" aria-label="Filter by report type" style="width:auto;min-width:210px;flex-shrink:0;">
         ${types.map(t => `<option value="${t}" ${sampleType === t ? 'selected' : ''}>${t === 'All' ? 'All report types' : t}</option>`).join('')}
       </select>
       <span style="font-size:11.5px;color:#94a3b8;white-space:nowrap;margin-left:auto;">${rows.length} of ${SAMPLE_REPORTS.length}</span>
     </div>
     <div style="flex:1;overflow:auto;" class="scroll-thin">
-      <table class="fleet-table" style="width:100%;border-collapse:collapse;font-size:13px;min-width:900px;">
+      <table class="fleet-table" style="width:100%;border-collapse:collapse;font-size:13px;">
+        <colgroup><col><col style="width:190px"><col style="width:104px"><col style="width:186px"></colgroup>
         <thead><tr style="border-bottom:1px solid #e2e8f0;">
           <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;padding:12px 20px;">Report</th>
-          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Type</th>
-          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Contents</th>
-          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Pages</th>
-          <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Updated</th>
+          ${sortTh('Type','type')}
+          ${sortTh('Created','created')}
           <th style="text-align:right;padding:12px 20px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;background:var(--slate-50,#F9FAFB);white-space:nowrap;">Actions</th>
         </tr></thead>
-        <tbody>${rows.length ? rows.map(row).join('') : `<tr><td colspan="6" style="padding:48px;text-align:center;color:#94a3b8;font-size:13.5px;">No reports match your search.</td></tr>`}</tbody>
+        <tbody>${rows.length ? body : `<tr><td colspan="4" style="padding:48px;text-align:center;color:#94a3b8;font-size:13.5px;">No reports match your search.</td></tr>`}</tbody>
       </table>
     </div>
   </div>`;
@@ -1122,6 +1198,11 @@ function wireSampleTab() {
   if (btn) btn.onclick = () => window.createNewReport.open();
   const search = document.getElementById('sample-search');
   if (search) search.oninput = () => { sampleQuery = search.value; rerenderSampleTab(true); };
+  document.querySelectorAll('[data-sort]').forEach(b => { b.onclick = () => {
+    const k = b.dataset.sort;
+    sampleSort = sampleSort.key === k ? { key:k, dir: sampleSort.dir === 'asc' ? 'desc' : 'asc' } : { key:k, dir:'asc' };
+    rerenderSampleTab(false);
+  }; });
   const typeSel = document.getElementById('sample-type');
   if (typeSel) typeSel.onchange = () => { sampleType = typeSel.value; rerenderSampleTab(false); };
 }
@@ -1269,36 +1350,28 @@ window.render = function() {
       ${SC.Topbar()}
       <main class="flex-1 overflow-hidden flex flex-col" style="min-height:0;background:#f1f5f9;padding:12px">
         <div style="flex:1;min-height:0;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-          <!-- DS pill tabs — matching rest of system -->
-          <div style="padding:10px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:4px;flex-shrink:0;overflow-x:auto;min-width:0;scrollbar-width:none" class="reports-tabs-row">
-            <div class="ds-tabs" id="reports-tabs" style="flex-shrink:0">
-              <span class="ds-tab-pill is-init" id="reports-pill"></span>
-              <button class="ds-tab" aria-selected="${activeTab==='builder1'}" data-tab="builder1">
-                <span class="ds-tab-label">${STR_ICO} Report Builder</span>
-              </button>
-              <button class="ds-tab" aria-selected="${activeTab==='builder'}" data-tab="builder">
-                <span class="ds-tab-label">${STR_ICO} Report Builder V2</span>
-              </button>
-              <button class="ds-tab" aria-selected="${activeTab==='fleet'}" data-tab="fleet">
-                <span class="ds-tab-label">${DOC_ICO} Weekly Fleet Reports</span>
-              </button>
-              <button class="ds-tab" aria-selected="${activeTab==='comp'}" data-tab="comp">
-                <span class="ds-tab-label">${CHT_ICO} Competitor Analysis</span>
-              </button>
-              <button class="ds-tab" aria-selected="${activeTab==='sample'}" data-tab="sample">
-                <span class="ds-tab-label">${DOC_ICO} My Reports</span>
-              </button>
-            </div>
-            <select id="reports-tabs-dd" class="reports-tabs-dd" aria-label="Section">
-              <option value="builder1" ${activeTab==='builder1'?'selected':''}>Report Builder</option>
-              <option value="builder" ${activeTab==='builder'?'selected':''}>Report Builder V2</option>
-              <option value="fleet"   ${activeTab==='fleet'  ?'selected':''}>Weekly Fleet Reports</option>
-              <option value="comp"    ${activeTab==='comp'   ?'selected':''}>Competitor Analysis</option>
-              <option value="sample"  ${activeTab==='sample' ?'selected':''}>My Reports</option>
-            </select>
+          <div class="reports-cardhead">
+            <div class="rc-title" id="reports-cardtitle">${DOC_ICO}<span>${window.TAB_CRUMBS[activeTab] || 'My Reports'}</span></div>
+            <button type="button" id="sample-new-report" ${activeTab === 'sample' ? '' : 'hidden'} style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;background:var(--brand-600,#2d7ffb);border:1px solid var(--brand-600,#2d7ffb);border-radius:8px;font-size:12.5px;font-weight:600;color:#fff;cursor:pointer;font-family:inherit;flex-shrink:0;transition:background .15s;">${PLUS_ICO} Create New Report</button>
           </div>
           <div id="reports-content" style="flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden">
             ${tabContent()}
+          </div>
+        </div>
+        <div class="rc-designs-bar">
+          <span class="rc-designs-lbl">Designs:</span>
+          <div class="rc-dd" id="reports-designs-dd">
+            <button type="button" class="rc-dd-btn" id="reports-designs-btn" aria-haspopup="listbox" aria-expanded="false">
+              <span class="rc-dd-val">${window.TAB_CRUMBS[activeTab] || 'My Reports'}</span>
+              ${CHEV_DOWN_ICO}
+            </button>
+            <div class="rc-dd-menu rc-dd-menu--up" role="listbox" hidden>
+              ${DESIGN_OPTIONS.map(o => `
+                <button type="button" role="option" class="rc-dd-opt${o.locked ? ' is-locked' : ''}" data-design="${o.id}" aria-selected="${activeTab===o.id}" ${o.locked ? 'disabled aria-disabled="true" title="Locked"' : ''}>
+                  <span class="rc-dd-opt-l">${o.label}</span>
+                  ${o.locked ? LOCK_ICO : (activeTab===o.id ? CHECK_ICO : '')}
+                </button>`).join('')}
+            </div>
           </div>
         </div>
       </main>
@@ -1320,12 +1393,39 @@ window.render = function() {
     requestAnimationFrame(() => pill.classList.remove('is-init'));
   });
 
-  // Mobile dropdown — mirrors tab state
-  const tabDD = document.getElementById('reports-tabs-dd');
+  // Designs dropdown — locked entries are inert
+  const tabDD = null;
+  const ddWrap = document.getElementById('reports-designs-dd');
+  const ddBtn  = document.getElementById('reports-designs-btn');
+  const ddMenu = ddWrap && ddWrap.querySelector('.rc-dd-menu');
+  if (ddBtn && ddMenu) {
+    const close = () => { ddMenu.hidden = true; ddBtn.setAttribute('aria-expanded','false'); };
+    ddBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = ddMenu.hidden;
+      ddMenu.hidden = !open;
+      ddBtn.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', e => { if (!ddWrap.contains(e.target)) close(); });
+    ddMenu.querySelectorAll('[data-design]').forEach(b => b.addEventListener('click', () => {
+      if (b.disabled) return;
+      close();
+      switchTab(b.dataset.design);
+    }));
+  }
   function switchTab(next){
     activeTab = next;
+    window.PAGE.crumb = window.TAB_CRUMBS[next] || window.PAGE.crumb;
+    const crumbEl = document.querySelector('header .text-ink-400 span.truncate');
+    if (crumbEl) crumbEl.textContent = window.PAGE.crumb;
     document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === next)));
     if (tabDD && tabDD.value !== next) tabDD.value = next;
+    const titleEl = document.getElementById('reports-cardtitle');
+    if (titleEl) { const s = titleEl.querySelector('span'); if (s) s.textContent = window.TAB_CRUMBS[next] || 'My Reports'; }
+    if (ddBtn) { const v = ddBtn.querySelector('.rc-dd-val'); if (v) v.textContent = window.TAB_CRUMBS[next] || 'My Reports'; }
+    if (ddMenu) ddMenu.querySelectorAll('[data-design]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.design === next)));
+    const newBtn = document.getElementById('sample-new-report');
+    if (newBtn) newBtn.hidden = next !== 'sample';
     const grp = document.getElementById('reports-tabs');
     const pl  = document.getElementById('reports-pill');
     const act = grp && grp.querySelector('.ds-tab[aria-selected="true"]');

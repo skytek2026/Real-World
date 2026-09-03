@@ -115,6 +115,11 @@
     #app{overflow-x:hidden;}
   }
 
+  @media (max-width:640px){
+    .view-tabs-wrap{width:100%}
+    .view-tabs-wrap .ds-tabs{width:100%;display:flex}
+    .view-tabs-wrap .ds-tab{flex:1 1 0;justify-content:center}
+  }
   /* DS table-header treatment for list-card column headers */
   .tracking-micro.uppercase.text-ink-500{background:var(--slate-50,#F9FAFB);color:var(--text-muted,#6B7280)}
     /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
@@ -127,7 +132,7 @@
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
-<div id="app" class="min-h-screen w-full flex"></div>
+<div id="app" class="h-screen w-full flex overflow-hidden"></div>
 
 <script>
   window.PAGE = { id:'aviation', title:'Aviation', crumb:'Overview' };
@@ -795,9 +800,9 @@ let tileLayer = null;
 
 const MAP_TYPES = {
   satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  street:    { url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', bg: '#f8fafc' },
-  dark:      { url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', bg: '#0b1e2e' },
-  light:     { url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', bg: '#e0ebe9' },
+  street:    { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', bg: '#f8fafc' },
+  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
+  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
 };
 
 function setMapType(type) {
@@ -953,7 +958,7 @@ function Content() {
     </section>
     <section class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden flex flex-col" id="map-container" style="height:calc(100vh - 380px); min-height:400px;">
       <div class="p-3 border-b border-ink-100 flex items-center justify-between gap-3 flex-wrap shrink-0">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 view-tabs-wrap">
           <div class="ds-tabs" data-tab-group="data-view">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
             <button data-view="Map"  aria-selected="${state.viewMode==='Map'}"  class="ds-tab" style="font-size:12px;padding:6px 14px;"><span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Map</span></button>
@@ -1051,7 +1056,7 @@ window.render = function render() {
     ${SC.Sidebar()}
     <div class="flex-1 min-w-0 flex flex-col">
       ${SC.Topbar()}
-      ${Content()}
+      <main class="flex-1 overflow-y-auto scroll-thin bg-ink-100 min-h-0">${Content()}</main>
     </div>
     ${SC.TweaksPanel()}
   `;

@@ -54,6 +54,13 @@
   .rs-info:hover{color:#2d7ffb;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
+  .sts-dash-l{border-left-style:dashed;}
+  .sts-top-red,.sts-top-orange{border-bottom-color:transparent !important;}
+  tr:has(+ .sts-top-red),tr:has(+ .sts-top-orange){border-bottom-color:transparent !important;}
+  .sts-top-red>td{box-shadow:inset 0 1px 0 #f87171,inset 0 -1px 0 #f87171;}
+  .sts-top-red:has(+ .sts-top-red)>td,.sts-top-red:has(+ .sts-top-orange)>td{box-shadow:inset 0 1px 0 #f87171;}
+  .sts-top-orange:has(+ .sts-top-red)>td,.sts-top-orange:has(+ .sts-top-orange)>td{background-position:left 0;}
+  .sts-top-orange>td{background-image:linear-gradient(to right,#fb923c 0,#fb923c 4px,transparent 4px,transparent 8px),linear-gradient(to right,#fb923c 0,#fb923c 4px,transparent 4px,transparent 8px);background-size:8px 1px,8px 1px;background-repeat:repeat-x,repeat-x;background-position:left 0,left 100%;}
   .sts-tipwrap{position:relative;display:inline-flex;align-items:center;cursor:default;}
   .sts-tip{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#0f172a;color:#fff;font-size:11px;font-weight:600;padding:5px 9px;border-radius:7px;box-shadow:0 8px 20px rgba(15,23,42,.22);opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:60;}
   .sts-tipwrap:hover .sts-tip{opacity:1;visibility:visible;}
@@ -332,27 +339,35 @@ const SUSPICIOUS_ACTIVITY = [
 
 const STS_DATA = [
   { id:1, highlight:'orange',
-    v1:{ name:'FRESH BREEZE',   compliance:'ok',         draught:'↑ 0.5', dest:'FUJAIRAH' },
-    v2:{ name:'HUNTER ODIN',    compliance:'ok-warn',    draught:'-',     dest:'BR ADRI' },
+    v1:{ name:'FRESH BREEZE',   compliance:'ok',         stsCompliance:'ok',         draught:'↑ 0.5', dest:'FUJAIRAH' },
+    v2:{ name:'HUNTER ODIN',    compliance:'sanctioned', stsCompliance:'ok',         draught:'-',     dest:'BR ADRI' },
     region:'South Atlantic Ocean', ports:'-', start:'2025-08-17 08:02:0…', end:'2025-08-17 21:57:5…', duration:'13h 55m' },
   { id:2, highlight:'',
-    v1:{ name:'FRESH BREEZE',   compliance:'ok',         draught:'↑ 8.7', dest:'ROTTERDAM' },
-    v2:{ name:'NORDIC BREEZE',  compliance:'ok',         draught:'-',     dest:'ANTWERP' },
+    v1:{ name:'FRESH BREEZE',   compliance:'ok',         stsCompliance:'ok',         draught:'↑ 8.7', dest:'ROTTERDAM' },
+    v2:{ name:'NORDIC BREEZE',  compliance:'ok',         stsCompliance:'ok',         draught:'-',     dest:'ANTWERP' },
     region:'North Sea', ports:'-', start:'2025-09-15 06:45:2…', end:'2025-09-15 19:30:1…', duration:'12h 44m' },
-  { id:3, highlight:'red',
-    v1:{ name:'FRESH BREEZE',   compliance:'ok',         draught:'-',     dest:'BR ADRI' },
-    mid:{ name:'CORAL MERIDIAN', compliance:'ok',        draught:'↑ 4.1', dest:'BR ADRI',
+  { id:3, highlight:'orange',
+    v1:{ name:'FRESH BREEZE',   compliance:'ok',         stsCompliance:'ok',         draught:'-',     dest:'BR ADRI' },
+    mid:{ name:'CORAL MERIDIAN', compliance:'ok',        stsCompliance:'ok',         draught:'↑ 4.1', dest:'BR ADRI',
       region:'South Atlantic Ocean', ports:'-', start:'2025-06-27 11:15:1…', end:'2025-06-27 22:40:0…', duration:'11h 25m' },
-    v2:{ name:'HEDDA KNUTSEN',  compliance:'sanctioned', draught:'-',     dest:'BR ADRI' },
+    v2:{ name:'HEDDA KNUTSEN',  compliance:'sanctioned', stsCompliance:'ok',         draught:'-',     dest:'BR ADRI' },
     region:'South Atlantic Ocean', ports:'-', start:'2025-06-27 11:15:1…', end:'2025-06-28 17:13:4…', duration:'1d 5h 58m' },
   { id:4, highlight:'',
-    v1:{ name:'FRESH BREEZE',   compliance:'ok',         draught:'-',     dest:'SINGAPORE' },
-    v2:{ name:'VANDA ADVENTURE',compliance:'ok',         draught:'-',     dest:'ALEPRI8' },
+    v1:{ name:'FRESH BREEZE',   compliance:'ok',         stsCompliance:'ok',         draught:'-',     dest:'SINGAPORE' },
+    v2:{ name:'VANDA ADVENTURE',compliance:'ok',         stsCompliance:'ok',         draught:'-',     dest:'ALEPRI8' },
     region:'Singapore Strait', ports:'-', start:'2025-05-22 08:10:4…', end:'2025-05-22 21:11:0…', duration:'13h' },
   { id:5, highlight:'',
-    v1:{ name:'FRESH BREEZE',   compliance:'ok',         draught:'↑ 9.2', dest:'HAMBURG' },
-    v2:{ name:'ATLANTIC STAR',  compliance:'ok',         draught:'-',     dest:'LONDON' },
+    v1:{ name:'FRESH BREEZE',   compliance:'ok',         stsCompliance:'ok',         draught:'↑ 9.2', dest:'HAMBURG' },
+    v2:{ name:'ATLANTIC STAR',  compliance:'ok',         stsCompliance:'ok',         draught:'-',     dest:'LONDON' },
     region:'English Channel', ports:'-', start:'2025-04-10 14:20:3…', end:'2025-04-11 02:15:4…', duration:'11h 55m' },
+  { id:6, highlight:'red',
+    v1:{ name:'FRESH BREEZE',   compliance:'ok',         stsCompliance:'ok',         draught:'↑ 2.4', dest:'GIBRALTAR' },
+    v2:{ name:'MERIDIAN PEARL', compliance:'ok',         stsCompliance:'sanctioned', draught:'-',     dest:'BR ADRI' },
+    region:'Gulf of Oman', ports:'-', start:'2025-03-18 09:05:2…', end:'2025-03-18 23:48:1…', duration:'14h 43m' },
+  { id:7, highlight:'red',
+    v1:{ name:'FRESH BREEZE',   compliance:'ok',         stsCompliance:'ok',         draught:'↑ 1.8', dest:'PIRAEUS' },
+    v2:{ name:'SEA VANGUARD',   compliance:'sanctioned', stsCompliance:'sanctioned', draught:'-',     dest:'BR ADRI' },
+    region:'Eastern Mediterranean', ports:'-', start:'2025-02-06 05:40:1…', end:'2025-02-06 18:22:3…', duration:'12h 42m' },
 ];
 
 const SANCTION_COMPLIANCE = [
@@ -2728,9 +2743,9 @@ const ASSOC_ROWS = [
 ];
 function InspectionTable() {
   const sortHead = (label) => `
-  <button class="inline-flex items-center gap-1 text-[11px] font-semibold tracking-wider uppercase text-ink-500 hover:text-ink-700">
-    ${label}
-    <svg viewBox="0 0 24 24" class="h-3 w-3 text-ink-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
+  <button class="inline-flex items-start gap-1 text-left text-[11px] font-semibold tracking-wider uppercase text-ink-500 hover:text-ink-700">
+    <span class="text-left">${label}</span>
+    <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 mt-px text-ink-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
   </button>`;
   
   return `
@@ -2808,7 +2823,8 @@ function InspectionTable() {
         <thead class="bg-ink-50">
           <tr>
             <th class="px-3 py-2 text-left">${sortHead('Vessel(s)')}</th>
-            <th class="px-3 py-2 text-left">${sortHead('Compliance')}</th>
+            <th class="px-3 py-2 text-left">${sortHead('Compliance at Time of STS')}</th>
+            <th class="px-3 py-2 text-left">${sortHead('Current Compliance')}</th>
             <th class="px-3 py-2 text-left">${sortHead('Draught')}</th>
             <th class="px-3 py-2 text-left">${sortHead('Destination')}</th>
             <th class="px-3 py-2 text-left">${sortHead('STS Region')}</th>
@@ -2821,7 +2837,7 @@ function InspectionTable() {
         </thead>
         <tbody>
           ${STS_DATA.map(r => {
-            const border = r.highlight === 'red' ? 'border-l-2 border-l-red-400 bg-red-50' : r.highlight === 'orange' ? 'border-l-2 border-l-orange-400 bg-orange-50' : '';
+            const border = r.highlight === 'red' ? 'border-l-4 border-l-red-400 bg-red-50 sts-top-red' : r.highlight === 'orange' ? 'border-l-4 border-l-orange-400 bg-orange-50 sts-dash-l sts-top-orange' : '';
             const okBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
             const sanctionBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
             const warnBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
@@ -2829,40 +2845,52 @@ function InspectionTable() {
             const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
             const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
             return `
-            <tr class="border-b border-ink-100 last:border-0 ${border}">
+            <tr class="border-b border-ink-100 last:border-b-0 ${border}">
               <td class="px-3 py-2">
-                <div class="flex flex-col gap-1.5">
-                  <div class="flex items-center gap-1.5 font-semibold text-brand-600">${vesselIcon}${r.v1.name}</div>
-                  ${r.mid ? `<div class="flex items-center gap-1.5 text-ink-500">${arrowIcon}${r.mid.name}</div>` : ''}
-                  <div class="flex items-center gap-1.5 text-ink-500">${arrowIcon}${r.v2.name}</div>
+                <div class="flex flex-col gap-0.5">
+                  <div class="flex items-center min-h-8 gap-1.5 whitespace-nowrap font-semibold text-brand-600">${vesselIcon}${r.v1.name}</div>
+                  <div class="h-2 flex items-center pl-0.5">${arrowIcon}</div>
+                  ${r.mid ? `<div class="flex items-center min-h-8 gap-1.5 whitespace-nowrap font-semibold text-brand-600">${vesselIcon}${r.mid.name}</div><div class="h-2 flex items-center pl-0.5">${arrowIcon}</div>` : ''}
+                  <div class="flex items-center min-h-8 gap-1.5 whitespace-nowrap font-semibold text-brand-600">${vesselIcon}${r.v2.name}</div>
                 </div>
               </td>
               <td class="px-3 py-2">
-                <div class="flex flex-col gap-1.5">
-                  <div>${compBadge(r.v1.compliance)}</div>
-                  ${r.mid ? `<div>${compBadge(r.mid.compliance)}</div>` : ''}
-                  <div>${compBadge(r.v2.compliance)}</div>
+                <div class="flex flex-col gap-0.5">
+                  <div class="flex items-center min-h-8">${compBadge(r.v1.stsCompliance)}</div>
+                  <div class="h-2"></div>
+                  ${r.mid ? `<div class="flex items-center min-h-8">${compBadge(r.mid.stsCompliance)}</div><div class="h-2"></div>` : ''}
+                  <div class="flex items-center min-h-8">${compBadge(r.v2.stsCompliance)}</div>
                 </div>
               </td>
               <td class="px-3 py-2">
-                <div class="flex flex-col gap-1.5 text-ink-700">
-                  <div>${r.v1.draught}</div>
-                  ${r.mid ? `<div>${r.mid.draught}</div>` : ''}
-                  <div>${r.v2.draught}</div>
+                <div class="flex flex-col gap-0.5">
+                  <div class="flex items-center min-h-8">${compBadge(r.v1.compliance)}</div>
+                  <div class="h-2"></div>
+                  ${r.mid ? `<div class="flex items-center min-h-8">${compBadge(r.mid.compliance)}</div><div class="h-2"></div>` : ''}
+                  <div class="flex items-center min-h-8">${compBadge(r.v2.compliance)}</div>
                 </div>
               </td>
               <td class="px-3 py-2">
-                <div class="flex flex-col gap-1.5 text-ink-700">
-                  <div>${r.v1.dest}</div>
-                  ${r.mid ? `<div>${r.mid.dest}</div>` : ''}
-                  <div>${r.v2.dest}</div>
+                <div class="flex flex-col gap-0.5 text-ink-700">
+                  <div class="flex items-center min-h-8">${r.v1.draught}</div>
+                  <div class="h-2"></div>
+                  ${r.mid ? `<div class="flex items-center min-h-8">${r.mid.draught}</div><div class="h-2"></div>` : ''}
+                  <div class="flex items-center min-h-8">${r.v2.draught}</div>
                 </div>
               </td>
-              <td class="px-3 py-2 text-ink-700 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-1.5"><div class="text-transparent select-none">—</div><div>${r.mid.region}</div><div>${r.region}</div></div>` : r.region}</td>
-              <td class="px-3 py-2 text-center text-ink-500 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-1.5"><div class="text-transparent select-none">—</div><div>${r.mid.ports}</div><div>${r.ports}</div></div>` : r.ports}</td>
-              <td class="px-3 py-2 text-ink-700 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-1.5"><div class="text-transparent select-none">—</div><div>${r.mid.start}</div><div>${r.start}</div></div>` : r.start}</td>
-              <td class="px-3 py-2 text-ink-700 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-1.5"><div class="text-transparent select-none">—</div><div>${r.mid.end}</div><div>${r.end}</div></div>` : r.end}</td>
-              <td class="px-3 py-2 font-medium text-ink-900 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-1.5"><div class="text-transparent select-none">—</div><div>${r.mid.duration}</div><div>${r.duration}</div></div>` : r.duration}</td>
+              <td class="px-3 py-2">
+                <div class="flex flex-col gap-0.5 text-ink-700">
+                  <div class="flex items-center min-h-8">${r.v1.dest}</div>
+                  <div class="h-2"></div>
+                  ${r.mid ? `<div class="flex items-center min-h-8">${r.mid.dest}</div><div class="h-2"></div>` : ''}
+                  <div class="flex items-center min-h-8">${r.v2.dest}</div>
+                </div>
+              </td>
+              <td class="px-3 py-2 text-ink-700 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-0.5"><div class="flex items-center min-h-8 text-transparent select-none">—</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.mid.region}</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.region}</div></div>` : r.region}</td>
+              <td class="px-3 py-2 text-center text-ink-500 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-0.5"><div class="flex items-center min-h-8 text-transparent select-none">—</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.mid.ports}</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.ports}</div></div>` : r.ports}</td>
+              <td class="px-3 py-2 text-ink-700 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-0.5"><div class="flex items-center min-h-8 text-transparent select-none">—</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.mid.start}</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.start}</div></div>` : r.start}</td>
+              <td class="px-3 py-2 text-ink-700 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-0.5"><div class="flex items-center min-h-8 text-transparent select-none">—</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.mid.end}</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.end}</div></div>` : r.end}</td>
+              <td class="px-3 py-2 font-medium text-ink-900 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-0.5"><div class="flex items-center min-h-8 text-transparent select-none">—</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.mid.duration}</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.duration}</div></div>` : r.duration}</td>
               <td class="px-3 py-2 align-middle">
                 <button class="inline-flex items-center gap-1 px-3 py-1.5 border border-brand-600 text-brand-600 text-[11px] font-semibold rounded-lg hover:bg-brand-50 transition-colors">
                   Create Analysis <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
@@ -2936,12 +2964,16 @@ function InspectionTable() {
         </tbody>
       </table>`}
     </div>
-    ${state.sectionTab === 'Risk Associations' ? '' : dsPagination({
-      page: 1, totalPages: 2,
-      totalItems: 6, perPage: 5,
+    ${state.sectionTab === 'Risk Associations' ? '' : (() => {
+      const total = state.sectionTab === 'Ship-To-Ship' ? STS_DATA.length
+        : state.sectionTab === 'Sanction Compliance' ? SANCTION_COMPLIANCE.length : 6;
+      const per = Math.max(total, 5);
+      return dsPagination({
+      page: 1, totalPages: 1,
+      totalItems: total, perPage: per,
       perPageOptions: [5, 10, 25],
       label: 'results',
-    })}
+    }); })()}
   </div>`;
 }
 
@@ -3369,9 +3401,9 @@ let currentMapType = 'satellite';
 
 const MAP_TYPES = {
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', sub:'abc' },
-  street:    { url:'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', sub:'abcd' },
-  dark:      { url:'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', sub:'abcd' },
-  light:     { url:'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', sub:'abcd' },
+  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub:'abcd' },
+  dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', sub:'abcd' },
+  light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', sub:'abcd' },
 };
 
 function setMapType(type) {
