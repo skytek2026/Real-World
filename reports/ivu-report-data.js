@@ -8,7 +8,7 @@ window.IVU = {
     generatedOn: '19 Aug 2026 09:41 UTC',
     preparedFor: 'Underwriting — Marine Hull',
     reportId: 'IVU-2026-08-0417',
-    owner: 'L. Marchetti, Underwriter',
+    owner: 'Paul Kiernan',
     submission: 'Renewal 2027-02-20',
   },
   particulars: [

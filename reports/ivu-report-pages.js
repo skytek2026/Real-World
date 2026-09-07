@@ -302,7 +302,7 @@
       title: 'Individual Vessel<br />Underwriting Report',
       sub: `Submission pack for ${V.meta.submission}: particulars, ownership chain, Real World Risk Score and its history, trading and port activity, casualty record, sanctions position and current location.`,
       subject: { k:'Vessel', v:`${flag('es')} ${V.meta.vessel}`, d:`IMO ${V.meta.imo} &middot; MMSI ${V.meta.mmsi} &middot; Crude Oil Tanker &middot; Risk score ${V.score.current} (${V.score.band})` },
-      meta: [['Reporting period', V.meta.period], ['Submission', V.meta.submission], ['Prepared for', V.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      meta: [['Reporting period', V.meta.period]],
       reportId: V.meta.reportId, owner: V.meta.owner, generatedOn: V.meta.generatedOn,
     });
   }

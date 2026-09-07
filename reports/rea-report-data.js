@@ -9,7 +9,7 @@ window.REA = {
     generatedOn: '19 Aug 2026 10:58 UTC',
     preparedFor: 'Aggregation & Exposure Management',
     reportId: 'REA-2026-07-0296',
-    owner: 'S. Petrides, Exposure Manager',
+    owner: 'Paul Kiernan',
     bounds: '12.0°N–17.4°N, 41.2°E–44.8°E',
   },
   current: {

@@ -7,7 +7,7 @@ window.PER = {
     generatedOn: '19 Aug 2026 08:12 UTC',
     preparedFor: 'Underwriting Committee',
     reportId: 'PER-2026-07-0114',
-    owner: 'M. Okafor, Portfolio Manager',
+    owner: 'Paul Kiernan',
   },
   kpi: {
     vessels: 1284, vesselsDelta: '+37',

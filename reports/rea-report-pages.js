@@ -278,7 +278,7 @@
       title: 'Regional Exposure &amp;<br />Aggregation Report',
       sub: 'Who is inside the region right now, who moved through it, when concentration peaked, how much of the portfolio it represents, and the vessel-by-vessel detail behind the aggregate.',
       subject: { k:'Region', v:R.meta.region, d:`${R.meta.regionType} &middot; ${R.meta.bounds} &middot; ${c.vessels} vessels inside &middot; ${c.insuredValue} exposed` },
-      meta: [['Portfolio', R.meta.portfolio], ['Reporting period', R.meta.period], ['Compared with', R.meta.previous], ['Pages', `${TOTAL} (A4)`]],
+      meta: [['Reporting period', R.meta.period]],
       reportId: R.meta.reportId, owner: R.meta.owner, generatedOn: R.meta.generatedOn,
     });
   }

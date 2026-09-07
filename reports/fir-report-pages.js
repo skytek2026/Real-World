@@ -288,7 +288,7 @@
       title: 'Fleet Intelligence<br />Report',
       sub: 'A month-end intelligence picture of the managed fleet: what it is made of, how it scores, where it trades, and which vessels sit outside fleet rules.',
       subject: { k:'Fleet', v:F.meta.fleet, d:`${c.vessels} vessels &middot; ${c.totalGt} &middot; ${c.insuredValue} insured value &middot; ${c.flags} flags` },
-      meta: [['Reporting period', F.meta.period], ['Compared with', F.meta.previous], ['Prepared for', F.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      meta: [['Reporting period', F.meta.period]],
       reportId: F.meta.reportId, owner: F.meta.owner, generatedOn: F.meta.generatedOn,
     });
   }

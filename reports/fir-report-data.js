@@ -7,7 +7,7 @@ window.FIR = {
     generatedOn: '19 Aug 2026 10:05 UTC',
     preparedFor: 'Fleet Risk & Underwriting',
     reportId: 'FIR-2026-07-0233',
-    owner: 'A. Lindqvist, Fleet Analyst',
+    owner: 'Paul Kiernan',
   },
   composition: {
     vessels: 148,

@@ -263,7 +263,7 @@
       title: 'Portfolio Executive<br />Risk Report',
       sub: 'A month-end view of portfolio composition, Real World Risk Score distribution, compliance exposure and the assets that need underwriting attention before the next committee.',
       subject: { k:'Portfolio', v:P.meta.portfolio, d:`${P.kpi.vessels.toLocaleString()} vessels &middot; ${P.kpi.otherAssets} other assets &middot; ${P.kpi.insuredValue} insured value` },
-      meta: [['Reporting period', P.meta.period], ['Compared with', P.meta.previous], ['Prepared for', P.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      meta: [['Reporting period', P.meta.period]],
       reportId: P.meta.reportId, owner: P.meta.owner, generatedOn: P.meta.generatedOn,
     });
   }

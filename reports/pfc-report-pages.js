@@ -256,7 +256,7 @@
       title: 'Portfolio / Fleet<br />Casualty Report',
       sub: 'Casualty record for the book over a rolling 24-month window: what happened, to which vessels, where and when, how it is trending, and which vessels keep coming back.',
       subject: { k:'Scope', v:C.meta.scope, d:`${s.total} casualties &middot; ${s.vesselsAffected} vessels affected &middot; ${s.totalReserve} reserved` },
-      meta: [['Reporting period', C.meta.period], ['Casualty window', C.meta.window], ['Prepared for', C.meta.preparedFor], ['Pages', `${TOTAL} (A4)`]],
+      meta: [['Reporting period', C.meta.period]],
       reportId: C.meta.reportId, owner: C.meta.owner, generatedOn: C.meta.generatedOn,
     });
   }

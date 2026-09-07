@@ -8,7 +8,7 @@ window.PFC = {
     generatedOn: '19 Aug 2026 10:32 UTC',
     preparedFor: 'Claims & Underwriting Committee',
     reportId: 'PFC-2026-07-0158',
-    owner: 'R. Haugen, Claims Analyst',
+    owner: 'Paul Kiernan',
   },
   summary: {
     total: 64, totalDelta: '+6',
