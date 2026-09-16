@@ -89,15 +89,14 @@
               </div>
               <span class="rcat-count num">${g.reports.length}</span>
             </header>
-            <div class="rcat-list">
+            <div class="rcat-list" role="radiogroup" aria-label="${g.name} reports">
               ${g.reports.map((r, i) => {
                 const k = key(g, i), on = state.selected === k, soon = !r.typeId;
                 return `
-                <button type="button" class="rcat-row${on ? ' is-sel' : ''}${soon ? ' is-soon' : ''}${r.dev ? ' is-dev' : ''}" data-rcat="${k}" aria-pressed="${on}">
-                  <span class="rcat-row-ico">${ic(ICO.doc, 17)}</span>
+                <button type="button" role="radio" class="rcat-row${on ? ' is-sel' : ''}${soon ? ' is-soon' : ''}${r.dev ? ' is-dev' : ''}" data-rcat="${k}" aria-checked="${on}">
+                  <span class="rcat-radio" aria-hidden="true"></span>
                   <span class="rcat-row-name">${r.name}${r.dev ? `<span class="rcat-star" title="Selected for development" aria-label="Selected for development">${starIc()}</span>` : ''}</span>
                   ${soon ? `<span class="rcat-soon">${ic(ICO.clock, 12)} Coming soon</span>` : ''}
-                  <span class="rcat-row-end">${on ? `<span class="rcat-tick">${ic(ICO.check, 13)}</span>` : ic(ICO.chevron, 15)}</span>
                 </button>`;
               }).join('')}
             </div>
