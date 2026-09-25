@@ -45,7 +45,7 @@
   function open(opts = {}) {
     OPTS = opts;
     if (!DATA) DATA = Y().loadData(opts.portfolios || []) || C().buildDataset(opts.portfolios || []);
-    S = { choices: {}, merge: null, dl: null, idState: null, fileMeta: null, applied: false, names: opts.portfolios || [], step: 'download', downloaded: false, file: null, res: null, filter: 'All', progress: 0, fixes: [], skipped: [], parsed: null, v: null };
+    S = { limit: 50, choices: {}, merge: null, dl: null, idState: null, fileMeta: null, applied: false, names: opts.portfolios || [], step: 'download', downloaded: false, file: null, res: null, filter: 'All', progress: 0, fixes: [], skipped: [], parsed: null, v: null };
     ensureRoot().innerHTML = `<div class="rw-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="uap-title"><div class="rw-modal uap-modal"></div></div>`;
     const o = document.querySelector('#modal-root .rw-modal-overlay');
     o.addEventListener('click', e => { if (e.target === o && S.step !== 'validating') close(); });
@@ -85,7 +85,7 @@
         ${S.downloaded ? `<div class="uap-done-note">${I.okSm}<span>Downloaded. You can upload it now, or close this window and come back when you’ve finished editing — even days later.</span></div>` : ''}
         <div class="uap-rules"><div class="uap-rules-t">Before you edit</div><ul>
           <li>The grey row under each column name shows what to enter. Click any cell in Excel to see a tip.</li>
-          <li>Every row needs <b>Fleet / Portfolio</b>, <b>Group</b>, <b>Policy number</b>, <b>IMO number</b> and <b>Our exposure ($)</b>.</li>
+          <li>Every row needs <b>Portfolio</b>, <b>Policy Number</b>, <b>IMO</b> and <b>Our Exposure</b>. Amounts are in US dollars.</li>
           <li>Keep the column names and the grey hint row as they are — don’t rename, remove or reorder columns.</li>
           <li>To remove a policy, delete its row. To add a policy, add a new row.</li>
           <li>Keep the <b>File details</b> sheet. If colleagues update portfolios in Real World while you’re editing, it lets us show you what changed so nothing is overwritten by mistake.</li>
@@ -131,8 +131,8 @@
           return `<section class="uap-grp"><div class="uap-grp-h"><span class="uap-grp-t">${esc(C().groupTitle(g.k, g.list.length))}</span></div>
             <div class="uap-grp-fix">${I.bulb}<span><b>How to fix:</b> ${esc(K[g.k].fix)}</span></div>
             <div class="uap-grp-table scroll-thin"><table class="uap-table"><thead><tr><th>Where</th>${showWho ? '<th>Portfolio / policy</th>' : ''}<th>In your file</th><th>What’s wrong</th></tr></thead><tbody>
-              ${g.list.map(e => `<tr><td class="uap-where">${where(e)}</td>${showWho ? `<td class="uap-where">${who(e)}</td>` : ''}<td>${val(e)}</td><td>${det(e)}</td></tr>`).join('')}
-            </tbody></table></div></section>`;
+              ${g.list.slice(0, 100).map(e => `<tr><td class="uap-where">${where(e)}</td>${showWho ? `<td class="uap-where">${who(e)}</td>` : ''}<td>${val(e)}</td><td>${det(e)}</td></tr>`).join('')}
+            </tbody></table></div>${g.list.length > 100 ? `<div class="uap-quiet">Showing the first 100 of ${g.list.length}. Download your file with problems highlighted to see them all.</div>` : ''}</section>`;
         }).join('')}`;
     },
     conflicts() {
@@ -166,10 +166,10 @@
         ${m.conflicts.map(card).join('')}`;
     },
     review() {
-      const d = S.res.diff, total = S.names.length, none = !d.changed.length && !d.added.length && !d.removed.length;
+      const d = S.res.diff, total = allNames().length, none = !d.changed.length && !d.added.length && !d.removed.length;
       const summary = summaryHtml();
       if (none) return `<div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">File passed all checks — no differences found</div><div class="uap-banner-s">Your current portfolios (left) match <b>${esc(S.file.name)}</b> (right). If you expected changes, check you uploaded the edited file.</div></div></div>${staleNote()}${summary}`;
-      const order = n => S.names.indexOf(n);
+      const ord = allNames(), order = n => ord.indexOf(n);
       const recs = [...d.changed.map(r => ({ ...r, kind: 'changed' })), ...d.added.map(r => ({ ...r, kind: 'added' })), ...d.removed.map(r => ({ ...r, kind: 'removed' }))]
         .sort((a, b) => order(a.portfolio) - order(b.portfolio) || String(a.policy).localeCompare(String(b.policy)));
       const pfs = [...new Set(recs.map(r => r.portfolio))];
@@ -191,11 +191,12 @@
         ${summary}
         <div class="uap-toolbar"><div class="uap-toolbar-t">What changed</div>
           <select class="rw-modal-select uap-select" data-uap-pf aria-label="Filter by portfolio"><option value="All">All updated portfolios (${pfs.length})</option>${pfs.map(p => `<option value="${esc(p)}"${S.filter === p ? ' selected' : ''}>${esc(p)}</option>`).join('')}</select></div>
-        <div class="uap-diff scroll-thin"><div class="uap-diff-head"><div>Field</div><div>In Real World now</div><div>After update</div></div>${shown.map(recHtml).join('')}</div>
+        <div class="uap-diff scroll-thin"><div class="uap-diff-head"><div>Field</div><div>In Real World now</div><div>After update</div></div>${shown.slice(0, S.limit).map(recHtml).join('')}</div>
+        ${shown.length > S.limit ? `<div class="uap-more"><span>Showing ${S.limit} of ${shown.length} policies</span><button class="rw-modal-btn rw-modal-btn-cancel" data-uap-more>Show ${Math.min(50, shown.length - S.limit)} more</button></div>` : ''}
         ${unchanged > 0 ? `<div class="uap-quiet">${plural(unchanged, 'portfolio')} had no changes.</div>` : ''}`;
     },
     success() {
-      const d = S.res.diff, total = S.names.length;
+      const d = S.res.diff, total = allNames().length;
       return `<div class="uap-confirm"><div class="uap-confirm-ico">${I.ok.replace(/width="20" height="20"/, 'width="32" height="32"')}</div>
         <div class="uap-confirm-t">All portfolios have been updated</div>
         <div class="uap-confirm-s">Changes from <b>${esc(S.file.name)}</b> are now live across your portfolios.</div>
@@ -238,11 +239,11 @@
     const a = agg(cur), b = agg(nxt), money = v => '$' + (v >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : (v / 1e6).toFixed(1) + 'M');
     const row = p => { const o = a[p] || { n: 0, exp: 0 }, n = b[p] || { n: 0, exp: 0 }, ch = touched.has(p);
       const cn = o.n !== n.n ? ' is-hl' : '', ce = Math.round(o.exp) !== Math.round(n.exp) ? ' is-hl' : '';
-      return `<div class="uap-sum-row"><div class="uap-f"><span class="uap-rec-pf">${esc(p)}</span>${ch ? '<span class="uap-tag is-changed">Changed</span>' : '<span class="uap-tag is-same">No change</span>'}</div>
+      return `<div class="uap-sum-row"><div class="uap-f"><span class="uap-rec-pf">${esc(p)}</span>${!a[p] ? '<span class="uap-tag is-added">New portfolio</span>' : !b[p] ? '<span class="uap-tag is-removed">Removed</span>' : ch ? '<span class="uap-tag is-changed">Changed</span>' : '<span class="uap-tag is-same">No change</span>'}</div>
         <div class="uap-o"><span class="uap-o${cn ? ' is-hl' : ''}">${plural(o.n, 'policy').replace('policys', 'policies')}</span> · <span class="uap-o${ce ? ' is-hl' : ''}">${money(o.exp)}</span></div>
         <div class="uap-n"><span class="uap-n${cn}">${plural(n.n, 'policy').replace('policys', 'policies')}</span> · <span class="uap-n${ce}">${money(n.exp)}</span></div></div>`; };
     return `<div class="uap-toolbar"><div class="uap-toolbar-t">Portfolio summary</div></div>
-      <div class="uap-diff uap-sum scroll-thin"><div class="uap-diff-head"><div>Portfolio</div><div>In Real World now</div><div>After update</div></div>${S.names.map(row).join('')}</div>`;
+      <div class="uap-diff uap-sum scroll-thin"><div class="uap-diff-head"><div>Portfolio</div><div>In Real World now</div><div>After update</div></div>${allNames().filter(p => a[p] || b[p]).map(row).join('')}</div>`;
   }
 
   const FOOT = {
@@ -305,8 +306,9 @@
     else evaluate();
     render();
   }
+  const allNames = () => { const set = new Set(S.names); DATA.forEach(r => set.add(r[C().PF])); ((S.res && S.res.rows) || []).forEach(r => set.add(r[C().PF])); return [...set]; };
   function evaluate() {
-    S.v = C().validate(S.parsed, S.names);
+    S.v = C().validate(S.parsed, [...new Set([...S.names, ...DATA.map(r => r[C().PF])])]);
     if (S.v.errors.length) { S.res = { errors: S.v.errors }; S.step = 'errors'; return; }
     S.skipped = [];
     toReview(S.v.rows);
@@ -318,7 +320,7 @@
   }
   function finalize() {
     const rows = S.merge ? Y().resolve(S.merge, S.choices) : S.fileRows;
-    S.res = { rows, diff: C().diff(DATA, rows) }; S.step = 'review'; S.filter = 'All'; S.applied = false; DATA_BEFORE = null;
+    S.res = { rows, diff: C().diff(DATA, rows) }; S.step = 'review'; S.filter = 'All'; S.limit = 50; S.applied = false; DATA_BEFORE = null;
   }
 
   function bind(m) {
@@ -345,7 +347,9 @@
     const cf = m.querySelector('[data-uap-confirm]');
     if (cf) cf.addEventListener('click', () => { DATA_BEFORE = DATA; DATA = S.res.rows; Y().saveData(DATA); Y().logDiff('You', S.res.diff); if (S.dl) Y().setStatus(S.dl.id, 'used'); S.applied = true; S.step = 'success'; if (OPTS.onUpdated) OPTS.onUpdated(S.res.diff); render(); });
     const pf = m.querySelector('[data-uap-pf]');
-    if (pf) pf.addEventListener('change', () => { S.filter = pf.value; render(); });
+    if (pf) pf.addEventListener('change', () => { S.filter = pf.value; S.limit = 50; render(); });
+    const mo = m.querySelector('[data-uap-more]');
+    if (mo) mo.addEventListener('click', () => { S.limit += 50; render(); });
     const an = m.querySelector('[data-uap-annot]');
     if (an) an.addEventListener('click', () => saveBlob(X().write([C().annotatedSheet(S.parsed, S.res.errors, S.fixes), C().infoSheet(), ...(S.fileMeta ? [Y().detailsSheet(S.fileMeta)] : [])]), S.file.name.replace(/\.xlsx$/i, '') + '_problems.xlsx'));
   }

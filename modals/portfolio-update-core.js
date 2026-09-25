@@ -1,38 +1,40 @@
 /* PortfolioUpdateCore — column schema, export dataset, validation (with auto-fix suggestions), skip + diff for "Update All Portfolios". */
 (function () {
-  const PF = 'Fleet / Portfolio';
+  const PF = 'Portfolio';
   const COLS = [
-    { k: PF, l: 'Fleet / Portfolio', t: 'pf', m: 1, w: 30, d: 'Identifies the specific fleet or collection of vessels.', ft: 'Text (must match an existing portfolio)' },
-    { k: 'Group', l: 'Group', t: 'text', m: 1, w: 16, h: 'e.g. Hull, War or Cargo', d: 'Group of fleets/portfolios (e.g. War, Hull, Cargo).', ft: 'Text' },
-    { k: 'PolicyNumber', l: 'Policy number', t: 'text', m: 1, w: 18, h: 'Letters and numbers · once per portfolio', d: 'Policy reference number — cannot be duplicated within the same portfolio.', ft: 'Text & Number' },
-    { k: 'IMO', l: 'IMO number', t: 'imo', m: 1, w: 16, d: "Ship's valid seven-digit IMO number.", ft: '7 digits' },
-    { k: 'OurExposure', l: 'Our exposure ($)', t: 'usd', m: 1, w: 20, d: 'Financial risk or liability on the policies issued (in $).', ft: 'Numerical (in $)' },
-    { k: 'TotalInsuredValue', l: 'Total insured value ($)', t: 'usd', w: 22, d: 'Maximum amount payable in the event of total loss.', ft: 'Numerical (in $)' },
-    { k: 'ReferenceNumber', l: 'Reference number', t: 'text', w: 18, d: 'Unique code assigned to each insurance policy.', ft: 'Text & Number' },
-    { k: 'Inception', l: 'Inception date', t: 'date', w: 18, d: 'Start date of the insurance policy.', ft: 'Date (YYYY-MM-DD)' },
-    { k: 'Expiry', l: 'Expiry date', t: 'date', w: 18, h: 'Date as YYYY-MM-DD · after inception', d: 'End date of the insurance policy.', ft: 'Date (YYYY-MM-DD)' },
-    { k: 'ContractDetailsReference', l: 'Contract reference', t: 'text', w: 20, d: 'Identifier for the formal agreement document.', ft: 'Text & Number' },
-    { k: 'SignedLine', l: 'Signed line (%)', t: 'pct', w: 18, d: 'Final agreed percentage of risk the underwriter commits to cover.', ft: 'Numerical (%)' },
-    { k: 'WarExposure', l: 'War exposure ($)', t: 'usd', w: 20, d: 'Declared value of the insured asset(s) for war risk cover.', ft: 'Numerical (in $)' },
-    { k: 'WarTotalInsuredValue', l: 'War total insured value ($)', t: 'usd', w: 24, d: 'Total value of the assets covered under the war policy.', ft: 'Numerical (in $)' },
-    { k: 'HullAndMachinery', l: 'Hull & machinery ($)', t: 'usd', w: 20, d: 'Hull & Machinery insurance.', ft: 'Numerical (in $)' },
-    { k: 'IncreasedValue', l: 'Increased value ($)', t: 'usd', w: 20, d: 'Increased Value (Hull Interest) insurance.', ft: 'Numerical (in $)' },
-    { k: 'FreightDemurrageDefence', l: 'Freight, demurrage & defence ($)', t: 'usd', w: 30, d: 'Freight, Demurrage & Defence insurance.', ft: 'Numerical (in $)' },
-    { k: 'PremiumDetails', l: 'Premium ($)', t: 'usd', w: 20, d: 'Insurance cost including total amount and adjustments.', ft: 'Numerical (in $)' },
-    { k: 'UniqueMarketReference', l: 'Unique market reference (UMR)', t: 'text', w: 28, d: "Lloyd's / London market contract identifier.", ft: 'Text & Number' },
-    { k: 'PolicyType', l: 'Policy type', t: 'choice', ch: ['Hull', 'Cargo', 'Liability', 'War', 'Cyber', 'Hull & War'], w: 22, d: 'Categorisation of the marine insurance policy.', ft: 'Choice (Hull, Cargo, Liability, War, Cyber, Hull & War)' },
-    { k: 'PlacementType', l: 'Placement type', t: 'choice', ch: ['Open Market', 'Line Slip', 'Binder'], w: 22, d: 'How the insurance was arranged.', ft: 'Choice (Open Market, Line Slip, Binder)' },
-    { k: 'InsurerDetails', l: 'Insurer', t: 'text', w: 34, d: 'Contact information for the insurance provider.', ft: 'Text' },
-    { k: 'DelegateDetails', l: 'Delegate', t: 'text', w: 28, d: 'Individual or entity authorised to act on behalf of the insurer or insured.', ft: 'Text' },
-    { k: 'BrokerDetails', l: 'Broker', t: 'text', w: 28, d: 'Intermediary who facilitated the placement.', ft: 'Text' },
-    { k: 'AssuredDetails', l: 'Assured', t: 'text', w: 28, d: 'Legal name of the owner of the insured assets.', ft: 'Text' },
-    { k: 'UnderwriterDetails', l: 'Underwriter', t: 'text', w: 24, d: 'Underwriter responsible for the risk.', ft: 'Text' },
+    { k: PF, l: 'Portfolio', t: 'pf', m: 1, w: 30, h: 'Portfolio name · a new name creates a new portfolio', d: 'The portfolio (fleet or collection of vessels) the policy belongs to.', ft: 'Text' },
+    { k: 'PolicyNumber', l: 'Policy Number', t: 'text', m: 1, w: 18, h: 'Letters and numbers · once per portfolio', d: 'Policy reference number — cannot be duplicated within the same portfolio.', ft: 'Text & Number' },
+    { k: 'IMO', l: 'IMO', t: 'imo', m: 1, w: 14, d: "Ship's valid seven-digit IMO number.", ft: '7 digits' },
+    { k: 'VesselName', l: 'Vessel Name', t: 'text', w: 26, h: 'Name of the vessel, e.g. ARDMORE CHEROKEE', d: 'Name of the insured vessel.', ft: 'Text' },
+    { k: 'OurExposure', l: 'Our Exposure', t: 'usd', m: 1, w: 18, d: 'Financial risk or liability on the policies issued (in $).', ft: 'Numerical (in $)' },
+    { k: 'TotalInsuredValue', l: 'Total Insured Value', t: 'usd', w: 22, d: 'Maximum amount payable in the event of total loss.', ft: 'Numerical (in $)' },
+    { k: 'ReferenceNumber', l: 'Reference Number', t: 'text', w: 18, d: 'Unique code assigned to each insurance policy.', ft: 'Text & Number' },
+    { k: 'Inception', l: 'Inception', t: 'date', w: 18, d: 'Start date of the insurance policy.', ft: 'Date (YYYY-MM-DD)' },
+    { k: 'Expiry', l: 'Expiry', t: 'date', w: 18, h: 'Date as YYYY-MM-DD · after inception', d: 'End date of the insurance policy.', ft: 'Date (YYYY-MM-DD)' },
+    { k: 'ContractDetailsReference', l: 'Contract Details Reference', t: 'text', w: 20, d: 'Identifier for the formal agreement document.', ft: 'Text & Number' },
+    { k: 'SignedLine', l: 'Signed Line', t: 'pct', w: 18, d: 'Final agreed percentage of risk the underwriter commits to cover.', ft: 'Numerical (%)' },
+    { k: 'WarExposure', l: 'War Exposure', t: 'usd', w: 20, d: 'Declared value of the insured asset(s) for war risk cover.', ft: 'Numerical (in $)' },
+    { k: 'WarTotalInsuredValue', l: 'War Total Insured Value', t: 'usd', w: 24, d: 'Total value of the assets covered under the war policy.', ft: 'Numerical (in $)' },
+    { k: 'HullAndMachinery', l: 'Hull And Machinery', t: 'usd', w: 20, d: 'Hull & Machinery insurance.', ft: 'Numerical (in $)' },
+    { k: 'IncreasedValue', l: 'Increased Value', t: 'usd', w: 20, d: 'Increased Value (Hull Interest) insurance.', ft: 'Numerical (in $)' },
+    { k: 'FreightDemurrageDefence', l: 'Freight Demurrage Defence', t: 'usd', w: 30, d: 'Freight, Demurrage & Defence insurance.', ft: 'Numerical (in $)' },
+    { k: 'PremiumDetails', l: 'Premium Details', t: 'usd', w: 20, d: 'Insurance cost including total amount and adjustments.', ft: 'Numerical (in $)' },
+    { k: 'UniqueMarketReference', l: 'Unique Market Reference', t: 'text', w: 28, d: "Lloyd's / London market contract identifier.", ft: 'Text & Number' },
+    { k: 'PolicyType', l: 'Policy Type', t: 'choice', ch: ['Hull', 'Cargo', 'Liability', 'War', 'Cyber', 'Hull & War'], w: 22, d: 'Categorisation of the marine insurance policy.', ft: 'Choice (Hull, Cargo, Liability, War, Cyber, Hull & War)' },
+    { k: 'PlacementType', l: 'Placement Type', t: 'choice', ch: ['Open Market', 'Line Slip', 'Binder'], w: 22, d: 'How the insurance was arranged.', ft: 'Choice (Open Market, Line Slip, Binder)' },
+    { k: 'InsurerDetails', l: 'Insurer Details', t: 'text', w: 34, d: 'Contact information for the insurance provider.', ft: 'Text' },
+    { k: 'DelegateDetails', l: 'Delegate Details', t: 'text', w: 28, d: 'Individual or entity authorised to act on behalf of the insurer or insured.', ft: 'Text' },
+    { k: 'BrokerDetails', l: 'Broker Details', t: 'text', w: 28, d: 'Intermediary who facilitated the placement.', ft: 'Text' },
+    { k: 'AssuredDetails', l: 'Assured Details', t: 'text', w: 28, d: 'Legal name of the owner of the insured assets.', ft: 'Text' },
+    { k: 'UnderwriterDetails', l: 'Underwriter Details', t: 'text', w: 24, d: 'Underwriter responsible for the risk.', ft: 'Text' },
   ];
   const colOf = k => COLS.find(c => c.k === k);
   const label = k => (colOf(k) || {}).l || k;
   const colName = i => i >= 0 ? window.XlsxLite.colName(i) : '';
   const norm = s => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
   const HMAP = {}; COLS.forEach(c => { HMAP[norm(c.k)] = c.k; HMAP[norm(c.l)] = c.k; });
+  HMAP.fleetportfolio = PF; HMAP.imonumber = 'IMO';
+  const IGNORE = new Set(['problemstofix']);
   const HINT = { pf: 'Must match an existing portfolio name', text: 'Text', imo: '7 digits, e.g. 9321483', usd: 'US dollars, numbers only, e.g. 2450000', pct: 'Number from 0 to 100, e.g. 12.5', date: 'Date as YYYY-MM-DD, e.g. 2026-09-24' };
   const hint = c => (c.m ? 'Required · ' : 'Optional · ') + (c.h || (c.t === 'choice' ? 'One of: ' + c.ch.join(', ') : HINT[c.t]));
 
@@ -44,6 +46,7 @@
   const PLACE = ['Open Market', 'Line Slip', 'Binder'], INS = ['Skytek Mutual Ltd, London', 'Northshore Marine Insurance, Oslo', 'Harbourline Syndicate 2041, London'];
   const DEL = ['Atlas Delegated Authority Ltd', 'Meridian MGA, Hamburg', ''], BRK = ['Marsh Ltd, London', 'Aon UK Ltd, London', 'Willis Towers Watson, London', 'Gallagher Specialty, London'];
   const ASS = ['Aegean Bulk Carriers SA', 'Baltic Crest Shipping AS', 'Coral Bay Maritime Pte', 'Delta Horizon Tankers Inc', 'Eastwind Container Lines', 'Fjordline Offshore AS', 'Golden Reef Navigation', 'Harbour Star Holdings'];
+  const VN1 = ['ATLANTIC', 'NORDIC', 'PACIFIC', 'AEGEAN', 'BALTIC', 'CORAL', 'GOLDEN', 'OCEAN', 'SEA', 'STAR'], VN2 = ['PIONEER', 'SPIRIT', 'VOYAGER', 'HARMONY', 'CROWN', 'EAGLE', 'FALCON', 'HORIZON', 'GRACE', 'TRADER'];
   const UW = ['Paul Kiernan, London', 'Sarah Whelan, London', 'Tomás Duarte, Lisbon'];
   function rng(seed) { return () => { seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   const rnd = (v, s) => Math.round(v / s) * s;
@@ -54,7 +57,7 @@
       for (let j = 0; j < PER; j++) {
         const g = GROUPS[j], war = g === 'War' || R() < .25, exp = rnd(r(2e6, 6e7), 1e4), tiv = rnd(exp * r(1.3, 2.4), 1e4), mm = String(1 + Math.floor(R() * 12)).padStart(2, '0');
         rows.push({
-          [PF]: pf, Group: g, PolicyNumber: `${pre}-26-${String(101 + j * 7 + pi * 3).padStart(4, '0')}`, IMO: imoCheck(String(900000 + Math.floor(R() * 99999))),
+          [PF]: pf, PolicyNumber: `${pre}-26-${String(101 + j * 7 + pi * 3).padStart(4, '0')}`, IMO: imoCheck(String(900000 + Math.floor(R() * 99999))), VesselName: pick(VN1) + ' ' + pick(VN2),
           OurExposure: exp, TotalInsuredValue: tiv, ReferenceNumber: `RW-${100200 + pi * 50 + j * 7}`, Inception: `2026-${mm}-01`, Expiry: `2027-${mm}-01`,
           ContractDetailsReference: `CDR-2026-${String(pi * 10 + j + 11).padStart(4, '0')}`, SignedLine: Math.round(r(5, 40) * 10) / 10,
           WarExposure: war ? rnd(exp * r(.3, .8), 1e4) : '', WarTotalInsuredValue: war ? rnd(tiv * .9, 1e4) : '',
@@ -70,7 +73,7 @@
   /* ── workbook sheets ── */
   const prompts = () => COLS.map((c, i) => ({ sqref: `${colName(i)}3:${colName(i)}2000`, title: c.l.slice(0, 32), text: (hint(c) + '. ' + c.d).slice(0, 255) }));
   const templateSheet = data => ({
-    name: 'Portfolios', rows: [COLS.map(c => c.l), COLS.map(hint), ...data.map(r => COLS.map(c => r[c.k] ?? ''))],
+    name: 'Policies', rows: [COLS.map(c => c.l), COLS.map(hint), ...data.map(r => COLS.map(c => r[c.k] ?? ''))],
     widths: COLS.map(c => c.w), headerStyles: COLS.map(c => c.m ? 1 : 2), hintRow: true, freeze: 2, rowHeights: { 1: 48 }, prompts: prompts(),
   });
   const infoRows = () => [['Column', 'Description', 'What to enter'], ...COLS.map(c => [c.l + (c.m ? ' (required)' : ''), c.d, hint(c).replace(/^(Required|Optional) · /, '')])];
@@ -90,21 +93,21 @@
     Object.entries(byRow).forEach(([r, list]) => { const ri = r - 1; rows[ri][issueCol] = list.map(e => `${e.label}: ${e.issue}`).join('  •  '); styles[`${ri},${issueCol}`] = 6; });
     const widths = parsed.keys.map(k => k ? colOf(k).w : 18); widths[issueCol] = 70;
     const headerStyles = parsed.keys.map(k => k && colOf(k).m ? 1 : 2); headerStyles[issueCol] = 7;
-    return { name: parsed.sheet || 'Portfolios', rows, widths, headerStyles, cellStyle: styles, hintRow: parsed.hintRow, freeze: parsed.hintRow ? 2 : 1, rowHeights: parsed.hintRow ? { 1: 48 } : {}, prompts: prompts() };
+    return { name: parsed.sheet || 'Policies', rows, widths, headerStyles, cellStyle: styles, hintRow: parsed.hintRow, freeze: parsed.hintRow ? 2 : 1, rowHeights: parsed.hintRow ? { 1: 48 } : {}, prompts: prompts() };
   }
 
   function parseSheet(sheets) {
     const s = sheets.find(s => (s.rows[0] || []).some(h => HMAP[norm(h)] === 'IMO'));
     if (!s) return null;
     const header = s.rows[0].map(h => String(h ?? '').trim());
-    const keys = header.map(h => h ? (HMAP[norm(h)] || null) : null);
+    const keys = header.map(h => h ? (IGNORE.has(norm(h)) ? '__ignore' : HMAP[norm(h)] || null) : null);
     const hr = s.rows[1] || [];
     const hintRow = hr.some(v => /^(required|optional)\s*·/i.test(String(v ?? '').trim()));
     const rows = [];
     for (let i = hintRow ? 2 : 1; i < s.rows.length; i++) {
       const cells = s.rows[i] || [];
       if (!cells.some(v => String(v ?? '').trim() !== '')) continue;
-      const raw = {}; keys.forEach((k, ci) => { if (k && !(k in raw)) raw[k] = cells[ci] ?? ''; });
+      const raw = {}; keys.forEach((k, ci) => { if (k && k !== '__ignore' && !(k in raw)) raw[k] = cells[ci] ?? ''; });
       rows.push({ __row: i + 1, raw });
     }
     return { sheet: s.name, header, keys, rows, hintRow, sheetRows: s.rows.map(r => (r || []).slice()) };
@@ -116,8 +119,8 @@
     'hdr-missing': { one: 'A column is missing', many: '{n} columns are missing', fix: 'Don’t delete or rename columns. Put the header back exactly as it was, or download a fresh copy and paste your changes into it.', fatal: 1 },
     'hdr-unknown': { one: 'A column name isn’t recognised', many: '{n} column names aren’t recognised', fix: 'Change the column name back to the one in the downloaded file, or delete the extra column.', fatal: 1 },
     empty: { one: 'The sheet has no policies', fix: 'Add at least one policy row under the header, or upload the file you downloaded and edited.', fatal: 1 },
-    missing: { one: 'A required cell is empty', many: '{n} required cells are empty', fix: 'Fill in these cells. Fleet / Portfolio, Group, Policy number, IMO number and Our exposure can’t be left blank.' },
-    pf: { one: 'A portfolio name doesn’t match', many: '{n} portfolio names don’t match', fix: 'Type the portfolio name exactly as it appears in Real World.' },
+    missing: { one: 'A required cell is empty', many: '{n} required cells are empty', fix: 'Fill in these cells. Portfolio, Policy Number, IMO and Our Exposure can’t be left blank.' },
+    pf: { one: 'A portfolio name looks mistyped', many: '{n} portfolio names look mistyped', fix: 'These are only a letter or two away from an existing portfolio. Type the name exactly as it appears in Real World — or, if it really is a new portfolio, give it a clearly different name.' },
     'imo-len': { one: 'An IMO number isn’t 7 digits', many: '{n} IMO numbers aren’t 7 digits', fix: 'IMO numbers are always 7 digits, e.g. 9321483. Check for missing or extra digits.' },
     'imo-bad': { one: 'An IMO number doesn’t exist', many: '{n} IMO numbers don’t exist', fix: 'One digit is probably mistyped. Check the number against the vessel’s record.' },
     currency: { one: 'An amount isn’t in US dollars', many: '{n} amounts aren’t in US dollars', fix: 'Convert these to US dollars and enter just the number, e.g. 2450000. We can’t convert currencies for you.' },
@@ -163,13 +166,14 @@
 
   function validate(parsed, names) {
     const errs = [], hIdx = {}, keys = parsed.keys;
-    keys.forEach((k, i) => { if (k && !(k in hIdx)) hIdx[k] = i; });
+    keys.forEach((k, i) => { if (k && k !== '__ignore' && !(k in hIdx)) hIdx[k] = i; });
     const H = (kind, ci, lbl, issue, value = '') => errs.push({ kind, row: 1, ci, letter: colName(ci), col: null, label: lbl, issue, value });
     COLS.forEach(c => { if (!(c.k in hIdx)) H('hdr-missing', -1, c.l, c.m ? 'This required column is missing from the header row.' : 'This column is missing from the header row.'); });
     parsed.header.forEach((h, i) => { if (h && !keys[i]) H('hdr-unknown', i, h, `“${h}” isn’t one of the column names in the downloaded file.`, h); });
     if (errs.length) return { errors: errs, rows: [] };
     if (!parsed.rows.length) return { errors: [{ kind: 'empty', row: '—', ci: -1, letter: '', label: 'Sheet', issue: 'There are no policy rows under the header.', value: '' }], rows: [] };
-    const out = [], seen = {};
+    const out = [], seen = {}, nearCache = {};
+    const near = s => s in nearCache ? nearCache[s] : (nearCache[s] = names.find(n => n !== s && n.toLowerCase() === s.toLowerCase()) || closest(s, names));
     parsed.rows.forEach(r => {
       const n = {}, pf = String(r.raw[PF] ?? '').trim(), policy = String(r.raw.PolicyNumber ?? '').trim();
       const E = (kind, k, issue, value, fixTo) => { const ci = hIdx[k], e = { kind, row: r.__row, ci, letter: colName(ci), col: k, label: label(k), issue, value, pf, policy }; if (fixTo !== undefined && fixTo !== null) e.fixTo = fixTo; errs.push(e); };
@@ -178,7 +182,7 @@
         n[c.k] = '';
         if (s === '') { if (c.m) err('missing', `${c.l} is required.`); return; }
         switch (c.t) {
-          case 'pf': { if (!names.includes(s)) { const m = closest(s, names); err('pf', `There’s no portfolio called “${s}”.${m ? ` Did you mean “${m}”?` : ''}`, m); } n[c.k] = s; break; }
+          case 'pf': { if (!names.includes(s)) { const m = near(s); if (m) err('pf', `“${s}” looks like a typo of “${m}”.`, m); } n[c.k] = s; break; }
           case 'imo': {
             if (/^\d{7}$/.test(s)) { if (!imoOk(s)) err('imo-bad', `${s} isn’t a real IMO number — a digit may be mistyped.`); n[c.k] = s; break; }
             const t = s.replace(/^imo/i, '').replace(/[\s.\-]/g, '');
@@ -300,7 +304,7 @@
     at(20).Inception = '24/09/2026';
     at(26).PolicyType = 'Marine';
     at(31).PolicyNumber = at(30).PolicyNumber;
-    at(35).Group = '';
+    at(35).OurExposure = '';
     at(44)[PF] = at(44)[PF].slice(0, -1);
     { const s = at(50).IMO; at(50).IMO = s.slice(0, 6) + ((+s[6] + 3) % 10); }
     at(53).Expiry = at(53).Inception.replace(/^2026/, '2025');
