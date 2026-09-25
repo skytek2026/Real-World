@@ -20,8 +20,12 @@
   .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
   .shadow-card{box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px rgba(15,23,42,.02)}
   .text-brand{color:var(--brand-600,#2563eb)}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-track{background:transparent}
-  .scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
+  html,body,.scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
+  html::-webkit-scrollbar,body::-webkit-scrollbar,.scroll-thin::-webkit-scrollbar,.ds-scroll::-webkit-scrollbar{width:6px;height:6px}
+  html::-webkit-scrollbar-track,body::-webkit-scrollbar-track,.scroll-thin::-webkit-scrollbar-track,.ds-scroll::-webkit-scrollbar-track{background:#f3f4f6}
+  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,.scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}
+  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,.scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
   /* Card */
   .card { background:#fff; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 1px 2px rgba(15,23,42,.08); overflow:hidden; }
   .card-hdr { padding:10px 16px; border-bottom:1px solid #f1f5f9; display:flex; align-items:center; justify-content:space-between; }

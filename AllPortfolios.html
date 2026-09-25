@@ -19,8 +19,12 @@
   .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
   .shadow-card{box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px rgba(15,23,42,.02)}
   .text-brand-600{color:#2563eb}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-track{background:transparent}
-  .scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
+  html,body,.scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
+  html::-webkit-scrollbar,body::-webkit-scrollbar,.scroll-thin::-webkit-scrollbar,.ds-scroll::-webkit-scrollbar{width:6px;height:6px}
+  html::-webkit-scrollbar-track,body::-webkit-scrollbar-track,.scroll-thin::-webkit-scrollbar-track,.ds-scroll::-webkit-scrollbar-track{background:#f3f4f6}
+  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,.scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}
+  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,.scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
   .tracking-micro{letter-spacing:0.04em}
 
   /* Category tabs */
@@ -124,6 +128,11 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="modals/EditPortfolioModal.js"></script>
 <script src="modals/EditPortfolioGroupsModal.js"></script>
 <script src="modals/DeletePortfolioModal.js"></script>
+<link rel="stylesheet" href="modals/UpdateAllPortfoliosModal.css" />
+<script src="modals/xlsx-lite.js"></script>
+<script src="modals/portfolio-update-core.js"></script>
+<script src="modals/portfolio-update-sync.js"></script>
+<script src="modals/UpdateAllPortfoliosModal.js"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -397,9 +406,12 @@ function Content() {
   return `
   <div class="flex-1 flex flex-col overflow-hidden">
     <!-- Top bar with Add button -->
-    <div class="flex items-center justify-end px-6 py-3">
+    <div class="flex items-center justify-end gap-2 px-6 py-3">
       <button class="inline-flex items-center gap-2 bg-brand-600 text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" style="background:#2563eb;">
-        ${PLUS_ICO} Add New Portfolio
+        ${PLUS_ICO} Add Portfolio
+      </button>
+      <button data-uap-open class="inline-flex items-center gap-2 bg-white text-slate-700 text-sm font-semibold px-4 py-2 rounded-lg border border-slate-300 hover:bg-slate-50 transition-colors">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><polyline points="21 3 21 9 15 9"></polyline></svg> Update All Portfolios
       </button>
     </div>
 
@@ -582,6 +594,10 @@ window.render = function() {
       location.href = dest.url;
     });
   });
+
+  /* Update All Portfolios → download / upload / validate flow */
+  const uapBtn = document.querySelector('[data-uap-open]');
+  if (uapBtn) uapBtn.addEventListener('click', () => window.UpdateAllPortfoliosModal.open({ portfolios: PORTFOLIOS.Marine.map(p => p.name) }));
 
   /* Edit portfolio (or group) → open appropriate modal */
   document.querySelectorAll('[data-pf-edit]').forEach(btn => {
