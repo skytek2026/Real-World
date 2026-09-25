@@ -31,19 +31,11 @@
     return days <= 0 ? 'earlier today' : days === 1 ? 'yesterday' : days < 14 ? days + ' days ago' : 'on ' + a.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
   }
   const ageDays = iso => Math.floor((Date.now() - new Date(iso)) / 864e5);
-  function syncBadge() {
-    const b = document.querySelector('[data-uap-open]'); if (!b) return;
-    const p = Y().pending(); let t = b.querySelector('.uap-pending');
-    if (!p) { if (t) t.remove(); b.removeAttribute('title'); return; }
-    if (!t) { t = document.createElement('span'); t.className = 'uap-pending'; b.appendChild(t); }
-    t.textContent = 'Upload pending'; b.title = `You downloaded ${p.name} ${rel(p.at)} — upload it when you’ve finished editing`;
-  }
   const kb = n => n < 1024 * 1024 ? Math.max(1, Math.round(n / 1024)) + ' KB' : (n / 1048576).toFixed(1) + ' MB';
 
   function ensureRoot() { let r = document.getElementById('modal-root'); if (!r) { r = document.createElement('div'); r.id = 'modal-root'; document.body.appendChild(r); } return r; }
   function close() {
     token++;
-    setTimeout(syncBadge, 0);
     const o = document.querySelector('#modal-root .rw-modal-overlay'); if (!o) return;
     o.classList.add('is-closing'); setTimeout(() => o.remove(), 120);
     document.removeEventListener('keydown', onKey);
@@ -85,26 +77,7 @@
 
   const BODY = {
     download() {
-      const pfs = new Set(DATA.map(r => r[C().PF])).size, P = !S.downloaded && Y().pending();
-      if (P) {
-        const cs = Y().changesSince(P.at), old = ageDays(P.at) >= 7;
-        return `<div class="uap-resume"><div class="uap-resume-ico">${I.clock}</div><div class="uap-resume-main">
-            <div class="uap-resume-k">Continue where you left off</div>
-            <div class="uap-resume-t">You downloaded your portfolios ${rel(P.at)}</div>
-            <div class="uap-resume-s"><span class="uap-mono">${esc(P.name)}</span> · ${esc(Y().human(P.at))}</div>
-            <div class="uap-resume-since${cs.policies ? ' is-changed' : ''}">${I.users}<span>${cs.policies
-              ? `Since then, <b>${plural(cs.policies, 'policy').replace('policys', 'policies')}</b> ${cs.policies === 1 ? 'has' : 'have'} been updated in Real World by ${esc(cs.by.join(' and '))}. When you upload, we’ll show you anything that clashes with your edits — nobody’s changes will be overwritten without you choosing.`
-              : 'Nothing has changed in Real World since you downloaded.'}</span></div>
-            ${old ? `<div class="uap-resume-old">This download is over a week old. You can still upload it, or start again with a fresh copy if you haven’t made many edits.</div>` : ''}
-            <div class="uap-resume-acts"><button class="rw-modal-btn rw-modal-btn-primary" data-uap-goto="upload"><span class="uap-bi">${I.upload}Upload my edited file</span></button>
-              <button class="uap-link" data-uap-dismiss>I’m not using this file</button></div>
-          </div></div>
-          <div class="uap-or"><span>or start again with a fresh copy</span></div>
-          <div class="uap-file"><div class="uap-file-ico">${I.sheet}</div>
-            <div class="uap-file-main"><div class="uap-file-name">${fileName()}</div><div class="uap-file-meta">Latest version · ${plural(pfs, 'portfolio')} · ${plural(DATA.length, 'policy').replace('policys', 'policies')}</div></div>
-            <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-download><span class="uap-bi">${I.download}Download fresh copy</span></button></div>
-          <p class="uap-quiet">Edits you’ve made in the earlier file won’t carry over to a fresh copy.</p>`;
-      }
+      const pfs = new Set(DATA.map(r => r[C().PF])).size;
       return `<p class="uap-lede">Download the latest version of all your portfolios, make your changes in Excel, then upload the file. Take as long as you need — nothing is updated until you upload and confirm.</p>
         <div class="uap-file"><div class="uap-file-ico">${I.sheet}</div>
           <div class="uap-file-main"><div class="uap-file-name">${fileName()}</div><div class="uap-file-meta">${plural(pfs, 'portfolio')} · ${plural(DATA.length, 'policy').replace('policys', 'policies')} · ${C().COLS.length} columns</div></div>
@@ -120,8 +93,7 @@
         </ul></div>`;
     },
     upload() {
-      const P = Y().pending();
-      return `${P ? `<div class="uap-hint">${I.clock.replace(/width="20" height="20"/, 'width="16" height="16"')}<span>Uploading the file you downloaded ${rel(P.at)}? That’s fine — we’ll check for anything updated in Real World since.</span></div>` : ''}<p class="uap-lede">Upload your edited portfolio file. Every row is checked for missing values, invalid IMO numbers, and currency, date and choice-field formats before anything is updated.</p>
+      return `<p class="uap-lede">Upload your edited portfolio file. Every row is checked for missing values, invalid IMO numbers, and currency, date and choice-field formats before anything is updated.</p>
         <label class="uap-drop" data-uap-drop>
           <input type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden data-uap-input>
           <span class="uap-drop-ico">${I.uploadLg}</span>
@@ -130,8 +102,7 @@
         </label>
         <div class="uap-demo"><span>Try with an example file:</span>
           <button class="uap-chip" data-uap-sample="valid">Example — passes checks</button>
-          <button class="uap-chip" data-uap-sample="errors">Example — has problems</button>
-          ${P ? `<button class="uap-chip" data-uap-sample="pending">Example — my edited ${dShort(P.at)} download</button>` : ''}</div>`;
+          <button class="uap-chip" data-uap-sample="errors">Example — has problems</button></div>`;
     },
     validating() {
       const checks = ['Reading workbook', 'Checking column headers', S.rowCount ? `Validating ${plural(S.rowCount, 'row')}` : 'Validating rows', 'Checking for updates made since you downloaded', 'Comparing with current portfolios'];
@@ -276,10 +247,9 @@
 
   const FOOT = {
     download: () => {
-      const P = !S.downloaded && Y().pending();
       return `<div class="uap-foot-left"><button class="rw-modal-btn rw-modal-btn-cancel" data-uap-close>Cancel</button></div>
-      ${S.downloaded || P ? '' : `<button class="rw-modal-btn rw-modal-btn-secondary" data-uap-goto="upload"><span class="uap-bi">${I.upload}I already have an edited file</span></button>`}
-      <button class="rw-modal-btn rw-modal-btn-primary" data-uap-goto="upload"${S.downloaded || P ? '' : ' disabled'}>Next: Upload file</button>`;
+      ${S.downloaded ? '' : `<button class="rw-modal-btn rw-modal-btn-secondary" data-uap-goto="upload"><span class="uap-bi">${I.upload}I already have an edited file</span></button>`}
+      <button class="rw-modal-btn rw-modal-btn-primary" data-uap-goto="upload"${S.downloaded ? '' : ' disabled'}>Next: Upload file</button>`;
     },
     upload: () => `<div class="uap-foot-left"><button class="uap-link" data-uap-goto="download">Back to download</button></div>
       <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-close>Cancel</button>`,
@@ -355,9 +325,7 @@
     m.querySelectorAll('[data-uap-close]').forEach(b => b.addEventListener('click', close));
     m.querySelectorAll('[data-uap-goto]').forEach(b => b.addEventListener('click', () => { S.step = b.dataset.uapGoto; render(); }));
     const dl = m.querySelector('[data-uap-download]');
-    if (dl) dl.addEventListener('click', () => { const rec = Y().recordDownload(DATA); saveBlob(workbook(DATA, rec), rec.name); S.downloaded = true; render(); syncBadge(); });
-    const ds = m.querySelector('[data-uap-dismiss]');
-    if (ds) ds.addEventListener('click', () => { const p = Y().pending(); if (p) Y().setStatus(p.id, 'dismissed'); render(); syncBadge(); });
+    if (dl) dl.addEventListener('click', () => { const rec = Y().recordDownload(DATA); saveBlob(workbook(DATA, rec), rec.name); S.downloaded = true; render(); });
     m.querySelectorAll('[data-uap-choose]').forEach(b => b.addEventListener('click', () => { const [id, side] = b.dataset.uapChoose.split(':'); S.choices[id] = side; render(); }));
     m.querySelectorAll('[data-uap-all]').forEach(b => b.addEventListener('click', () => { S.merge.conflicts.forEach(c => { S.choices[c.id] = b.dataset.uapAll; }); render(); }));
     const rs = m.querySelector('[data-uap-resolve]');
@@ -371,18 +339,16 @@
     }
     m.querySelectorAll('[data-uap-sample]').forEach(b => b.addEventListener('click', () => {
       const kind = b.dataset.uapSample;
-      if (kind === 'pending') { const P = Y().pending(); return handle(workbook(C().sampleValid(P.base), P), P.name.replace('.xlsx', '_edited.xlsx')); }
       const rec = Y().recordDownload(DATA, { demo: true });
       handle(workbook(kind === 'valid' ? C().sampleValid(DATA) : C().sampleErrors(DATA), rec), fileName().replace('.xlsx', kind === 'valid' ? '_edited.xlsx' : '_edited_draft.xlsx'));
     }));
     const cf = m.querySelector('[data-uap-confirm]');
-    if (cf) cf.addEventListener('click', () => { DATA_BEFORE = DATA; DATA = S.res.rows; Y().saveData(DATA); Y().logDiff('You', S.res.diff); if (S.dl) Y().setStatus(S.dl.id, 'used'); syncBadge(); S.applied = true; S.step = 'success'; if (OPTS.onUpdated) OPTS.onUpdated(S.res.diff); render(); });
+    if (cf) cf.addEventListener('click', () => { DATA_BEFORE = DATA; DATA = S.res.rows; Y().saveData(DATA); Y().logDiff('You', S.res.diff); if (S.dl) Y().setStatus(S.dl.id, 'used'); S.applied = true; S.step = 'success'; if (OPTS.onUpdated) OPTS.onUpdated(S.res.diff); render(); });
     const pf = m.querySelector('[data-uap-pf]');
     if (pf) pf.addEventListener('change', () => { S.filter = pf.value; render(); });
     const an = m.querySelector('[data-uap-annot]');
     if (an) an.addEventListener('click', () => saveBlob(X().write([C().annotatedSheet(S.parsed, S.res.errors, S.fixes), C().infoSheet(), ...(S.fileMeta ? [Y().detailsSheet(S.fileMeta)] : [])]), S.file.name.replace(/\.xlsx$/i, '') + '_problems.xlsx'));
   }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncBadge); else setTimeout(syncBadge, 0);
   window.UpdateAllPortfoliosModal = { open, close };
 })();
