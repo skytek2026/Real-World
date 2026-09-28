@@ -12,6 +12,8 @@
 
   function loadData(names) { const d = get(LS.data, null); if (Array.isArray(d)) d.forEach(r => { if (r.IMO === '9412379') r.IMO = '9412373'; }); return Array.isArray(d) && d.length && d.every(r => r[C().PF] != null) ? d : null; }
   const saveData = d => set(LS.data, d);
+  const loadGroups = () => { const g = get('rw-uap-groups-v1', null); return Array.isArray(g) && g.length ? g : null; };
+  const saveGroups = g => set('rw-uap-groups-v1', g);
 
   const downloads = () => get(LS.dl, []);
   function recordDownload(rows, opts = {}) {
@@ -109,5 +111,5 @@
     return data;
   }
 
-  window.PortfolioUpdateSync = { loadData, saveData, recordDownload, findDownload, pending, setStatus, whoChanged, changesSince, logDiff, merge, resolve, detailsSheet, readFileId, simulateColleague, human };
+  window.PortfolioUpdateSync = { loadGroups, saveGroups, loadData, saveData, recordDownload, findDownload, pending, setStatus, whoChanged, changesSince, logDiff, merge, resolve, detailsSheet, readFileId, simulateColleague, human };
 })();

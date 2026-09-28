@@ -71,13 +71,73 @@
   }
 
   /* ── workbook sheets ── */
-  const prompts = () => COLS.map((c, i) => ({ sqref: `${colName(i)}3:${colName(i)}2000`, title: c.l.slice(0, 32), text: (hint(c) + '. ' + c.d).slice(0, 255) }));
+  const prompts = () => COLS.map((c, i) => ({ sqref: `${colName(i)}2:${colName(i)}5000`, title: c.l.slice(0, 32), text: (hint(c) + '. ' + c.d).slice(0, 255) }));
   const templateSheet = data => ({
-    name: 'Policies', rows: [COLS.map(c => c.l), COLS.map(hint), ...data.map(r => COLS.map(c => r[c.k] ?? ''))],
-    widths: COLS.map(c => c.w), headerStyles: COLS.map(c => c.m ? 1 : 2), hintRow: true, freeze: 2, rowHeights: { 1: 48 }, prompts: prompts(),
+    name: 'Policies', rows: [COLS.map(c => c.l), ...data.map(r => COLS.map(c => r[c.k] ?? ''))],
+    widths: COLS.map(c => c.w), headerStyles: COLS.map(c => c.m ? 1 : 2), freeze: 1, prompts: prompts(),
   });
   const infoRows = () => [['Column', 'Description', 'What to enter'], ...COLS.map(c => [c.l + (c.m ? ' (required)' : ''), c.d, hint(c).replace(/^(Required|Optional) · /, '')])];
   const infoSheet = () => ({ name: 'Info', rows: infoRows(), widths: [34, 80, 48], headerStyles: [2, 2, 2] });
+
+  /* ── Portfolios sheet: portfolio → portfolio group (one row per pair) ── */
+  const GH = { name: 'Portfolio Name', group: 'Portfolio Group' };
+  const GROUP_POOL = ['Marine Hull', 'Marine War', 'Cargo', 'P&I', 'TGroup'];
+  function buildGroups(names) {
+    const out = [];
+    names.forEach((n, i) => { out.push({ pf: n, group: GROUP_POOL[i % 3] }); if (i % 4 === 1) out.push({ pf: n, group: 'Marine War' === GROUP_POOL[i % 3] ? 'Marine Hull' : 'Marine War' }); });
+    return out;
+  }
+  function sampleGroups(g) {
+    const a = g.map(x => ({ ...x })), names = [...new Set(a.map(x => x.pf))], has = (pf, gr) => a.some(x => x.pf === pf && x.group === gr);
+    if (names[0]) { const i = a.findIndex(x => x.pf === names[0] && x.group === 'P&I'); if (i >= 0) a.splice(i, 1); else a.push({ pf: names[0], group: 'P&I' }); }
+    if (names[2]) { const i = a.findIndex(x => x.pf === names[2]); if (i >= 0) a.splice(i, 1); else a.push({ pf: names[2], group: 'Marine Hull' }); }
+    if (names[5]) { const i = a.findIndex(x => x.pf === names[5]); const to = GROUP_POOL.find(gr => !has(names[5], gr)); if (i >= 0 && to) a[i] = { pf: names[5], group: to }; }
+    return a;
+  }
+  const portfoliosSheet = groups => ({
+    name: 'Portfolios', rows: [[GH.name, GH.group], ...groups.map(g => [g.pf, g.group])], widths: [34, 24], headerStyles: [1, 1], freeze: 1,
+    prompts: [
+      { sqref: 'A2:A5000', title: 'Portfolio name', text: 'Required. Identifies the specific fleet or collection of vessels. Must match the Portfolio column on the Policies sheet.' },
+      { sqref: 'B2:B5000', title: 'Portfolio group', text: 'Required. The group this portfolio belongs to (e.g. Marine Hull, War, Cargo). One portfolio can belong to several groups — add a row for each.' },
+    ],
+  });
+  function parsePortfolios(sheets) {
+    const s = sheets.find(s => norm(s.name) === 'portfolios') || sheets.find(s => (s.rows[0] || []).some(h => norm(h) === 'portfoliogroup'));
+    if (!s) return null;
+    const header = (s.rows[0] || []).map(h => String(h ?? '').trim()), ni = header.findIndex(h => norm(h) === 'portfolioname' || norm(h) === 'portfolio'), gi = header.findIndex(h => norm(h) === 'portfoliogroup' || norm(h) === 'group');
+    const rows = [];
+    for (let i = 1; i < s.rows.length; i++) { const r = s.rows[i] || []; if (!r.some(v => String(v ?? '').trim() !== '')) continue; rows.push({ __row: i + 1, pf: ni >= 0 ? String(r[ni] ?? '').trim() : '', group: gi >= 0 ? String(r[gi] ?? '').trim() : '' }); }
+    return { sheet: s.name, header, ni, gi, rows, sheetRows: s.rows.map(r => (r || []).slice()) };
+  }
+  function validatePortfolios(p) {
+    if (!p) return { errors: [], rows: null };
+    const errs = [], SH = p.sheet, E = (kind, row, ci, label, issue, value) => errs.push({ kind, sheet: SH, row, ci, letter: colName(ci), col: null, label, issue, value });
+    if (p.ni < 0) E('hdr-missing', 1, -1, GH.name, 'This required column is missing from the Portfolios sheet.', '');
+    if (p.gi < 0) E('hdr-missing', 1, -1, GH.group, 'This required column is missing from the Portfolios sheet.', '');
+    if (errs.length) return { errors: errs, rows: null };
+    const seen = {}, out = [];
+    p.rows.forEach(r => {
+      if (!r.pf) E('grp-missing', r.__row, p.ni, GH.name, 'Portfolio Name is required.', '');
+      if (!r.group) E('grp-missing', r.__row, p.gi, GH.group, 'Portfolio Group is required.', '');
+      if (!r.pf || !r.group) return;
+      const k = r.pf.toLowerCase() + '|' + r.group.toLowerCase();
+      if (seen[k]) { E('grp-dup', r.__row, p.gi, GH.group, `“${r.pf}” is already in “${r.group}” on row ${seen[k]}.`, r.group); return; }
+      seen[k] = r.__row; out.push({ pf: r.pf, group: r.group });
+    });
+    return { errors: errs, rows: out };
+  }
+  function groupDiff(a, b) {
+    const k = g => g.pf + '\u0000' + g.group, A = new Set(a.map(k)), B = new Set(b.map(k));
+    return { added: b.filter(g => !A.has(k(g))), removed: a.filter(g => !B.has(k(g))) };
+  }
+  function annotatedPortfolios(p, errors) {
+    const rows = p.sheetRows.map(r => r.slice()), styles = {}, byRow = {}, ic = Math.max(2, ...rows.map(r => r.length));
+    rows[0][ic] = 'Problems to fix';
+    errors.forEach(e => { if (typeof e.row !== 'number') return; if (e.ci >= 0) styles[`${e.row - 1},${e.ci}`] = 3; if (e.row > 1) (byRow[e.row] = byRow[e.row] || []).push(e); });
+    Object.entries(byRow).forEach(([r, l]) => { rows[r - 1][ic] = l.map(e => `${e.label}: ${e.issue}`).join('  •  '); styles[`${r - 1},${ic}`] = 6; });
+    const widths = [34, 24]; widths[ic] = 70; const hs = [1, 1]; hs[ic] = 7;
+    return { name: p.sheet, rows, widths, headerStyles: hs, cellStyle: styles, freeze: 1 };
+  }
 
   function annotatedSheet(parsed, errors, fixes) {
     const rows = parsed.sheetRows.map(r => (r || []).slice());
@@ -91,8 +151,8 @@
     });
     (fixes || []).forEach(f => { if (f.ci >= 0) styles[`${f.row - 1},${f.ci}`] = 5; });
     Object.entries(byRow).forEach(([r, list]) => { const ri = r - 1; rows[ri][issueCol] = list.map(e => `${e.label}: ${e.issue}`).join('  •  '); styles[`${ri},${issueCol}`] = 6; });
-    const widths = parsed.keys.map(k => k ? colOf(k).w : 18); widths[issueCol] = 70;
-    const headerStyles = parsed.keys.map(k => k && colOf(k).m ? 1 : 2); headerStyles[issueCol] = 7;
+    const widths = parsed.keys.map(k => k && colOf(k) ? colOf(k).w : 18); widths[issueCol] = 70;
+    const headerStyles = parsed.keys.map(k => k && colOf(k) && colOf(k).m ? 1 : 2); headerStyles[issueCol] = 7;
     return { name: parsed.sheet || 'Policies', rows, widths, headerStyles, cellStyle: styles, hintRow: parsed.hintRow, freeze: parsed.hintRow ? 2 : 1, rowHeights: parsed.hintRow ? { 1: 48 } : {}, prompts: prompts() };
   }
 
@@ -130,6 +190,8 @@
     date: { one: 'A date is in the wrong format', many: '{n} dates are in the wrong format', fix: 'Write dates as year-month-day, e.g. 2026-09-24.' },
     'date-order': { one: 'An expiry date is before the inception date', many: '{n} expiry dates are before the inception date', fix: 'A policy must end after it starts. Check both dates on these rows.' },
     choice: { one: 'A value isn’t one of the allowed options', many: '{n} values aren’t one of the allowed options', fix: 'Use one of the options listed under the column header in the file.' },
+    'grp-missing': { one: 'A row on the Portfolios sheet is incomplete', many: '{n} cells on the Portfolios sheet are empty', fix: 'On the Portfolios sheet, every row needs both a Portfolio Name and a Portfolio Group.' },
+    'grp-dup': { one: 'A portfolio is listed in the same group twice', many: '{n} portfolios are listed in the same group twice', fix: 'Delete the duplicate row on the Portfolios sheet. A portfolio can be in several groups, but only once per group.' },
     dup: { one: 'A policy number is used twice', many: '{n} policy numbers are used twice', fix: 'Each policy number can appear only once per portfolio. Change one of them, or delete the duplicate row.' },
   };
   const groupTitle = (k, n) => n > 1 && KINDS[k].many ? KINDS[k].many.replace('{n}', n) : KINDS[k].one;
@@ -312,5 +374,5 @@
     return a;
   }
 
-  window.PortfolioUpdateCore = { COLS, PF, KINDS, label, hint, groupTitle, fileError, buildDataset, templateSheet, infoSheet, annotatedSheet, parseSheet, validate, applyFixes, skipRows, diff, fmt, sampleValid, sampleErrors };
+  window.PortfolioUpdateCore = { sampleGroups, buildGroups, portfoliosSheet, parsePortfolios, validatePortfolios, groupDiff, annotatedPortfolios, COLS, PF, KINDS, label, hint, groupTitle, fileError, buildDataset, templateSheet, infoSheet, annotatedSheet, parseSheet, validate, applyFixes, skipRows, diff, fmt, sampleValid, sampleErrors };
 })();

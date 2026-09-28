@@ -21,7 +21,7 @@
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const wait = ms => new Promise(r => setTimeout(r, ms));
   const plural = (n, w, s = 's') => `${n} ${w}${n === 1 ? '' : s}`;
-  let DATA = null, DATA_BEFORE = null, S = {}, OPTS = {}, token = 0;
+  let DATA = null, DATA_BEFORE = null, GROUPS = null, S = {}, OPTS = {}, token = 0;
 
   const today = () => new Date().toISOString().slice(0, 10);
   const fileName = () => `RealWorld_All_Portfolios_${today()}.xlsx`;
@@ -40,22 +40,23 @@
     o.classList.add('is-closing'); setTimeout(() => o.remove(), 120);
     document.removeEventListener('keydown', onKey);
   }
-  function onKey(e) { if (e.key === 'Escape' && S.step !== 'validating') close(); }
+  function onKey(e) { if (e.key === 'Escape' && S.step !== 'validating' && S.step !== 'applying') close(); }
 
   function open(opts = {}) {
     OPTS = opts;
     if (!DATA) DATA = Y().loadData(opts.portfolios || []) || C().buildDataset(opts.portfolios || []);
+    if (!GROUPS) GROUPS = Y().loadGroups() || C().buildGroups([...new Set(DATA.map(r => r[C().PF]))]);
     S = { limit: 50, choices: {}, merge: null, dl: null, idState: null, fileMeta: null, applied: false, names: opts.portfolios || [], step: 'download', downloaded: false, file: null, res: null, filter: 'All', progress: 0, fixes: [], skipped: [], parsed: null, v: null };
     ensureRoot().innerHTML = `<div class="rw-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="uap-title"><div class="rw-modal uap-modal"></div></div>`;
     const o = document.querySelector('#modal-root .rw-modal-overlay');
-    o.addEventListener('click', e => { if (e.target === o && S.step !== 'validating') close(); });
+    o.addEventListener('click', e => { if (e.target === o && S.step !== 'validating' && S.step !== 'applying') close(); });
     document.addEventListener('keydown', onKey);
     render();
   }
 
   function stepper() {
-    const idx = S.applied ? 4 : { download: 0, upload: 1, validating: 1, errors: 2, conflicts: 2, review: 2, success: 4 }[S.step];
-    return `<div class="uap-steps">${['Download', 'Upload', 'Review changes', 'Confirm'].map((l, i) => {
+    const idx = S.applied && S.step !== 'applying' ? 4 : { download: 0, upload: 1, validating: 1, errors: 2, conflicts: 2, review: 2, applying: 3, success: 4 }[S.step];
+    return `<div class="uap-steps">${['Download', 'Upload', 'Review changes', 'Update'].map((l, i) => {
       const cls = S.step === 'errors' && i === 2 ? 'is-error' : i < idx ? 'is-done' : i === idx ? 'is-active' : '';
       const n = cls === 'is-done' ? I.tick : cls === 'is-error' ? '!' : i + 1;
       return (i ? '<span class="uap-step-line"></span>' : '') + `<span class="uap-step ${cls}"><span class="uap-step-n">${n}</span>${l}</span>`;
@@ -68,7 +69,7 @@
     m.classList.toggle('is-wide', S.step === 'errors' || S.step === 'review' || S.step === 'conflicts');
     m.innerHTML = `
       <div class="rw-modal-header has-close"><div class="rw-modal-title" id="uap-title">Update All Portfolios</div>
-        <button class="uap-x" data-uap-close aria-label="Close"${S.step === 'validating' ? ' disabled' : ''}>${I.x}</button></div>
+        <button class="uap-x" data-uap-close aria-label="Close"${S.step === 'validating' || S.step === 'applying' ? ' disabled' : ''}>${I.x}</button></div>
       ${stepper()}
       <div class="rw-modal-body scroll-thin">${BODY[S.step]()}</div>
       <div class="rw-modal-footer">${FOOT[S.step]()}</div>`;
@@ -78,22 +79,11 @@
   const BODY = {
     download() {
       const pfs = new Set(DATA.map(r => r[C().PF])).size;
-      return `<p class="uap-lede">Download the latest version of all your portfolios, make your changes in Excel, then upload the file. Take as long as you need — nothing is updated until you upload and confirm.</p>
-        <div class="uap-file"><div class="uap-file-ico">${I.sheet}</div>
-          <div class="uap-file-main"><div class="uap-file-name">${fileName()}</div><div class="uap-file-meta">${plural(pfs, 'portfolio')} · ${plural(DATA.length, 'policy').replace('policys', 'policies')} · ${C().COLS.length} columns</div></div>
-          <button class="rw-modal-btn ${S.downloaded ? 'rw-modal-btn-cancel' : 'rw-modal-btn-primary'}" data-uap-download><span class="uap-bi">${I.download}${S.downloaded ? 'Download again' : 'Download Excel'}</span></button></div>
-        ${S.downloaded ? `<div class="uap-done-note">${I.okSm}<span>Downloaded. You can upload it now, or close this window and come back when you’ve finished editing — even days later.</span></div>` : ''}
-        <div class="uap-rules"><div class="uap-rules-t">Before you edit</div><ul>
-          <li>The grey row under each column name shows what to enter. Click any cell in Excel to see a tip.</li>
-          <li>Every row needs <b>Portfolio</b>, <b>Policy Number</b>, <b>IMO</b> and <b>Our Exposure</b>. Amounts are in US dollars.</li>
-          <li>Keep the column names and the grey hint row as they are — don’t rename, remove or reorder columns.</li>
-          <li>To remove a policy, delete its row. To add a policy, add a new row.</li>
-          <li>Keep the <b>File details</b> sheet. If colleagues update portfolios in Real World while you’re editing, it lets us show you what changed so nothing is overwritten by mistake.</li>
-          <li>If anything needs correcting when you upload, we’ll show you exactly where.</li>
-        </ul></div>`;
+      return `<p class="uap-lede" style="text-align:center;margin-left:auto;margin-right:auto">Download the latest version of all your portfolios, make your changes in Excel, then upload the file. Take as long as you need — nothing is updated until you upload and confirm.</p>
+        ${S.downloaded ? `<div class="uap-done-note">${I.okSm}<span>Downloaded. You can upload it now, or close this window and come back when you’ve finished editing — even days later.</span></div>` : ''}`;
     },
     upload() {
-      return `<p class="uap-lede">Upload your edited portfolio file. Every row is checked for missing values, invalid IMO numbers, and currency, date and choice-field formats before anything is updated.</p>
+      return `<p class="uap-lede">Upload your edited portfolio file. If anything needs correcting, we’ll show you exactly where. Every row is checked for missing values, invalid IMO numbers, and currency, date and choice-field formats before anything is updated.</p>
         <label class="uap-drop" data-uap-drop>
           <input type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden data-uap-input>
           <span class="uap-drop-ico">${I.uploadLg}</span>
@@ -102,21 +92,24 @@
         </label>
         <div class="uap-demo"><span>Try with an example file:</span>
           <button class="uap-chip" data-uap-sample="valid">Example — passes checks</button>
-          <button class="uap-chip" data-uap-sample="errors">Example — has problems</button></div>`;
+          <button class="uap-chip" data-uap-sample="errors">Example — has problems</button></div>
+        <div class="uap-rules"><div class="uap-rules-t">Editing your file</div><ul>
+          <li>The Excel workbook contains two worksheets:<ul class="uap-rules-sub"><li><b>Policies</b> where you enter individual policies,</li><li><b>Portfolios</b> where you map portfolios to portfolio groups.</li></ul></li>
+          <li>Click on any cell in the spreadsheet to display a help popup.</li>
+          <li>Every row needs <b>Portfolio</b>, <b>Policy Number</b>, <b>IMO</b> and <b>Our Exposure</b>. Amounts are in US dollars.</li>
+          <li>Keep the column names as they are - don’t rename or remove columns. Extra columns will be ignored.</li>
+          <li>To remove a policy, delete its row. To add a policy, add a new row.</li>
+        </ul></div>`;
     },
     validating() {
-      const checks = ['Reading workbook', 'Checking column headers', S.rowCount ? `Validating ${plural(S.rowCount, 'row')}` : 'Validating rows', 'Checking for updates made since you downloaded', 'Comparing with current portfolios'];
       return `<div class="uap-file" style="margin-top:0"><div class="uap-file-ico">${I.sheet}</div><div class="uap-file-main"><div class="uap-file-name">${esc(S.file.name)}</div><div class="uap-file-meta">${kb(S.file.size)}</div></div></div>
-        <div class="uap-check-list">${checks.map((c, i) => {
-          const st = i < S.progress ? 'is-ok' : i === S.progress ? 'is-run' : '';
-          return `<div class="uap-check ${st}"><span class="uap-check-dot">${st === 'is-ok' ? I.tick : ''}</span>${c}</div>`;
-        }).join('')}</div>`;
+        <div class="uap-proc" role="status" aria-live="polite"><span class="uap-spinner" aria-hidden="true"></span><div class="uap-proc-t">Checking your file…</div><div class="uap-proc-s">This may take a moment for large files.</div></div>`;
     },
     errors() {
       const errs = S.res.errors, K = C().KINDS, st = errState();
       const groups = Object.keys(K).map(k => ({ k, list: errs.filter(e => e.kind === k) })).filter(g => g.list.length);
       const where = e => typeof e.row === 'number'
-        ? `<b>${e.row === 1 ? 'Header row' : 'Row ' + e.row}</b><span class="uap-sub">${esc(e.label)}${e.letter ? ' · column ' + e.letter : ''}</span>`
+        ? `<b>${e.row === 1 ? 'Header row' : 'Row ' + e.row}</b><span class="uap-sub">${e.sheet ? esc(e.sheet) + ' sheet · ' : ''}${esc(e.label)}${e.letter ? ' · column ' + e.letter : ''}</span>`
         : `<b>${esc(e.label)}</b>`;
       const who = e => e.pf || e.policy ? `<span class="uap-who">${esc(e.pf || '—')}</span><span class="uap-sub">${esc(e.policy || 'No policy number')}</span>` : '<span class="uap-dim">—</span>';
       const val = e => e.value === '' || e.value == null ? '<span class="uap-dim">Empty</span>' : `<span class="uap-mono">${esc(e.value)}</span>`;
@@ -127,11 +120,10 @@
       return `<div class="uap-banner is-err">${I.alert}<div><div class="uap-banner-t">${lead}</div>
           <div class="uap-banner-s">Nothing has been updated yet. ${next}</div></div></div>
         ${groups.map(g => {
-          const showWho = g.list.some(e => e.pf || e.policy);
           return `<section class="uap-grp"><div class="uap-grp-h"><span class="uap-grp-t">${esc(C().groupTitle(g.k, g.list.length))}</span></div>
             <div class="uap-grp-fix">${I.bulb}<span><b>How to fix:</b> ${esc(K[g.k].fix)}</span></div>
-            <div class="uap-grp-table scroll-thin"><table class="uap-table"><thead><tr><th>Where</th>${showWho ? '<th>Portfolio / policy</th>' : ''}<th>In your file</th><th>What’s wrong</th></tr></thead><tbody>
-              ${g.list.slice(0, 100).map(e => `<tr><td class="uap-where">${where(e)}</td>${showWho ? `<td class="uap-where">${who(e)}</td>` : ''}<td>${val(e)}</td><td>${det(e)}</td></tr>`).join('')}
+            <div class="uap-grp-table scroll-thin"><table class="uap-table"><thead><tr><th>Where</th><th>In your file</th><th>What’s wrong</th></tr></thead><tbody>
+              ${g.list.slice(0, 100).map(e => `<tr><td class="uap-where">${where(e)}</td><td>${val(e)}</td><td>${det(e)}</td></tr>`).join('')}
             </tbody></table></div>${g.list.length > 100 ? `<div class="uap-quiet">Showing the first 100 of ${g.list.length}. Download your file with problems highlighted to see them all.</div>` : ''}</section>`;
         }).join('')}`;
     },
@@ -166,7 +158,7 @@
         ${m.conflicts.map(card).join('')}`;
     },
     review() {
-      const d = S.res.diff, total = allNames().length, none = !d.changed.length && !d.added.length && !d.removed.length;
+      const d = S.res.diff, g = S.res.gdiff, total = allNames().length, none = !d.changed.length && !d.added.length && !d.removed.length && !g.added.length && !g.removed.length;
       const summary = summaryHtml();
       if (none) return `<div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">File passed all checks — no differences found</div><div class="uap-banner-s">Your current portfolios (left) match <b>${esc(S.file.name)}</b> (right). If you expected changes, check you uploaded the edited file.</div></div></div>${staleNote()}${summary}`;
       const ord = allNames(), order = n => ord.indexOf(n);
@@ -186,14 +178,17 @@
       const unchanged = total - d.touched.length;
       return `<div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">${S.applied ? 'Changes applied' : 'File passed all checks — review the changes'}</div>
           <div class="uap-banner-s">Compare your portfolios in Real World now (left) with how they’ll look after this update (right).${S.applied ? '' : ' Nothing is applied until you confirm.'}</div>
-          <div class="uap-stats"><span><b>${d.touched.length}</b> of ${total} portfolios affected</span><span><b>${d.values}</b> ${d.values === 1 ? 'value' : 'values'} changed</span><span><b>${d.added.length}</b> ${d.added.length === 1 ? 'policy' : 'policies'} added</span><span><b>${d.removed.length}</b> ${d.removed.length === 1 ? 'policy' : 'policies'} removed</span></div></div></div>
+          <div class="uap-stats"><span><b>${new Set([...d.touched, ...S.res.gdiff.added.map(x => x.pf), ...S.res.gdiff.removed.map(x => x.pf)]).size}</b> of ${total} portfolios affected</span>${S.res.gdiff.added.length + S.res.gdiff.removed.length ? `<span><b>${S.res.gdiff.added.length + S.res.gdiff.removed.length}</b> group ${S.res.gdiff.added.length + S.res.gdiff.removed.length === 1 ? 'assignment' : 'assignments'} changed</span>` : ''}<span><b>${d.values}</b> ${d.values === 1 ? 'value' : 'values'} changed</span><span><b>${d.added.length}</b> ${d.added.length === 1 ? 'policy' : 'policies'} added</span><span><b>${d.removed.length}</b> ${d.removed.length === 1 ? 'policy' : 'policies'} removed</span></div></div></div>
         ${staleNote()}
         ${summary}
-        <div class="uap-toolbar"><div class="uap-toolbar-t">What changed</div>
+        ${d.changed.length || d.added.length || d.removed.length ? `<div class="uap-toolbar"><div class="uap-toolbar-t">What changed</div>
           <select class="rw-modal-select uap-select" data-uap-pf aria-label="Filter by portfolio"><option value="All">All updated portfolios (${pfs.length})</option>${pfs.map(p => `<option value="${esc(p)}"${S.filter === p ? ' selected' : ''}>${esc(p)}</option>`).join('')}</select></div>
-        <div class="uap-diff scroll-thin"><div class="uap-diff-head"><div>Field</div><div>In Real World now</div><div>After update</div></div>${shown.slice(0, S.limit).map(recHtml).join('')}</div>
-        ${shown.length > S.limit ? `<div class="uap-more"><span>Showing ${S.limit} of ${shown.length} policies</span><button class="rw-modal-btn rw-modal-btn-cancel" data-uap-more>Show ${Math.min(50, shown.length - S.limit)} more</button></div>` : ''}
+        <div class="uap-diff scroll-thin"><div class="uap-diff-head"><div>Field</div><div>In Real World now</div><div>After update</div></div>${shown.slice(((S.chgP = Math.min(S.chgP || 1, Math.max(1, Math.ceil(shown.length / 10)))) - 1) * 10, S.chgP * 10).map(recHtml).join('')}</div>
+        ${pager('chg', shown.length, 10, 'policies')}` : ''}
         ${unchanged > 0 ? `<div class="uap-quiet">${plural(unchanged, 'portfolio')} had no changes.</div>` : ''}`;
+    },
+    applying() {
+      return `<div class="uap-proc" role="status" aria-live="polite"><span class="uap-spinner" aria-hidden="true"></span><div class="uap-proc-t">Updating your portfolios…</div><div class="uap-proc-s">This may take a moment. Please don’t close this window.</div></div>`;
     },
     success() {
       const d = S.res.diff, total = allNames().length;
@@ -233,24 +228,52 @@
     return '';
   }
 
+  function pager(key, total, per, noun) {
+    if (total <= per) return '';
+    const pages = Math.ceil(total / per), pg = Math.min(S[key + 'P'] || 1, pages), from = (pg - 1) * per;
+    return `<div class="uap-pager"><span>${from + 1}–${Math.min(from + per, total)} of ${total} ${noun}</span>
+      <span class="uap-pager-btns"><button class="rw-modal-btn rw-modal-btn-cancel" data-uap-page="${key}:${pg - 1}"${pg === 1 ? ' disabled' : ''} aria-label="Previous page">‹ Previous</button>
+      <span class="uap-pager-n">Page ${pg} of ${pages}</span>
+      <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-page="${key}:${pg + 1}"${pg === pages ? ' disabled' : ''} aria-label="Next page">Next ›</button></span></div>`;
+  }
   function summaryHtml() {
     const PF = C().PF, cur = DATA_BEFORE || DATA, nxt = S.res.rows, touched = new Set(S.res.diff.touched);
     const agg = rows => { const m = {}; rows.forEach(r => { const a = m[r[PF]] || (m[r[PF]] = { n: 0, exp: 0 }); a.n++; a.exp += +r.OurExposure || 0; }); return m; };
+    const gm = list => { const m = {}; list.forEach(g => (m[g.pf] = m[g.pf] || []).push(g.group)); Object.values(m).forEach(v => v.sort((x, y) => x.localeCompare(y))); return m; };
+    const ga = gm(GROUPS), gb = gm(S.res.groups), gkey = p => (ga[p] || []).join('\u0000') !== (gb[p] || []).join('\u0000');
+    Object.keys({ ...ga, ...gb }).forEach(p => { if (gkey(p)) touched.add(p); });
+    const chips = (list, other, side) => list && list.length ? list.map(g => `<span class="uap-gchip${other.includes(g) ? '' : side === 'o' ? ' is-out' : ' is-in'}">${esc(g)}</span>`).join('') : '<span class="uap-dim">No group</span>';
     const a = agg(cur), b = agg(nxt), money = v => '$' + (v >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : (v / 1e6).toFixed(1) + 'M');
-    const row = p => { const o = a[p] || { n: 0, exp: 0 }, n = b[p] || { n: 0, exp: 0 }, ch = touched.has(p);
+    const row = p => { const o = a[p] || { n: 0, exp: 0 }, n = b[p] || { n: 0, exp: 0 }, ch = touched.has(p), gc = gkey(p), go = ga[p] || [], gn = gb[p] || [];
       const cn = o.n !== n.n ? ' is-hl' : '', ce = Math.round(o.exp) !== Math.round(n.exp) ? ' is-hl' : '';
-      return `<div class="uap-sum-row"><div class="uap-f"><span class="uap-rec-pf">${esc(p)}</span>${!a[p] ? '<span class="uap-tag is-added">New portfolio</span>' : !b[p] ? '<span class="uap-tag is-removed">Removed</span>' : ch ? '<span class="uap-tag is-changed">Changed</span>' : '<span class="uap-tag is-same">No change</span>'}</div>
-        <div class="uap-o"><span class="uap-o${cn ? ' is-hl' : ''}">${plural(o.n, 'policy').replace('policys', 'policies')}</span> · <span class="uap-o${ce ? ' is-hl' : ''}">${money(o.exp)}</span></div>
-        <div class="uap-n"><span class="uap-n${cn}">${plural(n.n, 'policy').replace('policys', 'policies')}</span> · <span class="uap-n${ce}">${money(n.exp)}</span></div></div>`; };
-    return `<div class="uap-toolbar"><div class="uap-toolbar-t">Portfolio summary</div></div>
-      <div class="uap-diff uap-sum scroll-thin"><div class="uap-diff-head"><div>Portfolio</div><div>In Real World now</div><div>After update</div></div>${allNames().filter(p => a[p] || b[p]).map(row).join('')}</div>`;
+      return `<div class="uap-sum-row"><div class="uap-f"><span class="uap-rec-pf">${esc(p)}</span>${!a[p] && !ga[p] ? '<span class="uap-tag is-added">New portfolio</span>' : !b[p] && !gb[p] ? '<span class="uap-tag is-removed">Removed</span>' : ch ? '<span class="uap-tag is-changed">Changed</span>' : '<span class="uap-tag is-same">No change</span>'}${gc && (a[p] || ga[p]) && (b[p] || gb[p]) ? '<span class="uap-tag is-grp">Groups changed</span>' : ''}</div>
+        <div class="uap-o"><div><span class="uap-o${cn ? ' is-hl' : ''}">${plural(o.n, 'policy').replace('policys', 'policies')}</span> · <span class="uap-o${ce ? ' is-hl' : ''}">${money(o.exp)}</span></div><div class="uap-gline">${chips(go, gn, 'o')}</div></div>
+        <div class="uap-n"><div><span class="uap-n${cn}">${plural(n.n, 'policy').replace('policys', 'policies')}</span> · <span class="uap-n${ce}">${money(n.exp)}</span></div><div class="uap-gline">${chips(gn, go, 'n')}</div></div></div>`; };
+    const all = [...new Set([...allNames(), ...Object.keys(ga), ...Object.keys(gb)])].filter(p => a[p] || b[p] || ga[p] || gb[p]);
+    const status = p => !a[p] && !ga[p] ? 'new' : !b[p] && !gb[p] ? 'removed' : touched.has(p) ? 'changed' : 'same';
+    const cnt = { all: all.length, changed: 0, new: 0, removed: 0, same: 0 }; all.forEach(p => cnt[status(p)]++);
+    const q = (S.sumQ || '').trim().toLowerCase(), f = S.sumF || 'affected';
+    const list = all.filter(p => (f === 'all' || (f === 'affected' ? status(p) !== 'same' : status(p) === f)) && (!q || p.toLowerCase().includes(q)))
+      .sort((x, y) => ({ new: 0, removed: 1, changed: 2, same: 3 }[status(x)] - { new: 0, removed: 1, changed: 2, same: 3 }[status(y)]) || x.localeCompare(y));
+    const PER = 20, pages = Math.max(1, Math.ceil(list.length / PER)), pg = Math.min(S.sumP || 1, pages), from = (pg - 1) * PER;
+    const chip = (k, l, n) => `<button class="uap-chip${f === k ? ' is-on' : ''}" data-uap-sumf="${k}">${l}<span class="uap-chip-n">${n}</span></button>`;
+    const affected = cnt.changed + cnt.new + cnt.removed;
+    return `<div class="uap-toolbar"><div class="uap-toolbar-t">Portfolio summary</div>
+        <input class="rw-modal-input uap-sum-q" type="search" placeholder="Search portfolios" value="${esc(S.sumQ || '')}" data-uap-sumq aria-label="Search portfolios"></div>
+      <div class="uap-filters">${chip('affected', 'Affected', affected)}${cnt.changed ? chip('changed', 'Changed', cnt.changed) : ''}${cnt.new ? chip('new', 'New', cnt.new) : ''}${cnt.removed ? chip('removed', 'Removed', cnt.removed) : ''}${chip('same', 'No change', cnt.same)}${chip('all', 'All', cnt.all)}</div>
+      <div class="uap-diff uap-sum scroll-thin"><div class="uap-diff-head"><div>Portfolio</div><div>In Real World now <span class="uap-head-sub">policies · exposure · groups</span></div><div>After update <span class="uap-head-sub">policies · exposure · groups</span></div></div>
+        ${list.length ? list.slice(from, from + PER).map(row).join('') : `<div class="uap-sum-empty">${q ? `No portfolios match “${esc(S.sumQ)}”.` : 'No portfolios in this view.'}</div>`}</div>
+      ${pager('sum', list.length, PER, 'portfolios')}`;
   }
 
   const FOOT = {
     download: () => {
       return `<div class="uap-foot-left"><button class="rw-modal-btn rw-modal-btn-cancel" data-uap-close>Cancel</button></div>
-      ${S.downloaded ? '' : `<button class="rw-modal-btn rw-modal-btn-secondary" data-uap-goto="upload"><span class="uap-bi">${I.upload}I already have an edited file</span></button>`}
-      <button class="rw-modal-btn rw-modal-btn-primary" data-uap-goto="upload"${S.downloaded ? '' : ' disabled'}>Next: Upload file</button>`;
+      ${S.downloaded
+        ? `<button class="rw-modal-btn rw-modal-btn-secondary" data-uap-download><span class="uap-bi">${I.download}Download again</span></button>
+           <button class="rw-modal-btn rw-modal-btn-primary" data-uap-goto="upload"><span class="uap-bi">${I.upload}Upload edited file</span></button>`
+        : `<button class="rw-modal-btn rw-modal-btn-secondary" data-uap-goto="upload"><span class="uap-bi">${I.upload}I already have an edited file</span></button>
+           <button class="rw-modal-btn rw-modal-btn-primary" data-uap-download><span class="uap-bi">${I.download}Download All Portfolios (Excel)</span></button>`}`;
     },
     upload: () => `<div class="uap-foot-left"><button class="uap-link" data-uap-goto="download">Back to download</button></div>
       <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-close>Cancel</button>`,
@@ -274,15 +297,16 @@
         <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-close>Cancel</button>
         <button class="rw-modal-btn rw-modal-btn-primary" data-uap-confirm>Confirm &amp; update portfolios</button>`;
     },
-    success: () => `<button class="rw-modal-btn rw-modal-btn-cancel" data-uap-goto="review">View changes</button><button class="rw-modal-btn rw-modal-btn-primary" data-uap-close>Done</button>`,
+    applying: () => `<button class="rw-modal-btn rw-modal-btn-primary" disabled>Updating…</button>`,
+    success: () => `<button class="rw-modal-btn rw-modal-btn-primary" data-uap-close>Done</button>`,
   };
 
   function saveBlob(blob, name) {
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   }
-  function workbook(rows, rec) {
-    return X().write([C().templateSheet(rows), C().infoSheet(), ...(rec ? [Y().detailsSheet(rec)] : [])]);
+  function workbook(rows, rec, groups) {
+    return X().write([C().templateSheet(rows), C().portfoliosSheet(groups || GROUPS), ...(rec ? [{ ...Y().detailsSheet(rec), hidden: true }] : [])]);
   }
 
   async function handle(blob, name) {
@@ -295,20 +319,21 @@
     else {
       try {
         const sheets = await X().read(blob), p = C().parseSheet(sheets), id = Y().readFileId(sheets);
+        S.pparsed = C().parsePortfolios(sheets);
         S.dl = Y().findDownload(id); S.idState = S.dl ? 'matched' : id ? 'foreign' : 'unknown'; S.fileMeta = S.dl ? { id: S.dl.id, at: S.dl.at } : null;
         if (!p) fileErr = 'We couldn’t find the portfolio sheet. Make sure the column names from the downloaded file are still in the first row.';
         else { S.parsed = p; S.rowCount = p.rows.length; }
       } catch (e) { fileErr = 'This file couldn’t be opened. Upload the .xlsx file you downloaded from Real World.'; }
     }
-    for (let i = 1; i <= 5; i++) { await wait(900); if (my !== token) return; S.progress = i; render(); }
-    await wait(600); if (my !== token) return;
+    await wait(3000); if (my !== token) return;
     if (fileErr) { S.res = { errors: [C().fileError(fileErr, name)] }; S.step = 'errors'; }
     else evaluate();
     render();
   }
   const allNames = () => { const set = new Set(S.names); DATA.forEach(r => set.add(r[C().PF])); ((S.res && S.res.rows) || []).forEach(r => set.add(r[C().PF])); return [...set]; };
   function evaluate() {
-    S.v = C().validate(S.parsed, [...new Set([...S.names, ...DATA.map(r => r[C().PF])])]);
+    const v1 = C().validate(S.parsed, [...new Set([...S.names, ...DATA.map(r => r[C().PF])])]), v2 = C().validatePortfolios(S.pparsed);
+    S.v = { errors: v1.errors.concat(v2.errors), rows: v1.rows }; S.newGroups = v2.rows;
     if (S.v.errors.length) { S.res = { errors: S.v.errors }; S.step = 'errors'; return; }
     S.skipped = [];
     toReview(S.v.rows);
@@ -320,7 +345,7 @@
   }
   function finalize() {
     const rows = S.merge ? Y().resolve(S.merge, S.choices) : S.fileRows;
-    S.res = { rows, diff: C().diff(DATA, rows) }; S.step = 'review'; S.filter = 'All'; S.limit = 50; S.applied = false; DATA_BEFORE = null;
+    S.res = { rows, diff: C().diff(DATA, rows), groups: S.newGroups || GROUPS, gdiff: C().groupDiff(GROUPS, S.newGroups || GROUPS) }; S.step = 'review'; S.filter = 'All'; S.chgP = 1; S.sumF = 'affected'; S.sumP = 1; S.sumQ = ''; S.applied = false; DATA_BEFORE = null;
   }
 
   function bind(m) {
@@ -342,16 +367,18 @@
     m.querySelectorAll('[data-uap-sample]').forEach(b => b.addEventListener('click', () => {
       const kind = b.dataset.uapSample;
       const rec = Y().recordDownload(DATA, { demo: true });
-      handle(workbook(kind === 'valid' ? C().sampleValid(DATA) : C().sampleErrors(DATA), rec), fileName().replace('.xlsx', kind === 'valid' ? '_edited.xlsx' : '_edited_draft.xlsx'));
+      handle(workbook(kind === 'valid' ? C().sampleValid(DATA) : C().sampleErrors(DATA), rec, kind === 'valid' ? C().sampleGroups(GROUPS) : GROUPS), fileName().replace('.xlsx', kind === 'valid' ? '_edited.xlsx' : '_edited_draft.xlsx'));
     }));
     const cf = m.querySelector('[data-uap-confirm]');
-    if (cf) cf.addEventListener('click', () => { DATA_BEFORE = DATA; DATA = S.res.rows; Y().saveData(DATA); Y().logDiff('You', S.res.diff); if (S.dl) Y().setStatus(S.dl.id, 'used'); S.applied = true; S.step = 'success'; if (OPTS.onUpdated) OPTS.onUpdated(S.res.diff); render(); });
+    if (cf) cf.addEventListener('click', () => { DATA_BEFORE = DATA; DATA = S.res.rows; Y().saveData(DATA); GROUPS = S.res.groups; Y().saveGroups(GROUPS); Y().logDiff('You', S.res.diff); if (S.dl) Y().setStatus(S.dl.id, 'used'); S.applied = true; S.step = 'applying'; const my = ++token; setTimeout(() => { if (my !== token) return; S.step = 'success'; render(); }, 2500); if (OPTS.onUpdated) OPTS.onUpdated(S.res.diff); render(); });
     const pf = m.querySelector('[data-uap-pf]');
-    if (pf) pf.addEventListener('change', () => { S.filter = pf.value; S.limit = 50; render(); });
-    const mo = m.querySelector('[data-uap-more]');
-    if (mo) mo.addEventListener('click', () => { S.limit += 50; render(); });
+    if (pf) pf.addEventListener('change', () => { S.filter = pf.value; S.chgP = 1; render(); });
+    m.querySelectorAll('[data-uap-sumf]').forEach(b => b.addEventListener('click', () => { S.sumF = b.dataset.uapSumf; S.sumP = 1; render(); }));
+    m.querySelectorAll('[data-uap-page]').forEach(b => b.addEventListener('click', () => { const [k, p] = b.dataset.uapPage.split(':'); S[k + 'P'] = +p; render(); if (k === 'chg') { const d = document.querySelector('#modal-root .uap-diff:not(.uap-sum)'); const body = document.querySelector('#modal-root .rw-modal-body'); if (d && body) body.scrollTop = d.offsetTop - body.offsetTop - 60; } }));
+    const sq = m.querySelector('[data-uap-sumq]');
+    if (sq) sq.addEventListener('input', () => { S.sumQ = sq.value; S.sumP = 1; const pos = sq.selectionStart; render(); const n = document.querySelector('#modal-root [data-uap-sumq]'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } });
     const an = m.querySelector('[data-uap-annot]');
-    if (an) an.addEventListener('click', () => saveBlob(X().write([C().annotatedSheet(S.parsed, S.res.errors, S.fixes), C().infoSheet(), ...(S.fileMeta ? [Y().detailsSheet(S.fileMeta)] : [])]), S.file.name.replace(/\.xlsx$/i, '') + '_problems.xlsx'));
+    if (an) an.addEventListener('click', () => saveBlob(X().write([C().annotatedSheet(S.parsed, S.res.errors.filter(e => !e.sheet), S.fixes), ...(S.pparsed ? [C().annotatedPortfolios(S.pparsed, S.res.errors.filter(e => e.sheet))] : [C().portfoliosSheet(GROUPS)]), ...(S.fileMeta ? [{ ...Y().detailsSheet(S.fileMeta), hidden: true }] : [])]), S.file.name.replace(/\.xlsx$/i, '') + '_problems.xlsx'));
   }
 
   window.UpdateAllPortfoliosModal = { open, close };
