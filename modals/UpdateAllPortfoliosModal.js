@@ -42,10 +42,16 @@
   }
   function onKey(e) { if (e.key === 'Escape' && S.step !== 'validating' && S.step !== 'applying') close(); }
 
+  const DEMO_EXTRA = ['Adriatic Bulk', 'Andaman Tankers', 'Arabian Gulf Fleet', 'Baltic Feeder', 'Bering Offshore', 'Biscay Coastal', 'Caribbean Cruise', 'Caspian Energy', 'Celtic Sea Ferries', 'Coral Sea LNG', 'East China Box', 'Gulf of Guinea', 'Hudson Bay Ice', 'Indian Ocean Dry', 'Java Sea Supply', 'Kattegat Ro-Ro', 'Labrador Reefers', 'Ligurian Chemical', 'Malacca Strait', 'Nordic Product', 'North Sea Support', 'Red Sea Transit', 'Sargasso Bulk', 'Sea of Japan Car Carriers', 'South Atlantic Crude', 'Tasman Container', 'Tyrrhenian Ferries', 'West Africa Offshore', 'Yellow Sea Bulk', 'Zanzibar Coastal'];
   function open(opts = {}) {
-    OPTS = opts;
+    OPTS = opts = { ...opts, portfolios: [...(opts.portfolios || [])] };
+    DEMO_EXTRA.forEach(n => { if (opts.portfolios.length < 38 && !opts.portfolios.includes(n)) opts.portfolios.push(n); });
     if (!DATA) DATA = Y().loadData(opts.portfolios || []) || C().buildDataset(opts.portfolios || []);
-    if (!GROUPS) GROUPS = Y().loadGroups() || C().buildGroups([...new Set(DATA.map(r => r[C().PF]))]);
+    if (!GROUPS) {
+      const names = [...new Set(DATA.map(r => r[C().PF]))], saved = Y().loadGroups();
+      GROUPS = saved || C().buildGroups(names);
+      const have = new Set(GROUPS.map(g => g.pf)); if (names.some(n => !have.has(n))) { GROUPS = GROUPS.concat(C().buildGroups(names).filter(g => !have.has(g.pf))); Y().saveGroups(GROUPS); }
+    }
     S = { limit: 50, choices: {}, merge: null, dl: null, idState: null, fileMeta: null, applied: false, names: opts.portfolios || [], step: 'download', downloaded: false, file: null, res: null, filter: 'All', progress: 0, fixes: [], skipped: [], parsed: null, v: null };
     ensureRoot().innerHTML = `<div class="rw-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="uap-title"><div class="rw-modal uap-modal"></div></div>`;
     const o = document.querySelector('#modal-root .rw-modal-overlay');
@@ -79,8 +85,8 @@
   const BODY = {
     download() {
       const pfs = new Set(DATA.map(r => r[C().PF])).size;
-      return `<p class="uap-lede" style="text-align:center;margin-left:auto;margin-right:auto">Download the latest version of all your portfolios, make your changes in Excel, then upload the file. Take as long as you need — nothing is updated until you upload and confirm.</p>
-        ${S.downloaded ? `<div class="uap-done-note">${I.okSm}<span>Downloaded. You can upload it now, or close this window and come back when you’ve finished editing — even days later.</span></div>` : ''}`;
+      return `${S.downloaded ? '' : `<p class="uap-lede" style="text-align:center;margin-left:auto;margin-right:auto">Download the latest version of all your portfolios, make your changes in Excel, then upload the file. Take as long as you need — nothing is updated until you upload and confirm.</p>`}
+        ${S.downloaded ? `<div class="uap-done-note uap-done-stack">${I.ok.replace(/width="20" height="20"/, 'width="28" height="28"')}<span>Downloaded. You can upload your edited file now, or close this window and come back when you’ve finished editing.</span></div>` : ''}`;
     },
     upload() {
       return `<p class="uap-lede">Upload your edited portfolio file. If anything needs correcting, we’ll show you exactly where. Every row is checked for missing values, invalid IMO numbers, and currency, date and choice-field formats before anything is updated.</p>
@@ -107,25 +113,33 @@
     },
     errors() {
       const errs = S.res.errors, K = C().KINDS, st = errState();
-      const groups = Object.keys(K).map(k => ({ k, list: errs.filter(e => e.kind === k) })).filter(g => g.list.length);
+      const bySheet = list => Object.keys(K).map(k => ({ k, list: list.filter(e => e.kind === k) })).filter(g => g.list.length);
+      const pol = errs.filter(e => !e.sheet), prt = errs.filter(e => e.sheet), fileLevel = errs.some(e => e.kind === 'file' || e.kind === 'empty');
       const where = e => typeof e.row === 'number'
-        ? `<b>${e.row === 1 ? 'Header row' : 'Row ' + e.row}</b><span class="uap-sub">${e.sheet ? esc(e.sheet) + ' sheet · ' : ''}${esc(e.label)}${e.letter ? ' · column ' + e.letter : ''}</span>`
+        ? `<b>${e.row === 1 ? 'Header row' : 'Row ' + e.row}</b><span class="uap-sub">${esc(e.label)}${e.letter ? ' · column ' + e.letter : ''}</span>`
         : `<b>${esc(e.label)}</b>`;
       const who = e => e.pf || e.policy ? `<span class="uap-who">${esc(e.pf || '—')}</span><span class="uap-sub">${esc(e.policy || 'No policy number')}</span>` : '<span class="uap-dim">—</span>';
       const val = e => e.value === '' || e.value == null ? '<span class="uap-dim">Empty</span>' : `<span class="uap-mono">${esc(e.value)}</span>`;
       const det = e => esc(e.issue);
-      const lead = `We found ${plural(errs.length, 'problem')} in your file`;
-      const next = st.fatal ? 'Correct the file in Excel and upload it again.'
-        : 'Correct them in Excel and upload the file again. Your portfolios can only be updated once every problem is fixed.';
-      return `<div class="uap-banner is-err">${I.alert}<div><div class="uap-banner-t">${lead}</div>
-          <div class="uap-banner-s">Nothing has been updated yet. ${next}</div></div></div>
-        ${groups.map(g => {
+      const grpHtml = list => bySheet(list).map(g => {
           return `<section class="uap-grp"><div class="uap-grp-h"><span class="uap-grp-t">${esc(C().groupTitle(g.k, g.list.length))}</span></div>
             <div class="uap-grp-fix">${I.bulb}<span><b>How to fix:</b> ${esc(K[g.k].fix)}</span></div>
             <div class="uap-grp-table scroll-thin"><table class="uap-table"><thead><tr><th>Where</th><th>In your file</th><th>What’s wrong</th></tr></thead><tbody>
               ${g.list.slice(0, 100).map(e => `<tr><td class="uap-where">${where(e)}</td><td>${val(e)}</td><td>${det(e)}</td></tr>`).join('')}
             </tbody></table></div>${g.list.length > 100 ? `<div class="uap-quiet">Showing the first 100 of ${g.list.length}. Download your file with problems highlighted to see them all.</div>` : ''}</section>`;
-        }).join('')}`;
+        }).join('');
+      const hasPrt = !!(S.pparsed || prt.length), tab = hasPrt && (S.errTab === 'portfolios' || (!S.errTab && !pol.length && prt.length)) ? 'portfolios' : 'policies';
+      const tabBtn = (k, label, n) => `<button type="button" role="tab" class="ds-tab" aria-selected="${tab === k}" data-uap-etab="${k}"><span class="ds-tab-label">${label}<span class="uap-etab-n${n ? ' is-bad' : ' is-ok'}">${n}</span></span></button>`;
+      const cur = tab === 'portfolios' ? prt : pol;
+      const tabsHead = `<div class="uap-etabs-row"><div class="ds-tabs uap-etabs" role="tablist" aria-label="Problems by sheet">${tabBtn('policies', 'Policies sheet', pol.length)}${hasPrt ? tabBtn('portfolios', 'Portfolios sheet', prt.length) : ''}</div></div>`;
+      const tabsPanel = `<div class="uap-etab-panel" role="tabpanel">${cur.length ? grpHtml(cur) : `<div class="uap-etab-empty">${I.okSm}<span>No problems on the ${tab === 'portfolios' ? 'Portfolios' : 'Policies'} sheet.</span></div>`}</div>`;
+      const lead = `We found ${plural(errs.length, 'problem')} in your file`;
+      const next = st.fatal ? 'Correct the file in Excel and upload it again.'
+        : 'Correct them in Excel and upload the file again. Your portfolios can only be updated once every problem is fixed.';
+      return `<div class="uap-sticky"><div class="uap-banner is-err">${I.alert}<div><div class="uap-banner-t">${lead}</div>
+          <div class="uap-banner-s">Nothing has been updated yet. ${next}</div></div></div>
+        ${fileLevel ? '' : tabsHead}</div>
+        ${fileLevel ? grpHtml(errs) : tabsPanel}`;
     },
     conflicts() {
       const m = S.merge, P = S.dl, n = m.conflicts.length, decided = m.conflicts.filter(c => S.choices[c.id]).length, F = C().fmt;
@@ -160,7 +174,7 @@
     review() {
       const d = S.res.diff, g = S.res.gdiff, total = allNames().length, none = !d.changed.length && !d.added.length && !d.removed.length && !g.added.length && !g.removed.length;
       const summary = summaryHtml();
-      if (none) return `<div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">File passed all checks — no differences found</div><div class="uap-banner-s">Your current portfolios (left) match <b>${esc(S.file.name)}</b> (right). If you expected changes, check you uploaded the edited file.</div></div></div>${staleNote()}${summary}`;
+      if (none) return `<div class="uap-sticky"><div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">File passed all checks — no differences found</div><div class="uap-banner-s">Your current portfolios (left) match <b>${esc(S.file.name)}</b> (right). If you expected changes, check you uploaded the edited file.</div></div></div></div>${staleNote()}${summary}`;
       const ord = allNames(), order = n => ord.indexOf(n);
       const recs = [...d.changed.map(r => ({ ...r, kind: 'changed' })), ...d.added.map(r => ({ ...r, kind: 'added' })), ...d.removed.map(r => ({ ...r, kind: 'removed' }))]
         .sort((a, b) => order(a.portfolio) - order(b.portfolio) || String(a.policy).localeCompare(String(b.policy)));
@@ -176,16 +190,17 @@
         return `<div class="uap-rec"><div class="uap-rec-head"><span class="uap-rec-pf">${esc(r.portfolio)}</span><span class="uap-rec-id">${esc(r.policy)} · IMO ${esc(r.imo)}</span>${tag}</div>${rows.join('')}</div>`;
       };
       const unchanged = total - d.touched.length;
-      return `<div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">${S.applied ? 'Changes applied' : 'File passed all checks — review the changes'}</div>
+      return `<div class="uap-sticky"><div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">${S.applied ? 'Changes applied' : 'File passed all checks — review the changes'}</div>
           <div class="uap-banner-s">Compare your portfolios in Real World now (left) with how they’ll look after this update (right).${S.applied ? '' : ' Nothing is applied until you confirm.'}</div>
           <div class="uap-stats"><span><b>${new Set([...d.touched, ...S.res.gdiff.added.map(x => x.pf), ...S.res.gdiff.removed.map(x => x.pf)]).size}</b> of ${total} portfolios affected</span>${S.res.gdiff.added.length + S.res.gdiff.removed.length ? `<span><b>${S.res.gdiff.added.length + S.res.gdiff.removed.length}</b> group ${S.res.gdiff.added.length + S.res.gdiff.removed.length === 1 ? 'assignment' : 'assignments'} changed</span>` : ''}<span><b>${d.values}</b> ${d.values === 1 ? 'value' : 'values'} changed</span><span><b>${d.added.length}</b> ${d.added.length === 1 ? 'policy' : 'policies'} added</span><span><b>${d.removed.length}</b> ${d.removed.length === 1 ? 'policy' : 'policies'} removed</span></div></div></div>
+        </div>
         ${staleNote()}
         ${summary}
         ${d.changed.length || d.added.length || d.removed.length ? `<div class="uap-toolbar"><div class="uap-toolbar-t">What changed</div>
           <select class="rw-modal-select uap-select" data-uap-pf aria-label="Filter by portfolio"><option value="All">All updated portfolios (${pfs.length})</option>${pfs.map(p => `<option value="${esc(p)}"${S.filter === p ? ' selected' : ''}>${esc(p)}</option>`).join('')}</select></div>
-        <div class="uap-diff scroll-thin"><div class="uap-diff-head"><div>Field</div><div>In Real World now</div><div>After update</div></div>${shown.slice(((S.chgP = Math.min(S.chgP || 1, Math.max(1, Math.ceil(shown.length / 10)))) - 1) * 10, S.chgP * 10).map(recHtml).join('')}</div>
-        ${pager('chg', shown.length, 10, 'policies')}` : ''}
-        ${unchanged > 0 ? `<div class="uap-quiet">${plural(unchanged, 'portfolio')} had no changes.</div>` : ''}`;
+        <div class="uap-diff scroll-thin"><div class="uap-diff-head"><div>Field</div><div>In Real World now</div><div>After update</div></div>${shown.slice(((S.chgP = Math.min(S.chgP || 1, Math.max(1, Math.ceil(shown.length / 10)))) - 1) * 10, S.chgP * 10).map(recHtml).join('')}
+        ${pager('chg', shown.length, 10, 'policies')}</div>` : ''}
+`;
     },
     applying() {
       return `<div class="uap-proc" role="status" aria-live="polite"><span class="uap-spinner" aria-hidden="true"></span><div class="uap-proc-t">Updating your portfolios…</div><div class="uap-proc-s">This may take a moment. Please don’t close this window.</div></div>`;
@@ -229,12 +244,9 @@
   }
 
   function pager(key, total, per, noun) {
-    if (total <= per) return '';
-    const pages = Math.ceil(total / per), pg = Math.min(S[key + 'P'] || 1, pages), from = (pg - 1) * per;
-    return `<div class="uap-pager"><span>${from + 1}–${Math.min(from + per, total)} of ${total} ${noun}</span>
-      <span class="uap-pager-btns"><button class="rw-modal-btn rw-modal-btn-cancel" data-uap-page="${key}:${pg - 1}"${pg === 1 ? ' disabled' : ''} aria-label="Previous page">‹ Previous</button>
-      <span class="uap-pager-n">Page ${pg} of ${pages}</span>
-      <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-page="${key}:${pg + 1}"${pg === pages ? ' disabled' : ''} aria-label="Next page">Next ›</button></span></div>`;
+    if (!total) return '';
+    const pages = Math.max(1, Math.ceil(total / per)), pg = Math.min(S[key + 'P'] || 1, pages);
+    return `<div class="uap-pgr" data-uap-pgr="${key}">${window.dsPagination({ page: pg, totalPages: pages, totalItems: total, perPage: per, label: noun, inWrap: true }).replace(/<label class="ds-page-perpage">[\s\S]*?<\/label>/, '')}</div>`;
   }
   function summaryHtml() {
     const PF = C().PF, cur = DATA_BEFORE || DATA, nxt = S.res.rows, touched = new Set(S.res.diff.touched);
@@ -252,18 +264,19 @@
     const all = [...new Set([...allNames(), ...Object.keys(ga), ...Object.keys(gb)])].filter(p => a[p] || b[p] || ga[p] || gb[p]);
     const status = p => !a[p] && !ga[p] ? 'new' : !b[p] && !gb[p] ? 'removed' : touched.has(p) ? 'changed' : 'same';
     const cnt = { all: all.length, changed: 0, new: 0, removed: 0, same: 0 }; all.forEach(p => cnt[status(p)]++);
-    const q = (S.sumQ || '').trim().toLowerCase(), f = S.sumF || 'affected';
+    const kinds = ['changed', 'new', 'removed'].filter(k => cnt[k]), f = kinds.length === 1 ? kinds[0] : (kinds.includes(S.sumF) ? S.sumF : 'affected');
+    const q = (S.sumQ || '').trim().toLowerCase();
     const list = all.filter(p => (f === 'all' || (f === 'affected' ? status(p) !== 'same' : status(p) === f)) && (!q || p.toLowerCase().includes(q)))
       .sort((x, y) => ({ new: 0, removed: 1, changed: 2, same: 3 }[status(x)] - { new: 0, removed: 1, changed: 2, same: 3 }[status(y)]) || x.localeCompare(y));
-    const PER = 20, pages = Math.max(1, Math.ceil(list.length / PER)), pg = Math.min(S.sumP || 1, pages), from = (pg - 1) * PER;
+    const PER = 5, pages = Math.max(1, Math.ceil(list.length / PER)), pg = Math.min(S.sumP || 1, pages), from = (pg - 1) * PER;
     const chip = (k, l, n) => `<button class="uap-chip${f === k ? ' is-on' : ''}" data-uap-sumf="${k}">${l}<span class="uap-chip-n">${n}</span></button>`;
     const affected = cnt.changed + cnt.new + cnt.removed;
     return `<div class="uap-toolbar"><div class="uap-toolbar-t">Portfolio summary</div>
         <input class="rw-modal-input uap-sum-q" type="search" placeholder="Search portfolios" value="${esc(S.sumQ || '')}" data-uap-sumq aria-label="Search portfolios"></div>
-      <div class="uap-filters">${chip('affected', 'Affected', affected)}${cnt.changed ? chip('changed', 'Changed', cnt.changed) : ''}${cnt.new ? chip('new', 'New', cnt.new) : ''}${cnt.removed ? chip('removed', 'Removed', cnt.removed) : ''}${chip('same', 'No change', cnt.same)}${chip('all', 'All', cnt.all)}</div>
+      <div class="uap-filters">${[cnt.changed, cnt.new, cnt.removed].filter(Boolean).length > 1 ? chip('affected', 'All changes', affected) : ''}${cnt.changed ? chip('changed', 'Changed', cnt.changed) : ''}${cnt.new ? chip('new', 'New', cnt.new) : ''}${cnt.removed ? chip('removed', 'Removed', cnt.removed) : ''}</div>
       <div class="uap-diff uap-sum scroll-thin"><div class="uap-diff-head"><div>Portfolio</div><div>In Real World now <span class="uap-head-sub">policies · exposure · groups</span></div><div>After update <span class="uap-head-sub">policies · exposure · groups</span></div></div>
-        ${list.length ? list.slice(from, from + PER).map(row).join('') : `<div class="uap-sum-empty">${q ? `No portfolios match “${esc(S.sumQ)}”.` : 'No portfolios in this view.'}</div>`}</div>
-      ${pager('sum', list.length, PER, 'portfolios')}`;
+        ${list.length ? list.slice(from, from + PER).map(row).join('') : `<div class="uap-sum-empty">${q ? `No portfolios match “${esc(S.sumQ)}”.` : 'No portfolios in this view.'}</div>`}
+        ${pager('sum', list.length, PER, 'portfolios')}</div>`;
   }
 
   const FOOT = {
@@ -311,7 +324,7 @@
 
   async function handle(blob, name) {
     const my = ++token;
-    Object.assign(S, { file: { name, size: blob.size }, step: 'validating', progress: 0, rowCount: 0, fixes: [], skipped: [], parsed: null, v: null, merge: null, choices: {}, dl: null, idState: null, fileMeta: null });
+    Object.assign(S, { errTab: null, file: { name, size: blob.size }, step: 'validating', progress: 0, rowCount: 0, fixes: [], skipped: [], parsed: null, v: null, merge: null, choices: {}, dl: null, idState: null, fileMeta: null });
     render();
     let fileErr = null;
     if (!/\.xlsx$/i.test(name)) fileErr = 'This isn’t an Excel workbook. Upload the .xlsx file you downloaded from Real World.';
@@ -332,7 +345,7 @@
   }
   const allNames = () => { const set = new Set(S.names); DATA.forEach(r => set.add(r[C().PF])); ((S.res && S.res.rows) || []).forEach(r => set.add(r[C().PF])); return [...set]; };
   function evaluate() {
-    const v1 = C().validate(S.parsed, [...new Set([...S.names, ...DATA.map(r => r[C().PF])])]), v2 = C().validatePortfolios(S.pparsed);
+    const v1 = C().validate(S.parsed, [...new Set([...S.names, ...DATA.map(r => r[C().PF])])]), v2 = C().validatePortfolios(S.pparsed, [...new Set([...S.names, ...DATA.map(r => r[C().PF]), ...v1.rows.map(r => r[C().PF])])]);
     S.v = { errors: v1.errors.concat(v2.errors), rows: v1.rows }; S.newGroups = v2.rows;
     if (S.v.errors.length) { S.res = { errors: S.v.errors }; S.step = 'errors'; return; }
     S.skipped = [];
@@ -367,14 +380,15 @@
     m.querySelectorAll('[data-uap-sample]').forEach(b => b.addEventListener('click', () => {
       const kind = b.dataset.uapSample;
       const rec = Y().recordDownload(DATA, { demo: true });
-      handle(workbook(kind === 'valid' ? C().sampleValid(DATA) : C().sampleErrors(DATA), rec, kind === 'valid' ? C().sampleGroups(GROUPS) : GROUPS), fileName().replace('.xlsx', kind === 'valid' ? '_edited.xlsx' : '_edited_draft.xlsx'));
+      handle(workbook(kind === 'valid' ? C().sampleValid(DATA) : C().sampleErrors(DATA), rec, kind === 'valid' ? C().sampleGroups(GROUPS) : C().sampleGroupErrors(GROUPS)), fileName().replace('.xlsx', kind === 'valid' ? '_edited.xlsx' : '_edited_draft.xlsx'));
     }));
+    m.querySelectorAll('[data-uap-etab]').forEach(b => b.addEventListener('click', () => { S.errTab = b.dataset.uapEtab; render(); const bd = document.querySelector('#modal-root .rw-modal-body'); if (bd) bd.scrollTop = 0; }));
     const cf = m.querySelector('[data-uap-confirm]');
     if (cf) cf.addEventListener('click', () => { DATA_BEFORE = DATA; DATA = S.res.rows; Y().saveData(DATA); GROUPS = S.res.groups; Y().saveGroups(GROUPS); Y().logDiff('You', S.res.diff); if (S.dl) Y().setStatus(S.dl.id, 'used'); S.applied = true; S.step = 'applying'; const my = ++token; setTimeout(() => { if (my !== token) return; S.step = 'success'; render(); }, 2500); if (OPTS.onUpdated) OPTS.onUpdated(S.res.diff); render(); });
     const pf = m.querySelector('[data-uap-pf]');
     if (pf) pf.addEventListener('change', () => { S.filter = pf.value; S.chgP = 1; render(); });
     m.querySelectorAll('[data-uap-sumf]').forEach(b => b.addEventListener('click', () => { S.sumF = b.dataset.uapSumf; S.sumP = 1; render(); }));
-    m.querySelectorAll('[data-uap-page]').forEach(b => b.addEventListener('click', () => { const [k, p] = b.dataset.uapPage.split(':'); S[k + 'P'] = +p; render(); if (k === 'chg') { const d = document.querySelector('#modal-root .uap-diff:not(.uap-sum)'); const body = document.querySelector('#modal-root .rw-modal-body'); if (d && body) body.scrollTop = d.offsetTop - body.offsetTop - 60; } }));
+    m.querySelectorAll('[data-uap-pgr]').forEach(w => { const k = w.dataset.uapPgr; window.dsWirePagination(w, { onPage: p => { S[k + 'P'] = +p; render(); if (k === 'chg') { const d = document.querySelector('#modal-root .uap-diff:not(.uap-sum)'); const body = document.querySelector('#modal-root .rw-modal-body'); if (d && body) { const st = document.querySelector('#modal-root .uap-sticky'); body.scrollTop = d.offsetTop - body.offsetTop - (st ? st.offsetHeight : 0) - 56; } }  } }); });
     const sq = m.querySelector('[data-uap-sumq]');
     if (sq) sq.addEventListener('input', () => { S.sumQ = sq.value; S.sumP = 1; const pos = sq.selectionStart; render(); const n = document.querySelector('#modal-root [data-uap-sumq]'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } });
     const an = m.querySelector('[data-uap-annot]');

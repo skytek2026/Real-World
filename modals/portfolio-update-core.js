@@ -87,11 +87,20 @@
     names.forEach((n, i) => { out.push({ pf: n, group: GROUP_POOL[i % 3] }); if (i % 4 === 1) out.push({ pf: n, group: 'Marine War' === GROUP_POOL[i % 3] ? 'Marine Hull' : 'Marine War' }); });
     return out;
   }
+  const toggle = (a, pf, group) => { const i = a.findIndex(x => x.pf === pf && x.group === group); if (i >= 0) a.splice(i, 1); else a.push({ pf, group }); };
   function sampleGroups(g) {
-    const a = g.map(x => ({ ...x })), names = [...new Set(a.map(x => x.pf))], has = (pf, gr) => a.some(x => x.pf === pf && x.group === gr);
-    if (names[0]) { const i = a.findIndex(x => x.pf === names[0] && x.group === 'P&I'); if (i >= 0) a.splice(i, 1); else a.push({ pf: names[0], group: 'P&I' }); }
-    if (names[2]) { const i = a.findIndex(x => x.pf === names[2]); if (i >= 0) a.splice(i, 1); else a.push({ pf: names[2], group: 'Marine Hull' }); }
-    if (names[5]) { const i = a.findIndex(x => x.pf === names[5]); const to = GROUP_POOL.find(gr => !has(names[5], gr)); if (i >= 0 && to) a[i] = { pf: names[5], group: to }; }
+    const a = g.map(x => ({ ...x })), names = [...new Set(a.map(x => x.pf))].sort((x, y) => x.localeCompare(y));
+    if (names[0]) toggle(a, names[0], 'P&I');
+    if (names[2]) toggle(a, names[2], 'Cargo');
+    if (names[5]) toggle(a, names[5], 'TGroup');
+    return a;
+  }
+  function sampleGroupErrors(g) {
+    const a = g.map(x => ({ ...x })), base = a.length ? a : [{ pf: 'Example Portfolio', group: 'Marine Hull' }], at = i => base[i % base.length];
+    a.push({ pf: at(0).pf, group: '' });
+    a.push({ ...at(1) });
+    a.push({ pf: at(2).pf.length > 3 ? at(2).pf.slice(0, -1) : at(2).pf + 'x', group: at(2).group });
+    a.push({ pf: '', group: at(3).group });
     return a;
   }
   const portfoliosSheet = groups => ({
@@ -109,7 +118,7 @@
     for (let i = 1; i < s.rows.length; i++) { const r = s.rows[i] || []; if (!r.some(v => String(v ?? '').trim() !== '')) continue; rows.push({ __row: i + 1, pf: ni >= 0 ? String(r[ni] ?? '').trim() : '', group: gi >= 0 ? String(r[gi] ?? '').trim() : '' }); }
     return { sheet: s.name, header, ni, gi, rows, sheetRows: s.rows.map(r => (r || []).slice()) };
   }
-  function validatePortfolios(p) {
+  function validatePortfolios(p, names = []) {
     if (!p) return { errors: [], rows: null };
     const errs = [], SH = p.sheet, E = (kind, row, ci, label, issue, value) => errs.push({ kind, sheet: SH, row, ci, letter: colName(ci), col: null, label, issue, value });
     if (p.ni < 0) E('hdr-missing', 1, -1, GH.name, 'This required column is missing from the Portfolios sheet.', '');
@@ -122,6 +131,7 @@
       if (!r.pf || !r.group) return;
       const k = r.pf.toLowerCase() + '|' + r.group.toLowerCase();
       if (seen[k]) { E('grp-dup', r.__row, p.gi, GH.group, `“${r.pf}” is already in “${r.group}” on row ${seen[k]}.`, r.group); return; }
+      if (names.length && !names.includes(r.pf)) { const m = names.find(n => n.toLowerCase() === r.pf.toLowerCase()) || closest(r.pf, names); if (m) { E('grp-pf', r.__row, p.ni, GH.name, `“${r.pf}” looks like a typo of “${m}”.`, r.pf); return; } }
       seen[k] = r.__row; out.push({ pf: r.pf, group: r.group });
     });
     return { errors: errs, rows: out };
@@ -191,6 +201,7 @@
     'date-order': { one: 'An expiry date is before the inception date', many: '{n} expiry dates are before the inception date', fix: 'A policy must end after it starts. Check both dates on these rows.' },
     choice: { one: 'A value isn’t one of the allowed options', many: '{n} values aren’t one of the allowed options', fix: 'Use one of the options listed under the column header in the file.' },
     'grp-missing': { one: 'A row on the Portfolios sheet is incomplete', many: '{n} cells on the Portfolios sheet are empty', fix: 'On the Portfolios sheet, every row needs both a Portfolio Name and a Portfolio Group.' },
+    'grp-pf': { one: 'A portfolio name on the Portfolios sheet looks mistyped', many: '{n} portfolio names on the Portfolios sheet look mistyped', fix: 'Type the name exactly as it appears in the Portfolio column on the Policies sheet.' },
     'grp-dup': { one: 'A portfolio is listed in the same group twice', many: '{n} portfolios are listed in the same group twice', fix: 'Delete the duplicate row on the Portfolios sheet. A portfolio can be in several groups, but only once per group.' },
     dup: { one: 'A policy number is used twice', many: '{n} policy numbers are used twice', fix: 'Each policy number can appear only once per portfolio. Change one of them, or delete the duplicate row.' },
   };
@@ -350,6 +361,7 @@
     const used = new Set(a.map(r => r[PF] + '|' + r.PolicyNumber));
     const uniq = (src, start) => { let n = start; while (used.has(src[PF] + '|' + src.PolicyNumber.replace(/\d{4}$/, String(n).padStart(4, '0')))) n++; const s = String(n).padStart(4, '0'); used.add(src[PF] + '|' + src.PolicyNumber.replace(/\d{4}$/, s)); return s; };
     const n2 = mk(at(50), uniq(at(50), 902), '957318', 7250000), n1 = mk(at(3), uniq(at(3), 901), '941275', 18500000);
+    { const seenPf = new Set(); a.forEach(r => { if (seenPf.has(r[PF])) return; seenPf.add(r[PF]); r.PremiumDetails = rnd((+r.PremiumDetails || 10000) * 1.05, 100); }); }
     a.splice(Math.min(40, a.length - 1), 1);
     a.splice(Math.min(49, a.length), 0, n2);
     a.splice(Math.min(PER, a.length), 0, n1);
@@ -374,5 +386,5 @@
     return a;
   }
 
-  window.PortfolioUpdateCore = { sampleGroups, buildGroups, portfoliosSheet, parsePortfolios, validatePortfolios, groupDiff, annotatedPortfolios, COLS, PF, KINDS, label, hint, groupTitle, fileError, buildDataset, templateSheet, infoSheet, annotatedSheet, parseSheet, validate, applyFixes, skipRows, diff, fmt, sampleValid, sampleErrors };
+  window.PortfolioUpdateCore = { sampleGroupErrors, sampleGroups, buildGroups, portfoliosSheet, parsePortfolios, validatePortfolios, groupDiff, annotatedPortfolios, COLS, PF, KINDS, label, hint, groupTitle, fileError, buildDataset, templateSheet, infoSheet, annotatedSheet, parseSheet, validate, applyFixes, skipRows, diff, fmt, sampleValid, sampleErrors };
 })();
