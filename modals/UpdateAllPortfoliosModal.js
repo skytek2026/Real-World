@@ -61,9 +61,9 @@
   }
 
   function stepper() {
-    const idx = S.applied && S.step !== 'applying' ? 4 : { download: 0, upload: 1, validating: 1, errors: 2, conflicts: 2, review: 2, applying: 3, success: 4 }[S.step];
-    return `<div class="uap-steps">${['Download', 'Upload', 'Review changes', 'Update'].map((l, i) => {
-      const cls = S.step === 'errors' && i === 2 ? 'is-error' : i < idx ? 'is-done' : i === idx ? 'is-active' : '';
+    const idx = S.applied && S.step !== 'applying' ? 3 : { download: 0, upload: 1, validating: 1, errors: 1, conflicts: 1, review: 1, applying: 2, success: 3 }[S.step];
+    return `<div class="uap-steps">${['Download', 'Upload and review changes', 'Update Real World'].map((l, i) => {
+      const cls = S.step === 'errors' && i === 1 ? 'is-error' : i < idx ? 'is-done' : i === idx ? 'is-active' : '';
       const n = cls === 'is-done' ? I.tick : cls === 'is-error' ? '!' : i + 1;
       return (i ? '<span class="uap-step-line"></span>' : '') + `<span class="uap-step ${cls}"><span class="uap-step-n">${n}</span>${l}</span>`;
     }).join('')}</div>`;
@@ -85,7 +85,7 @@
   const BODY = {
     download() {
       const pfs = new Set(DATA.map(r => r[C().PF])).size;
-      return `${S.downloaded ? '' : `<p class="uap-lede" style="text-align:center;margin-left:auto;margin-right:auto">Download the latest version of all your portfolios, make your changes in Excel, then upload the file. Take as long as you need — nothing is updated until you upload and confirm.</p>`}
+      return `${S.downloaded ? '' : `<p class="uap-lede" style="text-align:center;margin-left:auto;margin-right:auto">Download the latest version of all your portfolios, make your changes in Excel, then upload the file. Take as long as you need — nothing is updated until you update Real World.</p>`}
         ${S.downloaded ? `<div class="uap-done-note uap-done-stack">${I.ok.replace(/width="20" height="20"/, 'width="28" height="28"')}<span>Downloaded. You can upload your edited file now, or close this window and come back when you’ve finished editing.</span></div>` : ''}`;
     },
     upload() {
@@ -191,7 +191,7 @@
       };
       const unchanged = total - d.touched.length;
       return `<div class="uap-sticky"><div class="uap-banner is-ok">${I.ok}<div><div class="uap-banner-t">${S.applied ? 'Changes applied' : 'File passed all checks — review the changes'}</div>
-          <div class="uap-banner-s">Compare your portfolios in Real World now (left) with how they’ll look after this update (right).${S.applied ? '' : ' Nothing is applied until you confirm.'}</div>
+          <div class="uap-banner-s">Compare your portfolios in Real World now (left) with how they’ll look after this update (right).${S.applied ? '' : ' Nothing is applied until you click Update portfolios in Real World.'}</div>
           <div class="uap-stats"><span><b>${new Set([...d.touched, ...S.res.gdiff.added.map(x => x.pf), ...S.res.gdiff.removed.map(x => x.pf)]).size}</b> of ${total} portfolios affected</span>${S.res.gdiff.added.length + S.res.gdiff.removed.length ? `<span><b>${S.res.gdiff.added.length + S.res.gdiff.removed.length}</b> group ${S.res.gdiff.added.length + S.res.gdiff.removed.length === 1 ? 'assignment' : 'assignments'} changed</span>` : ''}<span><b>${d.values}</b> ${d.values === 1 ? 'value' : 'values'} changed</span><span><b>${d.added.length}</b> ${d.added.length === 1 ? 'policy' : 'policies'} added</span><span><b>${d.removed.length}</b> ${d.removed.length === 1 ? 'policy' : 'policies'} removed</span></div></div></div>
         </div>
         ${staleNote()}
@@ -308,7 +308,7 @@
       const d = S.res.diff, none = !d.changed.length && !d.added.length && !d.removed.length;
       return `<div class="uap-foot-left">${S.merge && S.merge.conflicts.length ? `<button class="uap-link" data-uap-goto="conflicts">Back to clashes</button>` : `<button class="uap-link" data-uap-goto="upload">${I.upload}Upload a different file</button>`}</div>
         <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-close>Cancel</button>
-        <button class="rw-modal-btn rw-modal-btn-primary" data-uap-confirm>Confirm &amp; update portfolios</button>`;
+        <button class="rw-modal-btn rw-modal-btn-primary" data-uap-confirm>Update portfolios in Real World</button>`;
     },
     applying: () => `<button class="rw-modal-btn rw-modal-btn-primary" disabled>Updating…</button>`,
     success: () => `<button class="rw-modal-btn rw-modal-btn-primary" data-uap-close>Done</button>`,

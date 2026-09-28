@@ -630,13 +630,13 @@ function applyTweaks() {
   // Swap the sidebar Real World logo for the white variant in dark mode
   const logoImg = document.querySelector('img.sidebar-logo');
   if (logoImg) logoImg.src = storedTheme === 'dark'
-    ? 'images/skytek-realworld-landscape-white.png'
-    : 'images/skytek-realworld-landscape-color.png';
+    ? ((window.__resources&&window.__resources.logoLandscapeWhite)||'images/skytek-realworld-landscape-white.png')
+    : ((window.__resources&&window.__resources.logoLandscape)||'images/skytek-realworld-landscape-color.png');
   // Swap the footer Skytek stacked logo too
   const footImg = document.querySelector('.sidebar-footer img');
   if (footImg) footImg.src = storedTheme === 'dark'
-    ? 'images/skytek-logo-stacked-white.png'
-    : 'images/skytek-logo-stacked.png';
+    ? ((window.__resources&&window.__resources.logoStackedWhite)||'images/skytek-logo-stacked-white.png')
+    : ((window.__resources&&window.__resources.logoStacked)||'images/skytek-logo-stacked.png');
 
   const sb = document.getElementById('sidebar');
   if (sb) {
