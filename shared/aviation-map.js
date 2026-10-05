@@ -126,7 +126,7 @@ let tileLayer = null;
 
 const MAP_TYPES = {
   satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  street:    { url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png', bg: '#f8fafc' },
+  street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f8fafc' },
   dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
   light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
 };

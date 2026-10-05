@@ -65,7 +65,7 @@
     return `<div class="uap-steps">${['Download', 'Upload and review changes', 'Update Real World'].map((l, i) => {
       const cls = S.step === 'errors' && i === 1 ? 'is-error' : i < idx ? 'is-done' : i === idx ? 'is-active' : '';
       const n = cls === 'is-done' ? I.tick : cls === 'is-error' ? '!' : i + 1;
-      return (i ? '<span class="uap-step-line"></span>' : '') + `<span class="uap-step ${cls}"><span class="uap-step-n">${n}</span>${l}</span>`;
+      return (i ? '<span class="uap-step-line"></span>' : '') + `<span class="uap-step ${cls}"><span class="uap-step-n">${n}</span><span class="uap-step-l">${l}</span></span>`;
     }).join('')}</div>`;
   }
 
@@ -125,8 +125,8 @@
           return `<section class="uap-grp"><div class="uap-grp-h"><span class="uap-grp-t">${esc(C().groupTitle(g.k, g.list.length))}</span></div>
             <div class="uap-grp-fix">${I.bulb}<span><b>How to fix:</b> ${esc(K[g.k].fix)}</span></div>
             <div class="uap-grp-table scroll-thin"><table class="uap-table"><thead><tr><th>Where</th><th>In your file</th><th>What’s wrong</th></tr></thead><tbody>
-              ${g.list.slice(0, 100).map(e => `<tr><td class="uap-where">${where(e)}</td><td>${val(e)}</td><td>${det(e)}</td></tr>`).join('')}
-            </tbody></table></div>${g.list.length > 100 ? `<div class="uap-quiet">Showing the first 100 of ${g.list.length}. Download your file with problems highlighted to see them all.</div>` : ''}</section>`;
+              ${g.list.slice(0, 100).map(e => `<tr><td class="uap-where" data-label="Where">${where(e)}</td><td data-label="In your file">${val(e)}</td><td data-label="What’s wrong">${det(e)}</td></tr>`).join('')}
+            </tbody></table></div>${g.list.length > 100 ? `<div class="uap-quiet">Showing the first 100 of ${g.list.length}. Download the error report to see them all.</div>` : ''}</section>`;
         }).join('');
       const hasPrt = !!(S.pparsed || prt.length), tab = hasPrt && (S.errTab === 'portfolios' || (!S.errTab && !pol.length && prt.length)) ? 'portfolios' : 'policies';
       const tabBtn = (k, label, n) => `<button type="button" role="tab" class="ds-tab" aria-selected="${tab === k}" data-uap-etab="${k}"><span class="ds-tab-label">${label}<span class="uap-etab-n${n ? ' is-bad' : ' is-ok'}">${n}</span></span></button>`;
@@ -293,7 +293,7 @@
     validating: () => `<button class="rw-modal-btn rw-modal-btn-cancel" disabled>Checking file…</button>`,
     errors: () => {
       const st = errState();
-      return `<div class="uap-foot-left">${S.parsed ? `<button class="uap-link" data-uap-annot>${I.download}Download my file with problems highlighted</button>` : ''}</div>
+      return `<div class="uap-foot-left"><button class="rw-modal-btn rw-modal-btn-secondary" data-uap-errpdf><span class="uap-bi">${I.download}Download error report</span></button></div>
       <button class="rw-modal-btn rw-modal-btn-cancel" data-uap-close>Cancel</button>
       <button class="rw-modal-btn rw-modal-btn-primary" data-uap-goto="upload"><span class="uap-bi">${I.upload}Upload corrected file</span></button>`;
     },
@@ -313,6 +313,59 @@
     applying: () => `<button class="rw-modal-btn rw-modal-btn-primary" disabled>Updating…</button>`,
     success: () => `<button class="rw-modal-btn rw-modal-btn-primary" data-uap-close>Done</button>`,
   };
+
+  const loadScript = src => new Promise((res, rej) => { if (document.querySelector(`script[src="${src}"]`)) return res(); const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  async function downloadErrorReport(btn) {
+    const label = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = '<span class="uap-bi"><span class="uap-spinner" style="width:14px;height:14px;border-width:2px" aria-hidden="true"></span>Preparing report…</span>';
+    try {
+      await loadScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js');
+      await loadScript('https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js');
+      const { jsPDF } = window.jspdf, doc = new jsPDF({ unit:'pt', format:'a4' });
+      const errs = S.res.errors, K = C().KINDS, W = doc.internal.pageSize.getWidth(), M = 40;
+      const fname = (S.file && S.file.name) || 'file.xlsx', now = new Date();
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(15, 23, 42);
+      doc.text('Update All Portfolios — Error report', M, 52);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(71, 85, 105);
+      doc.text(`File: ${fname}`, M, 72);
+      doc.text(`Generated: ${now.toLocaleString('en-GB', { dateStyle:'medium', timeStyle:'short' })}`, M, 86);
+      const pol = errs.filter(e => !e.sheet), prt = errs.filter(e => e.sheet);
+      doc.text(`${errs.length} problem${errs.length === 1 ? '' : 's'} found — Policies sheet: ${pol.length} · Portfolios sheet: ${prt.length}. Fix these in Excel, then upload the corrected file.`, M, 100, { maxWidth: W - M * 2 });
+      let y = 124;
+      const whereT = e => typeof e.row === 'number' ? `${e.row === 1 ? 'Header row' : 'Row ' + e.row}\n${e.label || ''}${e.letter ? ' · column ' + e.letter : ''}` : (e.label || '');
+      const valT = e => e.value === '' || e.value == null ? 'Empty' : String(e.value);
+      [['Policies sheet', pol], ['Portfolios sheet', prt]].forEach(([sheet, list]) => {
+        if (!list.length) return;
+        if (y > 740) { doc.addPage(); y = 52; }
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(15, 23, 42);
+        doc.text(`${sheet} (${list.length})`, M, y); y += 16;
+        Object.keys(K).forEach(k => {
+          const g = list.filter(e => e.kind === k); if (!g.length) return;
+          if (y > 720) { doc.addPage(); y = 52; }
+          doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(15, 23, 42);
+          doc.text(C().groupTitle(k, g.length), M, y); y += 14;
+          doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(71, 85, 105);
+          const fix = doc.splitTextToSize('How to fix: ' + K[k].fix, W - M * 2);
+          doc.text(fix, M, y); y += fix.length * 12 + 4;
+          doc.autoTable({ startY: y, margin: { left: M, right: M }, head: [['Where', 'In your file', 'What’s wrong']],
+            body: g.map(e => [whereT(e), valT(e), e.issue || '']),
+            styles: { font:'helvetica', fontSize:9, cellPadding:5, textColor:[15, 23, 42], lineColor:[226, 232, 240], lineWidth:0.5, overflow:'linebreak' },
+            headStyles: { fillColor:[248, 250, 252], textColor:[71, 85, 105], fontStyle:'bold' },
+            alternateRowStyles: { fillColor:[252, 252, 253] },
+            columnStyles: { 0: { cellWidth:130 }, 1: { cellWidth:130 } } });
+          y = doc.lastAutoTable.finalY + 18;
+        });
+        y += 6;
+      });
+      const pages = doc.getNumberOfPages();
+      for (let p = 1; p <= pages; p++) { doc.setPage(p); doc.setFontSize(8.5); doc.setTextColor(148, 163, 184); doc.text(`Real World · Page ${p} of ${pages}`, W - M, doc.internal.pageSize.getHeight() - 20, { align:'right' }); }
+      doc.save(fname.replace(/\.xlsx?$/i, '') + '_error-report.pdf');
+    } catch (err) {
+      console.error(err); alert('Sorry, the error report could not be created. Please try again.');
+    } finally {
+      if (document.body.contains(btn)) { btn.disabled = false; btn.innerHTML = label; }
+    }
+  }
 
   function saveBlob(blob, name) {
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
@@ -391,8 +444,8 @@
     m.querySelectorAll('[data-uap-pgr]').forEach(w => { const k = w.dataset.uapPgr; window.dsWirePagination(w, { onPage: p => { S[k + 'P'] = +p; render(); if (k === 'chg') { const d = document.querySelector('#modal-root .uap-diff:not(.uap-sum)'); const body = document.querySelector('#modal-root .rw-modal-body'); if (d && body) { const st = document.querySelector('#modal-root .uap-sticky'); body.scrollTop = d.offsetTop - body.offsetTop - (st ? st.offsetHeight : 0) - 56; } }  } }); });
     const sq = m.querySelector('[data-uap-sumq]');
     if (sq) sq.addEventListener('input', () => { S.sumQ = sq.value; S.sumP = 1; const pos = sq.selectionStart; render(); const n = document.querySelector('#modal-root [data-uap-sumq]'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } });
-    const an = m.querySelector('[data-uap-annot]');
-    if (an) an.addEventListener('click', () => saveBlob(X().write([C().annotatedSheet(S.parsed, S.res.errors.filter(e => !e.sheet), S.fixes), ...(S.pparsed ? [C().annotatedPortfolios(S.pparsed, S.res.errors.filter(e => e.sheet))] : [C().portfoliosSheet(GROUPS)]), ...(S.fileMeta ? [{ ...Y().detailsSheet(S.fileMeta), hidden: true }] : [])]), S.file.name.replace(/\.xlsx$/i, '') + '_problems.xlsx'));
+    const ep = m.querySelector('[data-uap-errpdf]');
+    if (ep) ep.addEventListener('click', () => downloadErrorReport(ep));
   }
 
   window.UpdateAllPortfoliosModal = { open, close };

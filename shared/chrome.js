@@ -610,6 +610,10 @@ function applyTweaks() {
     .text-brand-500{color:${c[500]}!important}.text-brand-600{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
     .border-brand-300{border-color:${c[300]}!important}.border-brand-500{border-color:${c[500]}!important}
     .ring-brand-100{--tw-ring-color:${c[100]}!important}
+    html:not([data-theme="dark"]), html:not([data-theme="dark"]) body, html:not([data-theme="dark"]) *{scrollbar-color:${c[400]} #f3f4f6!important}
+    html:not([data-theme="dark"])::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb{background:${c[400]}!important;border-radius:999px}
+    html:not([data-theme="dark"])::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb:hover{background:${c[600]}!important}
+    html:not([data-theme="dark"])::-webkit-scrollbar-track, html:not([data-theme="dark"]) body::-webkit-scrollbar-track, html:not([data-theme="dark"]) *::-webkit-scrollbar-track{background:#f3f4f6!important}
     .hover\\:bg-brand-600:hover{background-color:${c[600]}!important}.hover\\:border-brand-300:hover{border-color:${c[300]}!important}
     .hover\\:text-brand-700:hover{color:${c[700]}!important}
     .via-brand-400{--tw-gradient-stops:var(--tw-gradient-from),${c[400]},var(--tw-gradient-to,transparent)!important}
