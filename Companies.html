@@ -147,6 +147,8 @@ const SC = window.sharedChrome;
 
 /* ── Data ─────────────────────────────────────────────────────────────────── */
 const COMPANIES = [
+  { name:'Harbourline Property Holdings',  type:'Property Company',   country:'United Kingdom',   flag:'🇬🇧', hq:'London',      reg:'GB-08452173', fleet:64,  fleetVal:'$3.6B',  fleetM:3600,  services:['Commercial Real Estate','Logistics Warehousing','Port Facilities'], est:1994, employees:420,  status:'Active', code:'HPH-GB-001', countryControl:'United Kingdom',    avgRisk:34, sanctioned:false, updatedDate:'2025-04-12', complianceLabel:'Compliant'   },
+  { name:'Skyward Aviation Leasing Ltd',   type:'Aviation Company',   country:'Ireland',          flag:'🇮🇪', hq:'Dublin',      reg:'IE-614208',   fleet:42,  fleetVal:'$2.9B',  fleetM:2900,  services:['Aircraft Leasing','Fleet Management','Air Cargo'],   est:2003, employees:260,  status:'Active', code:'SAL-IE-001', countryControl:'Ireland',           avgRisk:41, sanctioned:false, updatedDate:'2025-04-18', complianceLabel:'Compliant'   },
   { name:'Ramous Maritime Company Ltd',    type:'Shipping Company',   country:'Cyprus',           flag:'🇨🇾', hq:'Limassol',    reg:'HE 123456',  fleet:25,  fleetVal:'$1.2B',  fleetM:1200,  services:['Container Shipping','Bulk Cargo'],                    est:1995, employees:450,  status:'Active', code:'RMC-CY-001', countryControl:'United Kingdom',    avgRisk:75, sanctioned:true,  updatedDate:'2025-07-22', complianceLabel:'Sanctioned' },
   { name:'Turvalu Naviera S.A.',           type:'Shipping Company',   country:'Panama',           flag:'🇵🇦', hq:'Panama City', reg:'PA-456789',  fleet:8,   fleetVal:'$145M',  fleetM:145,   services:['Container Shipping','General Cargo'],                est:2008, employees:120,  status:'Active', code:'TVN-PA-001', countryControl:'Panama',            avgRisk:48, sanctioned:false, updatedDate:'2025-05-10', complianceLabel:'Compliant'   },
   { name:'Ship Owner Investment Co.',      type:'Investment Company', country:'Marshall Islands', flag:'🇲🇭', hq:'Majuro',      reg:'MI-789012',  fleet:35,  fleetVal:'$2.8B',  fleetM:2800,  services:['Ship Investment','Fleet Management'],                est:1987, employees:85,   status:'Active', code:'SOI-MI-001', countryControl:'Marshall Islands',  avgRisk:52, sanctioned:false, updatedDate:'2025-04-18', complianceLabel:'Compliant'   },
@@ -161,7 +163,7 @@ const COMPANIES = [
 ];
 window.__COMPANIES = COMPANIES;
 
-const COUNTRY_CC = { Cyprus:'cy', Panama:'pa', 'Marshall Islands':'mh', Netherlands:'nl', Canada:'ca', Norway:'no', Malta:'mt', Latvia:'lv', Singapore:'sg', Greece:'gr' };
+const COUNTRY_CC = { Cyprus:'cy', Panama:'pa', 'Marshall Islands':'mh', Netherlands:'nl', Canada:'ca', Norway:'no', Malta:'mt', Latvia:'lv', Singapore:'sg', Greece:'gr', 'United Kingdom':'gb', Ireland:'ie' };
 function countryFlag(name) {
   const cc = COUNTRY_CC[name] || 'un';
   return `<img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${name}" width="20" height="14" style="border-radius:2px;box-shadow:0 0 0 1px rgba(15,23,42,.12);object-fit:cover;flex-shrink:0" loading="lazy" />`;
@@ -203,13 +205,13 @@ function activeDot() {
   return `<span style="width:6px;height:6px;border-radius:50%;background:var(--brand-600,#2563eb);display:inline-block;margin-left:2px;vertical-align:middle;flex-shrink:0"></span>`;
 }
 
-const FLEET_B = [['lt20','1 – 20 vessels',0,20],['20to50','21 – 50 vessels',21,50],['50to100','51 – 100 vessels',51,100],['gt100','100+ vessels',101,1e9]];
+const FLEET_B = [['lt20','1 – 20',0,20],['20to50','21 – 50',21,50],['50to100','51 – 100',51,100],['gt100','100+',101,1e9]];
 const EST_B   = [['pre1970','Before 1970',0,1969],['1970to1990','1970 – 1990',1970,1990],['1990to2010','1991 – 2010',1991,2010],['post2010','After 2010',2011,9999]];
 const CO_FILTERS = [
   { key:'type',    label:'Company Type', opts:() => COMPANY_TYPES.map(t => [t, t]) },
   { key:'country', label:'Country',      opts:() => COUNTRIES.map(c => [c, c]) },
   { key:'status',  label:'Status',       opts:() => [['Active','Active'],['Inactive','Inactive']] },
-  { key:'fleet',   label:'Fleet Size',   opts:() => FLEET_B.map(b => [b[0], b[1]]) },
+  { key:'fleet',   label:'Assets',   opts:() => FLEET_B.map(b => [b[0], b[1]]) },
   { key:'est',     label:'Established',  opts:() => EST_B.map(b => [b[0], b[1]]) },
 ];
 const coFilterActive = k => ST.f[k] !== null;
@@ -293,8 +295,8 @@ function renderPage() {
               <th class="sortable ${ST.sortCol === 'country'   ? 'sorted' : ''}" data-sort="country"  style="min-width:145px">Country${sortIcon('country')}</th>
               <th style="min-width:110px">Headquarters</th>
               <th style="min-width:125px">Registration #</th>
-              <th class="sortable ${ST.sortCol === 'fleet'     ? 'sorted' : ''}" data-sort="fleet"    style="min-width:95px">Fleet Size${sortIcon('fleet')}</th>
-              <th class="sortable ${ST.sortCol === 'fleetVal'  ? 'sorted' : ''}" data-sort="fleetVal" style="min-width:100px">Fleet Value${sortIcon('fleetVal')}</th>
+              <th class="sortable ${ST.sortCol === 'fleet'     ? 'sorted' : ''}" data-sort="fleet"    style="min-width:95px">Assets${sortIcon('fleet')}</th>
+              <th class="sortable ${ST.sortCol === 'fleetVal'  ? 'sorted' : ''}" data-sort="fleetVal" style="min-width:100px">Value${sortIcon('fleetVal')}</th>
               <th style="min-width:220px">Primary Services</th>
               <th class="sortable ${ST.sortCol === 'est'       ? 'sorted' : ''}" data-sort="est"      style="min-width:110px">Established${sortIcon('est')}</th>
               <th class="sortable ${ST.sortCol === 'employees' ? 'sorted' : ''}" data-sort="employees"style="min-width:100px">Employees${sortIcon('employees')}</th>
@@ -316,7 +318,7 @@ function renderPage() {
                 <td><span style="display:inline-flex;align-items:center;gap:8px">${countryFlag(co.country)}<span>${co.country}</span></span></td>
                 <td style="color:#64748b">${co.hq}</td>
                 <td style="color:#475569;font-variant-numeric:tabular-nums">${co.reg}</td>
-                <td style="font-variant-numeric:tabular-nums">${co.fleet.toLocaleString()} vessel${co.fleet !== 1 ? 's' : ''}</td>
+                <td style="font-variant-numeric:tabular-nums">${co.fleet.toLocaleString()}</td>
                 <td style="font-variant-numeric:tabular-nums;font-weight:600">${co.fleetVal}</td>
                 <td>${shown.map(s => `<span class="svc-tag">${s}</span>`).join('')}${extra > 0 ? `<span class="svc-more">+${extra}</span>` : ''}</td>
                 <td style="font-variant-numeric:tabular-nums">${co.est}</td>
