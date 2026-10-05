@@ -20,7 +20,12 @@
     dl:'<path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/>',
     back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
   };
-  const flag = cc => `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="19" height="13" />`;
+  const CC_NAME = { vc:'St Vincent & Gren.', kn:'St Kitts & Nevis', mh:'Marshall Islands', hk:'Hong Kong', gb:'United Kingdom', us:'United States', ae:'UAE', kr:'South Korea', ru:'Russia', ir:'Iran', tz:'Tanzania', bo:'Bolivia', kp:'North Korea', tw:'Taiwan', vn:'Vietnam', sy:'Syria', ve:'Venezuela' };
+  let _dn; try { _dn = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+  const ccName = cc => !cc ? '' : CC_NAME[cc] || (_dn ? _dn.of(String(cc).toUpperCase()) : String(cc).toUpperCase());
+  const flagImg = cc => cc ? `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="" title="${ccName(cc)}" width="19" height="13" />` : '';
+  const flag = cc => cc ? `<span class="flagc" title="${ccName(cc)}">${flagImg(cc)}<span>${ccName(cc)}</span></span>` : '';
+  const flagCn = cc => cc ? `<span class="flag-cn">${ccName(cc)}</span>` : '';
   const scoreChip = n => `<span class="score ${n > 60 ? 'sc-high' : n > 40 ? 'sc-med' : 'sc-low'}">${n}</span>`;
   const vStack = (name, imo, type) => `<div class="v-stack"><span class="v-name">${name}</span><span class="v-sub num">IMO ${imo}${type ? ' &middot; ' + type : ''}</span></div>`;
   const sevPill = s => `<span class="pill ${s === 'Critical' || s === 'Serious' ? 'pill-red' : s === 'High' || s === 'Moderate' ? 'pill-amber' : 'pill-green'}">${s}</span>`;
@@ -184,7 +189,7 @@
           <tbody>
             ${c.byFlag.map(x => `
               <tr>
-                <td style="white-space:nowrap">${flag(x.flag)} <span style="font-weight:600;color:#0f172a">${x.name}</span></td>
+                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#0f172a">${x.name}</span></td>
                 <td class="r num">${x.n}</td>
                 <td class="r">${scoreChip(x.avg)}</td>
                 <td><span class="pill ${x.standing === 'Watchlisted' ? 'pill-red' : x.standing.includes('grey') ? 'pill-amber' : 'pill-green'}">${x.standing}</span></td>
@@ -379,7 +384,7 @@
           <tbody>
             ${g.ports.map(p => `
               <tr>
-                <td style="white-space:nowrap">${flag(p.country)} <span style="font-weight:600;color:#0f172a">${p.port}</span></td>
+                <td style="white-space:nowrap">${flagImg(p.country)} <span style="font-weight:600;color:#0f172a">${p.port}</span> ${flagCn(p.country)}</td>
                 <td class="r num">${p.calls}</td>
                 <td class="r num">${p.vessels}</td>
                 <td>${p.note}</td>

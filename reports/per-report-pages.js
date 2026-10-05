@@ -18,7 +18,11 @@
     dl:'<path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/>',
     back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
   };
-  const flag = cc => `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="19" height="13" />`;
+  const CC_NAME = { vc:'St Vincent & Gren.', kn:'St Kitts & Nevis', mh:'Marshall Islands', hk:'Hong Kong', gb:'United Kingdom', us:'United States', ae:'UAE', kr:'South Korea', ru:'Russia', ir:'Iran', tz:'Tanzania', bo:'Bolivia', kp:'North Korea' };
+  let _dn; try { _dn = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+  const ccName = cc => CC_NAME[cc] || (_dn ? _dn.of(cc.toUpperCase()) : cc.toUpperCase());
+  const flagImg = cc => `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="" width="19" height="13" />`;
+  const flag = cc => `<span class="flagc" title="${ccName(cc)}">${flagImg(cc)}<span>${ccName(cc)}</span></span>`;
   const scoreChip = n => `<span class="score ${n > 50 ? 'sc-high' : n > 25 ? 'sc-med' : 'sc-low'}">${n}</span>`;
   const head = (title) => `
     <div class="page-head">
@@ -240,7 +244,7 @@
           ${P.attention.map(a => `
             <div class="att-item ${a.tone === 'amber' ? 'amber' : ''}">
               <div>
-                <div class="att-name">${flag(a.cc)} ${a.name}</div>
+                <div class="att-name"><span title="${ccName(a.cc)}">${flagImg(a.cc)}</span> ${a.name}</div>
                 <div class="att-meta"><span class="num">IMO ${a.imo}</span> &middot; ${a.country} &middot; <span class="num">Risk score ${a.score}</span></div>
                 <div class="att-why">${a.why}</div>
               </div>

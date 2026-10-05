@@ -20,7 +20,12 @@
     dl:'<path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/>',
     back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
   };
-  const flag = cc => cc ? `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="19" height="13" />` : '';
+  const CC_NAME = { vc:'St Vincent & Gren.', kn:'St Kitts & Nevis', mh:'Marshall Islands', hk:'Hong Kong', gb:'United Kingdom', us:'United States', ae:'UAE', kr:'South Korea', ru:'Russia', ir:'Iran', tz:'Tanzania', bo:'Bolivia', kp:'North Korea', tw:'Taiwan', vn:'Vietnam', sy:'Syria', ve:'Venezuela' };
+  let _dn; try { _dn = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+  const ccName = cc => !cc ? '' : CC_NAME[cc] || (_dn ? _dn.of(String(cc).toUpperCase()) : String(cc).toUpperCase());
+  const flagImg = cc => cc ? `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="" title="${ccName(cc)}" width="19" height="13" />` : '';
+  const flag = cc => cc ? `<span class="flagc" title="${ccName(cc)}">${flagImg(cc)}<span>${ccName(cc)}</span></span>` : '';
+  const flagCn = cc => cc ? `<span class="flag-cn">${ccName(cc)}</span>` : '';
   const scoreChip = n => `<span class="score ${n >= 80 ? 'sc-high' : n >= 50 ? 'sc-med' : 'sc-low'}">${n}</span>`;
   const head = (title) => `
     <div class="page-head">
@@ -126,7 +131,7 @@
           <tbody>
             ${F.flags.map(f => `
               <tr>
-                <td class="vn">${flag(f.cc)} ${f.name}</td>
+                <td class="vn">${flagImg(f.cc)} ${f.name}</td>
                 <td class="r num">${f.count}</td>
                 <td class="r num">${(f.count / F.composition.vessels * 100).toFixed(1)}%</td>
                 <td>${tonePill(f.tone)}</td>
@@ -264,7 +269,7 @@
           ${F.exceptions.map(e => `
             <div class="att-item ${e.tone === 'amber' ? 'amber' : ''}">
               <div>
-                <div class="att-name">${flag(e.cc)} ${e.name} <span class="pill ${e.tone === 'red' ? 'pill-red' : 'pill-amber'}">${e.rule}</span></div>
+                <div class="att-name">${flagImg(e.cc)} ${e.name} ${flagCn(e.cc)} <span class="pill ${e.tone === 'red' ? 'pill-red' : 'pill-amber'}">${e.rule}</span></div>
                 <div class="att-meta"><span class="num">IMO ${e.imo}</span> &middot; ${e.country}</div>
                 <div class="att-why">${e.d}</div>
               </div>

@@ -20,7 +20,12 @@
     dl:'<path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/>',
     back:'<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
   };
-  const flag = cc => `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="19" height="13" />`;
+  const CC_NAME = { vc:'St Vincent & Gren.', kn:'St Kitts & Nevis', mh:'Marshall Islands', hk:'Hong Kong', gb:'United Kingdom', us:'United States', ae:'UAE', kr:'South Korea', ru:'Russia', ir:'Iran', tz:'Tanzania', bo:'Bolivia', kp:'North Korea', tw:'Taiwan', vn:'Vietnam', sy:'Syria', ve:'Venezuela' };
+  let _dn; try { _dn = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+  const ccName = cc => !cc ? '' : CC_NAME[cc] || (_dn ? _dn.of(String(cc).toUpperCase()) : String(cc).toUpperCase());
+  const flagImg = cc => cc ? `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="" title="${ccName(cc)}" width="19" height="13" />` : '';
+  const flag = cc => cc ? `<span class="flagc" title="${ccName(cc)}">${flagImg(cc)}<span>${ccName(cc)}</span></span>` : '';
+  const flagCn = cc => cc ? `<span class="flag-cn">${ccName(cc)}</span>` : '';
   const scoreChip = n => `<span class="score ${n >= 80 ? 'sc-high' : n >= 50 ? 'sc-med' : 'sc-low'}">${n}</span>`;
   const head = (title) => `
     <div class="page-head">
@@ -65,7 +70,7 @@
               <tr>
                 <td style="color:#64748b;white-space:nowrap">${o.role}</td>
                 <td class="vn">${o.name}</td>
-                <td style="white-space:nowrap">${flag(o.cc)} ${o.country}</td>
+                <td style="white-space:nowrap">${flagImg(o.cc)} ${o.country}</td>
                 <td class="num">${o.since}</td>
                 <td>${o.flags === 'None' ? '<span class="pill pill-green">None</span>' : `<span class="pill pill-amber">${o.flags}</span>`}</td>
               </tr>`).join('')}
@@ -161,7 +166,7 @@
             ${V.voyage.ports.map(p => `
               <tr>
                 <td class="vn">${p.port}</td>
-                <td style="white-space:nowrap">${flag(p.cc)} ${p.country}</td>
+                <td style="white-space:nowrap">${flagImg(p.cc)} ${p.country}</td>
                 <td class="num" style="white-space:nowrap">${p.arr}</td>
                 <td class="num" style="white-space:nowrap">${p.dep}</td>
                 <td class="r num">${p.days}</td>
@@ -229,7 +234,7 @@
             ${V.sts.map(t => `
               <tr>
                 <td class="num" style="white-space:nowrap">${t.date}</td>
-                <td class="vn">${flag(t.cc)} ${t.counterparty}</td>
+                <td class="vn">${flagImg(t.cc)} ${t.counterparty} ${flagCn(t.cc)}</td>
                 <td><span class="pill ${t.status === 'Ok' ? 'pill-green' : 'pill-amber'}">${t.status}</span></td>
                 <td style="color:#475569;white-space:nowrap">${t.region}</td>
                 <td class="r num">${t.duration}</td>
@@ -301,7 +306,7 @@
       eyebrow: `Submission pack — ${V.meta.submission}`,
       title: 'Individual Vessel<br />Underwriting Report',
       sub: `Submission pack for ${V.meta.submission}: particulars, ownership chain, Real World Risk Score and its history, trading and port activity, casualty record, sanctions position and current location.`,
-      subject: { k:'Vessel', v:`${flag('es')} ${V.meta.vessel}`, d:`IMO ${V.meta.imo} &middot; MMSI ${V.meta.mmsi} &middot; Crude Oil Tanker &middot; Risk score ${V.score.current} (${V.score.band})` },
+      subject: { k:'Vessel', v:`${flagImg('es')} ${V.meta.vessel} ${flagCn('es')}`, d:`IMO ${V.meta.imo} &middot; MMSI ${V.meta.mmsi} &middot; Crude Oil Tanker &middot; Risk score ${V.score.current} (${V.score.band})` },
       meta: [['Reporting period', V.meta.period]],
       reportId: V.meta.reportId, owner: V.meta.owner, generatedOn: V.meta.generatedOn,
     });
