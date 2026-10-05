@@ -141,7 +141,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 /* Read brand color at render time so JS-driven colors (SVG fills, Leaflet styles) follow the theme. */
@@ -152,7 +152,29 @@ function brand(shade) {
 
 /* ---- Load port ---- */
 const DEFAULT = { name:'Port of Long Beach', country:'USA', lat:33.7547, lng:-118.2162, terminals:10, type:'Container' };
-const PORT = (() => { try { const r = sessionStorage.getItem('selectedPort'); return r ? {...DEFAULT,...JSON.parse(r)} : DEFAULT; } catch { return DEFAULT; } })();
+/* Known coordinates for ports that other pages link to by name only */
+const PORT_COORDS = {
+  amsterdam:[52.4050,4.8200,'Netherlands'], rotterdam:[51.9500,4.1400,'Netherlands'], antwerp:[51.2800,4.3500,'Belgium'], hamburg:[53.5400,9.9600,'Germany'],
+  bremerhaven:[53.5600,8.5500,'Germany'], 'bandar imam khomeini':[30.4300,49.0800,'Iran'], damietta:[31.4700,31.7600,'Egypt'], varna:[43.1900,27.9300,'Bulgaria'],
+  poti:[42.1500,41.6500,'Georgia'], mersin:[36.7900,34.6300,'Türkiye'], singapore:[1.2655,103.8200,'Singapore'], fujairah:[25.1700,56.3600,'UAE'],
+  'jebel ali':[25.0100,55.0600,'UAE'], dubai:[25.2700,55.2900,'UAE'], 'abu dhabi':[24.5200,54.3800,'UAE'], muscat:[23.6300,58.5700,'Oman'],
+  colombo:[6.9500,79.8500,'Sri Lanka'], mumbai:[18.9500,72.8500,'India'], karachi:[24.8400,66.9800,'Pakistan'], chittagong:[22.3100,91.8000,'Bangladesh'],
+  algeciras:[36.1300,-5.4300,'Spain'], 'port said':[31.2600,32.3000,'Egypt'], piraeus:[37.9400,23.6200,'Greece'], valletta:[35.9000,14.5200,'Malta'],
+  'gulf of oman':[25.0000,57.5000,'—'], 'strait of hormuz':[26.5700,56.2500,'—'], 'long beach':[33.7547,-118.2162,'USA'],
+};
+const PORT = (() => {
+  let p = {};
+  try { const r = sessionStorage.getItem('selectedPort'); if (r) p = JSON.parse(r) || {}; } catch {}
+  if (!p.name) return DEFAULT;
+  const lat = parseFloat(p.lat), lng = parseFloat(p.lng);
+  if (!isFinite(lat) || !isFinite(lng)) {
+    const key = String(p.name).toLowerCase().replace(/^port of\s+/, '').split(',')[0].trim();
+    const hit = PORT_COORDS[key] || Object.entries(PORT_COORDS).find(([k]) => key.includes(k) || k.includes(key))?.[1];
+    if (hit) { p.lat = hit[0]; p.lng = hit[1]; if (!p.country && hit[2] !== '—') p.country = hit[2]; }
+    else { delete p.lat; delete p.lng; }
+  } else { p.lat = lat; p.lng = lng; }
+  return { ...DEFAULT, ...p, terminals: p.terminals ?? DEFAULT.terminals, type: p.type || DEFAULT.type, country: p.country || '—' };
+})();
 
 /* ---- Static mock data ---- */
 const VESSELS = [
@@ -530,9 +552,15 @@ function CardBerthPurpose() {
 
 /* ---- Map init ---- */
 let portMap = null;
+let portMapRO = null;
 function initMap() {
   const el = document.getElementById('port-map');
-  if (!el || portMap) return;
+  if (!el) return;
+  if (portMap) {
+    if (portMap.getContainer() === el) { portMap.invalidateSize(); return; }
+    portMap.remove(); portMap = null;
+  }
+  if (!el.clientWidth || !el.clientHeight) { setTimeout(initMap, 120); return; }
   portMap = L.map(el, { center:[PORT.lat, PORT.lng], zoom:13, zoomControl:true, scrollWheelZoom:true });
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution:'', maxZoom:19 }).addTo(portMap);
 
@@ -551,6 +579,9 @@ function initMap() {
   const zin=el.querySelector('.leaflet-control-zoom-in'), zout=el.querySelector('.leaflet-control-zoom-out');
   if(zin)  zin.innerHTML=`<span style="font-size:18px;line-height:30px;display:block;text-align:center;">+</span>`;
   if(zout) zout.innerHTML=`<span style="font-size:20px;line-height:30px;display:block;text-align:center;">&minus;</span>`;
+  if (portMapRO) portMapRO.disconnect();
+  if (window.ResizeObserver) { portMapRO = new ResizeObserver(() => portMap && portMap.invalidateSize()); portMapRO.observe(el); }
+  setTimeout(() => portMap && portMap.invalidateSize(), 250);
 }
 
 /* ---- Render ---- */

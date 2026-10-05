@@ -49,7 +49,7 @@
   .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;}
   .ds-tab:hover{color:#0f172a;}
   .ds-tab[aria-selected="true"]{color:#fff;}
-  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:#2563eb;border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none;}
+  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none;}
   .ds-tab-pill.is-init{transition:none;}
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;}
 
@@ -58,12 +58,12 @@
   .field-row:last-of-type{border-bottom:0;}
   .field-label{font-size:13px;color:#64748b;font-weight:500;}
   .field-value{font-size:13px;font-weight:600;color:#0f172a;text-align:right;}
-  .field-value-link{font-size:13px;font-weight:600;color:#2563eb;text-align:right;cursor:pointer;}
+  .field-value-link{font-size:13px;font-weight:600;color:var(--brand-600,#2563eb);text-align:right;cursor:pointer;}
   .field-value-link:hover{text-decoration:underline;}
 
   /* Buttons */
-  .btn-outline{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border:1.5px solid #2563eb;border-radius:8px;background:#fff;color:#2563eb;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
-  .btn-outline:hover{background:#eff6ff;}
+  .btn-outline{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border:1.5px solid var(--brand-600,#2563eb);border-radius:8px;background:#fff;color:var(--brand-600,#2563eb);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
+  .btn-outline:hover{background:var(--brand-50,#eff6ff);}
   .btn-icon{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;border:0;background:transparent;color:#94a3b8;cursor:pointer;}
   .btn-icon:hover{background:#f1f5f9;color:#334155;}
 
@@ -86,7 +86,7 @@
   .leaflet-control-zoom a svg{width:16px;height:16px;}
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;}
   .map-btn:hover{background:#f1f5f9;}
-  .marker-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#2563eb;border:2px solid #fff;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.25);color:#fff;}
+  .marker-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--brand-600,#2563eb);border:2px solid #fff;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.25);color:#fff;}
 
   /* Responsive */
   .top-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
@@ -133,7 +133,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC  = window.sharedChrome;
 const Ico = SC.I;
@@ -241,7 +241,7 @@ function PortfolioDetailsCard() {
     <!-- Aggregated exposure tile -->
     <div style="padding:14px 16px 0;" class="shrink-0">
       <div style="display:flex;justify-content:center;">
-        <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:10px;padding:14px 40px;text-align:center;min-width:220px;">
+        <div style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:10px;padding:14px 40px;text-align:center;min-width:220px;">
           <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:6px;">Our Aggregated Exposure</div>
           <div style="font-size:28px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${exposure}</div>
         </div>
@@ -404,7 +404,7 @@ function MapCard() {
 let ppMap = null, ppTile = null, currentMapType = 'satellite', ppLeafletMarkers = [];
 const MAP_TILES = {
   satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  street:    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  street:    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
   dark:      'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
   light:     'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
 };

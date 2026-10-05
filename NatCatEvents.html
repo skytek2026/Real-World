@@ -84,7 +84,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -101,6 +101,8 @@ const EVENTS = [
   { id:9,  name:'Tropical Cyclone Freddy',  type:'cyclone',    location:'Quelimane, Mozambique',               lat:-17.9, lng:36.9,   dateStart:'03/12/2023', dateEnd:'03/15/2023',  cat:2, updated:'Mar 15, 2023, 7:00 UTC'   },
   { id:10, name:'Hurricane Michael',        type:'hurricane',  location:'Mexico Beach, Florida',               lat:29.9,  lng:-85.4,  dateStart:'10/10/2018', dateEnd:null,          cat:5, updated:'Oct 12, 2018, 18:00 UTC'  },
   { id:11, name:'Venezuela Earthquake',     type:'earthquake', location:'Mérida, Venezuela',                   lat:8.6,   lng:-71.1,  dateStart:'03/24/2026', dateEnd:null,          cat:null, updated:'Mar 24, 2026, 11:42 UTC' },
+  { id:12, name:'Nepal–Tibet Glacial Collapse & Debris Flood', type:'flood', location:'Langtang Lirung, Rasuwa, Nepal–Tibet border', lat:28.28, lng:85.52, dateStart:'08/26/2026', dateEnd:null, cat:null, updated:'Sep 16, 2026, 09:30 UTC' },
+  { id:13, name:'U.S. Mid-Atlantic Stalled Nor\'easter', type:'flood', location:'Point Pleasant, New Jersey', lat:40.08, lng:-74.07, dateStart:'09/23/2026', dateEnd:'09/27/2026', cat:null, updated:'Sep 28, 2026, 08:00 UTC' },
 ];
 
 const TYPE_CFG = {
@@ -122,7 +124,7 @@ const ICON_SVG = {
 let natMapType = 'satellite';
 const NAT_TILES = {
   satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  street:    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  street:    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
   light:     'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
   dark:      'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
 };
@@ -134,7 +136,7 @@ function setNatMapType(type) {
   natTile.bringToBack();
   document.querySelectorAll('.map-type-opt').forEach(el => el.style.background = el.dataset.type===type?'#f1f5f9':'');
 }
-let ST = { query:'', year:'all', type:'all', selected:1 };
+let ST = { query:'', year:'all', type:'all', selected:null };
 let natMap = null, natTile = null;
 
 /* ── Helpers ──────────────────────────────────────────────────────────────── */

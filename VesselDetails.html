@@ -105,6 +105,12 @@
   /* DS Pagination — provided by shared/pagination.css */
   #vessel-map { background:#0b1220; position:absolute; inset:0; }
   #vessel-map .leaflet-top.leaflet-left { top:46px; left:2px; }
+  #vessel-map .leaflet-bottom.leaflet-left { bottom:84px; left:2px; }
+  #vessel-map .leaflet-bottom.leaflet-right { bottom:84px; right:2px; }
+  #vessel-map .map-coords { margin:0 10px 6px 0 !important; background:rgba(255,255,255,.85); border:1px solid #cbd5e1; border-radius:4px; padding:1px 6px; font-size:10.5px; line-height:1.3; color:#0f172a; font-variant-numeric:tabular-nums; white-space:nowrap; opacity:0; transition:opacity .15s; pointer-events:none; }
+  #vessel-map .map-coords.is-on { opacity:1; }
+  #vessel-map .leaflet-control-scale { margin-left:10px !important; margin-bottom:6px !important; }
+  #vessel-map .leaflet-control-scale-line { background:rgba(255,255,255,.85); border:1px solid #cbd5e1 !important; border-radius:4px; box-shadow:inset 0 -2px 0 #334155; color:#0f172a; font-size:10.5px; line-height:1.3; padding:1px 6px 2px; font-variant-numeric:tabular-nums; box-sizing:content-box; }
   #vessel-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42/.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
@@ -112,6 +118,179 @@
   .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgb(15 23 42/.08); cursor:pointer; flex-shrink:0; }
   .map-btn:hover { background:#f3f4f6; }
   .map-btn svg { width:16px; height:16px; }
+  .map-btn { position:relative; }
+  .map-btn.is-on { background:#eff6ff; color:#2d7ffb; border-color:#bfdbfe; }
+  .ev-row { display:flex; align-items:center; gap:8px; padding:6px 12px; font-size:13px; color:#374151; cursor:pointer; }
+  .ev-row:hover { background:#f3f4f6; }
+  .ev-cb { width:15px; height:15px; accent-color:#2d7ffb; cursor:pointer; flex-shrink:0; margin:0; }
+  .map-btn.has-active:not(.is-on) { color:#2d7ffb; }
+  .map-btn:disabled { color:#cbd5e1; cursor:not-allowed; background:#fff; }
+  #map-layers-menu.hidden, #map-events-menu.hidden, #map-regions-menu.hidden, #map-weather-menu.hidden, .rg-children.hidden { display:none !important; }
+  .env-sw-l { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; color:#475569; }
+  .env-sw { width:32px; height:18px; border-radius:9999px; background:#cbd5e1; position:relative; border:0; padding:0; cursor:pointer; transition:background .15s; flex-shrink:0; }
+  .env-sw::after { content:''; position:absolute; top:2px; left:2px; width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.18); transition:transform .15s; }
+  .env-sw[aria-checked="true"] { background:var(--brand-600,#2d7ffb); }
+  .env-sw[aria-checked="true"]::after { transform:translateX(14px); }
+  .env-sw:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#2d7ffb) 25%, transparent); }
+  .env-msg { display:none; }
+  .env-off .env-msg { display:flex; align-items:center; justify-content:center; min-height:180px; font-size:13.5px; color:#475569; text-align:center; }
+  .env-msg-in { display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .env-msg-ic { width:44px; height:44px; border-radius:50%; background:var(--brand-50,#eff6ff); color:var(--brand-600,#2d7ffb); display:inline-flex; align-items:center; justify-content:center; }
+  .env-off > :not(.env-head):not(.env-msg) { display:none !important; }
+  .env-period-sel { appearance:none; -webkit-appearance:none; height:32px; padding:0 30px 0 12px; font-size:13px; font-weight:500; color:#1f2937; background:#fff; border:1px solid #e5e7eb; border-radius:8px; cursor:pointer; box-shadow:0 1px 2px rgb(15 23 42/.05); }
+  .env-period-sel:hover { border-color:#cbd5e1; }
+  .env-period-sel:focus { outline:none; border-color:#2d7ffb; box-shadow:0 0 0 3px rgb(45 127 251/.18); }
+  .trp { position:fixed; z-index:10000; background:#fff; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 12px 32px rgb(15 23 42/.18); overflow:hidden; max-width:calc(100vw - 16px); font-size:12.5px; color:#0f172a; }
+  .trp-body { display:flex; }
+  .trp-presets { display:flex; flex-direction:column; gap:2px; padding:10px 6px; border-right:1px solid #f1f5f9; min-width:136px; background:#f8fafc; }
+  .trp-preset { text-align:left; background:transparent; border:0; border-radius:6px; padding:7px 10px; font:inherit; font-size:12.5px; color:#475569; cursor:pointer; white-space:nowrap; }
+  .trp-preset:hover { background:#f1f5f9; color:#0f172a; }
+  .trp-preset.is-active { background:var(--brand-50,#eff6ff); color:var(--brand-600,#2d7ffb); font-weight:600; }
+  .trp-preset:focus-visible, .trp-day:focus-visible, .trp-nav:focus-visible, .trp-btn:focus-visible, .trp-switch:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#2d7ffb) 25%,transparent); }
+  .trp-months { display:flex; gap:20px; padding:12px 16px; }
+  .trp-mhead { display:flex; align-items:center; justify-content:space-between; padding:0 2px 8px; }
+  .trp-mtitle { font-weight:600; font-size:13px; }
+  .trp-nav, .trp-nav-sp { width:24px; height:24px; }
+  .trp-nav { display:inline-grid; place-items:center; border:0; background:transparent; border-radius:4px; color:#475569; cursor:pointer; }
+  .trp-nav:hover { background:#f1f5f9; color:#0f172a; }
+  .trp-grid { display:grid; grid-template-columns:repeat(7,32px); row-gap:2px; }
+  .trp-dow { font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#94a3b8; text-align:center; padding:4px 0; }
+  .trp-day { position:relative; width:32px; height:32px; display:inline-grid; place-items:center; font:inherit; font-size:12.5px; background:transparent; border:0; border-radius:4px; color:#0f172a; cursor:pointer; font-variant-numeric:tabular-nums; }
+  .trp-day:hover:not(:disabled) { background:#f1f5f9; }
+  .trp-day:disabled { color:#cbd5e1; cursor:not-allowed; }
+  .trp-day.is-today { font-weight:700; }
+  .trp-day.is-today::after { content:''; position:absolute; bottom:4px; width:4px; height:4px; border-radius:50%; background:var(--brand-600,#2d7ffb); }
+  .trp-day.is-in { background:var(--brand-50,#eff6ff); color:var(--brand-600,#2d7ffb); border-radius:0; }
+  .trp-day.is-start, .trp-day.is-end { background:var(--brand-600,#2d7ffb); color:#fff; font-weight:600; }
+  .trp-day.is-start { border-radius:4px 0 0 4px; }
+  .trp-day.is-end { border-radius:0 4px 4px 0; }
+  .trp-day.is-single { border-radius:4px; }
+  .trp-day.is-start::after, .trp-day.is-end::after { background:#fff; }
+  .trp-foot { display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:10px 16px; border-top:1px solid #f1f5f9; }
+  .trp-switch-l { display:inline-flex; align-items:center; gap:8px; font-size:12px; color:#475569; }
+  .trp-switch { width:32px; height:18px; border-radius:9999px; background:#cbd5e1; position:relative; border:0; padding:0; cursor:pointer; transition:background .15s; }
+  .trp-switch::after { content:''; position:absolute; top:2px; left:2px; width:14px; height:14px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.18); transition:transform .15s; }
+  .trp-switch[aria-checked="true"] { background:var(--brand-600,#2d7ffb); }
+  .trp-switch[aria-checked="true"]::after { transform:translateX(14px); }
+  .trp-switch-v { min-width:20px; color:#0f172a; font-weight:500; }
+  .trp-range { margin-left:auto; font-size:12px; color:#64748b; font-variant-numeric:tabular-nums; }
+  .trp-acts { display:flex; gap:8px; }
+  .trp-btn { height:32px; padding:0 14px; font:inherit; font-size:13px; font-weight:600; border-radius:8px; cursor:pointer; border:1px solid transparent; }
+  .trp-btn--sec { background:#fff; color:#1e293b; border-color:#e2e8f0; box-shadow:0 1px 2px rgb(15 23 42/.05); }
+  .trp-btn--sec:hover { background:#f8fafc; border-color:#cbd5e1; }
+  .trp-btn--pri { background:var(--brand-600,#2d7ffb); color:#fff; border-color:var(--brand-600,#2d7ffb); }
+  .trp-btn--pri:hover:not(:disabled) { background:var(--brand-700,#1d6ae5); }
+  .trp-btn--pri:disabled { background:#e2e8f0; border-color:#e2e8f0; color:#94a3b8; cursor:not-allowed; }
+  @media (max-width:700px) {
+    .trp-body { flex-direction:column; }
+    .trp-presets { flex-direction:row; overflow-x:auto; border-right:0; border-bottom:1px solid #f1f5f9; min-width:0; }
+    .trp-months > .trp-month:last-child { display:none; }
+  }
+  @media (min-width:701px) { .trp-mnext .trp-nav { visibility:hidden; } }
+  @media (max-width:700px) {
+    .trp-range { order:-1; width:100%; margin-left:0; }
+    .trp-acts { margin-left:auto; }
+  }
+  @media (min-width:1024px) { .vessel-track-row { height:660px; } .vessel-track-row > * { min-height:0; } .vessel-track-row > :last-child { grid-column:span 2 / span 2; } }
+  @media (max-width:1023px) { .vessel-track-row > :first-child { max-height:660px; } }
+  .sc-toggle { all:unset; display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:#334155; border-radius:4px; }
+  .sc-toggle:hover { color:#0f172a; }
+  .sc-toggle:focus-visible { outline:2px solid #60a5fa; outline-offset:2px; }
+  .sc-rel { display:inline-block; padding-left:24px; }
+  .sc-count { font-size:10.5px; font-weight:600; color:#475569; background:#f1f5f9; border-radius:9999px; padding:1px 7px; }
+  .sc-link { color:#2d7ffb; font-weight:500; }
+  .sc-link:hover { color:#1d6ae5; text-decoration:underline; text-underline-offset:2px; }
+  .sc-child { background:#f8fbff; }
+  .sc-child > td:first-child { padding-left:44px; position:relative; }
+  .sc-child > td:first-child::before { content:''; position:absolute; left:19px; top:0; bottom:0; border-left:1px solid #dbeafe; }
+  .sc-child-rel { font-size:12px; }
+  .trk-leaflet .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 28px rgb(15 23 42/.22); }
+  .trk-leaflet .leaflet-popup-content { margin:0; width:280px !important; max-width:calc(100vw - 48px); font-family:inherit; }
+  #vessel-map .leaflet-popup-pane { z-index:700; }
+  .trk-pop { font-size:12.5px; color:#0f172a; }
+  .trk-h { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; padding:8px 8px 8px 14px; border-bottom:1px solid #e2e8f0; }
+  .trk-n { display:flex; align-items:center; gap:6px; font-weight:700; font-size:13.5px; }
+  .trk-t { font-size:11.5px; color:#64748b; margin-top:1px; font-variant-numeric:tabular-nums; }
+  .trk-acts { display:flex; gap:2px; }
+  .trk-ib { width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; border-radius:7px; color:#64748b; cursor:pointer; }
+  .trk-ib:hover { background:#f1f5f9; color:#0f172a; }
+  .trk-ib[aria-pressed="true"] { background:#eff6ff; color:#2d7ffb; }
+  .trk-ib:focus-visible, .trk-cta:focus-visible { outline:none; box-shadow:0 0 0 3px rgb(45 127 251/.25); }
+  .trk-b { padding:4px 0; }
+  .trk-r { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; padding:3px 14px; line-height:1.4; }
+  .trk-r:nth-child(even) { background:#f8fafc; }
+  .trk-r > span:first-child { color:#64748b; }
+  .trk-r > span:last-child { font-weight:500; font-variant-numeric:tabular-nums; text-wrap:pretty; }
+  .trk-f { display:flex; justify-content:center; padding:8px 14px 10px; border-top:1px solid #e2e8f0; }
+  .timeline-overlay { transition:opacity .15s; }
+  .timeline-overlay.is-dimmed { opacity:0; pointer-events:none; }
+  .trk-ts { font-size:11.5px; color:#64748b; font-variant-numeric:tabular-nums; }
+  .trk-cta { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 14px; font:inherit; font-size:13px; font-weight:600; color:#2d7ffb; background:#fff; border:1px solid #93c5fd; border-radius:8px; cursor:pointer; }
+  .trk-cta:hover { background:#eff6ff; border-color:#2d7ffb; }
+  .defects-link { color:var(--brand-600,#2d7ffb); font-weight:600; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
+  .defects-link:hover { color:var(--brand-700,#1d6ae5); text-decoration-thickness:2px; }
+  .defects-link:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; border-radius:2px; }
+  .tl-step { width:26px; height:26px; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; border:0; border-radius:7px; background:rgba(255,255,255,.12); color:#e5e7eb; cursor:pointer; touch-action:manipulation; }
+  .tl-step:hover:not(:disabled) { background:rgba(255,255,255,.22); color:#fff; }
+  .tl-step:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
+  #tl-cal-btn:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
+  .pd-scroll { margin:0 0 8px; }
+  #vessel-tracking-card > .flex-1.relative { border-radius:0 0 7px 7px; overflow:hidden; }
+  #vessel-tracking-card.is-fullscreen > .flex-1.relative { border-radius:0; }
+  .env-cols > * { min-width:0; padding:0 24px; }
+  .env-cols > *:first-child { padding-left:0; }
+  .env-cols > *:last-child { padding-right:0; }
+  .env-cols > * + * { border-left:1px solid #e2e8f0; }
+  @media (max-width:767px) {
+    .env-cols > * { padding:20px 0 0; }
+    .env-cols > *:first-child { padding-top:0; }
+    .env-cols > * + * { border-left:0; border-top:1px solid #e2e8f0; margin-top:20px; }
+  }
+  .tl-step:disabled { opacity:.35; cursor:not-allowed; }
+  #timeline-slider:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:4px; border-radius:4px; }
+  .sts-bar { position:sticky; left:0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; padding:10px 14px; border-bottom:1px solid #e2e8f0; background:#fff; }
+  .sts-legend { display:flex; flex-wrap:wrap; align-items:center; gap:6px 16px; margin:0; padding:0; list-style:none; font-size:12px; color:#475569; }
+  .sts-legend li { display:inline-flex; align-items:center; gap:8px; }
+  .sts-sw { width:18px; height:0; flex-shrink:0; }
+  .sts-sw--red { border-top:2px solid #f87171; }
+  .sts-sw--orange { border-top:2px dashed #fb923c; }
+  .sts-ctrls { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-left:auto; }
+  .sts-btn { position:relative; display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; font:inherit; font-size:13px; font-weight:500; color:#1e293b; background:#fff; border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 1px 2px rgb(15 23 42/.05); cursor:pointer; white-space:nowrap; }
+  .sts-btn:hover:not(:disabled) { background:#f8fafc; border-color:#cbd5e1; }
+  .sts-btn:focus-visible { outline:none; border-color:#60a5fa; box-shadow:0 0 0 3px rgb(45 127 251/.18); }
+  .sts-btn:disabled { color:#94a3b8; background:#fff; box-shadow:none; cursor:not-allowed; }
+  .sts-btn .sts-chev { color:#64748b; transition:transform .15s; }
+  .sts-btn.is-open .sts-chev { transform:rotate(180deg); }
+  .sts-btn.is-active::after { content:''; position:absolute; top:-1px; right:-1px; width:10px; height:10px; background:#ef4444; border-top-right-radius:8px; clip-path:polygon(0 0,100% 0,100% 100%); }
+  .sts-facet { position:absolute; top:calc(100% + 6px); right:0; z-index:60; width:220px; background:#fff; border:1px solid #e2e8f0; border-radius:12px; box-shadow:0 10px 24px rgb(15 23 42/.12); overflow:hidden; padding-bottom:4px; }
+  .sts-facet-head { padding:8px 12px; border-bottom:1px solid #f1f5f9; font-size:11.5px; font-weight:600; color:#64748b; text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
+  .sts-facet-row { display:flex; align-items:center; gap:8px; padding:6px 12px; font-size:12.5px; color:#0f172a; cursor:pointer; }
+  .sts-facet-row:hover { background:#f8fafc; }
+  .env-period-sel.is-set { color:#2d7ffb; border-color:#bfdbfe; background:#eff6ff; }
+  .rg-head { padding-right:6px; }
+  .rg-toggle { width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; color:#6b7280; border-radius:6px; cursor:pointer; flex-shrink:0; transition:transform .15s; }
+  .rg-toggle:hover { background:#e5e7eb; color:#111827; }
+  .rg-toggle.is-open { transform:rotate(180deg); }
+  .rg-child { padding-left:35px; font-size:12.5px; color:#4b5563; }
+  .ev-marker { width:26px; height:26px; border-radius:50%; border:2px solid #fff; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(15,23,42,.35); }
+  .ev-marker { transition:transform .15s, box-shadow .15s; }
+  .ev-marker.is-sel { transform:scale(1.25); box-shadow:0 0 0 3px var(--brand-600,#2d7ffb), 0 2px 8px rgba(15,23,42,.35); }
+  .ev-pop-b { padding:10px 14px 12px; font-size:12.5px; line-height:1.5; color:#334155; text-wrap:pretty; }
+  .ev-pop-note { margin-top:8px; font-size:11.5px; color:#b45309; }
+  .ev-pop-f { display:flex; justify-content:center; margin-top:10px; padding-top:10px; border-top:1px solid #e2e8f0; }
+  .hist-ev { cursor:pointer; position:relative; }
+  .hist-range { display:flex; align-items:center; justify-content:center; gap:20px; padding:8px 16px; background:var(--brand-50,#eff6ff); border:1px solid color-mix(in srgb, var(--brand-600,#2d7ffb) 18%, #e2e8f0); border-radius:8px; }
+  .hist-range-c { display:flex; flex-direction:column; align-items:center; gap:1px; }
+  .hist-range-k { font-size:12px; color:#64748b; }
+  .hist-range-v { font-size:13px; font-weight:700; color:#0f172a; font-variant-numeric:tabular-nums; }
+  .hist-range-arrow { color:var(--brand-500,#60a5fa); flex-shrink:0; }
+  .hist-pager { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; padding:8px 12px; border-top:1px solid #e2e8f0; }
+  .hist-pager-sum { font-size:12px; color:#64748b; font-variant-numeric:tabular-nums; }
+  .hist-ev:hover { background:#f8fafc; }
+  .hist-ev.is-sel { background:var(--brand-50,#eff6ff); box-shadow:inset 3px 0 0 var(--brand-600,#2d7ffb); }
+  .hist-ev:focus-visible { outline:none; box-shadow:inset 0 0 0 2px var(--brand-600,#2d7ffb); }
+  .ev-marker svg { width:13px; height:13px; }
+  .ev-ic { width:20px; height:20px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
   /* Fullscreen */
   #vessel-tracking-card.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; }
   #vessel-tracking-card.is-fullscreen #map-wrapper { min-height:0; flex:1; }
@@ -121,8 +300,8 @@
   /* Timeline overlay */
   .timeline-overlay { position:absolute; bottom:16px; left:12px; right:12px; z-index:400; background:rgba(15,23,42,.82); border-radius:12px; padding:10px 14px; backdrop-filter:blur(4px); }
   .timeline-track { position:relative; height:6px; background:rgba(255,255,255,.25); border-radius:999px; cursor:pointer; flex:1; }
-  .timeline-fill  { position:absolute; left:0; top:0; bottom:0; background:#2d7ffb; border-radius:999px; pointer-events:none; }
-  .timeline-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; background:#fff; border:2px solid #2d7ffb; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,.4); pointer-events:none; cursor:grab; }
+  .timeline-fill  { position:absolute; left:0; top:0; bottom:0; background:var(--brand-500,#2d7ffb); border-radius:999px; pointer-events:none; }
+  .timeline-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; background:#fff; border:2px solid var(--brand-500,#2d7ffb); border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,.4); pointer-events:none; cursor:grab; }
   /* Mobile responsive */
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){
@@ -155,6 +334,8 @@
   .bg-cyan-100{background-color:#f3f4f6!important}.text-cyan-700{color:#0891b2!important}
   .bg-pink-100{background-color:#f3f4f6!important}.text-pink-700{color:#db2777!important}
 </style>
+<link rel="stylesheet" href="modals/modal-base.css">
+<script src="modals/InspectionDefectsModal.js?v=2"></script>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
 <div id="app" class="min-h-screen w-full flex"></div>
@@ -171,7 +352,7 @@
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -220,7 +401,15 @@ let state = {
   affilTab: 'Owner',
   assocRoles: ['Owner','Registered Owner','Technical Manager','Commercial Manager','Operator','Charterer','Flag State','Classification Society','Associated Vessel','STS Partner','Corporate Relationship'],
   bottomLeftTab: 'Environmental Rating',
-  timelinePos: 0.5,
+  envPeriod: '2026Q2',
+  envEnabled: true,
+  stsF: { ports:true, clusters:true, chains:false, dist:'' },
+  stsOpen: null,
+  histSel: null,
+  histPage: 1,
+  scExpanded: new Set(),
+  timelinePos: 27/28,
+  trackRange: { start:'2025-10-07', end:'2025-10-09', preset:null, detailed:false },
   casualtyExpanded: new Set([0]),
   topRightTabCopy: 'Risk Score',
   casualtyExpandedCopy: new Set([0]),
@@ -321,12 +510,27 @@ const CASUALTY_DATA = [
   { date:'2022-06-12', severity:'Minor',    location:'Bay of Bengal',    type:'Equipment',   desc:'Steering gear failure, vessel anchored pending repair' },
 ];
 
+const DEFECT_CATALOG = [
+  { code:18202, text:'Labour conditions — conditions of employment — legal documentation on work and rest hours', cls:'None' },
+  { code:13103, text:'Propulsion and auxiliary machinery — gauges, thermometers etc.', cls:'None' },
+  { code:9220,  text:'Working and living conditions — working conditions — structural features (ship)', cls:'None' },
+  { code:7105,  text:'Fire safety — fire doors / openings in fire-resisting divisions', cls:'Yes' },
+  { code:11101, text:'Life saving appliances — lifeboats', cls:'None' },
+  { code:10111, text:'Safety of navigation — charts', cls:'None' },
+  { code:4114,  text:'Emergency systems — emergency source of power, emergency generator', cls:'Yes' },
+  { code:14104, text:'Pollution prevention — MARPOL Annex I — oil record book', cls:'None' },
+];
+const INSPECTION_DEFECTS = {
+  '2023-02-19': [0,1,3,6],
+  '2021-05-28': [0,1,2,4,5,6,7],
+  '2020-10-27': [2,5],
+};
 const INSPECTIONS = [
   { date:'2023-06-30', cc:'ir', country:'Iran',     port:'Bandar Imam Khomeini', portFlag:'ir', psc:'',        type:'Initial Inspection', defects:0, detained:'0 Days' },
-  { date:'2023-02-19', cc:'eg', country:'Egypt',    port:'Damietta',           portFlag:'',   psc:'Med Mou', type:'Initial Inspection', defects:0, detained:'0 Days' },
+  { date:'2023-02-19', cc:'eg', country:'Egypt',    port:'Damietta',           portFlag:'',   psc:'Med Mou', type:'Initial Inspection', defects:4, detained:'0 Days' },
   { date:'2022-02-02', cc:'bg', country:'Bulgaria', port:'Varna',              portFlag:'',   psc:'Paris Mou',type:'Initial Inspection', defects:0, detained:'0 Days' },
-  { date:'2021-05-28', cc:'ge', country:'Georgia',  port:'Poti',               portFlag:'',   psc:'',        type:'Initial Inspection', defects:0, detained:'0 Days' },
-  { date:'2020-10-27', cc:'tr', country:'Turkey',   port:'Mersin',             portFlag:'',   psc:'',        type:'Initial Inspection', defects:0, detained:'0 Days' },
+  { date:'2021-05-28', cc:'ge', country:'Georgia',  port:'Poti',               portFlag:'',   psc:'',        type:'Initial Inspection', defects:7, detained:'0 Days' },
+  { date:'2020-10-27', cc:'tr', country:'Turkey',   port:'Mersin',             portFlag:'',   psc:'',        type:'Initial Inspection', defects:2, detained:'0 Days' },
 ];
 
 const SUSPICIOUS_ACTIVITY = [
@@ -371,20 +575,23 @@ const STS_DATA = [
 ];
 
 const SANCTION_COMPLIANCE = [
-  { relationship:'Vessel',            name:'COOL RUNNER',         ofac:'ok', un:'ok', eu:'ok', aus:'ok', ofsi:'ok' },
-  { relationship:"Vessel's Flag",     name:'China',               ofac:'ok', un:'ok', eu:'ok', aus:'ok', ofsi:'ok' },
-  { relationship:'Registered Owner',  name:'Pacific Maritime Ltd', ofac:'ok', un:'ok', eu:'ok', aus:'ok', ofsi:'ok' },
-  { relationship:'Operator',          name:'Global Shipping Co',   ofac:'ok', un:'ok', eu:'ok', aus:'ok', ofsi:'ok' },
-  { relationship:'Technical Manager', name:'Marine Tech Services', ofac:'ok', un:'ok', eu:'ok', aus:'ok', ofsi:'ok' },
+  { relationship:'Vessel',            name:'COOL RUNNER',          link:true },
+  { relationship:"Vessel's Flag",     name:'China' },
+  { relationship:'Owner',                name:'Hai Kuo Shipping 2047C Limited', link:true, countries:[['hk','Hong Kong'],['hk','Hong Kong'],['cn','China']] },
+  { relationship:'Group Beneficial',     name:'Industrial and Commercial Bank of China Limited (ICBC)', link:true, countries:[['cn','China'],['cn','China'],['cn','China']] },
+  { relationship:'Operator',             name:'ICBC Financial Leasing Company Limited', link:true, countries:[['cn','China'],['cn','China'],['cn','China']] },
+  { relationship:'Third Party Operator', name:'Mediterranean Shipping Company S.A. (MSC)', link:true, countries:[['ch','Switzerland'],['ch','Switzerland'],['ch','Switzerland']] },
+  { relationship:'Technical Manager',    name:'MSC Shipmanagement Limited', link:true, countries:[['cy','Cyprus'],['cy','Cyprus'],['ch','Switzerland']] },
+  { relationship:'DOC Company',          name:'MSC Shipmanagement Limited', link:true, countries:[['cy','Cyprus'],['cy','Cyprus'],['ch','Switzerland']] },
 ];
 
 /* Historical Details — orange cells = field changed at this effective date */
 const HISTORICAL_DETAILS = [
-  { date:'2025-11-23', name:'SM NEW ORLEANS',  flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Ocean Shipping Co',     manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'UK P&I Club',         duration:'Current',          changed:[] },
-  { date:'2025-10-29', name:'SM NEW ORLEANS',  flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'UK P&I Club',         duration:'25 days',          changed:['operator'] },
-  { date:'2025-06-05', name:'SM NEW ORLEANS',  flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'North of England P&I', duration:'4 months 24 days', changed:['piClub'] },
-  { date:'2025-05-24', name:'NEW ORLEANS STAR',flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'North of England P&I', duration:'12 days',          changed:['name'] },
-  { date:'2025-05-24', name:'NEW ORLEANS STAR',flag:'pa', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'Star Shipping Holdings', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'North of England P&I', duration:'17 days',          changed:['regOwner','flag'] },
+  { date:'2025-11-23', name:'SM NEW ORLEANS',  flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Ocean Shipping Co',     manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'UK P&I Club',         duration:'Current',          changed:['docCo',], docCo:'N/A' },
+  { date:'2025-10-29', name:'SM NEW ORLEANS',  flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'UK P&I Club',         duration:'25 days',          changed:['operator'], docCo:'V. Ships Asia Group Private Limited' },
+  { date:'2025-06-05', name:'SM NEW ORLEANS',  flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'North of England P&I', duration:'4 months 24 days', changed:['docCo','piClub'], docCo:'V. Ships Asia Group Private Limited' },
+  { date:'2025-05-24', name:'NEW ORLEANS STAR',flag:'hk', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'New Orleans Vessels LLC', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'North of England P&I', duration:'12 days',          changed:['name'], docCo:'Orion Ship Management Private Limited' },
+  { date:'2025-05-24', name:'NEW ORLEANS STAR',flag:'pa', groupOwner:'Pacific Maritime Ltd', operator:'Global Logistics Corp', manager:'Maritime Services Inc', regOwner:'Star Shipping Holdings', techMgr:'Tech Marine Solutions', classSoc:"Lloyd's Register", piClub:'North of England P&I', duration:'17 days',          changed:['regOwner','flag'], docCo:'Orion Ship Management Private Limited' },
 ];
 
 const ASSOCIATIONS = [
@@ -430,10 +637,17 @@ const ENV_RATING = {
 };
 
 const EVENTS = [
-  { ts:'Fri, 04 Jul 2025 11:00:08 GMT', title:'AIS Static Detail Change', detail:'Vessel changed nav_status_code from "Under Way Sailing" to "Under way Using Engine".' },
-  { ts:'Fri, 04 Jul 2025 06:44:00 GMT', title:'AIS Static Detail Change', detail:'Vessel\'s ETA has changed from 2025-07-08 08:00:00 UTC to 2025-07-16 08:00:00 UTC.' },
-  { ts:'Fri, 04 Jul 2025 06:44:00 GMT', title:'AIS Static Detail Change', detail:'Vessel changed destination from "Dakar (SNDKR)" to "Abidjan (CIABJ)".' },
-  { ts:'Fri, 04 Jul 2025 06:01:01 GMT', title:'AIS Static Detail Change', detail:'Vessel changed nav_status_code from "Under way Using Engine" to "Under Way Sailing".' },
+  { type:'exit', ll:[48.3,-5.8], ts:'Sat, 05 Jul 2025 04:52:00 GMT', title:'Exit Alert', detail:'Vessel exited the Bay of Biscay monitored zone.' },
+  { type:'ais', ll:[43.4,-9.7], ts:'Fri, 04 Jul 2025 11:00:08 GMT', title:'AIS Static Detail Change', detail:'Vessel changed nav_status_code from "Under Way Sailing" to "Under way Using Engine".' },
+  { type:'ais', ll:[38.7,-9.9], ts:'Fri, 04 Jul 2025 06:44:00 GMT', title:'AIS Static Detail Change', detail:'Vessel\'s ETA has changed from 2025-07-08 08:00:00 UTC to 2025-07-16 08:00:00 UTC.' },
+  { type:'ais', ll:[35.95,-5.4], ts:'Fri, 04 Jul 2025 06:44:00 GMT', title:'AIS Static Detail Change', detail:'Vessel changed destination from "Piraeus (GRPIR)" to "Hamburg (DEHAM)".' },
+  { type:'ais', ll:[37.2,3.0], ts:'Fri, 04 Jul 2025 06:01:01 GMT', title:'AIS Static Detail Change', detail:'Vessel changed nav_status_code from "Under way Using Engine" to "Under Way Sailing".' },
+  { type:'weather', ll:[37.4,11.6], ts:'Thu, 03 Jul 2025 20:00:00 GMT', title:'Vessel affected by Weather', detail:'Gale-force winds, Beaufort 8, in the Strait of Sicily.' },
+  { type:'sts', ll:[36.5,18.0], ts:'Thu, 03 Jul 2025 14:30:00 GMT', title:'Ship-To-Ship', detail:'Ship-to-ship transfer with MV ORION STAR (IMO 9412233) in the Ionian Sea, lasting 6h 10m.' },
+  { type:'dark', ll:[35.4,23.2], ts:'Wed, 02 Jul 2025 22:48:00 GMT', title:'Dark Activity', detail:'AIS signal lost for 14h 05m west of Crete.' },
+  { type:'loiter', ll:[32.6,28.6], ts:'Tue, 01 Jul 2025 19:05:00 GMT', title:'Loitering', detail:'Vessel loitered 7h 20m off the Nile delta.' },
+  { type:'sog', ll:[29.9,32.55], ts:'Tue, 01 Jul 2025 03:40:00 GMT', title:'Speed Over Ground', detail:'Speed dropped from 11.4 to 2.1 kn in the Suez Canal.' },
+  { type:'enter', ll:[24.5,36.6], ts:'Mon, 30 Jun 2025 06:12:00 GMT', title:'Entering Alert', detail:'Vessel entered the Red Sea high risk area.' },
 ];
 
 /* ----------- HELPERS ----------- */
@@ -576,17 +790,22 @@ function VesselDetailsCard() {
   } else if (state.topTab === 'Company Details') {
     body = `
       <div class="space-y-0.5">
-        ${row('Flag:', `${flag(COMPANY.flag.cc)} ${COMPANY.flag.name}`)}
+        ${(() => {
+          const CN = { mh:'Marshall Islands', mc:'Monaco', it:'Italy', in:'India' };
+          const fl = cc => `<span title="${CN[cc]}" class="inline-flex">${flag(cc)}</span>`;
+          const ent = (name, ccs) => `<span class="inline-flex items-center gap-1.5 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-600 hover:underline text-right">${name}</a></span>`;
+          return `
+        ${row('Flag:', `<span class="inline-flex items-center gap-1.5">${flag('mh')} Marshall Islands</span>`)}
         ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1.5 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-[9px] font-bold" style="background:#d97706">i</span>View company details</a>`)}
-        ${row('Classification Society:', COMPANY.classificationSociety)}
-        ${row('P &amp; I Club:', COMPANY.piClub)}
-        <div class="flex justify-between text-xs py-1.5 border-b last:border-b-0" style="border-color:#f3f4f6;">
-          <span class="text-ink-500">Group Owner:</span>
-          <span class="font-semibold text-ink-900">${COMPANY.groupOwner}</span>
-        </div>
-        ${row('Ship Manager:', COMPANY.shipManager)}
-        ${row('Operator:', COMPANY.operator)}
-        ${row('Registered Owner:', COMPANY.registeredOwner, true)}
+        ${row('Classification Society:', 'American Bureau of Shipping')}
+        ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-600 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
+        ${row('Group Owner:', ent('Scorpio Group', ['mc','it','mc']))}
+        ${row('Third Party Operator:', 'N/A')}
+        ${row('Operator:', ent('Scorpio Tankers Incorporated', ['mc','it','mc']))}
+        ${row('Registered Owner:', ent('STI Westminster Shipping Company Limited', ['mh','it','mh']))}
+        ${row('Technical Manager:', ent('Scorpio Marine Management (India) Private Limited', ['in']))}
+        ${row('DOC Company:', ent('Scorpio Marine Management (India) Private Limited', ['in']), true)}`;
+        })()}
       </div>`;
   }
 
@@ -614,18 +833,25 @@ function PolicyDetailsCard() {
     <div class="px-4 py-3 border-b border-ink-200 shrink-0">
       <div class="text-sm font-semibold text-ink-900">Policy Details</div>
     </div>
-    <div class="px-4 pt-3 pb-2 flex-1 overflow-y-auto scroll-thin">
-      <div class="space-y-0.5">
-        ${row('Portfolios:', POLICY.portfolios)}
-        ${row('Signed Line:', POLICY.signedLine)}
-        ${row('Exposure Value:', POLICY.exposure, true)}
-        ${row('Total Insured Value:', POLICY.totalInsured)}
-        ${row('War Exposure:', POLICY.warExp, true)}
-        ${row('War Total Insured Value:', POLICY.warTotal)}
-        ${row('Premium Details:', POLICY.premium)}
-        ${row('Coverage Period:', '2025-02-20 / 2027-02-20')}
-        ${row('Assured Details:', VESSEL.name, true)}
-      </div>
+    <div class="flex-1 min-h-0 overflow-auto scroll-thin pd-scroll">
+      ${(() => {
+        const PF = [
+          { name:POLICY.portfolios, signedLine:POLICY.signedLine, exposure:POLICY.exposure, totalInsured:POLICY.totalInsured, warExp:POLICY.warExp, warTotal:POLICY.warTotal, premium:POLICY.premium, period:'2025-02-20 / 2027-02-20', assured:VESSEL.name, contractRef:'MH-25-00417', umr:'B0509MH2500417', policyType:'Hull & Machinery', placementType:'Open Market', insurer:'Lloyd\'s Syndicate 2987', broker:'Marsh Ltd', delegate:'-', underwriter:'J. Harrington' },
+          { name:'test', signedLine:'-', exposure:POLICY.exposure, totalInsured:POLICY.totalInsured, warExp:'-', warTotal:'-', premium:'-', period:'-', assured:'-', contractRef:'-', umr:'-', policyType:'-', placementType:'-', insurer:'-', broker:'-', delegate:'-', underwriter:'-' },
+        ];
+        const ROWS = [['Signed Line','signedLine'],['Exposure Value','exposure'],['Total Insured Value','totalInsured'],['War Exposure','warExp'],['War Total Insured Value','warTotal'],['Premium Details','premium'],['Coverage Period','period'],['Assured Details','assured'],['Contract Ref','contractRef'],['UMR','umr'],['Policy Type','policyType'],['Placement Type','placementType'],['Insurer','insurer'],['Broker','broker'],['Delegate','delegate'],['Underwriter','underwriter']];
+        const td = 'px-3 py-2 border-b border-ink-100 whitespace-nowrap';
+        return `<table class="text-xs w-full" style="border-collapse:separate;border-spacing:0;min-width:${140 + PF.length * 150}px">
+          <thead><tr>
+            <th class="${td} text-left font-semibold text-ink-700 bg-ink-50" style="position:sticky;left:0;top:0;z-index:2;width:140px">Portfolios:</th>
+            ${PF.map(p => `<th class="${td} text-left font-semibold text-ink-700 bg-ink-50 border-l border-ink-100" style="position:sticky;top:0;z-index:1"><a href="MarinePortfolioDetails.html" class="text-brand-600 hover:underline">${p.name}</a></th>`).join('')}
+          </tr></thead>
+          <tbody>${ROWS.map(([l, k]) => `<tr>
+            <td class="${td} text-ink-500 bg-white" style="position:sticky;left:0;z-index:1;max-width:140px;overflow:hidden;text-overflow:ellipsis" title="${l}">${l}:</td>
+            ${PF.map(p => `<td class="${td} font-semibold text-ink-900 border-l border-ink-100">${p[k]}</td>`).join('')}
+          </tr>`).join('')}</tbody>
+        </table>`;
+      })()}
     </div>
   </div>`;
 }
@@ -667,13 +893,10 @@ function PortCallsCard() {
         <!-- Departure port outlined -->
         <div style="width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:8px 12px;background:#f9fafb;">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6b7280;margin-bottom:4px;">Departure Port</div>
-          <div class="flex items-center justify-center gap-2 mb-1">
-            <svg class="w-3.5 h-3.5 text-ink-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
-            <span class="text-sm font-semibold text-ink-900">Singapore</span>
-          </div>
-          <div class="flex items-center justify-center gap-1.5 mb-1 text-xs text-ink-500">
+          <div class="flex items-center justify-center gap-1.5 mb-1 min-w-0">
             ${flag('sg')}
-            <span>Singapore</span>
+            <span class="text-sm font-semibold text-ink-900 truncate">Singapore</span>
+            <span class="text-xs text-ink-500 truncate">Singapore</span>
           </div>
           <div class="space-y-0.5 text-xs text-ink-600">
             <div class="flex items-center justify-center gap-2">
@@ -699,13 +922,10 @@ function PortCallsCard() {
         <!-- Destination port outlined -->
         <div style="width:100%;border:1.5px solid var(--brand-300,#8ec5fd);border-radius:10px;padding:8px 12px;background:var(--brand-50,#eff6ff);">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-600,#2d7ffb);margin-bottom:4px;">Destination Port</div>
-          <div class="flex items-center justify-center gap-2">
-            <svg class="w-3.5 h-3.5 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
-            <span class="text-sm font-semibold text-ink-900">Hamburg</span>
-          </div>
-          <div class="flex items-center justify-center gap-1.5 mt-1 text-xs text-ink-500">
+          <div class="flex items-center justify-center gap-1.5 min-w-0">
             ${flag('de')}
-            <span>Germany</span>
+            <span class="text-sm font-semibold text-ink-900 truncate">Hamburg</span>
+            <span class="text-xs text-ink-500 truncate">Germany</span>
           </div>
         </div>
 
@@ -1399,7 +1619,7 @@ function CasualtyRiskCardCopy8() {
         <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
             <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2025 · Avg. Risk Score ' + rs2025, 'l')}</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">1st Jan 2025 ${rsInfoIcon('Risk score on 1st Jan 2025: ' + rs2025, 'l')}</div>
             <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
@@ -1411,14 +1631,10 @@ function CasualtyRiskCardCopy8() {
           </div>
           <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
             <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2024 · Avg. Risk Score ' + rs2024, 'r')}</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">1st Jan 2024 ${rsInfoIcon('Risk score on 1st Jan 2024: ' + rs2024, 'r')}</div>
             <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2024)} ${rs2024*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2024}</span>
-            </div>
-            <div style="background:${yearPill(rs2024).bg};color:${yearPill(rs2024).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2024).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-              + ${rsDelta24}
             </div>
           </div>
         </div>
@@ -2804,21 +3020,37 @@ function InspectionTable() {
           </tr>
         </thead>
         <tbody>
-          ${SANCTION_COMPLIANCE.map((r, i) => {
+          ${(() => {
             const okBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
-            return `
-            <tr class="${i%2===0?'bg-white':'bg-ink-50'} hover:bg-brand-50 border-b border-ink-100 last:border-0">
-              <td class="px-3 py-2 text-ink-700">${r.relationship}</td>
-              <td class="px-3 py-2 text-ink-900 font-medium">${r.name}</td>
-              <td class="px-3 py-2 text-center">${okBadge}</td>
-              <td class="px-3 py-2 text-center">${okBadge}</td>
-              <td class="px-3 py-2 text-center">${okBadge}</td>
-              <td class="px-3 py-2 text-center">${okBadge}</td>
-              <td class="px-3 py-2 text-center">${okBadge}</td>
-            </tr>`;
-          }).join('')}
+            const badBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`;
+            const LISTS = ['ofac','un','eu','aus','ofsi'];
+            const cells = hit => LISTS.map(k => `<td class="px-3 py-2 text-center">${hit && hit[k] ? badBadge : okBadge}</td>`).join('');
+            const folder = open => `<svg width="16" height="16" viewBox="0 0 24 24" fill="#dbeafe" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/><g stroke-width="2.5">${open ? '<path d="M9 13h6"/>' : '<path d="M12 10v6"/><path d="M9 13h6"/>'}</g></svg>`;
+            let out = '', zi = 0;
+            SANCTION_COMPLIANCE.forEach((r, i) => {
+              const open = state.scExpanded.has(i), kids = r.countries || [];
+              const nameCell = r.link ? `<a href="#" class="sc-link" onclick="event.preventDefault()">${r.name}</a>` : `<span class="text-ink-900 font-medium">${r.name}</span>`;
+              const rel = kids.length
+                ? `<button type="button" class="sc-toggle" data-sc-toggle="${i}" aria-expanded="${open}" aria-controls="sc-kids-${i}">${folder(open)}<span>${r.relationship}</span></button>`
+                : `<span class="sc-rel">${r.relationship}</span>`;
+              out += `<tr class="${zi++%2===0?'bg-white':'bg-ink-50'} hover:bg-brand-50 border-b border-ink-100 ${open ? 'sc-open' : ''}">
+                <td class="px-3 py-2 text-ink-700">${rel}</td>
+                <td class="px-3 py-2">${nameCell}</td>
+                ${cells(null)}
+              </tr>`;
+              if (open) kids.forEach(([cc, cn], k) => {
+                out += `<tr class="sc-child border-b border-ink-100" data-sc-parent="${i}">
+                  <td class="px-3 py-2 text-ink-700"><span class="sc-child-rel">${r.relationship}'s ${['Registration','Control','Domicile'][k]} Country</span></td>
+                  <td class="px-3 py-2 text-ink-900"><span class="inline-flex items-center gap-1.5">${flag(cc)} ${cn}</span></td>
+                  ${cells(null)}
+                </tr>`;
+              });
+            });
+            return out;
+          })()}
         </tbody>
       </table>` : state.sectionTab === 'Ship-To-Ship' ? `
+      ${StsFilters()}
       <table class="w-full text-xs min-w-[1100px]">
         <thead class="bg-ink-50">
           <tr>
@@ -2957,7 +3189,7 @@ function InspectionTable() {
               <td class="px-3 py-2 text-ink-700"><a href="PortDetails.html" class="text-brand-600 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</td>
               <td class="px-3 py-2 text-ink-700">${r.psc}</td>
               <td class="px-3 py-2 text-ink-700">${r.type}</td>
-              <td class="px-3 py-2 text-left text-ink-700">${r.defects}</td>
+              <td class="px-3 py-2 text-left text-ink-700">${r.defects > 0 ? `<a href="#" class="defects-link" data-defects="${r.date}" title="View ${r.defects} defects from the ${r.port} inspection">${r.defects}</a>` : r.defects}</td>
               <td class="px-3 py-2 text-left text-ink-700">${r.detained}</td>
             </tr>
           `).join('')}
@@ -3000,6 +3232,41 @@ function AssocRoleMenu() {
   </div>`;
 }
 
+const STS_DEFAULTS = { ports:true, clusters:true, chains:false, dist:'' };
+const STS_EXCL = [['ports','Ports'],['clusters','Clusters'],['chains','STS Chains']];
+const STS_DIST = [['','Any distance'],['12','> 12 nm'],['24','> 24 nm'],['50','> 50 nm'],['100','> 100 nm'],['200','> 200 nm']];
+function StsFilters() {
+  const f = state.stsF, open = state.stsOpen;
+  const dirty = f.ports || f.clusters || f.chains || !!f.dist;
+  const exOn = STS_EXCL.filter(([k]) => f[k]);
+  const chev = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sts-chev"><path d="m6 9 6 6 6-6"/></svg>';
+  const trig = (id, label, active) => `<button type="button" class="sts-btn ${active ? 'is-active' : ''} ${open === id ? 'is-open' : ''}" data-sts-open="${id}" aria-haspopup="true" aria-expanded="${open === id}">${label}${chev}</button>`;
+  return `
+  <div class="sts-bar">
+    <ul class="sts-legend" aria-label="Row highlight legend">
+      <li><span class="sts-sw sts-sw--red" aria-hidden="true"></span>An entity is currently sanctioned</li>
+      <li><span class="sts-sw sts-sw--orange" aria-hidden="true"></span>An entity was or is currently sanctioned</li>
+    </ul>
+    <div class="sts-ctrls" role="toolbar" aria-label="Ship-To-Ship filters">
+      <div class="relative">
+        ${trig('exclude', 'Exclude', exOn.length > 0)}
+        ${open === 'exclude' ? `<div class="sts-facet" role="menu" data-sts-facet>
+          <div class="sts-facet-head">Exclude from results</div>
+          ${STS_EXCL.map(([k, l]) => `<label class="sts-facet-row"><input type="checkbox" class="ev-cb" data-sts-f="${k}" ${f[k] ? 'checked' : ''}>${l}</label>`).join('')}
+        </div>` : ''}
+      </div>
+      <div class="relative">
+        ${trig('dist', 'Distance to coast', !!f.dist)}
+        ${open === 'dist' ? `<div class="sts-facet" role="menu" data-sts-facet>
+          <div class="sts-facet-head">Distance to coast</div>
+          ${STS_DIST.map(([v, l]) => `<label class="sts-facet-row"><input type="radio" name="sts-dist" class="ev-cb" data-sts-dist="${v}" ${v === f.dist ? 'checked' : ''}>${l}</label>`).join('')}
+        </div>` : ''}
+      </div>
+      <button type="button" id="sts-reset" class="sts-btn" ${dirty ? '' : 'disabled'} title="Clear all filters">Reset</button>
+    </div>
+  </div>`;
+}
+const ENV_PERIODS = ['2026Q2','2026Q1','2025Q4','2025Q3','2025Q2','2025Q1','2025','2024Q4','2024','2023Q4','2023Q3','2023Q2','2023Q1','2023','2022Q4','2022Q3','2022Q2','2022Q1','2022','2021'];
 function EnvironmentalRatingCard() {
   const bottomTabs = [
     { k:'Environmental Rating', icon:'leaf' },
@@ -3027,18 +3294,33 @@ function EnvironmentalRatingCard() {
 
   return `
   <div class="bg-white rounded-lg border border-ink-200 shadow-card overflow-hidden">
-    <div class="px-4 py-3 border-b border-ink-200 scroll-thin" style="overflow-x:auto;">
+    <div class="px-4 py-3 border-b border-ink-200 flex items-center gap-3">
+      <div class="min-w-0 flex-1 scroll-thin" style="overflow-x:auto;">
       <div class="tabs-desktop-wrap">
         ${iconTabs(bottomTabs, state.bottomLeftTab, 'data-bottom-left-tab')}
       </div>
       <select class="mobile-tab-select" id="bottom-left-tab-mobile-sel">
         ${bottomTabs.map(t=>`<option value="${t.k}" ${t.k===state.bottomLeftTab?'selected':''}>${t.k}</option>`).join('')}
       </select>
+      </div>
+      ${state.bottomLeftTab === 'Environmental Rating' ? `<div class="shrink-0"><span class="env-sw-l"><button type="button" id="env-enabled-sw" class="env-sw" role="switch" aria-checked="${state.envEnabled}" aria-label="Environmental rating feature"></button><span>${state.envEnabled ? 'Enabled' : 'Disabled'}</span></span></div>` : ''}
     </div>
     ${state.bottomLeftTab === 'Historical Details' ? HistoricalDetailsBody() : state.bottomLeftTab === 'Additional Details' ? AdditionalDetailsBody() : state.bottomLeftTab === 'Full Vessel Details' ? FullVesselDetailsBody() : `
-    <div class="p-4">
-      <div class="text-sm font-semibold text-ink-900 mb-4">Environmental Rating 2025Q4</div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    <div class="p-4 ${state.envEnabled ? '' : 'env-off'}">
+      <div class="env-head flex items-center justify-between gap-3 flex-wrap mb-4">
+        <div class="text-sm font-semibold text-ink-900">Environmental Rating${state.envEnabled ? ' ' + state.envPeriod : ''}</div>
+        <div class="flex items-center gap-3 flex-wrap">
+        <label class="relative inline-flex items-center ${state.envEnabled ? '' : 'hidden'}">
+          <span class="sr-only">Rating period</span>
+          <select id="env-period-sel" class="env-period-sel">${ENV_PERIODS.map(p => `<option value="${p}" ${p === state.envPeriod ? 'selected' : ''}>${p}</option>`).join('')}</select>
+          <svg class="pointer-events-none absolute right-2 text-ink-500" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </label>
+        </div>
+      </div>
+      <div class="env-msg"><div class="env-msg-in"><span class="env-msg-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span>Contact Skytek to enable this feature</span></div></div>
+      <div style="display:contents">
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)] env-cols">
         <!-- Left Column: Operational -->
         <div>
           <div class="text-xs font-semibold text-ink-900 mb-3">Operational - CII (Carbon Intensity Fleet Index)</div>
@@ -3064,7 +3346,8 @@ function EnvironmentalRatingCard() {
         <!-- Right Column: Technical Aspect -->
         <div>
           <div class="text-xs font-semibold text-ink-900 mb-3">Technical Aspect</div>
-          <div class="space-y-2">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 items-start">
+          <div class="space-y-2 min-w-0">
             ${ENV_RATING.technical.slice(0,5).map(item => `
               <div class="flex justify-between items-start text-xs">
                 <div class="flex-1">
@@ -3077,7 +3360,8 @@ function EnvironmentalRatingCard() {
                 </div>
               </div>
             `).join('')}
-            <div class="pt-2 border-t border-ink-100 space-y-1.5">
+          </div>
+            <div class="space-y-2 min-w-0">
               ${ENV_RATING.compliance.map(item => `
                 <div class="flex justify-between text-xs">
                   <span class="text-ink-700">${item.label}</span>
@@ -3096,83 +3380,89 @@ function EnvironmentalRatingCard() {
 }
 
 function FullVesselDetailsBody() {
-  // Left card: Ship Identification — two parallel columns of label:value rows
-  const idLeft = [
-    ['Name', 'COSWISH LAKE'],
-    ['Flag', `<span class="inline-flex items-center gap-1.5">${flag('cn')} China</span>`],
-    ['Monitored Flags', 'No monitored flags are connected with this vessel'],
-    ['Ship Status', 'In Service/Commission'],
-    ['Ship Status Date', '2018-06-06'],
-    ['IMO', '9804277'],
-    ['MMSI', '477162500'],
-    ['Call Sign', 'VRRS2'],
-    ['Type', 'Crude Oil Tanker'],
-    ['Year Built', '2018'],
-    ['Type (Generic)', 'Tankers'],
-    ['Main Engines KW', '25,360'],
-    ['Auxillary Engines HP', '3,870'],
-  ];
-  const idRight = [
-    ['', ''],
-    ['Speed', '11 (max 14.3)'],
-    ['Draught (m)', '11.00 (max 22.45)'],
-    ['Ship Builder', 'Dalian Shipbuilding Ind - No 2'],
-    ['Width (m)', '60'],
-    ['Length (m)', '333'],
-    ['Deadweight', '318,737'],
-    ['Gross Tonnage', '165,888'],
-    ['TEU', '0'],
-    ['Market / Scrap Value (Mil $)', '85.08 / 22.58'],
-    ['Type (Detailed)', 'Crude Oil Tanker'],
-    ['Service Speed (Kn)', '15.3 (max 14.3)'],
-    ['Gross Register Tonnage', '165,888'],
+  const INFO = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info shrink-0 text-brand-500" style="margin-top:1px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>';
+  // Ship Identification — paired rows [left, right]
+  const idPairs = [
+    [['Name', 'SAGA FRONTIER'], ['Latest Timestamp', '2026-09-28 14:23:38 UTC']],
+    [['Flag', `<span class="inline-flex items-center gap-1.5">${flag('bs')} Bahamas</span>`], ['Speed', '11.1']],
+    [['Monitored Countries', 'No monitored countries are connected with this vessel'], ['Draught (m)', '11.60 (max 11.82)']],
+    [['Ship Status', 'In Service/Commission'], ['Ship Builder', 'Oshima Shipbuilding Co Ltd']],
+    [['Ship Status Date', '2007-04-01'], ['Width (m)', '31']],
+    [['IMO', '9343510'], ['Length (m)', '199']],
+    [['MMSI', '311001617'], ['Deadweight', '46,550']],
+    [['Call Sign', 'C6IA5'], ['Gross Tonnage', '29,758']],
+    [['Type', 'General Cargo Ship (Open Hatch) (type as reported on AIS: Cargo)'], ['TEU', '760']],
+    [['Year Built', '2007'], ['Market / Scrap Value (Mil $)', '15.32 / 5.62']],
+    [['Type (Generic)', 'Dry Cargo/Passenger'], ['Type (Detailed)', 'General Cargo Ship (Open Hatch)']],
+    [['Main Engines KW', '9,510'], ['Service Speed (Kn)', '14.9']],
+    [['Auxiliary Engines HP', '2,400'], ['Gross Register Tonnage', '29,758']],
+    [['Displacement', '57,791'], ['Light Displacement', '--']],
+    [['Crane Safe Working Load', '40'], ['Breadth (moulded)', '30.5m']],
+    [['ExName', 'Saga Frontier'], null],
   ];
   const cargo = [
-    ['Liquid Capacity (m3)', '320,017'],
-    ['Grain Capacity (m3)', '7,345'],
-    ['Bale Capacity (m3)', '6,998'],
-    ['Number of Holds', '0'],
-    ['Number of Hatches', '0'],
-    ['Number of Decks', '0'],
-    ['Number of Tanks', '0'],
-    ['Number of Reefer Plugs', '0'],
+    ['Cargo Capacities Narrative', 'Grain 53,232; Segregated Ballast 16,475; TEU: 760 C Hold 360 TEU C Dk 400 TEU'],
+    ['Cargo Grades Segregations', '0'],
+    ['Gear No Largest', '2'],
+    ['Gear SWL Largest', '40.0'],
+    ['Gear Type Largest', 'GANTRY CRANE'],
+    ['Gas Capacity', '0'],
+    ['Gear Descriptive Narrative', '2 Gantry Cranes of 40 tonnes SWL'],
+    ['Passenger Capacity', '0'],
+    ['Grain Capacity', '53,232'],
+    ['Number of Hatches', '10'],
+    ['Number of Holds', '10'],
+    ['Hatches Descriptive Narrative', '10 Centre Or Only Normal Hatch 13.20m long by 25.30m breadth, 1 Centre Or Only Engine Room'],
+    ['Holds Descriptive Narrative', '10 Steel (Unspecified) Centre Or Only Dry Cargo Hold(s)'],
+    ['Insulated Capacity', '0'],
+    ['Liquid Capacity', '0'],
   ];
-
-  const leftRow = (k, v, i, align) => `
-    <div class="grid grid-cols-[auto_1fr] gap-2 px-3 py-2 text-[12.5px] ${i % 2 === 0 ? 'bg-white' : 'bg-ink-50/60'}" style="${align==='right'?'justify-content:end;text-align:right;':''}">
-      ${k ? `<span class="text-ink-500">${k}:</span><span class="text-ink-800 font-medium" style="${align==='right'?'text-align:right;':''}">${v}</span>` : '<span></span><span>&nbsp;</span>'}
+    const constructive = [
+      ['Construction Descriptive Narrative', 'Statcode5: A31A2GO; Standard design: Saga Adventure; Hull Type: Double Hull; Hull Material: Steel; Hull Connections: Welded; Decks: 1 dk; Bulbous bow'],
+      ['Date of Build', '2007-04'],
+      ['Hull Type Code', 'DHE'],
+      ['Shipbuilder', 'Oshima Shipbuilding Co Ltd'],
+      ['Yard Number', '10473'],
+      ['Country of Build', 'Japan'],
+      ['Keel to Mast Height', '0.0'],
+      ['Tonnes Per Centimetre Immersion TPCI', '53.5'],
+      ['Light Displacement Tonnage', '11,241'],
+      ['Net Tonnage', '14,440'],
+      ['Last Update Date', '2024-11-14'],
+    ];
+    const machinery = [
+      ['Auxiliary Generators Descriptive Narrative', '3 x 750kW a.c.'],
+      ['Auxiliary Propulsion Indicator', 'N'],
+      ['Bunkers Descriptive Narrative', 'Fuel: distillate fuel: 140 cu m, residual fuel: 2,823 cu m'],
+      ['Main Engine Model', '7RTA52'],
+      ['Main Engine Number of Cylinders', '7'],
+      ['Main Engine RPM', '135'],
+      ['Main Engine Stroke Type', '2'],
+      ['Number Of Auxiliary Engines', '3'],
+      ['Power kW max', '9,510'],
+      ['Power kW service', '0'],
+      ['Prime Mover Descriptive Overview Narrative', '1 oil engine driving 1 FP propeller at 135 rpm. Total Power: Mcr 9,510kW (12,930hp). Service Speed: 14.90kts. Speed &amp; Consumption: 14.00 knots on 32.00 tonnes per day'],
+      ['Total Power Of All Engines', '11,910'],
+    ];
+  const idCell = (p, right) => p ? `<div class="${right ? 'text-right' : ''}" style="text-wrap:pretty"><span class="text-ink-500">${p[0]}:</span> <span class="text-ink-800 font-medium">${p[1]}</span></div>` : '<div></div>';
+  const idRow = (pair, i) => `
+    <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3 px-3 py-2 text-[12.5px] items-start ${i % 2 === 0 ? 'bg-white' : 'bg-ink-50/60'}">${idCell(pair[0])}${idCell(pair[1], true)}</div>`;
+  const r = (k, v, i) => `
+    <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3 px-3 py-2 text-[12.5px] items-start ${i % 2 === 0 ? 'bg-white' : 'bg-ink-50/60'}">
+      <span class="flex items-start gap-1.5 text-ink-500"><span title="${k}" class="inline-flex">${INFO}</span><span>${k}</span></span>
+      <span class="text-ink-800 font-medium text-right" style="text-wrap:pretty">${v}</span>
     </div>`;
-
-  // For right column, we want labels right-aligned per the screenshot
-  const rightRow = (k, v, i) => `
-    <div class="flex items-center justify-end gap-1.5 px-3 py-2 text-[12.5px] ${i % 2 === 0 ? 'bg-white' : 'bg-ink-50/60'}">
-      ${k ? `<span class="text-ink-500">${k}:</span><span class="text-ink-800 font-medium">${v}</span>` : '<span>&nbsp;</span>'}
+  const card = (title, inner) => `
+    <div class="border border-ink-200 rounded-lg overflow-hidden">
+      <div class="px-3 py-2.5 border-b border-ink-200 bg-white"><span class="text-[13px] font-semibold text-ink-900">${title}</span></div>
+      <div>${inner}</div>
     </div>`;
-
-  const cargoRow = (k, v, i) => `
-    <div class="grid grid-cols-[auto_1fr] gap-2 px-3 py-2 text-[12.5px] ${i % 2 === 0 ? 'bg-white' : 'bg-ink-50/60'}">
-      <span class="text-ink-500">${k}:</span><span class="text-ink-800 font-medium">${v}</span>
-    </div>`;
-
   return `
-  <div class="px-4 pt-3 pb-3 grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-3">
-    <!-- Ship Identification -->
-    <div class="border border-ink-200 rounded-lg overflow-hidden">
-      <div class="px-3 py-2.5 border-b border-ink-200 bg-white">
-        <span class="text-[13px] font-semibold text-ink-900">Ship Identification</span>
-      </div>
-      <div class="grid grid-cols-2 divide-x divide-ink-100">
-        <div>${idLeft.map((p, i) => leftRow(p[0], p[1], i)).join('')}</div>
-        <div>${idRight.map((p, i) => rightRow(p[0], p[1], i)).join('')}</div>
-      </div>
-    </div>
-    <!-- Cargo Particulars -->
-    <div class="border border-ink-200 rounded-lg overflow-hidden">
-      <div class="px-3 py-2.5 border-b border-ink-200 bg-white">
-        <span class="text-[13px] font-semibold text-ink-900">Cargo Particulars</span>
-      </div>
-      <div>${cargo.map((p, i) => cargoRow(p[0], p[1], i)).join('')}</div>
-    </div>
+  <div class="px-4 pt-3 pb-3 grid grid-cols-1 lg:grid-cols-2 gap-3 items-start">
+    ${card('Ship Identification', idPairs.map(idRow).join(''))}
+    ${card('Cargo Particulars', cargo.map((p, i) => r(p[0], p[1], i)).join(''))}
+    ${card('Constructive Fields', constructive.map((p, i) => r(p[0], p[1], i)).join(''))}
+    ${card('Machinery Details', machinery.map((p, i) => r(p[0], p[1], i)).join(''))}
   </div>`;
 }
 
@@ -3253,13 +3543,14 @@ function HistoricalDetailsBody() {
               <th class="px-3 py-2.5 text-left hd-stk-2">${sortHead('Duration')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('Name')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('Flag')}</th>
-              <th class="px-3 py-2.5 text-left"></th>
+              <th class="px-3 py-2.5 text-left">${sortHead('Group Owner')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('Operator')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('Manager')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('Registered Owner')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('Technical Manager')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('Classification Society')}</th>
               <th class="px-3 py-2.5 text-left">${sortHead('P&I Club')}</th>
+              <th class="px-3 py-2.5 text-left">${sortHead('DOC Company')}</th>
             </tr>
           </thead>
           <tbody>
@@ -3286,6 +3577,7 @@ function HistoricalDetailsBody() {
                 ${cell(r.techMgr, ch('techMgr'))}
                 ${cell(r.classSoc, ch('classSoc'))}
                 ${cell(r.piClub, ch('piClub'))}
+                ${cell(r.docCo, ch('docCo'))}
               </tr>`;
             }).join('')}
           </tbody>
@@ -3309,30 +3601,90 @@ function VesselTrackingCard() {
         <svg id="fs-collapse-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" style="display:none"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 0 2-2h3M3 16h3a2 2 0 0 0 2 2v3"/></svg>
       </button>
       <!-- Right-side tools — top-right -->
-      <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+      <div style="position:absolute;top:12px;right:12px;z-index:500;display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
         <div style="position:relative;">
           <button id="map-layers-btn" class="map-btn" title="Map type">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-map"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg>
           </button>
-          <div id="map-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:148px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;padding:4px 0;">
-            ${[{id:'satellite',label:'Satellite'},{id:'street',label:'Street'},{id:'dark',label:'Dark'},{id:'light',label:'Light'}].map(o => `
-            <button data-vessel-map-type="${o.id}" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:13px;color:#374151;background:transparent;border:0;cursor:pointer;text-align:left;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='transparent'">
-              <span>${o.label}</span>
-              <span data-check style="color:#2d7ffb;opacity:0;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/></svg></span>
-            </button>`).join('')}
+          <div id="map-layers-menu" class="hidden" role="menu" style="position:absolute;top:0;right:calc(100% + 8px);width:220px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;">
+            <div style="padding:10px 12px;border-bottom:1px solid #e5e7eb;"><span style="font-size:13px;font-weight:600;color:#111827;">Map Type</span></div>
+            <div style="padding:4px 0;">
+              ${[{id:'osm',label:'Open Street Map'},{id:'imagery',label:'World Imagery'},{id:'street',label:'World Street Map'},{id:'oceans',label:'Oceans'}].map(o => `<label class="ev-row"><input type="radio" name="vessel-map-type" class="ev-cb" data-vessel-map-type="${o.id}"><span>${o.label}</span></label>`).join('')}
+              <div style="height:1px;background:#e5e7eb;margin:4px 12px;"></div>
+              <label class="ev-row"><input type="checkbox" class="ev-cb" data-map-overlay="grid"><span>Grid Lines</span></label>
+              <label class="ev-row"><input type="checkbox" class="ev-cb" data-map-overlay="nautical"><span>Nautical Charts</span></label>
+            </div>
           </div>
         </div>
+        <div style="position:relative;">
+          <button id="map-events-btn" class="map-btn" title="Events" aria-haspopup="true" aria-expanded="false">
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-calendar-cog"><path d="m15.2 16.9-.9-.4"/><path d="m15.2 19.1-.9.4"/><path d="M16 2v4"/><path d="m16.9 15.2-.4-.9"/><path d="m16.9 20.8-.4.9"/><path d="m19.5 14.3-.4.9"/><path d="m19.5 21.7-.4-.9"/><path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m21.7 16.5-.9.4"/><path d="m21.7 19.5-.9-.4"/><path d="M3 10h18"/><path d="M8 2v4"/><circle cx="18" cy="18" r="3"/></svg>
+            <span id="map-events-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#ef4444;border:2px solid #fff;"></span>
+          </button>
+          <div id="map-events-menu" class="hidden" role="menu" style="position:absolute;top:0;right:calc(100% + 8px);width:248px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:calc(var(--ev-max, 340px));">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
+              <span style="font-size:13px;font-weight:600;color:#111827;">Events</span>
+              <span id="map-events-count" style="font-size:11.5px;color:#6b7280;"></span>
+            </div>
+            <div class="scroll-thin" style="padding:4px 0;overflow-y:auto;min-height:0;">
+              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-ev-all checked><span>All</span></label>
+              <div style="height:1px;background:#f1f5f9;margin:2px 0;"></div>
+              ${MAP_EVENT_TYPES.map(t => `
+              <label class="ev-row"><input type="checkbox" class="ev-cb" data-ev-type="${t.id}" checked><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span><span>${t.label}</span></label>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <button id="map-regions-btn" class="map-btn" title="Regions" aria-haspopup="true" aria-expanded="false">
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-square-dashed"><path d="M5 3a2 2 0 0 0-2 2"/><path d="M19 3a2 2 0 0 1 2 2"/><path d="M21 19a2 2 0 0 1-2 2"/><path d="M5 21a2 2 0 0 1-2-2"/><path d="M9 3h1"/><path d="M9 21h1"/><path d="M14 3h1"/><path d="M14 21h1"/><path d="M3 9v1"/><path d="M21 9v1"/><path d="M3 14v1"/><path d="M21 14v1"/></svg>
+            <span id="map-regions-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#ef4444;border:2px solid #fff;"></span>
+          </button>
+          <div id="map-regions-menu" class="hidden" role="menu" style="position:absolute;top:0;right:calc(100% + 8px);width:264px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:calc(var(--ev-max, 340px));">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
+              <span style="font-size:13px;font-weight:600;color:#111827;">Regions</span>
+              <span id="map-regions-count" style="font-size:11.5px;color:#6b7280;"></span>
+            </div>
+            <div class="scroll-thin" style="padding:4px 0;overflow-y:auto;min-height:0;">
+              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-rg-all checked><span>All</span></label>
+              <div style="height:1px;background:#f1f5f9;margin:2px 0;"></div>
+              ${MAP_REGION_GROUPS.map((g, gi) => `
+              <div class="rg-group" data-rg-group="${gi}">
+                <div class="ev-row rg-head"><label style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;cursor:pointer;"><input type="checkbox" class="ev-cb" data-rg-parent="${gi}" checked><span>${g.label}</span></label><button type="button" class="rg-toggle" data-rg-toggle="${gi}" aria-expanded="false" aria-label="Show ${g.label} regions"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+                <div class="rg-children hidden">${g.items.map(it => `<label class="ev-row rg-child"><input type="checkbox" class="ev-cb" data-rg-child="${gi}" checked><span>${it}</span></label>`).join('')}</div>
+              </div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <button id="map-weather-btn" class="map-btn" title="Weather" aria-haspopup="true" aria-expanded="false">
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-wind"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></svg>
+          </button>
+          <div id="map-weather-menu" class="hidden" role="menu" style="position:absolute;top:0;right:calc(100% + 8px);width:220px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
+              <span style="font-size:13px;font-weight:600;color:#111827;">Weather</span>
+              <span id="map-weather-count" style="font-size:11.5px;color:#6b7280;"></span>
+            </div>
+            <div style="padding:4px 0;">
+              ${['Wind','Temperature','Precipitation','Clouds'].map(w => `<label class="ev-row"><input type="checkbox" class="ev-cb" data-wx="${w.toLowerCase()}"><span>${w}</span></label>`).join('')}
+            </div>
+          </div>
+        </div>
+        <button id="map-reset-btn" class="map-btn" title="Reset all filters" aria-label="Reset all filters" disabled style="margin-top:8px;">
+          <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-funnel-x"><path d="M12.531 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14v6a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341l.427-.473"/><path d="m16.5 3.5 5 5"/><path d="m21.5 3.5-5 5"/></svg>
+        </button>
       </div>
       <!-- Timeline overlay -->
       <div class="timeline-overlay">
         <div style="display:flex;align-items:center;gap:10px;">
-          <span style="font-size:11px;color:#9ca3af;white-space:nowrap;">2025-10-07</span>
-          <div class="timeline-track" id="timeline-slider">
+          <span id="tl-start" style="font-size:11px;color:#9ca3af;white-space:nowrap;">${state.trackRange.start}</span>
+          <button type="button" class="tl-step" id="timeline-prev" title="Step back 1 hour" aria-label="Move vessel back 1 hour"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+          <div class="timeline-track" id="timeline-slider" role="slider" tabindex="0" aria-label="Track position" aria-valuemin="0" aria-valuemax="100">
             <div class="timeline-fill" id="timeline-fill"></div>
             <div class="timeline-thumb" id="timeline-thumb"></div>
           </div>
-          <span style="font-size:11px;color:#9ca3af;white-space:nowrap;">2025-10-09</span>
-          <button style="width:28px;height:28px;background:rgba(255,255,255,.12);border:0;border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#9ca3af;flex-shrink:0;" title="Pick date">
+          <button type="button" class="tl-step" id="timeline-next" title="Step forward 1 hour" aria-label="Move vessel forward 1 hour"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+          <span id="tl-end" style="font-size:11px;color:#9ca3af;white-space:nowrap;">${state.trackRange.end}</span>
+          <button type="button" id="tl-cal-btn" aria-haspopup="dialog" aria-label="Choose track date range" style="width:28px;height:28px;background:rgba(255,255,255,.12);border:0;border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#9ca3af;flex-shrink:0;" title="Pick date">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" stroke-linecap="round"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
           </button>
         </div>
@@ -3342,6 +3694,44 @@ function VesselTrackingCard() {
   </div>`;
 }
 
+const HIST_PER = 3;
+function HistListHtml() {
+  const pages = Math.max(1, Math.ceil(EVENTS.length / HIST_PER));
+  const pg = state.histPage = Math.min(Math.max(1, state.histPage || 1), pages);
+  const from = (pg - 1) * HIST_PER, slice = EVENTS.slice(from, from + HIST_PER);
+  return `<div class="flex-1 min-h-0 overflow-y-auto scroll-thin" id="hist-list">
+      ${slice.map((e, k) => { const i = from + k; return `
+        <div class="hist-ev p-3 border-b border-ink-100 ${state.histSel === i ? 'is-sel' : ''}" data-hist-idx="${i}" role="button" tabindex="0" aria-pressed="${state.histSel === i}" aria-label="Show ${e.title} on map, ${e.ts}">
+          <div class="flex items-start gap-2 mb-1">
+            ${(() => { const t = MAP_EVENT_TYPES.find(x => x.id === e.type) || MAP_EVENT_TYPES.find(x => x.id === 'ais'); return `<span class="ev-ic" style="background:${t.bg};color:${t.fg};" title="${t.label}" aria-label="${t.label}" role="img">${t.icon}</span>`; })()}
+            <div class="flex-1 min-w-0">
+              <div class="text-xs text-ink-500 mb-1">${e.ts}</div>
+              <div class="text-xs font-semibold text-ink-900 mb-1">${e.title}</div>
+              <div class="text-xs text-ink-700 leading-relaxed"><span class="font-semibold">Details:</span> ${e.detail}</div>
+            </div>
+          </div>
+        </div>
+      `; }).join('')}
+    </div>
+    <div class="hist-pager" id="hist-pager">
+      <span class="hist-pager-sum">${from + 1}–${from + slice.length} of ${EVENTS.length} events</span>
+      ${window.dsPagination ? window.dsPagination({ page: pg, totalPages: pages, compact: true, inWrap: false }) : ''}
+    </div>`;
+}
+function wireHistList() {
+  document.querySelectorAll('.hist-ev').forEach(el => {
+    const go = () => selectHistEvent(+el.dataset.histIdx, 'list');
+    el.onclick = go;
+    el.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(); } };
+  });
+  const pg = document.getElementById('hist-pager');
+  if (pg && window.dsWirePagination) dsWirePagination(pg, { onPage: p => { state.histPage = p; drawHistList(); document.querySelector('#hist-pager .ds-page-btn:not([disabled])')?.focus(); } });
+}
+function drawHistList() {
+  const w = document.getElementById('hist-list-wrap'); if (!w) return;
+  w.innerHTML = HistListHtml(); wireHistList();
+  if (state.histSel != null) markHistSel(state.histSel);
+}
 function HistoricalEventsCard() {
   return `
   <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
@@ -3357,12 +3747,10 @@ function HistoricalEventsCard() {
       </div>
     </div>
     <div class="px-4 py-3 border-b border-ink-200">
-      <div class="hist-date-row flex items-center gap-2 text-xs flex-wrap">
-        <span class="text-ink-500">From</span>
-        <input type="text" value="2024/01/01" class="px-2 py-1.5 border border-ink-200 rounded-md text-ink-700 text-xs" />
-        <svg class="w-4 h-4 text-ink-400 hist-date-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        <span class="text-ink-500">To</span>
-        <input type="text" value="2024/01/01" class="px-2 py-1.5 border border-ink-200 rounded-md text-ink-700 text-xs" />
+      <div class="hist-range" role="group" aria-label="Event date range">
+        <div class="hist-range-c"><span class="hist-range-k">From:</span><span class="hist-range-v">${state.trackRange.start}</span></div>
+        <svg class="hist-range-arrow" width="28" height="20" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h23"/><path d="m18 3 7 7-7 7"/></svg>
+        <div class="hist-range-c"><span class="hist-range-k">To:</span><span class="hist-range-v">${state.trackRange.end}</span></div>
       </div>
     </div>
     <div class="px-4 py-3 border-b border-ink-200">
@@ -3371,22 +3759,9 @@ function HistoricalEventsCard() {
         <svg class="w-4 h-4 text-ink-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
       </div>
     </div>
-    <div class="flex-1 overflow-y-auto scroll-thin">
-      ${EVENTS.map(e => `
-        <div class="p-3 border-b border-ink-100 hover:bg-ink-50">
-          <div class="flex items-start gap-2 mb-1">
-            <svg class="w-4 h-4 text-blue-600 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3" fill="white"/></svg>
-            <div class="flex-1 min-w-0">
-              <div class="text-xs text-ink-500 mb-1">${e.ts}</div>
-              <div class="text-xs font-semibold text-ink-900 mb-1">${e.title}</div>
-              <div class="text-xs text-ink-700 leading-relaxed"><span class="font-semibold">Details:</span> ${e.detail}</div>
-            </div>
-          </div>
-        </div>
-      `).join('')}
-    </div>
-    <div class="px-4 py-3 border-t border-ink-200">
-      <button class="w-full py-2 text-sm font-semibold text-brand-600 border border-ink-200 rounded-lg hover:bg-brand-50 transition-colors inline-flex items-center justify-center gap-2">
+    <div id="hist-list-wrap" class="flex-1 min-h-0 flex flex-col">${HistListHtml()}</div>
+    <div class="px-4 py-3 border-t border-ink-200 flex justify-center">
+      <button class="px-4 py-2 text-sm font-semibold text-brand-600 border border-ink-200 rounded-lg hover:bg-brand-50 transition-colors inline-flex items-center justify-center gap-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
         Download Historical Events
       </button>
@@ -3394,27 +3769,309 @@ function HistoricalEventsCard() {
   </div>`;
 }
 
+/* ----------- MAP EVENTS ----------- */
+const _ei = p => `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+var MAP_EVENT_TYPES = [
+  { id:'sts',     label:'Ship-To-Ship',            bg:'#dbeafe', fg:'#1d4ed8', icon:_ei('<path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/>') },
+  { id:'dark',    label:'Dark Activity',           bg:'#e5e7eb', fg:'#111827', icon:_ei('<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>') },
+  { id:'sog',     label:'Speed Over Ground',       bg:'#fae8ff', fg:'#a21caf', icon:_ei('<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>') },
+  { id:'loiter',  label:'Loitering',               bg:'#cffafe', fg:'#0e7490', icon:_ei('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>') },
+  { id:'enter',   label:'Entering Alert',          bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>') },
+  { id:'exit',    label:'Exit Alert',              bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>') },
+  { id:'weather', label:'Vessel affected by Weather', bg:'#ede9fe', fg:'#6d28d9', icon:_ei('<path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>') },
+  { id:'ais',     label:'AIS Static Detail Change', bg:'#f3e8ff', fg:'#7e22ce', icon:_ei('<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>') },
+];
+var MAP_REGION_GROUPS = [
+  { label:'Country EEZ', items:['Greece EEZ','Egypt EEZ','Italy EEZ','Libya EEZ'] },
+  { label:'High Risk Areas', items:['Gulf of Aden','Red Sea – Southern','Gulf of Guinea'] },
+  { label:'JWLA-034', items:['Listed Area – Red Sea','Listed Area – Black Sea','Listed Area – Gulf of Oman'] },
+  { label:'Other', items:['Custom Area 1','Custom Area 2'] },
+  { label:'Ports', items:['Port Said','Piraeus','Alexandria','Hamburg'] },
+  { label:'Real-Time Risk (Marine)', items:['Eastern Mediterranean','Suez Approaches'] },
+  { label:'Real-Time Risk (Yacht)', items:['Aegean Sea','Ionian Sea'] },
+  { label:'Sanctioned Port', items:['Novorossiysk','Tartus','Bandar Abbas'] },
+  { label:'Scrapping Yards', items:['Alang','Chittagong','Aliağa'] },
+  { label:'USA', items:['US East Coast EEZ','US Gulf EEZ'] },
+  { label:'War', items:['Black Sea War Zone','Red Sea Conflict Zone'] },
+];
+const MAP_MENUS = ['layers','events','regions','weather'];
+function closeMapMenus(except) {
+  MAP_MENUS.forEach(k => { if (k === except) return; document.getElementById('map-' + k + '-menu')?.classList.add('hidden'); const b = document.getElementById('map-' + k + '-btn'); if (b) { b.classList.remove('is-on'); b.setAttribute('aria-expanded', 'false'); } });
+}
+function updateMapReset() {
+  const b = document.getElementById('map-reset-btn'); if (!b) return;
+  const off = [...document.querySelectorAll('#map-events-menu [data-ev-type], #map-regions-menu [data-rg-child]')].some(c => !c.checked);
+  const wx = [...document.querySelectorAll('#map-weather-menu [data-wx]')].some(c => c.checked);
+  b.disabled = !(off || wx);
+}
+function resetMapFilters() {
+  const ev = document.querySelector('#map-events-menu [data-ev-all]'), rg = document.querySelector('#map-regions-menu [data-rg-all]');
+  if (ev) { ev.checked = true; ev.dispatchEvent(new Event('change')); }
+  if (rg) { rg.checked = true; rg.dispatchEvent(new Event('change')); }
+  const wx = [...document.querySelectorAll('#map-weather-menu [data-wx]')];
+  wx.forEach(c => c.checked = false); wx[0]?.dispatchEvent(new Event('change'));
+  closeMapMenus();
+  updateMapReset();
+}
+function initMapWeather() {
+  const btn = document.getElementById('map-weather-btn'), menu = document.getElementById('map-weather-menu');
+  if (!btn || !menu) return;
+  const cbs = [...menu.querySelectorAll('[data-wx]')];
+  const sync = () => {
+    const on = cbs.filter(c => c.checked);
+    document.getElementById('map-weather-count').textContent = on.length ? on.length + ' on' : '';
+    btn.classList.toggle('has-active', on.length > 0);
+    window.__vesselWeatherLayers = on.map(c => c.dataset.wx);
+  };
+  cbs.forEach(c => c.onchange = sync);
+  const open = v => { menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v); };
+  btn.onclick = e => { e.stopPropagation(); closeMapMenus('weather'); open(menu.classList.contains('hidden')); };
+  menu.onclick = e => e.stopPropagation();
+  document.addEventListener('click', () => open(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
+  sync();
+}
+// Region shapes (approximate, illustrative) keyed "Group|Item"
+const REGION_COLORS = { 'Country EEZ':'#0ea5e9', 'High Risk Areas':'#f97316', 'JWLA-034':'#dc2626', 'Other':'#64748b', 'Ports':'#2d7ffb', 'Real-Time Risk (Marine)':'#eab308', 'Real-Time Risk (Yacht)':'#14b8a6', 'Sanctioned Port':'#7f1d1d', 'Scrapping Yards':'#78716c', 'USA':'#4f46e5', 'War':'#991b1b' };
+const REGION_SHAPES = {
+  'Country EEZ|Greece EEZ':  { poly:[[40.8,19.4],[40.6,23.0],[40.9,26.0],[39.5,26.6],[37.0,27.7],[36.0,29.6],[34.2,27.5],[34.0,24.0],[35.0,21.0],[37.5,20.0],[39.4,19.2]], dash:'5 4' },
+  'Country EEZ|Egypt EEZ':   { poly:[[31.6,25.2],[33.6,26.5],[33.6,29.6],[33.0,33.5],[31.3,34.2],[31.0,32.3],[31.4,29.0],[31.6,25.2]], dash:'5 4' },
+  'Country EEZ|Libya EEZ':   { poly:[[33.2,11.6],[34.3,15.0],[34.1,19.0],[34.2,23.0],[33.6,25.2],[31.6,25.2],[32.9,22.2],[30.4,19.5],[31.3,16.0],[32.8,12.8]], dash:'5 4' },
+  'Country EEZ|Italy EEZ':   { poly:[[40.4,18.9],[39.5,19.2],[37.5,17.5],[36.2,15.3],[37.4,12.2],[38.5,15.5],[39.9,16.4]], dash:'5 4' },
+  'High Risk Areas|Red Sea – Southern': { poly:[[20.0,37.5],[20.0,41.0],[12.6,43.6],[12.4,43.0],[15.5,40.5]] },
+  'JWLA-034|Listed Area – Red Sea':     { poly:[[27.6,33.8],[27.6,35.4],[22.0,39.2],[20.0,39.0],[20.0,37.5],[24.0,35.6]] },
+  'Real-Time Risk (Marine)|Eastern Mediterranean': { poly:[[36.2,30.5],[36.4,35.9],[33.0,35.2],[32.2,34.4],[33.8,30.8]] },
+  'Real-Time Risk (Marine)|Suez Approaches': { circle:[31.3,32.35], r:45000 },
+  'Real-Time Risk (Yacht)|Aegean Sea':  { poly:[[40.9,22.8],[40.8,26.1],[39.2,26.4],[37.6,27.2],[36.6,27.4],[35.9,26.2],[36.3,23.1],[37.9,23.8],[39.3,23.3]] },
+  'Real-Time Risk (Yacht)|Ionian Sea':  { poly:[[40.2,19.1],[38.3,20.2],[36.6,21.7],[36.4,17.0],[38.0,16.3],[39.8,18.4]] },
+  'Ports|Port Said':   { circle:[31.26,32.30], r:14000 },
+  'Ports|Piraeus':     { circle:[37.94,23.63], r:14000 },
+  'Ports|Alexandria':  { circle:[31.20,29.88], r:14000 },
+  'Sanctioned Port|Tartus': { circle:[34.89,35.87], r:16000 },
+  'War|Red Sea Conflict Zone': { poly:[[16.5,39.5],[16.5,42.8],[12.6,43.6],[12.4,42.8]], dash:'2 4' },
+};
+function buildRegionLayers() {
+  if (!map) return;
+  window._regionLayers = Object.entries(REGION_SHAPES).map(([key, s]) => {
+    const [grp, item] = key.split('|'), c = REGION_COLORS[grp] || '#64748b';
+    const st = { color:c, weight:1.5, opacity:0.9, fillColor:c, fillOpacity:0.14, dashArray:s.dash || null };
+    const layer = s.circle ? L.circle(s.circle, { ...st, radius:s.r }) : L.polygon(s.poly, st);
+    layer.bindTooltip(`<b>${item}</b><br><span style="color:#6b7280">${grp}</span>`, { sticky:true, direction:'top' });
+    layer.on('mouseover', () => layer.setStyle({ fillOpacity:0.28, weight:2 }));
+    layer.on('mouseout',  () => layer.setStyle({ fillOpacity:0.14, weight:1.5 }));
+    layer._rgKey = key;
+    return layer;
+  });
+  applyRegionFilter();
+}
+function applyRegionFilter() {
+  if (!map || !window._regionLayers) return;
+  const on = new Set();
+  document.querySelectorAll('#map-regions-menu [data-rg-child]').forEach(c => {
+    if (!c.checked) return;
+    const g = MAP_REGION_GROUPS[+c.dataset.rgChild]; if (g) on.add(g.label + '|' + c.parentElement.textContent.trim());
+  });
+  const menuReady = !!document.querySelector('#map-regions-menu [data-rg-child]');
+  window._regionLayers.forEach(l => { const show = !menuReady || on.has(l._rgKey); if (show && !map.hasLayer(l)) l.addTo(map); if (!show && map.hasLayer(l)) map.removeLayer(l); });
+}
+function initMapRegions() {
+  const btn = document.getElementById('map-regions-btn'), menu = document.getElementById('map-regions-menu');
+  if (!btn || !menu) return;
+  const all = menu.querySelector('[data-rg-all]');
+  const parents = [...menu.querySelectorAll('[data-rg-parent]')];
+  const kids = gi => [...menu.querySelectorAll(`[data-rg-child="${gi}"]`)];
+  const allKids = [...menu.querySelectorAll('[data-rg-child]')];
+  const sync = () => {
+    parents.forEach(p => { const k = kids(p.dataset.rgParent), n = k.filter(c => c.checked).length; p.checked = n === k.length; p.indeterminate = n > 0 && n < k.length; });
+    const n = allKids.filter(c => c.checked).length;
+    all.checked = n === allKids.length; all.indeterminate = n > 0 && n < allKids.length;
+    const groupsOn = parents.filter(p => p.checked || p.indeterminate).length;
+    document.getElementById('map-regions-count').textContent = groupsOn + ' of ' + parents.length + ' shown';
+    document.getElementById('map-regions-dot').classList.toggle('hidden', n === allKids.length);
+    applyRegionFilter();
+  };
+  all.onchange = () => { allKids.forEach(c => c.checked = all.checked); sync(); };
+  parents.forEach(p => p.onchange = () => { kids(p.dataset.rgParent).forEach(c => c.checked = p.checked); sync(); });
+  allKids.forEach(c => c.onchange = sync);
+  menu.querySelectorAll('[data-rg-toggle]').forEach(t => t.onclick = e => {
+    e.preventDefault();
+    const box = t.closest('.rg-group').querySelector('.rg-children'), openNow = box.classList.toggle('hidden') === false;
+    t.setAttribute('aria-expanded', openNow); t.classList.toggle('is-open', openNow);
+  });
+  const open = v => {
+    if (v) { const mc = document.getElementById('vessel-map'); if (mc) { const room = mc.getBoundingClientRect().bottom - btn.getBoundingClientRect().top - 12; menu.style.setProperty('--ev-max', Math.max(160, room) + 'px'); } }
+    menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v);
+  };
+  btn.onclick = e => { e.stopPropagation(); closeMapMenus('regions'); open(menu.classList.contains('hidden')); };
+  menu.onclick = e => e.stopPropagation();
+  document.addEventListener('click', () => open(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
+  sync();
+}
+function buildTrackPoints(route) {
+  if (!map) return;
+  (window._trackPts || []).forEach(m => map.removeLayer(m));
+  if (!map.getPane('trackPts')) { const p = map.createPane('trackPts'); p.style.zIndex = 650; }
+  const N = 18, t0 = new Date(state.trackRange.start + 'T00:00:00Z').getTime(), t1 = new Date(state.trackRange.end + 'T23:59:59Z').getTime();
+  const at = t => { const p = t * (route.length - 1), i = Math.min(Math.floor(p), route.length - 2), f = p - i, a = route[i], b = route[i + 1]; return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, Math.atan2(b[1] - a[1], b[0] - a[0])]; };
+  const dests = ['EG, Port Said', 'GR, Piraeus', 'DE, Hamburg'];
+  const statuses = ['Under way using engine', 'Under way using engine', 'Under way using engine', 'Restricted manoeuvrability'];
+  const fmt = (v, pos, neg) => Math.abs(v).toFixed(2) + (v >= 0 ? pos : neg);
+  const pinSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>';
+  const xSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+  window._trackPts = Array.from({ length: N }, (_, k) => {
+    const t = k / (N - 1), [lat, lng, ang] = at(t);
+    const cog = Math.round(((90 - ang * 180 / Math.PI) + 360) % 360);
+    const d = { lat, lng, dest: dests[Math.min(2, Math.floor(t * 3))], status: statuses[k % 4], cog, hdg: (cog + 4 + (k % 3) * 2) % 360,
+      draught: (10.1 - (k % 4) * 0.05).toFixed(2), speed: (9.2 + ((k * 37) % 17) / 10).toFixed(2), freeboard: (3.5 + (k % 3) * 0.05).toFixed(2),
+      ts: new Date(t0 + t * (t1 - t0)).toISOString().replace('T', ' ').slice(0, 19) + ' UTC' };
+    const m = L.circleMarker([lat, lng], { radius:4, color:'#fff', weight:1.5, fillColor:'#2d7ffb', fillOpacity:1, bubblingMouseEvents:false, pane:'trackPts' }).addTo(map);
+    m.on('mouseover', () => m.setStyle({ radius:6 })); m.on('mouseout', () => m.setStyle({ radius:4 }));
+    const row = (k2, v) => `<div class="trk-r"><span>${k2}</span><span>${v}</span></div>`;
+    const html = `<div class="trk-pop" role="dialog" aria-label="${VESSEL.name} track point">
+      <div class="trk-h">
+        <div class="trk-ht"><div class="trk-n">${flag(VESSEL.flag.cc)} ${VESSEL.name}</div><div class="trk-t">${VESSEL.type} · ${d.ts}</div></div>
+        <div class="trk-acts"><button type="button" class="trk-ib" data-trk-pin aria-pressed="false" title="Pin popup" aria-label="Pin popup">${pinSvg}</button><button type="button" class="trk-ib" data-trk-close title="Close" aria-label="Close">${xSvg}</button></div>
+      </div>
+      <div class="trk-b">
+        ${row('Lat/Lng', fmt(d.lat,'N','S') + '/' + fmt(d.lng,'E','W'))}
+        ${row('Destination', d.dest)}
+        ${row('Navigation status', d.status)}
+        ${row('Course over ground', d.cog + '°')}
+        ${row('Heading', d.hdg + '°')}
+        ${row('Draught (m)', d.draught)}
+        ${row('Speed (knots)', d.speed)}
+        ${row('Freeboard (m)', d.freeboard)}
+      </div>
+      <div class="trk-f"><button type="button" class="trk-cta">Create Analysis<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div>
+    </div>`;
+    m.bindPopup(html, { className:'trk-leaflet', closeButton:false, minWidth:280, maxWidth:280, autoPan:true, autoPanPaddingTopLeft:[20,20], autoPanPaddingBottomRight:[60,24] });
+    m.on('popupopen', ev => {
+      const el = ev.popup.getElement(), pop = ev.popup;
+      el.querySelector('[data-trk-close]').onclick = () => { pop.options.autoClose = true; pop.options.closeOnClick = true; map.closePopup(pop); m.closePopup(); };
+      const pin = el.querySelector('[data-trk-pin]');
+      const pinned = pop.options.autoClose === false;
+      pin.setAttribute('aria-pressed', pinned); pin.title = pinned ? 'Unpin popup' : 'Pin popup';
+      pin.onclick = () => {
+        const on = pin.getAttribute('aria-pressed') !== 'true';
+        pin.setAttribute('aria-pressed', on); pin.title = on ? 'Unpin popup' : 'Pin popup'; pin.setAttribute('aria-label', pin.title);
+        pop.options.autoClose = !on; pop.options.closeOnClick = !on;
+        // Leaflet registers the map 'preclick' close handler when the popup opens; toggle it directly
+        const fn = pop.close || pop._close;
+        map.off('preclick', fn, pop);
+        if (!on) map.on('preclick', fn, pop);
+        if (on && map._popup === pop) map._popup = null; // so the next popup doesn't replace this one
+      };
+      L.DomEvent.disableClickPropagation(el);
+      document.querySelector('.timeline-overlay')?.classList.add('is-dimmed');
+    });
+    m.on('popupclose', () => { if (!(window._trackPts || []).some(p => p !== m && p.isPopupOpen())) document.querySelector('.timeline-overlay')?.classList.remove('is-dimmed'); });
+    return m;
+  });
+}
+function eventPopupHtml(p, t, note) {
+  const xSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+  return `<div class="trk-pop" role="dialog" aria-label="${p.title}">
+    <div class="trk-h">
+      <div class="trk-ht"><div class="trk-n"><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span>${p.title}</div><div class="trk-t">${VESSEL.name} · ${p.ts}</div></div>
+      <div class="trk-acts"><button type="button" class="trk-ib" data-ev-close title="Close" aria-label="Close">${xSvg}</button></div>
+    </div>
+    <div class="ev-pop-b">${p.detail}${note ? `<div class="ev-pop-note">${note}</div>` : ''}</div>
+    ${p.type === 'sts' ? `<div class="trk-f"><button type="button" class="trk-cta" data-sts-analysis>Create Analysis<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div>` : ''}
+  </div>`;
+}
+const EV_POPUP_OPTS = { className:'trk-leaflet', closeButton:false, minWidth:280, maxWidth:280, autoPanPaddingTopLeft:[20,20], autoPanPaddingBottomRight:[60,110] };
+function markHistSel(i) {
+  state.histSel = i;
+  document.querySelectorAll('.hist-ev').forEach(el => { const on = +el.dataset.histIdx === i; el.classList.toggle('is-sel', on); el.setAttribute('aria-pressed', on); });
+  document.querySelectorAll('.ev-marker').forEach(el => el.classList.toggle('is-sel', +el.dataset.evMk === i));
+}
+function selectHistEvent(i, from) {
+  markHistSel(i);
+  if (from === 'map') {
+    const want = Math.floor(i / HIST_PER) + 1;
+    if (want !== state.histPage) { state.histPage = want; drawHistList(); }
+    const el = document.querySelector(`.hist-ev[data-hist-idx="${i}"]`), list = el && el.parentElement;
+    if (el && list) {
+      const top = el.offsetTop - list.offsetTop, bottom = top + el.offsetHeight;
+      if (top < list.scrollTop || bottom > list.scrollTop + list.clientHeight) list.scrollTo({ top: Math.max(0, top - 8), behavior:'smooth' });
+    }
+    return;
+  }
+  if (!map || !window._eventMarkers) return;
+  const m = window._eventMarkers[i], p = EVENTS[i], t = MAP_EVENT_TYPES.find(x => x.id === p.type);
+  if (map.hasLayer(m)) {
+    map.panInside(m.getLatLng(), { paddingTopLeft:[40,40], paddingBottomRight:[70,110] });
+    m.openPopup();
+    markHistSel(i);
+  } else {
+    L.popup(EV_POPUP_OPTS).setLatLng(p.ll).setContent(eventPopupHtml(p, t, 'This event type is hidden by the Events filter.')).openOn(map)
+      .on('remove', () => { if (state.histSel === i) markHistSel(null); });
+  }
+}
+function applyEventFilter() {
+  if (!map || !window._eventMarkers) return;
+  const on = window.__vesselEventFilter || MAP_EVENT_TYPES.map(t => t.id);
+  window._eventMarkers.forEach(m => { const show = on.includes(m._evType); if (show && !map.hasLayer(m)) m.addTo(map); if (!show && map.hasLayer(m)) map.removeLayer(m); });
+}
+function initMapEvents() {
+  const btn = document.getElementById('map-events-btn'), menu = document.getElementById('map-events-menu');
+  if (!btn || !menu) return;
+  const all = menu.querySelector('[data-ev-all]'), cbs = [...menu.querySelectorAll('[data-ev-type]')];
+  const sync = () => {
+    const n = cbs.filter(c => c.checked).length;
+    all.checked = n === cbs.length; all.indeterminate = n > 0 && n < cbs.length;
+    document.getElementById('map-events-count').textContent = n + ' of ' + cbs.length + ' shown';
+    document.getElementById('map-events-dot').classList.toggle('hidden', n === cbs.length);
+    window.__vesselEventFilter = cbs.filter(c => c.checked).map(c => c.dataset.evType);
+    applyEventFilter();
+  };
+  all.onchange = () => { cbs.forEach(c => c.checked = all.checked); sync(); };
+  cbs.forEach(c => c.onchange = sync);
+  const open = v => {
+    if (v) { const mc = document.getElementById('vessel-map'); if (mc) { const room = mc.getBoundingClientRect().bottom - btn.getBoundingClientRect().top - 12; menu.style.setProperty('--ev-max', Math.max(160, room) + 'px'); } }
+    menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v); };
+  btn.onclick = e => { e.stopPropagation(); closeMapMenus('events'); open(menu.classList.contains('hidden')); };
+  menu.onclick = e => e.stopPropagation();
+  document.addEventListener('click', () => open(false));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
+  sync();
+}
+
 /* ----------- MAP ----------- */
 let map = null;
 let tileLayer = null;
-let currentMapType = 'satellite';
+let currentMapType = 'osm';
+let _mapOverlays = {};
 
 const MAP_TYPES = {
-  satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', sub:'abc' },
-  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub:'abcd' },
-  dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', sub:'abcd' },
-  light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', sub:'abcd' },
+  osm:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', maxNative:16 },
+  imagery: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' },
+  street:  { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}' },
+  oceans:  { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}', maxNative:13 },
 };
+function makeGridLayer() {
+  const g = L.layerGroup(), st = { color:'#334155', weight:0.8, opacity:0.45, interactive:false };
+  for (let lat = -80; lat <= 80; lat += 10) g.addLayer(L.polyline([[lat,-180],[lat,180]], st));
+  for (let lng = -180; lng <= 180; lng += 10) g.addLayer(L.polyline([[-85,lng],[85,lng]], st));
+  return g;
+}
+function setMapOverlay(kind, on) {
+  if (!map) return;
+  if (_mapOverlays[kind]) { map.removeLayer(_mapOverlays[kind]); delete _mapOverlays[kind]; }
+  if (!on) return;
+  _mapOverlays[kind] = kind === 'grid' ? makeGridLayer() : L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', { maxZoom:18, opacity:1, attribution:'' });
+  _mapOverlays[kind].addTo(map);
+}
 
 function setMapType(type) {
   if (!map || !MAP_TYPES[type]) return;
   currentMapType = type;
   if (tileLayer) map.removeLayer(tileLayer);
   const t = MAP_TYPES[type];
-  tileLayer = L.tileLayer(t.url, { maxZoom:19, subdomains: t.sub || 'abc', attribution:'' }).addTo(map);
-  document.querySelectorAll('[data-vessel-map-type]').forEach(b => {
-    b.querySelector('[data-check]').style.opacity = b.dataset.vesselMapType === type ? '1' : '0';
-  });
+  tileLayer = L.tileLayer(t.url, { maxZoom:19, maxNativeZoom: t.maxNative || 19, subdomains: t.sub || 'abc', attribution:'' }).addTo(map);
+  tileLayer.bringToBack();
+  document.querySelectorAll('[data-vessel-map-type]').forEach(b => { b.checked = b.dataset.vesselMapType === type; });
 }
 function initMap() {
   const c = document.getElementById('vessel-map');
@@ -3440,30 +4097,66 @@ function initMap() {
     attributionControl: false,
   });
 
-  setMapType('satellite');
+  setMapType(currentMapType);
+  L.control.scale({ position:'bottomleft', metric:true, imperial:false, maxWidth:120 }).addTo(map);
+  const Coords = L.Control.extend({ options:{ position:'bottomright' }, onAdd() {
+    const el = L.DomUtil.create('div', 'map-coords');
+    el.setAttribute('aria-live', 'off'); el.textContent = '—';
+    const fmt = (v, p, n) => Math.abs(v).toFixed(4) + '° ' + (v >= 0 ? p : n);
+    map.on('mousemove', e => { const ll = e.latlng.wrap(); el.textContent = fmt(ll.lat, 'N', 'S') + ', ' + fmt(ll.lng, 'E', 'W'); el.classList.add('is-on'); });
+    map.on('mouseout', () => el.classList.remove('is-on'));
+    return el;
+  } });
+  new Coords().addTo(map);
 
-  // Route polyline (example path: Suez → Med)
+  // Route polyline: Red Sea → Suez → Mediterranean → Gibraltar → around Iberia → English Channel → UK
   const route = [
-    [29.9, 32.6],   // Suez Canal
-    [31.5, 29.9],   // Alexandria
-    [33.5, 27.2],
-    [35.5, 24.0],   // current position
-    [37.0, 21.5],
-    [38.2, 20.5],   // Crete area
+    [21.40, 38.90], // Jeddah approaches (Red Sea)
+    [24.50, 36.60],
+    [27.30, 34.00],
+    [28.60, 33.10], // Gulf of Suez
+    [29.90, 32.55], // Suez
+    [31.30, 32.35], // Port Said
+    [31.90, 29.80],
+    [32.60, 28.60],
+    [34.00, 26.30], // south of Crete
+    [34.60, 25.00],
+    [35.40, 23.20],
+    [36.20, 21.40], // off the Peloponnese
+    [36.50, 18.00],
+    [36.20, 13.60], // between Sicily and Malta
+    [37.40, 11.60], // Strait of Sicily
+    [37.70,  8.00], // south of Sardinia
+    [37.20,  3.00],
+    [36.30, -1.50],
+    [35.95, -5.40], // Strait of Gibraltar
+    [36.40, -8.00],
+    [36.90, -9.60], // Cape St Vincent
+    [38.70, -9.90], // off Lisbon
+    [41.50, -9.40],
+    [43.40, -9.70], // Cape Finisterre
+    [45.50, -7.00], // Bay of Biscay
+    [48.30, -5.80], // off Ushant
+    [49.70, -3.00], // English Channel — current position
+    [50.55, -1.20],
+    [50.88, -1.40], // Southampton
   ];
   L.polyline(route, { color:'#2d7ffb', weight:2.5, opacity:0.7, dashArray:'6 4' }).addTo(map);
 
   // Vessel marker — stored globally so wireTimeline can move it
   const vesselIcon = L.divIcon({
     className: '',
-    html: `<div style="width:14px;height:14px;background:#dc2626;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(239,68,68,.6)"></div>`,
-    iconSize: [14, 14],
-    iconAnchor: [7, 7],
+    html: `<div class="vd-vessel" style="width:20px;height:20px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));transform-origin:center;"><svg viewBox="0 0 24 24" width="20" height="20" style="color:#dc2626;" fill="currentColor" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg></div>`,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
   });
-  window._vesselMarker = L.marker([35.5, 24.0], { icon: vesselIcon })
+  window._vesselMarker = L.marker([50.55, -1.2], { icon: vesselIcon, zIndexOffset:1000 })
     .addTo(map)
-    .bindPopup('<b>FRESH BREEZE</b><br>Lat 35.5° N &nbsp;Lon 24.0° E<br>Speed: 8.2 kts');
+    .bindPopup('<b>FRESH BREEZE</b><br>Lat 50.6° N &nbsp;Lon 1.2° W<br>Speed: 8.2 kts');
   window._vesselRoute = route;
+  buildTrackPoints(route);
+  map.fitBounds(L.latLngBounds(route), { paddingTopLeft:[48,48], paddingBottomRight:[64,160], maxZoom:6 });
+  map.setZoom(map.getZoom() + 1, { animate:false });
 
   // Origin / destination pins
   const pinIcon = (color) => L.divIcon({
@@ -3471,8 +4164,27 @@ function initMap() {
     html: `<div style="width:10px;height:10px;background:${color};border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.3)"></div>`,
     iconSize: [10, 10], iconAnchor: [5, 5],
   });
-  L.marker([29.9, 32.6], { icon: pinIcon('#9ca3af') }).addTo(map).bindPopup('Suez Canal');
-  L.marker([38.2, 20.5], { icon: pinIcon('#2e7d4f') }).addTo(map).bindPopup('Hamburg (via Med)');
+  L.marker([21.40, 38.90], { icon: pinIcon('#9ca3af') }).addTo(map).bindPopup('Jeddah (Red Sea)');
+  L.marker([50.88, -1.40], { icon: pinIcon('#2e7d4f') }).addTo(map).bindPopup('Southampton, UK');
+
+  buildRegionLayers();
+
+  // Event markers
+  map.on('popupopen', ev => {
+    const el = ev.popup.getElement(), x = el && el.querySelector('[data-ev-close]');
+    if (x) { x.onclick = () => map.closePopup(ev.popup); L.DomEvent.disableClickPropagation(el); }
+  });
+  window._eventMarkers = EVENTS.map((p, i) => {
+    const t = MAP_EVENT_TYPES.find(x => x.id === p.type);
+    const icon = L.divIcon({ className:'', iconSize:[26,26], iconAnchor:[13,13],
+      html:`<div class="ev-marker" data-ev-mk="${i}" style="background:${t.bg};color:${t.fg};">${t.icon}</div>` });
+    const m = L.marker(p.ll, { icon, zIndexOffset:500, keyboard:true, title:t.label }).bindPopup(eventPopupHtml(p, t), EV_POPUP_OPTS);
+    m._evType = p.type; m._evIdx = i;
+    m.on('click', () => selectHistEvent(i, 'map'));
+    m.on('popupclose', () => { if (state.histSel === i) markHistSel(null); });
+    return m;
+  });
+  applyEventFilter();
 
   // Force a size recalculation once layout is stable
   setTimeout(() => map && map.invalidateSize(), 200);
@@ -3498,15 +4210,123 @@ function wireMapControls() {
   }
 
   if (layersBtn && layersMenu) {
-    layersBtn.onclick = (e) => { e.stopPropagation(); layersMenu.classList.toggle('hidden'); };
-    layersMenu.querySelectorAll('[data-vessel-map-type]').forEach(btn => {
-      btn.onclick = (e) => { e.stopPropagation(); setMapType(btn.dataset.vesselMapType); layersMenu.classList.add('hidden'); };
-    });
-    document.addEventListener('click', () => layersMenu.classList.add('hidden'));
+    layersBtn.onclick = (e) => { e.stopPropagation(); closeMapMenus('layers'); const v = layersMenu.classList.toggle('hidden') === false; layersBtn.classList.toggle('is-on', v); layersBtn.setAttribute('aria-expanded', v); };
+    layersMenu.onclick = e => e.stopPropagation();
+    layersMenu.querySelectorAll('[data-vessel-map-type]').forEach(r => { r.onchange = () => setMapType(r.dataset.vesselMapType); });
+    layersMenu.querySelectorAll('[data-map-overlay]').forEach(c => { c.checked = !!_mapOverlays[c.dataset.mapOverlay]; c.onchange = () => setMapOverlay(c.dataset.mapOverlay, c.checked); });
+    document.addEventListener('click', () => { layersMenu.classList.add('hidden'); layersBtn.classList.remove('is-on'); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { layersMenu.classList.add('hidden'); layersBtn.classList.remove('is-on'); } });
   }
 
   // Sync check marks
   setMapType(currentMapType);
+  initMapEvents();
+  initMapRegions();
+  initMapWeather();
+  const rb = document.getElementById('map-reset-btn');
+  if (rb) { rb.onclick = e => { e.stopPropagation(); resetMapFilters(); }; document.querySelectorAll('#map-events-menu input, #map-regions-menu input, #map-weather-menu input').forEach(i => i.addEventListener('change', updateMapReset)); updateMapReset(); }
+}
+
+/* ----------- TRACK DATE RANGE PICKER ----------- */
+const TODAY_ISO = '2026-09-29';
+const iso = d => d.toISOString().slice(0, 10);
+const fromIso = s => new Date(s + 'T00:00:00Z');
+const addDays = (s, n) => { const d = fromIso(s); d.setUTCDate(d.getUTCDate() + n); return iso(d); };
+const addMonths = (s, n) => { const d = fromIso(s); d.setUTCMonth(d.getUTCMonth() + n); return iso(d); };
+const TR_PRESETS = [
+  ['today', 'Today', () => [TODAY_ISO, TODAY_ISO]],
+  ['7d', 'Last 7 Days', () => [addDays(TODAY_ISO, -7), TODAY_ISO]],
+  ['14d', 'Last 14 Days', () => [addDays(TODAY_ISO, -14), TODAY_ISO]],
+  ['30d', 'Last 30 Days', () => [addDays(TODAY_ISO, -30), TODAY_ISO]],
+  ['6m', 'Last 6 Months', () => [addMonths(TODAY_ISO, -6), TODAY_ISO]],
+  ['12m', 'Last 12 Months', () => [addMonths(TODAY_ISO, -12), TODAY_ISO]],
+  ['custom', 'Custom Range', null],
+];
+let _trp = null;
+function openTrackCalendar(anchor) {
+  closeTrackCalendar();
+  const r = state.trackRange;
+  const s = fromIso(r.start);
+  _trp = { start:r.start, end:r.end, preset:r.preset || 'custom', detailed:!!r.detailed, pending:false, hover:null,
+           view: iso(new Date(Date.UTC(s.getUTCFullYear(), s.getUTCMonth(), 1))), anchor };
+  const el = document.createElement('div');
+  el.id = 'trp'; el.className = 'trp'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Track date range');
+  document.body.appendChild(el);
+  el.addEventListener('click', e => e.stopPropagation());
+  el.addEventListener('mouseover', e => { const c = e.target.closest('[data-day]'); if (_trp.pending && c && c.dataset.day !== _trp.hover) { _trp.hover = c.dataset.day; drawTrackCalendar(); } });
+  setTimeout(() => document.addEventListener('click', closeTrackCalendar, { once:true }), 0);
+  document.addEventListener('keydown', _trpKey);
+  window.addEventListener('resize', placeTrackCalendar);
+  drawTrackCalendar();
+  el.querySelector('.trp-preset.is-active, .trp-preset')?.focus();
+}
+function _trpKey(e) { if (e.key === 'Escape') { closeTrackCalendar(); document.getElementById('tl-cal-btn')?.focus(); } }
+function closeTrackCalendar() {
+  document.getElementById('trp')?.remove();
+  document.removeEventListener('keydown', _trpKey);
+  window.removeEventListener('resize', placeTrackCalendar);
+  _trp = null;
+}
+function placeTrackCalendar() {
+  const el = document.getElementById('trp'); if (!el || !_trp) return;
+  const b = _trp.anchor.getBoundingClientRect(), w = el.offsetWidth, hgt = el.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
+  let left = Math.min(Math.max(8, b.right - w), vw - w - 8), top = b.top - hgt - 8;
+  if (top < 8) top = Math.min(b.bottom + 8, vh - hgt - 8);
+  el.style.left = Math.max(8, left) + 'px'; el.style.top = Math.max(8, top) + 'px';
+}
+function trpMonth(firstIso, showPrev, showNext) {
+  const f = fromIso(firstIso), y = f.getUTCFullYear(), m = f.getUTCMonth();
+  const title = f.toLocaleString('en-GB', { month:'long', year:'numeric', timeZone:'UTC' });
+  const lead = f.getUTCDay(), days = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  const t = _trp, lo = t.pending ? [t.start, t.hover || t.start].sort()[0] : t.start, hi = t.pending ? [t.start, t.hover || t.start].sort()[1] : t.end;
+  const nav = (dir, show) => show ? `<button type="button" class="trp-nav" data-trp-nav="${dir}" aria-label="${dir < 0 ? 'Previous' : 'Next'} month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${dir < 0 ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'}"/></svg></button>` : '<span class="trp-nav-sp"></span>';
+  let cells = '';
+  for (let i = 0; i < lead; i++) cells += '<span></span>';
+  for (let d = 1; d <= days; d++) {
+    const ds = iso(new Date(Date.UTC(y, m, d))), future = ds > TODAY_ISO;
+    const cls = [ds === lo && 'is-start', ds === hi && 'is-end', ds > lo && ds < hi && 'is-in', ds === TODAY_ISO && 'is-today', lo === hi && ds === lo && 'is-single'].filter(Boolean).join(' ');
+    cells += `<button type="button" class="trp-day ${cls}" data-day="${ds}" ${future ? 'disabled' : ''} aria-pressed="${ds === lo || ds === hi}" aria-label="${ds}">${d}</button>`;
+  }
+  return `<div class="trp-month">
+    <div class="trp-mhead">${nav(-1, showPrev)}<span class="trp-mtitle">${title}</span>${showPrev ? `<span class="trp-mnext">${nav(1, firstIso.slice(0,7) < TODAY_ISO.slice(0,7))}</span>` : nav(1, showNext)}</div>
+    <div class="trp-grid">${['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => `<span class="trp-dow">${d}</span>`).join('')}${cells}</div>
+  </div>`;
+}
+function drawTrackCalendar() {
+  const el = document.getElementById('trp'); if (!el || !_trp) return;
+  const t = _trp, second = addMonths(t.view, 1);
+  el.innerHTML = `
+    <div class="trp-body">
+      <div class="trp-presets" role="listbox" aria-label="Quick ranges">${TR_PRESETS.map(([k, l]) => `<button type="button" class="trp-preset ${t.preset === k ? 'is-active' : ''}" data-preset="${k}" role="option" aria-selected="${t.preset === k}">${l}</button>`).join('')}</div>
+      <div class="trp-months">${trpMonth(t.view, true, false)}${trpMonth(second, false, second.slice(0,7) < TODAY_ISO.slice(0,7))}</div>
+    </div>
+    <div class="trp-foot">
+      <label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${t.detailed}" data-trp-detailed></button><span class="trp-switch-v">${t.detailed ? 'On' : 'Off'}</span></label>
+      <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${t.start} – ${t.end}`}</div>
+      <div class="trp-acts"><button type="button" class="trp-btn trp-btn--sec" data-trp-cancel>Cancel</button><button type="button" class="trp-btn trp-btn--pri" data-trp-apply ${t.pending ? 'disabled' : ''}>Apply</button></div>
+    </div>`;
+  el.querySelectorAll('[data-preset]').forEach(b => b.onclick = () => {
+    const p = TR_PRESETS.find(x => x[0] === b.dataset.preset); t.preset = p[0]; t.pending = false;
+    if (p[2]) { const [a, z] = p[2](); t.start = a; t.end = z; const ze = fromIso(z); t.view = iso(new Date(Date.UTC(ze.getUTCFullYear(), ze.getUTCMonth() - 1, 1))); }
+    drawTrackCalendar();
+  });
+  el.querySelectorAll('[data-trp-nav]').forEach(b => b.onclick = () => { t.view = addMonths(t.view, +b.dataset.trpNav); drawTrackCalendar(); });
+  el.querySelectorAll('[data-day]').forEach(b => b.onclick = () => {
+    const d = b.dataset.day; t.preset = 'custom';
+    if (!t.pending) { t.start = d; t.end = d; t.pending = true; t.hover = d; }
+    else { [t.start, t.end] = [t.start, d].sort(); t.pending = false; t.hover = null; }
+    drawTrackCalendar();
+    el.querySelector(`[data-day="${d}"]`)?.focus();
+  });
+  el.querySelector('[data-trp-detailed]').onclick = () => { t.detailed = !t.detailed; drawTrackCalendar(); };
+  el.querySelector('[data-trp-cancel]').onclick = () => closeTrackCalendar();
+  el.querySelector('[data-trp-apply]').onclick = () => {
+    state.trackRange = { start:t.start, end:t.end, preset:t.preset === 'custom' ? null : t.preset, detailed:t.detailed };
+    state.timelinePos = 1;
+    closeTrackCalendar();
+    render();
+  };
+  placeTrackCalendar();
 }
 
 function wireTimeline() {
@@ -3516,8 +4336,10 @@ function wireTimeline() {
   const tsEl   = document.getElementById('timeline-timestamp');
   if (!slider || !fill || !thumb) return;
 
-  const startMs = new Date('2025-10-07T09:00:00Z').getTime();
-  const endMs   = new Date('2025-10-09T09:00:00Z').getTime();
+  const startMs = new Date(state.trackRange.start + 'T00:00:00Z').getTime();
+  const endMs   = new Date(state.trackRange.end + 'T23:59:59Z').getTime();
+  const calBtn = document.getElementById('tl-cal-btn');
+  if (calBtn) calBtn.onclick = e => { e.stopPropagation(); openTrackCalendar(calBtn); };
 
   function interpolateRoute(t) {
     const route = window._vesselRoute;
@@ -3542,13 +4364,45 @@ function wireTimeline() {
     fill.style.width  = (state.timelinePos * 100) + '%';
     thumb.style.left  = (state.timelinePos * 100) + '%';
     if (tsEl) tsEl.textContent = formatTs(state.timelinePos);
+    slider.setAttribute('aria-valuenow', Math.round(state.timelinePos * 100));
+    slider.setAttribute('aria-valuetext', formatTs(state.timelinePos));
+    const pb = document.getElementById('timeline-prev'), nb = document.getElementById('timeline-next');
+    if (pb) pb.disabled = state.timelinePos <= 0;
+    if (nb) nb.disabled = state.timelinePos >= 1;
     // Move vessel marker
     if (window._vesselMarker) {
       const pos = interpolateRoute(state.timelinePos);
-      if (pos) window._vesselMarker.setLatLng(pos);
+      if (pos) {
+        window._vesselMarker.setLatLng(pos);
+        const r = window._vesselRoute, n = r.length - 1, i = Math.min(n - 1, Math.floor(state.timelinePos * n));
+        const a = r[i], b = r[i + 1], lat = (a[0] + b[0]) / 2 * Math.PI / 180;
+        const brg = Math.atan2((b[1] - a[1]) * Math.cos(lat), b[0] - a[0]) * 180 / Math.PI;
+        const el = window._vesselMarker.getElement()?.querySelector('.vd-vessel');
+        if (el) el.style.transform = `rotate(${brg}deg)`;
+      }
     }
   };
 
+  updatePos(state.timelinePos);
+
+  const STEP = Math.min(1, 3600000 / Math.max(1, endMs - startMs)); // 1 hour
+  const step = dir => updatePos(Math.round((state.timelinePos + dir * STEP) / STEP) * STEP);
+  const hold = (btn, dir) => {
+    if (!btn) return;
+    let t1, t2;
+    const stop = () => { clearTimeout(t1); clearInterval(t2); };
+    btn.onpointerdown = e => { e.preventDefault(); step(dir); t1 = setTimeout(() => { t2 = setInterval(() => step(dir), 90); }, 400); };
+    ['pointerup','pointerleave','pointercancel'].forEach(ev => btn.addEventListener(ev, stop));
+    btn.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); step(dir); } };
+  };
+  hold(document.getElementById('timeline-prev'), -1);
+  hold(document.getElementById('timeline-next'), 1);
+  slider.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); step(-1); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); step(1); }
+    else if (e.key === 'Home') { e.preventDefault(); updatePos(0); }
+    else if (e.key === 'End') { e.preventDefault(); updatePos(1); }
+  });
   updatePos(state.timelinePos);
 
   const onDrag = (clientX) => {
@@ -3590,7 +4444,7 @@ function Content() {
     <section>
       ${EnvironmentalRatingCard()}
     </section>
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-3" style="min-height:500px;">
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-3 vessel-track-row" style="min-height:660px;">
       ${HistoricalEventsCard()}
       ${VesselTrackingCard()}
     </section>
@@ -3705,6 +4559,40 @@ window.render = function render() {
   if (sectionTabSel) sectionTabSel.onchange = () => { state.sectionTab = sectionTabSel.value; render(); };
   const bottomLeftTabSel = document.getElementById('bottom-left-tab-mobile-sel');
   if (bottomLeftTabSel) bottomLeftTabSel.onchange = () => { state.bottomLeftTab = bottomLeftTabSel.value; render(); };
+  document.querySelectorAll('[data-sts-open]').forEach(b => b.onclick = ev => { ev.stopPropagation(); state.stsOpen = state.stsOpen === b.dataset.stsOpen ? null : b.dataset.stsOpen; render(); });
+  document.querySelectorAll('[data-sts-facet]').forEach(m => m.onclick = ev => ev.stopPropagation());
+  document.querySelectorAll('[data-sts-f]').forEach(c => c.onchange = () => { state.stsF = { ...state.stsF, [c.dataset.stsF]: c.checked }; render(); });
+  document.querySelectorAll('[data-sts-dist]').forEach(r => r.onchange = () => { state.stsF = { ...state.stsF, dist: r.dataset.stsDist }; render(); });
+  const stsReset = document.getElementById('sts-reset');
+  if (stsReset) stsReset.onclick = () => { state.stsF = { ports:false, clusters:false, chains:false, dist:'' }; state.stsOpen = null; render(); };
+  if (!window.__stsDocWired) { window.__stsDocWired = true;
+    document.addEventListener('click', () => { if (state.stsOpen) { state.stsOpen = null; render(); } });
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && state.stsOpen) { state.stsOpen = null; render(); } });
+  }
+  document.querySelectorAll('[data-sc-toggle]').forEach(b => b.onclick = () => {
+    const i = +b.dataset.scToggle;
+    state.scExpanded.has(i) ? state.scExpanded.delete(i) : state.scExpanded.add(i);
+    render();
+    document.querySelector(`[data-sc-toggle="${i}"]`)?.focus();
+  });
+  if (!window.__defectsWired) { window.__defectsWired = true;
+    document.addEventListener('click', ev => {
+      const a = ev.target.closest('.defects-link'); if (!a) return;
+      ev.preventDefault();
+      const r = INSPECTIONS.find(x => x.date === a.dataset.defects); if (!r || !window.InspectionDefectsModal) return;
+      InspectionDefectsModal.open({
+        vessel: VESSEL.name, vesselHref: '#',
+        date: r.date, followup: false, authorisation: r.psc || '—',
+        port: r.port, country: r.country, detained: r.detained.replace(' Days', ''),
+        defects: (INSPECTION_DEFECTS[r.date] || []).map(i => DEFECT_CATALOG[i]),
+      });
+    });
+  }
+  wireHistList();
+  const envSw = document.getElementById('env-enabled-sw');
+  if (envSw) envSw.onclick = () => { state.envEnabled = !state.envEnabled; render(); document.getElementById('env-enabled-sw')?.focus(); };
+  const envSel = document.getElementById('env-period-sel');
+  if (envSel) envSel.onchange = () => { state.envPeriod = envSel.value; render(); };
   // Casualty expand/collapse
   document.querySelectorAll('[data-casualty]').forEach(btn => {
     btn.onclick = () => {

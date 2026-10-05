@@ -13,7 +13,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   /* Left analytics panel */
   .analytics-panel{width:300px;min-width:300px;background:#fff;border-right:1px solid #e2e8f0;display:flex;flex-direction:column;overflow:hidden;position:relative}
   .analytics-panel::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:#2563eb}
@@ -116,7 +116,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -150,11 +150,27 @@ const EVENT_DETAILS = {
   9:  { people:'500,000',   area:'180,000', rdsClass:'High',    rdsExp:'$2.1B',  props:9800,  damage:[35,30,25,10], desc:'Tropical Cyclone Freddy made multiple landfalls across southern Africa in early 2023, setting the record for the longest-lasting tropical cyclone ever recorded. Mozambique, Malawi, and Madagascar experienced severe flooding and wind damage.', lat:-17.9, lng:36.9 },
   10: { people:'90,000',    area:'59,000',  rdsClass:'Extreme', rdsExp:'$25.1B', props:15600, damage:[15,20,35,30], desc:'Hurricane Michael made landfall near Mexico Beach, Florida on October 10, 2018 as a Category 5 storm—the strongest on record to hit the Florida Panhandle. It caused catastrophic devastation along a narrow corridor of the coast with winds of 160 mph at landfall.', lat:29.9, lng:-85.4 },
   11: { people:'320,000',   area:'4,200',   rdsClass:'High',    rdsExp:'$1.8B',  props:6400,  damage:[30,32,26,12], desc:'A strong earthquake struck the Andean state of Mérida in western Venezuela on March 24, 2026, near the Boconó fault system. The tremor damaged homes and infrastructure across the mountainous region, triggering landslides that isolated several communities.', lat:8.6, lng:-71.1 },
+  12: { people:'7,758',     area:'1,150',   rdsClass:'Extreme', rdsExp:'$2.6B',  props:4800,  damage:[12,18,30,40], desc:'On the morning of August 26, 2026, part of the glacier on Langtang Lirung collapsed into a rock-ice avalanche that dammed the Lhende river on the Nepal–Tibet border. When the blockage failed, a debris flood destroyed Gyirong Port and swept down the Bhotekoshi–Trishuli river through Rasuwa and Nuwakot. At least 1,494 people were killed and 6,264 remain missing across Nepal and Tibet.', lat:28.2765, lng:85.5194 },
+  13: { people:'2,400,000', area:'18,500',  rdsClass:'High',    rdsExp:'$4.3B',  props:21500, damage:[46,32,16,6],  desc:'A rare early-season nor\'easter stalled off the Mid-Atlantic coast from September 23 to 27, 2026. Because it barely moved, repeated high tides drove coastal flooding from the Outer Banks of North Carolina to New Jersey and Long Island, with wind gusts up to 60 mph and up to 5 inches of rain. Downed trees caused about 100,000 power outages, and New Jersey and New York City declared states of emergency.', lat:39.95, lng:-73.60 },
 };
 
 /* Collapsed / severely damaged buildings for the Venezuela Earthquake (event 11).
    Clicking a row flies the map to the building location. */
 const EVENT_PROPERTIES = {
+  13: [
+    { rank:1, name:'Point Pleasant Beach',       loc:'Point Pleasant, Ocean County, NJ',  lat:40.0912, lng:-74.0418, note:'Voluntary evacuation; roads and vehicles submerged at high tide.' },
+    { rank:2, name:'Sea Bright',                 loc:'Sea Bright, Monmouth County, NJ',   lat:40.3615, lng:-73.9740, note:'Barrier-island flooding; emergency crews carried out rescues.' },
+    { rank:3, name:'Ocean City boardwalk',       loc:'Ocean City, Cape May County, NJ',   lat:39.2776, lng:-74.5746, note:'High surf and beach erosion over repeated tide cycles.' },
+    { rank:4, name:'NC Highway 12, Rodanthe',    loc:'Outer Banks, Dare County, NC',      lat:35.5935, lng:-75.4680, note:'Ocean overwash breached dunes and cracked the highway.' },
+    { rank:5, name:'Brooklyn',                   loc:'Brooklyn, New York, NY',            lat:40.6500, lng:-73.9500, note:'Fallen trees, outages and street flooding.' },
+  ],
+  12: [
+    { rank:1, name:'Gyirong Port (Rasuwagadhi crossing)', loc:'Nepal–China border, Rasuwa',        lat:28.2785, lng:85.3800, note:'Border port and customs facilities destroyed by the debris flow.' },
+    { rank:2, name:'Timure dry port',                      loc:'Timure, Gosaikunda, Rasuwa',         lat:28.2530, lng:85.3710, note:'Container yard and access road buried under debris.' },
+    { rank:3, name:'Syaphrubesi',                          loc:'Syaphrubesi, Rasuwa, Nepal',         lat:28.1580, lng:85.3380, note:'Riverside homes, hotels and hydropower intake swept away.' },
+    { rank:4, name:'Betrawati',                            loc:'Betrawati, Nuwakot, Nepal',          lat:27.9700, lng:85.1850, note:'Bridge and highway section washed out.' },
+    { rank:5, name:'Devighat, Bidur',                      loc:'Trishuli–Tadi confluence, Nuwakot',  lat:27.8870, lng:85.1300, note:'Homes and storefronts deluged in sludge.' },
+  ],
   2: [
     { rank:1, name:'1601 San Onofre Drive', loc:'Pacific Palisades, CA 90272',      lat:34.0410, lng:-118.5375, note:'Residential property within the Palisades Fire perimeter.' },
     { rank:2, name:'1790 Alta Mura Rd',     loc:'Pacific Palisades, Los Angeles, CA', lat:34.062677189653364, lng:-118.50395589084899, note:'Residential property within the Palisades Fire perimeter.' },
@@ -225,7 +241,7 @@ function AnalyticsPanel() {
 
     <!-- Event info -->
     <div style="padding:16px;border-bottom:1px solid #f1f5f9;">
-      <div style="font-size:18px;font-weight:800;color:${cfg.color};margin-bottom:4px;line-height:1.2;">${ev.name}</div>
+      <div style="font-size:18px;font-weight:800;color:#0f172a;margin-bottom:4px;line-height:1.2;">${ev.name}</div>
       <div style="font-size:12.5px;color:#64748b;margin-bottom:2px;">${ev.location}</div>
       <div style="font-size:12.5px;color:#64748b;margin-bottom:12px;">${ev.dateStart}${ev.dateEnd?' – '+ev.dateEnd:''}</div>
 
@@ -366,7 +382,7 @@ function Content() {
 let detailMap = null;
 const TILE_URLS = {
   satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-  street:    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  street:    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
   light:     'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
   dark:      'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
 };
@@ -403,11 +419,11 @@ function initDetailMap() {
   if (detailMap) { detailMap.remove(); detailMap = null; }
 
   const imgOverride = EVENT_IMAGERY_OVERRIDE[ev.id];
-  const zoom = imgOverride?.zoom ?? (['earthquake','flood'].includes(ev.type) ? 7 : ev.type === 'wildfire' ? 9 : 8);
+  const zoom = imgOverride?.zoom ?? (ev.id === 12 ? 10 : ev.id === 13 ? 7 : ['earthquake','flood'].includes(ev.type) ? 7 : ev.type === 'wildfire' ? 9 : 8);
   detailMap = L.map(el, { center:[det.lat, det.lng], zoom, zoomControl:false, scrollWheelZoom:true });
   L.control.zoom({ position:'topleft' }).addTo(detailMap);
 
-  activeTile = L.tileLayer(TILE_URLS.street, { attribution:'© OpenStreetMap contributors', maxZoom:18 }).addTo(detailMap);
+  activeTile = L.tileLayer(TILE_URLS.street, { attribution:'Tiles © Esri', maxZoom:18 }).addTo(detailMap);
 
   // Satellite "patch" overlay — keeps the wider region as street view but
   // shows real imagery over the actual affected area. Sized to the event type.
@@ -535,7 +551,26 @@ function initDetailMap() {
   }
 
   // Flood extent
-  if (ev.type === 'flood') {
+  if (ev.id === 12) {
+    // Debris-flow path: Langtang Lirung collapse → Lhende valley → Gyirong Port → Bhotekoshi/Trishuli → Devighat
+    const path = [[28.2765,85.5194],[28.2800,85.4700],[28.2830,85.4200],[28.2785,85.3800],[28.2530,85.3710],[28.2050,85.3550],[28.1580,85.3380],[28.1100,85.2900],[28.0400,85.2300],[27.9700,85.1850],[27.9200,85.1500],[27.8870,85.1300]];
+    L.polyline(path, { color:'#0ea5e9', weight:10, opacity:0.25, lineCap:'round' }).addTo(detailMap);
+    L.polyline(path, { color:'#0ea5e9', weight:3, dashArray:'8 6', opacity:0.95 }).addTo(detailMap);
+    L.circle([28.2765,85.5194], { radius:2500, color:'#0ea5e9', fillColor:'#0ea5e9', fillOpacity:0.2, weight:2 }).addTo(detailMap)
+      .bindTooltip('Glacier collapse origin — Langtang Lirung', { direction:'top' });
+    detailMap.fitBounds(L.latLngBounds(path).pad(0.12));
+  } else if (ev.id === 13) {
+    // Coastal flood footprint along the shoreline + stalled/retrograding storm centre offshore
+    const coast = [[35.25,-75.53],[35.59,-75.47],[36.20,-75.75],[36.85,-75.97],[37.60,-75.60],[38.35,-75.07],[38.93,-74.90],[39.28,-74.57],[39.75,-74.10],[40.09,-74.04],[40.36,-73.97],[40.58,-73.90],[40.65,-73.40],[40.80,-72.60],[41.00,-72.00]];
+    L.polyline(coast, { color:'#0ea5e9', weight:14, opacity:0.22, lineCap:'round' }).addTo(detailMap);
+    L.polyline(coast, { color:'#0ea5e9', weight:3, dashArray:'8 6', opacity:0.95 }).addTo(detailMap)
+      .bindTooltip('Coastal flooding — Outer Banks to Long Island', { sticky:true });
+    const track = [[37.40,-73.40],[38.30,-72.90],[39.10,-72.80],[39.70,-73.10],[39.95,-73.60],[40.05,-73.20],[40.30,-72.40]];
+    L.polyline(track, { color:'#dc2626', weight:2.5, dashArray:'8 6', opacity:0.85 }).addTo(detailMap)
+      .bindTooltip('Storm centre track (stalled, Sep 23–27)', { sticky:true });
+    L.circle([39.95,-73.60], { radius:90000, color:'#0ea5e9', fillColor:'#0ea5e9', fillOpacity:0.08, weight:1.5, dashArray:'4 4' }).addTo(detailMap);
+    detailMap.fitBounds(L.latLngBounds(coast.concat(track)).pad(0.08));
+  } else if (ev.type === 'flood') {
     L.circle([det.lat, det.lng], { radius:25000, color:'#0ea5e9', fillColor:'#0ea5e9', fillOpacity:0.15, weight:2, dashArray:'6 5' }).addTo(detailMap);
   }
 

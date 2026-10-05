@@ -13,7 +13,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   #region-map{position:absolute;inset:0}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e2e8f0!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#334155!important;line-height:30px!important}
@@ -115,7 +115,7 @@ window.PAGE = { id:'regions', title:'Offshore Region', crumb: regionName };
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -190,7 +190,7 @@ function initMap() {
   if (!el) return;
   if (rMap) { rMap.remove(); rMap = null; rTile = null; }
   rMap = L.map(el, { center:[36.5,-120], zoom:6, zoomControl:false, scrollWheelZoom:true });
-  rTile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution:'', maxZoom:19 }).addTo(rMap);
+  rTile = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', { attribution:'', maxZoom:19 }).addTo(rMap);
   L.control.zoom({ position:'topleft' }).addTo(rMap);
 
   // California coast polygon (marine region boundary)
@@ -318,7 +318,7 @@ function initMap() {
   // Map type selector
   const RG_TILES = {
     satellite:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    street:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    street:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
     dark:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
     light:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
   };

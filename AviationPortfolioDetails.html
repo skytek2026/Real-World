@@ -33,7 +33,7 @@
   .bg-ink-100{background:#f1f5f9}.bg-ink-50{background:#f8fafc}
   .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
   .scroll-thin::-webkit-scrollbar{width:5px;height:5px}
-  .scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   .dot-pulse::after{content:'';position:absolute;inset:-3px;border-radius:999px;box-shadow:0 0 0 0 rgba(239,68,68,.5);animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
   /* Pill tabs */
@@ -41,26 +41,26 @@
   .ds-tab{position:relative;font:inherit;font-size:12.5px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
   .ds-tab:hover{color:#0f172a}
   .ds-tab[aria-selected="true"]{color:#fff}
-  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:#2563eb;border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
+  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px}
   /* Policy table */
   .pol-table{width:100%;border-collapse:collapse;font-size:12px}
   .pol-table th{padding:9px 12px;text-align:left;font-size:11.5px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:default;text-transform:uppercase;letter-spacing:.04em}
   .pol-table th.sortable{cursor:pointer}
-  .pol-table th.sortable:hover{color:#2563eb}
+  .pol-table th.sortable:hover{color:var(--brand-600,#2563eb)}
   .pol-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;color:#334155;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
   .pol-table tbody tr:hover td{background:#f8fafc}
-  .pol-table td.id-cell{color:#2563eb;font-weight:600;cursor:pointer}
-  .pol-table td.id-cell:hover{color:#1d4ed8}
+  .pol-table td.id-cell{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
+  .pol-table td.id-cell:hover{color:var(--brand-700,#1d4ed8)}
   /* Mobile policy cards */
   .pol-cards{display:none}
   .pcard{padding:14px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
   .pcard:last-child{border-bottom:0}
   .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
   .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
-  .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:#2563eb;text-decoration:none;word-break:break-word}
+  .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-600,#2563eb);text-decoration:none;word-break:break-word}
   .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#64748b}
   .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -71,7 +71,7 @@
   .pcard-more{display:none}
   .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e2e8f0;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:#2563eb}
+  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--brand-600,#2563eb)}
   .pcard-chev{transition:transform .2s ease}
   .pcard.open .pcard-chev{transform:rotate(180deg)}
   .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:3px;vertical-align:middle;opacity:.55}
@@ -79,7 +79,7 @@
   /* Select */
   .sel{border:1px solid #e2e8f0;border-radius:6px;padding:4px 22px 4px 8px;font-size:12px;color:#334155;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
   /* Stat cards */
-  .stat-card{flex:1;padding:12px 10px;text-align:center;border-right:1px solid #dbeafe;}
+  .stat-card{flex:1;padding:12px 10px;text-align:center;border-right:1px solid var(--brand-100,#dbeafe);}
   .stat-card:last-child{border-right:0;}
   /* Mobile responsive */
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
@@ -88,7 +88,7 @@
     .mobile-tab-select{display:block!important;}
     .tabs-desktop-wrap{display:none!important;}
     .stat-cards-row{flex-wrap:wrap;}
-    .stat-card{min-width:50%;border-right:1px solid #dbeafe;border-bottom:1px solid #dbeafe;}
+    .stat-card{min-width:50%;border-right:1px solid var(--brand-100,#dbeafe);border-bottom:1px solid var(--brand-100,#dbeafe);}
     .stat-card:nth-child(2n){border-right:0;}
     .stat-card:nth-last-child(-n+2){border-bottom:0;}
     .pol-table-scroll{display:none}
@@ -119,7 +119,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/aviation-map.js"></script>
@@ -344,7 +344,7 @@ function PanelSummaryContent() {
   return `
     <!-- Stat boxes -->
     <div class="px-3 pt-3 pb-3 border-b border-ink-100">
-      <div class="stat-cards-row" style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;display:flex;">
+      <div class="stat-cards-row" style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;overflow:hidden;display:flex;">
         <div class="stat-card">
           <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Total Aircraft</div>
           <div style="font-size:22px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">529</div>
@@ -411,7 +411,7 @@ function PanelDestinationsContent() {
                 <span style="display:inline-flex;align-items:center;gap:8px;">${flag(d.cc, 20, 14)} ${d.country}</span>
               </td>
               <td style="padding:10px 16px;font-size:13px;color:#334155;border-bottom:${i===dests.length-1?'0':'1px solid #f1f5f9'};">
-                <span style="color:#2563eb;font-weight:600;">${d.code}</span> <span style="color:#64748b;">- ${d.name}</span>
+                <span style="color:var(--brand-600,#2563eb);font-weight:600;">${d.code}</span> <span style="color:#64748b;">- ${d.name}</span>
               </td>
               <td style="padding:10px 16px;font-size:13px;color:#0f172a;text-align:right;font-variant-numeric:tabular-nums;border-bottom:${i===dests.length-1?'0':'1px solid #f1f5f9'};">${d.no}</td>
             </tr>`).join('')}
@@ -547,7 +547,7 @@ function PolicySection() {
               <a class="pcard-title" href="#">${l.hdr}</a>
               <div class="pcard-sub">${l.name}</div>
             </div>
-            <span class="stat-badge" style="background:#eff6ff;color:#1d4ed8;font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${l.type}</span>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${l.type}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv"><span class="pcard-k">Limit Value</span><span class="pcard-v is-strong">${l.value}</span></div>
@@ -643,7 +643,7 @@ function PolicySection() {
               <a class="pcard-title" href="#">${p.reg}</a>
               <div class="pcard-sub"><img src="https://flagcdn.com/w20/${p.cc}.png" width="16" height="12" style="border-radius:2px;" alt="${cname}" />${p.airline}</div>
             </div>
-            <span class="stat-badge" style="background:#eff6ff;color:#1d4ed8;font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${p.model}</span>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${p.model}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv"><span class="pcard-k">Policy Ref</span><span class="pcard-v is-strong">${p.ref}</span></div>

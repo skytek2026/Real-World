@@ -307,7 +307,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=13"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -655,7 +655,7 @@ function renderPortfolioSummary() {
         <div class="ds-card-body">
           <span class="ds-metric-value ds-metric-value--warning">${st.peakExposure}</span>
           <div class="stat-desc" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;">
-            <a href="PortDetails.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:4px;color:var(--brand-600,#2d7ffb);text-decoration:none;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'Fujairah'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
+            <a href="PortDetails.html" style="display:inline-flex;align-items:center;gap:4px;color:var(--brand-600,#2d7ffb);text-decoration:none;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'Fujairah'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
               Fujairah
             </a>
@@ -716,9 +716,9 @@ function renderDeclarationsTable() {
             <td style="color:#475569;font-variant-numeric:tabular-nums;">${v.imo}</td>
             <td style="font-variant-numeric:tabular-nums;">${v.estLoad}</td>
             <td style="color:${v.actLoad ? '#d97706' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</td>
-            <td><a href="PortDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
+            <td><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:#64748b;">${v.dischDate || '—'}</td>
-            <td><a href="PortDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
+            <td><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:${v.actDisch ? '#1d4ed8' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</td>
             <td>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#94a3b8;">—</span>'}</td>
             <td style="color:${v.breachStart ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</td>
@@ -779,7 +779,7 @@ function renderClashAlertsTable() {
       <tbody>
         ${CLASH_ALERTS.map(a => `
         <tr>
-          <td style="font-weight:600;"><a href="PortDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
+          <td style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
           <td style="font-variant-numeric:tabular-nums;">${a.date}</td>
           <td style="color:#64748b;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</td>
           <td style="font-weight:700;color:#dc2626;">${a.exposure}</td>
@@ -1355,7 +1355,7 @@ function initMaps() {
     const map = L.map(mapEl, { zoomControl: true, attributionControl: false });
     const TILES = {
       satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      street:    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      street:    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
       dark:      'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
       light:     'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
     };

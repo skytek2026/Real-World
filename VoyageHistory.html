@@ -27,8 +27,8 @@
   .tracking-micro { letter-spacing:0.04em; }
   .scroll-thin::-webkit-scrollbar { width:6px; height:6px; }
   .scroll-thin::-webkit-scrollbar-track { background:transparent; }
-  .scroll-thin::-webkit-scrollbar-thumb { background:#d1d5db; border-radius:999px; }
-  .scroll-thin::-webkit-scrollbar-thumb:hover { background:#9ca3af; }
+  .scroll-thin::-webkit-scrollbar-thumb { background:var(--brand-400,#51a2fc); border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#2d7ffb); }
   /* Pill tabs (Skytek DS) */
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 16px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:7px; white-space:nowrap; }
@@ -127,7 +127,7 @@
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -638,7 +638,7 @@ function Content() {
 /* ===================== MAP ===================== */
 let map = null, tileLayer = null;
 const MAP_TYPES = {
-  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png', sub:'abcd' },
+  street:    { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', sub:'abcd' },
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', sub:'abc' },
   light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', sub:'abcd' },
   dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', sub:'abcd' },

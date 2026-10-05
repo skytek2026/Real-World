@@ -4,7 +4,7 @@ const SC = window.sharedChrome;
 
 const MAP_TILES = {
   satellite:{ label:'Satellite',   url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#0b1220' },
-  street:   { label:'Street View', url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',                    attr:'© OpenStreetMap contributors', bg:'#e8e2d8' },
+  street:   { label:'Street View', url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',                    attr:'Tiles © Esri', bg:'#e8e2d8' },
   dark:     { label:'Dark Mode',   url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',         attr:'Tiles © Esri', bg:'#0b1220' },
   light:    { label:'Light Mode',  url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',        attr:'Tiles © Esri', bg:'#f3f4f6' },
 };

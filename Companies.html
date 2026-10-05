@@ -29,20 +29,20 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:var(--brand-400,#51a2fc) #f3f4f6; }
   html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
   html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background:#f3f4f6; }
-  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
-  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
-  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:var(--brand-400,#51a2fc); border-radius:999px; }
+  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#2d7ffb); }
+  #app *, .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:var(--brand-400,#51a2fc) #f3f4f6; }
   .scroll-thin::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { width:6px; height:6px; }
   .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
-  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
-  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:var(--brand-400,#51a2fc); border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#2d7ffb); }
   /* Table */
   .co-tbl{width:100%;border-collapse:collapse;min-width:1100px}
   .co-tbl th{padding:9px 12px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap;user-select:none}
-  .co-tbl th.sortable{cursor:pointer}.co-tbl th.sortable:hover{color:#334155}.co-tbl th.sorted{color:#2563eb}
+  .co-tbl th.sortable{cursor:pointer}.co-tbl th.sortable:hover{color:#334155}.co-tbl th.sorted{color:var(--brand-600,#2563eb)}
   .co-tbl td{padding:10px 12px;font-size:13px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
   .co-tbl tr:last-child td{border-bottom:0}
   .co-tbl tbody tr:hover td{background:#f8fafc}
@@ -50,10 +50,13 @@
   .co-tbl th:first-child{z-index:3}
   .co-tbl tbody tr:hover td:first-child{background:#f8fafc}
   .co-tbl td:first-child::after,.co-tbl th:first-child::after{content:'';position:absolute;top:0;right:-1px;bottom:0;width:1px;background:linear-gradient(to right,#e2e8f0,transparent)}
-  .co-link{color:#2563eb;font-weight:600;cursor:pointer;text-decoration:none}.co-link:hover{text-decoration:underline;color:#1d4ed8}
+  .co-tbl th:last-child,.co-tbl td:last-child{position:sticky;right:0;z-index:2;background:#fff;box-shadow:-1px 0 0 #e2e8f0,-6px 0 8px -6px rgba(15,23,42,.12)}
+  .co-tbl th:last-child{z-index:3;background:var(--slate-50,#F9FAFB)}
+  .co-tbl tbody tr:hover td:last-child{background:#f8fafc}
+  .co-link{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer;text-decoration:none}.co-link:hover{text-decoration:underline;color:var(--brand-700,#1d4ed8)}
   /* Badges */
   .tbadge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
-  .tb-shipping   {background:#eff6ff;color:#2563eb}
+  .tb-shipping   {background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8)}
   .tb-investment {background:#f0fdf4;color:#16a34a}
   .tb-energy     {background:#fffbeb;color:#d97706}
   .tb-conglomerate{background:#faf5ff;color:#7c3aed}
@@ -62,12 +65,60 @@
   .sb-inactive{background:#fef2f2;color:#dc2626}
   /* Services */
   .svc-tag{font-size:11px;font-weight:500;padding:1px 6px;border-radius:4px;background:#f1f5f9;color:#475569;display:inline-block;margin:1px 2px 1px 0}
-  .svc-more{font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#e0e7ff;color:#4f46e5;display:inline-block;margin:1px 0}
+  .svc-more{font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8);display:inline-block;margin:1px 0}
+  /* Filter drawer (shared pattern with Assets page) */
+  .filter-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
+  .filter-btn:hover { border-color: #93c5fd; background: #f8fafc; }
+  .filter-btn.has-filter::after { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 9px solid #e11d48; border-left: 9px solid transparent; }
+  .filter-btn.reset { color: #475569; }
+  .filter-btn.edit-cols { font-weight: 600; color: #0f172a; border-color: #cbd5e1; }
+  .filter-menu-head { display: flex; gap: 4px; padding: 3px 4px 6px; margin-bottom: 3px; border-bottom: 1px solid #f1f5f9; }
+  .filter-menu-act { flex: 1; padding: 5px 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; font-size: 11.5px; font-weight: 600; color: #475569; cursor: pointer; }
+  .filter-menu-act:hover { background: #f8fafc; border-color: #93c5fd; color: var(--brand-700, #1d4ed8); }
+  .filter-menu-act:disabled { opacity: .45; cursor: default; pointer-events: none; }
+  .filter-menu-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 10px; border: 0; border-radius: 6px; background: transparent; font-size: 12.5px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; }
+  .filter-menu-item:hover { background: #f1f5f9; color: #0f172a; }
+  .filter-menu-item .ft-cb, .filter-menu-item input[type=checkbox] { width: 15px; height: 15px; accent-color: var(--brand-600, #2563eb); cursor: pointer; margin: 0; }
+  .filter-menu-item .at-ico { display: inline-flex; flex-shrink: 0; }
+  .filter-menu-item .fm-flag { border-radius: 2px; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(15,23,42,.08); }
+  .filter-menu-list { display: flex; flex-direction: column; max-height: 260px; overflow-y: auto; }
+  .fm-count { font-weight: 700; color: var(--brand-600, #2563eb); }
+  /* --- Filter drawer --- */
+  .filter-drawer { position: fixed; inset: 0; z-index: 300; visibility: hidden; }
+  .filter-drawer.open { visibility: visible; }
+  .filter-drawer .drawer-overlay { position: absolute; inset: 0; background: rgba(15,23,42,.38); opacity: 0; transition: opacity .25s ease; }
+  .filter-drawer.open .drawer-overlay { opacity: 1; }
+  .filter-drawer .drawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: 360px; max-width: 92vw; background: #fff; box-shadow: -10px 0 30px rgba(15,23,42,.16); display: flex; flex-direction: column; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); }
+  .filter-drawer.open .drawer-panel { transform: translateX(0); }
+  .drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #eef2f7; font-size: 15px; font-weight: 700; color: #0f172a; }
+  .drawer-close { border: 0; background: none; cursor: pointer; color: #64748b; padding: 5px; border-radius: 7px; display: inline-flex; }
+  .drawer-close:hover { background: #f1f5f9; color: #0f172a; }
+  .drawer-body { flex: 1; overflow-y: auto; padding: 4px 18px 12px; display: flex; flex-direction: column; }
+  .drawer-section { padding: 16px 0; border-bottom: 1px solid #f1f5f9; flex: 0 0 auto; transition: padding .2s ease; }
+  .drawer-section:not(.open) { padding: 11px 0; }
+  .drawer-section.open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+  .drawer-section:last-child { border-bottom: 0; }
+  .drawer-acc-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; }
+  .drawer-acc-chev { color: var(--brand-600, #2563eb); transition: transform .2s ease; flex-shrink: 0; }
+  .drawer-section:not(.open) .drawer-sec-title { color: var(--brand-600, #2563eb); }
+  .drawer-section.open .drawer-acc-chev { transform: rotate(180deg); }
+  .drawer-acc-body { display: none; padding-top: 12px; }
+  .drawer-section.open .drawer-acc-body { display: flex; flex-direction: column; flex: 1; min-height: 0; animation: accIn .22s ease; }
+  @keyframes accIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .drawer-section.open .filter-menu-list { max-height: none; flex: 1 1 0; min-height: 0; }
+  .drawer-sec-title { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #64748b; margin: 0; display: flex; align-items: center; gap: 7px; }
+  .drawer-dot { width: 6px; height: 6px; border-radius: 999px; background: #e11d48; display: inline-block; }
+  .drawer-section .filter-menu-head { border-bottom: 0; padding: 0 0 8px; margin: 0; }
+  .drawer-section .filter-menu-list { max-height: 210px; }
+  .drawer-section .range-menu { padding: 4px 2px 0; }
+  .drawer-foot { display: flex; gap: 10px; padding: 14px 18px; border-top: 1px solid #eef2f7; }
+  .drawer-foot .filter-btn { flex: 1; justify-content: center; padding: 10px; overflow: visible; }
+  .drawer-foot .filter-btn:disabled { opacity: .45; cursor: default; pointer-events: none; }
   /* Filter bar */
   .fbtn{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 11px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;white-space:nowrap;transition:background .1s,border-color .1s;font-family:inherit}
-  .fbtn:hover{background:#f8fafc;border-color:#cbd5e1}.fbtn.factive{background:#eff6ff;border-color:#bfdbfe;color:#2563eb}
+  .fbtn:hover{background:#f8fafc;border-color:#cbd5e1}.fbtn.factive{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:var(--brand-600,#2563eb)}
   .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:180px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
-  .fdrop-item{padding:8px 12px;font-size:13px;color:#334155;cursor:pointer;display:flex;align-items:center;gap:8px}.fdrop-item:hover{background:#f8fafc}.fdrop-item.fsel{color:#2563eb;font-weight:600;background:#eff6ff}
+  .fdrop-item{padding:8px 12px;font-size:13px;color:#334155;cursor:pointer;display:flex;align-items:center;gap:8px}.fdrop-item:hover{background:#f8fafc}.fdrop-item.fsel{color:var(--brand-600,#2563eb);font-weight:600;background:#eff6ff}
   /* Pagination / action */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#334155;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f1f5f9}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
@@ -88,7 +139,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -121,10 +172,9 @@ const COUNTRIES     = [...new Set(COMPANIES.map(c => c.country))].sort();
 
 /* ── State ────────────────────────────────────────────────────────────────── */
 let ST = {
-  query:'', filterType:'all', filterCountry:'all', filterStatus:'all',
-  filterFleet:'all', filterEst:'all',
+  query:'', f:{ type:null, country:null, status:null, fleet:null, est:null },
   sortCol:null, sortDir:'asc',
-  page:1, perPage:10, openDrop:null,
+  page:1, perPage:10,
 };
 
 /* ── SVG icons ────────────────────────────────────────────────────────────── */
@@ -136,6 +186,7 @@ const SVG = {
   columns:   `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>`,
   chevLeft:  `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>`,
   chevRight: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
+  compare:   `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-left"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>`,
   extLink:   `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`,
 };
 
@@ -149,8 +200,20 @@ function typeBadge(type) {
 }
 
 function activeDot() {
-  return `<span style="width:6px;height:6px;border-radius:50%;background:#2563eb;display:inline-block;margin-left:2px;vertical-align:middle;flex-shrink:0"></span>`;
+  return `<span style="width:6px;height:6px;border-radius:50%;background:var(--brand-600,#2563eb);display:inline-block;margin-left:2px;vertical-align:middle;flex-shrink:0"></span>`;
 }
+
+const FLEET_B = [['lt20','1 – 20 vessels',0,20],['20to50','21 – 50 vessels',21,50],['50to100','51 – 100 vessels',51,100],['gt100','100+ vessels',101,1e9]];
+const EST_B   = [['pre1970','Before 1970',0,1969],['1970to1990','1970 – 1990',1970,1990],['1990to2010','1991 – 2010',1991,2010],['post2010','After 2010',2011,9999]];
+const CO_FILTERS = [
+  { key:'type',    label:'Company Type', opts:() => COMPANY_TYPES.map(t => [t, t]) },
+  { key:'country', label:'Country',      opts:() => COUNTRIES.map(c => [c, c]) },
+  { key:'status',  label:'Status',       opts:() => [['Active','Active'],['Inactive','Inactive']] },
+  { key:'fleet',   label:'Fleet Size',   opts:() => FLEET_B.map(b => [b[0], b[1]]) },
+  { key:'est',     label:'Established',  opts:() => EST_B.map(b => [b[0], b[1]]) },
+];
+const coFilterActive = k => ST.f[k] !== null;
+const coAnyFilter = () => Object.keys(ST.f).some(coFilterActive);
 
 /* ── Filtering & sorting ──────────────────────────────────────────────────── */
 function getFiltered() {
@@ -159,19 +222,12 @@ function getFiltered() {
   if (q) rows = rows.filter(c =>
     c.name.toLowerCase().includes(q) || c.hq.toLowerCase().includes(q) || c.reg.toLowerCase().includes(q)
   );
-  if (ST.filterType    !== 'all') rows = rows.filter(c => c.type    === ST.filterType);
-  if (ST.filterCountry !== 'all') rows = rows.filter(c => c.country === ST.filterCountry);
-  if (ST.filterStatus  !== 'all') rows = rows.filter(c => c.status  === ST.filterStatus);
-  if (ST.filterFleet !== 'all') {
-    const R = {lt20:[0,20],'20to50':[21,50],'50to100':[51,100],gt100:[101,1e9]};
-    const [lo,hi] = R[ST.filterFleet] || [0,1e9];
-    rows = rows.filter(c => c.fleet >= lo && c.fleet <= hi);
-  }
-  if (ST.filterEst !== 'all') {
-    const R = {pre1970:[0,1969],'1970to1990':[1970,1990],'1990to2010':[1991,2010],post2010:[2011,9999]};
-    const [lo,hi] = R[ST.filterEst] || [0,9999];
-    rows = rows.filter(c => c.est >= lo && c.est <= hi);
-  }
+  const F = ST.f;
+  if (F.type)    rows = rows.filter(c => F.type.has(c.type));
+  if (F.country) rows = rows.filter(c => F.country.has(c.country));
+  if (F.status)  rows = rows.filter(c => F.status.has(c.status));
+  if (F.fleet)   rows = rows.filter(c => FLEET_B.some(b => F.fleet.has(b[0]) && c.fleet >= b[2] && c.fleet <= b[3]));
+  if (F.est)     rows = rows.filter(c => EST_B.some(b => F.est.has(b[0]) && c.est >= b[2] && c.est <= b[3]));
   if (ST.sortCol) {
     const numCols = new Set(['fleet','est','employees']);
     rows.sort((a, b) => {
@@ -192,22 +248,8 @@ function renderPage() {
   if (ST.page > totalPages) ST.page = totalPages;
   const start     = (ST.page - 1) * ST.perPage;
   const pageRows  = rows.slice(start, start + ST.perPage);
-  const hasFilter = ST.filterType !== 'all' || ST.filterCountry !== 'all' || ST.filterStatus !== 'all' || ST.filterFleet !== 'all' || ST.filterEst !== 'all' || ST.query;
+  const hasFilter = coAnyFilter();
 
-  const typeItems    = [['all','All Types'],    ...COMPANY_TYPES.map(t => [t, t])];
-  const countryItems = [['all','All Countries'],...COUNTRIES.map(c => [c, c])];
-  const fleetItems   = [['all','Any Size'],['lt20','1 – 20 vessels'],['20to50','21 – 50 vessels'],['50to100','51 – 100 vessels'],['gt100','100+ vessels']];
-  const estItems     = [['all','Any Year'],['pre1970','Before 1970'],['1970to1990','1970 – 1990'],['1990to2010','1991 – 2010'],['post2010','After 2010']];
-
-  function dropHTML(id, btnContent, items, current) {
-    const isOpen = ST.openDrop === id;
-    return `<div style="position:relative" data-drop-wrap="${id}">
-      <button class="fbtn ${current !== 'all' ? 'factive' : ''}" data-drop-btn="${id}">${btnContent}</button>
-      ${isOpen ? `<div class="fdrop">${items.map(([v,l]) => `<div class="fdrop-item ${current === v ? 'fsel' : ''}" data-drop-item="${id}" data-val="${v}">${l}</div>`).join('')}</div>` : ''}
-    </div>`;
-  }
-
-  const allcoLabel  = ST.filterType !== 'all' ? ST.filterType : 'All Companies';
 
   return `
   <!-- Filter bar -->
@@ -220,41 +262,14 @@ function renderPage() {
         <input id="co-search" type="text"
           placeholder="Search by company name, headquarters, or registration number"
           value="${ST.query.replace(/"/g, '&quot;')}"
-          style="width:100%;height:34px;padding:0 32px 0 30px;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;color:#0f172a;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s" />
-        <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);color:#94a3b8;display:flex">${SVG.sliders}</span>
+          style="width:100%;height:34px;padding:0 10px 0 30px;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;color:#0f172a;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s" />
       </div>
-
-      <div style="width:1px;height:20px;background:#e2e8f0;flex-shrink:0"></div>
-
-      <!-- All Companies type chooser -->
-      ${dropHTML('allco', `${allcoLabel} ${SVG.chevDown}`, typeItems, ST.filterType)}
-
-      <div style="width:1px;height:20px;background:#e2e8f0;flex-shrink:0"></div>
-
-      <!-- Reset Filters -->
-      <button class="fbtn" id="reset-btn" style="${hasFilter ? '' : 'opacity:.45;pointer-events:none'}">
-        ${SVG.filter} Reset Filters
-      </button>
-
-      <!-- Company Type -->
-      ${dropHTML('type', `Company Type${ST.filterType !== 'all' ? activeDot() : ''}`, typeItems, ST.filterType)}
-
-      <!-- Country -->
-      ${dropHTML('country', `Country${ST.filterCountry !== 'all' ? activeDot() : ''}`, countryItems, ST.filterCountry)}
-
-      <!-- Status -->
-      ${dropHTML('status', `Status${ST.filterStatus !== 'all' ? activeDot() : ''}`, [['all','All Statuses'],['Active','Active'],['Inactive','Inactive']], ST.filterStatus)}
-
-      <!-- Fleet Size -->
-      ${dropHTML('fleet', `Fleet Size ${SVG.chevDown}`, fleetItems, ST.filterFleet)}
-
-      <!-- Established -->
-      ${dropHTML('est', `Established ${SVG.chevDown}`, estItems, ST.filterEst)}
 
       <div style="flex:1;min-width:4px"></div>
 
-      <!-- Edit Columns -->
-      <button class="fbtn">${SVG.columns} Edit Columns</button>
+      <!-- Filters (opens drawer) -->
+      <button class="filter-btn edit-cols${hasFilter ? ' has-filter' : ''}" id="co-filter-btn" title="Filter" aria-label="Filter" aria-haspopup="dialog" style="height:34px;padding:0 10px;">${SVG.filter}</button>
+
     </div>
   </div>
 
@@ -284,7 +299,7 @@ function renderPage() {
               <th class="sortable ${ST.sortCol === 'est'       ? 'sorted' : ''}" data-sort="est"      style="min-width:110px">Established${sortIcon('est')}</th>
               <th class="sortable ${ST.sortCol === 'employees' ? 'sorted' : ''}" data-sort="employees"style="min-width:100px">Employees${sortIcon('employees')}</th>
               <th style="min-width:80px">Status</th>
-              <th style="min-width:52px;width:52px">Actions</th>
+              <th style="min-width:84px;width:84px">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -307,7 +322,7 @@ function renderPage() {
                 <td style="font-variant-numeric:tabular-nums">${co.est}</td>
                 <td style="font-variant-numeric:tabular-nums">${co.employees.toLocaleString()}</td>
                 <td><span class="sbadge ${co.status === 'Active' ? 'sb-active' : 'sb-inactive'}">${co.status}</span></td>
-                <td><button class="actbtn" title="View details">${SVG.extLink}</button></td>
+                <td><div style="display:flex;align-items:center;gap:4px"><button class="actbtn" title="View details">${SVG.extLink}</button><button class="actbtn" title="Compare with competitors" aria-label="Compare ${co.name} with competitors" onclick="window.__coCompare(${COMPANIES.indexOf(co)})">${SVG.compare}</button></div></td>
               </tr>`;
             }).join('')}
           </tbody>
@@ -327,9 +342,73 @@ function renderPage() {
   </div>`;
 }
 
+window.__coCompare = function(i) {
+  const co = COMPANIES[i]; if (!co) return;
+  try {
+    const slug = co.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') + '.com';
+    sessionStorage.setItem('compareCompany', JSON.stringify({
+      name: co.name, type: co.type || '—', country: co.country || '—', flag: co.flag || '', code: co.reg || '—',
+      fleet: co.fleet || 0, fleetVal: co.fleetVal || '—', risk: co.avgRisk !== undefined ? co.avgRisk : 55,
+      hq: co.hq || '—', established: co.est || '—', countryControl: co.country || '—', countryDomicile: co.country || '—',
+      website: co.website || slug, compliance: co.sanctioned ? 'Sanctioned' : 'Not Sanctioned',
+    }));
+    sessionStorage.setItem('reportsTab', 'comp');
+  } catch (e) {}
+  window.location.href = 'Reports.html';
+};
+
 /* ── Wire interactions ────────────────────────────────────────────────────── */
 let _coMain = null;
 let _outsideClickBound = false;
+
+/* ── Filter drawer ── */
+let coDrawerOpen = 0;
+function coDrawerSections() {
+  return CO_FILTERS.map((f, i) => {
+    const set = ST.f[f.key], active = set !== null, isNone = set && set.size === 0;
+    const items = f.opts().map(([v, l]) => `<label class="filter-menu-item"><input type="checkbox" class="co-cb" data-fk="${f.key}" value="${v}" ${set === null || set.has(v) ? 'checked' : ''}><span>${l}</span></label>`).join('');
+    const open = i === coDrawerOpen;
+    return `<div class="drawer-section${open ? ' open' : ''}"><button type="button" class="drawer-acc-head" aria-expanded="${open}"><span class="drawer-sec-title">${f.label}${active ? ' <span class="drawer-dot"></span>' : ''}</span><svg class="drawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="drawer-acc-body"><div class="filter-menu-head"><button class="filter-menu-act" data-fk="${f.key}" data-fm-act="all"${active ? '' : ' disabled'}>Reset</button><button class="filter-menu-act" data-fk="${f.key}" data-fm-act="none"${isNone ? ' disabled' : ''}>Unselect all</button></div><div class="filter-menu-list scroll-thin">${items}</div></div></div>`;
+  }).join('');
+}
+function ensureCoDrawer() {
+  if (document.getElementById('filter-drawer')) return;
+  const d = document.createElement('div');
+  d.id = 'filter-drawer'; d.className = 'filter-drawer'; d.setAttribute('aria-hidden', 'true');
+  d.innerHTML = `<div class="drawer-overlay" id="drawer-overlay"></div><aside class="drawer-panel" role="dialog" aria-label="Filters"><div class="drawer-head"><span>Filters</span><button class="drawer-close" id="drawer-close" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="drawer-body scroll-thin" id="drawer-body"></div><div class="drawer-foot"><button class="filter-btn reset" id="drawer-reset">Reset all</button><button class="filter-btn edit-cols" id="drawer-done">Done</button></div></aside>`;
+  document.body.appendChild(d);
+  d.querySelector('#drawer-close').onclick = closeCoDrawer;
+  d.querySelector('#drawer-overlay').onclick = closeCoDrawer;
+  d.querySelector('#drawer-done').onclick = closeCoDrawer;
+  d.querySelector('#drawer-reset').onclick = () => { Object.keys(ST.f).forEach(k => ST.f[k] = null); coApply(); };
+}
+function paintCoDrawer() {
+  const body = document.getElementById('drawer-body'); if (!body) return;
+  const st = body.scrollTop;
+  body.innerHTML = coDrawerSections();
+  body.scrollTop = st;
+  document.getElementById('drawer-reset').disabled = !coAnyFilter();
+  body.querySelectorAll('.drawer-acc-head').forEach((h, i) => h.onclick = () => { coDrawerOpen = coDrawerOpen === i ? -1 : i; paintCoDrawer(); });
+  body.querySelectorAll('.co-cb').forEach(cb => cb.onchange = () => {
+    const k = cb.dataset.fk, all = CO_FILTERS.find(f => f.key === k).opts().map(o => o[0]);
+    const set = ST.f[k] === null ? new Set(all) : new Set(ST.f[k]);
+    cb.checked ? set.add(cb.value) : set.delete(cb.value);
+    ST.f[k] = set.size >= all.length ? null : set;
+    coApply();
+  });
+  body.querySelectorAll('.filter-menu-act').forEach(b => b.onclick = () => { ST.f[b.dataset.fk] = b.dataset.fmAct === 'all' ? null : new Set(); coApply(); });
+}
+function coApply() { ST.page = 1; rc(); paintCoDrawer(); }
+function openCoDrawer() {
+  ensureCoDrawer(); coDrawerOpen = 0; paintCoDrawer();
+  const d = document.getElementById('filter-drawer');
+  d.classList.add('open'); d.setAttribute('aria-hidden', 'false');
+  setTimeout(() => d.querySelector('.drawer-acc-head')?.focus(), 50);
+}
+function closeCoDrawer() {
+  const d = document.getElementById('filter-drawer');
+  if (d && d.classList.contains('open')) { d.classList.remove('open'); d.setAttribute('aria-hidden', 'true'); document.getElementById('co-filter-btn')?.focus(); }
+}
 
 function rc() {
   if (!_coMain) return;
@@ -349,7 +428,7 @@ function wireCompanies() {
   const si = document.getElementById('co-search');
   if (si) {
     si.addEventListener('input', e => { ST.query = e.target.value; ST.page = 1; rc(); });
-    si.addEventListener('focus', e => { e.target.style.borderColor = '#93c5fd'; e.target.style.boxShadow = '0 0 0 3px rgba(59,130,246,.12)'; });
+    si.addEventListener('focus', e => { e.target.style.borderColor = 'var(--brand-300,#93c5fd)'; e.target.style.boxShadow = '0 0 0 3px color-mix(in srgb, var(--brand-500,#3b82f6) 14%, transparent)'; });
     si.addEventListener('blur',  e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.boxShadow = ''; });
   }
 
@@ -363,37 +442,8 @@ function wireCompanies() {
     });
   });
 
-  /* Dropdown open / close */
-  document.querySelectorAll('[data-drop-btn]').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const id = btn.dataset.dropBtn;
-      ST.openDrop = ST.openDrop === id ? null : id;
-      rc();
-    });
-  });
-
-  /* Dropdown item select */
-  document.querySelectorAll('[data-drop-item]').forEach(item => {
-    item.addEventListener('click', e => {
-      e.stopPropagation();
-      const id  = item.dataset.dropItem;
-      const val = item.dataset.val;
-      if      (id === 'allco' || id === 'type') ST.filterType    = val;
-      else if (id === 'country')                ST.filterCountry = val;
-      else if (id === 'status')                 ST.filterStatus  = val;
-      else if (id === 'fleet')                  ST.filterFleet   = val;
-      else if (id === 'est')                    ST.filterEst     = val;
-      ST.page = 1; ST.openDrop = null; rc();
-    });
-  });
-
-  /* Reset */
-  const rb = document.getElementById('reset-btn');
-  if (rb) rb.addEventListener('click', () => {
-    Object.assign(ST, { query:'', filterType:'all', filterCountry:'all', filterStatus:'all', filterFleet:'all', filterEst:'all', page:1, openDrop:null });
-    rc();
-  });
+  const fb = document.getElementById('co-filter-btn');
+  if (fb) fb.addEventListener('click', e => { e.stopPropagation(); openCoDrawer(); });
 
   /* Per page */
   const pp = document.getElementById('per-page');
@@ -408,9 +458,7 @@ function wireCompanies() {
   /* Outside click closes dropdowns */
   if (!_outsideClickBound) {
     _outsideClickBound = true;
-    document.addEventListener('click', () => {
-      if (ST.openDrop) { ST.openDrop = null; rc(); }
-    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCoDrawer(); });
   }
 }
 

@@ -35,8 +35,8 @@
   .bg-brand-050  { background:#eff6ff; }
   .scroll-thin::-webkit-scrollbar { width:5px; }
   .scroll-thin::-webkit-scrollbar-track { background:transparent; }
-  .scroll-thin::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:999px; }
-  .scroll-thin::-webkit-scrollbar-thumb:hover { background:#94a3b8; }
+  .scroll-thin::-webkit-scrollbar-thumb { background:var(--brand-400,#51a2fc); border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#2d7ffb); }
   .tracking-micro { letter-spacing:0.04em; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
@@ -115,7 +115,7 @@
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -406,7 +406,7 @@ function Content() {
 /* ---- Map ---- */
 const MAP_TYPES = {
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg:'#0b1e2e' },
-  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',                       bg:'#f8fafc' },
+  street:    { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',                       bg:'#f8fafc' },
   dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                  bg:'#0b1e2e' },
   light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                 bg:'#e0ebe9' },
 };

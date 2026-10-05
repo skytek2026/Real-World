@@ -12,7 +12,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   /* Cards */
   .pcard{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(15,23,42,.06);margin-bottom:16px}
   .pcard:last-child{margin-bottom:0}
@@ -48,7 +48,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -77,6 +77,13 @@ const THEMES = [
 const PIN_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
 const CAL_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 const SET_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 1 0-14.14 14.14"/></svg>`;
+const CAM_ICO = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>`;
+const AV_DEFAULT = 'images/avatar-paul-kiernan.avif';
+ST.avatar = ST.avatar === undefined ? AV_DEFAULT : ST.avatar;
+function avatarHTML(src) {
+  return src ? `<img src="${src}" alt="Paul Kiernan" style="width:100%;height:100%;object-fit:cover" />`
+    : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8);font-size:26px;font-weight:700">PK</div>`;
+}
 const BLD_ICO = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`;
 
 /* ── Content ──────────────────────────────────────────────────────────────── */
@@ -87,9 +94,18 @@ function Content() {
 
     <!-- Profile Header -->
     <div class="pcard" style="text-align:center;padding:32px 24px">
-      <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;margin:0 auto 14px;border:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(15,23,42,.12)">
-        <img src="images/avatar-paul-kiernan.avif" alt="Paul Kiernan" style="width:100%;height:100%;object-fit:cover" />
+      ${(() => { const src = ST.editMode ? ST.pendingAvatar : ST.avatar; return `
+      <div style="position:relative;width:80px;height:80px;margin:0 auto ${ST.editMode ? '8px' : '14px'}">
+        <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(15,23,42,.12)">${avatarHTML(src)}</div>
+        ${ST.editMode ? `<button id="av-change-btn" type="button" title="Change photo" aria-label="Change profile photo" style="position:absolute;right:-4px;bottom:-4px;width:32px;height:32px;border-radius:50%;border:2px solid #fff;background:var(--brand-600,#2563eb);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 4px rgba(15,23,42,.2)">${CAM_ICO}</button>` : ''}
       </div>
+      ${ST.editMode ? `
+      <input id="av-file" type="file" accept="image/jpeg,image/png,image/webp" style="display:none" />
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px">
+        <button id="av-upload-link" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:var(--brand-600,#2563eb);cursor:pointer">${src ? 'Change photo' : 'Upload photo'}</button>
+        ${src ? `<span style="color:#cbd5e1">|</span><button id="av-remove" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:#dc2626;cursor:pointer">Remove</button>` : ''}
+      </div>
+      <div style="font-size:12px;color:${ST.avError ? '#dc2626' : '#64748b'};margin-bottom:14px">${ST.avError || 'JPG, PNG or WebP · max 5 MB'}</div>` : ''}`; })()}
       <h2 style="font-size:20px;font-weight:700;color:#0f172a;margin-bottom:4px">Paul Kiernan</h2>
       <div style="font-size:14px;color:#64748b;margin-bottom:8px">Chief Technology Officer</div>
       <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:13px;color:#64748b;margin-bottom:16px">
@@ -134,7 +150,7 @@ function Content() {
       ${ST.editMode ? `
       <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end">
         <button id="cancel-edit" style="height:34px;padding:0 14px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;font-size:13px;font-weight:600;color:#475569;cursor:pointer;font-family:inherit">Cancel</button>
-        <button style="height:34px;padding:0 14px;border-radius:8px;border:0;background:#2563eb;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Save Changes</button>
+        <button id="save-edit" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:var(--brand-600,#2563eb);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Save Changes</button>
       </div>` : ''}
     </div>
 
@@ -210,9 +226,26 @@ function rc() {
 function wire() {
   /* Edit profile */
   const editBtn = document.getElementById('edit-profile-btn');
-  if (editBtn) editBtn.addEventListener('click', () => { ST.editMode = true; rc(); });
+  if (editBtn) editBtn.addEventListener('click', () => { ST.editMode = true; ST.pendingAvatar = ST.avatar; ST.avError = ''; rc(); });
   const cancelBtn = document.getElementById('cancel-edit');
-  if (cancelBtn) cancelBtn.addEventListener('click', () => { ST.editMode = false; rc(); });
+  if (cancelBtn) cancelBtn.addEventListener('click', () => { ST.editMode = false; ST.pendingAvatar = null; ST.avError = ''; rc(); });
+  const saveBtn = document.getElementById('save-edit');
+  if (saveBtn) saveBtn.addEventListener('click', () => { ST.avatar = ST.pendingAvatar; ST.editMode = false; ST.avError = ''; rc(); });
+
+  /* Avatar */
+  const fileIn = document.getElementById('av-file');
+  const openPicker = () => fileIn && fileIn.click();
+  ['av-change-btn', 'av-upload-link'].forEach(id => { const b = document.getElementById(id); if (b) b.addEventListener('click', openPicker); });
+  if (fileIn) fileIn.addEventListener('change', () => {
+    const f = fileIn.files && fileIn.files[0]; if (!f) return;
+    if (!/^image\/(jpeg|png|webp)$/.test(f.type)) { ST.avError = 'Please choose a JPG, PNG or WebP image.'; rc(); return; }
+    if (f.size > 5 * 1024 * 1024) { ST.avError = 'That image is over 5 MB. Please choose a smaller file.'; rc(); return; }
+    const rd = new FileReader();
+    rd.onload = () => { ST.pendingAvatar = rd.result; ST.avError = ''; rc(); };
+    rd.readAsDataURL(f);
+  });
+  const rmBtn = document.getElementById('av-remove');
+  if (rmBtn) rmBtn.addEventListener('click', () => { ST.pendingAvatar = null; ST.avError = ''; rc(); });
 
   /* Org selection */
   document.querySelectorAll('.radio-row[data-org]').forEach(row => {

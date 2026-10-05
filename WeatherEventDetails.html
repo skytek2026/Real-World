@@ -29,7 +29,7 @@
   .ds-tab{position:relative;font:inherit;font-size:12.5px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
   .ds-tab:hover{color:#0f172a}
   .ds-tab[aria-selected="true"]{color:#fff}
-  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:#2563eb;border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
+  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px}
   /* Map button */
@@ -203,7 +203,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -581,9 +581,9 @@ function applyEvtAviationFilter() {
 /* ── Region-specific asset bundles ──────────────────────────────────────
    Each weather event draws assets that actually belong to its region:
    airports on real airports, vessels at sea / in port, properties on land. */
-const TC = { 'Car Carrier':'#7c3aed','Container':'#16a34a','LNG Carrier':'#db2777','Bulk Carrier':'#2563eb','Tanker':'#0ea5e9' };
+const TC = { 'Car Carrier':'#7c3aed','Container':'#16a34a','LNG Carrier':'#db2777','Bulk Carrier':'var(--brand-600,#2563eb)','Tanker':'#0ea5e9' };
 const mkV = (name,type,cc,country,lat,lng,heading,imo,portfolio,owner,exposure,market) =>
-  ({ name, type, typeColor:TC[type]||'#2563eb', cc, country, lat, lng, heading, imo, portfolio, owner, exposure, market, ref:'N/A', inception:'N/A', expiry:'N/A', updated:'2025-07-04' });
+  ({ name, type, typeColor:TC[type]||'var(--brand-600,#2563eb)', cc, country, lat, lng, heading, imo, portfolio, owner, exposure, market, ref:'N/A', inception:'N/A', expiry:'N/A', updated:'2025-07-04' });
 const mkP = (name,cat,lat,lng,location,value,occupancy,size,risk) =>
   ({ name, cat, lat, lng, location, value, occupancy, size, risk, riskColor: risk==='High'?'#dc2626':risk==='Medium'?'#d97706':'#16a34a', status: risk==='High'?'In storm cone':'Monitoring', statusColor: risk==='High'?'#dc2626':'#d97706', inspection:'2025-06-02' });
 const mkO = (name,fullName,assetType,lat,lng,cc,country,operator,waterDepth,status,production,field) =>
@@ -721,7 +721,7 @@ let mapType = 'satellite';
 
 const EVT_TILES = {
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#0b1e2e' },
-  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png', attr:'© OpenStreetMap contributors', bg:'#e2e8f0' },
+  street:    { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#e2e8f0' },
   dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#0b0f1a' },
   light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#f1f5f9' },
 };
@@ -730,7 +730,7 @@ function updateEvtLayersMenu() {
     const on = b.dataset.mapType === mapType;
     const lbl = b.querySelector('[data-label]');
     const chk = b.querySelector('[data-check]');
-    if (lbl) { lbl.style.color = on ? '#2563eb' : '#334155'; lbl.style.fontWeight = on ? '600' : '500'; }
+    if (lbl) { lbl.style.color = on ? 'var(--brand-600,#2563eb)' : '#334155'; lbl.style.fontWeight = on ? '600' : '500'; }
     if (chk) chk.style.opacity = on ? '1' : '0';
   });
 }
@@ -795,7 +795,7 @@ function initEvtMap() {
     const RA = pickRegionAssets();
     evtVesselMarkers = [];
     RA.vessels.forEach(v => {
-      const m = L.marker([v.lat, v.lng], { icon: evtVesselIcon(v.typeColor || '#2563eb', v.heading) })
+      const m = L.marker([v.lat, v.lng], { icon: evtVesselIcon(v.typeColor || 'var(--brand-600,#2563eb)', v.heading) })
         .bindPopup(evtVesselPopup(v, v), { className:'vessel-popup', maxWidth:320, minWidth:300, closeButton:true, autoPanPadding:[30,30] })
         .bindTooltip(evtVesselTooltip(v.name, v), { className:'vessel-tip', direction:'top', offset:[0,-12], opacity:1 });
       m._vtype = v.type;
@@ -927,7 +927,7 @@ window.render = function() {
                       <td>
                         <div style="display:flex;align-items:center;gap:7px;min-width:0">
                           <span style="width:6px;height:6px;border-radius:50%;background:${cfg.color};flex-shrink:0"></span>
-                          <a href="#" style="color:#2563eb;font-weight:500;text-decoration:none;white-space:nowrap" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${p.name}</a>
+                          <a href="#" style="color:var(--brand-600,#2563eb);font-weight:500;text-decoration:none;white-space:nowrap" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${p.name}</a>
                         </div>
                       </td>
                       <td style="color:#475569">${p.type}</td>
@@ -974,7 +974,7 @@ window.render = function() {
                     ].map(o => `
                       <button data-map-type="${o.id}" class="evt-map-type-opt">
                         <span data-label>${o.label}</span>
-                        <span data-check style="color:#2563eb;opacity:0;display:inline-flex">${lico('Check', 14)}</span>
+                        <span data-check style="color:var(--brand-600,#2563eb);opacity:0;display:inline-flex">${lico('Check', 14)}</span>
                       </button>`).join('')}
                   </div>
                 </div>
@@ -1048,8 +1048,8 @@ window.render = function() {
               </thead>
               <tbody>
                 ${azRows.map(a => `<tr>
-                  <td><a href="#" style="color:#2563eb;font-weight:600;text-decoration:none" onmouseover="this.style.color='#1d4ed8'" onmouseout="this.style.color='#2563eb'">${a.name}</a></td>
-                  <td><a href="#" style="color:#2563eb;font-size:12px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.portfolio}</a></td>
+                  <td><a href="#" style="color:var(--brand-600,#2563eb);font-weight:600;text-decoration:none" onmouseover="this.style.color='var(--brand-700,#1d4ed8)'" onmouseout="this.style.color='var(--brand-600,#2563eb)'">${a.name}</a></td>
+                  <td><a href="#" style="color:var(--brand-600,#2563eb);font-size:12px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.portfolio}</a></td>
                   <td style="font-family:monospace;font-size:12px;color:#475569">${a.imo}</td>
                   <td><div style="display:flex;align-items:center;gap:6px">${flag(a.cc)}<span>${a.country}</span></div></td>
                   <td><span class="type-badge" style="background:${a.typeBg};color:${a.typeColor}">${a.type}</span></td>

@@ -185,7 +185,7 @@
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -442,7 +442,7 @@ function positionTabPills() {
 }
 
 function PortfolioCard() {
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
   const sortIco = `<span style="font-size:10px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   const statsRow = `
@@ -547,7 +547,7 @@ function PortfolioCard() {
 }
 
 function RegionsCard() {
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
   const sortIco = `<span style="font-size:10px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   if (state.regionTab === 'Benchmark') {
@@ -593,7 +593,7 @@ function RegionsCard() {
     <div class="flex-1 overflow-y-auto scroll-thin divide-y divide-ink-50">
       ${EXPOSURE_AGGREGATIONS.map((a, ai) => {
         const open = state.expandedAggs.has(ai);
-        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
         return `
         <div>
           <button data-agg-idx="${ai}" aria-expanded="${open}" class="w-full text-left px-3 py-2 flex items-center justify-between gap-4 text-xs hover:bg-ink-50">
@@ -631,7 +631,7 @@ function RegionsCard() {
     <div class="flex-1 overflow-y-auto scroll-thin divide-y divide-ink-50">
       ${REGIONS.map((r, ri) => {
         const open = state.expandedRegions.has(ri);
-        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
         return `
         <div>
           <button data-region-idx="${ri}" aria-expanded="${open}" class="w-full text-left px-3 py-2 hover:bg-ink-50 grid grid-cols-[1fr_96px_88px] gap-4 items-center text-xs">
@@ -1081,8 +1081,8 @@ function initMap() {
       attr: 'Tiles © Esri — Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
     },
     street: {
-      url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      attr: '© OpenStreetMap contributors',
+      url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+      attr: 'Tiles © Esri',
     },
     dark: {
       url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',

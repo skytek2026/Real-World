@@ -17,7 +17,7 @@
   .bg-ink-100{background:#f1f5f9}.bg-ink-50{background:#f8fafc}
   .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
   .scroll-thin::-webkit-scrollbar{width:5px;height:5px}
-  .scroll-thin::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+  .scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   .dot-pulse::after{content:'';position:absolute;inset:-3px;border-radius:999px;animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
   /* Pill tabs */
@@ -25,7 +25,7 @@
   .ds-tab{position:relative;font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
   .ds-tab:hover{color:#0f172a}
   .ds-tab[aria-selected="true"]{color:#fff}
-  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:#2563eb;border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
+  .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
   .ds-tab-label{position:relative;z-index:1}
   /* Map */
@@ -59,7 +59,7 @@
   /* Policy table */
   .pol-table{width:100%;border-collapse:collapse;font-size:12px}
   .pol-table th{padding:9px 12px;text-align:left;font-size:11.5px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
-  .pol-table th:hover{color:#2563eb}
+  .pol-table th:hover{color:var(--brand-600,#2563eb)}
   /* Mobile policy cards */
   .pol-cards{display:none}
   .pcard{padding:14px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
@@ -83,9 +83,9 @@
   .pol-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;color:#334155;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
   .pol-table tbody tr:hover td{background:#f8fafc}
-  .pol-table td.lnk{color:#2563eb;font-weight:600;cursor:pointer}
-  .pol-table td.lnk:hover{color:#1d4ed8}
-  .pol-table td.type-cell{color:#2563eb;font-size:12px}
+  .pol-table td.lnk{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
+  .pol-table td.lnk:hover{color:var(--brand-700,#1d4ed8)}
+  .pol-table td.type-cell{color:var(--brand-600,#2563eb);font-size:12px}
   .pol-table td.muted{color:#94a3b8}
   .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:3px;vertical-align:middle;opacity:.5}
   .sort-ico svg{width:7px;height:7px}
@@ -113,7 +113,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=12"></script>
+<script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -180,7 +180,7 @@ function mapAssetType(t) {
 
 const MAP_TYPES = {
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg:'#0b1d2a' },
-  street:    { url:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',                                              bg:'#dbeafe' },
+  street:    { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',                                              bg:'var(--brand-100,#dbeafe)' },
   dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                  bg:'#0f172a' },
   light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                 bg:'#f8fafc' },
 };
@@ -225,7 +225,7 @@ function PanelDetailsContent() {
   return `
     <!-- Exposure banner -->
     <div style="display:flex;justify-content:center;padding:14px 16px 6px;">
-      <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:10px;padding:10px 32px;text-align:center;min-width:180px;">
+      <div style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:10px;padding:10px 32px;text-align:center;min-width:180px;">
         <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Our Aggregated Exposure</div>
         <div style="font-size:20px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PF.exposure || '$148.5B'}</div>
       </div>
@@ -437,7 +437,7 @@ function PolicyTable() {
               <span class="pcard-title" data-asset-idx="${i}">${a.name}</span>
               <div class="pcard-sub">${a.id}</div>
             </div>
-            <span style="background:#eff6ff;color:#1d4ed8;font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${a.type}</span>
+            <span style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${a.type}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${a.exposure}</span></div>
