@@ -35,12 +35,12 @@
   .cd-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgb(45 127 251/.25)}
   .cd-btn svg{width:14px;height:14px;flex-shrink:0}
   /* Field rows in Company Details card */
-  .field-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f1f5f9;gap:16px}
+  .field-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f1f5f9;gap:16px}
   .field-row:last-of-type{border-bottom:0}
-  .field-label{font-size:12.5px;color:#94a3b8;display:flex;align-items:center;gap:6px;flex-shrink:0;white-space:nowrap}
+  .field-label{font-size:12px;color:#64748b;display:flex;align-items:center;gap:6px;flex-shrink:0;white-space:nowrap}
   .field-label svg{color:var(--brand-600,#2d7ffb);stroke:currentColor;flex-shrink:0}
   .field-label svg [stroke]:not([stroke="none"]){stroke:currentColor}
-  .field-value{font-size:13px;font-weight:600;color:#0f172a;text-align:right}
+  .field-value{font-size:12px;font-weight:400;color:#334155;text-align:right}
   /* Buttons */
   .btn-outline{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border:1.5px solid #2563eb;border-radius:8px;background:#fff;color:#2563eb;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;white-space:nowrap}
   .btn-outline:hover{background:#eff6ff}
@@ -53,18 +53,18 @@
   .cb-noncompliant{background:#fef2f2;color:#dc2626}
   /* Assets table */
   .at-tbl{width:100%;border-collapse:collapse;min-width:540px}
-  .at-tbl th{padding:9px 14px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB)}
-  .at-tbl td{padding:11px 14px;font-size:13px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+  .at-tbl th{padding:8px 12px;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB)}
+  .at-tbl td{padding:10px 12px;font-size:12px;font-weight:400;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
   .at-tbl tr:last-child td{border-bottom:0}
   .at-tbl tbody tr:hover td{background:var(--brand-50,#eff6ff)}
-  .at-tbl td:first-child{font-weight:700;color:#0f172a}
+  .at-tbl td:first-child{font-weight:400;color:#334155}
   /* Search */
   .search-wrap{position:relative;display:inline-flex;align-items:center}
   .search-wrap input{height:32px;padding:0 10px 0 30px;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;color:#334155;font-family:inherit;outline:none;width:200px;transition:border-color .15s,box-shadow .15s}
   .search-wrap input:focus{border-color:var(--brand-500,#60a5fa);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#2d7ffb) 18%,transparent)}
-  .at-link{color:var(--brand-600,#2d7ffb);font-weight:700;text-decoration:none;cursor:pointer}
+  .at-link{color:var(--brand-600,#2d7ffb);font-weight:500;text-decoration:none;cursor:pointer}
   .at-link:hover{color:var(--brand-700,#1d4ed8);text-decoration:underline;text-underline-offset:2px}
-  #asset-filter:focus{border-color:var(--brand-500,#60a5fa);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#2d7ffb) 18%,transparent)}
+  #asset-filter:focus,#psc-sev:focus{border-color:var(--brand-500,#60a5fa);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#2d7ffb) 18%,transparent)}
   .search-icon{position:absolute;left:9px;color:#94a3b8;display:flex;pointer-events:none}
   /* Pagination */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#334155;cursor:pointer;transition:background .1s}
@@ -105,6 +105,7 @@
   .rs-tip-tbl th:first-child{text-align:left;}
   .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
+.ra-tabs{display:inline-flex;gap:4px;padding:4px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px}.ra-tab{font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:background .15s,color .15s}.ra-tab:hover{color:#0f172a}.ra-tab[aria-selected="true"]{background:var(--brand-600,#2563eb);color:#fff;box-shadow:0 1px 2px rgba(15,23,42,.12)}.sev{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#0f172a;white-space:nowrap}.sev-dot{width:10px;height:10px;border-radius:50%;background:#e11d48;flex-shrink:0}.sev-dia{width:9px;height:9px;background:#f97316;transform:rotate(45deg);flex-shrink:0}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -181,6 +182,24 @@ const ASSET_SEEDS = {
     { name:'Chemical Tanker Lyra',  type:'Marine',    risk:84, compliance:'Non-Compliant', value:'$48M'  },
     { name:'Container Depot E',     type:'Property',  risk:40, compliance:'Compliant',     value:'$95M'  },
   ],
+  'Property Company': [
+    { name:'Harbourline Tower',        type:'Property', risk:32, compliance:'Compliant',     value:'$420M' },
+    { name:'Thames Logistics Park',    type:'Property', risk:45, compliance:'Compliant',     value:'$185M' },
+    { name:'Canary Wharf Plaza 3',     type:'Property', risk:28, compliance:'Compliant',     value:'$610M' },
+    { name:'Felixstowe Warehouse 12',  type:'Property', risk:58, compliance:'Minor Issues',  value:'$74M'  },
+    { name:'Southampton Port Store B', type:'Property', risk:66, compliance:'Minor Issues',  value:'$52M'  },
+    { name:'Manchester Retail Centre', type:'Property', risk:39, compliance:'Compliant',     value:'$230M' },
+    { name:'Bristol Distribution Hub', type:'Property', risk:81, compliance:'Non-Compliant', value:'$96M'  },
+  ],
+  'Aviation Company': [
+    { name:'A320neo EI-SKA',           type:'Aviation', risk:34, compliance:'Compliant',     value:'$52M'  },
+    { name:'B737 MAX 8 EI-SKB',        type:'Aviation', risk:41, compliance:'Compliant',     value:'$55M'  },
+    { name:'A350-900 EI-SKC',          type:'Aviation', risk:29, compliance:'Compliant',     value:'$148M' },
+    { name:'B777F EI-SKD',             type:'Aviation', risk:63, compliance:'Minor Issues',  value:'$162M' },
+    { name:'ATR 72-600 EI-SKE',        type:'Aviation', risk:47, compliance:'Compliant',     value:'$26M'  },
+    { name:'B787-9 EI-SKF',            type:'Aviation', risk:78, compliance:'Non-Compliant', value:'$135M' },
+    { name:'A321XLR EI-SKG',           type:'Aviation', risk:52, compliance:'Minor Issues',  value:'$68M'  },
+  ],
   'Conglomerate': [
     { name:'Container Terminal 1',  type:'Property',  risk:42, compliance:'Compliant',     value:'$380M' },
     { name:'MV Asian Sunrise',      type:'Marine',    risk:58, compliance:'Compliant',     value:'$112M' },
@@ -193,7 +212,8 @@ const ASSET_SEEDS = {
     { name:'Industrial Park F',     type:'Property',  risk:29, compliance:'Compliant',     value:'$180M' },
   ],
 };
-const ALL_ASSETS = (ASSET_SEEDS[co.type] || ASSET_SEEDS['Shipping Company']).map(a => {
+const ONLY_TYPE = { 'Shipping Company':'Marine', 'Property Company':'Property', 'Aviation Company':'Aviation' }[co.type];
+const ALL_ASSETS = (ASSET_SEEDS[co.type] || ASSET_SEEDS['Shipping Company']).filter(a => !ONLY_TYPE || a.type === ONLY_TYPE).map(a => {
   if (a.type !== 'Marine') return { ...a, imo:'N/A', mmsi:'N/A' };
   let s = 0; for (const ch of a.name) s = (s * 31 + ch.charCodeAt(0)) >>> 0;
   const d6 = String(100000 + (s % 900000));
@@ -207,6 +227,8 @@ let assetQuery   = '';
 let assetFilter  = 'all';
 let assetPage    = 1;
 let assetPerPage = 5;
+let raTab = 'Risk Associations';
+let pscPage = 1, pscPerPage = 5, pscSev = 'all';
 let coWithSanctions = true;
 
 /* ── SVG icons ────────────────────────────────────────────────────────────── */
@@ -470,26 +492,68 @@ const RISK_ASSOC = [
   { rel:'Shared Address',       entity:'Nordic Tide Ltd',           type:'Company',    evidence:'Registered office match' },
   { rel:'Vessel Manager',       entity:'OCEAN VIGOUR',              type:'Vessel',     evidence:'Equasis ISM manager record' },
 ];
+const PSC_DEFECTS = [
+  { vessel:'OCEAN VIGOUR', imo:'9412785', code:'01101', cat:'Certificates & Documentation', desc:'Cargo Ship Safety Equipment Certificate expired',            sev:'High',   action:'Vessel Detained' },
+  { vessel:'NORDIC STAR', imo:'9387104', code:'15105', cat:'ISM Code Compliance',          desc:'Safety Management System (SMS) non-conformity',              sev:'High',   action:'Vessel Detained' },
+  { vessel:'OCEAN VIGOUR', imo:'9412785', code:'07113', cat:'Fire Safety',                  desc:'Fire dampers seized and inoperable in galley',               sev:'Medium', action:'Rectify before departure' },
+  { vessel:'PACIFIC DAWN', imo:'9521336', code:'04103', cat:'Lifesaving Appliances',        desc:'Lifeboat engine failed to start during drill',               sev:'High',   action:'Rectify before departure' },
+  { vessel:'NORDIC STAR', imo:'9387104', code:'14104', cat:'MLC, 2006 (Crew Welfare)',     desc:'Seafarer Employment Agreements (SEA) missing for 3 crew',    sev:'Medium', action:'Rectify within 14 days' },
+  { vessel:'PACIFIC DAWN', imo:'9521336', code:'11101', cat:'MARPOL Annex I',               desc:'Oil Record Book not updated or missing entries',             sev:'High',   action:'Vessel Detained' },
+  { vessel:'ATLANTIC CREST', imo:'9298451', code:'11124', cat:'MARPOL Annex VI',              desc:'Fuel oil sulphur content exceeds statutory limits',          sev:'High',   action:'Vessel Detained' },
+  { vessel:'OCEAN VIGOUR', imo:'9412785', code:'03102', cat:'Structural Condition',         desc:'Heavy corrosion and pitting on main deck plating',           sev:'Medium', action:'Rectify at next port' },
+];
+function PscTable() {
+  const list = pscSev === 'all' ? PSC_DEFECTS : PSC_DEFECTS.filter(r => r.sev === pscSev);
+  const total = list.length, totalPages = Math.max(1, Math.ceil(total / pscPerPage));
+  if (pscPage > totalPages) pscPage = totalPages;
+  const rows = list.slice((pscPage - 1) * pscPerPage, pscPage * pscPerPage);
+  return `
+    <div class="overflow-x-auto scroll-thin">
+      <table class="at-tbl">
+        <thead><tr><th>Vessel</th><th>IMO</th><th>Defect Code</th><th>Category / Area</th><th>Specific Breach Description</th><th>Severity</th><th>Action Taken / Status</th></tr></thead>
+        <tbody>
+          ${rows.map(r => `
+          <tr>
+            <td><a href="VesselDetails.html" class="at-link">${r.vessel}</a></td>
+            <td style="font-variant-numeric:tabular-nums">${r.imo}</td>
+            <td style="font-variant-numeric:tabular-nums">${r.code}</td>
+            <td style="font-weight:400;color:#334155">${r.cat}</td>
+            <td style="font-weight:400;color:#334155">${r.desc}</td>
+            <td><span class="comp-badge ${r.sev === 'High' ? 'cb-noncompliant' : 'cb-minor'}">${r.sev}</span></td>
+            <td style="font-weight:400;color:#475569">${r.action}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div id="psc-pg">${dsPagination({ page: pscPage, totalPages, totalItems: total, perPage: pscPerPage, perPageOptions: [5, 10, 20], label: 'defects' })}</div>`;
+}
 function CardRiskAssociations() {
   return `
   <div class="card flex flex-col">
-    <div style="padding:10px 14px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center">
-      <span style="font-size:14px;font-weight:700;color:#0f172a">Risk Associations</span>
+    <div style="padding:10px 14px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      ${co.type === 'Shipping Company' ? `<div class="ra-tabs">${['Risk Associations','PSC Inspections'].map(t => `<button class="ra-tab" aria-selected="${t === raTab}" data-ra-tab="${t}">${t}</button>`).join('')}</div>` : `<span style="font-size:14px;font-weight:700;color:#0f172a">Risk Associations</span>`}
+      ${raTab === 'PSC Inspections' && co.type === 'Shipping Company' ? `<div style="position:relative;margin-left:auto">
+        <select id="psc-sev" aria-label="Filter by severity" style="appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 10px;border:1px solid #e2e8f0;border-radius:8px;font-size:12px;color:#334155;background:#fff;cursor:pointer;font-family:inherit;outline:none;font-weight:600">
+          ${[['all','All Severities'],['High','High'],['Medium','Medium']].map(([v,l]) => `<option value="${v}" ${pscSev===v?'selected':''}>${l}</option>`).join('')}
+        </select>
+        <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);pointer-events:none;color:#64748b;display:flex">${IC.chevDown}</span>
+      </div>` : ''}
     </div>
+    ${raTab === 'PSC Inspections' && co.type === 'Shipping Company' ? PscTable() : `
     <div class="overflow-x-auto scroll-thin">
       <table class="at-tbl">
         <thead><tr><th>Relationship</th><th>Connected Entity</th><th>Entity Type</th><th>Evidence</th></tr></thead>
         <tbody>
           ${RISK_ASSOC.map(r => `
           <tr>
-            <td style="font-weight:600;color:#0f172a">${r.rel}</td>
-            <td>${r.type === 'Individual' ? `<span style="font-weight:700;color:#0f172a">${r.entity}</span>` : `<a href="#" class="at-link" onclick="event.preventDefault()">${r.entity}</a>`}</td>
+            <td>${r.rel}</td>
+            <td>${r.type === 'Individual' ? `<span>${r.entity}</span>` : `<a href="#" class="at-link" onclick="event.preventDefault()">${r.entity}</a>`}</td>
             <td style="font-weight:400;color:#334155">${r.type}</td>
             <td style="font-weight:400;color:#475569">${r.evidence}</td>
           </tr>`).join('')}
         </tbody>
       </table>
-    </div>
+    </div>`}
   </div>`;
 }
 
@@ -546,7 +610,7 @@ function CardAssets() {
             <td>${(()=>{
               const pageMap = {Marine:'VesselDetails.html', Property:'PropertyDetails.html', Aviation:'AircraftDetails.html', Offshore:'AssetOffshoreDetails.html'};
               const href = pageMap[a.type];
-              if (!href) return `<span style="font-weight:700;color:#0f172a">${a.name}</span>`;
+              if (!href) return `<span>${a.name}</span>`;
               const key = {Marine:'selectedVessel', Property:'selectedProperty', Aviation:'selectedAircraft', Offshore:'selectedOffshore'}[a.type];
               const payload = JSON.stringify({name:a.name,type:a.type,risk:a.risk,compliance:a.compliance,value:a.value,company:co.name}).replace(/'/g,"\\'");
               return `<a href="${href}" class="at-link" onclick="sessionStorage.setItem('${key}','${payload}');return true;">${a.name}</a>`;
@@ -554,21 +618,21 @@ function CardAssets() {
             <td>${typeDisplay(a.type)}</td>
             <td style="font-variant-numeric:tabular-nums;${a.imo === 'N/A' ? 'color:#64748b' : 'color:#334155'}">${a.imo}</td>
             <td style="font-variant-numeric:tabular-nums;${a.mmsi === 'N/A' ? 'color:#64748b' : 'color:#334155'}">${a.mmsi}</td>
-            <td style="font-weight:700;color:${riskColor(a.risk)}">${a.risk}</td>
+            <td style="font-weight:600;color:${riskColor(a.risk)}">${a.risk}</td>
             <td><span class="comp-badge ${complianceCls(a.compliance)}">${a.compliance}</span></td>
-            <td style="font-weight:600">${a.value}</td>
+            <td>${a.value}</td>
           </tr>`).join('')}
         </tbody>
       </table>
     </div>
-    ${dsPagination({
+    <div id="asset-pg">${dsPagination({
       page: assetPage,
       totalPages,
       totalItems: total,
       perPage: assetPerPage,
       perPageOptions: [5, 10, 20],
       label: 'assets',
-    })}
+    })}</div>
   </div>`;
 }
 
@@ -597,7 +661,12 @@ function wireInteractions() {
   if (filterSel) filterSel.onchange = () => { assetFilter = filterSel.value; assetPage = 1; rc(); };
   document.querySelectorAll('[data-co-sanctions]').forEach(b => b.onclick = () => { coWithSanctions = !coWithSanctions; rc(); });
   /* Pagination (DS-compliant) */
-  dsWirePagination(document.querySelector('.ds-pagination-wrap'), {
+  const sevSel = document.getElementById('psc-sev');
+  if (sevSel) sevSel.onchange = () => { pscSev = sevSel.value; pscPage = 1; rc(); };
+  document.querySelectorAll('[data-ra-tab]').forEach(b => b.onclick = () => { raTab = b.dataset.raTab; rc(); });
+  const pscPg = document.querySelector('#psc-pg .ds-pagination-wrap') || document.querySelector('#psc-pg > *');
+  if (pscPg) dsWirePagination(pscPg, { onPage: (p) => { pscPage = p; rc(); }, onPerPage: (n) => { pscPerPage = n; pscPage = 1; rc(); } });
+  dsWirePagination(document.querySelector('#asset-pg .ds-pagination-wrap') || document.querySelector('#asset-pg > *'), {
     onPage:    (p) => { assetPage = p; rc(); },
     onPerPage: (n) => { assetPerPage = n; assetPage = 1; rc(); },
   });

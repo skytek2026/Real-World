@@ -41,9 +41,9 @@
   .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#2d7ffb); }
   /* Table */
   .co-tbl{width:100%;border-collapse:collapse;min-width:1100px}
-  .co-tbl th{padding:9px 12px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap;user-select:none}
+  .co-tbl th{padding:9px 12px;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap;user-select:none}
   .co-tbl th.sortable{cursor:pointer}.co-tbl th.sortable:hover{color:#334155}.co-tbl th.sorted{color:var(--brand-600,#2563eb)}
-  .co-tbl td{padding:10px 12px;font-size:13px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+  .co-tbl td{padding:10px 12px;font-size:12px;font-weight:400;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
   .co-tbl tr:last-child td{border-bottom:0}
   .co-tbl tbody tr:hover td{background:#f8fafc}
   .co-tbl th:first-child,.co-tbl td:first-child{position:sticky;left:0;z-index:2;background:#fff}
@@ -53,7 +53,7 @@
   .co-tbl th:last-child,.co-tbl td:last-child{position:sticky;right:0;z-index:2;background:#fff;box-shadow:-1px 0 0 #e2e8f0,-6px 0 8px -6px rgba(15,23,42,.12)}
   .co-tbl th:last-child{z-index:3;background:var(--slate-50,#F9FAFB)}
   .co-tbl tbody tr:hover td:last-child{background:#f8fafc}
-  .co-link{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer;text-decoration:none}.co-link:hover{text-decoration:underline;color:var(--brand-700,#1d4ed8)}
+  .co-link{color:var(--brand-600,#2563eb);font-weight:500;cursor:pointer;text-decoration:none}.co-link:hover{text-decoration:underline;color:var(--brand-700,#1d4ed8)}
   /* Badges */
   .tbadge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
   .tb-shipping   {background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8)}
@@ -118,7 +118,7 @@
   .fbtn{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 11px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;white-space:nowrap;transition:background .1s,border-color .1s;font-family:inherit}
   .fbtn:hover{background:#f8fafc;border-color:#cbd5e1}.fbtn.factive{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:var(--brand-600,#2563eb)}
   .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:180px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
-  .fdrop-item{padding:8px 12px;font-size:13px;color:#334155;cursor:pointer;display:flex;align-items:center;gap:8px}.fdrop-item:hover{background:#f8fafc}.fdrop-item.fsel{color:var(--brand-600,#2563eb);font-weight:600;background:#eff6ff}
+  .fdrop-item{padding:8px 12px;font-size:12px;color:#334155;cursor:pointer;display:flex;align-items:center;gap:8px}.fdrop-item:hover{background:#f8fafc}.fdrop-item.fsel{color:var(--brand-600,#2563eb);font-weight:600;background:#eff6ff}
   /* Pagination / action */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#334155;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f1f5f9}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
@@ -316,10 +316,10 @@ function renderPage() {
                 <td><a class="co-link" href="CompanyDetails.html" onclick="sessionStorage.setItem('selectedCompany', JSON.stringify(window.__COMPANIES[${COMPANIES.indexOf(co)}]))">${co.name}</a></td>
                 <td>${typeBadge(co.type)}</td>
                 <td><span style="display:inline-flex;align-items:center;gap:8px">${countryFlag(co.country)}<span>${co.country}</span></span></td>
-                <td style="color:#64748b">${co.hq}</td>
-                <td style="color:#475569;font-variant-numeric:tabular-nums">${co.reg}</td>
+                <td>${co.hq}</td>
+                <td style="font-variant-numeric:tabular-nums">${co.reg}</td>
                 <td style="font-variant-numeric:tabular-nums">${co.fleet.toLocaleString()}</td>
-                <td style="font-variant-numeric:tabular-nums;font-weight:600">${co.fleetVal}</td>
+                <td style="font-variant-numeric:tabular-nums">${co.fleetVal}</td>
                 <td>${shown.map(s => `<span class="svc-tag">${s}</span>`).join('')}${extra > 0 ? `<span class="svc-more">+${extra}</span>` : ''}</td>
                 <td style="font-variant-numeric:tabular-nums">${co.est}</td>
                 <td style="font-variant-numeric:tabular-nums">${co.employees.toLocaleString()}</td>
