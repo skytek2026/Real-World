@@ -38,6 +38,31 @@
   .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
   .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
   .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  .pf-tab-in { animation:pcardIn .22s ease; }
+  .pf-stack { flex:1 1 auto; min-height:0; display:grid; }
+  .pf-pane { grid-area:1/1; min-width:0; min-height:0; display:flex; flex-direction:column; visibility:hidden; }
+  .pf-pane.is-on { visibility:visible; }
+  .pg-scroll { flex:1 1 0; height:0; min-height:0; overflow:auto; }
+  .pg-summary { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; text-align:center; background:var(--brand-50,#eff6ff); border:1px solid var(--brand-100,#dbeafe); border-radius:8px; padding:12px 16px; }
+  .pg-sum-l { font-size:11px; font-weight:500; color:#6b7280; margin-bottom:4px; }
+  .pg-sum-v { font-size:20px; font-weight:700; color:#111827; font-variant-numeric:tabular-nums; letter-spacing:-.02em; line-height:1; }
+  .pg-sum-div { width:1px; height:28px; background:var(--brand-100,#dbeafe); }
+  .pg-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .pg-table thead th { position:sticky; top:0; z-index:1; background:#fff; border-bottom:1px solid #e2e8f0; text-align:left; padding:0; }
+  .pg-table td { padding:9px 12px; border-bottom:1px solid #f1f5f9; color:#334155; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .pg-table tbody tr:hover td { background:#f8fafc; }
+  .pg-table tr.pg-child td:first-child { padding-left:34px; }
+  .pg-table tr.pg-child td { background:#fbfcfe; }
+  .pg-name { display:inline-flex; align-items:center; gap:6px; min-width:0; background:none; border:0; padding:0; font:inherit; color:var(--brand-600,#2d7ffb); cursor:pointer; text-decoration:none; text-align:left; }
+  .pg-name:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
+  .pg-name:focus-visible, .ds-th-sort:focus-visible { outline:0; border-radius:4px; box-shadow:0 0 0 3px rgba(46,134,192,.32); }
+  .pg-name svg { flex-shrink:0; }
+  .pg-foot-btn { color:var(--brand-600,#2d7ffb); background:none; border:0; padding:0; cursor:pointer; }
+  .pg-foot-btn[disabled] { color:#94a3b8; cursor:not-allowed; }
+  .pg-table .ds-th-sort { width:100%; display:inline-flex; align-items:center; gap:6px; padding:9px 12px; background:none; border:0; font:inherit; font-size:11px; font-weight:600; letter-spacing:.02em; color:#64748b; cursor:pointer; white-space:nowrap; transition:color 120ms ease, background 120ms ease; }
+  .pg-table .ds-th-sort:hover { color:#475569; background:#f1f5f9; }
+  .pg-table .ds-th-sort .ds-sort-ind, .pg-table .ds-th-sort > svg { display:inline-flex; flex-shrink:0; }
+  .pg-table .ds-th--active .ds-th-sort { color:#0f172a; }
   .pop-enter { animation:pop .16s cubic-bezier(.2,.8,.2,1); }
   @keyframes pop { from{opacity:0;transform:translateY(-4px) scale(.98);} to{opacity:1;transform:translateY(0) scale(1);} }
   .dot-pulse::after { content:''; position:absolute; inset:-3px; border-radius:999px; box-shadow:0 0 0 0 rgba(239,68,68,.5); animation:pulse 1.8s infinite; }
@@ -195,6 +220,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/pagination.js"></script>
 <script src="shared/snapshots.js"></script>
 <script src="shared/marine-asset-details.js"></script>
+<script src="shared/portfolio-download.js"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -207,6 +233,60 @@ const PORTFOLIO = (() => { try { const r = sessionStorage.getItem('selectedPortf
 let analysisTab = 'PSC Analysis';
 let activityTab = 'Portfolio Activity';
 let policyView  = 'details';
+let pfTab = 'details', pfAnim = false;
+const PG_SORT = { key:'name', dir:1 };
+const PG_OPEN = new Set();
+const PG_TOTALS = { policies:11722, exposure:180.6 };
+const PG_GROUPS = [
+  { id:'mh', name:'Marine Hull', policies:2585, active:2584, exposure:54.3, children:[
+    { id:'mh-t', name:'Hull \u2013 Tankers', policies:1214, active:1214, exposure:26.1 },
+    { id:'mh-b', name:'Hull \u2013 Bulk Carriers', policies:896, active:895, exposure:17.9 },
+    { id:'mh-c', name:'Hull \u2013 Container', policies:475, active:475, exposure:10.3 } ] },
+  { id:'pr', name:'Property', policies:579, active:579, exposure:54.6, children:[
+    { id:'pr-eu', name:'Property \u2013 Europe', policies:341, active:341, exposure:31.2 },
+    { id:'pr-ap', name:'Property \u2013 APAC', policies:238, active:238, exposure:23.4 } ] },
+  { id:'tg', name:'TGroup', policies:0, active:0, exposure:0 },
+];
+function pgSorted(list) {
+  const k = PG_SORT.key, d = PG_SORT.dir;
+  return [...list].sort((a, b) => (k === 'name' ? a.name.localeCompare(b.name) : a[k] - b[k]) * d);
+}
+function pgTh(key, label, num) {
+  const on = PG_SORT.key === key;
+  return `<th scope="col" class="ds-th--sortable${on ? ' ds-th--active' : ''}" aria-sort="${on ? (PG_SORT.dir > 0 ? 'ascending' : 'descending') : 'none'}"><button type="button" class="ds-th-sort" data-pg-sort="${key}"><span>${label}</span>${window.dsSortInd(on, PG_SORT.dir > 0)}</button></th>`;
+}
+function pgRow(g, child) {
+  const pol = g.policies.toLocaleString('en-US') + (g.active !== g.policies ? ` (${g.active.toLocaleString('en-US')})` : '');
+  const exp = g.exposure ? '$' + g.exposure.toFixed(1) + 'B' : '0';
+  const kids = g.children && g.children.length, open = PG_OPEN.has(g.id);
+  const fold = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${open ? '<path d="m6 14 1.5-2.9A2 2 0 0 1 9.2 10H20a2 2 0 0 1 1.9 2.5l-1.5 6a2 2 0 0 1-1.9 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.7.9l.8 1.2a2 2 0 0 0 1.7.9H18a2 2 0 0 1 2 2v2"/>' : '<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>'}</svg>`;
+  const name = kids
+    ? `<button type="button" class="pg-name" data-pg-toggle="${g.id}" aria-expanded="${open}">${fold}<span>${g.name}</span></button>`
+    : `<a href="#" class="pg-name" onclick="return false">${g.name}</a>`;
+  return `<tr class="${child ? 'pg-child' : ''}"><td>${name}</td><td class="pg-num">${pol}</td><td class="pg-num">${exp}</td></tr>` +
+    (kids && open ? pgSorted(g.children).map(c => pgRow(c, true)).join('') : '');
+}
+function PortfolioGroupsBody() {
+  return `<div class="pf-pane${pfTab === 'groups' ? ' is-on' + (pfAnim ? ' pf-tab-in' : '') : ''}" ${pfTab === 'groups' ? '' : 'aria-hidden="true" inert'}>
+    <div class="pg-summary mx-3 mt-3">
+      <div><div class="pg-sum-l">Total Policies</div><div class="pg-sum-v">${PG_TOTALS.policies.toLocaleString('en-US')}</div></div>
+      <div class="pg-sum-div" aria-hidden="true"></div>
+      <div><div class="pg-sum-l">Total Exposure</div><div class="pg-sum-v">$${PG_TOTALS.exposure.toFixed(1)}B</div></div>
+    </div>
+    <div class="pg-scroll scroll-thin mt-2">
+      <table class="ds-table pg-table">
+        <thead><tr>${pgTh('name', 'Name')}${pgTh('policies', 'Policies')}${pgTh('exposure', 'Our Exposure')}</tr></thead>
+        <tbody>${pgSorted(PG_GROUPS).map(g => pgRow(g)).join('')}</tbody>
+      </table>
+    </div>
+    <div class="ds-card-foot ds-card-foot--between mt-auto">
+      <button type="button" class="inline-flex items-center gap-1 text-xs font-semibold tracking-micro pg-foot-btn" disabled title="You don\u2019t have permission to add groups">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>ADD GROUP</span>
+      </button>
+      <a href="#" onclick="return false" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro"><span>ALL GROUPS</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+    </div>
+  </div>`;
+}
 let policyPage  = 1;
 let mpWithSanctions = false;
 const RS_FACTORS = [
@@ -337,10 +417,11 @@ function PanelPortfolioDetails() {
     <div class="p-3 border-b border-ink-100">
       <div class="ds-tabs mobile-stretch" id="pf-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
-        <button class="ds-tab" aria-selected="true"><span class="ds-tab-label">Portfolio Details</span></button>
-        <button class="ds-tab" aria-selected="false"><span class="ds-tab-label">Portfolio Groups</span></button>
+        <button type="button" class="ds-tab" aria-selected="${pfTab==='details'}" data-pft="details"><span class="ds-tab-label">Portfolio Details</span></button>
+        <button type="button" class="ds-tab" aria-selected="${pfTab==='groups'}" data-pft="groups"><span class="ds-tab-label">Portfolio Groups</span></button>
       </div>
     </div>
+    <div class="pf-stack">${PortfolioGroupsBody()}<div class="pf-pane${pfTab === 'details' ? ' is-on' + (pfAnim ? ' pf-tab-in' : '') : ''}" ${pfTab === 'details' ? '' : 'aria-hidden="true" inert'}>
     <div class="mx-3 mt-3" style="width:fit-content;align-self:center;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:12px 16px;text-align:center;">
       <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
       <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
@@ -362,11 +443,12 @@ function PanelPortfolioDetails() {
       </div>
     </div>
     <div class="ds-card-foot ds-card-foot--between mt-auto">
-      <button class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>DOWNLOAD</span>
+      <button type="button" data-portfolio-dl data-name="${PORTFOLIO.name}" title="Download an Excel file of this portfolio’s assets" style="min-width:0;white-space:normal;text-align:left;" class="disabled:opacity-60 disabled:cursor-wait inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+        <svg style="flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>DOWNLOAD PORTFOLIO DETAILS</span>
       </button>
     </div>
+    </div></div>
   </div>`;
 }
 
@@ -1276,6 +1358,25 @@ window.render = function() {
   })();
   wireAssetDetails();
   wirePortfolioMap();
+  /* Portfolio Details / Groups tabs */
+  document.querySelectorAll('[data-pft]').forEach(btn => {
+    btn.onclick = () => {
+      if (pfTab === btn.dataset.pft) return;
+      pfTab = btn.dataset.pft;
+      btn.closest('.ds-tabs').querySelectorAll('.ds-tab').forEach(t => t.setAttribute('aria-selected', String(t === btn)));
+      positionTabPills();
+      setTimeout(() => { pfAnim = true; window.render(); pfAnim = false; }, 220);
+    };
+  });
+  document.querySelectorAll('[data-pg-sort]').forEach(b => b.onclick = () => {
+    const k = b.dataset.pgSort;
+    if (PG_SORT.key === k) PG_SORT.dir *= -1; else { PG_SORT.key = k; PG_SORT.dir = k === 'name' ? 1 : -1; }
+    window.render(); document.querySelector(`[data-pg-sort="${k}"]`)?.focus();
+  });
+  document.querySelectorAll('[data-pg-toggle]').forEach(b => b.onclick = () => {
+    const id = b.dataset.pgToggle; PG_OPEN.has(id) ? PG_OPEN.delete(id) : PG_OPEN.add(id);
+    window.render(); document.querySelector(`[data-pg-toggle="${id}"]`)?.focus();
+  });
   /* Policy view switcher */
   document.querySelectorAll('[data-pvw]').forEach(btn => {
     btn.onclick = () => {
