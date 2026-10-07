@@ -145,6 +145,11 @@
   .trp-presets { display:flex; flex-direction:column; gap:2px; padding:10px 6px; border-right:1px solid #f1f5f9; min-width:136px; background:#f8fafc; }
   .trp-preset { text-align:left; background:transparent; border:0; border-radius:6px; padding:7px 10px; font:inherit; font-size:12.5px; color:#475569; cursor:pointer; white-space:nowrap; }
   .trp-preset:hover { background:#f1f5f9; color:#0f172a; }
+  .trp-limit { display:block; font-size:11px; color:#64748b; font-weight:400; margin-top:2px; }
+  .trp-body--presets .trp-presets { border-right:0; min-width:300px; padding:8px; background:#fff; }
+  .trp-body--presets .trp-preset { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:9px 12px; font-size:13px; }
+  .trp-preset-d { font-size:12px; color:#64748b; font-weight:400; font-variant-numeric:tabular-nums; }
+  .trp-preset.is-active .trp-preset-d { color:var(--brand-600,#2d7ffb); }
   .trp-preset.is-active { background:var(--brand-50,#eff6ff); color:var(--brand-600,#2d7ffb); font-weight:600; }
   .trp-preset:focus-visible, .trp-day:focus-visible, .trp-nav:focus-visible, .trp-btn:focus-visible, .trp-switch:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#2d7ffb) 25%,transparent); }
   .trp-months { display:flex; gap:20px; padding:12px 16px; }
@@ -249,6 +254,9 @@
   .tl-step:disabled { opacity:.35; cursor:not-allowed; }
   #timeline-slider:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:4px; border-radius:4px; }
   .sts-bar { position:sticky; left:0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; padding:10px 14px; border-bottom:1px solid #e2e8f0; background:#fff; }
+  .track-legend { clear:both; flex-wrap:nowrap !important; margin-left:10px !important; display:flex; flex-wrap:wrap; gap:4px 14px; padding:6px 10px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:8px; box-shadow:0 1px 2px rgb(15 23 42/.08); font-size:12px; color:var(--text-secondary,#475569); margin-bottom:6px !important; }
+  .track-legend-i { display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
+  .track-legend-sw { width:18px; height:3px; border-radius:2px; flex-shrink:0; }
   .sts-legend { display:flex; flex-wrap:wrap; align-items:center; gap:6px 16px; margin:0; padding:0; list-style:none; font-size:12px; color:#475569; }
   .sts-legend li { display:inline-flex; align-items:center; gap:8px; }
   .sts-sw { width:18px; height:0; flex-shrink:0; }
@@ -279,11 +287,53 @@
   .ev-pop-note { margin-top:8px; font-size:11.5px; color:#b45309; }
   .ev-pop-f { display:flex; justify-content:center; margin-top:10px; padding-top:10px; border-top:1px solid #e2e8f0; }
   .hist-ev { cursor:pointer; position:relative; }
-  .hist-range { display:flex; align-items:center; justify-content:center; gap:20px; padding:8px 16px; background:var(--brand-50,#eff6ff); border:1px solid color-mix(in srgb, var(--brand-600,#2d7ffb) 18%, #e2e8f0); border-radius:8px; }
-  .hist-range-c { display:flex; flex-direction:column; align-items:center; gap:1px; }
-  .hist-range-k { font-size:12px; color:#64748b; }
-  .hist-range-v { font-size:13px; font-weight:700; color:#0f172a; font-variant-numeric:tabular-nums; }
-  .hist-range-arrow { color:var(--brand-500,#60a5fa); flex-shrink:0; }
+  .nc-mk { background:transparent; border:0; filter:drop-shadow(0 1px 1px rgba(255,255,255,.9)) drop-shadow(0 0 1px rgba(255,255,255,.9)); }
+  .nc-wrap { position:absolute; top:12px; left:50%; transform:translateX(-50%); z-index:450; display:flex; flex-direction:column; align-items:center; gap:6px; max-width:calc(100% - 120px); }
+  .nc-row { display:flex; align-items:center; gap:6px; }
+  .nc-key-btn { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:999px; box-shadow:0 1px 2px rgb(15 23 42/.08); font:inherit; font-size:12.5px; font-weight:600; color:var(--brand-600,#2d7ffb); cursor:pointer; white-space:nowrap; }
+  .nc-key-btn[hidden] { display:none; }
+  .nc-key-btn:hover, .nc-key-btn[aria-expanded="true"] { background:var(--brand-050,#eff6ff); }
+  .nc-key-btn:focus-visible, .nc-key-x:focus-visible { outline:0; box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32)); }
+  .nc-key { width:340px; max-width:100%; max-height:360px; display:flex; flex-direction:column; overflow:hidden; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:12px; box-shadow:var(--card-shadow-raised,0 20px 32px -8px rgb(15 23 42/.2)); }
+  .nc-key-b { flex:1 1 auto; min-height:0; overflow-y:auto; padding:12px 8px 12px 14px; margin:4px 6px 4px 0; scrollbar-gutter:stable; }
+  .nc-key[hidden] { display:none !important; }
+  .nc-key-h { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 10px 10px 14px; border-bottom:1px solid var(--border-subtle,#f1f5f9); background:var(--slate-50,#f8fafc); }
+  .nc-key-h b { font-size:13px; color:var(--text-primary,#0f172a); }
+  .nc-key-x { width:24px; height:24px; display:grid; place-items:center; border:0; border-radius:6px; background:transparent; color:var(--text-muted,#64748b); cursor:pointer; }
+  .nc-key-x:hover { background:var(--slate-100,#f1f5f9); color:var(--text-primary,#0f172a); }
+  .nc-key-list { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .nc-key-list li { display:grid; grid-template-columns:28px 1fr; gap:8px; align-items:start; }
+  .nc-key-i { width:28px; height:28px; border-radius:6px; background:#e6f0f5; display:grid; place-items:center; }
+  .nc-key-list b { display:block; font-size:12px; font-weight:600; color:var(--text-primary,#0f172a); }
+  .nc-key-list small { display:block; font-size:11.5px; line-height:1.4; color:var(--text-secondary,#475569); }
+  .nc-key-f { margin:10px 0 0; padding-top:8px; border-top:1px solid var(--border-subtle,#f1f5f9); font-size:11px; color:var(--text-muted,#64748b); }
+  .nc-badge { position:relative; display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 10px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:999px; box-shadow:0 1px 2px rgb(15 23 42/.08); font-size:12.5px; font-weight:600; color:var(--text-primary,#0f172a); cursor:pointer; user-select:none; white-space:nowrap; transition:background 140ms, border-color 140ms, color 140ms, opacity 140ms; }
+  .nc-badge:hover:not([data-disabled="true"]) { background:#f8fafc; border-color:var(--border-strong,#cbd5e1); }
+  .nc-badge input { position:absolute; opacity:0; width:1px; height:1px; margin:0; pointer-events:none; }
+  .nc-box { width:16px; height:16px; border-radius:4px; border:1.5px solid var(--slate-400,#94a3b8); background:#fff; display:grid; place-items:center; color:transparent; flex-shrink:0; transition:background 140ms, border-color 140ms; }
+  .nc-badge input:checked + .nc-box { background:var(--brand-600,#2d7ffb); border-color:var(--brand-600,#2d7ffb); color:#fff; }
+  .nc-badge:has(input:checked) { border-color:var(--brand-400,#8ec5fd); background:var(--brand-050,#eff6ff); color:var(--brand-700,#1f5fc7); }
+  .nc-badge input:focus-visible + .nc-box { box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32)); }
+  .nc-badge[data-disabled="true"] { cursor:not-allowed; color:var(--text-muted,#64748b); background:rgba(255,255,255,.88); }
+  .nc-badge[data-disabled="true"] .nc-box { border-color:var(--slate-300,#cbd5e1); background:var(--slate-100,#f1f5f9); }
+  .nc-hint { font-weight:500; color:var(--text-muted,#64748b); }
+  .nc-hint:empty { display:none; }
+  .hist-range { width:100%; display:flex; align-items:center; gap:12px; padding:10px 12px; background:#fff; border:1px solid var(--border-default,#e2e8f0); border-radius:8px; cursor:pointer; text-align:left; font:inherit; box-shadow:0 1px 2px rgb(15 23 42/.05); transition:border-color 140ms cubic-bezier(.16,1,.3,1), box-shadow 140ms cubic-bezier(.16,1,.3,1), background 140ms; }
+  .hist-range:hover { border-color:var(--border-strong,#cbd5e1); background:var(--slate-50,#f8fafc); }
+  .hist-range:focus-visible, .hist-range[aria-expanded="true"] { outline:none; border-color:var(--brand-400,#8ec5fd); box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32)); }
+  .hist-range-ico { width:36px; height:36px; border-radius:8px; background:var(--brand-050,#eff6ff); color:var(--brand-600,#2d7ffb); display:grid; place-items:center; flex-shrink:0; }
+  .hist-range-body { flex:1; min-width:0; display:grid; gap:3px; }
+  .hist-range-top { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .hist-range-tag { font-size:11px; font-weight:600; color:var(--brand-700,#1f5fc7); }
+  .hist-range-days { font-size:11px; color:var(--text-muted,#64748b); }
+  .hist-range-dates { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .hist-range-v { font-size:13px; font-weight:700; color:var(--text-primary,#0f172a); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .hist-range-arrow { color:var(--text-muted,#94a3b8); flex-shrink:0; }
+  .hist-range-chev { color:var(--text-muted,#64748b); flex-shrink:0; transition:transform 200ms cubic-bezier(.16,1,.3,1); }
+  .hist-range[aria-expanded="true"] .hist-range-chev { transform:rotate(180deg); }
+  .hist-cal-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; border:1px solid #e2e8f0; background:#fff; color:var(--brand-600,#2d7ffb); cursor:pointer; box-shadow:0 1px 2px rgb(15 23 42/.05); flex-shrink:0; position:relative; }
+  .hist-cal-btn:hover { background:#f8fafc; border-color:#cbd5e1; color:var(--brand-700,#1d6ae5); }
+  .hist-cal-btn:focus-visible { outline:none; box-shadow:0 0 0 3px rgb(45 127 251/.25); }
   .hist-pager { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; padding:8px 12px; border-top:1px solid #e2e8f0; }
   .hist-pager-sum { font-size:12px; color:#64748b; font-variant-numeric:tabular-nums; }
   .hist-ev:hover { background:#f8fafc; }
@@ -409,7 +459,7 @@ let state = {
   histPage: 1,
   scExpanded: new Set(),
   timelinePos: 27/28,
-  trackRange: { start:'2025-10-07', end:'2025-10-09', preset:null, detailed:false },
+  trackRange: { start:'2026-09-23', end:'2026-09-29', preset:'7d', detailed:false },
   casualtyExpanded: new Set([0]),
   topRightTabCopy: 'Risk Score',
   casualtyExpandedCopy: new Set([0]),
@@ -3595,6 +3645,23 @@ function VesselTrackingCard() {
     </div>
     <div id="map-wrapper" class="flex-1 relative" style="min-height:420px;">
       <div id="vessel-map"></div>
+      <div class="nc-wrap" id="nc-wrap">
+      <div class="nc-row">
+      <label class="nc-badge" id="nc-badge" data-disabled="true" title="Zoom in to view nautical charts">
+        <input type="checkbox" id="nc-cb" disabled aria-describedby="nc-hint">
+        <span class="nc-box" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+        <span class="nc-lbl">Nautical Charts</span><span class="nc-hint" id="nc-hint">(zoom in)</span>
+      </label>
+      <button type="button" class="nc-key-btn" id="nc-key-btn" hidden aria-expanded="false" aria-controls="nc-key" title="What do the chart symbols mean?"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg><span>Chart key</span></button>
+      </div>
+      <div class="nc-key" id="nc-key" hidden role="region" aria-label="Nautical chart key">
+        <div class="nc-key-h"><b>Chart key</b><button type="button" class="nc-key-x" id="nc-key-x" aria-label="Close chart key"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+        <div class="nc-key-b scroll-thin">
+        <ul class="nc-key-list"><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21h6l-1.2-11h-3.6z" fill="#dc2626" stroke="#111" stroke-width=".8"/><rect x="10.6" y="6" width="2.8" height="4" fill="#dc2626" stroke="#111" stroke-width=".8"/></svg></span><span><b>Port-hand buoy (red)</b><small>Keep it on your left when heading into port.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8l-4-12z" fill="#16a34a" stroke="#111" stroke-width=".8"/><path d="M12 3v6" stroke="#111" stroke-width="1"/></svg></span><span><b>Starboard-hand buoy (green)</b><small>Keep it on your right when heading into port.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8l-4-12z" fill="#facc15" stroke="#111" stroke-width=".8"/><path d="M8 21h8l-1.6-5H9.6z" fill="#111"/><path d="M12 3l-2 4h4z" fill="#111"/></svg></span><span><b>Cardinal mark (yellow & black)</b><small>Shows the safe side of a hazard — north, south, east or west of it.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#c026d3" stroke-width="1"/><path d="M12 12l5 3" stroke="#facc15" stroke-width="2.4" stroke-linecap="round"/><path d="M12 6l1.2 3.6h-2.4z" fill="#111"/></svg></span><span><b>Light</b><small>A lit navigation aid. The flare points to the light; the circle marks it on the chart.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10v11" stroke="#111" stroke-width="1.2"/><path d="M12 10l-6-3M12 10l6-3M12 10v-7" stroke="#111" stroke-width="1.2" stroke-linecap="round"/></svg></span><span><b>Wind turbine</b><small>Offshore wind farm structure. Vessels keep clear.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20 21 4" stroke="#c084fc" stroke-width="3" stroke-dasharray="1.5 1.5"/></svg></span><span><b>Submarine cable or pipeline</b><small>Anchoring and trawling are usually prohibited along the line.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18 9 6l12 4" fill="none" stroke="#111" stroke-width="1.4" stroke-dasharray="3 2"/></svg></span><span><b>Restricted area boundary</b><small>Limits of a zone with special rules, e.g. no anchoring or no entry.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#111" stroke-width="1"/><path d="M12 6v12M9 9h6M7 14c1 3 3 4 5 4s4-1 5-4" fill="none" stroke="#111" stroke-width="1.2" stroke-linecap="round"/></svg></span><span><b>Anchorage</b><small>Designated area where vessels may anchor.</small></span></li></ul>
+        <p class="nc-key-f">Symbols from OpenSeaMap. Coverage varies by area.</p>
+        </div>
+      </div>
+      </div>
       <!-- Fullscreen button — top-left -->
       <button id="map-fullscreen" class="map-btn" title="Toggle fullscreen" style="position:absolute;top:12px;left:12px;z-index:400;">
         <svg id="fs-expand-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
@@ -3612,25 +3679,6 @@ function VesselTrackingCard() {
               ${[{id:'osm',label:'Open Street Map'},{id:'imagery',label:'World Imagery'},{id:'street',label:'World Street Map'},{id:'oceans',label:'Oceans'}].map(o => `<label class="ev-row"><input type="radio" name="vessel-map-type" class="ev-cb" data-vessel-map-type="${o.id}"><span>${o.label}</span></label>`).join('')}
               <div style="height:1px;background:#e5e7eb;margin:4px 12px;"></div>
               <label class="ev-row"><input type="checkbox" class="ev-cb" data-map-overlay="grid"><span>Grid Lines</span></label>
-              <label class="ev-row"><input type="checkbox" class="ev-cb" data-map-overlay="nautical"><span>Nautical Charts</span></label>
-            </div>
-          </div>
-        </div>
-        <div style="position:relative;">
-          <button id="map-events-btn" class="map-btn" title="Events" aria-haspopup="true" aria-expanded="false">
-            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-calendar-cog"><path d="m15.2 16.9-.9-.4"/><path d="m15.2 19.1-.9.4"/><path d="M16 2v4"/><path d="m16.9 15.2-.4-.9"/><path d="m16.9 20.8-.4.9"/><path d="m19.5 14.3-.4.9"/><path d="m19.5 21.7-.4-.9"/><path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m21.7 16.5-.9.4"/><path d="m21.7 19.5-.9-.4"/><path d="M3 10h18"/><path d="M8 2v4"/><circle cx="18" cy="18" r="3"/></svg>
-            <span id="map-events-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#ef4444;border:2px solid #fff;"></span>
-          </button>
-          <div id="map-events-menu" class="hidden" role="menu" style="position:absolute;top:0;right:calc(100% + 8px);width:248px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:calc(var(--ev-max, 340px));">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
-              <span style="font-size:13px;font-weight:600;color:#111827;">Events</span>
-              <span id="map-events-count" style="font-size:11.5px;color:#6b7280;"></span>
-            </div>
-            <div class="scroll-thin" style="padding:4px 0;overflow-y:auto;min-height:0;">
-              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-ev-all checked><span>All</span></label>
-              <div style="height:1px;background:#f1f5f9;margin:2px 0;"></div>
-              ${MAP_EVENT_TYPES.map(t => `
-              <label class="ev-row"><input type="checkbox" class="ev-cb" data-ev-type="${t.id}" checked><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span><span>${t.label}</span></label>`).join('')}
             </div>
           </div>
         </div>
@@ -3645,12 +3693,12 @@ function VesselTrackingCard() {
               <span id="map-regions-count" style="font-size:11.5px;color:#6b7280;"></span>
             </div>
             <div class="scroll-thin" style="padding:4px 0;overflow-y:auto;min-height:0;">
-              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-rg-all checked><span>All</span></label>
+              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-rg-all><span>All</span></label>
               <div style="height:1px;background:#f1f5f9;margin:2px 0;"></div>
               ${MAP_REGION_GROUPS.map((g, gi) => `
               <div class="rg-group" data-rg-group="${gi}">
-                <div class="ev-row rg-head"><label style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;cursor:pointer;"><input type="checkbox" class="ev-cb" data-rg-parent="${gi}" checked><span>${g.label}</span></label><button type="button" class="rg-toggle" data-rg-toggle="${gi}" aria-expanded="false" aria-label="Show ${g.label} regions"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
-                <div class="rg-children hidden">${g.items.map(it => `<label class="ev-row rg-child"><input type="checkbox" class="ev-cb" data-rg-child="${gi}" checked><span>${it}</span></label>`).join('')}</div>
+                <div class="ev-row rg-head"><label style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;cursor:pointer;"><input type="checkbox" class="ev-cb" data-rg-parent="${gi}"><span>${g.label}</span></label><button type="button" class="rg-toggle" data-rg-toggle="${gi}" aria-expanded="false" aria-label="Show ${g.label} regions"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button></div>
+                <div class="rg-children hidden">${g.items.map(it => `<label class="ev-row rg-child"><input type="checkbox" class="ev-cb" data-rg-child="${gi}"><span>${it}</span></label>`).join('')}</div>
               </div>`).join('')}
             </div>
           </div>
@@ -3684,9 +3732,6 @@ function VesselTrackingCard() {
           </div>
           <button type="button" class="tl-step" id="timeline-next" title="Step forward 1 hour" aria-label="Move vessel forward 1 hour"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
           <span id="tl-end" style="font-size:11px;color:#9ca3af;white-space:nowrap;">${state.trackRange.end}</span>
-          <button type="button" id="tl-cal-btn" aria-haspopup="dialog" aria-label="Choose track date range" style="width:28px;height:28px;background:rgba(255,255,255,.12);border:0;border-radius:7px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#9ca3af;flex-shrink:0;" title="Pick date">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" stroke-linecap="round"/><path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"/></svg>
-          </button>
         </div>
         <div id="timeline-timestamp" style="font-size:11px;color:#9ca3af;text-align:center;margin-top:5px;">Tue, 07 Oct 2025 09:00:00 GMT</div>
       </div>
@@ -3695,12 +3740,18 @@ function VesselTrackingCard() {
 }
 
 const HIST_PER = 3;
+function histVisible() {
+  const on = window.__vesselEventFilter;
+  return EVENTS.map((e, i) => ({ e, i })).filter(x => !on || on.includes(x.e.type));
+}
 function HistListHtml() {
-  const pages = Math.max(1, Math.ceil(EVENTS.length / HIST_PER));
+  const vis = histVisible(), total = vis.length;
+  const pages = Math.max(1, Math.ceil(total / HIST_PER));
   const pg = state.histPage = Math.min(Math.max(1, state.histPage || 1), pages);
-  const from = (pg - 1) * HIST_PER, slice = EVENTS.slice(from, from + HIST_PER);
+  const from = (pg - 1) * HIST_PER, slice = vis.slice(from, from + HIST_PER);
+  if (!total) return `<div class="flex-1 min-h-0 flex flex-col items-center justify-center text-center px-6 py-10" id="hist-list"><div class="text-sm font-semibold text-ink-900 mb-1">No events to show</div><div class="text-xs text-ink-500">All event types are filtered out. Choose at least one type with the filter button.</div></div>`;
   return `<div class="flex-1 min-h-0 overflow-y-auto scroll-thin" id="hist-list">
-      ${slice.map((e, k) => { const i = from + k; return `
+      ${slice.map(({ e, i }) => { return `
         <div class="hist-ev p-3 border-b border-ink-100 ${state.histSel === i ? 'is-sel' : ''}" data-hist-idx="${i}" role="button" tabindex="0" aria-pressed="${state.histSel === i}" aria-label="Show ${e.title} on map, ${e.ts}">
           <div class="flex items-start gap-2 mb-1">
             ${(() => { const t = MAP_EVENT_TYPES.find(x => x.id === e.type) || MAP_EVENT_TYPES.find(x => x.id === 'ais'); return `<span class="ev-ic" style="background:${t.bg};color:${t.fg};" title="${t.label}" aria-label="${t.label}" role="img">${t.icon}</span>`; })()}
@@ -3714,7 +3765,7 @@ function HistListHtml() {
       `; }).join('')}
     </div>
     <div class="hist-pager" id="hist-pager">
-      <span class="hist-pager-sum">${from + 1}–${from + slice.length} of ${EVENTS.length} events</span>
+      <span class="hist-pager-sum">${from + 1}–${from + slice.length} of ${total} events</span>
       ${window.dsPagination ? window.dsPagination({ page: pg, totalPages: pages, compact: true, inWrap: false }) : ''}
     </div>`;
 }
@@ -3732,6 +3783,10 @@ function drawHistList() {
   w.innerHTML = HistListHtml(); wireHistList();
   if (state.histSel != null) markHistSel(state.histSel);
 }
+function histFmt(isoStr) { return new Date(isoStr + 'T00:00:00Z').toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric', timeZone:'UTC' }); }
+function histRangeLabel() { const p = (typeof TR_PRESETS !== 'undefined') && TR_PRESETS.find(x => x[0] === state.trackRange.preset); return p ? p[1] : 'Custom Range'; }
+function histRangeDays() { const n = Math.round((new Date(state.trackRange.end) - new Date(state.trackRange.start)) / 864e5) + 1; return n + (n === 1 ? ' day' : ' days') + (state.trackRange.detailed ? ' · Detailed track' : ''); }
+function histRangeAria() { return histFmt(state.trackRange.start) + ' to ' + histFmt(state.trackRange.end); }
 function HistoricalEventsCard() {
   return `
   <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
@@ -3747,17 +3802,38 @@ function HistoricalEventsCard() {
       </div>
     </div>
     <div class="px-4 py-3 border-b border-ink-200">
-      <div class="hist-range" role="group" aria-label="Event date range">
-        <div class="hist-range-c"><span class="hist-range-k">From:</span><span class="hist-range-v">${state.trackRange.start}</span></div>
-        <svg class="hist-range-arrow" width="28" height="20" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h23"/><path d="m18 3 7 7-7 7"/></svg>
-        <div class="hist-range-c"><span class="hist-range-k">To:</span><span class="hist-range-v">${state.trackRange.end}</span></div>
-      </div>
+      <button type="button" id="hist-cal-btn" class="hist-range" aria-haspopup="dialog" aria-label="Date range ${histRangeAria()}. Change date range">
+        <span class="hist-range-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
+        <span class="hist-range-body">
+          <span class="hist-range-top"><span class="hist-range-tag">${histRangeLabel()}</span><span class="hist-range-days">${histRangeDays()}</span></span>
+          <span class="hist-range-dates"><span class="hist-range-v">${histFmt(state.trackRange.start)}</span><svg class="hist-range-arrow" width="16" height="12" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h23"></path><path d="m18 3 7 7-7 7"></path></svg><span class="hist-range-v">${histFmt(state.trackRange.end)}</span></span>
+        </span>
+        <span class="hist-range-chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+      </button>
     </div>
-    <div class="px-4 py-3 border-b border-ink-200">
-      <div class="relative">
+    <div class="px-4 py-3 border-b border-ink-200" style="display:flex;align-items:center;gap:8px;">
+      <div class="relative" style="flex:1;min-width:0;">
         <input type="search" placeholder="Search Historical events..." class="w-full px-3 py-2 pr-8 border border-ink-200 rounded-md text-xs" />
         <svg class="w-4 h-4 text-ink-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
       </div>
+        <div style="position:relative;">
+          <button id="map-events-btn" type="button" class="hist-cal-btn" title="Filter events" aria-label="Filter events" aria-haspopup="true" aria-expanded="false">
+            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-calendar-cog" width="16" height="16" aria-hidden="true"><path d="m15.2 16.9-.9-.4"/><path d="m15.2 19.1-.9.4"/><path d="M16 2v4"/><path d="m16.9 15.2-.4-.9"/><path d="m16.9 20.8-.4.9"/><path d="m19.5 14.3-.4.9"/><path d="m19.5 21.7-.4-.9"/><path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m21.7 16.5-.9.4"/><path d="m21.7 19.5-.9-.4"/><path d="M3 10h18"/><path d="M8 2v4"/><circle cx="18" cy="18" r="3"/></svg>
+            <span id="map-events-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#ef4444;border:2px solid #fff;"></span>
+          </button>
+          <div id="map-events-menu" class="hidden" role="menu" style="position:absolute;top:calc(100% + 6px);right:0;z-index:60;width:248px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:var(--ev-max, 340px);">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
+              <span style="font-size:13px;font-weight:600;color:#111827;">Event Types</span>
+              <span id="map-events-count" style="font-size:11.5px;color:#6b7280;"></span>
+            </div>
+            <div class="scroll-thin" style="padding:4px 0;overflow-y:auto;min-height:0;">
+              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-ev-all checked><span>All</span></label>
+              <div style="height:1px;background:#f1f5f9;margin:2px 0;"></div>
+              ${MAP_EVENT_TYPES.map(t => `
+              <label class="ev-row"><input type="checkbox" class="ev-cb" data-ev-type="${t.id}" checked><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span><span>${t.label}</span></label>`).join('')}
+            </div>
+          </div>
+        </div>
     </div>
     <div id="hist-list-wrap" class="flex-1 min-h-0 flex flex-col">${HistListHtml()}</div>
     <div class="px-4 py-3 border-t border-ink-200 flex justify-center">
@@ -3794,20 +3870,19 @@ var MAP_REGION_GROUPS = [
   { label:'USA', items:['US East Coast EEZ','US Gulf EEZ'] },
   { label:'War', items:['Black Sea War Zone','Red Sea Conflict Zone'] },
 ];
-const MAP_MENUS = ['layers','events','regions','weather'];
+const MAP_MENUS = ['layers','regions','weather'];
 function closeMapMenus(except) {
   MAP_MENUS.forEach(k => { if (k === except) return; document.getElementById('map-' + k + '-menu')?.classList.add('hidden'); const b = document.getElementById('map-' + k + '-btn'); if (b) { b.classList.remove('is-on'); b.setAttribute('aria-expanded', 'false'); } });
 }
 function updateMapReset() {
   const b = document.getElementById('map-reset-btn'); if (!b) return;
-  const off = [...document.querySelectorAll('#map-events-menu [data-ev-type], #map-regions-menu [data-rg-child]')].some(c => !c.checked);
+  const off = [...document.querySelectorAll('#map-regions-menu [data-rg-child]')].some(c => c.checked);
   const wx = [...document.querySelectorAll('#map-weather-menu [data-wx]')].some(c => c.checked);
   b.disabled = !(off || wx);
 }
 function resetMapFilters() {
-  const ev = document.querySelector('#map-events-menu [data-ev-all]'), rg = document.querySelector('#map-regions-menu [data-rg-all]');
-  if (ev) { ev.checked = true; ev.dispatchEvent(new Event('change')); }
-  if (rg) { rg.checked = true; rg.dispatchEvent(new Event('change')); }
+  const rg = document.querySelector('#map-regions-menu [data-rg-all]');
+  if (rg) { rg.checked = false; rg.dispatchEvent(new Event('change')); }
   const wx = [...document.querySelectorAll('#map-weather-menu [data-wx]')];
   wx.forEach(c => c.checked = false); wx[0]?.dispatchEvent(new Event('change'));
   closeMapMenus();
@@ -3830,6 +3905,7 @@ function initMapWeather() {
   document.addEventListener('click', () => open(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
   sync();
+  window.__evInit = true;
 }
 // Region shapes (approximate, illustrative) keyed "Group|Item"
 const REGION_COLORS = { 'Country EEZ':'#0ea5e9', 'High Risk Areas':'#f97316', 'JWLA-034':'#dc2626', 'Other':'#64748b', 'Ports':'#2d7ffb', 'Real-Time Risk (Marine)':'#eab308', 'Real-Time Risk (Yacht)':'#14b8a6', 'Sanctioned Port':'#7f1d1d', 'Scrapping Yards':'#78716c', 'USA':'#4f46e5', 'War':'#991b1b' };
@@ -3887,7 +3963,7 @@ function initMapRegions() {
     all.checked = n === allKids.length; all.indeterminate = n > 0 && n < allKids.length;
     const groupsOn = parents.filter(p => p.checked || p.indeterminate).length;
     document.getElementById('map-regions-count').textContent = groupsOn + ' of ' + parents.length + ' shown';
-    document.getElementById('map-regions-dot').classList.toggle('hidden', n === allKids.length);
+    document.getElementById('map-regions-dot').classList.toggle('hidden', n === 0);
     applyRegionFilter();
   };
   all.onchange = () => { allKids.forEach(c => c.checked = all.checked); sync(); };
@@ -3899,7 +3975,7 @@ function initMapRegions() {
     t.setAttribute('aria-expanded', openNow); t.classList.toggle('is-open', openNow);
   });
   const open = v => {
-    if (v) { const mc = document.getElementById('vessel-map'); if (mc) { const room = mc.getBoundingClientRect().bottom - btn.getBoundingClientRect().top - 12; menu.style.setProperty('--ev-max', Math.max(160, room) + 'px'); } }
+    if (v) { const room = window.innerHeight - btn.getBoundingClientRect().bottom - 18; menu.style.setProperty('--ev-max', Math.max(180, Math.min(420, room)) + 'px'); }
     menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v);
   };
   btn.onclick = e => { e.stopPropagation(); closeMapMenus('regions'); open(menu.classList.contains('hidden')); };
@@ -3970,11 +4046,12 @@ function buildTrackPoints(route) {
   });
 }
 function eventPopupHtml(p, t, note) {
+  const pinSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>';
   const xSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
   return `<div class="trk-pop" role="dialog" aria-label="${p.title}">
     <div class="trk-h">
       <div class="trk-ht"><div class="trk-n"><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span>${p.title}</div><div class="trk-t">${VESSEL.name} · ${p.ts}</div></div>
-      <div class="trk-acts"><button type="button" class="trk-ib" data-ev-close title="Close" aria-label="Close">${xSvg}</button></div>
+      <div class="trk-acts"><button type="button" class="trk-ib" data-ev-pin aria-pressed="false" title="Pin popup" aria-label="Pin popup">${pinSvg}</button><button type="button" class="trk-ib" data-ev-close title="Close" aria-label="Close">${xSvg}</button></div>
     </div>
     <div class="ev-pop-b">${p.detail}${note ? `<div class="ev-pop-note">${note}</div>` : ''}</div>
     ${p.type === 'sts' ? `<div class="trk-f"><button type="button" class="trk-cta" data-sts-analysis>Create Analysis<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div>` : ''}
@@ -3989,7 +4066,7 @@ function markHistSel(i) {
 function selectHistEvent(i, from) {
   markHistSel(i);
   if (from === 'map') {
-    const want = Math.floor(i / HIST_PER) + 1;
+    const pos = histVisible().findIndex(x => x.i === i), want = Math.floor(Math.max(0, pos) / HIST_PER) + 1;
     if (want !== state.histPage) { state.histPage = want; drawHistList(); }
     const el = document.querySelector(`.hist-ev[data-hist-idx="${i}"]`), list = el && el.parentElement;
     if (el && list) {
@@ -4025,13 +4102,14 @@ function initMapEvents() {
     document.getElementById('map-events-dot').classList.toggle('hidden', n === cbs.length);
     window.__vesselEventFilter = cbs.filter(c => c.checked).map(c => c.dataset.evType);
     applyEventFilter();
+    if (window.__evInit) { state.histPage = 1; if (state.histSel != null && !window.__vesselEventFilter.includes(EVENTS[state.histSel]?.type)) { state.histSel = null; map && map.closePopup(); } drawHistList(); }
   };
   all.onchange = () => { cbs.forEach(c => c.checked = all.checked); sync(); };
   cbs.forEach(c => c.onchange = sync);
   const open = v => {
     if (v) { const mc = document.getElementById('vessel-map'); if (mc) { const room = mc.getBoundingClientRect().bottom - btn.getBoundingClientRect().top - 12; menu.style.setProperty('--ev-max', Math.max(160, room) + 'px'); } }
     menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v); };
-  btn.onclick = e => { e.stopPropagation(); closeMapMenus('events'); open(menu.classList.contains('hidden')); };
+  btn.onclick = e => { e.stopPropagation(); closeMapMenus(); open(menu.classList.contains('hidden')); };
   menu.onclick = e => e.stopPropagation();
   document.addEventListener('click', () => open(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
@@ -4056,11 +4134,47 @@ function makeGridLayer() {
   for (let lng = -180; lng <= 180; lng += 10) g.addLayer(L.polyline([[-85,lng],[85,lng]], st));
   return g;
 }
+/* Nautical chart symbols drawn over the current base map (sample seamarks along the vessel's route) + OpenSeaMap seamarks */
+const NC_SVG = {
+  port:  '<path d="M9 21h6l-1.2-11h-3.6z" fill="#dc2626" stroke="#111" stroke-width=".8"/><rect x="10.6" y="6" width="2.8" height="4" fill="#dc2626" stroke="#111" stroke-width=".8"/>',
+  stbd:  '<path d="M8 21h8l-4-12z" fill="#16a34a" stroke="#111" stroke-width=".8"/><path d="M12 3v6" stroke="#111" stroke-width="1"/>',
+  card:  '<path d="M8 21h8l-4-12z" fill="#facc15" stroke="#111" stroke-width=".8"/><path d="M8 21h8l-1.6-5H9.6z" fill="#111"/><path d="M12 3l-2 4h4z" fill="#111"/>',
+  light: '<circle cx="12" cy="12" r="9" fill="none" stroke="#c026d3" stroke-width="1"/><path d="M12 12l5 3" stroke="#facc15" stroke-width="2.4" stroke-linecap="round"/><path d="M12 6l1.2 3.6h-2.4z" fill="#111"/>',
+  wind:  '<path d="M12 10v11" stroke="#111" stroke-width="1.2"/><path d="M12 10l-6-3M12 10l6-3M12 10v-7" stroke="#111" stroke-width="1.2" stroke-linecap="round"/>',
+  anch:  '<circle cx="12" cy="12" r="9" fill="rgba(255,255,255,.7)" stroke="#111" stroke-width="1"/><path d="M12 6v12M9 9h6M7 14c1 3 3 4 5 4s4-1 5-4" fill="none" stroke="#111" stroke-width="1.2" stroke-linecap="round"/>',
+};
+const NC_NAME = { port:'Port-hand buoy', stbd:'Starboard-hand buoy', card:'Cardinal mark', light:'Light', wind:'Wind turbine', anch:'Anchorage' };
+const NC_MARKS = [
+  // Solent / Southampton Water channel
+  ['port',50.785,-1.318,'Calshot Spit'],['port',50.812,-1.345,'Fawley No.2'],['port',50.842,-1.372,'Hythe Knock'],['port',50.758,-1.282,'Thorn Knoll'],
+  ['stbd',50.776,-1.300,'Bourne Gap'],['stbd',50.802,-1.334,'Fawley No.1'],['stbd',50.832,-1.362,'Weston Shelf'],['stbd',50.748,-1.268,'West Bramble'],
+  ['card',50.742,-1.212,'Prince Consort (N cardinal)'],['card',50.711,-1.098,'Saddle (E cardinal)'],['card',50.668,-1.548,'Bridge (W cardinal)'],
+  ['light',50.662,-1.591,'The Needles · Oc(2) WRG 20s'],['light',50.576,-1.297,"St Catherine's Point · Fl 5s"],['light',50.708,-1.075,'Nab Tower · Fl 10s'],
+  ['anch',50.735,-1.115,'St Helens Roads anchorage'],['anch',50.760,-1.150,'Spithead anchorage'],
+  // English Channel
+  ['card',50.540,-1.900,'Shingles (S cardinal)'],['light',50.512,-2.457,'Portland Bill · Fl(4) 20s'],['card',50.320,-2.450,'Portland Race (S cardinal)'],
+  // Strait of Gibraltar
+  ['light',35.791,-5.924,'Cabo Espartel · Fl(4) 20s'],['light',36.001,-5.606,'Tarifa · Fl(3) WR 10s'],['card',36.10,-5.34,'Europa Point (S cardinal)'],
+];
+const NC_WIND = (() => { const out = []; for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) out.push([50.655 + r * 0.022 - c * 0.004, -0.36 + c * 0.04 + r * 0.01]); return out; })();
+const NC_CABLES = [[[50.73,-1.08],[50.66,-0.98],[50.58,-0.86],[50.48,-0.70]], [[50.70,-1.55],[50.60,-1.70],[50.48,-1.90]]];
+const NC_RESTRICT = [[50.64,-1.04],[50.66,-0.86],[50.58,-0.80],[50.55,-0.98]];
+function makeSeamarkLayer() {
+  const g = L.layerGroup();
+  L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', { maxZoom:18, opacity:1, attribution:'' }).addTo(g);
+  const icon = (k, s = 22) => L.divIcon({ className:'nc-mk', html:`<svg width="${s}" height="${s}" viewBox="0 0 24 24" aria-hidden="true">${NC_SVG[k]}</svg>`, iconSize:[s, s], iconAnchor:[s / 2, k === 'light' || k === 'anch' ? s / 2 : s - 2] });
+  const tip = (k, n) => `<b>${NC_NAME[k]}</b>${n ? '<br><span style="color:#64748b">' + n + '</span>' : ''}`;
+  NC_CABLES.forEach(line => L.polyline(line, { color:'#c084fc', weight:4, opacity:.9, dashArray:'2 4', lineCap:'round', interactive:true }).bindTooltip('<b>Submarine cable</b><br><span style="color:#64748b">No anchoring or trawling</span>', { sticky:true }).addTo(g));
+  L.polygon(NC_RESTRICT, { color:'#111827', weight:1.4, dashArray:'6 4', fill:true, fillOpacity:0, interactive:true }).bindTooltip('<b>Restricted area</b><br><span style="color:#64748b">Military practice area — no entry when active</span>', { sticky:true }).addTo(g);
+  NC_WIND.forEach(([la, ln]) => L.marker([la, ln], { icon:icon('wind', 18), keyboard:false }).bindTooltip(tip('wind', 'Rampion offshore wind farm'), { direction:'top', offset:[0, -14] }).addTo(g));
+  NC_MARKS.forEach(([k, la, ln, n]) => L.marker([la, ln], { icon:icon(k), keyboard:false }).bindTooltip(tip(k, n), { direction:'top', offset:[0, k === 'light' || k === 'anch' ? -10 : -20] }).addTo(g));
+  return g;
+}
 function setMapOverlay(kind, on) {
   if (!map) return;
   if (_mapOverlays[kind]) { map.removeLayer(_mapOverlays[kind]); delete _mapOverlays[kind]; }
   if (!on) return;
-  _mapOverlays[kind] = kind === 'grid' ? makeGridLayer() : L.tileLayer('https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', { maxZoom:18, opacity:1, attribution:'' });
+  _mapOverlays[kind] = kind === 'grid' ? makeGridLayer() : makeSeamarkLayer();
   _mapOverlays[kind].addTo(map);
 }
 
@@ -4098,6 +4212,28 @@ function initMap() {
   });
 
   setMapType(currentMapType);
+  (function initNauticalBadge() {
+    const NC_MIN_ZOOM = 8, badge = document.getElementById('nc-badge'), cb = document.getElementById('nc-cb'), hint = document.getElementById('nc-hint');
+    if (!badge || !cb) return;
+    const sync = () => {
+      const ok = map.getZoom() >= NC_MIN_ZOOM;
+      cb.disabled = !ok; badge.dataset.disabled = String(!ok);
+      if (!ok && cb.checked) { cb.checked = false; setMapOverlay('nautical', false); }
+      hint.textContent = ok ? '' : '(zoom in)';
+      keyBtn.hidden = !cb.checked; if (!cb.checked) setKey(false);
+      badge.title = ok ? (cb.checked ? 'Hide nautical charts' : 'Show nautical charts') : 'Zoom in to view nautical charts';
+    };
+    const keyBtn = document.getElementById('nc-key-btn'), key = document.getElementById('nc-key');
+    const setKey = v => { key.hidden = !v; keyBtn.setAttribute('aria-expanded', v); };
+    keyBtn.onclick = () => setKey(key.hidden);
+    document.getElementById('nc-key-x').onclick = () => { setKey(false); keyBtn.focus(); };
+    let keySeen = false;
+    cb.onchange = () => { setMapOverlay('nautical', cb.checked); if (cb.checked && !keySeen) { keySeen = true; setKey(true); } sync(); };
+    L.DomEvent.disableClickPropagation(document.getElementById('nc-wrap'));
+    L.DomEvent.disableScrollPropagation(document.getElementById('nc-wrap'));
+    map.on('zoomend', sync);
+    sync();
+  })();
   L.control.scale({ position:'bottomleft', metric:true, imperial:false, maxWidth:120 }).addTo(map);
   const Coords = L.Control.extend({ options:{ position:'bottomright' }, onAdd() {
     const el = L.DomUtil.create('div', 'map-coords');
@@ -4141,7 +4277,31 @@ function initMap() {
     [50.55, -1.20],
     [50.88, -1.40], // Southampton
   ];
-  L.polyline(route, { color:'#2d7ffb', weight:2.5, opacity:0.7, dashArray:'6 4' }).addTo(map);
+  // Speed-coloured track: green = normal/optimal, red = low speed (straits, port approaches)
+  const TRACK_GREEN = '#16a34a', TRACK_RED = '#dc2626';
+  const near = (p, lat, lng) => Math.abs(p[0] - lat) < 0.01 && Math.abs(p[1] - lng) < 0.01;
+  const idx = (lat, lng) => route.findIndex(p => near(p, lat, lng));
+  const lowRanges = [[idx(36.50, 18.00), idx(37.40, 11.60)], [idx(36.30, -1.50), idx(36.40, -8.00)], [idx(49.70, -3.00), route.length - 1]].filter(([a, b]) => a > -1 && b > a);
+  const isLow = i => lowRanges.some(([a, b]) => i >= a && i < b);
+  window._trackSegments = [];
+  let start = 0;
+  for (let i = 1; i <= route.length - 1; i++) {
+    const last = i === route.length - 1;
+    if (last || isLow(i) !== isLow(start)) {
+      const end = last ? i : i;
+      const seg = L.polyline(route.slice(start, end + 1), { color: isLow(start) ? TRACK_RED : TRACK_GREEN, weight:3, opacity:0.9, lineJoin:'round', lineCap:'round' }).addTo(map);
+      window._trackSegments.push(seg);
+      start = i;
+    }
+  }
+  const TrackLegend = L.Control.extend({ options:{ position:'bottomleft' }, onAdd() {
+    const el = L.DomUtil.create('div', 'track-legend');
+    el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Track legend');
+    el.innerHTML = `<span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_GREEN}"></span>Normal/Optimal Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_RED}"></span>Low Speed</span>`;
+    L.DomEvent.disableClickPropagation(el);
+    return el;
+  } });
+  new TrackLegend().addTo(map);
 
   // Vessel marker — stored globally so wireTimeline can move it
   const vesselIcon = L.divIcon({
@@ -4172,7 +4332,23 @@ function initMap() {
   // Event markers
   map.on('popupopen', ev => {
     const el = ev.popup.getElement(), x = el && el.querySelector('[data-ev-close]');
-    if (x) { x.onclick = () => map.closePopup(ev.popup); L.DomEvent.disableClickPropagation(el); }
+    if (!x) return;
+    const pop = ev.popup, pin = el.querySelector('[data-ev-pin]');
+    x.onclick = () => { pop.options.autoClose = true; pop.options.closeOnClick = true; map.closePopup(pop); };
+    if (pin) {
+      const pinned = pop.options.autoClose === false;
+      pin.setAttribute('aria-pressed', pinned); pin.title = pinned ? 'Unpin popup' : 'Pin popup'; pin.setAttribute('aria-label', pin.title);
+      pin.onclick = () => {
+        const on = pin.getAttribute('aria-pressed') !== 'true';
+        pin.setAttribute('aria-pressed', on); pin.title = on ? 'Unpin popup' : 'Pin popup'; pin.setAttribute('aria-label', pin.title);
+        pop.options.autoClose = !on; pop.options.closeOnClick = !on;
+        const fn = pop.close || pop._close;
+        map.off('preclick', fn, pop);
+        if (!on) map.on('preclick', fn, pop);
+        if (on && map._popup === pop) map._popup = null;
+      };
+    }
+    L.DomEvent.disableClickPropagation(el);
   });
   window._eventMarkers = EVENTS.map((p, i) => {
     const t = MAP_EVENT_TYPES.find(x => x.id === p.type);
@@ -4224,7 +4400,7 @@ function wireMapControls() {
   initMapRegions();
   initMapWeather();
   const rb = document.getElementById('map-reset-btn');
-  if (rb) { rb.onclick = e => { e.stopPropagation(); resetMapFilters(); }; document.querySelectorAll('#map-events-menu input, #map-regions-menu input, #map-weather-menu input').forEach(i => i.addEventListener('change', updateMapReset)); updateMapReset(); }
+  if (rb) { rb.onclick = e => { e.stopPropagation(); resetMapFilters(); }; document.querySelectorAll('#map-regions-menu input, #map-weather-menu input').forEach(i => i.addEventListener('change', updateMapReset)); updateMapReset(); }
 }
 
 /* ----------- TRACK DATE RANGE PICKER ----------- */
@@ -4235,19 +4411,18 @@ const addDays = (s, n) => { const d = fromIso(s); d.setUTCDate(d.getUTCDate() + 
 const addMonths = (s, n) => { const d = fromIso(s); d.setUTCMonth(d.getUTCMonth() + n); return iso(d); };
 const TR_PRESETS = [
   ['today', 'Today', () => [TODAY_ISO, TODAY_ISO]],
-  ['7d', 'Last 7 Days', () => [addDays(TODAY_ISO, -7), TODAY_ISO]],
-  ['14d', 'Last 14 Days', () => [addDays(TODAY_ISO, -14), TODAY_ISO]],
-  ['30d', 'Last 30 Days', () => [addDays(TODAY_ISO, -30), TODAY_ISO]],
-  ['6m', 'Last 6 Months', () => [addMonths(TODAY_ISO, -6), TODAY_ISO]],
-  ['12m', 'Last 12 Months', () => [addMonths(TODAY_ISO, -12), TODAY_ISO]],
+  ['7d', 'Last 7 Days', () => [addDays(TODAY_ISO, -6), TODAY_ISO]],
+  ['14d', 'Last 14 Days', () => [addDays(TODAY_ISO, -13), TODAY_ISO]],
+  ['30d', 'Last 30 Days', () => [addDays(TODAY_ISO, -29), TODAY_ISO]],
   ['custom', 'Custom Range', null],
 ];
+const TR_MIN_ISO = addDays(TODAY_ISO, -29);
 let _trp = null;
 function openTrackCalendar(anchor) {
   closeTrackCalendar();
   const r = state.trackRange;
   const s = fromIso(r.start);
-  _trp = { start:r.start, end:r.end, preset:r.preset || 'custom', detailed:!!r.detailed, pending:false, hover:null,
+  _trp = { start:r.start, end:r.end, preset:r.preset || '7d', detailed:!!r.detailed, pending:false, hover:null,
            view: iso(new Date(Date.UTC(s.getUTCFullYear(), s.getUTCMonth(), 1))), anchor };
   const el = document.createElement('div');
   el.id = 'trp'; el.className = 'trp'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Track date range');
@@ -4258,11 +4433,13 @@ function openTrackCalendar(anchor) {
   document.addEventListener('keydown', _trpKey);
   window.addEventListener('resize', placeTrackCalendar);
   drawTrackCalendar();
+  anchor.setAttribute('aria-expanded', 'true');
   el.querySelector('.trp-preset.is-active, .trp-preset')?.focus();
 }
-function _trpKey(e) { if (e.key === 'Escape') { closeTrackCalendar(); document.getElementById('tl-cal-btn')?.focus(); } }
+function _trpKey(e) { if (e.key === 'Escape') { closeTrackCalendar(); document.getElementById('hist-cal-btn')?.focus(); } }
 function closeTrackCalendar() {
   document.getElementById('trp')?.remove();
+  document.getElementById('hist-cal-btn')?.setAttribute('aria-expanded', 'false');
   document.removeEventListener('keydown', _trpKey);
   window.removeEventListener('resize', placeTrackCalendar);
   _trp = null;
@@ -4270,8 +4447,14 @@ function closeTrackCalendar() {
 function placeTrackCalendar() {
   const el = document.getElementById('trp'); if (!el || !_trp) return;
   const b = _trp.anchor.getBoundingClientRect(), w = el.offsetWidth, hgt = el.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
-  let left = Math.min(Math.max(8, b.right - w), vw - w - 8), top = b.top - hgt - 8;
-  if (top < 8) top = Math.min(b.bottom + 8, vh - hgt - 8);
+  let left, top;
+  if (_trp.anchor.id === 'hist-cal-btn') {
+    left = Math.min(Math.max(8, b.left), vw - w - 8); top = b.bottom + 6;
+    if (top + hgt > vh - 8) top = Math.max(8, b.top - hgt - 6);
+  } else {
+    left = Math.min(Math.max(8, b.right - w), vw - w - 8); top = b.top - hgt - 8;
+    if (top < 8) top = Math.min(b.bottom + 8, vh - hgt - 8);
+  }
   el.style.left = Math.max(8, left) + 'px'; el.style.top = Math.max(8, top) + 'px';
 }
 function trpMonth(firstIso, showPrev, showNext) {
@@ -4283,12 +4466,12 @@ function trpMonth(firstIso, showPrev, showNext) {
   let cells = '';
   for (let i = 0; i < lead; i++) cells += '<span></span>';
   for (let d = 1; d <= days; d++) {
-    const ds = iso(new Date(Date.UTC(y, m, d))), future = ds > TODAY_ISO;
+    const ds = iso(new Date(Date.UTC(y, m, d))), future = ds > TODAY_ISO || ds < TR_MIN_ISO;
     const cls = [ds === lo && 'is-start', ds === hi && 'is-end', ds > lo && ds < hi && 'is-in', ds === TODAY_ISO && 'is-today', lo === hi && ds === lo && 'is-single'].filter(Boolean).join(' ');
     cells += `<button type="button" class="trp-day ${cls}" data-day="${ds}" ${future ? 'disabled' : ''} aria-pressed="${ds === lo || ds === hi}" aria-label="${ds}">${d}</button>`;
   }
   return `<div class="trp-month">
-    <div class="trp-mhead">${nav(-1, showPrev)}<span class="trp-mtitle">${title}</span>${showPrev ? `<span class="trp-mnext">${nav(1, firstIso.slice(0,7) < TODAY_ISO.slice(0,7))}</span>` : nav(1, showNext)}</div>
+    <div class="trp-mhead">${nav(-1, showPrev)}<span class="trp-mtitle">${title}</span>${nav(1, showNext)}</div>
     <div class="trp-grid">${['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => `<span class="trp-dow">${d}</span>`).join('')}${cells}</div>
   </div>`;
 }
@@ -4298,11 +4481,11 @@ function drawTrackCalendar() {
   el.innerHTML = `
     <div class="trp-body">
       <div class="trp-presets" role="listbox" aria-label="Quick ranges">${TR_PRESETS.map(([k, l]) => `<button type="button" class="trp-preset ${t.preset === k ? 'is-active' : ''}" data-preset="${k}" role="option" aria-selected="${t.preset === k}">${l}</button>`).join('')}</div>
-      <div class="trp-months">${trpMonth(t.view, true, false)}${trpMonth(second, false, second.slice(0,7) < TODAY_ISO.slice(0,7))}</div>
+      <div class="trp-months">${trpMonth(TR_MIN_ISO.slice(0, 8) + '01', false, false)}${TR_MIN_ISO.slice(0, 7) !== TODAY_ISO.slice(0, 7) ? trpMonth(TODAY_ISO.slice(0, 8) + '01', false, false) : ''}</div>
     </div>
     <div class="trp-foot">
       <label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${t.detailed}" data-trp-detailed></button><span class="trp-switch-v">${t.detailed ? 'On' : 'Off'}</span></label>
-      <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${t.start} – ${t.end}`}</div>
+      <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${histFmt(t.start)} – ${histFmt(t.end)}`}<span class="trp-limit">Limited to the last 30 days</span></div>
       <div class="trp-acts"><button type="button" class="trp-btn trp-btn--sec" data-trp-cancel>Cancel</button><button type="button" class="trp-btn trp-btn--pri" data-trp-apply ${t.pending ? 'disabled' : ''}>Apply</button></div>
     </div>`;
   el.querySelectorAll('[data-preset]').forEach(b => b.onclick = () => {
@@ -4338,8 +4521,8 @@ function wireTimeline() {
 
   const startMs = new Date(state.trackRange.start + 'T00:00:00Z').getTime();
   const endMs   = new Date(state.trackRange.end + 'T23:59:59Z').getTime();
-  const calBtn = document.getElementById('tl-cal-btn');
-  if (calBtn) calBtn.onclick = e => { e.stopPropagation(); openTrackCalendar(calBtn); };
+  const histCal = document.getElementById('hist-cal-btn');
+  if (histCal) histCal.onclick = e => { e.stopPropagation(); if (document.getElementById('trp')) { closeTrackCalendar(); return; } openTrackCalendar(histCal); };
 
   function interpolateRoute(t) {
     const route = window._vesselRoute;

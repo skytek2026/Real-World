@@ -105,8 +105,32 @@
   .rs-tip-tbl th:first-child{text-align:left;}
   .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
-.ra-tabs{display:inline-flex;gap:4px;padding:4px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px}.ra-tab{font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:background .15s,color .15s}.ra-tab:hover{color:#0f172a}.ra-tab[aria-selected="true"]{background:var(--brand-600,#2563eb);color:#fff;box-shadow:0 1px 2px rgba(15,23,42,.12)}.sev{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#0f172a;white-space:nowrap}.sev-dot{width:10px;height:10px;border-radius:50%;background:#e11d48;flex-shrink:0}.sev-dia{width:9px;height:9px;background:#f97316;transform:rotate(45deg);flex-shrink:0}
+.ds-th--sortable{padding:0 !important}.ds-th-sort{width:100%;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:9px 12px;background:transparent;border:0;cursor:pointer;text-align:left;white-space:nowrap;transition:color .12s ease,background .12s ease}.ds-th-sort:hover{color:var(--text-secondary,#4B5563);background:var(--slate-100,#F3F4F6)}.ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}.ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#0f172a)}.ds-th--active .ds-th-sort svg{color:var(--brand-600,#2d7ffb) !important}@media (prefers-reduced-motion:reduce){.ds-th-sort{transition:none}}
+.ra-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:var(--slate-100,#f1f5f9);border:1px solid var(--border-subtle,#e2e8f0);border-radius:999px}.ra-tab{position:relative;font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:999px;color:var(--text-secondary,#475569);cursor:pointer;transition:color var(--motion-fast,140ms)}.ra-tab:hover{color:var(--text-primary,#0f172a)}.ra-tab[aria-selected="true"],.ra-tab[aria-selected="true"]:hover{color:var(--white,#fff)}.ra-tab:focus-visible{outline:2px solid var(--brand-400,#8ec5fd);outline-offset:2px}.ra-tab-l{position:relative;z-index:1}.ra-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);width:0;background:var(--brand-600,#2d7ffb);border-radius:999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform var(--motion-base,200ms) var(--ease-out,cubic-bezier(.16,1,.3,1)),width var(--motion-base,200ms) var(--ease-out,cubic-bezier(.16,1,.3,1))}.ra-pill.no-anim{transition:none}@media (prefers-reduced-motion:reduce){.ra-pill,.cd-sort-th,.cd-sort-th svg{transition:none}}
 </style>
+<style>
+  .cd-export{padding:5px 10px;font-size:12px}
+  @media print{
+    @page{size:A4 landscape;margin:0}
+    html,body{height:auto !important;overflow:visible !important;background:#fff !important}
+    body{padding:10mm !important}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body > *:not(#app),#app > :not(.flex-1),[style*="position:fixed"],[style*="position: fixed"],.fixed,.rs-tip,[role="tooltip"],
+    #sidebar,#sidebar-backdrop,header,.no-print,#tweaks-panel,[id^="tweaks"],.cd-card-foot,.ds-pagination-wrap,#psc-sev{display:none !important}
+    #app,#app > div,#cd-main,.cd-content{display:block !important;height:auto !important;min-height:0 !important;max-height:none !important;overflow:visible !important;padding:0 !important}
+    .cd-content > *{margin-bottom:12px}
+    .top-row-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+    .top-row-grid > .card{max-height:none !important}
+    .card{break-inside:avoid;box-shadow:none !important}
+    .card *{max-height:none !important}
+    .overflow-y-auto,.overflow-auto,.overflow-x-auto,.scroll-thin{overflow:visible !important;height:auto !important}
+    .cd-print-head{display:flex !important}
+  }
+  .cd-print-sub{display:none}
+  @media print{.cd-print-sub{display:block;font-size:13px;font-weight:700;color:#0f172a;padding:10px 14px 6px;border-top:1px solid #e2e8f0}.cd-print-sub:first-child{border-top:0}.ra-tabs{display:none !important}}
+  .cd-print-head{display:none;align-items:baseline;justify-content:space-between;border-bottom:2px solid #0f172a;padding-bottom:6px;margin-bottom:12px}
+</style>
+<style>.rs-tip{display:none}.rs-info:hover .rs-tip,.rs-info:focus-within .rs-tip{display:block}</style>
 </head>
 <body class="bg-slate-100 text-slate-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
@@ -162,6 +186,10 @@ const ASSET_SEEDS = {
     { name:'Cargo Terminal B',      type:'Property', risk:31, compliance:'Compliant',     value:'$95M'  },
     { name:'MV Pacific Star',       type:'Marine',   risk:77, compliance:'Minor Issues',  value:'$41M'  },
     { name:'Bulk Carrier Titan',    type:'Marine',   risk:55, compliance:'Compliant',     value:'$33M'  },
+    { name:'MV Arctic Breeze',      type:'Marine',   risk:49, compliance:'Compliant',     value:'$58M'  },
+    { name:'MV Coral Dawn',         type:'Marine',   risk:36, compliance:'Compliant',     value:'$29M'  },
+    { name:'MV Northern Light',     type:'Marine',   risk:69, compliance:'Minor Issues',  value:'$74M'  },
+    { name:'MY Serenity',           type:'Marine',   risk:27, compliance:'Compliant',     value:'$22M'  },
   ],
   'Energy Company': [
     { name:'Offshore Platform Alpha', type:'Offshore', risk:60, compliance:'Compliant',     value:'$320M' },
@@ -212,9 +240,22 @@ const ASSET_SEEDS = {
     { name:'Industrial Park F',     type:'Property',  risk:29, compliance:'Compliant',     value:'$180M' },
   ],
 };
+const VESSEL_TYPES = [
+  { k:'Container', color:'#2d7ffb' }, { k:'Bulk Carrier', color:'#51a2fc' }, { k:'Tanker', color:'#dc2626' },
+  { k:'Gas Carrier', color:'#d97706' }, { k:'LNG Carrier', color:'#65a30d' }, { k:'General Cargo', color:'#16a34a' },
+  { k:'Refrigerated Cargo', color:'#0891b2' }, { k:'Cruise Passenger', color:'#db2777' }, { k:'Vehicle Carrier', color:'#9333ea' },
+  { k:'Yacht', color:'#d97706' },
+];
+const VESSEL_TYPE_BY_NAME = { 'MV Baltic Star':'Container', 'MV Ocean Explorer':'General Cargo', 'MV Neptune':'Tanker', 'MV Atlantic Pride':'Vehicle Carrier', 'MV Pacific Star':'Container', 'Bulk Carrier Titan':'Bulk Carrier', 'MV Arctic Breeze':'Gas Carrier', 'MV Coral Dawn':'Refrigerated Cargo', 'MV Northern Light':'Cruise Passenger', 'MY Serenity':'Yacht', 'LNG Tanker Poseidon':'LNG Carrier', 'Crude Carrier Titan':'Tanker', 'Chemical Tanker Lyra':'Tanker', 'MV Energy Star':'Tanker' };
+function vesselTypeFor(name) {
+  if (VESSEL_TYPE_BY_NAME[name]) return VESSEL_TYPE_BY_NAME[name];
+  let s = 0; for (const ch of name) s = (s * 31 + ch.charCodeAt(0)) >>> 0;
+  return VESSEL_TYPES[s % VESSEL_TYPES.length].k;
+}
 const ONLY_TYPE = { 'Shipping Company':'Marine', 'Property Company':'Property', 'Aviation Company':'Aviation' }[co.type];
 const ALL_ASSETS = (ASSET_SEEDS[co.type] || ASSET_SEEDS['Shipping Company']).filter(a => !ONLY_TYPE || a.type === ONLY_TYPE).map(a => {
-  if (a.type !== 'Marine') return { ...a, imo:'N/A', mmsi:'N/A' };
+  if (a.type !== 'Marine') return { ...a, kind:a.type, imo:'N/A', mmsi:'N/A' };
+  a = { ...a, kind: vesselTypeFor(a.name) };
   let s = 0; for (const ch of a.name) s = (s * 31 + ch.charCodeAt(0)) >>> 0;
   const d6 = String(100000 + (s % 900000));
   const chk = [...d6].reduce((t, c, i) => t + (+c) * (7 - i), 0) % 10;
@@ -227,7 +268,7 @@ let assetQuery   = '';
 let assetFilter  = 'all';
 let assetPage    = 1;
 let assetPerPage = 5;
-let raTab = 'Risk Associations';
+let raTab = 'PSC Inspections';
 let pscPage = 1, pscPerPage = 5, pscSev = 'all';
 let coWithSanctions = true;
 
@@ -263,6 +304,8 @@ function complianceCls(c) {
 }
 
 function typeDisplay(t) {
+  const vt = VESSEL_TYPES.find(v => v.k === t);
+  if (vt) return `<span style="display:inline-flex;align-items:center;gap:6px;color:#334155;white-space:nowrap"><svg viewBox="0 0 24 24" width="14" height="14" style="transform:rotate(45deg);color:${vt.color};flex-shrink:0" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 L19 20 L12 16 L5 20 Z"></path></svg>${t}</span>`;
   const ico   = { Marine:IC.ship, Property:IC.building, Aviation:IC.plane, Offshore:IC.offshore }[t] || IC.building;
   return `<span style="display:inline-flex;align-items:center;gap:6px;color:#334155"><span style="color:var(--brand-600,#2d7ffb);display:inline-flex">${ico}</span>${t}</span>`;
 }
@@ -318,9 +361,28 @@ function CardCompanyDetails() {
     </div>
     <div class="cd-card-foot">
       <button type="button" class="cd-ghost" onclick="window.__goCompare()">${IC.compare}<span>Compare This Company</span></button>
+      <button type="button" class="cd-ghost" onclick="window.__cdExport()" title="Export company page as PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg><span>Export</span></button>
     </div>
   </div>`;
 }
+
+let cdPrinting = false;
+window.__cdExport = function () {
+  const prev = { title: document.title, psc: pscPerPage, pscP: pscPage, sev: pscSev, ap: assetPerPage, apg: assetPage };
+  document.title = (co.name || 'Company') + ' – Company Details';
+  pscPerPage = 9999; pscPage = 1; pscSev = 'all'; assetPerPage = 9999; assetPage = 1; cdPrinting = true;
+  rc();
+  const main = document.querySelector('.cd-content');
+  if (main && !main.querySelector('.cd-print-head')) main.insertAdjacentHTML('afterbegin', `<div class="cd-print-head"><span style="font-size:18px;font-weight:700;color:#0f172a">${co.name || 'Company'}</span><span style="font-size:11px;color:#475569">Exported ${new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })}</span></div>`);
+  const restore = () => {
+    window.removeEventListener('afterprint', restore);
+    document.title = prev.title;
+    pscPerPage = prev.psc; pscPage = prev.pscP; pscSev = prev.sev; assetPerPage = prev.ap; assetPage = prev.apg; cdPrinting = false;
+    rc();
+  };
+  window.addEventListener('afterprint', restore);
+  setTimeout(() => window.print(), 60);
+};
 
 /* ── Card: Risk Breakdown ────────────────────────────────────────────────── */
 function CardRiskBreakdown() {
@@ -428,7 +490,7 @@ function CardRiskBreakdown() {
         <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
             <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2025 · Avg. Risk Score ' + rs2025, 'l')}</div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2025 · Avg. Risk Score ' + rs2025, 'c')}</div>
             <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
@@ -502,15 +564,44 @@ const PSC_DEFECTS = [
   { vessel:'ATLANTIC CREST', imo:'9298451', code:'11124', cat:'MARPOL Annex VI',              desc:'Fuel oil sulphur content exceeds statutory limits',          sev:'High',   action:'Vessel Detained' },
   { vessel:'OCEAN VIGOUR', imo:'9412785', code:'03102', cat:'Structural Condition',         desc:'Heavy corrosion and pitting on main deck plating',           sev:'Medium', action:'Rectify at next port' },
 ];
+const CD_SORT = { psc:{ key:null, dir:1 }, ra:{ key:null, dir:1 }, asset:{ key:null, dir:1 } };
+const CD_RANK = { sev:{ High:2, Medium:1, Low:0 }, compliance:{ 'Non-Compliant':2, 'Minor Issues':1, 'Compliant':0 } };
+function cdVal(k, v) {
+  if (CD_RANK[k] && v in CD_RANK[k]) return CD_RANK[k][v];
+  if (v == null || v === 'N/A' || v === '—') return null;
+  if (typeof v === 'number') return v;
+  const m = String(v).match(/^\$?([\d.,]+)\s*([KMB])?$/i);
+  if (m) return parseFloat(m[1].replace(/,/g, '')) * ({ K:1e3, M:1e6, B:1e9 }[(m[2] || '').toUpperCase()] || 1);
+  return String(v).toLowerCase();
+}
+function cdSort(rows, t) {
+  const s = CD_SORT[t]; if (!s.key) return rows;
+  return [...rows].sort((a, b) => {
+    const x = cdVal(s.key, a[s.key]), y = cdVal(s.key, b[s.key]);
+    if (x === null && y === null) return 0; if (x === null) return 1; if (y === null) return -1;
+    return (x < y ? -1 : x > y ? 1 : 0) * s.dir;
+  });
+}
+function cdTh(t, key, label) {
+  const s = CD_SORT[t], on = s.key === key;
+  return `<th scope="col" class="ds-th--sortable${on ? ' ds-th--active' : ''}" aria-sort="${on ? (s.dir > 0 ? 'ascending' : 'descending') : 'none'}"><button type="button" class="ds-th-sort" data-cd-sort="${t}:${key}"><span>${label}</span>${window.dsSortInd(on, s.dir > 0)}</button></th>`;
+}
+function cdSortClick(el) {
+  const [t, k] = el.dataset.cdSort.split(':'), s = CD_SORT[t];
+  if (s.key === k) s.dir = -s.dir; else { s.key = k; s.dir = 1; }
+  if (t === 'psc') pscPage = 1; if (t === 'asset') assetPage = 1;
+  rc();
+}
+document.addEventListener('click', e => { const th = e.target.closest('[data-cd-sort]'); if (th) cdSortClick(th); });
 function PscTable() {
-  const list = pscSev === 'all' ? PSC_DEFECTS : PSC_DEFECTS.filter(r => r.sev === pscSev);
+  const list = cdSort(pscSev === 'all' ? PSC_DEFECTS : PSC_DEFECTS.filter(r => r.sev === pscSev), 'psc');
   const total = list.length, totalPages = Math.max(1, Math.ceil(total / pscPerPage));
   if (pscPage > totalPages) pscPage = totalPages;
   const rows = list.slice((pscPage - 1) * pscPerPage, pscPage * pscPerPage);
   return `
     <div class="overflow-x-auto scroll-thin">
       <table class="at-tbl">
-        <thead><tr><th>Vessel</th><th>IMO</th><th>Defect Code</th><th>Category / Area</th><th>Specific Breach Description</th><th>Severity</th><th>Action Taken / Status</th></tr></thead>
+        <thead><tr>${cdTh('psc','vessel','Vessel')}${cdTh('psc','imo','IMO')}${cdTh('psc','code','Defect Code')}${cdTh('psc','cat','Category / Area')}${cdTh('psc','desc','Specific Breach Description')}${cdTh('psc','sev','Severity')}${cdTh('psc','action','Action Taken / Status')}</tr></thead>
         <tbody>
           ${rows.map(r => `
           <tr>
@@ -531,7 +622,7 @@ function CardRiskAssociations() {
   return `
   <div class="card flex flex-col">
     <div style="padding:10px 14px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      ${co.type === 'Shipping Company' ? `<div class="ra-tabs">${['Risk Associations','PSC Inspections'].map(t => `<button class="ra-tab" aria-selected="${t === raTab}" data-ra-tab="${t}">${t}</button>`).join('')}</div>` : `<span style="font-size:14px;font-weight:700;color:#0f172a">Risk Associations</span>`}
+      ${co.type === 'Shipping Company' ? `<div class="ra-tabs" id="ra-tabs"><span class="ra-pill" data-ra-pill></span>${['PSC Inspections','Risk Associations'].map(t => `<button class="ra-tab" aria-selected="${t === raTab}" data-ra-tab="${t}"><span class="ra-tab-l">${t}</span></button>`).join('')}</div>` : `<span style="font-size:14px;font-weight:700;color:#0f172a">Risk Associations</span>`}
       ${raTab === 'PSC Inspections' && co.type === 'Shipping Company' ? `<div style="position:relative;margin-left:auto">
         <select id="psc-sev" aria-label="Filter by severity" style="appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 10px;border:1px solid #e2e8f0;border-radius:8px;font-size:12px;color:#334155;background:#fff;cursor:pointer;font-family:inherit;outline:none;font-weight:600">
           ${[['all','All Severities'],['High','High'],['Medium','Medium']].map(([v,l]) => `<option value="${v}" ${pscSev===v?'selected':''}>${l}</option>`).join('')}
@@ -539,12 +630,13 @@ function CardRiskAssociations() {
         <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);pointer-events:none;color:#64748b;display:flex">${IC.chevDown}</span>
       </div>` : ''}
     </div>
-    ${raTab === 'PSC Inspections' && co.type === 'Shipping Company' ? PscTable() : `
+    ${cdPrinting && co.type === 'Shipping Company' ? `<div class="cd-print-sub">PSC Inspections</div>${PscTable()}<div class="cd-print-sub">Risk Associations</div>` : ''}
+    ${!cdPrinting && raTab === 'PSC Inspections' && co.type === 'Shipping Company' ? PscTable() : `
     <div class="overflow-x-auto scroll-thin">
       <table class="at-tbl">
-        <thead><tr><th>Relationship</th><th>Connected Entity</th><th>Entity Type</th><th>Evidence</th></tr></thead>
+        <thead><tr>${cdTh('ra','rel','Relationship')}${cdTh('ra','entity','Connected Entity')}${cdTh('ra','type','Entity Type')}${cdTh('ra','evidence','Evidence')}</tr></thead>
         <tbody>
-          ${RISK_ASSOC.map(r => `
+          ${cdSort(RISK_ASSOC, 'ra').map(r => `
           <tr>
             <td>${r.rel}</td>
             <td>${r.type === 'Individual' ? `<span>${r.entity}</span>` : `<a href="#" class="at-link" onclick="event.preventDefault()">${r.entity}</a>`}</td>
@@ -560,14 +652,15 @@ function CardRiskAssociations() {
 /* ── Card: Assets ────────────────────────────────────────────────────────── */
 function CardAssets() {
   let rows = [...ALL_ASSETS];
-  if (assetQuery)         rows = rows.filter(a => a.name.toLowerCase().includes(assetQuery.toLowerCase()) || a.type.toLowerCase().includes(assetQuery.toLowerCase()));
-  if (assetFilter !== 'all') rows = rows.filter(a => a.type === assetFilter);
+  if (assetQuery)         rows = rows.filter(a => a.name.toLowerCase().includes(assetQuery.toLowerCase()) || a.kind.toLowerCase().includes(assetQuery.toLowerCase()));
+  if (assetFilter !== 'all') rows = rows.filter(a => a.kind === assetFilter);
+  rows = cdSort(rows, 'asset');
   const total      = rows.length;
   const totalPages = Math.max(1, Math.ceil(total / assetPerPage));
   if (assetPage > totalPages) assetPage = totalPages;
   const start    = (assetPage - 1) * assetPerPage;
   const pageRows = rows.slice(start, start + assetPerPage);
-  const types    = [...new Set(ALL_ASSETS.map(a => a.type))];
+  const types    = [...new Set(ALL_ASSETS.map(a => a.kind))];
 
   return `
   <div class="card flex flex-col">
@@ -593,13 +686,13 @@ function CardAssets() {
       <table class="at-tbl">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>IMO</th>
-            <th>MMSI</th>
-            <th>Risk Score</th>
-            <th>Compliance</th>
-            <th>Value</th>
+            ${cdTh('asset','name','Name')}
+            ${cdTh('asset','kind','Type')}
+            ${cdTh('asset','imo','IMO')}
+            ${cdTh('asset','mmsi','MMSI')}
+            ${cdTh('asset','risk','Risk Score')}
+            ${cdTh('asset','compliance','Compliance')}
+            ${cdTh('asset','value','Value')}
           </tr>
         </thead>
         <tbody>
@@ -612,10 +705,10 @@ function CardAssets() {
               const href = pageMap[a.type];
               if (!href) return `<span>${a.name}</span>`;
               const key = {Marine:'selectedVessel', Property:'selectedProperty', Aviation:'selectedAircraft', Offshore:'selectedOffshore'}[a.type];
-              const payload = JSON.stringify({name:a.name,type:a.type,risk:a.risk,compliance:a.compliance,value:a.value,company:co.name}).replace(/'/g,"\\'");
-              return `<a href="${href}" class="at-link" onclick="sessionStorage.setItem('${key}','${payload}');return true;">${a.name}</a>`;
+              const payload = JSON.stringify({name:a.name,type:a.type,risk:a.risk,compliance:a.compliance,value:a.value,company:co.name}).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+              return `<a href="${href}" class="at-link" data-store-key="${key}" data-store-val="${payload}" onclick="sessionStorage.setItem(this.dataset.storeKey,this.dataset.storeVal);return true;">${a.name}</a>`;
             })()}</td>
-            <td>${typeDisplay(a.type)}</td>
+            <td>${typeDisplay(a.kind)}</td>
             <td style="font-variant-numeric:tabular-nums;${a.imo === 'N/A' ? 'color:#64748b' : 'color:#334155'}">${a.imo}</td>
             <td style="font-variant-numeric:tabular-nums;${a.mmsi === 'N/A' ? 'color:#64748b' : 'color:#334155'}">${a.mmsi}</td>
             <td style="font-weight:600;color:${riskColor(a.risk)}">${a.risk}</td>
@@ -663,7 +756,16 @@ function wireInteractions() {
   /* Pagination (DS-compliant) */
   const sevSel = document.getElementById('psc-sev');
   if (sevSel) sevSel.onchange = () => { pscSev = sevSel.value; pscPage = 1; rc(); };
-  document.querySelectorAll('[data-ra-tab]').forEach(b => b.onclick = () => { raTab = b.dataset.raTab; rc(); });
+  (function placeRaPill() {
+    const g = document.getElementById('ra-tabs'); if (!g) return;
+    const pill = g.querySelector('[data-ra-pill]');
+    const at = (tab) => { const b = g.querySelector(`[data-ra-tab="${tab}"]`); if (!b) return; const gr = g.getBoundingClientRect(), br = b.getBoundingClientRect(); pill.style.width = br.width + 'px'; pill.style.transform = `translateX(${br.left - gr.left}px)`; };
+    pill.classList.add('no-anim');
+    at(window.__raPrevTab || raTab);
+    pill.getBoundingClientRect();
+    requestAnimationFrame(() => { pill.classList.remove('no-anim'); at(raTab); window.__raPrevTab = raTab; });
+  })();
+  document.querySelectorAll('[data-ra-tab]').forEach(b => b.onclick = () => { if (b.dataset.raTab === raTab) return; window.__raPrevTab = raTab; raTab = b.dataset.raTab; rc(); });
   const pscPg = document.querySelector('#psc-pg .ds-pagination-wrap') || document.querySelector('#psc-pg > *');
   if (pscPg) dsWirePagination(pscPg, { onPage: (p) => { pscPage = p; rc(); }, onPerPage: (n) => { pscPerPage = n; pscPage = 1; rc(); } });
   dsWirePagination(document.querySelector('#asset-pg .ds-pagination-wrap') || document.querySelector('#asset-pg > *'), {

@@ -42,7 +42,14 @@
   /* Table */
   .co-tbl{width:100%;border-collapse:collapse;min-width:1100px}
   .co-tbl th{padding:9px 12px;font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap;user-select:none}
-  .co-tbl th.sortable{cursor:pointer}.co-tbl th.sortable:hover{color:#334155}.co-tbl th.sorted{color:var(--brand-600,#2563eb)}
+  /* Sortable headers — Skytek Design System */
+  .ds-th--sortable{padding:0 !important}
+  .ds-th-sort{width:100%;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:9px 12px;background:transparent;border:0;cursor:pointer;text-align:left;white-space:nowrap;transition:color .12s ease,background .12s ease}
+  .ds-th-sort:hover{color:var(--text-secondary,#4B5563);background:var(--slate-100,#F3F4F6)}
+  .ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}
+  .ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#0f172a)}
+  .ds-th--active .ds-th-sort svg{color:var(--brand-600,#2d7ffb) !important}
+  @media (prefers-reduced-motion:reduce){.ds-th-sort{transition:none}}
   .co-tbl td{padding:10px 12px;font-size:12px;font-weight:400;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
   .co-tbl tr:last-child td{border-bottom:0}
   .co-tbl tbody tr:hover td{background:#f8fafc}
@@ -53,6 +60,32 @@
   .co-tbl th:last-child,.co-tbl td:last-child{position:sticky;right:0;z-index:2;background:#fff;box-shadow:-1px 0 0 #e2e8f0,-6px 0 8px -6px rgba(15,23,42,.12)}
   .co-tbl th:last-child{z-index:3;background:var(--slate-50,#F9FAFB)}
   .co-tbl tbody tr:hover td:last-child{background:#f8fafc}
+  .asset-cards { display: none; }
+  .acard { padding: 14px 16px; border-bottom: 1px solid #eef2f7; display: flex; flex-direction: column; gap: 12px; }
+  .acard:last-child { border-bottom: 0; }
+  .acard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+  .acard-id { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+  .acard-title { font-size: 16px; font-weight: 700; line-height: 1.25; word-break: break-word; }
+  .acard-sub { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 12.5px; color: #64748b; }
+  .acard-sub-txt { color: #64748b; }
+  .acard-dot { color: #cbd5e1; }
+  .acard-key { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+  .acard-kv { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .acard-k { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #94a3b8; }
+  .acard-v { font-size: 13.5px; font-weight: 500; color: #334155; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .acard-v.is-strong { font-size: 15px; font-weight: 700; color: #0f172a; }
+  .acard-v.is-muted { color: #94a3b8; }
+  .acard-more { display: none; padding-top: 2px; border-top: 1px dashed #e2e8f0; margin-top: 2px; }
+  .acard.open .acard-more { display: block; padding-top: 12px; animation: accIn .22s ease; }
+  .acard-toggle { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 2px; border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 12.5px; font-weight: 600; color: var(--brand-600, #2563eb); }
+  .acard-chev { transition: transform .2s ease; }
+  .acard.open .acard-chev { transform: rotate(180deg); }
+  @keyframes accIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .asset-cards .svc-tag,.asset-cards .svc-more{margin:2px 4px 2px 0}
+  .acard-acts{display:flex;gap:8px}
+  .acard-acts .actbtn{width:44px;height:44px}
+  @media (max-width: 560px) { .co-hdr-tools { flex-basis:100%; } }
+  @media (max-width: 860px) { .co-scroll { display: none; } .asset-cards { display: block; } .co-cards-wrap { flex:1; min-height:0; overflow:auto; } }
   .co-link{color:var(--brand-600,#2563eb);font-weight:500;cursor:pointer;text-decoration:none}.co-link:hover{text-decoration:underline;color:var(--brand-700,#1d4ed8)}
   /* Badges */
   .tbadge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
@@ -243,6 +276,41 @@ function getFiltered() {
 }
 
 /* ── Render ───────────────────────────────────────────────────────────────── */
+function renderCoCards(pageRows) {
+  if (!pageRows.length) return '<div class="asset-cards"><div style="text-align:center;padding:48px 16px;color:#94a3b8;font-size:13px">No companies match your current filters.</div></div>';
+  const kv = rows => rows.map(([k, v, tone]) => `<div class="acard-kv"><span class="acard-k">${k}</span><span class="acard-v${tone ? ' is-' + tone : ''}">${v}</span></div>`).join('');
+  return `<div class="asset-cards">${pageRows.map((co, i) => {
+    const idx = COMPANIES.indexOf(co);
+    const open = `sessionStorage.setItem('selectedCompany', JSON.stringify(window.__COMPANIES[${idx}]))`;
+    return `<article class="acard">
+      <div class="acard-top">
+        <div class="acard-id">
+          <a class="acard-title co-link" href="CompanyDetails.html" onclick="${open}">${co.name}</a>
+          <div class="acard-sub">${countryFlag(co.country)}<span class="acard-sub-txt">${co.country}</span><span class="acard-dot">·</span><span class="acard-sub-txt">${co.hq}</span></div>
+        </div>
+        ${typeBadge(co.type)}
+      </div>
+      <div class="acard-key">${kv([['Assets', co.fleet.toLocaleString(), 'strong'], ['Value', co.fleetVal, 'strong'], ['Status', `<span class="sbadge ${co.status === 'Active' ? 'sb-active' : 'sb-inactive'}">${co.status}</span>`], ['Employees', co.employees.toLocaleString()]])}</div>
+      <div class="acard-more" id="acard-more-${i}">
+        <div class="acard-key">${kv([['Registration #', co.reg], ['Established', co.est]])}</div>
+        <div class="acard-kv" style="margin-top:10px"><span class="acard-k">Primary Services</span><div>${co.services.map(s => `<span class="svc-tag">${s}</span>`).join('')}</div></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <button type="button" class="acard-toggle" data-acard="${i}" aria-expanded="false" aria-controls="acard-more-${i}"><span class="acard-toggle-txt">Show more</span><svg class="acard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+        <div class="acard-acts"><a class="actbtn" href="CompanyDetails.html" onclick="${open}" title="View details" aria-label="View ${co.name} details">${SVG.extLink}</a><button class="actbtn" title="Compare with competitors" aria-label="Compare ${co.name} with competitors" onclick="window.__coCompare(${idx})">${SVG.compare}</button></div>
+      </div>
+    </article>`;
+  }).join('')}</div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-acard]');
+  if (!b) return;
+  const card = b.closest('.acard'), on = !card.classList.contains('open');
+  card.classList.toggle('open', on);
+  b.setAttribute('aria-expanded', on);
+  b.querySelector('.acard-toggle-txt').textContent = on ? 'Show less' : 'Show more';
+});
+
 function renderPage() {
   const rows      = getFiltered();
   const total     = rows.length;
@@ -254,52 +322,43 @@ function renderPage() {
 
 
   return `
-  <!-- Filter bar -->
-  <div class="shrink-0 px-4 pt-4 pb-3">
-    <div class="bg-white rounded-xl border border-slate-200 px-3 py-2 flex items-center gap-2 flex-wrap" style="box-shadow:0 1px 3px rgba(15,23,42,.06)">
-
-      <!-- Search -->
-      <div style="position:relative;flex:1;min-width:220px;max-width:400px">
-        <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#94a3b8;pointer-events:none;display:flex">${SVG.search}</span>
-        <input id="co-search" type="text"
-          placeholder="Search by company name, headquarters, or registration number"
-          value="${ST.query.replace(/"/g, '&quot;')}"
-          style="width:100%;height:34px;padding:0 10px 0 30px;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;color:#0f172a;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s" />
-      </div>
-
-      <div style="flex:1;min-width:4px"></div>
-
-      <!-- Filters (opens drawer) -->
-      <button class="filter-btn edit-cols${hasFilter ? ' has-filter' : ''}" id="co-filter-btn" title="Filter" aria-label="Filter" aria-haspopup="dialog" style="height:34px;padding:0 10px;">${SVG.filter}</button>
-
-    </div>
-  </div>
-
   <!-- Table card -->
-  <div class="flex-1 min-h-0 px-4 pb-4 flex flex-col">
+  <div class="flex-1 min-h-0 p-4 flex flex-col">
     <div class="bg-white rounded-xl border border-slate-200 flex flex-col overflow-hidden flex-1 min-h-0" style="box-shadow:0 1px 3px rgba(15,23,42,.06)">
 
       <!-- Result count -->
-      <div class="shrink-0 px-4 py-2.5 border-b border-slate-100">
-        <span class="text-sm font-semibold text-slate-900">Companies</span>
-        <span class="text-sm text-slate-400 ml-1.5">(${total} result${total !== 1 ? 's' : ''})</span>
+      <div class="shrink-0 px-4 py-2.5 border-b border-slate-100 flex items-center gap-x-3 gap-y-2 flex-wrap">
+        <div style="white-space:nowrap">
+          <span class="text-sm font-semibold text-slate-900">Companies</span>
+          <span class="text-sm text-slate-400 ml-1.5">(${total} result${total !== 1 ? 's' : ''})</span>
+        </div>
+        <div class="co-hdr-tools" style="flex:1;min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:8px">
+          <div style="position:relative;flex:1;min-width:0;max-width:400px">
+            <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#94a3b8;pointer-events:none;display:flex">${SVG.search}</span>
+            <input id="co-search" type="text" aria-label="Search companies"
+              placeholder="Search by company name, headquarters, or registration number"
+              value="${ST.query.replace(/"/g, '&quot;')}"
+              style="width:100%;height:34px;padding:0 10px 0 30px;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;color:#0f172a;outline:none;font-family:inherit;text-overflow:ellipsis;transition:border-color .15s,box-shadow .15s" />
+          </div>
+          <button class="filter-btn edit-cols${hasFilter ? ' has-filter' : ''}" id="co-filter-btn" title="Filter" aria-label="Filter" aria-haspopup="dialog" style="height:34px;padding:0 10px;flex-shrink:0">${SVG.filter}</button>
+        </div>
       </div>
 
       <!-- Scrollable table -->
-      <div class="flex-1 min-h-0 overflow-auto scroll-thin">
+      <div class="co-scroll flex-1 min-h-0 overflow-auto scroll-thin">
         <table class="co-tbl">
           <thead>
             <tr>
-              <th class="sortable ${ST.sortCol === 'name'      ? 'sorted' : ''}" data-sort="name"     style="min-width:190px">Company Name${sortIcon('name')}</th>
-              <th class="sortable ${ST.sortCol === 'type'      ? 'sorted' : ''}" data-sort="type"     style="min-width:150px">Type${sortIcon('type')}</th>
-              <th class="sortable ${ST.sortCol === 'country'   ? 'sorted' : ''}" data-sort="country"  style="min-width:145px">Country${sortIcon('country')}</th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'name' ? ' ds-th--active' : ''}" data-sort="name" aria-sort="${ST.sortCol === 'name' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:190px"><button type="button" class="ds-th-sort"><span>Company Name</span>${sortIcon('name')}</button></th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'type' ? ' ds-th--active' : ''}" data-sort="type" aria-sort="${ST.sortCol === 'type' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:150px"><button type="button" class="ds-th-sort"><span>Type</span>${sortIcon('type')}</button></th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'country' ? ' ds-th--active' : ''}" data-sort="country" aria-sort="${ST.sortCol === 'country' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:145px"><button type="button" class="ds-th-sort"><span>Country</span>${sortIcon('country')}</button></th>
               <th style="min-width:110px">Headquarters</th>
               <th style="min-width:125px">Registration #</th>
-              <th class="sortable ${ST.sortCol === 'fleet'     ? 'sorted' : ''}" data-sort="fleet"    style="min-width:95px">Assets${sortIcon('fleet')}</th>
-              <th class="sortable ${ST.sortCol === 'fleetVal'  ? 'sorted' : ''}" data-sort="fleetVal" style="min-width:100px">Value${sortIcon('fleetVal')}</th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'fleet' ? ' ds-th--active' : ''}" data-sort="fleet" aria-sort="${ST.sortCol === 'fleet' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:95px"><button type="button" class="ds-th-sort"><span>Assets</span>${sortIcon('fleet')}</button></th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'fleetVal' ? ' ds-th--active' : ''}" data-sort="fleetVal" aria-sort="${ST.sortCol === 'fleetVal' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:100px"><button type="button" class="ds-th-sort"><span>Value</span>${sortIcon('fleetVal')}</button></th>
               <th style="min-width:220px">Primary Services</th>
-              <th class="sortable ${ST.sortCol === 'est'       ? 'sorted' : ''}" data-sort="est"      style="min-width:110px">Established${sortIcon('est')}</th>
-              <th class="sortable ${ST.sortCol === 'employees' ? 'sorted' : ''}" data-sort="employees"style="min-width:100px">Employees${sortIcon('employees')}</th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'est' ? ' ds-th--active' : ''}" data-sort="est" aria-sort="${ST.sortCol === 'est' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:110px"><button type="button" class="ds-th-sort"><span>Established</span>${sortIcon('est')}</button></th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'employees' ? ' ds-th--active' : ''}" data-sort="employees" aria-sort="${ST.sortCol === 'employees' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:100px"><button type="button" class="ds-th-sort"><span>Employees</span>${sortIcon('employees')}</button></th>
               <th style="min-width:80px">Status</th>
               <th style="min-width:84px;width:84px">Actions</th>
             </tr>
@@ -330,6 +389,7 @@ function renderPage() {
           </tbody>
         </table>
       </div>
+      <div class="co-cards-wrap scroll-thin">${renderCoCards(pageRows)}</div>
 
       <!-- Pagination -->
       ${dsPagination({

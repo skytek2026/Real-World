@@ -90,9 +90,20 @@
   .airport-row2 { grid-template-columns:calc((100% - 24px)/3) minmax(0,1fr); }
   /* Overflow guard: nothing in the page should bleed past the right edge on small viewports */
   .page-col, .page-content { min-width: 0; }
+  .exp-totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .exp-tot:not(:last-child){border-right:1px solid #dbeafe}
+  @media(max-width:359px){.exp-totals{grid-template-columns:repeat(2,minmax(0,1fr))}.exp-tot:nth-child(2){border-right:0}.exp-tot:nth-child(-n+2){border-bottom:1px solid #dbeafe}}
+  .ds-tabs{max-width:100%;overflow-x:auto;scrollbar-width:none}.ds-tabs::-webkit-scrollbar{display:none}
+  @media(min-width:768px) and (max-width:1023px){
+    .airport-row1{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .airport-row1 > :last-child{grid-column:1 / -1}
+    .airport-row2{grid-template-columns:minmax(0,1fr)}
+  }
+  .airport-row1 > *, .airport-row2 > * { min-width: 0; max-width: 100%; }
+  .data-table td, .data-table th { white-space: nowrap; }
   @media(max-width:1023px){ .page-col, .page-content { overflow-x: hidden; } }
   @media(max-width:767px){
-    .airport-row1,.airport-row2{ grid-template-columns:1fr; }
+    .airport-row1,.airport-row2{ grid-template-columns:minmax(0,1fr); }
     .mobile-tab-select{display:block!important;}
     .tabs-desktop-wrap{display:none!important;}
     .summary-date-row{flex-wrap:wrap;}
@@ -318,7 +329,7 @@ function CardPortfolioGround() {
         <div style="font-size:26px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$1.5B</div>
       </div>
     </div>
-    <div class="flex-1 overflow-y-auto scroll-thin" id="ad-ground-body">${groundBody()}</div>
+    <div class="flex-1 overflow-auto scroll-thin" id="ad-ground-body">${groundBody()}</div>
   </div>`;
 }
 function groundBody() {
@@ -350,14 +361,14 @@ function CardExposure() {
         <span class="hdr-badge hdr-badge-blue">$3.2B</span>
       </div>
     </div>
-    <div style="margin:10px 12px 12px;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;display:flex;" class="shrink-0">
+    <div style="margin:10px 12px 12px;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;" class="shrink-0 exp-totals">
       ${[['Total Hull','$3.2B'],['Total CHW','$2.4B'],['Total HULLW','$582M'],['Total TLOHW','$280M']].map(([l,v],i)=>`
-        <div style="flex:1;padding:10px 8px;text-align:center;${i<3?'border-right:1px solid #dbeafe;':''}">
+        <div class="exp-tot" style="min-width:0;padding:10px 6px;text-align:center;">
           <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:3px;">${l}</div>
-          <div style="font-size:22px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${v}</div>
+          <div style="font-size:clamp(16px,1.6vw,22px);font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${v}</div>
         </div>`).join('')}
     </div>
-    <div class="flex-1 overflow-y-auto scroll-thin">
+    <div class="flex-1 overflow-auto scroll-thin">
       <table class="data-table">
         <thead><tr>
           <th>Name</th><th class="text-right">Hull</th>
