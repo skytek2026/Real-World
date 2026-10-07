@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"75653c569016","charts-lib.jsx":"2404bc40d049","components/rw-modal-demos.js":"a130d20bcbcf","components/rw-modal.js":"709b3a438084","copy-utilities.js":"1d40498337f0","icons.jsx":"dd000d90b684","section-apply.jsx":"f710e1b142d7","section-asset-identity.jsx":"98cfe2e69e9b","section-buttons-deep.jsx":"46cd001a747d","section-charts.jsx":"4815315e6258","section-components.jsx":"0f8baae6d8f8","section-data-primitives.jsx":"3fd56b49f1aa","section-datetime.jsx":"54ab9517ffaf","section-domain.jsx":"c60433559083","section-elevation-usage.jsx":"c3361c793f5a","section-elevation.jsx":"e525e864d3cf","section-event-log.jsx":"9aa6566fd63f","section-export.jsx":"9fab153495eb","section-forms-deep.jsx":"c55798ddb50e","section-foundations-meta.jsx":"2c93e35b7e90","section-foundations.jsx":"1ac84639645e","section-foundations2.jsx":"edab650af5f6","section-handoff.jsx":"194e82a80df0","section-layout-interaction-a11y.jsx":"2f5f97e98143","section-modal.jsx":"e89e58ecb036","section-states.jsx":"d354fcb2c01e","section-stewardship.jsx":"01cbb3306737","section-toast.jsx":"43e2f17ddaad","section-token-index.jsx":"54eb9b668638","section-voice.jsx":"b1f4a57454bd","tweaks-panel.jsx":"ea982af775f0"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"9ca96293eb36","changelog-data.js":"69ef88b3a338","charts-lib.jsx":"6a3a60cadc96","components/rw-modal-demos.js":"a130d20bcbcf","components/rw-modal.js":"709b3a438084","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"59b36990bbd7","section-asset-identity.jsx":"e0bdab7e84f8","section-buttons-deep.jsx":"c295386cb90d","section-charts.jsx":"4a5977c9a9fe","section-components.jsx":"e743c29c1bcd","section-darkmode.jsx":"3109b1c10786","section-data-primitives.jsx":"edd2d8944fdf","section-datetime.jsx":"a329650a75d9","section-domain.jsx":"92e6350f508f","section-elevation-usage.jsx":"c3361c793f5a","section-elevation.jsx":"e525e864d3cf","section-event-log.jsx":"4ad80e17ff76","section-export.jsx":"fbd1ee63701c","section-filterdrawer.jsx":"aa6f9021f8e5","section-forms-deep.jsx":"170993d158da","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"a478007e894c","section-foundations2.jsx":"c17afc5cb004","section-handoff.jsx":"cc7a7ffeda6b","section-layout-interaction-a11y.jsx":"82fe464ef264","section-modal.jsx":"bb426cbae39a","section-popover.jsx":"c905cb937328","section-states.jsx":"00b1a8e312a5","section-stewardship.jsx":"ac2cb87fdcd8","section-toast.jsx":"c9521a6fd1bf","section-token-index.jsx":"8e015ccc70aa","section-tooltips.jsx":"d0858c9779c4","section-voice.jsx":"5d962bf45f24","tweaks-panel.jsx":"70278aba6f3e"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -10,11 +10,11 @@ const __ds_scope = {};
 
 // app.jsx
 try { (() => {
-/* Compliance / Sanction list mock — focused on the "Unknown" entity bug fix.
+/* Compliance / Sanction list mock, focused on the "Unknown" entity bug fix.
 
    The bug: when a relationship's value is "Unknown" or "Unknown Entity",
    the system runs sanction list checks against the literal string and
-   reports green "Ok" — falsely implying the entity has been screened.
+   reports green "Ok", falsely implying the entity has been screened.
 
    The fix: introduce an "Unverifiable" / "Cannot be analysed" state so
    it's visually clear those rows could not be evaluated and may carry
@@ -105,7 +105,7 @@ const StatusCell = ({
   if (treatment === "dash") {
     return /*#__PURE__*/React.createElement("span", {
       className: "s-cell s-cell--unverif-dash",
-      title: "Cannot be analysed \u2014 subject is unknown."
+      title: "Cannot be analysed: subject is unknown."
     }, /*#__PURE__*/React.createElement("span", {
       className: "dash"
     }, "\u2014"), /*#__PURE__*/React.createElement("span", {
@@ -118,7 +118,7 @@ const StatusCell = ({
   if (treatment === "stripe") {
     return /*#__PURE__*/React.createElement("span", {
       className: "s-cell s-cell--unverif-stripe",
-      title: "Cannot be analysed \u2014 subject is unknown."
+      title: "Cannot be analysed: subject is unknown."
     }, /*#__PURE__*/React.createElement("span", {
       className: "s-dot"
     }), " Unverifiable");
@@ -126,7 +126,7 @@ const StatusCell = ({
   if (treatment === "na") {
     return /*#__PURE__*/React.createElement("span", {
       className: "s-cell s-cell--unverif-na",
-      title: "Cannot be analysed \u2014 subject is unknown."
+      title: "Cannot be analysed: subject is unknown."
     }, /*#__PURE__*/React.createElement("span", {
       className: "s-dot"
     }), /*#__PURE__*/React.createElement("span", {
@@ -137,7 +137,7 @@ const StatusCell = ({
   }
   return /*#__PURE__*/React.createElement("span", {
     className: "s-cell s-cell--unverif",
-    title: "Cannot be analysed \u2014 subject is unknown."
+    title: "Cannot be analysed: subject is unknown."
   }, /*#__PURE__*/React.createElement("span", {
     className: "s-dot"
   }), " Unverifiable");
@@ -145,7 +145,7 @@ const StatusCell = ({
 const REASON_COPY = {
   "no-record": {
     title: "Provider has no record",
-    body: /*#__PURE__*/React.createElement(React.Fragment, null, "The data provider returned ", /*#__PURE__*/React.createElement("em", null, "unknown"), " for this relationship \u2014 they hold no record of the underlying entity. Sanctions screening cannot run. ", /*#__PURE__*/React.createElement("strong", null, "Treat as elevated risk."))
+    body: /*#__PURE__*/React.createElement(React.Fragment, null, "The data provider returned ", /*#__PURE__*/React.createElement("em", null, "unknown"), " for this relationship; they hold no record of the underlying entity. Sanctions screening cannot run. ", /*#__PURE__*/React.createElement("strong", null, "Treat as elevated risk."))
   },
   "link-terminated": {
     title: "Active link terminated",
@@ -187,7 +187,7 @@ const SubjectName = ({
 };
 
 /* ============================================================
-   "Before" — current behaviour as shown in the screenshot.
+   "Before", current behaviour as shown in the screenshot.
    Every Unknown subject gets green Ok across all five lists.
    ============================================================ */
 const BeforeTable = () => {
@@ -271,7 +271,7 @@ const BeforeTable = () => {
 };
 
 /* ============================================================
-   "After" — Unverifiable status replaces false Ok.
+   "After", Unverifiable status replaces false Ok.
    ============================================================ */
 const AfterTable = ({
   treatment
@@ -385,7 +385,7 @@ const UnverifBanner = () => /*#__PURE__*/React.createElement("div", {
     fontSize: 12.5,
     lineHeight: 1.5
   }
-}, /*#__PURE__*/React.createElement("strong", null, "Owner's Domicile Country"), ", ", /*#__PURE__*/React.createElement("strong", null, "Group Beneficial"), " and ", /*#__PURE__*/React.createElement("strong", null, "Operator"), " are listed as ", /*#__PURE__*/React.createElement("em", null, "Unknown"), ". Sanctions screening cannot run against an unknown subject \u2014 there may be sanctioned implications that have not been surfaced.", /*#__PURE__*/React.createElement("a", {
+}, /*#__PURE__*/React.createElement("strong", null, "Owner's Domicile Country"), ", ", /*#__PURE__*/React.createElement("strong", null, "Group Beneficial"), " and ", /*#__PURE__*/React.createElement("strong", null, "Operator"), " are listed as ", /*#__PURE__*/React.createElement("em", null, "Unknown"), ". Sanctions screening cannot run against an unknown subject; there may be sanctioned implications that have not been surfaced.", /*#__PURE__*/React.createElement("a", {
   href: "#",
   onClick: e => e.preventDefault(),
   style: {
@@ -396,7 +396,7 @@ const UnverifBanner = () => /*#__PURE__*/React.createElement("div", {
 }, "How is this resolved? \u2192"))));
 
 /* ============================================================
-   Mock browser frame — vessel detail page chrome
+   Mock browser frame, vessel detail page chrome
    ============================================================ */
 const MockFrame = ({
   children
@@ -504,7 +504,7 @@ const Page = () => {
     className: "page-head"
   }, /*#__PURE__*/React.createElement("div", {
     className: "page-eyebrow"
-  }, "Sanctions screening \xB7 bug fix"), /*#__PURE__*/React.createElement("h1", null, "\"Unknown\" subjects must not pass as compliant"), /*#__PURE__*/React.createElement("p", null, "When a relationship resolves to ", /*#__PURE__*/React.createElement("em", null, "Unknown"), " or ", /*#__PURE__*/React.createElement("em", null, "Unknown Entity"), ", the platform currently runs the literal string against each sanctions list and reports green ", /*#__PURE__*/React.createElement("strong", null, "Ok"), " \u2014 which reads as \"screened and cleared\". It hasn't been screened at all. This deck introduces an ", /*#__PURE__*/React.createElement("strong", null, "Unverifiable"), " state so users see, immediately, that there could be sanctions implications that haven't been surfaced.")), /*#__PURE__*/React.createElement("div", {
+  }, "Sanctions screening \xB7 bug fix"), /*#__PURE__*/React.createElement("h1", null, "\"Unknown\" subjects must not pass as compliant"), /*#__PURE__*/React.createElement("p", null, "When a relationship resolves to ", /*#__PURE__*/React.createElement("em", null, "Unknown"), " or ", /*#__PURE__*/React.createElement("em", null, "Unknown Entity"), ", the platform currently runs the literal string against each sanctions list and reports green ", /*#__PURE__*/React.createElement("strong", null, "Ok"), ", which reads as \"screened and cleared\". It hasn't been screened at all. This deck introduces an ", /*#__PURE__*/React.createElement("strong", null, "Unverifiable"), " state so users see, immediately, that there could be sanctions implications that haven't been surfaced.")), /*#__PURE__*/React.createElement("div", {
     className: "section-block"
   }, /*#__PURE__*/React.createElement("h2", null, "The new state \xB7 Unverifiable"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
@@ -558,7 +558,7 @@ const Page = () => {
     style: {
       color: "var(--text-primary)"
     }
-  }, "Sarah / Gabriel asked for a dash."), " A bare ", /*#__PURE__*/React.createElement("code", null, "\u2014"), " stops the false green Ok but doesn't carry the second message \u2014 that this could be hiding sanctioned exposure. The ", /*#__PURE__*/React.createElement("em", null, "\u2014 + warn"), " tweak option keeps the dash and adds a small amber glyph; ", /*#__PURE__*/React.createElement("em", null, "Ring+?"), " is louder. Pick whichever the team prefers."))), /*#__PURE__*/React.createElement("div", {
+  }, "Sarah / Gabriel asked for a dash."), " A bare ", /*#__PURE__*/React.createElement("code", null, "\u2014"), " stops the false green Ok but doesn't carry the second message; that this could be hiding sanctioned exposure. The ", /*#__PURE__*/React.createElement("em", null, "\u2014 + warn"), " tweak option keeps the dash and adds a small amber glyph; ", /*#__PURE__*/React.createElement("em", null, "Ring+?"), " is louder. Pick whichever the team prefers."))), /*#__PURE__*/React.createElement("div", {
     className: "section-block"
   }, /*#__PURE__*/React.createElement("h2", null, "Before \xB7 After"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
@@ -587,7 +587,7 @@ const Page = () => {
       fontSize: 12.5,
       lineHeight: 1.5
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Problem."), " The bottom three rows show ", /*#__PURE__*/React.createElement("em", null, "Unknown"), " / ", /*#__PURE__*/React.createElement("em", null, "Unknown Entity"), " as the subject, yet the system returns green Ok across all five sanctions lists. A reviewer scanning the page sees \"no flags\" and clears the vessel \u2014 without realising three of its key relationships were never actually screened.")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Problem."), " The bottom three rows show ", /*#__PURE__*/React.createElement("em", null, "Unknown"), " / ", /*#__PURE__*/React.createElement("em", null, "Unknown Entity"), " as the subject, yet the system returns green Ok across all five sanctions lists. A reviewer scanning the page sees \"no flags\" and clears the vessel: without realising three of its key relationships were never actually screened.")), /*#__PURE__*/React.createElement("div", {
     className: "audit-pane audit-pane--after"
   }, /*#__PURE__*/React.createElement("div", {
     className: "audit-pane__head"
@@ -623,18 +623,18 @@ const Page = () => {
     className: "t-caption"
   }, "Provider has nothing on this entity.")), /*#__PURE__*/React.createElement("td", null, "Provider returns ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "unknown"), " with no entity ID and no historical record."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"The data provider returned ", /*#__PURE__*/React.createElement("strong", null, "unknown"), " for this relationship \u2014 they hold no record of the underlying entity. Sanctions screening cannot run. Treat as elevated risk.\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active link terminated"), /*#__PURE__*/React.createElement("div", {
+  }, "unknown"), " with no entity ID and no historical record."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"The data provider returned ", /*#__PURE__*/React.createElement("strong", null, "unknown"), " for this relationship; they hold no record of the underlying entity. Sanctions screening cannot run. Treat as elevated risk.\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active link terminated"), /*#__PURE__*/React.createElement("div", {
     className: "t-caption"
   }, "e.g. Tech Manager 2021\u20132025, no successor.")), /*#__PURE__*/React.createElement("td", null, "Provider returns ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "unknown"), " but has historical records \u2014 the prior link ended on a known date and no replacement was filed."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"A previously-recorded link ended (e.g. Technical Manager 2021\u20132025). No successor has been registered, so the current holder is unknown. Verify before clearing.\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Mixed result on a folder"), /*#__PURE__*/React.createElement("div", {
+  }, "unknown"), " but has historical records: the prior link ended on a known date and no replacement was filed."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"A previously-recorded link ended (e.g. Technical Manager 2021\u20132025). No successor has been registered, so the current holder is unknown. Verify before clearing.\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Mixed result on a folder"), /*#__PURE__*/React.createElement("div", {
     className: "t-caption"
-  }, "e.g. Owner has 5 beneficiaries, 1 unknown.")), /*#__PURE__*/React.createElement("td", null, "Folder aggregates child screening results."), /*#__PURE__*/React.createElement("td", null, "Folder cell shows ", /*#__PURE__*/React.createElement("em", null, "Partially verifiable"), " with count badge \"1 unknown\". Children listed individually.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Risk score gauge")), /*#__PURE__*/React.createElement("td", null, "The score is computed only from screened subjects."), /*#__PURE__*/React.createElement("td", null, "Footnote chip on the gauge: ", /*#__PURE__*/React.createElement("em", null, "\"Score excludes 3 unverifiable subjects.\""), " \u2014 keeps the score truthful.")))), /*#__PURE__*/React.createElement("div", {
+  }, "e.g. Owner has 5 beneficiaries, 1 unknown.")), /*#__PURE__*/React.createElement("td", null, "Folder aggregates child screening results."), /*#__PURE__*/React.createElement("td", null, "Folder cell shows ", /*#__PURE__*/React.createElement("em", null, "Partially verifiable"), " with count badge \"1 unknown\". Children listed individually.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Risk score gauge")), /*#__PURE__*/React.createElement("td", null, "The score is computed only from screened subjects."), /*#__PURE__*/React.createElement("td", null, "Footnote chip on the gauge: ", /*#__PURE__*/React.createElement("em", null, "\"Score excludes 3 unverifiable subjects.\""), ", keeps the score truthful.")))), /*#__PURE__*/React.createElement("div", {
     className: "callout warn",
     style: {
       marginTop: 16
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Where the reason comes from."), " The provider response already distinguishes \"no record\" from \"link terminated\" (per Stefan). We surface that on hover instead of inventing a single generic message. Reviewers respond differently to the two cases \u2014 \"no record\" usually means escalate; \"link terminated\" usually means chase the broker for the successor. One pattern, two stories.")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Where the reason comes from."), " The provider response already distinguishes \"no record\" from \"link terminated\" (per Stefan). We surface that on hover instead of inventing a single generic message. Reviewers respond differently to the two cases, \"no record\" usually means escalate; \"link terminated\" usually means chase the broker for the successor. One pattern, two stories.")), /*#__PURE__*/React.createElement("div", {
     className: "section-block"
   }, /*#__PURE__*/React.createElement("h2", null, "Where else this surfaces"), /*#__PURE__*/React.createElement("p", {
     className: "lead"
@@ -676,11 +676,11 @@ const Page = () => {
     style: {
       margin: 0
     }
-  }, "When unverifiable subjects exist on a vessel, the Sanction Compliance tab gets a small amber dot \u2014 same affordance the team already uses for \"Suspicious Activities\" but in the unverifiable hue. Visible from any tab on the vessel detail page.")))), /*#__PURE__*/React.createElement("div", {
+  }, "When unverifiable subjects exist on a vessel, the Sanction Compliance tab gets a small amber dot, same affordance the team already uses for \"Suspicious Activities\" but in the unverifiable hue. Visible from any tab on the vessel detail page.")))), /*#__PURE__*/React.createElement("div", {
     className: "section-block"
   }, /*#__PURE__*/React.createElement("h2", null, "What we deliberately didn't do"), /*#__PURE__*/React.createElement("ul", {
     className: "diff-list"
-  }, /*#__PURE__*/React.createElement("li", null, "Mark unverifiable subjects as ", /*#__PURE__*/React.createElement("strong", null, "Sanctioned"), " \u2014 false positives erode trust in the red dot."), /*#__PURE__*/React.createElement("li", null, "Hide unverifiable rows from the ", /*#__PURE__*/React.createElement("em", null, "Compliance"), " table \u2014 the reviewer must still see them. (Hiding may make sense for the ", /*#__PURE__*/React.createElement("em", null, "Ownership"), " table specifically \u2014 that's a separate decision.)"), /*#__PURE__*/React.createElement("li", null, "Reuse the existing ", /*#__PURE__*/React.createElement("strong", null, "orange \"At risk\""), " warning hue \u2014 it already means \"screened and borderline\". Conflating the two would dilute both."), /*#__PURE__*/React.createElement("li", null, "Block PDF export when unverifiable subjects exist \u2014 but the PDF inherits the same banner copy so downstream readers also see the caveat."))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("li", null, "Mark unverifiable subjects as ", /*#__PURE__*/React.createElement("strong", null, "Sanctioned"), ", because false positives erode trust in the red dot."), /*#__PURE__*/React.createElement("li", null, "Hide unverifiable rows from the ", /*#__PURE__*/React.createElement("em", null, "Compliance"), " table: the reviewer must still see them. (Hiding may make sense for the ", /*#__PURE__*/React.createElement("em", null, "Ownership"), " table specifically; that's a separate decision.)"), /*#__PURE__*/React.createElement("li", null, "Reuse the existing ", /*#__PURE__*/React.createElement("strong", null, "orange \"At risk\""), " warning hue; it already means \"screened and borderline\". Conflating the two would dilute both."), /*#__PURE__*/React.createElement("li", null, "Block PDF export when unverifiable subjects exist, but the PDF inherits the same banner copy so downstream readers also see the caveat."))), /*#__PURE__*/React.createElement("div", {
     className: "section-block",
     style: {
       marginTop: 48,
@@ -733,11 +733,366 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(/*#__PURE__*/React.createElement(Page, null));
 })(); } catch (e) { __ds_ns.__errors.push({ path: "app.jsx", error: String((e && e.message) || e) }); }
 
+// changelog-data.js
+try { (() => {
+/* ============================================================================
+   Skytek Design System — Living Changelog data
+   ----------------------------------------------------------------------------
+   This file is the single source of truth for the Changelog page.
+
+   APPEND PROTOCOL (read before editing):
+   • Whenever ANY part of the design system changes — a component, pattern,
+     token, doc, accessibility rule, brand element or asset — add a NEW entry
+     object to the TOP of the CHANGELOG_ENTRIES array below.
+   • Never edit or delete past entries. The changelog is an immutable record.
+   • Fill every field. Use the current date/time in UTC.
+   • Version numbers follow semver and increment from the previous entry:
+        – Breaking            → bump MAJOR (x.0.0)
+        – Minor (new feature) → bump MINOR (1.x.0)
+        – Patch / fix         → bump PATCH (1.2.x)
+        – Documentation Only  → bump PATCH
+   • Category MUST be one of:
+        Component | Pattern | Token | Documentation |
+        Accessibility | Brand | Asset | Other
+   • Impact MUST be one of:
+        Breaking | Minor | Patch | Documentation Only
+
+   Entry shape:
+   {
+     version:   "v1.2.3",
+     dateISO:   "2026-06-15T14:32:00Z",   // used for sorting + date filter
+     date:      "15/06/2026",             // DD/MM/YYYY (display)
+     time:      "14:32 UTC",              // 24-hour (display)
+     category:  "Component",
+     updatedBy: "Claude",
+     impact:    "Minor",
+     summary:   "One or two sentence overview.",
+     changes:   ["Specific change.", "Another specific change."],
+     reason:    "Why the update was made.",
+     affected:  ["Button Component", "Forms Pattern"]
+   }
+   ============================================================================ */
+
+window.CHANGELOG_ENTRIES = [{
+  version: "v3.3.2",
+  dateISO: "2026-09-21T22:10:00Z",
+  date: "21/09/2026",
+  time: "22:10 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Reconciled the Filter drawer chapter with the shipped Drawer primitive. The filter drawer is a composed story of Drawer, not a standalone component as the spec previously implied.",
+  changes: ["Replaced the invented standalone FilterDrawer API (sections / value / onChange / title / width props) with the real composition: Drawer, DrawerTrigger, DrawerContent, DrawerClose, DrawerHeader, DrawerBody, DrawerFooter, DrawerTitle, DrawerDescription on @base-ui/react.", "Documented the Drawer props the pattern relies on: open / onOpenChange / defaultOpen, modal (backdrop + scroll-lock + focus-trap) and showClose (header ✕), plus the DrawerClose wrapper that gives Done its close behaviour.", "Recorded that DrawerFooter is a consumer-provided slot with no default close, so the Reset / Done pair is this pattern's contribution rather than a Drawer default.", "Changed the footer from two equal-width flex:1 buttons to justify-between (Reset left, Done right), matching the shipped Filters story.", "Added a note on the tension between live apply and modal: the scroll-lock means the filtered table cannot be scrolled while the drawer is open, which is an accepted trade and not a reason to disable modal.", "Kept the three-state list model and FilterSection types as the pattern's own state contract, explicitly separate from the presentation-only Drawer.", "New 'Spec vs. current build' subsection recording four divergences: footer layout, standalone-vs-composed framing, the 360px token against Drawer's 400/560/720 width scale, and the optional DrawerDescription slot.", "Renumbered the subsequent subsections."],
+  reason: "The documented API did not match what developers import; it described a component that does not exist. Teams following it would have built a second drawer implementation in parallel with the shared primitive.",
+  affected: ["Filter drawer", "styles.css"]
+}, {
+  version: "v3.3.1",
+  dateISO: "2026-09-21T21:30:00Z",
+  date: "21/09/2026",
+  time: "21:30 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Reconciled the Tooltip chapter's developer API with the shipped Base UI component, which uses a compound export pattern and different prop names than the spec previously documented.",
+  changes: ["Replaced the invented single-element API (label / placement / delayIn / delayOut / kbd / hideArrow) with the real compound API: Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, built on @base-ui/react.", "Corrected prop names and defaults to match the build: side (default bottom, was documented as placement defaulting to top), sideOffset (6), delay / closeDelay (0 / 0) on TooltipTrigger, open / onOpenChange on Tooltip.", "Documented the align prop (start / center / end), which was missing entirely from the spec.", "Added a full prop table listing each prop, which slot it belongs on, its type and default.", "Added worked examples for every documented story: basic, placement, rich content, per-trigger delay, controlled mode and the disabled-trigger wrapper.", "Noted that Base UI collision handling is enabled by default, so side is a preference rather than a guarantee.", "New 'Spec vs. current build' subsection recording four open divergences: no arrow rendered, 6px vs 8px offset, 0/0 vs 400/100 default delay, and fade+zoom vs fade+travel enter motion.", "Renumbered the subsequent subsections and updated the placement guidance to lead with bottom."],
+  reason: "The documented API did not match what developers actually import. Prop names, defaults and the component shape were all different, so the code samples could not be copied into a real project, and the align prop was undocumented.",
+  affected: ["Tooltips"]
+}, {
+  version: "v3.3.0",
+  dateISO: "2026-09-21T15:30:00Z",
+  date: "21/09/2026",
+  time: "15:30 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Added a Filter drawer chapter documenting the right-edge filtering sheet shipped on Assets Search, and built .ds-fdrawer as a tokenized component with single-open accordion sections and live-apply behaviour.",
+  changes: ["New 'Filter drawer' section (07h): anatomy, accordion behaviour, live apply, section types (list / range / category), range-slider detail, trigger & responsive behaviour, React API, accessibility, edge cases, do's & don'ts, and a token table.", "Live working demo built on the real .ds-fdrawer CSS — accordion, checkbox lists, range section, active dots, disabled Reset states, ESC and scrim dismissal.", "New .ds-fdrawer component: -scrim, -panel, -head, -close, -body, -section (+.is-open), -acc-head, -acc-chev, -sec-title, -dot, -acc-body, -acts, -act, -list, -item, -foot.", "Added filter-drawer tokens: --fdrawer-width (360px), -max-width, -scrim, -shadow, -pad-x, -head-pad, -slide, -slide-ease, -scrim-motion, -acc-motion, -list-max, plus --z-drawer (1080).", "Documented the three-state list model (unfiltered / subset / explicitly-none) that the implementation encodes with an FNONE sentinel — an empty set cannot distinguish 'all' from 'none'.", "Documented the live-apply cycle including the scroll-position restore, page-1 reset, and the rule that the dismiss button is 'Done', never 'Apply'.", "Recorded the range-slider contract: bounds derived per tab, dual stacked inputs, clamp on input / commit on change, full-range deletes the filter, and repaint-on-expand.", "Source colours mapped onto semantic tokens so the drawer themes in dark mode; the source implementation hard-codes #fff, #f1f5f9 and #64748b."],
+  reason: "The filter drawer is the canonical filtering surface on Assets Search and the pattern for any dense data view, but existed only as page-local CSS and JS with no spec. Teams rebuilding it were missing the non-obvious rules — single-open accordion, live apply, the three-state selection model and the scroll-restore.",
+  affected: ["Filter drawer", "Overlays", "styles.css", "Skytek Design System.html"]
+}, {
+  version: "v3.2.0",
+  dateISO: "2026-09-21T14:40:00Z",
+  date: "21/09/2026",
+  time: "14:40 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Promoted Popovers out of the shared Overlays block into their own chapter with a full developer specification, and built .ds-popover as a real tokenized component with head/body/foot regions, a menu variant, placements, arrow and enter/exit motion.",
+  changes: ["New 'Popovers' section (07g): anatomy, variants & sizes, placement & collision, the focus and dismissal model, React API, raw markup/CSS contract, accessibility, surface-selection guidance, edge cases, do's & don'ts, and a token table.", "Live click-to-open demos (filter form, row-action menu, info, confirm, four placements) built on the real .ds-popover CSS, with outside-click, ESC, focus-in and focus-return implemented.", "New .ds-popover component: --sm/--md/--lg/--auto widths, four placement classes with a border-matched arrow, data-state fade + 4px travel + 0.98 scale, .ds-popover-head/-title/-desc/-close/-body/-foot (+--split), .ds-popover-menu/-item (+--danger)/-sep, and .ds-popover-anchor.", "Added popover tokens: --popover-bg/-border/-radius/-shadow/-pad/-gap/-width-sm/-md/-lg/-max-height/-arrow/-offset/-motion/-ease, plus --z-popover (1050, above page, below modal).", "Documented the non-modal contract explicitly: aria-modal=\"false\", no focus trap, no inert background, focus returns to trigger — plus the disabled auto-apply rule for form popovers.", "Replaced the old inline hard-coded popover mock in Overlays (white background, fixed px offsets) which did not theme in dark mode.", "Overlays block retitled 'Modals & Drawers' and now cross-links to both the Tooltip and Popover chapters."],
+  reason: "Popovers existed only as a hard-coded inline mock inside Overlays with no API, focus model, placement rules or accessibility guidance — and the mock's hard-coded white background broke in dark mode. Developers needed an implementable contract and a clear boundary against tooltips, modals and drawers.",
+  affected: ["Popovers", "Overlays", "Tooltips", "styles.css", "Skytek Design System.html"]
+}, {
+  version: "v3.1.0",
+  dateISO: "2026-09-21T11:20:00Z",
+  date: "21/09/2026",
+  time: "11:20 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Promoted Tooltips out of the shared Overlays block into their own chapter with a full developer specification, and rebuilt .ds-tooltip as a tokenized component with placements, an arrow, rich/kbd variants and enter/exit motion.",
+  changes: ["New 'Tooltips' section (07f) covering anatomy, placement & collision behaviour, timing and the delay group, the React API, the raw markup/CSS contract, accessibility, surface-selection guidance, edge cases, do's & don'ts, and a token table.", "Live hover/focus demos built on the real .ds-tooltip CSS so docs and component cannot drift.", "Rebuilt .ds-tooltip: four placement classes with a rotated-square arrow, data-state driven fade + 4px travel, .ds-tooltip--rich (title + body), .ds-tooltip--no-arrow, .ds-tooltip-kbd shortcut chip and .ds-tooltip-anchor wrapper.", "Added tooltip tokens: --tooltip-bg/-fg/-max-width/-radius/-pad-y/-pad-x/-font-size/-arrow/-offset/-shadow/-delay-in/-delay-out/-motion/-ease, plus --z-tooltip (1300, above modal and toast).", "Tooltip now themes correctly in dark mode — the inverse surface flips light, so the label flips to --text-inverse; previously it hard-coded slate-900/white.", "Documented WCAG 2.2 1.4.13 requirements (dismissible, hoverable, persistent) and the disabled-trigger wrapper pattern.", "Overlays block retitled 'Modals, Drawers, Popovers' and now cross-links to the tooltip chapter.", "Fixed a stale Toast lead that still described a top-center region; toasts are bottom-right."],
+  reason: "Tooltips were a single preview tile inside Overlays with no API, timing, placement or accessibility guidance, and the CSS hard-coded its colours so it broke in dark mode. Developers needed an implementable contract.",
+  affected: ["Tooltips", "Overlays", "Toast & snackbar", "styles.css", "Skytek Design System.html"]
+}, {
+  version: "v3.0.0",
+  dateISO: "2026-09-11T00:00:00Z",
+  date: "11/09/2026",
+  time: "00:00 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Breaking",
+  summary: "Rebuilt the Toast / Snackbar component to match Sonner (shadcn/ui), the implementation our developers ship, and moved the region from top-center to bottom-right. Visual styling is unchanged; placement, stacking and motion are new.",
+  changes: ["Anchor moved from fixed top-center to fixed bottom-right (--toast-inset from the bottom and right edges).", "Sonner stacking model: toasts are absolutely positioned on a shared anchor and offset by transform. Collapsed by default — newest is the front toast at full scale, older ones peek above it offset by --toast-stack-offset (14px) and scaled down --toast-stack-scale (0.05) per step.", "Expand on hover/focus: the stack expands to real measured heights (via ResizeObserver) with --toast-gap between toasts, and pauses every countdown in the stack rather than just the hovered toast.", "Swipe to dismiss: drag right or down past --toast-swipe-thresh (45px) to commit; short of it the toast springs back. The 24px × close button is retained so dismissal never depends on the gesture.", "Motion replaced keyframe animations with state-driven transitions so interrupted animations retarget instead of restarting. Enter rises from translateY(100%) over --toast-anim (400ms) on Sonner's spring cubic-bezier(.21,1.02,.73,1); exit drops and fades over --toast-anim-exit (200ms) on cubic-bezier(.06,.71,.55,1).", "New tokens: --toast-stack-offset, --toast-stack-scale, --toast-swipe-thresh, --toast-anim, --toast-anim-exit, --toast-ease-spring, --toast-ease-exit.", "New state contract on each toast: data-mounted, data-removed, data-swiping, data-swipe-out, data-visible, data-front, plus --y / --scale / --sx / --sy offsets.", "Added .ds-toast--static for documentation/anatomy figures that render outside the stack.", "Docs: new 'Developer setup · Sonner' section with the exact <Toaster> props and class-name map, a new 'Motion' spec table, and rewritten Placement & stacking, Live behavior, Tokens and Accessibility content.", "Mobile: below 640px the region spans the bottom gutter-to-gutter instead of the top.", "MIGRATION — placement: toasts now appear bottom-right. Any product that reserved space or positioned UI around a top-center toast needs a visual QA pass; views with a fixed bottom action bar should raise --toast-inset above that bar.", "MIGRATION — removed the .ds-toast.is-entering / .is-leaving classes and the @keyframes ds-toast-in / ds-toast-out. Style enter/exit via the data-mounted / data-removed attributes instead.", "MIGRATION — .ds-toast is now position:absolute within .ds-toast-region. Rendering one outside the region (docs, tests) requires the new .ds-toast--static class.", "Not breaking: the toast() / useToast() API, tone names, durations and all existing visual tokens are unchanged."],
+  reason: "Developers are building the Toast with Sonner via shadcn/ui, so the design system had to describe the component they actually ship rather than a divergent in-house spec. Bottom-right is the Sonner default and keeps confirmations clear of the top-left primary navigation.",
+  affected: ["Toast", "Snackbar", "styles.css", "section-toast.jsx"]
+}, {
+  version: "v2.4.0",
+  dateISO: "2026-07-26T00:00:00Z",
+  date: "26/07/2026",
+  time: "00:00 UTC",
+  category: "Pattern",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Added a Responsive data tables → cards pattern: wide list tables now collapse into a stacked card list on small screens instead of becoming horizontal scrollers, with the 3–5 decision-driving fields surfaced and the remainder behind a per-row Show more disclosure.",
+  changes: ["New .ds-table-cards / .ds-rcard* CSS layer in styles.css: card shell, title + subline + badge header, 2-column label-over-value key grid, is-strong / is-muted / is-mono value tones, dashed-rule disclosure region and a 44px Show more toggle with rotating chevron.", "Breakpoint contract: .ds-table-scroll hides and .ds-table-cards shows at max-width 767px (860px for full-page asset tables via .ds-table-cards--wide); both markups always render so there is no second data path.", "Edit Columns (.ds-edit-columns) is hidden on mobile — cards define their own field order, so column toggles carry no meaning there.", "Card values wrap rather than truncate (overflow-wrap:anywhere); numeric values stay tabular-nums so stacked cards still align.", "Disclosure animates with a 220ms fade-and-rise (dsRcardIn) matching the accordion motion already used by the filter drawer; honours prefers-reduced-motion.", "Built entirely on semantic tokens, so the pattern themes correctly in both light and dark; the toggle gets a standard focus ring.", "New 'Responsive tables → cards' subsection in the Filters, search & bulk actions chapter with a live card demo, anatomy breakdown, rule table and markup sample.", "Applied across the platform: Assets search (Marine, Property, Aviation, Offshore) and the 14-column policies table on Marine Portfolio Details."],
+  reason: "Horizontally scrolling a 14-column table on a phone hides most of the data behind a gesture users do not discover, and column-hiding controls just trade one loss for another. Re-projecting each row as a card keeps every field reachable, restores a real visual hierarchy at small sizes, and gives every list surface in the platform one consistent mobile behaviour.",
+  affected: ["Data Primitives Pattern", "Assets Search", "Marine Portfolio Details", "Tokens / styles.css"]
+}, {
+  version: "v2.3.0",
+  dateISO: "2026-07-06T10:00:00Z",
+  date: "06/07/2026",
+  time: "10:00 UTC",
+  category: "Token",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Added a full Dark Mode theme built on the existing semantic tokens, a live sidebar Light/Dark toggle that flips the entire spec in place, and a new Dark mode foundations chapter. No components were duplicated — Light and Dark are documented side by side throughout.",
+  changes: ["New [data-theme=\"dark\"] token layer in styles.css: re-points all semantic surface/border/text tokens, elevation shadows and the focus ring. Primitives (brand/slate/status hues + --white) stay fixed.", "Added --white-fixed primitive for true-white foregrounds on colored fills, so surfaces can theme without breaking on-brand text.", "Dark surface ramp derived from the slate scale: bg-app #0B1220 → surface #121A2A → raised #1B2536; text primary #F3F4F6, secondary #9CA3AF, muted #828C9C (all ≥ AA).", "Large-area status tints (-050) go dark; small status chips (-100) stay light so they pop. Neutral surface primitives (slate-50/100/150/200) re-point in dark so legacy inline previews flip too.", "Live theme toggle in the sidebar (role=switch), persisted to localStorage['skytek-theme'] and applied pre-paint to prevent a light flash; first visit follows prefers-color-scheme. Added to the Changelog page too.", "New 'Dark mode' foundations chapter: principles, theme architecture, semantic token Light/Dark tables, primitive-vs-semantic, dark elevation, icons & imagery, WCAG AA contrast table, and do's & don'ts.", "Color chapter's semantic token table now shows Light and Dark values side by side.", "Updated the Handoff dark-mode code sample from a 'future' note to the shipped implementation."],
+  reason: "Operators run long, dim-room and night shifts; a first-class dark theme reduces glare while preserving identical information hierarchy, density and meaning. Building on semantic tokens means every current and future component supports both themes with no duplication.",
+  affected: ["Foundations / Dark mode", "Foundations / Color", "Handoff", "styles.css", "Skytek Design System.html", "Changelog", "Theme architecture"]
+}, {
+  version: "v2.2.1",
+  dateISO: "2026-06-26T13:10:00Z",
+  date: "26/06/2026",
+  time: "13:10 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Fixed the sidebar version label, which was hardcoded to 'v1.0' and never reflected the actual design system version.",
+  changes: ["Bound the sidebar 'Design System' label to the latest changelog entry's version instead of a static 'v1.0' string."],
+  reason: "The navigation showed a stale 'v1.0' regardless of the real version, making it impossible to tell which version was in view.",
+  affected: ["Skytek Design System.html", "Sidebar navigation"]
+}, {
+  version: "v2.2.0",
+  dateISO: "2026-06-26T12:50:00Z",
+  date: "26/06/2026",
+  time: "12:50 UTC",
+  category: "Token",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Added a themed, cross-browser scrollbar treatment — a 6px thin bar with a brand-blue thumb on a light-grey track — applied to the page root and any .ds-scroll / [data-scroll] container, plus a documented Scrollbars subsection under Motion.",
+  changes: ["New scrollbar tokens: --scrollbar-size (6px), --scrollbar-track (--slate-100), --scrollbar-thumb (--brand-500), --scrollbar-thumb-hover (--brand-600).", "Firefox support via scrollbar-width:thin + scrollbar-color; WebKit/Blink support via ::-webkit-scrollbar rules honoring the exact 6px width.", "Opt-in .ds-scroll class and [data-scroll] attribute for inner scroll containers (tables, panels, popovers).", "Added a Scrollbars subsection to the Motion foundations page with a live demo, token table, code sample, and a 'don't hide scrollbars' rule."],
+  reason: "Default OS scrollbars looked foreign inside dense data regions; a consistent themed bar ties scroll affordances to the product and matches the requested visual (theme thumb, light-grey track, 6px).",
+  affected: ["Foundations / Motion", "styles.css", "Scrollbars"]
+}, {
+  version: "v2.1.5",
+  dateISO: "2026-06-25T00:05:00Z",
+  date: "25/06/2026",
+  time: "00:05 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Documentation Only",
+  summary: "Added an Upload icon to the Icon Inventory canonical alias map.",
+  changes: ["Added the 'upload' alias (Lucide Upload) for import-data / attach-file / upload-report actions, placed alphabetically."],
+  reason: "The inventory had a download glyph but no matching upload glyph for import flows.",
+  affected: ["Icon Inventory", "Iconography"]
+}, {
+  version: "v2.1.4",
+  dateISO: "2026-06-25T00:00:00Z",
+  date: "25/06/2026",
+  time: "00:00 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Documentation Only",
+  summary: "Added a Download icon to the Icon Inventory canonical alias map and sorted the entire list alphabetically by alias.",
+  changes: ["Added the 'download' alias (Lucide Download) for export / save-file / download-report actions.", "Reordered all canonical alias entries to be alphabetical by alias for easier scanning."],
+  reason: "The inventory lacked a download glyph and its previous arbitrary order made specific aliases hard to find.",
+  affected: ["Icon Inventory", "Iconography"]
+}, {
+  version: "v2.1.3",
+  dateISO: "2026-06-17T09:30:00Z",
+  date: "17/06/2026",
+  time: "09:30 UTC",
+  category: "Token",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Replaced the badges' hard-coded rgba border colors with new tokenized status-border tokens.",
+  changes: ["Introduced --border-info, --border-success, --border-warning and --border-danger, each derived from its status-500 color via color-mix at low alpha.", "Repointed the info, success, warning and danger badge borders from raw rgba(...) values to the new tokens.", "Documented the four tokens in the Color section and the Token index."],
+  reason: "Badge borders used custom rgba literals instead of system colors; tokenizing them keeps the borders consistent and themeable.",
+  affected: ["Badges & Status", "Design Tokens", "Token index", "Color"]
+}, {
+  version: "v2.1.2",
+  dateISO: "2026-06-15T16:55:00Z",
+  date: "15/06/2026",
+  time: "16:55 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Documentation Only",
+  summary: "Synced the Color section with the Token index so every documented color token now has a swatch.",
+  changes: ["Added missing palette swatches: --brand-700, --slate-150, --success-050, --warning-050, --danger-800, --danger-050 and --info-050.", "Added the missing semantic tokens --bg-raised and --text-inverse to the semantic surface/border/text list.", "No new tokens were created — all already existed in styles.css; they were simply not shown in the Color section."],
+  reason: "The Color section was missing colors that the Token index already documented, leaving the two references inconsistent.",
+  affected: ["Color", "Token index"]
+}, {
+  version: "v2.1.1",
+  dateISO: "2026-06-15T16:20:00Z",
+  date: "15/06/2026",
+  time: "16:20 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Documentation Only",
+  summary: "Added rem values alongside the existing pixel values in the Typography and Spacing sections.",
+  changes: ["Typography specimens now list size/line-height in both px and rem (e.g. 32px / 40px and 2rem / 2.5rem), assuming a 16px root.", "The Spacing scale now shows each step in both px and rem (e.g. 16px · 1rem).", "Pixel values are unchanged — rem is shown as an additional reference."],
+  reason: "Give engineers the rem equivalents for relative sizing without losing the pixel values the team designs in.",
+  affected: ["Typography", "Spacing"]
+}, {
+  version: "v2.1.0",
+  dateISO: "2026-06-15T15:40:00Z",
+  date: "15/06/2026",
+  time: "15:40 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Flattened secondary and icon-only buttons, removed all hard-coded button colors, and gave every button variant a pressed (active) state.",
+  changes: ["Removed the drop shadow from .ds-btn--secondary and .ds-btn--icon.", "Replaced the hard-coded #1f5fc7 in the primary active state with a new --brand-700 token (also fixed the same literal in the Buttons full-spec demo and token table).", "Switched the danger button's text from the `white` keyword to var(--white).", "Added :active (pressed) states to the danger and link variants — every variant now has one.", "Added --brand-700 (#1f5fc7) and --danger-800 (#991B1B) to the color tokens and the Token index."],
+  reason: "Flatten low-emphasis buttons for a calmer surface, keep every button color fully tokenized (no raw hex), and give all variants consistent press feedback.",
+  affected: ["Buttons", "Buttons — full spec", "Design Tokens", "Token index"]
+}, {
+  version: "v2.0.0",
+  dateISO: "2026-06-15T15:10:00Z",
+  date: "15/06/2026",
+  time: "15:10 UTC",
+  category: "Token",
+  updatedBy: "Claude",
+  impact: "Breaking",
+  summary: "Removed the 2px spacing step (--space-1) and renumbered the entire spacing scale down by one into a contiguous 4-pt scale.",
+  changes: ["Removed --space-1 (2px) from the spacing scale.", "Renumbered every remaining step down by one: --space-2→--space-1, --space-3→--space-2, … --space-10→--space-9, --space-12→--space-10, --space-16→--space-11.", "Repointed internal usages so visual spacing is unchanged (the density .gap-density rule now uses --space-4 / --space-3).", "Updated the Spacing foundations section and the Token index to match the new numbering."],
+  reason: "The 2px step was too fine to be useful and encouraged off-grid hairline spacing; collapsing it yields a cleaner, contiguous scale aligned to the 4-pt grid.",
+  affected: ["Spacing", "Design Tokens", "Token index", "Density"]
+}, {
+  version: "v1.3.0",
+  dateISO: "2026-06-15T14:32:00Z",
+  date: "15/06/2026",
+  time: "14:32 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Added a living Changelog page that records every change made to the design system.",
+  changes: ["Created a dedicated Changelog page with reverse-chronological timeline of entries.", "Added search across all fields plus filters for date range, category, version and impact level.", "Established an append protocol so every future change auto-records a dated, versioned entry.", "Linked the Changelog from the main specification navigation."],
+  reason: "Give the team a single, auditable record of how the system evolves over time and make change history discoverable.",
+  affected: ["Documentation", "Navigation"]
+}, {
+  version: "v1.2.1",
+  dateISO: "2026-06-15T09:05:00Z",
+  date: "15/06/2026",
+  time: "09:05 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Fixed the Card footer so its background follows the card's rounded bottom corners.",
+  changes: ["Rounded the bottom-left and bottom-right corners of .ds-card-foot to match --radius-lg.", "Added overflow: hidden to .ds-card so footer fills clip cleanly to the card shape.", "Verified box-shadows are unaffected since they render outside the box."],
+  reason: "The footer's slate background was poking past the card's rounded corners with small square nubs.",
+  affected: ["Cards", "Card Footer"]
+}, {
+  version: "v1.2.0",
+  dateISO: "2026-06-14T11:30:00Z",
+  date: "14/06/2026",
+  time: "11:30 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Defined Card footers in the design system, including footers with action buttons.",
+  changes: ["Added .ds-card-foot with --start and --between alignment modifiers.", "Locked all card-footer buttons to ghost (tertiary) style in ALL CAPS via CSS.", "Documented the rule in the Cards component spec and demonstrated all three footer patterns."],
+  reason: "Card footers were used but undocumented; footer actions needed a consistent low-emphasis treatment.",
+  affected: ["Cards", "Card Footer", "Buttons"]
+}, {
+  version: "v1.1.4",
+  dateISO: "2026-06-13T16:10:00Z",
+  date: "13/06/2026",
+  time: "16:10 UTC",
+  category: "Asset",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Updated two icon names in the iconography inventory to their canonical Lucide names.",
+  changes: ["Renamed AlertTriangle to TriangleAlert.", "Renamed HelpCircle to CircleHelp."],
+  reason: "Lucide deprecated the old names; aligning the inventory with current Lucide avoids confusion in handoff.",
+  affected: ["Iconography"]
+}, {
+  version: "v1.1.3",
+  dateISO: "2026-06-13T15:45:00Z",
+  date: "13/06/2026",
+  time: "15:45 UTC",
+  category: "Component",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Iconography inventory now renders icons from the live Lucide library instead of a partial shim.",
+  changes: ["Loaded lucide@0.469.0 and rendered each inventory entry from its real glyph node.", "Removed the generic 'tag' fallback that affected roughly half the inventory.", "Updated the caption to reflect that icons render from the live library."],
+  reason: "About 22 of 44 icons fell back to an identical generic glyph because the offline shim only defined ~20 icons.",
+  affected: ["Iconography"]
+}, {
+  version: "v1.1.2",
+  dateISO: "2026-06-12T10:20:00Z",
+  date: "12/06/2026",
+  time: "10:20 UTC",
+  category: "Documentation",
+  updatedBy: "Claude",
+  impact: "Documentation Only",
+  summary: "Corrected typography documentation to show Exo as the display and heading typeface.",
+  changes: ["Updated Display and H1–H4 specimen labels from Inter to Exo.", "Revised the Typography section intro to read: Exo for display & headings, Inter for body & UI, JetBrains Mono for codes."],
+  reason: "The specimens use var(--font-display) which resolves to Exo, but were mislabelled as Inter.",
+  affected: ["Typography"]
+}, {
+  version: "v1.1.1",
+  dateISO: "2026-06-09T11:02:00Z",
+  date: "09/06/2026",
+  time: "11:02 UTC",
+  category: "Brand",
+  updatedBy: "Claude",
+  impact: "Patch",
+  summary: "Self-hosted JetBrains Mono from uploaded font files.",
+  changes: ["Added @font-face rules for JetBrains Mono (upright + italic, variable weight).", "Pointed --font-mono at the self-hosted family."],
+  reason: "Replace CDN delivery with self-hosted brand fonts for reliability and offline rendering.",
+  affected: ["Typography", "Design Tokens"]
+}, {
+  version: "v1.1.0",
+  dateISO: "2026-06-09T09:14:00Z",
+  date: "09/06/2026",
+  time: "09:14 UTC",
+  category: "Brand",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Self-hosted the Inter typeface from uploaded font files.",
+  changes: ["Added @font-face rules for Inter (upright + italic, variable weight/optical size).", "Switched the --font-sans family over from the CDN stylesheet to the self-hosted files."],
+  reason: "Self-host brand fonts to guarantee consistent rendering independent of external CDNs.",
+  affected: ["Typography", "Design Tokens"]
+}, {
+  version: "v1.0.0",
+  dateISO: "2026-04-28T09:00:00Z",
+  date: "28/04/2026",
+  time: "09:00 UTC",
+  category: "Other",
+  updatedBy: "Claude",
+  impact: "Minor",
+  summary: "Initial release of the Skytek Design System specification.",
+  changes: ["Published foundations: color, typography, spacing, radius, elevation, iconography, density, motion and the token index.", "Published the component system, patterns, domain primitives and engineering handoff chapters."],
+  reason: "Establish the canonical reference for everything visual and interactive in the Skytek React app.",
+  affected: ["Foundations", "Components", "Patterns", "Domain primitives", "Handoff"]
+}];
+})(); } catch (e) { __ds_ns.__errors.push({ path: "changelog-data.js", error: String((e && e.message) || e) }); }
+
 // charts-lib.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* ============================================================================
-   charts-lib.jsx — Skytek composite chart layer (live reference implementation)
+   charts-lib.jsx: Skytek composite chart layer (live reference implementation)
    Built from shared primitives: Canvas, Scale, Axis, GridLines, Legend,
    Tooltip, ChartFrame. Token-driven (--chart-*), responsive (ResizeObserver),
    accessible (figure role + hidden data table + roving keyboard focus).
@@ -765,7 +1120,7 @@ function axisTicks(maxVal, count = 5) {
 const linear = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0 || 1) * (r1 - r0);
 const truncate = (s, n) => s && s.length > n ? s.slice(0, n - 1) + "…" : s;
 
-/* ── useMeasure — the responsive backbone of <Canvas> ─────────────────── */
+/* ── useMeasure, the responsive backbone of <Canvas> ─────────────────── */
 function useMeasure() {
   const ref = React.useRef(null);
   const [w, setW] = React.useState(0);
@@ -848,7 +1203,7 @@ const Legend = ({
   className: "cx-legend-val"
 }, it.value))));
 
-/* ── ChartFrame — composite shell: title, state, legend, responsive,
+/* ── ChartFrame: composite shell: title, state, legend, responsive,
       hidden data table, a11y wrapper. children = (dims) => <svg/> ─────── */
 const ChartFrame = ({
   title,
@@ -980,7 +1335,7 @@ const ChartFrame = ({
     className: "cx-frame-cap t-caption"
   }, caption), dataTable && /*#__PURE__*/React.createElement("table", {
     className: "sr-only"
-  }, /*#__PURE__*/React.createElement("caption", null, ariaLabel || title, " \u2014 data table"), /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, dataTable.columns.map((c, i) => /*#__PURE__*/React.createElement("th", {
+  }, /*#__PURE__*/React.createElement("caption", null, ariaLabel || title, ": data table"), /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, dataTable.columns.map((c, i) => /*#__PURE__*/React.createElement("th", {
     key: i,
     scope: "col"
   }, c)))), /*#__PURE__*/React.createElement("tbody", null, dataTable.rows.map((r, i) => /*#__PURE__*/React.createElement("tr", {
@@ -1026,7 +1381,7 @@ const AxisLeft = ({
 }, fmt ? fmt(t) : t)));
 
 /* ════════════════════════════════════════════════════════════════════
-   BAR CHART — variants: single | stacked | grouped
+   BAR CHART, variants: single | stacked | grouped
    ════════════════════════════════════════════════════════════════════ */
 const BarChart = ({
   data,
@@ -1207,7 +1562,7 @@ const BarChart = ({
 };
 
 /* ════════════════════════════════════════════════════════════════════
-   LINE CHART — variants: single | multi | area
+   LINE CHART, variants: single | multi | area
    ════════════════════════════════════════════════════════════════════ */
 const LineChart = ({
   data,
@@ -1341,7 +1696,7 @@ const LineChart = ({
 };
 
 /* ════════════════════════════════════════════════════════════════════
-   DONUT CHART — variants: donut | pie  (+ center-label slot)
+   DONUT CHART, variants: donut | pie  (+ center-label slot)
    ════════════════════════════════════════════════════════════════════ */
 const DonutChart = ({
   data,
@@ -1466,7 +1821,7 @@ const DonutChart = ({
   });
 };
 
-/* ── WithTip — hosts tooltip state + renders the absolute tooltip div ── */
+/* ── WithTip, hosts tooltip state + renders the absolute tooltip div ── */
 const WithTip = ({
   Chart,
   ...props
@@ -2166,7 +2521,7 @@ try { (() => {
 // copy-utilities.js
 try { (() => {
 /* ============================================================
-   Copy Utilities — zero-touch enhancement layer
+   Copy Utilities: zero-touch enhancement layer
    ------------------------------------------------------------
    Auto-decorates existing primitives with copy actions:
      • <pre class="code">     → toolbar with Copy + format switcher
@@ -2284,7 +2639,7 @@ try { (() => {
       const ok = await writeClipboard(raw.replace(/\n+$/, ""));
       if (ok) {
         flashCopied(btn, label);
-        announce(`${label} — copied to clipboard`);
+        announce(`${label}: copied to clipboard`);
       }
     });
   }
@@ -2292,7 +2647,7 @@ try { (() => {
   /* -------- enhance a token-row <code> element -------- */
   function enhanceTokenCode(codeEl) {
     if (codeEl.dataset.copyEnhanced) return;
-    // only the FIRST <code> child of a token-row — the token name
+    // only the FIRST <code> child of a token-row: the token name
     const row = codeEl.closest(".token-row");
     if (!row) return;
     if (row.querySelector("code") !== codeEl) return;
@@ -2461,7 +2816,7 @@ try { (() => {
     const head = panel.querySelector(":scope > .panel-head");
     const body = panel.querySelector(":scope > .panel-body");
     if (!head || !body) return;
-    // Only attach to ComponentBlock-style panels — those inside .subsection
+    // Only attach to ComponentBlock-style panels; those inside .subsection
     if (!panel.closest(".subsection")) return;
     // Skip if this panel only contains a single pre.code (it already has its own toolbar)
     if (body.querySelector(":scope > pre.code") && body.children.length === 1) return;
@@ -2487,7 +2842,7 @@ try { (() => {
         const ok = await writeClipboard(text);
         if (ok) {
           flashCopied(b, label);
-          announce(`${label} — copied to clipboard`);
+          announce(`${label}: copied to clipboard`);
         }
       });
       return b;
@@ -2569,6 +2924,8 @@ const I = {
   trend: "M3 17l6-6 4 4 8-8M14 7h7v7",
   alert: "M12 8v5m0 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
   arrowUp: "m12 5 7 7m-7-7-7 7m7-7v14",
+  arrowDown: "m12 19 7-7m-7 7-7-7m7 7V5",
+  sort: "m8 9 4-4 4 4M8 15l4 4 4-4",
   arrowRight: "M5 12h14m-7-7 7 7-7 7",
   more: "M5 12h.01M12 12h.01M19 12h.01",
   eye: "M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
@@ -2604,7 +2961,7 @@ window.Icon = Icon;
 
 // section-apply.jsx
 try { (() => {
-/* Section 5 — Apply the system: 4 product surfaces */
+/* Section 5: Apply the system: 4 product surfaces */
 
 const ApplyHeader = ({
   name,
@@ -3139,7 +3496,7 @@ const ApplyTable = () => /*#__PURE__*/React.createElement(React.Fragment, null, 
 }, "Next"))))));
 const ApplyDetail = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ApplyHeader, {
   name: "Vessel detail",
-  what: ["Header consolidates badge + meta + actions in one row", "Tabs replace tab-like segmented controls in legacy modules", "Definition lists for properties — uniform key/value layout"],
+  what: ["Header consolidates badge + meta + actions in one row", "Tabs replace tab-like segmented controls in legacy modules", "Definition lists for properties: uniform key/value layout"],
   why: ["Header height is consistent across all detail pages", "Property scanning is faster with aligned key columns", "Removes 3 different ways the team currently shows vessel meta"]
 }), /*#__PURE__*/React.createElement(Frame, {
   label: "vessel \xB7 /vessel/:id",
@@ -3268,7 +3625,7 @@ const ApplyDetail = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 const ApplyForm = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ApplyHeader, {
   name: "Add policy \xB7 form flow",
   what: ["Standard form layout with grouped FormItems", "Inline validation messages, no toasts for field errors", "Sticky footer with one primary CTA"],
-  why: ["Engineers drop in <Form>, <FormField>, <FormItem> — no styling", "Errors are visible without leaving the field", "Save is unambiguous; Cancel is the secondary path"]
+  why: ["Engineers drop in <Form>, <FormField>, <FormItem>, no styling", "Errors are visible without leaving the field", "Save is unambiguous; Cancel is the secondary path"]
 }), /*#__PURE__*/React.createElement(Frame, {
   label: "add policy \xB7 /portfolio/:id/policy/add",
   h: 580
@@ -3471,7 +3828,7 @@ window.ApplySection = ApplySection;
 
 // section-asset-identity.jsx
 try { (() => {
-/* Section — Asset identity & status (Domain primitives)
+/* Section: Asset identity & status (Domain primitives)
    How every asset (vessel, offshore installation, aircraft, property) is
    identified and status-coded consistently across lists, tables, detail
    headers, popups, alerts and reports. The Maps chapter governs the asset
@@ -3509,9 +3866,9 @@ const FlagSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     maxWidth: 820
   }
-}, "Nationality is the single most repeated identity signal in the product \u2014 a vessel's flag state, an asset's country of jurisdiction, a region row, a sanction subject's domicile, a port's country. One chip renders all of them: a ", /*#__PURE__*/React.createElement("code", {
+}, "Nationality is the single most repeated identity signal in the product, a vessel's flag state, an asset's country of jurisdiction, a region row, a sanction subject's domicile, a port's country. One chip renders all of them: a ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "flagcdn.com"), " raster at a fixed aspect, 2\xA0px corners, a 1\xA0px hairline ring so light flags stay legible on white. It is ", /*#__PURE__*/React.createElement("strong", null, "never the sole identifier"), " \u2014 it always sits beside the country name or asset name."), /*#__PURE__*/React.createElement("div", {
+}, "flagcdn.com"), " raster at a fixed aspect, 2\xA0px corners, a 1\xA0px hairline ring so light flags stay legible on white. It is ", /*#__PURE__*/React.createElement("strong", null, "never the sole identifier"), "; it always sits beside the country name or asset name."), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
     alignItems: "flex-start"
@@ -3601,7 +3958,7 @@ const FlagSection = () => /*#__PURE__*/React.createElement("div", {
   name: "Marshall Islands"
 }), " Marshall Islands")), /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
-}, "The ", /*#__PURE__*/React.createElement("code", null, "alt"), " carries the country name \u2014 a bare flag fails screen readers."))), /*#__PURE__*/React.createElement("p", {
+}, "The ", /*#__PURE__*/React.createElement("code", null, "alt"), " carries the country name: a bare flag fails screen readers."))), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
     marginTop: 12,
@@ -3618,7 +3975,7 @@ export function Flag({ cc, name, size = 'sm' }: { cc: string; name: string; size
       className={\`ds-flag ds-flag--\${size}\`}
       src={\`https://flagcdn.com/w\${size === 'md' ? 40 : 20}/\${cc}.png\`}
       srcSet={\`https://flagcdn.com/w80/\${cc}.png 2x\`}
-      alt={name}          // never empty — nationality is meaning, not decoration
+      alt={name}          // never empty: nationality is meaning, not decoration
       loading="lazy"
     />
   );
@@ -3753,7 +4110,7 @@ const IdentitySection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     maxWidth: 820
   }
-}, "Every asset answers the same four questions, in the same order, wherever it appears: ", /*#__PURE__*/React.createElement("strong", null, "what is it"), " (type glyph),", /*#__PURE__*/React.createElement("strong", null, " what is it called"), " (name), ", /*#__PURE__*/React.createElement("strong", null, "whose is it / where is it flagged"), " (flag + country), and", /*#__PURE__*/React.createElement("strong", null, " how do we key it"), " (the canonical ID). Compliance status rides at the end of the name line as a badge \u2014 never as a recolor. This block is the heading of every detail page, the header of every map popup, and the lead cell of every asset list."), /*#__PURE__*/React.createElement("div", {
+}, "Every asset answers the same four questions, in the same order, wherever it appears: ", /*#__PURE__*/React.createElement("strong", null, "what is it"), " (type glyph),", /*#__PURE__*/React.createElement("strong", null, " what is it called"), " (name), ", /*#__PURE__*/React.createElement("strong", null, "whose is it / where is it flagged"), " (flag + country), and", /*#__PURE__*/React.createElement("strong", null, " how do we key it"), " (the canonical ID). Compliance status rides at the end of the name line as a badge, never as a recolor. This block is the heading of every detail page, the header of every map popup, and the lead cell of every asset list."), /*#__PURE__*/React.createElement("div", {
   style: {
     display: "flex",
     flexDirection: "column",
@@ -3792,12 +4149,12 @@ const IdentitySection = () => /*#__PURE__*/React.createElement("div", {
   }
 }, "Identifier conventions"), /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Identifier"), /*#__PURE__*/React.createElement("th", null, "Applies to"), /*#__PURE__*/React.createElement("th", null, "Format"), /*#__PURE__*/React.createElement("th", null, "Rendering"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Name")), /*#__PURE__*/React.createElement("td", null, "All assets"), /*#__PURE__*/React.createElement("td", null, "Free text"), /*#__PURE__*/React.createElement("td", null, "Display font, ", /*#__PURE__*/React.createElement("strong", null, "UPPERCASE"), " for vessels (matches AIS); title-case for offshore/property.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "IMO number")), /*#__PURE__*/React.createElement("td", null, "Vessels, offshore (where assigned)"), /*#__PURE__*/React.createElement("td", null, "7 digits"), /*#__PURE__*/React.createElement("td", null, "Mono, tabular, never grouped. The durable key \u2014 survives name & flag changes.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "MMSI")), /*#__PURE__*/React.createElement("td", null, "Vessels"), /*#__PURE__*/React.createElement("td", null, "9 digits"), /*#__PURE__*/React.createElement("td", null, "Mono, tabular. Transient \u2014 can change with flag; never the primary key.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Call sign")), /*#__PURE__*/React.createElement("td", null, "Vessels, aircraft"), /*#__PURE__*/React.createElement("td", null, "Alphanumeric"), /*#__PURE__*/React.createElement("td", null, "Mono, uppercase.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Unit ID / CVN")), /*#__PURE__*/React.createElement("td", null, "Offshore installations"), /*#__PURE__*/React.createElement("td", null, "Registry-specific"), /*#__PURE__*/React.createElement("td", null, "Mono. Shown beside IMO when both exist.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Flag")), /*#__PURE__*/React.createElement("td", null, "All assets"), /*#__PURE__*/React.createElement("td", null, "ISO 3166-1 \u03B1-2"), /*#__PURE__*/React.createElement("td", null, "Flag chip + country name (see above).")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Identifier"), /*#__PURE__*/React.createElement("th", null, "Applies to"), /*#__PURE__*/React.createElement("th", null, "Format"), /*#__PURE__*/React.createElement("th", null, "Rendering"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Name")), /*#__PURE__*/React.createElement("td", null, "All assets"), /*#__PURE__*/React.createElement("td", null, "Free text"), /*#__PURE__*/React.createElement("td", null, "Display font, ", /*#__PURE__*/React.createElement("strong", null, "UPPERCASE"), " for vessels (matches AIS); title-case for offshore/property.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "IMO number")), /*#__PURE__*/React.createElement("td", null, "Vessels, offshore (where assigned)"), /*#__PURE__*/React.createElement("td", null, "7 digits"), /*#__PURE__*/React.createElement("td", null, "Mono, tabular, never grouped. The durable key: survives name & flag changes.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "MMSI")), /*#__PURE__*/React.createElement("td", null, "Vessels"), /*#__PURE__*/React.createElement("td", null, "9 digits"), /*#__PURE__*/React.createElement("td", null, "Mono, tabular. Transient: can change with flag; never the primary key.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Call sign")), /*#__PURE__*/React.createElement("td", null, "Vessels, aircraft"), /*#__PURE__*/React.createElement("td", null, "Alphanumeric"), /*#__PURE__*/React.createElement("td", null, "Mono, uppercase.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Unit ID / CVN")), /*#__PURE__*/React.createElement("td", null, "Offshore installations"), /*#__PURE__*/React.createElement("td", null, "Registry-specific"), /*#__PURE__*/React.createElement("td", null, "Mono. Shown beside IMO when both exist.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Flag")), /*#__PURE__*/React.createElement("td", null, "All assets"), /*#__PURE__*/React.createElement("td", null, "ISO 3166-1 \u03B1-2"), /*#__PURE__*/React.createElement("td", null, "Flag chip + country name (see above).")))), /*#__PURE__*/React.createElement("div", {
   className: "callout",
   style: {
     marginTop: 12
   }
-}, /*#__PURE__*/React.createElement("strong", null, "IMO is the key, not the name."), " Vessel names and flags change \u2014 sometimes to evade screening (see the Historical Details and Name/Flag Change patterns). Lists, dedupe and cross-references key on ", /*#__PURE__*/React.createElement("code", {
+}, /*#__PURE__*/React.createElement("strong", null, "IMO is the key, not the name."), " Vessel names and flags change, sometimes to evade screening (see the Historical Details and Name/Flag Change patterns). Lists, dedupe and cross-references key on ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "imo"), "; the name is a label on top of it."));
 
@@ -3812,7 +4169,7 @@ const StatusSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     maxWidth: 820
   }
-}, "An asset carries up to three ", /*#__PURE__*/React.createElement("em", null, "independent"), " status dimensions, and they must never be collapsed into one swatch.", /*#__PURE__*/React.createElement("strong", null, " Operational state"), " (is it running), ", /*#__PURE__*/React.createElement("strong", null, "compliance state"), " (has it been screened), and", /*#__PURE__*/React.createElement("strong", null, " risk severity"), " (how bad is the current finding) each map to their own semantic tokens. All three use the badge primitive \u2014 tint + ink + optional leading dot \u2014 so the product reads one status language."), /*#__PURE__*/React.createElement("div", {
+}, "An asset carries up to three ", /*#__PURE__*/React.createElement("em", null, "independent"), " status dimensions, and they must never be collapsed into one swatch.", /*#__PURE__*/React.createElement("strong", null, " Operational state"), " (is it running), ", /*#__PURE__*/React.createElement("strong", null, "compliance state"), " (has it been screened), and", /*#__PURE__*/React.createElement("strong", null, " risk severity"), " (how bad is the current finding) each map to their own semantic tokens. All three use the badge primitive, tint + ink + optional leading dot, so the product reads one status language."), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
     alignItems: "flex-start"
@@ -3896,7 +4253,7 @@ const StatusSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     marginTop: 14
   }
-}, /*#__PURE__*/React.createElement("strong", null, "One dimension, one channel."), " A sanctioned vessel that is also operational shows ", /*#__PURE__*/React.createElement("em", null, "both"), " a danger compliance badge and a success operational badge \u2014 it is never rendered in a single blended color. Operators must be able to read each question separately."));
+}, /*#__PURE__*/React.createElement("strong", null, "One dimension, one channel."), " A sanctioned vessel that is also operational shows ", /*#__PURE__*/React.createElement("em", null, "both"), " a danger compliance badge and a success operational badge; it is never rendered in a single blended color. Operators must be able to read each question separately."));
 
 /* ── Severity ─────────────────────────────────────────────────────── */
 
@@ -3909,7 +4266,7 @@ const SeveritySection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     maxWidth: 820
   }
-}, "Findings \u2014 casualties, deficiencies, weather impact \u2014 carry a three-step severity. It is an ", /*#__PURE__*/React.createElement("em", null, "ordered"), " scale (unlike the categorical event types below), so it maps to the semantic ramp: danger \u2192 warning \u2192 neutral. This replaces the ad-hoc colored text that drifted across casualty, inspection and weather surfaces."), /*#__PURE__*/React.createElement("div", {
+}, "Findings: casualties, deficiencies, weather impact, carry a three-step severity. It is an ", /*#__PURE__*/React.createElement("em", null, "ordered"), " scale (unlike the categorical event types below), so it maps to the semantic ramp: danger \u2192 warning \u2192 neutral. This replaces the ad-hoc colored text that drifted across casualty, inspection and weather surfaces."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, /*#__PURE__*/React.createElement("div", {
   className: "panel-body",
@@ -3937,7 +4294,7 @@ const SeveritySection = () => /*#__PURE__*/React.createElement("div", {
 
 /* ── Event / alert-type color coding ──────────────────────────────── */
 
-const ALERT_TYPES = [["Sanctioned", "event-chip--sanctioned", "Positive sanctions match on the asset or a related subject.", "danger token"], ["AIS Silence", "event-chip--ais-silence", "AIS transponder signal lost for a sustained period.", "blue"], ["AIS Spoofing", "event-chip--ais-spoofing", "Reported position contradicts satellite tracking.", "purple"], ["Route Deviation", "event-chip--route-dev", "Vessel departs its filed route.", "warning token"], ["Drifting", "event-chip--drifting", "Stationary or near-zero power for an extended window.", "cyan"], ["Loitering", "event-chip--loitering", "Extended dwell in a sensitive area.", "orange"], ["Name/Flag Change", "event-chip--name-flag", "Identity changed — a classic evasion signal.", "pink"], ["Unusual Movement", "event-chip--unusual", "Erratic course or speed pattern.", "warning token"], ["STS Transfer", "event-chip--sts", "Ship-to-ship transfer detected.", "orange"]];
+const ALERT_TYPES = [["Sanctioned", "event-chip--sanctioned", "Positive sanctions match on the asset or a related subject.", "danger token"], ["AIS Silence", "event-chip--ais-silence", "AIS transponder signal lost for a sustained period.", "blue"], ["AIS Spoofing", "event-chip--ais-spoofing", "Reported position contradicts satellite tracking.", "purple"], ["Route Deviation", "event-chip--route-dev", "Vessel departs its filed route.", "warning token"], ["Drifting", "event-chip--drifting", "Stationary or near-zero power for an extended window.", "cyan"], ["Loitering", "event-chip--loitering", "Extended dwell in a sensitive area.", "orange"], ["Name/Flag Change", "event-chip--name-flag", "Identity changed: a classic evasion signal.", "pink"], ["Unusual Movement", "event-chip--unusual", "Erratic course or speed pattern.", "warning token"], ["STS Transfer", "event-chip--sts", "Ship-to-ship transfer detected.", "orange"]];
 const EventTypeSection = () => /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
@@ -3947,7 +4304,7 @@ const EventTypeSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     maxWidth: 820
   }
-}, "Suspicious-activity and alert classes are a ", /*#__PURE__*/React.createElement("em", null, "categorical"), " vocabulary \u2014 there is no \"worse\" hue, only a different kind of event. Each type owns one color so an operator learns the palette once and reads it across the dashboard alert feed, the vessel Suspicious Activity tab, and the map. These are tokens (", /*#__PURE__*/React.createElement("code", {
+}, "Suspicious-activity and alert classes are a ", /*#__PURE__*/React.createElement("em", null, "categorical"), " vocabulary; there is no \"worse\" hue, only a different kind of event. Each type owns one color so an operator learns the palette once and reads it across the dashboard alert feed, the vessel Suspicious Activity tab, and the map. These are tokens (", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--event-*"), "), reconciling the per-page colors that had drifted apart. Severity (above) answers \"how bad\"; the event type answers \"what kind\"."), /*#__PURE__*/React.createElement("div", {
   className: "panel",
@@ -4042,7 +4399,7 @@ const SanctionSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     maxWidth: 820
   }
-}, "The vessel's Sanction Compliance tab screens every ", /*#__PURE__*/React.createElement("strong", null, "related subject"), " \u2014 the vessel, its flag, owner, operator and managers \u2014 against five lists (OFAC, UN, EU, Australia, OFSI). The matrix is the canonical layout: relationship rows down, lists across, one cell state per check."), /*#__PURE__*/React.createElement("div", {
+}, "The vessel's Sanction Compliance tab screens every ", /*#__PURE__*/React.createElement("strong", null, "related subject"), ", the vessel, its flag, owner, operator and managers, against five lists (OFAC, UN, EU, Australia, OFSI). The matrix is the canonical layout: relationship rows down, lists across, one cell state per check."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, /*#__PURE__*/React.createElement("div", {
   className: "panel-body",
@@ -4072,7 +4429,7 @@ const SanctionSection = () => /*#__PURE__*/React.createElement("div", {
   status: s
 })))))))), /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
-}, "Tinted rows are ", /*#__PURE__*/React.createElement("em", null, "Unverifiable"), " \u2014 the subject resolved to \"Unknown\", so screening could not run.")), /*#__PURE__*/React.createElement("h4", {
+}, "Tinted rows are ", /*#__PURE__*/React.createElement("em", null, "Unverifiable"), ", the subject resolved to \"Unknown\", so screening could not run.")), /*#__PURE__*/React.createElement("h4", {
   style: {
     fontSize: 13,
     fontWeight: 700,
@@ -4084,14 +4441,14 @@ const SanctionSection = () => /*#__PURE__*/React.createElement("div", {
   status: "ok"
 })), /*#__PURE__*/React.createElement("td", null, "Subject screened, no list match."), /*#__PURE__*/React.createElement("td", null, "Cleared against this list.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(SCell, {
   status: "sanctioned"
-})), /*#__PURE__*/React.createElement("td", null, "Subject matches a list entry."), /*#__PURE__*/React.createElement("td", null, "Positive hit \u2014 drives the asset's overall compliance to ", /*#__PURE__*/React.createElement("em", null, "Sanctioned"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
+})), /*#__PURE__*/React.createElement("td", null, "Subject matches a list entry."), /*#__PURE__*/React.createElement("td", null, "Positive hit: drives the asset's overall compliance to ", /*#__PURE__*/React.createElement("em", null, "Sanctioned"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
   className: "s-cell s-cell--unverif"
-}, "?")), /*#__PURE__*/React.createElement("td", null, "Subject is ", /*#__PURE__*/React.createElement("em", null, "Unknown"), " / has no provider record."), /*#__PURE__*/React.createElement("td", null, "Screening could not run. ", /*#__PURE__*/React.createElement("strong", null, "Treat as elevated risk"), " \u2014 must not show as Ok.")))), /*#__PURE__*/React.createElement("div", {
+}, "?")), /*#__PURE__*/React.createElement("td", null, "Subject is ", /*#__PURE__*/React.createElement("em", null, "Unknown"), " / has no provider record."), /*#__PURE__*/React.createElement("td", null, "Screening could not run. ", /*#__PURE__*/React.createElement("strong", null, "Treat as elevated risk"), ", must not show as Ok.")))), /*#__PURE__*/React.createElement("div", {
   className: "callout danger",
   style: {
     marginTop: 12
   }
-}, /*#__PURE__*/React.createElement("strong", null, "\"Unknown\" must never pass as compliant."), " When a relationship resolves to ", /*#__PURE__*/React.createElement("em", null, "Unknown"), ", the platform must render the Unverifiable state \u2014 not a green Ok. A reviewer scanning all-green clears the vessel; the Unverifiable cell, row tint, and a small amber dot on the tab keep unscreened subjects visible. Do not reuse the warning \"At risk\" orange (that means \"screened and borderline\") and do not mark unverifiable subjects as Sanctioned (false positives erode trust in the red dot)."));
+}, /*#__PURE__*/React.createElement("strong", null, "\"Unknown\" must never pass as compliant."), " When a relationship resolves to ", /*#__PURE__*/React.createElement("em", null, "Unknown"), ", the platform must render the Unverifiable state, not a green Ok. A reviewer scanning all-green clears the vessel; the Unverifiable cell, row tint, and a small amber dot on the tab keep unscreened subjects visible. Do not reuse the warning \"At risk\" orange (that means \"screened and borderline\") and do not mark unverifiable subjects as Sanctioned (false positives erode trust in the red dot)."));
 
 /* ── Section export ───────────────────────────────────────────────── */
 
@@ -4101,7 +4458,7 @@ window.AssetIdentitySection = AssetIdentitySection;
 
 // section-buttons-deep.jsx
 try { (() => {
-/* Comprehensive Buttons documentation — variants, sizes, states, anatomy, tokens, matrix, guidelines */
+/* Comprehensive Buttons documentation: variants, sizes, states, anatomy, tokens, matrix, guidelines */
 
 /* ——— Redesigned interaction-states data ——— */
 const SIZE_DEFS = [{
@@ -4147,8 +4504,8 @@ const STATE_DEFS = [{
   label: "Active",
   trigger: ":active",
   style: {
-    background: "#1f5fc7",
-    borderColor: "#1f5fc7"
+    background: "var(--brand-700)",
+    borderColor: "var(--brand-700)"
   }
 }, {
   key: "disabled",
@@ -4282,7 +4639,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "subsection-title"
 }, "Variants"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Six variants cover the full hierarchy of action priority. One primary per surface \u2014 secondary/tertiary support, destructive carries weight, link sits in copy."), /*#__PURE__*/React.createElement("div", {
+}, "Six variants cover the full hierarchy of action priority. One primary per surface: secondary/tertiary support, destructive carries weight, link sits in copy."), /*#__PURE__*/React.createElement("div", {
   style: {
     display: "grid",
     gap: 12
@@ -4413,7 +4770,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "subsection-title"
 }, "Interaction states"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Every button resolves to five interaction states across three sizes. States are driven by native pseudo-classes \u2014 never toggled with JavaScript \u2014 so they stay in lock-step with the browser's real hover, focus, and pointer behavior. Transitions run at ", /*#__PURE__*/React.createElement("code", {
+}, "Every button resolves to five interaction states across three sizes. States are driven by native pseudo-classes, never toggled with JavaScript, so they stay in lock-step with the browser's real hover, focus, and pointer behavior. Transitions run at ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "var(--motion-fast)"), " (140ms ease-out)."), /*#__PURE__*/React.createElement("div", {
   className: "bs-live"
@@ -4431,7 +4788,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   }
 }, "Hover, press, or press ", /*#__PURE__*/React.createElement("kbd", {
   className: "bs-kbd"
-}, "Tab"), " to focus \u2014 this is the production component reacting in real time, not a static example.")), /*#__PURE__*/React.createElement("div", {
+}, "Tab"), " to focus; this is the production component reacting in real time, not a static example.")), /*#__PURE__*/React.createElement("div", {
   className: "bs-live-stage"
 }, /*#__PURE__*/React.createElement("button", {
   className: "ds-btn ds-btn--primary ds-btn--lg"
@@ -4500,7 +4857,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   d: I.check
 }), " Save"))))))), /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
-}, "Same recipe applies to Secondary, Ghost, and Destructive \u2014 only the fill/border tokens swap. Focus, active, and disabled behavior is identical across variants.")), /*#__PURE__*/React.createElement("div", {
+}, "Same recipe applies to Secondary, Ghost, and Destructive, only the fill/border tokens swap. Focus, active, and disabled behavior is identical across variants.")), /*#__PURE__*/React.createElement("div", {
   className: "bs-loading-strip"
 }, /*#__PURE__*/React.createElement("div", {
   className: "bs-loading-copy"
@@ -4521,7 +4878,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, "aria-busy=\"true\""), " is set, and ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "pointer-events"), " are suppressed \u2014 but the button stays focusable."))), /*#__PURE__*/React.createElement("div", {
+}, "pointer-events"), " are suppressed, but the button stays focusable."))), /*#__PURE__*/React.createElement("div", {
   className: "bs-loading-stage"
 }, [{
   cls: "ds-btn--sm"
@@ -4584,7 +4941,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, "--brand-500")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Never the sole signal \u2014 paired with focus + active.")), /*#__PURE__*/React.createElement("tr", {
+}, "Never the sole signal: paired with focus + active.")), /*#__PURE__*/React.createElement("tr", {
   className: "bs-row-focus"
 }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Focus")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -4602,9 +4959,9 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "t-caption"
 }, "Fill darkens one step (pressed)."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "#1f5fc7")), /*#__PURE__*/React.createElement("td", {
+}, "--brand-700")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Instant \u2014 no transition delay on press-down.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Disabled")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "Instant: no transition delay on press-down.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Disabled")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "[disabled]")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
@@ -4641,7 +4998,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   }
 }, "The focus ring is the single most important accessibility affordance. It must survive design reviews untouched.")), /*#__PURE__*/React.createElement("div", {
   className: "bs-focus-spec"
-}, [["Ring width", "3px solid offset"], ["Ring color", "rgba(46,134,192,0.32)"], ["Contrast", "≥ 3:1 vs. adjacent surface (WCAG 2.4.11)"], ["Visibility", "Keyboard only — suppressed on mouse via :focus-visible"], ["Activation", /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("kbd", {
+}, [["Ring width", "3px solid offset"], ["Ring color", "rgba(46,134,192,0.32)"], ["Contrast", "≥ 3:1 vs. adjacent surface (WCAG 2.4.11)"], ["Visibility", "Keyboard only: suppressed on mouse via :focus-visible"], ["Activation", /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("kbd", {
   className: "bs-kbd"
 }, "Enter"), " and ", /*#__PURE__*/React.createElement("kbd", {
   className: "bs-kbd"
@@ -4878,7 +5235,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, "--shadow-focus"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Ghost")), /*#__PURE__*/React.createElement("td", null, "transparent"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--slate-700")), /*#__PURE__*/React.createElement("td", null, "transparent"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "--text-link")), /*#__PURE__*/React.createElement("td", null, "transparent"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--slate-100")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -4920,7 +5277,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "subsection-desc"
 }, "Figma naming convention: ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "Button/[Variant]/[Size]/[State]"), " \u2014 e.g. ", /*#__PURE__*/React.createElement("code", {
+}, "Button/[Variant]/[Size]/[State]"), ", e.g. ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "Button/Primary/Large/Hover"), "."), [{
   variant: "Primary",
@@ -5078,7 +5435,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     lineHeight: 1.7,
     color: "var(--text-secondary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "One primary per surface."), " Form footers, dialogs, page headers \u2014 each gets exactly one."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Order matters."), " Primary on the right, secondary to its left, destructive at far left or in overflow."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Verb-first labels."), " \"Save changes\", \"Delete vessel\", \"Export report\"."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Match button size to context."), " Dense tables \u2192 sm. Form footers \u2192 md. Hero CTAs \u2192 lg."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Confirm destructive actions."), " Always trigger a confirmation modal before data loss.")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "One primary per surface."), " Form footers, dialogs, page headers, each gets exactly one."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Order matters."), " Primary on the right, secondary to its left, destructive at far left or in overflow."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Verb-first labels."), " \"Save changes\", \"Delete vessel\", \"Export report\"."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Match button size to context."), " Dense tables \u2192 sm. Form footers \u2192 md. Hero CTAs \u2192 lg."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Confirm destructive actions."), " Always trigger a confirmation modal before data loss.")))), /*#__PURE__*/React.createElement("div", {
   className: "dont"
 }, /*#__PURE__*/React.createElement("div", {
   className: "hd"
@@ -5175,7 +5532,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "t-caption"
 }, "Reset to default state. Surface error via Toast or inline alert; don't show error inside button.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Multiple clicks during loading"), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Pointer-events: none prevents click handler. Don't debounce in the component \u2014 handle in caller.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Icon-only button on touch device"), /*#__PURE__*/React.createElement("td", {
+}, "Pointer-events: none prevents click handler. Don't debounce in the component, handle in caller.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Icon-only button on touch device"), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
 }, "Increase hit area to 44\xD744px minimum via padding while keeping visual size.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Right-to-left languages"), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
@@ -5190,7 +5547,7 @@ Object.assign(window, {
 // section-charts.jsx
 try { (() => {
 /* ============================================================================
-   section-charts.jsx — "Charts — composite components" spec section.
+   section-charts.jsx: "Charts: composite components" spec section.
    Live demos render the real charts-lib.jsx components; the .tsx in the code
    blocks mirrors them. Depends on charts-lib.jsx (window.Bar/Line/Donut).
    ============================================================================ */
@@ -5466,7 +5823,7 @@ const StateDemo = () => {
     formatValue: nf,
     state: stateProp,
     title: "Active alerts by domain",
-    caption: "Same component \u2014 every state is a prop, never a separate render path.",
+    caption: "Same component: every state is a prop, never a separate render path.",
     height: 220
   })));
 };
@@ -5481,7 +5838,7 @@ const ChartsSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, 
   className: "subsection-title"
 }, "Architecture & shared foundation"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Composite charts are thin assemblies over the domain primitives. They own ", /*#__PURE__*/React.createElement("em", null, "data shape, scales, layout and state"), " \u2014 never colors, fonts, or axis styling, which come from tokens. Every chart is wrapped in one ", /*#__PURE__*/React.createElement("code", {
+}, "Composite charts are thin assemblies over the domain primitives. They own ", /*#__PURE__*/React.createElement("em", null, "data shape, scales, layout and state"), ", never colors, fonts, or axis styling, which come from tokens. Every chart is wrapped in one ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "<ChartFrame>"), " that standardizes the title, legend, responsive measurement, the four states, the hidden data table and the accessibility shell."), /*#__PURE__*/React.createElement("div", {
   className: "panel",
@@ -5538,12 +5895,12 @@ const ChartsSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, 
   className: "inline"
 }, "Legend")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Bottom (bar/line) or right (donut). Swatch shape follows the mark \u2014 square for bars/arcs, line for series."))))), /*#__PURE__*/React.createElement("h4", {
+}, "Bottom (bar/line) or right (donut). Swatch shape follows the mark, square for bars/arcs, line for series."))))), /*#__PURE__*/React.createElement("h4", {
   className: "t-h4",
   style: {
     margin: "8px 0 8px"
   }
-}, "Shared props \u2014 ", /*#__PURE__*/React.createElement("code", {
+}, "Shared props: ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "ChartBaseProps<T>")), /*#__PURE__*/React.createElement("pre", {
   className: "code"
@@ -5594,7 +5951,7 @@ export interface ChartBaseProps<T> {
     marginTop: 16,
     marginBottom: 10
   }
-}, "A composite chart, live and responsive \u2014 drag the window or collapse the panel to watch it reflow, rotate tight labels, and re-tick:"), /*#__PURE__*/React.createElement("div", {
+}, "A composite chart, live and responsive, drag the window or collapse the panel to watch it reflow, rotate tight labels, and re-tick:"), /*#__PURE__*/React.createElement("div", {
   className: "panel",
   style: {
     padding: 20
@@ -5674,13 +6031,13 @@ export interface ChartBaseProps<T> {
   }
 }, "Primitive assembly blueprint"), /*#__PURE__*/React.createElement("ol", {
   className: "cx-steps"
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Measure"), " \u2014 ", /*#__PURE__*/React.createElement("code", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Measure"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "Canvas"), " reads container width via ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "useMeasure"), "; derive ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "innerW/innerH"), " from margins."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Scales"), " \u2014 ", /*#__PURE__*/React.createElement("code", {
+}, "innerW/innerH"), " from margins."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Scales"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "scaleBand"), " over ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -5688,21 +6045,21 @@ export interface ChartBaseProps<T> {
   className: "inline"
 }, "scaleLinear([0, niceMax], [innerH, 0])"), " for y. Stacked uses the per-row ", /*#__PURE__*/React.createElement("em", null, "sum"), " for the y-domain; grouped subdivides the band by ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "series.length"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Guides"), " \u2014 ", /*#__PURE__*/React.createElement("code", {
+}, "series.length"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Guides"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "GridLines"), " on y-ticks, ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "Axis"), " left (values) + bottom (categories). No vertical gridlines."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Marks"), " \u2014 map rows \u2192 ", /*#__PURE__*/React.createElement("code", {
+}, "Axis"), " left (values) + bottom (categories). No vertical gridlines."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Marks"), ", map rows \u2192 ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "Marks.Bar"), ". Stacked accumulates an offset; grouped offsets by sub-band index. Fill = ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "colors[i]"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Interaction"), " \u2014 each bar wires ", /*#__PURE__*/React.createElement("code", {
+}, "colors[i]"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Interaction"), ", each bar wires ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "onMouseEnter/onFocus \u2192 Tooltip"), " and is ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "tabIndex=0"), " with an ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "aria-label"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Frame"), " \u2014 wrap in ", /*#__PURE__*/React.createElement("code", {
+}, "aria-label"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Frame"), ", wrap in ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "ChartFrame"), " for title, legend (when series>1), state and the hidden table.")), /*#__PURE__*/React.createElement("h4", {
   className: "t-h4",
@@ -5818,19 +6175,19 @@ export function BarChart({ data, series, variant = 'single', colors, formatValue
   }
 }, "Primitive assembly blueprint"), /*#__PURE__*/React.createElement("ol", {
   className: "cx-steps"
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Measure"), " & derive inner rect (as bar)."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Scales"), " \u2014 x = ", /*#__PURE__*/React.createElement("code", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Measure"), " & derive inner rect (as bar)."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Scales"), ", x = ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "scalePoint/scaleTime"), " over the domain; y = ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "scaleLinear"), " over ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "[0, niceMax]"), " across ", /*#__PURE__*/React.createElement("em", null, "all"), " series so they share one axis."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Guides"), " \u2014 y ", /*#__PURE__*/React.createElement("code", {
+}, "[0, niceMax]"), " across ", /*#__PURE__*/React.createElement("em", null, "all"), " series so they share one axis."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Guides"), ", y ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "GridLines"), " + left axis. X ticks thinned to fit (label width budget)."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Marks"), " \u2014 one ", /*#__PURE__*/React.createElement("code", {
+}, "GridLines"), " + left axis. X ticks thinned to fit (label width budget)."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Marks"), ", one ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "Marks.Line"), " path per series (", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "Marks.Area"), " adds a closed fill below). Point markers sit on each vertex for hit-testing + keyboard stops."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Interaction"), " \u2014 a shared crosshair + the single Tooltip listing every series value at the hovered x. Points are the focusable marks for keyboard."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Frame"), " \u2014 legend bottom when series>1.")), /*#__PURE__*/React.createElement("pre", {
+}, "Marks.Area"), " adds a closed fill below). Point markers sit on each vertex for hit-testing + keyboard stops."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Interaction"), ", a shared crosshair + the single Tooltip listing every series value at the hovered x. Points are the focusable marks for keyboard."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Frame"), ", legend bottom when series>1.")), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `// app/ui/charts/LineChart.tsx
 export interface LineChartProps extends ChartBaseProps<LinePoint> {
@@ -5919,7 +6276,7 @@ export function LineChart({ data, series, variant = 'single', colors, curve = 'l
   className: "t-caption"
 }, "ReactNode"), /*#__PURE__*/React.createElement("td", null, "\u2014"), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Full control of the hole \u2014 overrides centerLabel.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+}, "Full control of the hole, overrides centerLabel.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
   colSpan: 4,
   className: "t-caption"
 }, /*#__PURE__*/React.createElement("strong", null, "+ all ", /*#__PURE__*/React.createElement("code", {
@@ -5933,23 +6290,23 @@ export function LineChart({ data, series, variant = 'single', colors, curve = 'l
   }
 }, "Primitive assembly blueprint"), /*#__PURE__*/React.createElement("ol", {
   className: "cx-steps"
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Measure"), " \u2014 take ", /*#__PURE__*/React.createElement("code", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Measure"), ", take ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "min(width, height)"), "; the plot is square and centered."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Scale"), " \u2014 ", /*#__PURE__*/React.createElement("code", {
+}, "min(width, height)"), "; the plot is square and centered."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Scale"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "scaleArc"), " maps each value to an angular span proportional to the total (start at \u221290\xB0)."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Marks"), " \u2014 one ", /*#__PURE__*/React.createElement("code", {
+}, "scaleArc"), " maps each value to an angular span proportional to the total (start at \u221290\xB0)."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Marks"), ", one ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "Marks.Arc"), " per segment between ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "outerR"), " and ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "innerR"), " (innerR = 0 for pie). 2px surface-colored stroke separates slices."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Center"), " \u2014 render ", /*#__PURE__*/React.createElement("code", {
+}, "innerR"), " (innerR = 0 for pie). 2px surface-colored stroke separates slices."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Center"), ", render ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "centerSlot"), " (or ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "centerLabel"), ") into the hole via ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "<foreignObject>"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Interaction"), " \u2014 arcs are focusable; hover/focus emits the segment + share to the Tooltip."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Frame"), " \u2014 right-side legend with per-segment share %; wrap in ", /*#__PURE__*/React.createElement("code", {
+}, "<foreignObject>"), "."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Interaction"), ", arcs are focusable; hover/focus emits the segment + share to the Tooltip."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Frame"), ", right-side legend with per-segment share %; wrap in ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "ChartFrame"), ".")), /*#__PURE__*/React.createElement("pre", {
   className: "code"
@@ -5989,7 +6346,7 @@ export function DonutChart({ data, variant = 'donut', innerRatio = 0.62, centerL
   className: "subsection-desc"
 }, "Loading, empty, error and the data state are ", /*#__PURE__*/React.createElement("strong", null, "props on one component"), ", resolved by ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "ChartFrame"), " \u2014 modules never branch into a separate \"no data\" component."), /*#__PURE__*/React.createElement(StateDemo, null), /*#__PURE__*/React.createElement("div", {
+}, "ChartFrame"), ", modules never branch into a separate \"no data\" component."), /*#__PURE__*/React.createElement(StateDemo, null), /*#__PURE__*/React.createElement("div", {
   className: "panel",
   style: {
     overflow: "hidden",
@@ -6060,7 +6417,7 @@ export function DonutChart({ data, variant = 'donut', innerRatio = 0.62, centerL
   className: "inline"
 }, "<table>"), " (", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, ".sr-only"), ") mirrors the series \u2014 the reliable, verbose path for screen readers. Always present unless ", /*#__PURE__*/React.createElement("code", {
+}, ".sr-only"), ") mirrors the series: the reliable, verbose path for screen readers. Always present unless ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "a11y.dataTable=false"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Keyboard nav")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
@@ -6151,7 +6508,7 @@ Object.assign(window, {
 
 // section-components.jsx
 try { (() => {
-/* Section 3 — Components: buttons, forms, badges, alerts, cards, tables, tabs, etc. */
+/* Section 3: Components: buttons, forms, badges, alerts, cards, tables, tabs, etc. */
 
 const ComponentBlock = ({
   id,
@@ -6234,7 +6591,7 @@ const ButtonsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   states: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 hover \xB7 active \xB7 disabled \xB7 loading \xB7 focus-visible"),
   rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Heights snap to ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "24 / 28 / 32 / 40px"), ". Icon-only buttons are square. Never stack > 3 buttons in a row \u2014 collapse into a menu.")
+  }, "24 / 28 / 32 / 40px"), ". Icon-only buttons are square. Never stack > 3 buttons in a row, collapse into a menu.")
 }, /*#__PURE__*/React.createElement("div", {
   className: "col",
   style: {
@@ -6507,7 +6864,7 @@ const BadgesBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   className: "ds-rating ds-rating--e"
 }, "E"), /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
-}, "PSC compliance grades \u2014 tied to ", /*#__PURE__*/React.createElement("code", {
+}, "PSC compliance grades: tied to ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--rating-*")))));
 const AlertsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
@@ -6569,7 +6926,12 @@ const CardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   variants: /*#__PURE__*/React.createElement(React.Fragment, null, "plain \xB7 stat \xB7 list \xB7 with footer actions"),
   rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Single border + ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "shadow-xs"), ". Card title is H3 / 16px. Internal padding 16px (or 24px on dashboards).")
+  }, "shadow-xs"), ". Card title is H3 / 16px. Internal padding 16px (or 24px on dashboards). Footer actions are ", /*#__PURE__*/React.createElement("strong", null, "ghost (tertiary) buttons only, in ALL CAPS"), ", never a filled primary inside a card foot.")
+}, /*#__PURE__*/React.createElement("div", {
+  className: "col",
+  style: {
+    gap: 24
+  }
 }, /*#__PURE__*/React.createElement("div", {
   className: "grid-3"
 }, /*#__PURE__*/React.createElement("div", {
@@ -6665,11 +7027,86 @@ const CardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   }
 }, t), /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
-}, "2m")))))));
+}, "2m")))))), /*#__PURE__*/React.createElement("div", {
+  className: "col",
+  style: {
+    gap: 8
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    fontSize: 11,
+    fontWeight: 600,
+    letterSpacing: "0.06em",
+    textTransform: "uppercase",
+    color: "var(--text-muted)"
+  }
+}, "Card footers: ghost (tertiary) buttons, ALL CAPS"), /*#__PURE__*/React.createElement("div", {
+  className: "grid-3"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-card"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-head"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "ds-card-title"
+}, "Sanctions review")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-body",
+  style: {
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.55
+  }
+}, "M/V Stratos matched a watchlist entry. Confirm before the policy can bind."), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-foot"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost ds-btn--sm"
+}, "Dismiss"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost ds-btn--sm"
+}, "Review"))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-head"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "ds-card-title"
+}, "Voyage export")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-body",
+  style: {
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.55
+  }
+}, "42 voyages in the current filter. Export a CSV for the underwriting committee."), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-foot ds-card-foot--between"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "t-caption",
+  style: {
+    textTransform: "none"
+  }
+}, "Updated 2m ago"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost ds-btn--sm"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.download
+}), " Export"))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-head"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "ds-card-title"
+}, "Region NA-04")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-body",
+  style: {
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.55
+  }
+}, "3 vessels added since your last visit. Open the region to review the updated roster."), /*#__PURE__*/React.createElement("div", {
+  className: "ds-card-foot ds-card-foot--start"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost ds-btn--sm"
+}, "Open region")))))));
 const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   id: "c-metrics",
   name: "Metric cards & stat strips",
-  purpose: "Surface key numbers at the top of a view. One glance should tell the underwriter what's happening \u2014 value, unit and direction.",
+  purpose: "Surface key numbers at the top of a view. One glance should tell the underwriter what's happening, value, unit and direction.",
   variants: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "metric strip"), " \xB7 ", /*#__PURE__*/React.createElement("code", {
@@ -6687,7 +7124,7 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
     className: "inline"
   }, "$"), ", right-align in tables, brand-colored in strips. Counts: no symbol, neutral ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "text-primary"), " unless the number signals risk (then use danger color). Label is 11\u201312 px muted, always above the value \u2014 never below. Strip background: ", /*#__PURE__*/React.createElement("code", {
+  }, "text-primary"), " unless the number signals risk (then use danger color). Label is 11\u201312 px muted, always above the value, never below. Strip background: ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "brand-050"), " with ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
@@ -6710,7 +7147,7 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
     textTransform: "uppercase",
     color: "var(--text-muted)"
   }
-}, "Metric strip \u2014 2-up"), /*#__PURE__*/React.createElement("div", {
+}, "Metric strip: 2-up"), /*#__PURE__*/React.createElement("div", {
   className: "ds-metric-strip"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-metric"
@@ -6737,7 +7174,7 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
     textTransform: "uppercase",
     color: "var(--text-muted)"
   }
-}, "Metric strip \u2014 4-up with deltas"), /*#__PURE__*/React.createElement("div", {
+}, "Metric strip: 4-up with deltas"), /*#__PURE__*/React.createElement("div", {
   className: "ds-metric-strip"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-metric"
@@ -6911,7 +7348,7 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
   }
 }, /*#__PURE__*/React.createElement("table", {
   className: "ds-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Raw value"), /*#__PURE__*/React.createElement("th", null, "Display as"), /*#__PURE__*/React.createElement("th", null, "Notes"))), /*#__PURE__*/React.createElement("tbody", null, [["4,932", "4,932", "Under 10K — show exact with comma separator"], ["$605,200,000", "$605.2M", "Abbreviate ≥ 1M; 1 decimal place"], ["$2,100,000,000,000", "$2.1T", "Abbreviate ≥ 1B → B; ≥ 1T → T"], ["0.9412", "94%", "Percentages: 0 decimal places unless < 10%"], ["−0.004 change", "−0.4%", "Deltas: always show sign + 1 decimal"], ["87 (risk count)", "87", "Counts: no abbreviation under 10K"]].map(([raw, display, note]) => /*#__PURE__*/React.createElement("tr", {
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Raw value"), /*#__PURE__*/React.createElement("th", null, "Display as"), /*#__PURE__*/React.createElement("th", null, "Notes"))), /*#__PURE__*/React.createElement("tbody", null, [["4,932", "4,932", "Under 10K: show exact with comma separator"], ["$605,200,000", "$605.2M", "Abbreviate ≥ 1M; 1 decimal place"], ["$2,100,000,000,000", "$2.1T", "Abbreviate ≥ 1B → B; ≥ 1T → T"], ["0.9412", "94%", "Percentages: 0 decimal places unless < 10%"], ["−0.004 change", "−0.4%", "Deltas: always show sign + 1 decimal"], ["87 (risk count)", "87", "Counts: no abbreviation under 10K"]].map(([raw, display, note]) => /*#__PURE__*/React.createElement("tr", {
   key: raw
 }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   style: {
@@ -6929,96 +7366,214 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
     fontSize: 12
   }
 }, note)))))))));
-const TablesBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
-  id: "c-tables",
-  name: "Tables",
-  purpose: "The most-used surface in this product. Density is critical: an underwriter scans 200+ rows per session.",
-  variants: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 compact \xB7 comfy \xB7 with selection \xB7 sortable header"),
-  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "One implementation only \u2014 replaces the four current variants. Sticky header, alternating-row backgrounds removed in favor of subtle hover highlight. Numeric columns right-aligned with ", /*#__PURE__*/React.createElement("code", {
-    className: "inline"
-  }, "tabular-nums"), ".")
-}, /*#__PURE__*/React.createElement("div", {
-  className: "ds-card",
-  style: {
-    overflow: "hidden",
-    padding: 0
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 12,
-    borderBottom: "1px solid var(--border-subtle)",
-    display: "flex",
-    alignItems: "center",
-    gap: 8
-  }
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "ds-card-title",
-  style: {
-    flex: 1
-  }
-}, "Portfolio \xB7 Atlantic Hull Programme 2026"), /*#__PURE__*/React.createElement("button", {
-  className: "ds-btn ds-btn--ghost ds-btn--sm"
-}, /*#__PURE__*/React.createElement(Icon, {
-  d: I.filter
-}), " Filter"), /*#__PURE__*/React.createElement("button", {
-  className: "ds-btn ds-btn--secondary ds-btn--sm"
-}, /*#__PURE__*/React.createElement(Icon, {
-  d: I.download
-}), " Export")), /*#__PURE__*/React.createElement("table", {
-  className: "ds-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
-  style: {
-    width: 28
-  }
-}, /*#__PURE__*/React.createElement("input", {
-  type: "checkbox",
-  className: "ds-check"
-})), /*#__PURE__*/React.createElement("th", null, "Vessel"), /*#__PURE__*/React.createElement("th", {
-  style: {
+const TablesBlock = () => {
+  const cols = [{
+    key: "name",
+    label: "Vessel",
+    num: false,
+    width: undefined
+  }, {
+    key: "imo",
+    label: "IMO",
+    num: false,
     width: 120
-  }
-}, "IMO"), /*#__PURE__*/React.createElement("th", {
-  style: {
+  }, {
+    key: "flag",
+    label: "Flag",
+    num: false,
     width: 90
-  }
-}, "Flag"), /*#__PURE__*/React.createElement("th", {
-  style: {
+  }, {
+    key: "risk",
+    label: "Risk",
+    num: false,
     width: 90
-  }
-}, "Risk"), /*#__PURE__*/React.createElement("th", {
-  style: {
+  }, {
+    key: "status",
+    label: "Status",
+    num: false,
     width: 140
-  }
-}, "Status"), /*#__PURE__*/React.createElement("th", {
-  className: "num",
-  style: {
-    width: 120
-  }
-}, "Sum insured"), /*#__PURE__*/React.createElement("th", {
-  style: {
-    width: 60
-  }
-}))), /*#__PURE__*/React.createElement("tbody", null, [["M/V Stratos", "9472183", "MT", "A", "Compliant", 28_400_000], ["Aegean Pioneer", "9301847", "GR", "B", "In review", 14_900_000], ["Bristol Endeavour", "9618742", "GB", "C", "At risk", 19_500_000], ["Norwegian Beacon", "9510938", "NO", "A", "Compliant", 31_200_000], ["Helios Carrier", "9432751", "PA", "E", "Sanctioned", 12_700_000]].map((r, i) => /*#__PURE__*/React.createElement("tr", {
-  key: i
-}, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
-  type: "checkbox",
-  className: "ds-check"
-})), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, r[0])), /*#__PURE__*/React.createElement("td", {
-  className: "t-mono",
-  style: {
-    fontSize: 12
-  }
-}, r[1]), /*#__PURE__*/React.createElement("td", null, r[2]), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
-  className: `ds-rating ds-rating--${r[3].toLowerCase()}`
-}, r[3])), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
-  className: `ds-badge ds-badge--${r[4] === "Compliant" ? "success" : r[4] === "In review" ? "info" : r[4] === "At risk" ? "warning" : "danger"} ds-badge--dot`
-}, r[4])), /*#__PURE__*/React.createElement("td", {
-  className: "num"
-}, "$", r[5].toLocaleString()), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("button", {
-  className: "ds-btn ds-btn--ghost ds-btn--icon ds-btn--sm"
-}, /*#__PURE__*/React.createElement(Icon, {
-  d: I.more
-})))))))));
+  }, {
+    key: "sum",
+    label: "Sum insured",
+    num: true,
+    width: 130
+  }];
+  const baseRows = [{
+    name: "M/V Stratos",
+    imo: "9472183",
+    flag: "MT",
+    risk: "A",
+    status: "Compliant",
+    sum: 28_400_000
+  }, {
+    name: "Aegean Pioneer",
+    imo: "9301847",
+    flag: "GR",
+    risk: "B",
+    status: "In review",
+    sum: 14_900_000
+  }, {
+    name: "Bristol Endeavour",
+    imo: "9618742",
+    flag: "GB",
+    risk: "C",
+    status: "At risk",
+    sum: 19_500_000
+  }, {
+    name: "Norwegian Beacon",
+    imo: "9510938",
+    flag: "NO",
+    risk: "A",
+    status: "Compliant",
+    sum: 31_200_000
+  }, {
+    name: "Helios Carrier",
+    imo: "9432751",
+    flag: "PA",
+    risk: "E",
+    status: "Sanctioned",
+    sum: 12_700_000
+  }];
+  // null → ascending → descending → null. Numeric columns open descending.
+  const [sort, setSort] = React.useState({
+    key: "sum",
+    dir: "desc"
+  });
+  const cycle = (key, num) => setSort(s => {
+    const first = num ? "desc" : "asc";
+    const second = num ? "asc" : "desc";
+    if (s.key !== key) return {
+      key,
+      dir: first
+    };
+    if (s.dir === first) return {
+      key,
+      dir: second
+    };
+    return {
+      key: null,
+      dir: null
+    };
+  });
+  const rows = React.useMemo(() => {
+    if (!sort.key) return baseRows;
+    return [...baseRows].sort((a, b) => {
+      const av = a[sort.key],
+        bv = b[sort.key];
+      const cmp = typeof av === "number" ? av - bv : String(av).localeCompare(String(bv));
+      return sort.dir === "asc" ? cmp : -cmp;
+    });
+  }, [sort]);
+  const ariaFor = key => sort.key !== key ? "none" : sort.dir === "asc" ? "ascending" : "descending";
+  return /*#__PURE__*/React.createElement(ComponentBlock, {
+    id: "c-tables",
+    name: "Tables",
+    purpose: "The most-used surface in this product. Density is critical: an underwriter scans 200+ rows per session.",
+    variants: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 compact \xB7 comfy \xB7 with selection \xB7 sortable header"),
+    rules: /*#__PURE__*/React.createElement(React.Fragment, null, "One implementation only: replaces the four current variants. Sticky header, alternating-row backgrounds removed in favor of subtle hover highlight. Numeric columns right-aligned with ", /*#__PURE__*/React.createElement("code", {
+      className: "inline"
+    }, "tabular-nums"), ". Every column header is a sort control, click to cycle ", /*#__PURE__*/React.createElement("em", null, "ascending \u2192 descending \u2192 unsorted"), "; the ", /*#__PURE__*/React.createElement(Icon, {
+      d: I.sort,
+      size: 11,
+      className: "inline-ico"
+    }), " glyph is always visible so columns read as sortable, and turns into a solid ", /*#__PURE__*/React.createElement(Icon, {
+      d: I.arrowDown,
+      size: 11,
+      className: "inline-ico"
+    }), " on the active column. Headers carry ", /*#__PURE__*/React.createElement("code", {
+      className: "inline"
+    }, "aria-sort"), " for screen readers.")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-card",
+    style: {
+      overflow: "hidden",
+      padding: 0
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: 12,
+      borderBottom: "1px solid var(--border-subtle)",
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "ds-card-title",
+    style: {
+      flex: 1
+    }
+  }, "Portfolio \xB7 Atlantic Hull Programme 2026"), /*#__PURE__*/React.createElement("button", {
+    className: "ds-btn ds-btn--ghost ds-btn--sm"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    d: I.filter
+  }), " Filter"), /*#__PURE__*/React.createElement("button", {
+    className: "ds-btn ds-btn--secondary ds-btn--sm"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    d: I.download
+  }), " Export")), /*#__PURE__*/React.createElement("table", {
+    className: "ds-table"
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+    style: {
+      width: 28
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    className: "ds-check"
+  })), cols.map(c => {
+    const active = sort.key === c.key;
+    return /*#__PURE__*/React.createElement("th", {
+      key: c.key,
+      scope: "col",
+      style: c.width ? {
+        width: c.width
+      } : undefined,
+      className: `ds-th--sortable${active ? " ds-th--active" : ""}`,
+      "aria-sort": ariaFor(c.key)
+    }, /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: `ds-th-sort${c.num ? " num" : ""}`,
+      onClick: () => cycle(c.key, c.num),
+      title: `Sort by ${c.label}`
+    }, c.label, /*#__PURE__*/React.createElement("span", {
+      className: "ds-sort-ind"
+    }, /*#__PURE__*/React.createElement(Icon, {
+      d: active ? sort.dir === "asc" ? I.arrowUp : I.arrowDown : I.sort,
+      size: 12
+    }))));
+  }), /*#__PURE__*/React.createElement("th", {
+    style: {
+      width: 60
+    }
+  }))), /*#__PURE__*/React.createElement("tbody", null, rows.map(r => /*#__PURE__*/React.createElement("tr", {
+    key: r.imo
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    className: "ds-check"
+  })), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, r.name)), /*#__PURE__*/React.createElement("td", {
+    className: "t-mono",
+    style: {
+      fontSize: 12
+    }
+  }, r.imo), /*#__PURE__*/React.createElement("td", null, r.flag), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
+    className: `ds-rating ds-rating--${r.risk.toLowerCase()}`
+  }, r.risk)), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
+    className: `ds-badge ds-badge--${r.status === "Compliant" ? "success" : r.status === "In review" ? "info" : r.status === "At risk" ? "warning" : "danger"} ds-badge--dot`
+  }, r.status)), /*#__PURE__*/React.createElement("td", {
+    className: "num"
+  }, "$", r.sum.toLocaleString()), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("button", {
+    className: "ds-btn ds-btn--ghost ds-btn--icon ds-btn--sm"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    d: I.more
+  }))))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "8px 12px",
+      borderTop: "1px solid var(--border-subtle)",
+      background: "var(--slate-50)"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "t-caption"
+  }, "Live: click any header to sort. First click sorts (numeric columns open descending), a second reverses, a third returns to the default order."))));
+};
 const NavTabsBlock = () => {
   const [activeTab, setActiveTab] = React.useState("Overview");
   const tabs = ["Overview", "Voyages", "Casualties", "Compliance", "Documents"];
@@ -7110,15 +7665,17 @@ const NavTabsBlock = () => {
 };
 const OverlayBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   id: "c-overlays",
-  name: "Modals, Drawers, Popovers, Tooltips",
-  purpose: "Surfaces that overlay the page. Modals block; drawers and popovers don't.",
+  name: "Modals & Drawers",
+  purpose: "Surfaces that overlay the page. Modals block; drawers don't.",
   rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Modal width ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "480 / 640 / 800px"), ". Drawer width ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "400 / 560 / 720px"), " from right. Tooltip max-width ", /*#__PURE__*/React.createElement("code", {
-    className: "inline"
-  }, "240px"), ".")
+  }, "400 / 560 / 720px"), " from right. ", /*#__PURE__*/React.createElement("a", {
+    href: "#c-tooltip"
+  }, "Tooltips"), " and ", /*#__PURE__*/React.createElement("a", {
+    href: "#c-popover"
+  }, "Popovers"), " have their own full specifications.")
 }, /*#__PURE__*/React.createElement("div", {
   className: "grid-2"
 }, /*#__PURE__*/React.createElement("div", {
@@ -7210,85 +7767,13 @@ const OverlayBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   style: {
     marginLeft: 8
   }
-}, "popover \xB7 tooltip \xB7 empty state")), /*#__PURE__*/React.createElement("div", {
+}, "empty state")), /*#__PURE__*/React.createElement("div", {
   style: {
     padding: 24,
     display: "grid",
     gap: 16
   }
 }, /*#__PURE__*/React.createElement("div", {
-  style: {
-    position: "relative",
-    display: "inline-block",
-    width: "fit-content"
-  }
-}, /*#__PURE__*/React.createElement("button", {
-  className: "ds-btn ds-btn--secondary"
-}, /*#__PURE__*/React.createElement(Icon, {
-  d: I.filter
-}), " Filters"), /*#__PURE__*/React.createElement("div", {
-  style: {
-    position: "absolute",
-    top: 38,
-    left: 0,
-    width: 280,
-    background: "white",
-    border: "1px solid var(--border-default)",
-    borderRadius: 6,
-    boxShadow: "var(--shadow-md)",
-    padding: 12,
-    zIndex: 2
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "t-label",
-  style: {
-    marginBottom: 8
-  }
-}, "Filter vessels"), /*#__PURE__*/React.createElement("div", {
-  className: "ds-field",
-  style: {
-    gap: 4
-  }
-}, /*#__PURE__*/React.createElement("label", {
-  className: "ds-field-label",
-  style: {
-    fontSize: 11
-  }
-}, "Risk grade"), /*#__PURE__*/React.createElement("select", {
-  className: "ds-input ds-select",
-  style: {
-    height: 28,
-    fontSize: 12
-  }
-}, /*#__PURE__*/React.createElement("option", null, "All"))), /*#__PURE__*/React.createElement("div", {
-  style: {
-    display: "flex",
-    gap: 8,
-    marginTop: 12,
-    justifyContent: "flex-end"
-  }
-}, /*#__PURE__*/React.createElement("button", {
-  className: "ds-btn ds-btn--ghost ds-btn--sm"
-}, "Reset"), /*#__PURE__*/React.createElement("button", {
-  className: "ds-btn ds-btn--primary ds-btn--sm"
-}, "Apply")))), /*#__PURE__*/React.createElement("div", {
-  style: {
-    position: "relative",
-    display: "inline-block",
-    marginTop: 80
-  }
-}, /*#__PURE__*/React.createElement("button", {
-  className: "ds-btn ds-btn--ghost"
-}, /*#__PURE__*/React.createElement(Icon, {
-  d: I.info
-}), " hover me"), /*#__PURE__*/React.createElement("div", {
-  className: "ds-tooltip",
-  style: {
-    top: -32,
-    left: "50%",
-    transform: "translateX(-50%)"
-  }
-}, "Risk score updated 4m ago")), /*#__PURE__*/React.createElement("div", {
   className: "ds-empty"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-empty-icon"
@@ -7308,7 +7793,7 @@ const OverlayBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     color: "var(--brand-600)",
     fontWeight: 600
   }
-}, "Modal \u2014 full specification"), " for the production API, slots, sizes and accessibility."));
+}, "Modal: full specification"), " for the production API, slots, sizes and accessibility."));
 const LoadingBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   id: "c-loading",
   name: "Loading & Skeleton states",
@@ -7383,7 +7868,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   states: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 hover \xB7 active (current page) \xB7 disabled (prev on page 1 / next on last page)"),
   rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Show page numbers when total pages \u2264 7; collapse middle pages with an ellipsis beyond that. Minimum hit target ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "32\xD732px"), ". Always show a results count (", /*#__PURE__*/React.createElement("em", null, "\"1\u201325 of 847 results\""), "). Never use pagination for infinite-scroll surfaces \u2014 use a \"Load more\" button instead.")
+  }, "32\xD732px"), ". Always show a results count (", /*#__PURE__*/React.createElement("em", null, "\"1\u201325 of 847 results\""), "). Never use pagination for infinite-scroll surfaces, use a \"Load more\" button instead.")
 }, /*#__PURE__*/React.createElement("div", {
   className: "col",
   style: {
@@ -7632,7 +8117,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     letterSpacing: "0.06em",
     textTransform: "uppercase"
   }
-}, "Do \u2014 stacked controls"), /*#__PURE__*/React.createElement("div", {
+}, "Do: stacked controls"), /*#__PURE__*/React.createElement("div", {
   style: {
     width: 360,
     maxWidth: "100%",
@@ -7757,7 +8242,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     letterSpacing: "0.06em",
     textTransform: "uppercase"
   }
-}, "Don't \u2014 desktop pattern on phone"), /*#__PURE__*/React.createElement("div", {
+}, "Don't: desktop pattern on phone"), /*#__PURE__*/React.createElement("div", {
   style: {
     width: 360,
     maxWidth: "100%",
@@ -7943,9 +8428,9 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     lineHeight: 1.65,
     color: "var(--text-primary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Prev / Next buttons"), " \u2014 full-width, min 44\xD744 px, labelled with icon + text"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Current page indicator"), " \u2014 \"1 / 34\" pill between the buttons"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Result count"), " \u2014 condensed: ", /*#__PURE__*/React.createElement("code", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Prev / Next buttons"), ", full-width, min 44\xD744 px, labelled with icon + text"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Current page indicator"), ", \"1 / 34\" pill between the buttons"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Result count"), ", condensed: ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "\"1\u201325 of 847\"")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Jump to page"), " \u2014 link that opens a bottom sheet with a numeric input (only when total pages > 10)"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Disabled state"), " \u2014 prev on page 1, next on last page"))), /*#__PURE__*/React.createElement("div", {
+}, "\"1\u201325 of 847\"")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Jump to page"), ", link that opens a bottom sheet with a numeric input (only when total pages > 10)"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Disabled state"), ", prev on page 1, next on last page"))), /*#__PURE__*/React.createElement("div", {
   style: {
     background: "var(--danger-050)",
     border: "1px solid var(--danger-100)",
@@ -7969,7 +8454,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     lineHeight: 1.65,
     color: "var(--text-primary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Numbered page list"), " \u2014 hit targets fall below 44 px and the row overflows"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Ellipsis collapsing"), " \u2014 irrelevant once the number strip is gone"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "\"Rows per page\" selector"), " \u2014 move to the filter / settings sheet; default to 25"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Word \"results\""), " \u2014 abbreviate aggressively; screen real estate is the constraint"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "First / Last buttons"), " \u2014 replaced by the jump-to-page sheet")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Numbered page list"), ", hit targets fall below 44 px and the row overflows"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Ellipsis collapsing"), ", irrelevant once the number strip is gone"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "\"Rows per page\" selector"), ", move to the filter / settings sheet; default to 25"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Word \"results\""), ", abbreviate aggressively; screen real estate is the constraint"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "First / Last buttons"), ", replaced by the jump-to-page sheet")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card",
   style: {
     overflow: "hidden",
@@ -7989,9 +8474,682 @@ const ComponentsSection = () => /*#__PURE__*/React.createElement(React.Fragment,
 window.ComponentsSection = ComponentsSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-components.jsx", error: String((e && e.message) || e) }); }
 
+// section-darkmode.jsx
+try { (() => {
+/* Section: Dark mode: principles, theme architecture, tokens (L/D),
+   elevation, icons & imagery, accessibility, do's & don'ts.
+   Consumes only semantic tokens so it flips with the page theme. */
+
+/* A swatch that renders the LIVE value of a token inside a forced theme
+   scope, so the same token shows its light and dark result side by side
+   regardless of the page's current theme. */
+const DMChip = ({
+  theme,
+  token,
+  h = 40
+}) => /*#__PURE__*/React.createElement("div", {
+  "data-theme": theme,
+  style: {
+    flex: 1,
+    height: h,
+    borderRadius: 8,
+    background: `var(${token})`,
+    border: "1px solid var(--border-default)"
+  }
+});
+const DMTokenRow = ({
+  token,
+  role,
+  light,
+  dark
+}) => /*#__PURE__*/React.createElement("div", {
+  className: "token-row",
+  style: {
+    gridTemplateColumns: "230px 1fr 128px 128px"
+  }
+}, /*#__PURE__*/React.createElement("code", null, token), /*#__PURE__*/React.createElement("span", {
+  style: {
+    color: "var(--text-secondary)"
+  }
+}, role), /*#__PURE__*/React.createElement("span", {
+  style: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8
+  }
+}, /*#__PURE__*/React.createElement("span", {
+  className: "swatch-mini",
+  style: {
+    background: light,
+    flexShrink: 0
+  }
+}), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--text-muted)",
+    fontSize: 10.5
+  }
+}, light)), /*#__PURE__*/React.createElement("span", {
+  style: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8
+  }
+}, /*#__PURE__*/React.createElement("span", {
+  className: "swatch-mini",
+  style: {
+    background: dark,
+    flexShrink: 0,
+    borderColor: "rgba(255,255,255,.14)"
+  }
+}), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--text-muted)",
+    fontSize: 10.5
+  }
+}, dark)));
+const DMSemanticRoleTable = () => {
+  const rows = [["Background", "--bg-app", "Page / app canvas", "#F9FAFB", "#0B1220"], ["Surface", "--bg-surface", "Cards, panels, modals", "#FFFFFF", "#121A2A"], ["Surface (raised)", "--bg-raised", "Popovers, dropdowns, menus", "#FFFFFF", "#1B2536"], ["Text", "--text-primary", "Body & headings", "#111827", "#F3F4F6"], ["Text (secondary)", "--text-secondary", "Supporting copy", "#4B5563", "#9CA3AF"], ["Border", "--border-default", "Cards, inputs, dividers", "#E5E7EB", "#2B3854"], ["Icon", "currentColor", "Inherits text role (see Icons)", "#4B5563", "#9CA3AF"], ["Focus", "--shadow-focus", "3px keyboard focus ring", "brand 32%", "brand-400 45%"], ["Success", "--success-500", "Positive status / confirm", "#16A34A", "#16A34A"], ["Warning", "--warning-500", "Caution / needs attention", "#D97706", "#D97706"], ["Error", "--danger-500", "Destructive / failure", "#DC2626", "#DC2626"], ["Info", "--info-500", "Neutral information", "#2563EB", "#2563EB"]];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "panel"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "token-row",
+    style: {
+      gridTemplateColumns: "160px 200px 1fr 110px 110px",
+      background: "var(--bg-sunken)"
+    }
+  }, ["Role", "Token", "Purpose", "Light", "Dark"].map(h => /*#__PURE__*/React.createElement("span", {
+    key: h,
+    className: "t-label",
+    style: {
+      color: "var(--text-muted)"
+    }
+  }, h))), rows.map(([role, token, purpose, light, dark]) => /*#__PURE__*/React.createElement("div", {
+    key: role,
+    className: "token-row",
+    style: {
+      gridTemplateColumns: "160px 200px 1fr 110px 110px"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontWeight: 600,
+      fontSize: 13
+    }
+  }, role), /*#__PURE__*/React.createElement("code", {
+    style: {
+      fontSize: 11
+    }
+  }, token), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--text-secondary)",
+      fontSize: 12.5
+    }
+  }, purpose), /*#__PURE__*/React.createElement("span", {
+    className: "t-mono",
+    style: {
+      color: "var(--text-muted)",
+      fontSize: 10.5
+    }
+  }, light), /*#__PURE__*/React.createElement("span", {
+    className: "t-mono",
+    style: {
+      color: "var(--text-muted)",
+      fontSize: 10.5
+    }
+  }, dark))));
+};
+
+/* Side-by-side live preview of a mini UI in both themes. */
+const DMPreviewCard = ({
+  theme,
+  label
+}) => /*#__PURE__*/React.createElement("div", {
+  style: {
+    flex: 1,
+    minWidth: 0
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "t-label",
+  style: {
+    marginBottom: 8
+  }
+}, label), /*#__PURE__*/React.createElement("div", {
+  "data-theme": theme,
+  style: {
+    background: "var(--bg-app)",
+    border: "1px solid var(--border-default)",
+    borderRadius: "var(--radius-lg)",
+    padding: 16,
+    display: "flex",
+    flexDirection: "column",
+    gap: 12
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    background: "var(--bg-surface)",
+    border: "1px solid var(--border-default)",
+    borderRadius: "var(--radius-md)",
+    padding: 14,
+    boxShadow: "var(--card-shadow-rest)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    fontFamily: "var(--font-display)",
+    fontWeight: 600,
+    fontSize: 15,
+    color: "var(--text-primary)"
+  }
+}, "Vessel \xB7 Northern Star"), /*#__PURE__*/React.createElement("div", {
+  style: {
+    fontSize: 12.5,
+    color: "var(--text-secondary)",
+    marginTop: 2
+  }
+}, "IMO 9432120 \xB7 en route to Rotterdam"), /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 8,
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("button", {
+  style: {
+    border: 0,
+    borderRadius: "var(--radius-md)",
+    padding: "7px 14px",
+    fontWeight: 600,
+    fontSize: 12.5,
+    background: "var(--brand-600)",
+    color: "var(--white-fixed)",
+    cursor: "default"
+  }
+}, "Track"), /*#__PURE__*/React.createElement("button", {
+  style: {
+    borderRadius: "var(--radius-md)",
+    padding: "7px 14px",
+    fontWeight: 600,
+    fontSize: 12.5,
+    background: "var(--bg-surface)",
+    color: "var(--text-secondary)",
+    border: "1px solid var(--border-strong)",
+    cursor: "default"
+  }
+}, "Details"))), /*#__PURE__*/React.createElement("div", {
+  style: {
+    borderLeft: "3px solid var(--warning-500)",
+    background: "var(--warning-050)",
+    borderRadius: "var(--radius-md)",
+    padding: "10px 12px",
+    fontSize: 12.5,
+    color: "var(--text-primary)"
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Sanction check pending"), ", re-run before departure."), /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 6
+  }
+}, /*#__PURE__*/React.createElement("span", {
+  style: {
+    fontSize: 11,
+    fontWeight: 600,
+    padding: "3px 8px",
+    borderRadius: 999,
+    background: "var(--success-100)",
+    color: "var(--success-700)"
+  }
+}, "Verified"), /*#__PURE__*/React.createElement("span", {
+  style: {
+    fontSize: 11,
+    fontWeight: 600,
+    padding: "3px 8px",
+    borderRadius: 999,
+    background: "var(--danger-100)",
+    color: "var(--danger-700)"
+  }
+}, "High risk"), /*#__PURE__*/React.createElement("span", {
+  style: {
+    fontSize: 11,
+    fontWeight: 600,
+    padding: "3px 8px",
+    borderRadius: 999,
+    background: "var(--info-100)",
+    color: "var(--info-700)"
+  }
+}, "AIS live"))));
+const DoDont = ({
+  items
+}) => /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--success-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--success-700)"
+  }
+}, "\u2713 Do")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10
+  }
+}, items.do.map((t, i) => /*#__PURE__*/React.createElement("div", {
+  key: i,
+  style: {
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.5
+  }
+}, t)))), /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--danger-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--danger-700)"
+  }
+}, "\u2717 Don't")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10
+  }
+}, items.dont.map((t, i) => /*#__PURE__*/React.createElement("div", {
+  key: i,
+  style: {
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.5
+  }
+}, t)))));
+const DarkModeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Principles"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Dark mode is a first-class theme, not an inversion. Operators run Skytek for long shifts in dim ops rooms and at night; the dark theme reduces glare while preserving the exact same information hierarchy, density and meaning as light. It is built entirely on the existing semantic tokens: no component is redrawn and no layout changes."), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, [["01", "Semantics flip, meaning doesn't", "A success is green and a danger is red in both themes. Only surface, text and border tokens re-point, status hues, spacing, type and layout are identical."], ["02", "Elevation by lightness, not just shadow", "On dark, higher surfaces get lighter, shadows read weakly on dark backgrounds, so a raised card is a lighter slate, reinforced by a deeper shadow."], ["03", "Never pure black or pure white", "The darkest surface is #0B1220 (slate-950), the brightest text is #F3F4F6. Full-contrast black/white causes halation and eye strain on OLED."], ["04", "Contrast is the floor, comfort is the goal", "Every text pairing clears WCAG 2.2 AA (≥4.5:1 body, ≥3:1 large/UI). Large tinted fills go dark; small status chips stay light so they pop."]].map(([n, h, p]) => /*#__PURE__*/React.createElement("div", {
+  key: n,
+  className: "principle"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "num"
+}, n), /*#__PURE__*/React.createElement("h4", null, h), /*#__PURE__*/React.createElement("p", null, p))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Light & dark, side by side"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "The same markup and the same tokens, rendered in each theme. This is not two designs; it is one component reading ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--bg-surface"), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--text-primary"), ",", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--border-default"), " and friends."), /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 20,
+    flexWrap: "wrap"
+  }
+}, /*#__PURE__*/React.createElement(DMPreviewCard, {
+  theme: "light",
+  label: "Light"
+}), /*#__PURE__*/React.createElement(DMPreviewCard, {
+  theme: "dark",
+  label: "Dark"
+}))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Theme architecture"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Themes are a two-layer token model. ", /*#__PURE__*/React.createElement("strong", null, "Primitives"), " are the raw palette (brand, slate, status hues, plus a fixed ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--white"), "); these never change between themes.", /*#__PURE__*/React.createElement("strong", null, " Semantic tokens"), " are role-based aliases (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--bg-surface"), ",", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--text-primary"), "\u2026) that components consume. Dark mode re-points only the semantic layer under a ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "[data-theme=\"dark\"]"), " selector on", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "<html>"), "."), /*#__PURE__*/React.createElement("pre", {
+  className: "code"
+}, `:root {
+  /* primitives: fixed in every theme */
+  --slate-900: #111827;
+  --brand-600: #2d7ffb;
+  --white: #FFFFFF;
+
+  /* semantics, light values */
+  --bg-surface:   var(--white);
+  --text-primary: var(--slate-900);
+  --border-default: var(--slate-200);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  /* only the SEMANTIC layer is re-pointed */
+  --bg-surface:   #121A2A;
+  --text-primary: #F3F4F6;
+  --border-default: #2B3854;
+}
+
+/* Components never hard-code a colour; they read the role: */
+.card { background: var(--bg-surface); color: var(--text-primary); }`), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16,
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Switching themes")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.6
+  }
+}, /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: "0 0 10px"
+  }
+}, "One attribute drives everything:"), /*#__PURE__*/React.createElement("pre", {
+  className: "code",
+  style: {
+    fontSize: 11.5
+  }
+}, `// set
+document.documentElement
+  .setAttribute('data-theme','dark');
+// clear (back to light)
+document.documentElement
+  .removeAttribute('data-theme');`), /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: "10px 0 0"
+  }
+}, "Because tokens cascade, the switch is instant and global. No component re-mounts, no state is lost, and scroll position and open menus are preserved. A scoped transition on surface/border/text colours makes the change feel smooth rather than abrupt."))), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Persistence & default")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.6
+  }
+}, /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: "0 0 10px"
+  }
+}, "The chosen theme is stored in ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "localStorage['skytek-theme']"), " and re-applied before first paint by a tiny inline script in ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "<head>"), ", so there is no light flash on reload."), /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: 0
+  }
+}, "On a first visit with no stored choice, the theme follows the OS via", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "prefers-color-scheme"), ". The sidebar toggle overrides it and remembers."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Semantic colour tokens \xB7 Light / Dark"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "The role-based tokens every component consumes, with both theme values. Status hues (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-500"), ") are identical across themes, only their large-area tint backgrounds shift. Full surface/border/text table lives in the ", /*#__PURE__*/React.createElement("a", {
+  href: "#color"
+}, "Color"), " chapter."), /*#__PURE__*/React.createElement(DMSemanticRoleTable, null)), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Primitive vs. semantic"), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Primitive: fixed"), /*#__PURE__*/React.createElement("span", {
+  className: "meta"
+}, "never themed")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: "0 0 12px",
+    fontSize: 13,
+    color: "var(--text-secondary)"
+  }
+}, "The raw ramp. Same hex in light and dark. Documented in Color. Consume a primitive directly only inside another token definition, never in a component."), /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 6
+  }
+}, ["--brand-600", "--slate-900", "--success-500", "--danger-500"].map(t => /*#__PURE__*/React.createElement("div", {
+  key: t,
+  style: {
+    flex: 1,
+    textAlign: "center"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    height: 34,
+    borderRadius: 6,
+    background: `var(${t})`,
+    border: "1px solid var(--border-default)"
+  }
+}), /*#__PURE__*/React.createElement("code", {
+  style: {
+    fontSize: 9.5,
+    display: "block",
+    marginTop: 4
+  }
+}, t.replace("--", ""))))))), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Semantic: themed"), /*#__PURE__*/React.createElement("span", {
+  className: "meta"
+}, "re-points in dark")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: "0 0 12px",
+    fontSize: 13,
+    color: "var(--text-secondary)"
+  }
+}, "Role aliases. Different value per theme (shown light | dark). This is the only vocabulary a component should use."), ["--bg-surface", "--text-primary", "--border-default"].map(t => /*#__PURE__*/React.createElement("div", {
+  key: t,
+  style: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 8
+  }
+}, /*#__PURE__*/React.createElement("code", {
+  style: {
+    fontSize: 11,
+    width: 140,
+    flexShrink: 0
+  }
+}, t.replace("--", "")), /*#__PURE__*/React.createElement(DMChip, {
+  theme: "light",
+  token: t,
+  h: 26
+}), /*#__PURE__*/React.createElement(DMChip, {
+  theme: "dark",
+  token: t,
+  h: 26
+}))))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Elevation on dark"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "On light, elevation is carried mostly by shadow. On dark, shadows are near-invisible, so depth is carried primarily by ", /*#__PURE__*/React.createElement("strong", null, "surface lightness"), ", each step up the stack is a lighter slate, and reinforced by a deeper, blacker shadow."), /*#__PURE__*/React.createElement("div", {
+  "data-theme": "dark",
+  style: {
+    background: "var(--bg-app)",
+    borderRadius: "var(--radius-lg)",
+    padding: 28,
+    display: "flex",
+    gap: 16,
+    flexWrap: "wrap",
+    alignItems: "flex-end"
+  }
+}, [["--bg-app", "App", "#0B1220", "flat"], ["--bg-surface", "Surface", "#121A2A", "rest"], ["--bg-raised", "Raised", "#1B2536", "hover"], ["--bg-raised", "Overlay", "#1B2536", "modal"]].map(([tok, label, hex, sh], i) => /*#__PURE__*/React.createElement("div", {
+  key: label,
+  style: {
+    flex: 1,
+    minWidth: 120,
+    height: 90 + i * 8,
+    borderRadius: "var(--radius-md)",
+    background: `var(${tok})`,
+    border: "1px solid var(--border-default)",
+    boxShadow: `var(--card-shadow-${sh})`,
+    padding: 12,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-end"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    fontSize: 12.5,
+    fontWeight: 600,
+    color: "var(--text-primary)"
+  }
+}, label), /*#__PURE__*/React.createElement("div", {
+  className: "t-mono",
+  style: {
+    fontSize: 10.5,
+    color: "var(--text-muted)"
+  }
+}, hex)))), /*#__PURE__*/React.createElement("div", {
+  className: "callout",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Rule:"), " a raised element must be at least one surface step lighter than what it sits on. Do not rely on shadow alone to separate an overlay from the page in dark mode.")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Icons & imagery"), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Icons")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.65
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Icons use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "currentColor"), " and inherit the surrounding text role, so they re-theme for free. Never hard-code an icon fill."), /*#__PURE__*/React.createElement("li", null, "Default icon colour is ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--text-secondary"), "; muted/decorative icons use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--text-muted"), "."), /*#__PURE__*/React.createElement("li", null, "On dark, drop icon opacity slightly (\u2248 0.9) only for large decorative glyphs; functional icons stay at full strength for legibility."), /*#__PURE__*/React.createElement("li", null, "Status icons keep their status hue in both themes.")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Logos, illustrations & images")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.65
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Supply a light-on-dark logo lockup for dark mode; never invert the brand mark automatically."), /*#__PURE__*/React.createElement("li", null, "Photographic imagery (satellite, maps) is theme-agnostic, frame it with a ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--border-default"), " hairline so its edges read on dark."), /*#__PURE__*/React.createElement("li", null, "Map tiles switch to the dark Carto base in dark mode; overlays keep their data colours."), /*#__PURE__*/React.createElement("li", null, "Empty-state illustrations use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--text-muted"), " / ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--border-strong"), " line work so they adapt without a second asset."), /*#__PURE__*/React.createElement("li", null, "Screenshots of light UI get a subtle border and are never placed full-bleed on a dark surface.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Accessibility"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Dark mode meets the same WCAG 2.2 AA floor as light, verified for every semantic pairing."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Pairing"), /*#__PURE__*/React.createElement("th", null, "Dark values"), /*#__PURE__*/React.createElement("th", null, "Contrast"), /*#__PURE__*/React.createElement("th", null, "Requirement"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Primary text on app bg"), /*#__PURE__*/React.createElement("td", null, "#F3F4F6 on #0B1220"), /*#__PURE__*/React.createElement("td", null, "~15.8 : 1"), /*#__PURE__*/React.createElement("td", null, "AA / AAA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Primary text on surface"), /*#__PURE__*/React.createElement("td", null, "#F3F4F6 on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~14.1 : 1"), /*#__PURE__*/React.createElement("td", null, "AA / AAA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Secondary text on surface"), /*#__PURE__*/React.createElement("td", null, "#9CA3AF on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~6.4 : 1"), /*#__PURE__*/React.createElement("td", null, "AA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Muted text on surface"), /*#__PURE__*/React.createElement("td", null, "#828C9C on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~4.9 : 1"), /*#__PURE__*/React.createElement("td", null, "AA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Link on surface"), /*#__PURE__*/React.createElement("td", null, "#8EC5FD on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~8.7 : 1"), /*#__PURE__*/React.createElement("td", null, "AA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Default border on surface"), /*#__PURE__*/React.createElement("td", null, "#2B3854 on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~1.6 : 1"), /*#__PURE__*/React.createElement("td", null, "Non-text \u2713")))), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16,
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "callout"
+}, /*#__PURE__*/React.createElement("strong", null, "Focus & keyboard."), " The focus ring brightens to a 3px ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "brand-400"), "glow at 45% on dark (vs 32% on light) so it stays visible against darker surfaces. Focus order, ESC-to-close, return-focus and every keyboard model are unchanged, theme never affects behaviour."), /*#__PURE__*/React.createElement("div", {
+  className: "callout warn"
+}, /*#__PURE__*/React.createElement("strong", null, "Dark-specific watch-outs."), " Halation (light text bleeding on pure-black) is avoided by capping text at #F3F4F6 and bg at #0B1220. Never place saturated pure-hue text (e.g. #DC2626) as body copy on dark, use the token role, which pairs tinted fills with light text."))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Do & don't"), /*#__PURE__*/React.createElement(DoDont, {
+  items: {
+    do: ["Consume semantic tokens (--bg-surface, --text-primary) in every component so both themes work for free.", "Signal elevation with a lighter surface step first, shadow second.", "Keep status hues constant; let their tint backgrounds adapt.", "Test every new component in both themes before merge.", "Provide a dark logo lockup and let icons inherit currentColor."],
+    dont: ["Hard-code hex or a raw --slate-* / #fff in a component; it won't flip and breaks the theme.", "Invert the entire UI or the brand mark programmatically.", "Use pure #000 surfaces or #FFF text; they cause halation and glare.", "Rely on shadow alone to lift an overlay off a dark page.", "Drop below AA contrast to make dark 'look sleeker'."]
+  }
+})), /*#__PURE__*/React.createElement("div", {
+  className: "callout"
+}, /*#__PURE__*/React.createElement("strong", null, "The dark-mode test:"), " toggle the theme and read the screen. If any element disappears, glows, or loses meaning, it is hard-coding a colour instead of consuming a token, fix the token reference, not the theme."));
+window.DarkModeSection = DarkModeSection;
+})(); } catch (e) { __ds_ns.__errors.push({ path: "section-darkmode.jsx", error: String((e && e.message) || e) }); }
+
 // section-data-primitives.jsx
 try { (() => {
-/* Section — Data primitives: filters, search, bulk actions, saved views */
+/* Section: Data primitives: filters, search, bulk actions, saved views */
 
 const FilterBarDemo = () => /*#__PURE__*/React.createElement("div", {
   className: "ds-filter-bar"
@@ -8226,7 +9384,7 @@ const FilterTypesTable = () => /*#__PURE__*/React.createElement("table", {
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Type"), /*#__PURE__*/React.createElement("th", null, "Trigger"), /*#__PURE__*/React.createElement("th", null, "Surface"), /*#__PURE__*/React.createElement("th", null, "When to use"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Quick filter")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-filter-trigger"), " \"+ Add filter\""), /*#__PURE__*/React.createElement("td", null, "Popover dropdown"), /*#__PURE__*/React.createElement("td", null, "1\u201310 enumerable values per category. The default.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Facet")), /*#__PURE__*/React.createElement("td", null, "Field name in chip \u2192 opens dropdown with search + checklist"), /*#__PURE__*/React.createElement("td", null, "Searchable dropdown"), /*#__PURE__*/React.createElement("td", null, "10\u20131000 values: flags, ports, organizations. Multi-select with counts.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Range")), /*#__PURE__*/React.createElement("td", null, "\"Speed \u2265 10 kn\" chip \u2192 opens slider"), /*#__PURE__*/React.createElement("td", null, "Inline slider"), /*#__PURE__*/React.createElement("td", null, "Continuous numeric: speed, draught, exposure. Min, max, or both.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Date range")), /*#__PURE__*/React.createElement("td", null, "\"Last 7d\" preset chip \u2192 opens calendar"), /*#__PURE__*/React.createElement("td", null, "Date range picker"), /*#__PURE__*/React.createElement("td", null, "ATA, ETA, AIS-last-seen. Always with presets: 1d, 7d, 30d, YTD.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Advanced")), /*#__PURE__*/React.createElement("td", null, "\"Advanced filters\" button"), /*#__PURE__*/React.createElement("td", null, "Side panel"), /*#__PURE__*/React.createElement("td", null, "Boolean combinations across > 3 categories. Power-user surface."))));
 const URLStateExample = () => /*#__PURE__*/React.createElement("pre", {
   className: "code"
-}, `// Filter state lives in the URL — always. Sharing = copy + paste.
+}, `// Filter state lives in the URL, always. Sharing = copy + paste.
 //   /vessels?type=tanker&flag=lr,pa&rating=d,e&q=atlantic&view=my-hr-tankers
 
 // app/ui/Filters/useFilterState.ts
@@ -8278,7 +9436,7 @@ const FilterRulesDoDont = () => /*#__PURE__*/React.createElement("div", {
     margin: 0,
     paddingLeft: 18
   }
-}, /*#__PURE__*/React.createElement("li", null, "Show ", /*#__PURE__*/React.createElement("strong", null, "active filter counts"), " \u2014 \"412 of 5,983 vessels\"."), /*#__PURE__*/React.createElement("li", null, "Persist state in the URL. The back button works."), /*#__PURE__*/React.createElement("li", null, "Reset is a single click \u2014 never bury it in a menu."), /*#__PURE__*/React.createElement("li", null, "Show ", /*#__PURE__*/React.createElement("strong", null, "option counts"), " on facets so users see \"Tanker (412)\" not just \"Tanker\"."), /*#__PURE__*/React.createElement("li", null, "Default sort is stable across filter changes.")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, "Show ", /*#__PURE__*/React.createElement("strong", null, "active filter counts"), ", \"412 of 5,983 vessels\"."), /*#__PURE__*/React.createElement("li", null, "Persist state in the URL. The back button works."), /*#__PURE__*/React.createElement("li", null, "Reset is a single click, never bury it in a menu."), /*#__PURE__*/React.createElement("li", null, "Show ", /*#__PURE__*/React.createElement("strong", null, "option counts"), " on facets so users see \"Tanker (412)\" not just \"Tanker\"."), /*#__PURE__*/React.createElement("li", null, "Default sort is stable across filter changes.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head",
@@ -8302,10 +9460,336 @@ const FilterRulesDoDont = () => /*#__PURE__*/React.createElement("div", {
     margin: 0,
     paddingLeft: 18
   }
-}, /*#__PURE__*/React.createElement("li", null, "Auto-apply filters as the user types in the facet search \u2014 debounce or wait for Apply."), /*#__PURE__*/React.createElement("li", null, "Hide the active filters in a panel. Chips are always visible."), /*#__PURE__*/React.createElement("li", null, "Reset selection on filter change. A user filtering down their selection expects it to persist."), /*#__PURE__*/React.createElement("li", null, "Show empty facets (\"Gas Carrier (0)\") \u2014 collapse to \"no matches\"."), /*#__PURE__*/React.createElement("li", null, "Mix AND/OR semantics without telling the user. Within a facet = OR; across facets = AND.")))));
+}, /*#__PURE__*/React.createElement("li", null, "Auto-apply filters as the user types in the facet search, debounce or wait for Apply."), /*#__PURE__*/React.createElement("li", null, "Hide the active filters in a panel. Chips are always visible."), /*#__PURE__*/React.createElement("li", null, "Reset selection on filter change. A user filtering down their selection expects it to persist."), /*#__PURE__*/React.createElement("li", null, "Show empty facets (\"Gas Carrier (0)\"): collapse to \"no matches\"."), /*#__PURE__*/React.createElement("li", null, "Mix AND/OR semantics without telling the user. Within a facet = OR; across facets = AND.")))));
 const BulkActionRules = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concern"), /*#__PURE__*/React.createElement("th", null, "Rule"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Selection scope")), /*#__PURE__*/React.createElement("td", null, "The header checkbox is a ", /*#__PURE__*/React.createElement("strong", null, "tristate"), ": empty, partial (\u2014 icon), all on current page. \"Select all 5,983\" is an explicit second action.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Action bar position")), /*#__PURE__*/React.createElement("td", null, "Sticky to the bottom of the selection scope (usually the table card), not the viewport. Slides up from the bottom on first select, fades out on clear.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Destructive actions")), /*#__PURE__*/React.createElement("td", null, "Confirmation modal when count \u2265 10 OR action is irreversible. Confirmation modal types the count: \"Archive 23 vessels?\" \u2014 not just \"Are you sure?\".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Undo")), /*#__PURE__*/React.createElement("td", null, "Reversible actions show an undo toast for 8 s after completion. Time-bombed undo links to a permanent audit log entry.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Optimistic UI")), /*#__PURE__*/React.createElement("td", null, "Rows visually transition (fade + collapse) before the server confirms. Failure reverts with a danger toast.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Bulk-action result")), /*#__PURE__*/React.createElement("td", null, "Always summarize: \"Archived 21 of 23 (2 failed \u2014 permission denied)\". Never leave the user guessing."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concern"), /*#__PURE__*/React.createElement("th", null, "Rule"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Selection scope")), /*#__PURE__*/React.createElement("td", null, "The header checkbox is a ", /*#__PURE__*/React.createElement("strong", null, "tristate"), ": empty, partial (\u2014 icon), all on current page. \"Select all 5,983\" is an explicit second action.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Action bar position")), /*#__PURE__*/React.createElement("td", null, "Sticky to the bottom of the selection scope (usually the table card), not the viewport. Slides up from the bottom on first select, fades out on clear.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Destructive actions")), /*#__PURE__*/React.createElement("td", null, "Confirmation modal when count \u2265 10 OR action is irreversible. Confirmation modal types the count: \"Archive 23 vessels?\", not just \"Are you sure?\".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Undo")), /*#__PURE__*/React.createElement("td", null, "Reversible actions show an undo toast for 8 s after completion. Time-bombed undo links to a permanent audit log entry.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Optimistic UI")), /*#__PURE__*/React.createElement("td", null, "Rows visually transition (fade + collapse) before the server confirms. Failure reverts with a danger toast.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Bulk-action result")), /*#__PURE__*/React.createElement("td", null, "Always summarize: \"Archived 21 of 23 (2 failed, permission denied)\". Never leave the user guessing."))));
+const SortableHeaderDemo = () => {
+  const cols = [{
+    key: "name",
+    label: "Vessel",
+    num: false
+  }, {
+    key: "flag",
+    label: "Flag",
+    num: false
+  }, {
+    key: "type",
+    label: "Type",
+    num: false
+  }, {
+    key: "speed",
+    label: "Speed (kn)",
+    num: true
+  }, {
+    key: "seen",
+    label: "AIS last seen",
+    num: true
+  }];
+  const baseRows = [{
+    name: "Atlantic Crown",
+    flag: "Liberia",
+    type: "Tanker",
+    speed: 12.4,
+    seen: 2
+  }, {
+    name: "Nordic Aurora",
+    flag: "Panama",
+    type: "Bulk Carrier",
+    speed: 8.1,
+    seen: 41
+  }, {
+    name: "Pacific Venture",
+    flag: "Marshall Is.",
+    type: "Container",
+    speed: 18.9,
+    seen: 0
+  }, {
+    name: "Sea Meridian",
+    flag: "Malta",
+    type: "Gas Carrier",
+    speed: 0.0,
+    seen: 376
+  }, {
+    name: "Orion Trader",
+    flag: "Liberia",
+    type: "Tanker",
+    speed: 14.2,
+    seen: 6
+  }, {
+    name: "Baltic Spirit",
+    flag: "Cyprus",
+    type: "General Cargo",
+    speed: 9.6,
+    seen: 18
+  }];
+  // null → ascending → descending → null
+  const [sort, setSort] = React.useState({
+    key: "speed",
+    dir: "desc"
+  });
+  const cycle = key => setSort(s => {
+    if (s.key !== key) return {
+      key,
+      dir: "asc"
+    };
+    if (s.dir === "asc") return {
+      key,
+      dir: "desc"
+    };
+    if (s.dir === "desc") return {
+      key: null,
+      dir: null
+    };
+    return {
+      key,
+      dir: "asc"
+    };
+  });
+  const rows = React.useMemo(() => {
+    if (!sort.key) return baseRows;
+    const sorted = [...baseRows].sort((a, b) => {
+      const av = a[sort.key],
+        bv = b[sort.key];
+      const cmp = typeof av === "number" ? av - bv : String(av).localeCompare(String(bv));
+      return sort.dir === "asc" ? cmp : -cmp;
+    });
+    return sorted;
+  }, [sort]);
+  const ariaFor = key => sort.key !== key ? "none" : sort.dir === "asc" ? "ascending" : "descending";
+  return /*#__PURE__*/React.createElement("div", {
+    className: "surface",
+    style: {
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "ds-table"
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, cols.map(c => {
+    const active = sort.key === c.key;
+    return /*#__PURE__*/React.createElement("th", {
+      key: c.key,
+      scope: "col",
+      className: `ds-th--sortable${active ? " ds-th--active" : ""}`,
+      "aria-sort": ariaFor(c.key)
+    }, /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: `ds-th-sort${c.num ? " num" : ""}`,
+      onClick: () => cycle(c.key),
+      title: `Sort by ${c.label}`
+    }, c.label, /*#__PURE__*/React.createElement("span", {
+      className: "ds-sort-ind"
+    }, /*#__PURE__*/React.createElement(Icon, {
+      d: active ? sort.dir === "asc" ? I.arrowUp : I.arrowDown : I.sort,
+      size: 12
+    }))));
+  }))), /*#__PURE__*/React.createElement("tbody", null, rows.map(r => /*#__PURE__*/React.createElement("tr", {
+    key: r.name
+  }, /*#__PURE__*/React.createElement("td", {
+    style: {
+      fontWeight: 600
+    }
+  }, r.name), /*#__PURE__*/React.createElement("td", null, r.flag), /*#__PURE__*/React.createElement("td", null, r.type), /*#__PURE__*/React.createElement("td", {
+    className: "num"
+  }, r.speed.toFixed(1)), /*#__PURE__*/React.createElement("td", {
+    className: "num"
+  }, r.seen === 0 ? "live" : `${r.seen}h ago`))))));
+};
+const SortRulesTable = () => /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concern"), /*#__PURE__*/React.createElement("th", null, "Rule"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Affordance")), /*#__PURE__*/React.createElement("td", null, "Sortable headers are ", /*#__PURE__*/React.createElement("code", null, "<button>"), "s inside the ", /*#__PURE__*/React.createElement("code", null, "<th>"), ", focusable, Enter/Space activate. A faint up/down glyph (", /*#__PURE__*/React.createElement("code", null, "I.sort"), ") is ", /*#__PURE__*/React.createElement("strong", null, "always visible"), " at 40% rest opacity so users know a column is sortable before they hover; it darkens to 70% on hover and turns into a solid directional arrow when active.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Click cycle")), /*#__PURE__*/React.createElement("td", null, "First click \u2192 ", /*#__PURE__*/React.createElement("strong", null, "ascending"), ", second \u2192 ", /*#__PURE__*/React.createElement("strong", null, "descending"), ", third \u2192 ", /*#__PURE__*/React.createElement("strong", null, "unsorted"), " (returns to default order). Don't trap users in a two-state toggle with no way back to default.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active indicator")), /*#__PURE__*/React.createElement("td", null, "The active column shows a solid arrow in ", /*#__PURE__*/React.createElement("code", null, "--brand-600"), "; its label darkens to ", /*#__PURE__*/React.createElement("code", null, "--text-primary"), ". Only one column is visibly active at a time (unless multi-sort is on, see below).")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Direction glyph")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Icon, {
+  d: I.arrowUp,
+  size: 11,
+  className: "inline-ico"
+}), " ascending = A\u2192Z, 0\u21929, oldest\u2192newest. ", /*#__PURE__*/React.createElement(Icon, {
+  d: I.arrowDown,
+  size: 11,
+  className: "inline-ico"
+}), " descending = the reverse. Numeric and date columns default to ", /*#__PURE__*/React.createElement("strong", null, "descending"), " on first click (most users want \"highest / most recent first\").")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Accessibility")), /*#__PURE__*/React.createElement("td", null, "The ", /*#__PURE__*/React.createElement("code", null, "<th>"), " carries ", /*#__PURE__*/React.createElement("code", null, "aria-sort=\"ascending | descending | none\""), " and ", /*#__PURE__*/React.createElement("code", null, "scope=\"col\""), ". Screen readers announce the sort state on focus, the glyph alone is never the only signal.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alignment")), /*#__PURE__*/React.createElement("td", null, "Numeric columns right-align both header and cells (", /*#__PURE__*/React.createElement("code", null, ".num"), "), with the glyph trailing the label so the column reads as a single right-aligned unit.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Multi-sort")), /*#__PURE__*/React.createElement("td", null, "Shift-click adds a secondary sort key; a small superscript rank (", /*#__PURE__*/React.createElement("span", {
+  className: "ds-sort-rank",
+  style: {
+    position: "static"
+  }
+}, "1"), " ", /*#__PURE__*/React.createElement("span", {
+  className: "ds-sort-rank",
+  style: {
+    position: "static"
+  }
+}, "2"), ") appears beside each active glyph. Reserve for power surfaces: most lists are single-column.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Persistence")), /*#__PURE__*/React.createElement("td", null, "Sort key + direction serialize into the URL (", /*#__PURE__*/React.createElement("code", null, "?sort=speed:desc"), ") alongside filters. Refresh and permalinks restore the exact order. Default sort is stable across filter changes."))));
+const ResponsiveTableCardDemo = () => {
+  const [open, setOpen] = React.useState(false);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "ds-card",
+    style: {
+      maxWidth: 380,
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("article", {
+    className: "ds-rcard" + (open ? " open" : "")
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-top"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-id"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "ds-rcard-title",
+    href: "#data-primitives"
+  }, "ATLANTIC PIONEER"), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-sub"
+  }, "Liberia \xB7 IMO 9432187")), /*#__PURE__*/React.createElement("span", {
+    className: "ds-badge ds-badge--info"
+  }, "Tanker")), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-key"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "Est. Value"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v is-strong"
+  }, "$48.2M")), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "Length"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v"
+  }, "183 m")), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "Gross Tonnage"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v"
+  }, "29,650")), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "YOB"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v"
+  }, "2011"))), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-more"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-key"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "Callsign"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v is-mono"
+  }, "A8XY4")), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "MMSI"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v is-mono"
+  }, "636019215")), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "DWT"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v"
+  }, "49,999")), /*#__PURE__*/React.createElement("div", {
+    className: "ds-rcard-kv"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-k"
+  }, "Last Seen"), /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-v is-muted"
+  }, "2 h ago")))), /*#__PURE__*/React.createElement("button", {
+    className: "ds-rcard-toggle",
+    "aria-expanded": open,
+    onClick: () => setOpen(!open)
+  }, open ? "Show less" : "Show more", /*#__PURE__*/React.createElement("span", {
+    className: "ds-rcard-chev",
+    style: {
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement(Icon, {
+    d: I.chevron,
+    size: 13
+  })))));
+};
+const ResponsiveTableSection = () => /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Responsive tables \u2192 cards"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "A wide list table never becomes a horizontal scroller on a phone. Below 767\xA0px the table is swapped for a stacked card list, one card per row, with the 3\u20135 fields that drive decisions surfaced up front and the long tail behind a single ", /*#__PURE__*/React.createElement("em", null, "Show more"), " disclosure. Both markups ship; CSS picks the one to show, so there is no JS branch and no second data path."), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 24,
+    alignItems: "start"
+  }
+}, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  className: "t-label",
+  style: {
+    marginBottom: 8
+  }
+}, "Live: one row as a card"), /*#__PURE__*/React.createElement(ResponsiveTableCardDemo, null), /*#__PURE__*/React.createElement("p", {
+  className: "t-caption",
+  style: {
+    marginTop: 8
+  }
+}, "Toggle the disclosure. Themes with light/dark automatically.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  className: "t-label",
+  style: {
+    marginBottom: 8
+  }
+}, "Card anatomy"), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, [["Title", "The row's primary identifier, styled as the link it is in the table."], ["Subline", "One line of context: flag + IMO, vessel name, operator."], ["Badge", "Type or status, right-aligned on the title row."], ["Key grid", "2-column label-over-value pairs. The money / primary metric takes is-strong; a pair may span both columns with .is-full."], ["Show more", "44px min-height, theme-coloured, chevron rotates 180°."]].map(([k, v], i) => /*#__PURE__*/React.createElement("div", {
+  key: k,
+  className: "token-row",
+  style: {
+    gridTemplateColumns: "104px 1fr"
+  }
+}, /*#__PURE__*/React.createElement("span", {
+  style: {
+    fontWeight: 600,
+    fontSize: 12.5
+  }
+}, i + 1, ". ", k), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption",
+  style: {
+    fontSize: 12
+  }
+}, v)))))), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Breakpoint")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "767px"), " for in-page panels, ", /*#__PURE__*/React.createElement("code", null, "860px"), " for full-page asset tables (", /*#__PURE__*/React.createElement("code", null, ".ds-table-cards--wide"), ").")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Applies to")), /*#__PURE__*/React.createElement("td", null, "Wide list tables: 5+ columns. Narrow tables stay tables.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Edit Columns")), /*#__PURE__*/React.createElement("td", null, "Hidden on mobile (", /*#__PURE__*/React.createElement("code", null, ".ds-edit-columns"), "): cards define their own field order, so column toggles carry no meaning there.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Search & filters")), /*#__PURE__*/React.createElement("td", null, "Stay available and go full-width.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Truncation")), /*#__PURE__*/React.createElement("td", null, "Never truncate a card value, wrap it (", /*#__PURE__*/React.createElement("code", null, "overflow-wrap: anywhere"), "). Numerics stay ", /*#__PURE__*/React.createElement("code", null, "tabular-nums"), " so stacked cards still align.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Motion")), /*#__PURE__*/React.createElement("td", null, "Disclosure fades and rises over 220ms, matching the filter-drawer accordion. Respects ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), ".")))), /*#__PURE__*/React.createElement("pre", {
+  className: "code",
+  style: {
+    marginTop: 16
+  }
+}, `<!-- both render; CSS decides which is visible -->
+<div class="ds-table-scroll">
+  <table class="ds-table">…</table>
+</div>
+<div class="ds-table-cards">
+  <article class="ds-rcard">
+    <div class="ds-rcard-top">
+      <div class="ds-rcard-id">
+        <a class="ds-rcard-title" href="…">ATLANTIC PIONEER</a>
+        <div class="ds-rcard-sub">Liberia · IMO 9432187</div>
+      </div>
+      <span class="ds-badge ds-badge--info">Tanker</span>
+    </div>
+    <div class="ds-rcard-key">
+      <div class="ds-rcard-kv">
+        <span class="ds-rcard-k">Est. Value</span>
+        <span class="ds-rcard-v is-strong">$48.2M</span>
+      </div>
+      <!-- 3–5 key pairs -->
+    </div>
+    <div class="ds-rcard-more"><!-- the long tail --></div>
+    <button class="ds-rcard-toggle" aria-expanded="false">
+      Show more <span class="ds-rcard-chev">▾</span>
+    </button>
+  </article>
+</div>`), /*#__PURE__*/React.createElement("div", {
+  className: "callout",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Shipped in:"), " Assets Search (Marine, Property, Aviation, Offshore) and the 14-column policies table on Marine Portfolio Details."));
 const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "subsection",
   style: {
@@ -8318,7 +9802,7 @@ const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragm
   style: {
     maxWidth: 820
   }
-}, "Search, filter, select, act \u2014 that's the loop on most Skytek surfaces. Today each module reinvents it: AssetsSearch, Companies, Ports and the vessel/aircraft lists all carry similar but subtly different patterns. This chapter is the canonical version every list page snaps to.")), /*#__PURE__*/React.createElement("div", {
+}, "Search, filter, select, act; that's the loop on most Skytek surfaces. Today each module reinvents it: AssetsSearch, Companies, Ports and the vessel/aircraft lists all carry similar but subtly different patterns. This chapter is the canonical version every list page snaps to.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -8330,13 +9814,13 @@ const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragm
   className: "subsection-title"
 }, "Filter types"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Five filter modes. Pick by the cardinality and shape of the underlying field \u2014 not by the screen's available space."), /*#__PURE__*/React.createElement(FilterTypesTable, null)), /*#__PURE__*/React.createElement("div", {
+}, "Five filter modes. Pick by the cardinality and shape of the underlying field, not by the screen's available space."), /*#__PURE__*/React.createElement(FilterTypesTable, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Faceted dropdown"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Multi-select facets with counts. Local search at the top, scrollable list, footer with Apply and Clear. Apply is the commit \u2014 selecting checkboxes doesn't fire the filter."), /*#__PURE__*/React.createElement("div", {
+}, "Multi-select facets with counts. Local search at the top, scrollable list, footer with Apply and Clear. Apply is the commit: selecting checkboxes doesn't fire the filter."), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
     alignItems: "flex-start"
@@ -8351,7 +9835,7 @@ const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragm
   style: {
     color: "var(--text-secondary)"
   }
-}, /*#__PURE__*/React.createElement("strong", null, "Counts"), " reflect the result set after ", /*#__PURE__*/React.createElement("em", null, "all other filters"), " are applied \u2014 so a user filtering by Liberia sees the number of Tankers under the Liberia filter, not the global count.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("strong", null, "Ordering"), ": checked items first (stable order), then unchecked sorted by count descending. New facet sessions reset to count order.")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("strong", null, "Counts"), " reflect the result set after ", /*#__PURE__*/React.createElement("em", null, "all other filters"), " are applied, so a user filtering by Liberia sees the number of Tankers under the Liberia filter, not the global count.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("strong", null, "Ordering"), ": checked items first (stable order), then unchecked sorted by count descending. New facet sessions reset to count order.")))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -8363,18 +9847,33 @@ const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragm
   className: "subsection-title"
 }, "URL as source of truth"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Filter state, sort, selected facets, search query, pagination \u2014 all serialized into the URL. Refresh restores the view. Back/forward navigate filter history. Permalinks are the system's sharing primitive."), /*#__PURE__*/React.createElement(URLStateExample, null)), /*#__PURE__*/React.createElement("div", {
+}, "Filter state, sort, selected facets, search query, pagination, all serialized into the URL. Refresh restores the view. Back/forward navigate filter history. Permalinks are the system's sharing primitive."), /*#__PURE__*/React.createElement(URLStateExample, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Selection & bulk actions"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Row checkboxes appear on hover; persist when any row is selected. The bulk-action bar slides in from the bottom of the table card \u2014 never the viewport edge."), /*#__PURE__*/React.createElement(BulkActionBarDemo, null), /*#__PURE__*/React.createElement("p", {
+}, "Row checkboxes appear on hover; persist when any row is selected. The bulk-action bar slides in from the bottom of the table card, never the viewport edge."), /*#__PURE__*/React.createElement(BulkActionBarDemo, null), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
     marginTop: 8
   }
-}, "Buttons above are live \u2014 they change the count to show the bar's responsive behavior.")), /*#__PURE__*/React.createElement("div", {
+}, "Buttons above are live; they change the count to show the bar's responsive behavior.")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Sortable headers"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Every column header on a list table is a sort control. Click to cycle ", /*#__PURE__*/React.createElement("em", null, "ascending \u2192 descending \u2192 unsorted"), ". Try the columns below: the glyph hints sortability on hover and turns solid on the active column."), /*#__PURE__*/React.createElement(SortableHeaderDemo, null), /*#__PURE__*/React.createElement("p", {
+  className: "t-caption",
+  style: {
+    marginTop: 8
+  }
+}, "Live: click any header. Third click on the same column returns to the default order."), /*#__PURE__*/React.createElement("div", {
+  style: {
+    marginTop: 20
+  }
+}, /*#__PURE__*/React.createElement(SortRulesTable, null))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -8382,7 +9881,7 @@ const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragm
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, "Do & don't"), /*#__PURE__*/React.createElement(FilterRulesDoDont, null)), /*#__PURE__*/React.createElement("div", {
+}, "Do & don't"), /*#__PURE__*/React.createElement(FilterRulesDoDont, null)), /*#__PURE__*/React.createElement(ResponsiveTableSection, null), /*#__PURE__*/React.createElement("div", {
   className: "callout"
 }, /*#__PURE__*/React.createElement("strong", null, "The principle:"), " the filter bar tells you what you're looking at, the URL tells you how you got here, and the bulk bar tells you what you can do about it. Three primitives, on every list page, in the same place."));
 window.DataPrimitivesSection = DataPrimitivesSection;
@@ -8390,9 +9889,9 @@ window.DataPrimitivesSection = DataPrimitivesSection;
 
 // section-datetime.jsx
 try { (() => {
-/* Section — Date, time & range pickers */
+/* Section: Date, time & range pickers */
 
-/* Static calendar grid generator — pure presentational */
+/* Static calendar grid generator, pure presentational */
 const buildMonth = (year, monthIdx) => {
   const first = new Date(year, monthIdx, 1);
   const start = new Date(first);
@@ -8414,7 +9913,8 @@ const CalendarMonth = ({
   rangeEnd,
   hoverDate,
   onCellClick,
-  onCellHover
+  onCellHover,
+  style
 }) => {
   const days = buildMonth(year, monthIdx);
   const monthName = new Date(year, monthIdx, 1).toLocaleString("en-GB", {
@@ -8434,7 +9934,8 @@ const CalendarMonth = ({
     style: {
       border: 0,
       boxShadow: "none",
-      padding: 0
+      padding: 0,
+      ...style
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "ds-datepicker-head"
@@ -8485,7 +9986,12 @@ const SingleDatePickerDemo = () => {
     monthIdx: selected.getMonth(),
     today: today,
     rangeStart: selected,
-    onCellClick: d => setSelected(d)
+    onCellClick: d => setSelected(d),
+    style: {
+      border: "1px solid var(--border-default)",
+      boxShadow: "var(--shadow-lg)",
+      padding: 12
+    }
   });
 };
 const RangePickerDemo = () => {
@@ -8623,7 +10129,7 @@ const TimePickerDemo = () => {
 };
 const PresetRules = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Preset"), /*#__PURE__*/React.createElement("th", null, "Range"), /*#__PURE__*/React.createElement("th", null, "When to include"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Today")), /*#__PURE__*/React.createElement("td", null, "00:00 \u2192 now (local)"), /*#__PURE__*/React.createElement("td", null, "Always")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last 7 days")), /*#__PURE__*/React.createElement("td", null, "now \u2212 6d \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Always \u2014 the operator default")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last 30 days")), /*#__PURE__*/React.createElement("td", null, "now \u2212 29d \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Always")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last 90 days")), /*#__PURE__*/React.createElement("td", null, "now \u2212 89d \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Trend / portfolio surfaces")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Year to date")), /*#__PURE__*/React.createElement("td", null, "1 Jan year \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Reporting, compliance")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last quarter")), /*#__PURE__*/React.createElement("td", null, "Previous calendar quarter"), /*#__PURE__*/React.createElement("td", null, "Reporting, exposure analyses")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "This month")), /*#__PURE__*/React.createElement("td", null, "1st \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Audit, billing")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "All time")), /*#__PURE__*/React.createElement("td", null, "Beginning of record \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Search, history; never on dashboards"))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Preset"), /*#__PURE__*/React.createElement("th", null, "Range"), /*#__PURE__*/React.createElement("th", null, "When to include"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Today")), /*#__PURE__*/React.createElement("td", null, "00:00 \u2192 now (local)"), /*#__PURE__*/React.createElement("td", null, "Always")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last 7 days")), /*#__PURE__*/React.createElement("td", null, "now \u2212 6d \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Always: the operator default")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last 30 days")), /*#__PURE__*/React.createElement("td", null, "now \u2212 29d \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Always")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last 90 days")), /*#__PURE__*/React.createElement("td", null, "now \u2212 89d \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Trend / portfolio surfaces")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Year to date")), /*#__PURE__*/React.createElement("td", null, "1 Jan year \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Reporting, compliance")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Last quarter")), /*#__PURE__*/React.createElement("td", null, "Previous calendar quarter"), /*#__PURE__*/React.createElement("td", null, "Reporting, exposure analyses")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "This month")), /*#__PURE__*/React.createElement("td", null, "1st \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Audit, billing")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "All time")), /*#__PURE__*/React.createElement("td", null, "Beginning of record \u2192 now"), /*#__PURE__*/React.createElement("td", null, "Search, history; never on dashboards"))));
 const DatePickerRules = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-2"
 }, /*#__PURE__*/React.createElement("div", {
@@ -8662,7 +10168,7 @@ const DatePickerRules = () => /*#__PURE__*/React.createElement("div", {
     margin: 0,
     paddingLeft: 18
   }
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("code", null, "minDate"), " / ", /*#__PURE__*/React.createElement("code", null, "maxDate"), " disable cells; never hide them."), /*#__PURE__*/React.createElement("li", null, "Disabled cells get a tooltip on hover: \"No data before 1 Jan 2024.\""), /*#__PURE__*/React.createElement("li", null, "Max range (e.g. 90 days) shows a banner when exceeded \u2014 never silently clamps."), /*#__PURE__*/React.createElement("li", null, "Weekend / holiday styling is opt-in per surface, not a default.")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("code", null, "minDate"), " / ", /*#__PURE__*/React.createElement("code", null, "maxDate"), " disable cells; never hide them."), /*#__PURE__*/React.createElement("li", null, "Disabled cells get a tooltip on hover: \"No data before 1 Jan 2024.\""), /*#__PURE__*/React.createElement("li", null, "Max range (e.g. 90 days) shows a banner when exceeded, never silently clamps."), /*#__PURE__*/React.createElement("li", null, "Weekend / holiday styling is opt-in per surface, not a default.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head"
@@ -8701,7 +10207,7 @@ const DatePickerRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("li", null, "Range picker opens at the month containing the current ", /*#__PURE__*/React.createElement("em", null, "start"), "."), /*#__PURE__*/React.createElement("li", null, "If no value, open at the current month."), /*#__PURE__*/React.createElement("li", null, "Two months for range, one for single date. No three-month layouts."), /*#__PURE__*/React.createElement("li", null, "Presets sit on the left, calendar(s) on the right. Mobile collapses to one column.")))));
 const DatePickerApi = () => /*#__PURE__*/React.createElement("pre", {
   className: "code"
-}, `// app/ui/Date — three components, one shape.
+}, `// app/ui/Date: three components, one shape.
 type DateValue = string | null;   // ISO 8601 UTC, e.g. "2026-04-28T00:00:00Z"
 type DateRange = { start: DateValue; end: DateValue };
 
@@ -8744,7 +10250,7 @@ const DateTimeSection = () => /*#__PURE__*/React.createElement(React.Fragment, n
   style: {
     maxWidth: 820
   }
-}, "Skytek's lists, reports and alerts live or die on date selection. The product needs three calendar primitives \u2014 single date, date range, and time-of-day \u2014 with a consistent set of presets, the same keyboard model, and the same wire format. This is the canonical implementation.")), /*#__PURE__*/React.createElement("div", {
+}, "Skytek's lists, reports and alerts live or die on date selection. The product needs three calendar primitives, single date, date range, and time-of-day, with a consistent set of presets, the same keyboard model, and the same wire format. This is the canonical implementation.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -8766,7 +10272,7 @@ const DateTimeSection = () => /*#__PURE__*/React.createElement(React.Fragment, n
   className: "subsection-title"
 }, "Date range"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Two months side-by-side, preset shortcuts on the left, hover preview while choosing the end date. Clicking a preset overrides the manual selection (and vice versa \u2014 manual selection clears the active preset)."), /*#__PURE__*/React.createElement("div", {
+}, "Two months side-by-side, preset shortcuts on the left, hover preview while choosing the end date. Clicking a preset overrides the manual selection (and vice versa, manual selection clears the active preset)."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, /*#__PURE__*/React.createElement("div", {
   className: "panel-body",
@@ -8782,7 +10288,7 @@ const DateTimeSection = () => /*#__PURE__*/React.createElement(React.Fragment, n
   className: "subsection-title"
 }, "Time picker"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Segmented HH \xB7 MM \xB7 (SS) with explicit zone marker. Keyboard-first \u2014 arrow keys increment, tab moves between segments. Never a stepped dropdown."), /*#__PURE__*/React.createElement("div", {
+}, "Segmented HH \xB7 MM \xB7 (SS) with explicit zone marker. Keyboard-first: arrow keys increment, tab moves between segments. Never a stepped dropdown."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, /*#__PURE__*/React.createElement("div", {
   className: "panel-body"
@@ -8794,7 +10300,7 @@ const DateTimeSection = () => /*#__PURE__*/React.createElement(React.Fragment, n
   className: "subsection-desc"
 }, "Eight presets cover the product. Surfaces opt in via the ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "presets"), " prop \u2014 never invent a new one."), /*#__PURE__*/React.createElement(PresetRules, null)), /*#__PURE__*/React.createElement("div", {
+}, "presets"), " prop: never invent a new one."), /*#__PURE__*/React.createElement(PresetRules, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -8810,7 +10316,7 @@ window.DateTimeSection = DateTimeSection;
 
 // section-domain.jsx
 try { (() => {
-/* Section — Domain primitives: Data viz, Maps, Formatting */
+/* Section: Domain primitives: Data viz, Maps, Formatting */
 
 /* ============================================================
    Data visualization
@@ -8834,7 +10340,7 @@ const CategoricalPalette = () => {
     style: {
       marginTop: 0
     }
-  }, "Use in declared order \u2014 series 1 is always the primary or first series in legend order. Tested for protanopia, deuteranopia and tritanopia with adjacent-pair contrast \u2265 3:1."));
+  }, "Use in declared order: series 1 is always the primary or first series in legend order. Tested for protanopia, deuteranopia and tritanopia with adjacent-pair contrast \u2265 3:1."));
 };
 const SequentialRamp = ({
   title,
@@ -9115,7 +10621,7 @@ const DataVizSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   className: "subsection-title"
 }, "Categorical palette"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Eight ordered hues for qualitative series \u2014 pie slices, multi-line charts, stacked bars. Engineers select by index, never by hex. The palette is fixed so charts read the same across modules."), /*#__PURE__*/React.createElement(CategoricalPalette, null)), /*#__PURE__*/React.createElement("div", {
+}, "Eight ordered hues for qualitative series, pie slices, multi-line charts, stacked bars. Engineers select by index, never by hex. The palette is fixed so charts read the same across modules."), /*#__PURE__*/React.createElement(CategoricalPalette, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -9132,7 +10638,7 @@ const DataVizSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   title: "Divergent \xB7 danger \u2194 neutral \u2194 success",
   vars: ["--chart-div-neg-3", "--chart-div-neg-2", "--chart-div-neg-1", "--chart-div-zero", "--chart-div-pos-1", "--chart-div-pos-2", "--chart-div-pos-3"],
   labels: ["−high", "", "", "0", "", "", "+high"],
-  desc: "Always center on neutral. Asymmetric ranges should not stretch the ramp \u2014 clip and label instead."
+  desc: "Always center on neutral. Asymmetric ranges should not stretch the ramp, clip and label instead."
 }))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
@@ -9271,7 +10777,7 @@ Highcharts.setOptions(skytekChartTheme);`)), /*#__PURE__*/React.createElement("d
    Maps & geospatial
    ============================================================ */
 
-/* Canonical vessel type palette — matches MarineDashboard VESSEL_TYPES */
+/* Canonical vessel type palette, matches MarineDashboard VESSEL_TYPES */
 const VESSEL_TYPE_PALETTE = [{
   k: "Container",
   color: "#2563eb"
@@ -9720,7 +11226,7 @@ const MapToolbarPreview = () => /*#__PURE__*/React.createElement("div", {
   }
 }, "Controls only (basemap omitted)"));
 
-/* Filter menu — vessel/asset type toggle popover (mirrors map-filters-menu) */
+/* Filter menu: vessel/asset type toggle popover (mirrors map-filters-menu) */
 const FilterMenuPreview = () => {
   const [on, setOn] = React.useState(() => new Set(VESSEL_TYPE_PALETTE.map(t => t.k)));
   const toggle = k => setOn(prev => {
@@ -9788,7 +11294,7 @@ const FilterMenuPreview = () => {
   }, t.k))))));
 };
 
-/* Selection & hover states — the white ring around a marker */
+/* Selection & hover states, the white ring around a marker */
 const SelectionStates = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-3",
   style: {
@@ -10027,9 +11533,9 @@ const MapsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, "L.divIcon"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "L.popup"), ") \u2014 never roll a new map runtime."), /*#__PURE__*/React.createElement("pre", {
+}, "L.popup"), "): never roll a new map runtime."), /*#__PURE__*/React.createElement("pre", {
   className: "code"
-}, `<!-- Load order — pin to 1.9.4 across all surfaces -->
+}, `<!-- Load order: pin to 1.9.4 across all surfaces -->
 <link rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -10040,9 +11546,9 @@ const MapsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, "Basemaps \u2014 four tile providers"), /*#__PURE__*/React.createElement("p", {
+}, "Basemaps: four tile providers"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Every Skytek map ships with the same four basemap options behind the ", /*#__PURE__*/React.createElement("strong", null, "Layers"), " button. Satellite is the default in operator-facing surfaces; Light is the default in printable reports. Engineers don't pick custom providers \u2014 these four are the contract."), /*#__PURE__*/React.createElement(TileProviders, null), /*#__PURE__*/React.createElement("div", {
+}, "Every Skytek map ships with the same four basemap options behind the ", /*#__PURE__*/React.createElement("strong", null, "Layers"), " button. Satellite is the default in operator-facing surfaces; Light is the default in printable reports. Engineers don't pick custom providers; these four are the contract."), /*#__PURE__*/React.createElement(TileProviders, null), /*#__PURE__*/React.createElement("div", {
   className: "callout warn",
   style: {
     marginTop: 12
@@ -10084,11 +11590,11 @@ export const TILES = {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, "Vessel marker \u2014 teardrop divIcon"), /*#__PURE__*/React.createElement("p", {
+}, "Vessel marker: teardrop divIcon"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
 }, "One canonical marker shape: a 16 \xD7 16 teardrop SVG inside a Leaflet ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "L.divIcon"), ".", /*#__PURE__*/React.createElement("strong", null, " Rotation"), " encodes heading (degrees true). ", /*#__PURE__*/React.createElement("strong", null, "Fill color"), " encodes vessel type \u2014 sourced from the locked type palette below."), /*#__PURE__*/React.createElement("div", {
+}, "L.divIcon"), ".", /*#__PURE__*/React.createElement("strong", null, " Rotation"), " encodes heading (degrees true). ", /*#__PURE__*/React.createElement("strong", null, "Fill color"), " encodes vessel type: sourced from the locked type palette below."), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
     alignItems: "flex-start"
@@ -10139,7 +11645,7 @@ export const TILES = {
     marginTop: 12,
     marginBottom: 6
   }
-}, "Canonical factory \u2014 every vessel marker in the product is built this way:"), /*#__PURE__*/React.createElement("pre", {
+}, "Canonical factory: every vessel marker in the product is built this way:"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `// app/ui/Map/vesselIcon.ts
 import L from 'leaflet';
@@ -10170,7 +11676,7 @@ export function vesselLabelIcon(name: string) {
   className: "subsection-title"
 }, "Markers across domains"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "The vessel teardrop is one instance of a single cross-domain system. Every asset class \u2014 vessel, aircraft, airport, offshore installation, property \u2014 gets ", /*#__PURE__*/React.createElement("strong", null, "one canonical marker"), ", and all of them encode information on the same four channels. This is what lets an operator read any Skytek map the same way, whether they're in Marine, Aviation, Offshore or Property."), /*#__PURE__*/React.createElement("table", {
+}, "The vessel teardrop is one instance of a single cross-domain system. Every asset class: vessel, aircraft, airport, offshore installation, property, gets ", /*#__PURE__*/React.createElement("strong", null, "one canonical marker"), ", and all of them encode information on the same four channels. This is what lets an operator read any Skytek map the same way, whether they're in Marine, Aviation, Offshore or Property."), /*#__PURE__*/React.createElement("table", {
   className: "spec-table",
   style: {
     marginBottom: 16
@@ -10181,11 +11687,11 @@ export function vesselLabelIcon(name: string) {
   className: "t-caption"
 }, "vessel type \xB7 asset type \xB7 property category (airport & aircraft fills are fixed)")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Rotation")), /*#__PURE__*/React.createElement("td", null, "Heading (degrees true)"), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "moving assets only \u2014 vessels & aircraft. Static installations never rotate.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Overlay"), " ", /*#__PURE__*/React.createElement("span", {
+}, "moving assets only: vessels & aircraft. Static installations never rotate.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Overlay"), " ", /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
 }, "(pulse / badge)")), /*#__PURE__*/React.createElement("td", null, "Status & alerts"), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "sanctioned vessel, property risk pulse \u2014 never a recolor of the glyph")))), /*#__PURE__*/React.createElement("div", {
+}, "sanctioned vessel, property risk pulse, never a recolor of the glyph")))), /*#__PURE__*/React.createElement("div", {
   className: "panel",
   style: {
     marginBottom: 16
@@ -10324,7 +11830,7 @@ export function vesselLabelIcon(name: string) {
   style: {
     margin: 0
   }
-}, "Aircraft are a single class \u2014 fill is fixed amber (", /*#__PURE__*/React.createElement("code", {
+}, "Aircraft are a single class, fill is fixed amber (", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "#eab308"), "), ", /*#__PURE__*/React.createElement("strong", null, "rotation encodes heading"), ". Airports are static infrastructure: a brand-blue pin with a white glyph, no rotation.")), /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
@@ -10410,7 +11916,7 @@ export function vesselLabelIcon(name: string) {
   }
 }, "+ active risk pulse"))), /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
-}, "Rounded-square pin with a white category glyph. The pulsing red corner dot is the ", /*#__PURE__*/React.createElement("em", null, "status overlay"), " \u2014 same rule as a sanctioned vessel.")), /*#__PURE__*/React.createElement("p", {
+}, "Rounded-square pin with a white category glyph. The pulsing red corner dot is the ", /*#__PURE__*/React.createElement("em", null, "status overlay"), ", same rule as a sanctioned vessel.")), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
     marginTop: 12,
@@ -10418,29 +11924,29 @@ export function vesselLabelIcon(name: string) {
   }
 }, "Each domain ships one ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "divIcon"), " factory \u2014 same structure as ", /*#__PURE__*/React.createElement("code", {
+}, "divIcon"), " factory: same structure as ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "vesselIcon"), ", differing only in shape and what each channel encodes:"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
-}, `// app/ui/Map/markers/aircraft.ts — fill fixed, rotation = heading
+}, `// app/ui/Map/markers/aircraft.ts: fill fixed, rotation = heading
 export const aircraftIcon = (heading: number) => L.divIcon({
   className: '', iconSize: [24, 24], iconAnchor: [12, 12],
   html: \`<div style="transform:rotate(\${heading}deg);color:var(--aviation-aircraft,#eab308)">\${PLANE_SVG}</div>\`,
 });
 
-// app/ui/Map/markers/airport.ts — static infrastructure pin
+// app/ui/Map/markers/airport.ts: static infrastructure pin
 export const airportIcon = () => L.divIcon({
   className: '', iconSize: [32, 32], iconAnchor: [16, 16],
   html: \`<div class="rw-pin rw-pin--brand">\${PLANE_WHITE_SVG}</div>\`,
 });
 
-// app/ui/Map/markers/offshore.ts — fill = asset type, optional label
+// app/ui/Map/markers/offshore.ts: fill = asset type, optional label
 export const offshoreIcon = (color: string, label?: string) => L.divIcon({
   className: '', iconSize: [120, 40], iconAnchor: [60, 20],
   html: \`<div class="rw-offshore"><span class="rw-offshore-dot" style="background:\${color}"></span>\${label ? \`<span class="rw-offshore-label">\${label}</span>\` : ''}</div>\`,
 });
 
-// app/ui/Map/markers/property.ts — fill = category, alert = status overlay
+// app/ui/Map/markers/property.ts: fill = category, alert = status overlay
 export const propertyIcon = (color: string, glyph: string, alert = false) => L.divIcon({
   className: '', iconSize: [34, 34], iconAnchor: [17, 17],
   html: \`<div class="rw-pin" style="background:\${color}">\${glyph}\${alert ? '<span class="rw-pin-pulse"></span>' : ''}</div>\`,
@@ -10449,13 +11955,13 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
   style: {
     marginTop: 12
   }
-}, /*#__PURE__*/React.createElement("strong", null, "Open question for the team:"), " aircraft currently use a single fixed fill. If aviation needs type/operator differentiation on the glyph (as Marine does for vessel type), that's an RFC to add an aircraft-class palette \u2014 keeping fill = type consistent across every domain.")), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("strong", null, "Open question for the team:"), " aircraft currently use a single fixed fill. If aviation needs type/operator differentiation on the glyph (as Marine does for vessel type), that's an RFC to add an aircraft-class palette, keeping fill = type consistent across every domain.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Status overlays"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Vessel ", /*#__PURE__*/React.createElement("em", null, "type"), " owns the fill. Status (sanctioned, AIS silence, route deviation) is layered on as an overlay \u2014 a pulsing ring, an alert badge, or a tag in the popup \u2014 never as a color change to the glyph itself. This is the rule that lets operators read \"what is this asset\" and \"what's wrong with it\" as two separate questions."), /*#__PURE__*/React.createElement("div", {
+}, "Vessel ", /*#__PURE__*/React.createElement("em", null, "type"), " owns the fill. Status (sanctioned, AIS silence, route deviation) is layered on as an overlay, a pulsing ring, an alert badge, or a tag in the popup, never as a color change to the glyph itself. This is the rule that lets operators read \"what is this asset\" and \"what's wrong with it\" as two separate questions."), /*#__PURE__*/React.createElement("div", {
   className: "dodont"
 }, /*#__PURE__*/React.createElement("div", {
   className: "do"
@@ -10545,7 +12051,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, "Popup template \u2014 ", /*#__PURE__*/React.createElement("code", null, ".vp")), /*#__PURE__*/React.createElement("p", {
+}, "Popup template: ", /*#__PURE__*/React.createElement("code", null, ".vp")), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
 }, "One template, four parts: ", /*#__PURE__*/React.createElement("strong", null, "header"), " (brand fill, vessel name, type subtitle) \xB7 ", /*#__PURE__*/React.createElement("strong", null, "route"), " (origin \u2192 destination ports with ADT/ETA) \xB7", /*#__PURE__*/React.createElement("strong", null, "grid"), " (vessel data in 2-column key/value pairs) \xB7 ", /*#__PURE__*/React.createElement("strong", null, "CTA"), " (link to the full vessel detail page). 300 px wide, brand-blue header, 12.5 px body, tabular numerals for numbers."), /*#__PURE__*/React.createElement(PopupTemplatePreview, null), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
@@ -10587,16 +12093,16 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
   className: "subsection-title"
 }, "Filter menu"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "The ", /*#__PURE__*/React.createElement("strong", null, "filter"), " control opens a type toggle: a header with ", /*#__PURE__*/React.createElement("strong", null, "All / None"), " shortcuts, a section label, and one row per type \u2014 a checkbox, the type's marker glyph in its locked color, and the label. Toggling a type hides or shows its markers (and their labels) in place; the selection persists in page state, so it survives basemap switches and re-renders. Marine filters by ", /*#__PURE__*/React.createElement("code", {
+}, "The ", /*#__PURE__*/React.createElement("strong", null, "filter"), " control opens a type toggle: a header with ", /*#__PURE__*/React.createElement("strong", null, "All / None"), " shortcuts, a section label, and one row per type, a checkbox, the type's marker glyph in its locked color, and the label. Toggling a type hides or shows its markers (and their labels) in place; the selection persists in page state, so it survives basemap switches and re-renders. Marine filters by ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "VESSEL_TYPES"), "; Offshore filters by ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "ASSET_TYPES"), " \u2014 same component, different list."), /*#__PURE__*/React.createElement(FilterMenuPreview, null), /*#__PURE__*/React.createElement("p", {
+}, "ASSET_TYPES"), ", same component, different list."), /*#__PURE__*/React.createElement(FilterMenuPreview, null), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
     marginTop: 8
   }
-}, "The glyph in each row is the same marker drawn on the map, so the legend and the filter are one and the same \u2014 no separate key to learn.")), /*#__PURE__*/React.createElement("div", {
+}, "The glyph in each row is the same marker drawn on the map, so the legend and the filter are one and the same, no separate key to learn.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -10606,7 +12112,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
   className: "inline"
 }, "z-index"), " raised). Opening a marker's popup adds ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, ".is-selected"), ", which keeps the ring on while the popup is open. The ring is the one selection affordance across every domain \u2014 it never recolors or resizes the glyph itself."), /*#__PURE__*/React.createElement(SelectionStates, null), /*#__PURE__*/React.createElement("div", {
+}, ".is-selected"), ", which keeps the ring on while the popup is open. The ring is the one selection affordance across every domain; it never recolors or resizes the glyph itself."), /*#__PURE__*/React.createElement(SelectionStates, null), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
     marginTop: 14,
@@ -10614,7 +12120,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
   }
 }, /*#__PURE__*/React.createElement("div", {
   className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "Hover tooltip vs. label."), " Hovering a marker shows a dark tooltip (flag + name + type). When the ", /*#__PURE__*/React.createElement("strong", null, "Labels"), " toggle is on, names render permanently beside every marker and the hover tooltip is suppressed \u2014 the name is already on the map, so a tooltip would just repeat it."), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("strong", null, "Hover tooltip vs. label."), " Hovering a marker shows a dark tooltip (flag + name + type). When the ", /*#__PURE__*/React.createElement("strong", null, "Labels"), " toggle is on, names render permanently beside every marker and the hover tooltip is suppressed, because the name is already on the map and a tooltip would just repeat it."), /*#__PURE__*/React.createElement("div", {
   className: "callout"
 }, /*#__PURE__*/React.createElement("strong", null, "One close model."), " Popups close on the \xD7 button, on outside-click, or on opening another marker. Only one popup is open at a time; selecting a new marker deselects the previous."))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -10670,13 +12176,13 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     color: "var(--text-secondary)",
     fontSize: 13
   }
-}, "Use ", /*#__PURE__*/React.createElement("code", null, "leaflet.markercluster"), " when a layer exceeds 200 markers. Below that, render individually \u2014 clustering at low density hides real positions.")))), /*#__PURE__*/React.createElement("div", {
+}, "Use ", /*#__PURE__*/React.createElement("code", null, "leaflet.markercluster"), " when a layer exceeds 200 markers. Below that, render individually: clustering at low density hides real positions.")))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Performance"), /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Constraint"), /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Why"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Max markers per layer"), /*#__PURE__*/React.createElement("td", null, "\u2264 5,000 without clustering"), /*#__PURE__*/React.createElement("td", null, "Above this, Leaflet's DOM marker layer hits frame-rate cliffs.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tile prefetch"), /*#__PURE__*/React.createElement("td", null, "Disabled"), /*#__PURE__*/React.createElement("td", null, "Esri / Carto rate-limit anonymous tiles. Don't pre-warm tiles the user can't see.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Marker rotation"), /*#__PURE__*/React.createElement("td", null, "CSS transform on inner div, not SVG ", /*#__PURE__*/React.createElement("code", null, "transform")), /*#__PURE__*/React.createElement("td", null, "Composited rotation is GPU-accelerated; SVG attribute rotation re-rasterizes.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Popup content"), /*#__PURE__*/React.createElement("td", null, "HTML string, not React"), /*#__PURE__*/React.createElement("td", null, "Leaflet popups are mounted outside React's tree \u2014 keep them framework-free.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Fullscreen"), /*#__PURE__*/React.createElement("td", null, "CSS class swap, not native Fullscreen API"), /*#__PURE__*/React.createElement("td", null, "Avoids permission prompt; map can render alongside other UI in inspect tools."))))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Constraint"), /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Why"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Max markers per layer"), /*#__PURE__*/React.createElement("td", null, "\u2264 5,000 without clustering"), /*#__PURE__*/React.createElement("td", null, "Above this, Leaflet's DOM marker layer hits frame-rate cliffs.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tile prefetch"), /*#__PURE__*/React.createElement("td", null, "Disabled"), /*#__PURE__*/React.createElement("td", null, "Esri / Carto rate-limit anonymous tiles. Don't pre-warm tiles the user can't see.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Marker rotation"), /*#__PURE__*/React.createElement("td", null, "CSS transform on inner div, not SVG ", /*#__PURE__*/React.createElement("code", null, "transform")), /*#__PURE__*/React.createElement("td", null, "Composited rotation is GPU-accelerated; SVG attribute rotation re-rasterizes.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Popup content"), /*#__PURE__*/React.createElement("td", null, "HTML string, not React"), /*#__PURE__*/React.createElement("td", null, "Leaflet popups are mounted outside React's tree, keep them framework-free.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Fullscreen"), /*#__PURE__*/React.createElement("td", null, "CSS class swap, not native Fullscreen API"), /*#__PURE__*/React.createElement("td", null, "Avoids permission prompt; map can render alongside other UI in inspect tools."))))), /*#__PURE__*/React.createElement("div", {
   className: "callout",
   style: {
     marginTop: 24
@@ -10685,7 +12191,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
   className: "inline"
 }, ".vp"), " popup template all live in ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "app/ui/Map/*"), ". Marine, Aviation, Offshore and NatCat surfaces import from there \u2014 never copy-paste the marker factory or popup HTML into a module."));
+}, "app/ui/Map/*"), ". Marine, Aviation, Offshore and NatCat surfaces import from there, never copy-paste the marker factory or popup HTML into a module."));
 
 /* ============================================================
    Formatting: time, date, number, units
@@ -10717,7 +12223,7 @@ const FormatTimeTable = () => /*#__PURE__*/React.createElement("div", {
   className: "out"
 }, "14:32 UTC"), /*#__PURE__*/React.createElement("span", {
   className: "desc"
-}, "Always include the zone. 24h clock everywhere \u2014 no AM/PM.")), /*#__PURE__*/React.createElement("div", {
+}, "Always include the zone. 24h clock everywhere: no AM/PM.")), /*#__PURE__*/React.createElement("div", {
   className: "format-example"
 }, /*#__PURE__*/React.createElement("span", {
   className: "label"
@@ -10784,7 +12290,7 @@ const FormatNumberTable = () => /*#__PURE__*/React.createElement("div", {
   className: "out"
 }, "1,247,832"), /*#__PURE__*/React.createElement("span", {
   className: "desc"
-}, "Group with comma. No grouping below 10,000? \u2014 always group.")), /*#__PURE__*/React.createElement("div", {
+}, "Group with comma. No grouping below 10,000? always group.")), /*#__PURE__*/React.createElement("div", {
   className: "format-example"
 }, /*#__PURE__*/React.createElement("span", {
   className: "label"
@@ -10846,7 +12352,7 @@ const DomainUnits = () => /*#__PURE__*/React.createElement("table", {
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Quantity"), /*#__PURE__*/React.createElement("th", null, "Unit"), /*#__PURE__*/React.createElement("th", null, "Symbol"), /*#__PURE__*/React.createElement("th", null, "Example"), /*#__PURE__*/React.createElement("th", null, "Notes"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Vessel speed"), /*#__PURE__*/React.createElement("td", null, "Knot"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "kn")), /*#__PURE__*/React.createElement("td", null, "12.4 kn"), /*#__PURE__*/React.createElement("td", null, "Never \"knots\" in UI. Space before symbol.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Distance \xB7 maritime"), /*#__PURE__*/React.createElement("td", null, "Nautical mile"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "nm")), /*#__PURE__*/React.createElement("td", null, "248 nm"), /*#__PURE__*/React.createElement("td", null, "Lowercase. Disambiguate from nanometer by context only.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Distance \xB7 land"), /*#__PURE__*/React.createElement("td", null, "Kilometre"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "km")), /*#__PURE__*/React.createElement("td", null, "1,420 km"), /*#__PURE__*/React.createElement("td", null, "SI default everywhere except maritime.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Aviation altitude"), /*#__PURE__*/React.createElement("td", null, "Flight level"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FL")), /*#__PURE__*/React.createElement("td", null, "FL 380"), /*#__PURE__*/React.createElement("td", null, "Always uppercase, no decimal.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Cargo \xB7 liquid"), /*#__PURE__*/React.createElement("td", null, "Barrel"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "bbl")), /*#__PURE__*/React.createElement("td", null, "1.4M bbl"), /*#__PURE__*/React.createElement("td", null, "Compact form OK on tiles.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Cargo \xB7 dry"), /*#__PURE__*/React.createElement("td", null, "Tonne"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "t")), /*#__PURE__*/React.createElement("td", null, "82,400 t"), /*#__PURE__*/React.createElement("td", null, "Lowercase. Metric tonne implied.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Bearing / heading"), /*#__PURE__*/React.createElement("td", null, "Degrees"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "\xB0")), /*#__PURE__*/React.createElement("td", null, "087\xB0"), /*#__PURE__*/React.createElement("td", null, "Three-digit pad. Always degrees true.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Temperature"), /*#__PURE__*/React.createElement("td", null, "Celsius"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "\xB0C")), /*#__PURE__*/React.createElement("td", null, "4.2 \xB0C"), /*#__PURE__*/React.createElement("td", null, "Space before symbol. Fahrenheit only in US-locale toggle.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Time interval"), /*#__PURE__*/React.createElement("td", null, "Minutes / hours"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "m"), " / ", /*#__PURE__*/React.createElement("code", null, "h")), /*#__PURE__*/React.createElement("td", null, "14m \xB7 3h 20m"), /*#__PURE__*/React.createElement("td", null, "Compact, no spaces. See Duration above."))));
 const FormatHelperAPI = () => /*#__PURE__*/React.createElement("pre", {
   className: "code"
-}, `// app/lib/format.ts — the only correct place these live.
+}, `// app/lib/format.ts: the only correct place these live.
 // Modules must NOT call Intl directly; everything routes through here so locale,
 // timezone, and product conventions stay consistent.
 
@@ -10900,14 +12406,14 @@ const FormattingSection = () => /*#__PURE__*/React.createElement(React.Fragment,
   className: "subsection-title"
 }, "Time & date"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Skytek is a global product \u2014 operators in Dublin, Houston and Singapore look at the same alert. UTC is the canonical wire format; the local-time toggle is a presentation concern. The rules below close the gap between API payloads and what an operator reads."), /*#__PURE__*/React.createElement(FormatTimeTable, null), /*#__PURE__*/React.createElement("div", {
+}, "Skytek is a global product, operators in Dublin, Houston and Singapore look at the same alert. UTC is the canonical wire format; the local-time toggle is a presentation concern. The rules below close the gap between API payloads and what an operator reads."), /*#__PURE__*/React.createElement(FormatTimeTable, null), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
     marginTop: 16
   }
 }, /*#__PURE__*/React.createElement("div", {
   className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "UTC by default."), " Every absolute time renders with its zone. A bare \"14:32\" is a bug \u2014 operators read it as their own."), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("strong", null, "UTC by default."), " Every absolute time renders with its zone. A bare \"14:32\" is a bug: operators read it as their own."), /*#__PURE__*/React.createElement("div", {
   className: "callout warn"
 }, /*#__PURE__*/React.createElement("strong", null, "Relative needs absolute."), " \"2 min ago\" is a hover-tooltip pair with the absolute timestamp. Audit logs show both inline."))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -10921,7 +12427,7 @@ const FormattingSection = () => /*#__PURE__*/React.createElement(React.Fragment,
   className: "subsection-title"
 }, "Domain units"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Maritime, aviation and offshore each carry their own unit conventions. The product never silently converts \u2014 it shows the native unit and lets the user toggle."), /*#__PURE__*/React.createElement(DomainUnits, null)), /*#__PURE__*/React.createElement("div", {
+}, "Maritime, aviation and offshore each carry their own unit conventions. The product never silently converts; it shows the native unit and lets the user toggle."), /*#__PURE__*/React.createElement(DomainUnits, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -10933,7 +12439,7 @@ const FormattingSection = () => /*#__PURE__*/React.createElement(React.Fragment,
   className: "inline"
 }, "toLocaleString"), " or ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "date-fns"), " directly"), " \u2014 everything routes through ", /*#__PURE__*/React.createElement("code", {
+}, "date-fns"), " directly"), ", everything routes through ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "app/lib/format.ts"), "."), /*#__PURE__*/React.createElement(FormatHelperAPI, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -10969,7 +12475,7 @@ const FormattingSection = () => /*#__PURE__*/React.createElement(React.Fragment,
     lineHeight: 1.55,
     color: "var(--text-secondary)"
   }
-}, "ICU MessageFormat \u2014 never ", /*#__PURE__*/React.createElement("code", {
+}, "ICU MessageFormat: never ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, `\${n === 1 ? 'item' : 'items'}`), " in source. The format helper consumes ICU keys, not concatenations.")), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -11006,7 +12512,7 @@ const DomainSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   style: {
     maxWidth: 820
   }
-}, "Skytek is a monitoring product \u2014 its job is to put the right number, the right time, and the right asset in front of an operator at a glance. Generic web components don't cover charts, maps, or domain-specific formatting. Without rules here, every module reinvents them and consistency leaks. These primitives are the shared vocabulary that connects the dashboard, vessel detail, alerts, and reports.")));
+}, "Skytek is a monitoring product; its job is to put the right number, the right time, and the right asset in front of an operator at a glance. Generic web components don't cover charts, maps, or domain-specific formatting. Without rules here, every module reinvents them and consistency leaks. These primitives are the shared vocabulary that connects the dashboard, vessel detail, alerts, and reports.")));
 window.DomainSection = DomainSection;
 window.DataVizSection = DataVizSection;
 window.MapsSection = MapsSection;
@@ -11547,7 +13053,7 @@ Object.assign(window, {
 
 // section-event-log.jsx
 try { (() => {
-/* Section — Event log / timeline */
+/* Section: Event log / timeline */
 
 const TimelineEvent = ({
   tone = "default",
@@ -11705,7 +13211,7 @@ const EventAnatomy = () => /*#__PURE__*/React.createElement("div", {
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Glyph"), " \u2014 24 px circle, tone matches event class (brand / success / warning / danger / neutral). Lucide icon at 12 px."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Actor"), " \u2014 person email or \"System\". Bold."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Verb"), " \u2014 past tense, lowercase. \"created\", \"updated\", \"raised\", \"cleared\"."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Object"), " \u2014 what was acted on. Bold-ish."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Time"), " \u2014 right-aligned, mono, absolute time with zone."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Detail"), " \u2014 one optional line of context."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Payload"), " \u2014 diff or code block, only when the change is data-shaped."))));
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Glyph"), ", 24 px circle, tone matches event class (brand / success / warning / danger / neutral). Lucide icon at 12 px."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Actor"), ", person email or \"System\". Bold."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Verb"), ", past tense, lowercase. \"created\", \"updated\", \"raised\", \"cleared\"."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Object"), ", what was acted on. Bold-ish."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Time"), ", right-aligned, mono, absolute time with zone."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Detail"), ", one optional line of context."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Payload"), ", diff or code block, only when the change is data-shaped."))));
 const EventClassesTable = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Class"), /*#__PURE__*/React.createElement("th", null, "Glyph tone"), /*#__PURE__*/React.createElement("th", null, "Examples"), /*#__PURE__*/React.createElement("th", null, "When"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "System alert")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
@@ -11751,7 +13257,7 @@ const EventClassesTable = () => /*#__PURE__*/React.createElement("table", {
 }))), /*#__PURE__*/React.createElement("td", null, "Port call, voyage start, AIS position snapshot"), /*#__PURE__*/React.createElement("td", null, "Passive observation. Background tone, no decoration."))));
 const TimelineVariants = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Surface"), /*#__PURE__*/React.createElement("th", null, "Filters"), /*#__PURE__*/React.createElement("th", null, "Default grouping"), /*#__PURE__*/React.createElement("th", null, "Load pattern"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Vessel detail \xB7 Activity")), /*#__PURE__*/React.createElement("td", null, "Class (alert/user/system/record), actor"), /*#__PURE__*/React.createElement("td", null, "By day"), /*#__PURE__*/React.createElement("td", null, "Paginated \xB7 \"Load older\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alert detail \xB7 Trail")), /*#__PURE__*/React.createElement("td", null, "None \u2014 single alert's lineage"), /*#__PURE__*/React.createElement("td", null, "Reverse chronological, flat"), /*#__PURE__*/React.createElement("td", null, "Complete \u2014 typically < 20 entries")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Compliance \xB7 Audit log")), /*#__PURE__*/React.createElement("td", null, "User, action type, date range, IP"), /*#__PURE__*/React.createElement("td", null, "By day"), /*#__PURE__*/React.createElement("td", null, "Virtualized \xB7 infinite scroll")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Portfolio \xB7 Recent activity")), /*#__PURE__*/React.createElement("td", null, "Class, vessel"), /*#__PURE__*/React.createElement("td", null, "By day"), /*#__PURE__*/React.createElement("td", null, "Last 30d default \xB7 \"Show all\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "NatCat event \xB7 Updates")), /*#__PURE__*/React.createElement("td", null, "None"), /*#__PURE__*/React.createElement("td", null, "Reverse chronological, no grouping"), /*#__PURE__*/React.createElement("td", null, "Live \xB7 polled every 60 s"))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Surface"), /*#__PURE__*/React.createElement("th", null, "Filters"), /*#__PURE__*/React.createElement("th", null, "Default grouping"), /*#__PURE__*/React.createElement("th", null, "Load pattern"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Vessel detail \xB7 Activity")), /*#__PURE__*/React.createElement("td", null, "Class (alert/user/system/record), actor"), /*#__PURE__*/React.createElement("td", null, "By day"), /*#__PURE__*/React.createElement("td", null, "Paginated \xB7 \"Load older\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alert detail \xB7 Trail")), /*#__PURE__*/React.createElement("td", null, "None: single alert's lineage"), /*#__PURE__*/React.createElement("td", null, "Reverse chronological, flat"), /*#__PURE__*/React.createElement("td", null, "Complete: typically < 20 entries")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Compliance \xB7 Audit log")), /*#__PURE__*/React.createElement("td", null, "User, action type, date range, IP"), /*#__PURE__*/React.createElement("td", null, "By day"), /*#__PURE__*/React.createElement("td", null, "Virtualized \xB7 infinite scroll")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Portfolio \xB7 Recent activity")), /*#__PURE__*/React.createElement("td", null, "Class, vessel"), /*#__PURE__*/React.createElement("td", null, "By day"), /*#__PURE__*/React.createElement("td", null, "Last 30d default \xB7 \"Show all\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "NatCat event \xB7 Updates")), /*#__PURE__*/React.createElement("td", null, "None"), /*#__PURE__*/React.createElement("td", null, "Reverse chronological, no grouping"), /*#__PURE__*/React.createElement("td", null, "Live \xB7 polled every 60 s"))));
 const TimelineRules = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-2"
 }, /*#__PURE__*/React.createElement("div", {
@@ -11772,7 +13278,7 @@ const TimelineRules = () => /*#__PURE__*/React.createElement("div", {
     margin: 0,
     paddingLeft: 18
   }
-}, /*#__PURE__*/React.createElement("li", null, "Absolute UTC time on every event row."), /*#__PURE__*/React.createElement("li", null, "Day header is local-to-user (e.g. \"Today\", \"Yesterday\", \"27 Apr 2026\")."), /*#__PURE__*/React.createElement("li", null, "Relative time (\"2 min ago\") only appears on the top-of-feed item or in a hover tooltip \u2014 never as the only timestamp."), /*#__PURE__*/React.createElement("li", null, "Live feeds show a tick indicator next to the day header that updates every 60 s.")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, "Absolute UTC time on every event row."), /*#__PURE__*/React.createElement("li", null, "Day header is local-to-user (e.g. \"Today\", \"Yesterday\", \"27 Apr 2026\")."), /*#__PURE__*/React.createElement("li", null, "Relative time (\"2 min ago\") only appears on the top-of-feed item or in a hover tooltip, never as the only timestamp."), /*#__PURE__*/React.createElement("li", null, "Live feeds show a tick indicator next to the day header that updates every 60 s.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head"
@@ -11831,7 +13337,7 @@ const EventLogSection = () => /*#__PURE__*/React.createElement(React.Fragment, n
   style: {
     maxWidth: 820
   }
-}, "Vessel history, alert trails, audit logs, NatCat updates, portfolio activity \u2014 every Skytek surface needs to show \"what happened, when, who did it.\" Today these timelines live in five modules with five different row designs. One component, one event shape, one set of rules.")), /*#__PURE__*/React.createElement("div", {
+}, "Vessel history, alert trails, audit logs, NatCat updates, portfolio activity, every Skytek surface needs to show \"what happened, when, who did it.\" Today these timelines live in five modules with five different row designs. One component, one event shape, one set of rules.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -11845,15 +13351,15 @@ const EventLogSection = () => /*#__PURE__*/React.createElement(React.Fragment, n
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, "In context \u2014 vessel activity"), /*#__PURE__*/React.createElement("p", {
+}, "In context: vessel activity"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "A live composition: system alerts, user actions, state changes, and records \u2014 all in one rail, grouped by day with sticky day headers."), /*#__PURE__*/React.createElement(VesselAuditDemo, null)), /*#__PURE__*/React.createElement("div", {
+}, "A live composition: system alerts, user actions, state changes, and records, all in one rail, grouped by day with sticky day headers."), /*#__PURE__*/React.createElement(VesselAuditDemo, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Surface variants"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "The component is the same; defaults differ per surface. Don't author a custom variant \u2014 configure props."), /*#__PURE__*/React.createElement(TimelineVariants, null)), /*#__PURE__*/React.createElement("div", {
+}, "The component is the same; defaults differ per surface. Don't author a custom variant, configure props."), /*#__PURE__*/React.createElement(TimelineVariants, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -11865,13 +13371,13 @@ const EventLogSection = () => /*#__PURE__*/React.createElement(React.Fragment, n
   className: "subsection-desc"
 }, "One Event type powers every surface. The API contract is owned by the system, not by individual modules."), /*#__PURE__*/React.createElement(EventApiSpec, null)), /*#__PURE__*/React.createElement("div", {
   className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "The principle:"), " a timeline tells one story per row \u2014 who did what, to what, when. Two stories means two rows. If you can't fit it on a single line + one detail, it's a card, not an event."));
+}, /*#__PURE__*/React.createElement("strong", null, "The principle:"), " a timeline tells one story per row, who did what, to what, when. Two stories means two rows. If you can't fit it on a single line + one detail, it's a card, not an event."));
 window.EventLogSection = EventLogSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-event-log.jsx", error: String((e && e.message) || e) }); }
 
 // section-export.jsx
 try { (() => {
-/* Section — Export & report design */
+/* Section: Export & report design */
 
 const CoverPagePreview = () => /*#__PURE__*/React.createElement("div", {
   className: "ds-paper ds-paper--cover"
@@ -11949,7 +13455,7 @@ const PrintTypography = () => /*#__PURE__*/React.createElement("table", {
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Role"), /*#__PURE__*/React.createElement("th", null, "Size \xB7 pt"), /*#__PURE__*/React.createElement("th", null, "Family"), /*#__PURE__*/React.createElement("th", null, "Weight"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Cover title"), /*#__PURE__*/React.createElement("td", null, "28 pt"), /*#__PURE__*/React.createElement("td", null, "Exo"), /*#__PURE__*/React.createElement("td", null, "700"), /*#__PURE__*/React.createElement("td", null, "Single line on cover. Wraps to 2 max.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Cover eyebrow"), /*#__PURE__*/React.createElement("td", null, "8 pt"), /*#__PURE__*/React.createElement("td", null, "Exo"), /*#__PURE__*/React.createElement("td", null, "600"), /*#__PURE__*/React.createElement("td", null, "Tracking 0.12em \xB7 uppercase. Report type label.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body h1"), /*#__PURE__*/React.createElement("td", null, "16 pt"), /*#__PURE__*/React.createElement("td", null, "Exo"), /*#__PURE__*/React.createElement("td", null, "700"), /*#__PURE__*/React.createElement("td", null, "Section start. New page or 24 pt of vertical space above.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body h2"), /*#__PURE__*/React.createElement("td", null, "13 pt"), /*#__PURE__*/React.createElement("td", null, "Exo"), /*#__PURE__*/React.createElement("td", null, "700"), /*#__PURE__*/React.createElement("td", null, "Subsection. Inline with following paragraph.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body h3"), /*#__PURE__*/React.createElement("td", null, "11 pt"), /*#__PURE__*/React.createElement("td", null, "Inter"), /*#__PURE__*/React.createElement("td", null, "600"), /*#__PURE__*/React.createElement("td", null, "Sidebar headings, table caption, named ranges.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body paragraph"), /*#__PURE__*/React.createElement("td", null, "10 pt"), /*#__PURE__*/React.createElement("td", null, "Inter"), /*#__PURE__*/React.createElement("td", null, "400"), /*#__PURE__*/React.createElement("td", null, "Default. Leading 1.5. Max line length \u2248 70 chars.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Caption"), /*#__PURE__*/React.createElement("td", null, "8.5 pt"), /*#__PURE__*/React.createElement("td", null, "Inter"), /*#__PURE__*/React.createElement("td", null, "400"), /*#__PURE__*/React.createElement("td", null, "Table footnotes, figure captions. Color text-muted.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Table cell"), /*#__PURE__*/React.createElement("td", null, "9 pt"), /*#__PURE__*/React.createElement("td", null, "Inter"), /*#__PURE__*/React.createElement("td", null, "400 / 600 emph"), /*#__PURE__*/React.createElement("td", null, "Tabular numerals. Header in 8 pt uppercase.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Page header / footer"), /*#__PURE__*/React.createElement("td", null, "8 pt"), /*#__PURE__*/React.createElement("td", null, "Inter"), /*#__PURE__*/React.createElement("td", null, "500"), /*#__PURE__*/React.createElement("td", null, "Color text-muted. Repeats on every page."))));
 const PageRules = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Area"), /*#__PURE__*/React.createElement("th", null, "Rule"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page size")), /*#__PURE__*/React.createElement("td", null, "A4 portrait (210 \xD7 297 mm). Letter sized only when explicitly requested by a US-domiciled customer.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Margins")), /*#__PURE__*/React.createElement("td", null, "22 mm top, 18 mm bottom, 20 mm left/right. Header sits in the top 12 mm; footer in the bottom 10 mm.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page header")), /*#__PURE__*/React.createElement("td", null, "Two columns: doc title (left) \xB7 reference code (right). Hairline border-bottom. Repeats on every page except the cover.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page footer")), /*#__PURE__*/React.createElement("td", null, "Two columns: \"Confidential \xB7 Skytek \xB7 ", `{date}`, "\" (left) \xB7 \"Page X of Y\" (right). Repeats including cover.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page numbering")), /*#__PURE__*/React.createElement("td", null, "Roman lowercase on front matter (cover, TOC, exec summary). Arabic from the first body section. \"Page X of Y\" always.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Table breaks")), /*#__PURE__*/React.createElement("td", null, "Repeat header row on each page. Never orphan a single body row at the bottom \u2014 push to next page if < 3 rows remain.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Section breaks")), /*#__PURE__*/React.createElement("td", null, "H1 sections start on a new page if they would otherwise begin in the bottom third.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Widows & orphans")), /*#__PURE__*/React.createElement("td", null, "Min 2 lines at end of page; min 2 lines at top of next page. Enforced via ", /*#__PURE__*/React.createElement("code", null, "orphans: 2; widows: 2"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Color")), /*#__PURE__*/React.createElement("td", null, "Same tokens as the app. Brand and rating colors are intentional in print \u2014 never desaturate."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Area"), /*#__PURE__*/React.createElement("th", null, "Rule"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page size")), /*#__PURE__*/React.createElement("td", null, "A4 portrait (210 \xD7 297 mm). Letter sized only when explicitly requested by a US-domiciled customer.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Margins")), /*#__PURE__*/React.createElement("td", null, "22 mm top, 18 mm bottom, 20 mm left/right. Header sits in the top 12 mm; footer in the bottom 10 mm.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page header")), /*#__PURE__*/React.createElement("td", null, "Two columns: doc title (left) \xB7 reference code (right). Hairline border-bottom. Repeats on every page except the cover.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page footer")), /*#__PURE__*/React.createElement("td", null, "Two columns: \"Confidential \xB7 Skytek \xB7 ", `{date}`, "\" (left) \xB7 \"Page X of Y\" (right). Repeats including cover.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Page numbering")), /*#__PURE__*/React.createElement("td", null, "Roman lowercase on front matter (cover, TOC, exec summary). Arabic from the first body section. \"Page X of Y\" always.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Table breaks")), /*#__PURE__*/React.createElement("td", null, "Repeat header row on each page. Never orphan a single body row at the bottom, push to next page if < 3 rows remain.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Section breaks")), /*#__PURE__*/React.createElement("td", null, "H1 sections start on a new page if they would otherwise begin in the bottom third.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Widows & orphans")), /*#__PURE__*/React.createElement("td", null, "Min 2 lines at end of page; min 2 lines at top of next page. Enforced via ", /*#__PURE__*/React.createElement("code", null, "orphans: 2; widows: 2"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Color")), /*#__PURE__*/React.createElement("td", null, "Same tokens as the app. Brand and rating colors are intentional in print, never desaturate."))));
 const ClassificationStrip = () => /*#__PURE__*/React.createElement("div", {
   className: "row",
   style: {
@@ -12013,7 +13519,7 @@ const WatermarkRules = () => /*#__PURE__*/React.createElement("div", {
   style: {
     marginTop: 0
   }
-}, "Top-right of every page \u2014 including cover. Color matches the classification level."), /*#__PURE__*/React.createElement(ClassificationStrip, null), /*#__PURE__*/React.createElement("p", {
+}, "Top-right of every page: including cover. Color matches the classification level."), /*#__PURE__*/React.createElement(ClassificationStrip, null), /*#__PURE__*/React.createElement("p", {
   style: {
     marginTop: 12,
     marginBottom: 0,
@@ -12022,7 +13528,7 @@ const WatermarkRules = () => /*#__PURE__*/React.createElement("div", {
 }, "Default is ", /*#__PURE__*/React.createElement("strong", null, "CONFIDENTIAL"), " for portfolio and exposure reports. Toggled by the report builder, not the user."))));
 const PrintCSS = () => /*#__PURE__*/React.createElement("pre", {
   className: "code"
-}, `/* app/styles/print.css — loaded for every report surface */
+}, `/* app/styles/print.css: loaded for every report surface */
 @page {
   size: A4 portrait;
   margin: 22mm 20mm 18mm 20mm;
@@ -12056,7 +13562,7 @@ const PrintCSS = () => /*#__PURE__*/React.createElement("pre", {
 }`);
 const ExportWorkflow = () => /*#__PURE__*/React.createElement("div", {
   className: "panel"
-}, [["1 · Build", "Operator configures a report surface (portfolio, date range, classification). Surface renders at A4 width in a preview pane.", "Same components as the app — DS-table, charts, timelines."], ["2 · Preview", "Print preview shows pagination, headers, footers, watermarks. Operator can flip pages and verify breaks.", "Browser print preview is the source of truth."], ["3 · Export", "One click triggers browser PDF print at A4. Headless render for unattended generation uses the same CSS.", "PDF is byte-identical between operator + scheduled run."], ["4 · Distribute", "Generated PDF is logged in the audit log with reference code, classification, recipient, and SHA-256.", "Audit log appears in this spec's Event log chapter."]].map(([k, d, n]) => /*#__PURE__*/React.createElement("div", {
+}, [["1 · Build", "Operator configures a report surface (portfolio, date range, classification). Surface renders at A4 width in a preview pane.", "Same components as the app, DS-table, charts, timelines."], ["2 · Preview", "Print preview shows pagination, headers, footers, watermarks. Operator can flip pages and verify breaks.", "Browser print preview is the source of truth."], ["3 · Export", "One click triggers browser PDF print at A4. Headless render for unattended generation uses the same CSS.", "PDF is byte-identical between operator + scheduled run."], ["4 · Distribute", "Generated PDF is logged in the audit log with reference code, classification, recipient, and SHA-256.", "Audit log appears in this spec's Event log chapter."]].map(([k, d, n]) => /*#__PURE__*/React.createElement("div", {
   key: k,
   className: "token-row",
   style: {
@@ -12076,7 +13582,7 @@ const ExportWorkflow = () => /*#__PURE__*/React.createElement("div", {
 }, n))));
 const ChartsInReports = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concern"), /*#__PURE__*/React.createElement("th", null, "App"), /*#__PURE__*/React.createElement("th", null, "Report"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Background"), /*#__PURE__*/React.createElement("td", null, "Surface tokens, can be elevated"), /*#__PURE__*/React.createElement("td", null, "Transparent \u2014 page is white")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Interaction"), /*#__PURE__*/React.createElement("td", null, "Hover tooltips, click drilldown"), /*#__PURE__*/React.createElement("td", null, "None \u2014 value labels rendered inline")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Animation"), /*#__PURE__*/React.createElement("td", null, "200 ms enter"), /*#__PURE__*/React.createElement("td", null, "None \u2014 first render is final")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Legend position"), /*#__PURE__*/React.createElement("td", null, "Top-left, inline"), /*#__PURE__*/React.createElement("td", null, "Bottom of figure, centered, with figure number")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Caption"), /*#__PURE__*/React.createElement("td", null, "Optional eyebrow above"), /*#__PURE__*/React.createElement("td", null, "Required: \"Fig. 3 \u2014 Sanctioned exposure by region\" below")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Resolution"), /*#__PURE__*/React.createElement("td", null, "SVG"), /*#__PURE__*/React.createElement("td", null, "SVG (vector) \u2014 never raster, never canvas")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Data limit"), /*#__PURE__*/React.createElement("td", null, "250 points / series"), /*#__PURE__*/React.createElement("td", null, "Same \u2014 downsample upstream, not in the report"))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concern"), /*#__PURE__*/React.createElement("th", null, "App"), /*#__PURE__*/React.createElement("th", null, "Report"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Background"), /*#__PURE__*/React.createElement("td", null, "Surface tokens, can be elevated"), /*#__PURE__*/React.createElement("td", null, "Transparent: page is white")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Interaction"), /*#__PURE__*/React.createElement("td", null, "Hover tooltips, click drilldown"), /*#__PURE__*/React.createElement("td", null, "None: value labels rendered inline")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Animation"), /*#__PURE__*/React.createElement("td", null, "200 ms enter"), /*#__PURE__*/React.createElement("td", null, "None: first render is final")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Legend position"), /*#__PURE__*/React.createElement("td", null, "Top-left, inline"), /*#__PURE__*/React.createElement("td", null, "Bottom of figure, centered, with figure number")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Caption"), /*#__PURE__*/React.createElement("td", null, "Optional eyebrow above"), /*#__PURE__*/React.createElement("td", null, "Required: \"Fig. 3: Sanctioned exposure by region\" below")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Resolution"), /*#__PURE__*/React.createElement("td", null, "SVG"), /*#__PURE__*/React.createElement("td", null, "SVG (vector): never raster, never canvas")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Data limit"), /*#__PURE__*/React.createElement("td", null, "250 points / series"), /*#__PURE__*/React.createElement("td", null, "Same: downsample upstream, not in the report"))));
 const ExportSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "subsection",
   style: {
@@ -12089,7 +13595,7 @@ const ExportSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   style: {
     maxWidth: 820
   }
-}, "Compliance work produces PDFs. Underwriters share them with reinsurers. Auditors archive them. Print is not a fallback \u2014 it's a first-class output of the product. This chapter defines the report system: page rules, typography for paper, classification & watermarks, and the export workflow.")), /*#__PURE__*/React.createElement("div", {
+}, "Compliance work produces PDFs. Underwriters share them with reinsurers. Auditors archive them. Print is not a fallback; it's a first-class output of the product. This chapter defines the report system: page rules, typography for paper, classification & watermarks, and the export workflow.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -12119,7 +13625,7 @@ const ExportSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   className: "subsection-title"
 }, "Print typography"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Same families as the app (Exo + Inter), shifted to point sizes. 10 pt body is the floor \u2014 anything below 8.5 pt is for footnotes only."), /*#__PURE__*/React.createElement(PrintTypography, null)), /*#__PURE__*/React.createElement("div", {
+}, "Same families as the app (Exo + Inter), shifted to point sizes. 10 pt body is the floor, anything below 8.5 pt is for footnotes only."), /*#__PURE__*/React.createElement(PrintTypography, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -12129,7 +13635,7 @@ const ExportSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   className: "subsection-title"
 }, "Charts & visuals in reports"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Same tokens, same chart library \u2014 different defaults. Reports are static surfaces; everything that helps interaction in the app (hover, animation, dynamic legends) becomes noise on paper."), /*#__PURE__*/React.createElement(ChartsInReports, null)), /*#__PURE__*/React.createElement("div", {
+}, "Same tokens, same chart library, different defaults. Reports are static surfaces; everything that helps interaction in the app (hover, animation, dynamic legends) becomes noise on paper."), /*#__PURE__*/React.createElement(ChartsInReports, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -12149,9 +13655,1049 @@ const ExportSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 window.ExportSection = ExportSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-export.jsx", error: String((e && e.message) || e) }); }
 
+// section-filterdrawer.jsx
+try { (() => {
+/* Section: Filter drawer (full specification)
+   Documents the drawer shipped on Assets Search: right-edge sheet,
+   single-open accordion sections, live-apply filtering.
+   Demo uses the real .ds-fdrawer CSS so docs and component can't drift. */
+
+const FD_SECTIONS = [{
+  name: "Asset Type",
+  kind: "list",
+  options: ["Container", "Bulk Carrier", "Tanker", "Gas Carrier", "LNG Carrier", "General Cargo", "Vehicle Carrier", "Yacht"]
+}, {
+  name: "Flag",
+  kind: "list",
+  options: ["Cyprus", "China", "Germany", "Liberia", "Marshall Islands", "Panama", "Singapore"]
+}, {
+  name: "Length",
+  kind: "range",
+  lo: 33,
+  hi: 399,
+  unit: "m"
+}, {
+  name: "Gross Tonnage",
+  kind: "range",
+  lo: 3660,
+  hi: 219079,
+  unit: "GT"
+}, {
+  name: "YOB",
+  kind: "range",
+  lo: 2004,
+  hi: 2018,
+  unit: ""
+}];
+const FilterDrawerDemo = ({
+  triggerForm = "labelled",
+  initialSel
+}) => {
+  const [open, setOpen] = React.useState(false);
+  const [acc, setAcc] = React.useState(0);
+  const [sel, setSel] = React.useState(() => initialSel || {}); // name → Set of unchecked-off values
+  const [ranges, setRanges] = React.useState({}); // name → [min,max]
+  const panelRef = React.useRef(null);
+  const triggerRef = React.useRef(null);
+  const isActive = s => s.kind === "range" ? !!ranges[s.name] : !!(sel[s.name] && sel[s.name].size);
+  const anyActive = FD_SECTIONS.some(isActive);
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = e => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    panelRef.current?.focus({
+      preventScroll: true
+    });
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+  const toggleVal = (name, v) => setSel(p => {
+    const next = new Set(p[name] || []);
+    next.has(v) ? next.delete(v) : next.add(v);
+    return {
+      ...p,
+      [name]: next
+    };
+  });
+  const resetAll = () => {
+    setSel({});
+    setRanges({});
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, triggerForm === "labelled" ? /*#__PURE__*/React.createElement("button", {
+    ref: triggerRef,
+    className: "ds-btn ds-btn--secondary",
+    onClick: () => setOpen(true),
+    "aria-haspopup": "dialog",
+    "aria-expanded": open
+  }, /*#__PURE__*/React.createElement(Icon, {
+    d: I.filter
+  }), " Filters", anyActive && /*#__PURE__*/React.createElement("span", {
+    className: "ds-fdrawer-dot",
+    style: {
+      marginLeft: 2
+    }
+  })) : /*#__PURE__*/React.createElement("span", {
+    style: {
+      position: "relative",
+      display: "inline-flex"
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    ref: triggerRef,
+    className: "ds-btn ds-btn--secondary ds-btn--icon",
+    onClick: () => setOpen(true),
+    "aria-haspopup": "dialog",
+    "aria-expanded": open,
+    "aria-label": anyActive ? `Filters, ${FD_SECTIONS.filter(isActive).length} active` : "Filters"
+  }, /*#__PURE__*/React.createElement(Icon, {
+    d: I.filter
+  })), anyActive && /*#__PURE__*/React.createElement("span", {
+    className: "ds-fdrawer-dot",
+    style: {
+      position: "absolute",
+      top: -2,
+      right: -2,
+      outline: "2px solid var(--bg-app)"
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    className: `ds-fdrawer${open ? " is-open" : ""}`,
+    style: {
+      position: "absolute"
+    },
+    "aria-hidden": !open
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-fdrawer-scrim",
+    onClick: () => setOpen(false)
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "ds-fdrawer-panel",
+    role: "dialog",
+    "aria-modal": "true",
+    "aria-label": "Filters",
+    tabIndex: -1,
+    ref: panelRef
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "ds-fdrawer-head"
+  }, "Filters", /*#__PURE__*/React.createElement("button", {
+    className: "ds-fdrawer-close",
+    "aria-label": "Close filters",
+    onClick: () => setOpen(false)
+  }, /*#__PURE__*/React.createElement(Icon, {
+    d: I.x,
+    size: 16
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "ds-fdrawer-body"
+  }, FD_SECTIONS.map((s, i) => {
+    const isOpen = i === acc;
+    const active = isActive(s);
+    const off = sel[s.name] || new Set();
+    const r = ranges[s.name] || [s.lo, s.hi];
+    return /*#__PURE__*/React.createElement("div", {
+      key: s.name,
+      className: `ds-fdrawer-section${isOpen ? " is-open" : ""}`
+    }, /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "ds-fdrawer-acc-head",
+      "aria-expanded": isOpen,
+      onClick: () => setAcc(isOpen ? -1 : i)
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "ds-fdrawer-sec-title"
+    }, s.name, active && /*#__PURE__*/React.createElement("span", {
+      className: "ds-fdrawer-dot"
+    })), /*#__PURE__*/React.createElement("svg", {
+      className: "ds-fdrawer-acc-chev",
+      width: "14",
+      height: "14",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.5",
+      strokeLinecap: "round"
+    }, /*#__PURE__*/React.createElement("polyline", {
+      points: "6 9 12 15 18 9"
+    }))), /*#__PURE__*/React.createElement("div", {
+      className: "ds-fdrawer-acc-body"
+    }, s.kind === "range" ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "ds-fdrawer-acts"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "ds-fdrawer-act",
+      disabled: !active,
+      onClick: () => setRanges(p => {
+        const n = {
+          ...p
+        };
+        delete n[s.name];
+        return n;
+      })
+    }, "Reset")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 600,
+        color: "var(--text-primary)",
+        marginBottom: 10
+      }
+    }, r[0].toLocaleString(), " ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--text-muted)"
+      }
+    }, "\u2013"), " ", r[1].toLocaleString(), s.unit && ` ${s.unit}`), /*#__PURE__*/React.createElement("input", {
+      type: "range",
+      min: s.lo,
+      max: s.hi,
+      value: r[1],
+      style: {
+        width: "100%",
+        accentColor: "var(--brand-600)"
+      },
+      onChange: e => setRanges(p => ({
+        ...p,
+        [s.name]: [s.lo, +e.target.value]
+      }))
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        fontSize: 11,
+        color: "var(--text-muted)",
+        marginTop: 6
+      }
+    }, /*#__PURE__*/React.createElement("span", null, s.lo.toLocaleString()), /*#__PURE__*/React.createElement("span", null, s.hi.toLocaleString()))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "ds-fdrawer-acts"
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "ds-fdrawer-act",
+      disabled: !active,
+      onClick: () => setSel(p => ({
+        ...p,
+        [s.name]: new Set()
+      }))
+    }, "Reset"), /*#__PURE__*/React.createElement("button", {
+      className: "ds-fdrawer-act",
+      disabled: off.size === s.options.length,
+      onClick: () => setSel(p => ({
+        ...p,
+        [s.name]: new Set(s.options)
+      }))
+    }, "Unselect all")), /*#__PURE__*/React.createElement("div", {
+      className: "ds-fdrawer-list ds-scroll"
+    }, s.options.map(o => /*#__PURE__*/React.createElement("label", {
+      key: o,
+      className: "ds-fdrawer-item"
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "checkbox",
+      checked: !off.has(o),
+      onChange: () => toggleVal(s.name, o)
+    }), o))))));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "ds-fdrawer-foot"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "ds-btn ds-btn--secondary",
+    disabled: !anyActive,
+    onClick: resetAll
+  }, "Reset all"), /*#__PURE__*/React.createElement("button", {
+    className: "ds-btn ds-btn--primary",
+    onClick: () => setOpen(false)
+  }, "Done")))));
+};
+const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Anatomy"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "01")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "The filter drawer holds the ", /*#__PURE__*/React.createElement("strong", null, "complete filter set for a data view"), " in one right-edge sheet. It is the canonical filtering surface on Assets Search and the pattern for any table dense enough that inline filter chips stop fitting. It differs from the generic ", /*#__PURE__*/React.createElement("a", {
+  href: "#c-overlays"
+}, "Drawer"), " in three ways: it is narrower, its sections are a ", /*#__PURE__*/React.createElement("strong", null, "single-open accordion"), ", and it applies ", /*#__PURE__*/React.createElement("strong", null, "live"), "; there is no Apply button."), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Live: open the drawer"), /*#__PURE__*/React.createElement("span", {
+  className: "meta"
+}, "real .ds-fdrawer \xB7 ESC and scrim close")), /*#__PURE__*/React.createElement("div", {
+  className: "panel-body",
+  style: {
+    background: "var(--bg-app)",
+    position: "relative",
+    height: 460,
+    overflow: "hidden",
+    padding: 20
+  }
+}, /*#__PURE__*/React.createElement(FilterDrawerDemo, null), /*#__PURE__*/React.createElement("p", {
+  className: "t-caption",
+  style: {
+    marginTop: 12,
+    maxWidth: 380
+  }
+}, "Scoped to this panel for the demo; in production the drawer is ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "position: fixed"), " over the viewport. Open a section; it expands to fill the body and its option list scrolls, rather than the whole drawer scrolling.")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    border: 0,
+    borderRadius: 0,
+    borderTop: "1px solid var(--border-subtle)"
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 200
+  }
+}, "Region"), /*#__PURE__*/React.createElement("th", null, "Spec"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-fdrawer")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "position: fixed; inset: 0"), " at ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--z-drawer: 1080"), ". Toggles ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "visibility"), ", not ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "display"), ", so the panel can transition.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-scrim")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "rgba(15,23,42,.38)"), ", fades over 250ms. Click closes.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-panel")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Right-anchored, ", /*#__PURE__*/React.createElement("strong", null, "360px"), " wide, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "max-width: 92vw"), ", full height. Slides from ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "translateX(100%)"), " over 300ms ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "cubic-bezier(.4,0,.2,1)"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-head")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "16/20px padding, 15px/700 display font, bottom hairline, close button on the right.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-body")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Scrolling flex column, 18px side padding. Hosts the accordion.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-section")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "16px vertical padding open, 11px collapsed (transitioned). The open one takes ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "flex: 1"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-foot")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "14/18px padding, top hairline, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "justify-content: space-between"), ": ", /*#__PURE__*/React.createElement("em", null, "Reset all"), " on the left (disabled when nothing is active), ", /*#__PURE__*/React.createElement("em", null, "Done"), " on the right.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Accordion behaviour"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "02")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Only one section is open at a time. This is deliberate: filter lists run to dozens of options, and letting several expand at once turns the drawer into an unnavigable scroll. The open section ", /*#__PURE__*/React.createElement("em", null, "grows to fill the body"), ", so its option list gets the available height and scrolls internally."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 200
+  }
+}, "Rule"), /*#__PURE__*/React.createElement("th", null, "Behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Single-open")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Opening a section closes the others. Clicking the open section's header collapses it, leaving all closed.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Default open")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The first section, every time the drawer opens. Accordion state is not persisted between openings; filter values are.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Fill & scroll")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Open section is ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "flex: 1 1 auto; min-height: 0"), "; its list drops the 210px cap and takes ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "flex: 1 1 0"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Collapsed affordance")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Collapsed titles render ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--brand-600"), " to read as tappable; the open title goes quiet at ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--text-muted"), ". The chevron is always brand and rotates 180\xB0.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active marker")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "A 6px ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--danger-500"), " dot sits after the section title whenever that filter is narrowing results, visible while collapsed, which is the point.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Enter animation")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Body fades in from ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "translateY(-4px)"), " over 220ms. The section's padding change transitions over 200ms."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Live apply"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "03")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Every change re-queries immediately and repaints the table behind the scrim. This is the opposite of the", /*#__PURE__*/React.createElement("a", {
+  href: "#c-popover"
+}, " form popover"), " rule, and it is correct here for one reason: the drawer is a side sheet, so the result set stays visible beside it. The user sees the row count move as they tick boxes."), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "The apply cycle")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.65
+  }
+}, /*#__PURE__*/React.createElement("ol", {
+  style: {
+    margin: 0,
+    paddingLeft: 18
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Mutate the filter state."), /*#__PURE__*/React.createElement("li", null, "Reset to page 1: the old page number is meaningless against a new result set."), /*#__PURE__*/React.createElement("li", null, "Re-render the table."), /*#__PURE__*/React.createElement("li", null, "Re-render the drawer body so counts, dots and disabled states refresh."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Restore the body's scroll position"), ", the re-render would otherwise jump the user to the top mid-interaction.")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Footer actions")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    border: 0,
+    borderRadius: 0
+  }
+}, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  style: {
+    width: 110
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Reset all")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Clears every filter across all sections. Disabled while none is active, so it never looks available with nothing to do.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Done")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Closes the drawer. It does ", /*#__PURE__*/React.createElement("em", null, "not"), " commit anything: the filters are already applied. It is a dismiss affordance, not a submit.")))), /*#__PURE__*/React.createElement("div", {
+  className: "callout",
+  style: {
+    margin: 16,
+    marginTop: 0
+  }
+}, "Never label this button ", /*#__PURE__*/React.createElement("em", null, "Apply"), ". It implies pending changes that do not exist, and users will hunt for a Cancel that cannot exist either.")))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Section types"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "04")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 140
+  }
+}, "Type"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 180
+  }
+}, "Toolbar"), /*#__PURE__*/React.createElement("th", null, "Control"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "List")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("em", null, "Reset"), " \xB7 ", /*#__PURE__*/React.createElement("em", null, "Unselect all")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Checkbox rows, 7/10px, 12.5px text, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "accent-color: --brand-600"), ". Rows may carry a leading glyph (type teardrop) or flag image. List caps at 210px and scrolls with the 6px themed scrollbar.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Range")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("em", null, "Reset")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Dual-thumb slider over a 4px track, brand fill between thumbs, 16px white thumbs with a 2px brand ring. Current values above, absolute bounds below.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Category")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("em", null, "Reset"), " \xB7 ", /*#__PURE__*/React.createElement("em", null, "Unselect all")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Same as List, but options are derived from the data (Owner, Operator, Manufacturer) rather than a fixed vocabulary.")))), /*#__PURE__*/React.createElement("div", {
+  className: "callout warn",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "The empty-selection state."), " \"All options checked\" and \"no options checked\" are different intents that a plain set cannot distinguish, an empty set normally means \"no filter\". The implementation reserves a sentinel value (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "FNONE"), ") so ", /*#__PURE__*/React.createElement("em", null, "Unselect all"), " yields zero rows rather than silently meaning \"everything\". Any reimplementation needs the same three-state model: ", /*#__PURE__*/React.createElement("em", null, "unfiltered"), ", ", /*#__PURE__*/React.createElement("em", null, "subset"), ", ", /*#__PURE__*/React.createElement("em", null, "none"), ".")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Range slider detail"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "05")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 180
+  }
+}, "Aspect"), /*#__PURE__*/React.createElement("th", null, "Behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Bounds")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Computed from the data per tab, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "floor(min)"), " / ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "ceil(max)"), " of the column. Bounds change when the tab changes.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Two inputs")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Two stacked ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "input[type=range]"), " with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "pointer-events: none"), " on the track and ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "auto"), " on the thumbs, so both remain grabbable.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Crossing")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Each thumb clamps against the other on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "input"), "; values are swapped defensively on commit.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Live vs commit")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "input"), " repaints the fill and the value labels only. ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "change"), " (pointer release) commits and re-queries, so dragging does not fire a query per pixel.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Full range = no filter")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "If the committed range equals the bounds, the filter is deleted rather than stored, so the active dot clears.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Formatting")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Three modes: thousands-separated integers, currency (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "$1.2B"), " / ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "$48.5M"), "), and raw (years, never ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "2,018"), ").")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Repaint on open")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The fill is measured in px from track width, so it must be repainted when its section expands; a slider painted while hidden measures zero."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Trigger & responsive behaviour"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "06")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "On wide viewports the filters live inline in the toolbar as individual dropdown buttons; the drawer is the", /*#__PURE__*/React.createElement("strong", null, " compact-viewport form of the same filter set"), ", opened from a single icon button. Both write to the same state."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 170
+  }
+}, "Breakpoint"), /*#__PURE__*/React.createElement("th", null, "Filter presentation"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "> 720px")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Inline filter buttons, each opening its own dropdown menu. A red corner notch on a button marks an active filter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "\u2264 720px")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Inline controls collapse to a single icon button carrying a brand dot when any filter is active; it opens the drawer.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "\u2264 480px")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Panel is ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "92vw"), ", the remaining 8% keeps the scrim visible so the sheet still reads as an overlay, not a page.")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Trigger forms"), /*#__PURE__*/React.createElement("span", {
+  className: "meta"
+}, "all three open the same drawer")), /*#__PURE__*/React.createElement("div", {
+  className: "panel-body",
+  style: {
+    background: "var(--bg-app)",
+    position: "relative",
+    height: 430,
+    overflow: "hidden",
+    padding: "22px 24px"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 30,
+    flexWrap: "wrap",
+    alignItems: "flex-start"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+    alignItems: "flex-start"
+  }
+}, /*#__PURE__*/React.createElement(FilterDrawerDemo, {
+  triggerForm: "labelled"
+}), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, "Labelled \xB7 default")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+    alignItems: "flex-start"
+  }
+}, /*#__PURE__*/React.createElement(FilterDrawerDemo, {
+  triggerForm: "icon"
+}), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, "Icon-only \xB7 aria-label required")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+    alignItems: "flex-start"
+  }
+}, /*#__PURE__*/React.createElement(FilterDrawerDemo, {
+  triggerForm: "icon",
+  initialSel: {
+    Flag: new Set(["Panama"]),
+    "Asset Type": new Set(["Yacht"])
+  }
+}), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, "Icon-only, 2 filters active"))), /*#__PURE__*/React.createElement("p", {
+  className: "t-caption",
+  style: {
+    marginTop: 14,
+    maxWidth: 420
+  }
+}, "Each trigger opens the same drawer. The third starts with two filters applied, so it shows the corner dot and announces ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "\u201CFilters, 2 active\u201D"), "; clear them with ", /*#__PURE__*/React.createElement("em", null, "Reset all"), " and the dot disappears."))), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "The trigger may be icon-only."), " The filter glyph is well understood and the drawer titles itself \u201CFilters\u201D the moment it opens, so the visible label is not carrying the meaning on its own. Drop the text whenever the toolbar is tight \u2014 it is the required form below 720px, and it is equally acceptable on a wide but crowded toolbar sitting beside search, sort, density and export controls."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 180
+  }
+}, "Rule"), /*#__PURE__*/React.createElement("th", null, "Requirement"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Accessible name")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "An icon-only trigger ", /*#__PURE__*/React.createElement("em", null, "must"), " carry ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label=\"Filters\""), ". Without the visible text it is the only name a screen reader has.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Tooltip")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Pair it with a ", /*#__PURE__*/React.createElement("a", {
+  href: "#c-tooltip"
+}, "Tooltip"), " reading \u201CFilters\u201D. This is the canonical icon-button case: the tip names the control for sighted users, the ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label"), " names it for everyone else.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active state")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The active-filter dot matters more without a label, since there is no text for a count to sit beside. Render it at the top-right corner with a 2px outline in the toolbar background so it reads against the button edge.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Announce the count")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Extend the label when filters are applied \u2014 ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label=\"Filters, 2 active\""), ". Colour alone must never be the only signal.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Target size")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Use the standard ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "ds-btn--icon"), " at its default ", /*#__PURE__*/React.createElement("strong", null, "32px"), "; do not drop to the ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--sm"), " (28px) or ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--xs"), " (24px) variants for a drawer trigger. 32px clears the WCAG 2.2 ", /*#__PURE__*/React.createElement("em", null, "2.5.8"), " minimum of 24px. On coarse pointers, expand the hit area to 44px with a centred ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "::before"), " overlay rather than growing the button, so the toolbar rhythm is preserved.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Consistency")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Pick one form per toolbar. Do not mix a labelled Filters button with icon-only siblings that carry equal weight.")))), /*#__PURE__*/React.createElement("div", {
+  className: "callout",
+  style: {
+    marginTop: 12
+  }
+}, "Because the drawer and the inline dropdowns share one state object, a filter set on a wide screen is still applied, and still shows its dot, after a resize into drawer territory.")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Developer API"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "07")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "The filter drawer is ", /*#__PURE__*/React.createElement("strong", null, "not its own component"), ". It is the ", /*#__PURE__*/React.createElement("em", null, "Filters"), " story of the shared", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "Drawer"), " primitive (built on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "@base-ui/react"), "): a scrollable ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "DrawerBody"), " of filter sections, plus a Reset / Done", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "DrawerFooter"), ". Build it by composing Drawer slots; do not fork a parallel component."), /*#__PURE__*/React.createElement("pre", {
+  className: "code"
+}, `import {
+  Drawer, DrawerTrigger, DrawerContent, DrawerClose,
+  DrawerHeader, DrawerBody, DrawerFooter, DrawerTitle, DrawerDescription,
+} from '@skytek/ui';
+
+<Drawer open={open} onOpenChange={setOpen}>
+  <DrawerTrigger>
+    <Button variant="secondary" icon={<FilterIcon />}>Filters</Button>
+  </DrawerTrigger>
+
+  <DrawerContent modal showClose>
+    <DrawerHeader>
+      <DrawerTitle>Filters</DrawerTitle>
+      {/* Optional. Omit rather than restating what the sections already say. */}
+      <DrawerDescription>Applied to the current result set.</DrawerDescription>
+    </DrawerHeader>
+
+    {/* Scrollable. Holds the single-open accordion. */}
+    <DrawerBody>
+      {sections.map((s) => (
+        <FilterSection
+          key={s.name}
+          section={s}
+          open={openSection === s.name}
+          onToggle={() => setOpenSection(o => o === s.name ? null : s.name)}
+          value={filters[s.name]}
+          onChange={(next) => {
+            setFilters(f => ({ ...f, [s.name]: next }));
+            setPage(1);            // always reset paging
+          }}
+        />
+      ))}
+    </DrawerBody>
+
+    {/* justify-between: Reset left, Done right. */}
+    <DrawerFooter className="justify-between">
+      <Button variant="secondary" disabled={!anyActive} onClick={resetAll}>
+        Reset all
+      </Button>
+      <DrawerClose>
+        <Button variant="primary">Done</Button>
+      </DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>`), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 155
+  }
+}, "Prop / slot"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 125
+  }
+}, "On"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 105
+  }
+}, "Type"), /*#__PURE__*/React.createElement("th", null, "Notes"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "open"), " / ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "onOpenChange")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Drawer"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "boolean / fn"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Controlled mode. Use this so the toolbar's inline filter buttons and the drawer share one state.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "defaultOpen")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Drawer"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "boolean"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Uncontrolled alternative. Rarely right for filters, which are parent-owned.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "modal")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "DrawerContent"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "boolean"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Backdrop + scroll-lock + focus-trap. Keep it on for filters; see the note below.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "showClose")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "DrawerContent"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "boolean"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Renders the header \u2715. On for filters, so the sheet is dismissible without reaching the footer.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "DrawerClose")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "slot"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "wrapper"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Wrap any control to make it close the drawer. This is how ", /*#__PURE__*/React.createElement("em", null, "Done"), " closes; it carries no handler of its own.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "DrawerFooter")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "slot"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "optional"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Consumer-provided, with no default close action. The Reset / Done pair is this pattern's contribution, not a Drawer default.")))), /*#__PURE__*/React.createElement("div", {
+  className: "callout warn",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Live apply and ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "modal"), " are in tension."), " A modal drawer scroll-locks the page behind it, so the user sees the filtered table change but cannot scroll it until the drawer closes. That is the accepted trade: the row count and the top of the result set stay visible, which is enough feedback while narrowing. Do not switch ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "modal"), " off to \"fix\" it; a non-modal filter drawer loses the focus trap and the scrim, and the sheet stops reading as an overlay."), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc",
+  style: {
+    marginTop: 12
+  }
+}, "The state contract below belongs to this pattern. ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "Drawer"), " is presentation only and holds none of it."), /*#__PURE__*/React.createElement("pre", {
+  className: "code"
+}, `/** Three-state list model:
+ *  undefined        → unfiltered (all rows pass)
+ *  Set(['a','b'])   → subset
+ *  Set([FNONE])     → explicitly none (zero rows)  */
+type FilterState = Record<
+  string,
+  Set<string> | { min: number; max: number } | undefined
+>;
+
+type FilterSection =
+  | { name: string; kind: 'list';  options: FilterOption[] }
+  | { name: string; kind: 'range'; key: string; unit?: string;
+      step?: number; format?: 'number' | 'currency' | 'raw' };
+
+interface FilterOption {
+  value: string;
+  label: string;
+  /** Leading glyph: vessel-type teardrop, flag image, status dot. */
+  icon?: React.ReactNode;
+}`)), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Spec vs. current build"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "08")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Where this specification and the shipped ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "Drawer"), " currently differ. The spec column is the target; these are open reconciliation items."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 140
+  }
+}, "Point"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 185
+  }
+}, "Design spec"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 170
+  }
+}, "Current build"), /*#__PURE__*/React.createElement("th", null, "Action"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Footer layout")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Two equal-width buttons, each ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "flex: 1")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "justify-between"), ": Reset left, Done right"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Adopt ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "justify-between"), ". It reads better at this width and separates the clearing action from the affirmative one, which equal halves do not.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Component")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "A standalone ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "FilterDrawer")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "A story composed from Drawer slots"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Corrected above. Compose the primitive; do not ship a second drawer implementation.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Width")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--fdrawer-width: 360px")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Drawer's own scale (400 / 560 / 720)"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Filters wants the narrow end. Either add 360 to the Drawer scale or accept 400 and retire the token; do not maintain two scales.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Description")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Not specified"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "DrawerDescription"), " slot available"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Optional. Use it only for scope that is not otherwise obvious; skip it rather than restating the section names."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Accessibility"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "09")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 190
+  }
+}, "Requirement"), /*#__PURE__*/React.createElement("th", null, "Implementation"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Dialog semantics")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "role=\"dialog\""), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-modal=\"true\""), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label=\"Filters\""), ". The scrim makes this genuinely modal, unlike a popover, claiming modality here is correct.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "aria-hidden")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The root carries ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-hidden"), " mirroring open state, so the closed panel is not reachable while still in the DOM for its transition.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Focus")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Focus moves to the panel on open, is trapped while open, and returns to the trigger on close.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Dismissal")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Esc"), ", scrim click, close button, and ", /*#__PURE__*/React.createElement("em", null, "Done"), ", WCAG 2.2 ", /*#__PURE__*/React.createElement("em", null, "1.4.13"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Accordion headers")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Real ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "<button>"), " elements with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-expanded"), ", reachable by Tab and operable with Enter/Space.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active dot")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Colour alone is not the signal, pair it with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label=\"Asset Type, filtered\""), " or a visually-hidden \"filtered\" string.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Live results")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Announce the new row count through a polite live region; a sighted user sees the table change, a screen-reader user otherwise gets nothing.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Target size")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Checkbox rows are full-width and \u2265 30px tall; footer buttons are 40px. Icon-only triggers stay 32px visually and gain a 44px hit area on coarse pointers.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Reduced motion")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Slide, scrim fade and accordion animation all collapse to 1ms."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Edge cases"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "10")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 230
+  }
+}, "Case"), /*#__PURE__*/React.createElement("th", null, "Expected behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tab switch while filters set"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Filter state and section list are per-tab. Switching tabs rebuilds the sections from that tab's config; range bounds recompute.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Filter yields zero rows"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Table shows the empty state with a ", /*#__PURE__*/React.createElement("em", null, "Clear filters"), " action. The drawer stays open and usable, because the user is mid-narrowing.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Re-render steals scroll"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Capture ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "scrollTop"), " before replacing the body and restore it after. This is the most common bug in live-apply drawers.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Slider in a collapsed section"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Repaint the fill on expand; a track measured at zero width paints an invisible fill.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Every option unselected"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Zero rows, section dot active, ", /*#__PURE__*/React.createElement("em", null, "Unselect all"), " disabled, ", /*#__PURE__*/React.createElement("em", null, "Reset"), " enabled.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Long option labels"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Rows are ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "white-space: nowrap"), " and the list scrolls horizontally rather than wrapping, filter lists stay scannable as one column of left-aligned text.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Drawer open on resize to wide"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Leave it open; closing under the user is more disorienting than a wide drawer. Inline controls reappear behind it."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Do & don't"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "11")), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--success-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--success-700)"
+  }
+}, "\u2713 Do")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.7
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Apply live and reset to page 1 on every change."), /*#__PURE__*/React.createElement("li", null, "Mark active sections with a dot visible while collapsed."), /*#__PURE__*/React.createElement("li", null, "Restore body scroll position after a re-render."), /*#__PURE__*/React.createElement("li", null, "Disable ", /*#__PURE__*/React.createElement("em", null, "Reset all"), " when nothing is active."), /*#__PURE__*/React.createElement("li", null, "Commit range sliders on release, not on drag.")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--danger-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--danger-700)"
+  }
+}, "\u2717 Don't")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.7
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Label the dismiss button ", /*#__PURE__*/React.createElement("em", null, "Apply"), ", nothing is pending."), /*#__PURE__*/React.createElement("li", null, "Let several sections expand at once."), /*#__PURE__*/React.createElement("li", null, "Treat \"none selected\" as \"no filter\"."), /*#__PURE__*/React.createElement("li", null, "Re-query on every slider ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "input"), " event."), /*#__PURE__*/React.createElement("li", null, "Scroll the whole drawer instead of the open section's list.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Tokens"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "12")), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, [["--fdrawer-width", "360px", "Panel width"], ["--fdrawer-max-width", "92vw", "Compact-viewport cap"], ["--fdrawer-scrim", "rgba(15,23,42,.38)", "Backdrop"], ["--fdrawer-shadow", "-10px 0 30px rgba(15,23,42,.16)", "Panel edge shadow"], ["--fdrawer-pad-x", "18px", "Body / footer side padding"], ["--fdrawer-head-pad", "16px 20px", "Header padding"], ["--fdrawer-slide", "300ms", "Panel slide duration"], ["--fdrawer-slide-ease", "cubic-bezier(.4,0,.2,1)", "Panel slide easing"], ["--fdrawer-scrim-motion", "250ms", "Scrim fade"], ["--fdrawer-acc-motion", "220ms", "Accordion body enter"], ["--fdrawer-list-max", "210px", "Option-list cap when not filling"], ["--z-drawer", "1080", "Below modal, above popover"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
+  key: t,
+  className: "token-row",
+  style: {
+    gridTemplateColumns: "230px 240px 1fr"
+  }
+}, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--brand-600)",
+    fontSize: 11
+  }
+}, v), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, r))))), /*#__PURE__*/React.createElement("div", {
+  className: "callout"
+}, /*#__PURE__*/React.createElement("strong", null, "The filter drawer test:"), " tick one box and watch the table. If the row count does not move until you press something, it is not this component; it is a form popover wearing a drawer's clothes."));
+window.FilterDrawerSpec = FilterDrawerSpec;
+})(); } catch (e) { __ds_ns.__errors.push({ path: "section-filterdrawer.jsx", error: String((e && e.message) || e) }); }
+
 // section-forms-deep.jsx
 try { (() => {
-/* Section — Forms — full specification */
+/* Section: Forms: full specification */
 
 const FormAnatomyDemo = () => /*#__PURE__*/React.createElement("div", {
   className: "ds-form-anatomy"
@@ -12192,23 +14738,23 @@ const FormAnatomyDemo = () => /*#__PURE__*/React.createElement("div", {
   style: {
     color: "var(--text-primary)"
   }
-}, "Label"), " \u2014 sentence case, no colon, above the input."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
+}, "Label"), ", sentence case, no colon, above the input."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
   style: {
     color: "var(--text-primary)"
   }
-}, "Required indicator"), " \u2014 danger-500 asterisk, with a screen-reader-only \"required\"."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
+}, "Required indicator"), ", danger-500 asterisk, with a screen-reader-only \"required\"."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
   style: {
     color: "var(--text-primary)"
   }
-}, "Input"), " \u2014 32 px (md) default, 28 px (sm) in compact density."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
+}, "Input"), ", 32 px (md) default, 28 px (sm) in compact density."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
   style: {
     color: "var(--text-primary)"
   }
-}, "Helper text"), " \u2014 single line below, muted. Replaced by error when error fires."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
+}, "Helper text"), ", single line below, muted. Replaced by error when error fires."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", {
   style: {
     color: "var(--text-primary)"
   }
-}, "aria-describedby"), " \u2014 links input to the help/error id.")));
+}, "aria-describedby"), ", links input to the help/error id.")));
 const FieldStatesDemo = () => /*#__PURE__*/React.createElement("div", {
   className: "ds-field-grid"
 }, /*#__PURE__*/React.createElement("div", {
@@ -12360,7 +14906,7 @@ const FieldStatesDemo = () => /*#__PURE__*/React.createElement("div", {
 }), " Not found in IHS Maritime registry.")));
 const ValidationTimingTable = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Trigger"), /*#__PURE__*/React.createElement("th", null, "Fires on"), /*#__PURE__*/React.createElement("th", null, "Use for"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "onSubmit")), /*#__PURE__*/React.createElement("td", null, "Form submission"), /*#__PURE__*/React.createElement("td", null, "The default. Show all errors at once. Scroll to the first one.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "onBlur")), /*#__PURE__*/React.createElement("td", null, "Field loses focus"), /*#__PURE__*/React.createElement("td", null, "Email, URLs, IMO lookups, typeahead values. Don't fire on every keystroke.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "onChange (live)")), /*#__PURE__*/React.createElement("td", null, "Each keystroke"), /*#__PURE__*/React.createElement("td", null, "Strength meters, char counters, format hints. Never errors \u2014 only positive feedback.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Async")), /*#__PURE__*/React.createElement("td", null, "Debounced onBlur or onChange"), /*#__PURE__*/React.createElement("td", null, "Uniqueness checks, registry lookups. Always show pending state before result.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Cross-field")), /*#__PURE__*/React.createElement("td", null, "onSubmit of dependent field"), /*#__PURE__*/React.createElement("td", null, "\"End date must be after start date.\" Re-run when either changes."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Trigger"), /*#__PURE__*/React.createElement("th", null, "Fires on"), /*#__PURE__*/React.createElement("th", null, "Use for"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "onSubmit")), /*#__PURE__*/React.createElement("td", null, "Form submission"), /*#__PURE__*/React.createElement("td", null, "The default. Show all errors at once. Scroll to the first one.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "onBlur")), /*#__PURE__*/React.createElement("td", null, "Field loses focus"), /*#__PURE__*/React.createElement("td", null, "Email, URLs, IMO lookups, typeahead values. Don't fire on every keystroke.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "onChange (live)")), /*#__PURE__*/React.createElement("td", null, "Each keystroke"), /*#__PURE__*/React.createElement("td", null, "Strength meters, char counters, format hints. Never errors: only positive feedback.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Async")), /*#__PURE__*/React.createElement("td", null, "Debounced onBlur or onChange"), /*#__PURE__*/React.createElement("td", null, "Uniqueness checks, registry lookups. Always show pending state before result.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Cross-field")), /*#__PURE__*/React.createElement("td", null, "onSubmit of dependent field"), /*#__PURE__*/React.createElement("td", null, "\"End date must be after start date.\" Re-run when either changes."))));
 const LabelLayoutDemo = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-2"
 }, /*#__PURE__*/React.createElement("div", {
@@ -12534,7 +15080,7 @@ const StepperDemo = () => /*#__PURE__*/React.createElement("div", {
 }, "Review")));
 const FormsRules = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concern"), /*#__PURE__*/React.createElement("th", null, "Rule"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Required indicator")), /*#__PURE__*/React.createElement("td", null, "Danger-500 asterisk after the label. Plus an SR-only \"required\" so screen readers don't say \"asterisk\".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Optional indicator")), /*#__PURE__*/React.createElement("td", null, "Show \"(optional)\" in muted text when most fields are required. Don't double-mark.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Placeholder vs label")), /*#__PURE__*/React.createElement("td", null, "Placeholder is example data (\"9234567\"). It's never a substitute for a label.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Helper vs error")), /*#__PURE__*/React.createElement("td", null, "Helper shows by default. Error replaces it. Both share the same DOM slot \u2014 so the layout doesn't jump when validation fires.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error placement")), /*#__PURE__*/React.createElement("td", null, "Below the input, never above. ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), " wires the error id to the input.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "aria-invalid")), /*#__PURE__*/React.createElement("td", null, "Set when an error fires. Cleared on next input change. Drives the red border styling.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Submission")), /*#__PURE__*/React.createElement("td", null, "Disable Submit only while a request is in flight. Don't disable for invalid fields \u2014 let the submission show the errors at once.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Focus on error")), /*#__PURE__*/React.createElement("td", null, "On submit with errors, focus moves to the first invalid field. Page scrolls to bring it into view.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Autofill")), /*#__PURE__*/React.createElement("td", null, "Use semantic ", /*#__PURE__*/React.createElement("code", null, "autocomplete"), " attributes (", /*#__PURE__*/React.createElement("code", null, "email"), ", ", /*#__PURE__*/React.createElement("code", null, "given-name"), ", ", /*#__PURE__*/React.createElement("code", null, "organization"), "). Browsers do the right thing.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Prevent data loss")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "beforeunload"), " warning when the form is dirty. Suppressed during programmatic navigation."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concern"), /*#__PURE__*/React.createElement("th", null, "Rule"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Required indicator")), /*#__PURE__*/React.createElement("td", null, "Danger-500 asterisk after the label. Plus an SR-only \"required\" so screen readers don't say \"asterisk\".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Optional indicator")), /*#__PURE__*/React.createElement("td", null, "Show \"(optional)\" in muted text when most fields are required. Don't double-mark.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Placeholder vs label")), /*#__PURE__*/React.createElement("td", null, "Placeholder is example data (\"9234567\"). It's never a substitute for a label.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Helper vs error")), /*#__PURE__*/React.createElement("td", null, "Helper shows by default. Error replaces it. Both share the same DOM slot, so the layout doesn't jump when validation fires.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error placement")), /*#__PURE__*/React.createElement("td", null, "Below the input, never above. ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), " wires the error id to the input.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "aria-invalid")), /*#__PURE__*/React.createElement("td", null, "Set when an error fires. Cleared on next input change. Drives the red border styling.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Submission")), /*#__PURE__*/React.createElement("td", null, "Disable Submit only while a request is in flight. Don't disable for invalid fields, let the submission show the errors at once.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Focus on error")), /*#__PURE__*/React.createElement("td", null, "On submit with errors, focus moves to the first invalid field. Page scrolls to bring it into view.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Autofill")), /*#__PURE__*/React.createElement("td", null, "Use semantic ", /*#__PURE__*/React.createElement("code", null, "autocomplete"), " attributes (", /*#__PURE__*/React.createElement("code", null, "email"), ", ", /*#__PURE__*/React.createElement("code", null, "given-name"), ", ", /*#__PURE__*/React.createElement("code", null, "organization"), "). Browsers do the right thing.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Prevent data loss")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "beforeunload"), " warning when the form is dirty. Suppressed during programmatic navigation."))));
 const FormsApi = () => /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `// app/ui/Form/types.ts
@@ -12553,7 +15099,7 @@ type FieldProps<T> = {
   onBlur?: () => void;
 };
 
-// React API — same surface for every input type
+// React API, same surface for every input type
 <Field name="imo" label="IMO number" required help="7 digits"
        status={imoStatus} error={imoError} {...register('imo')} />
 
@@ -12595,7 +15141,7 @@ const FormsDeepSection = () => /*#__PURE__*/React.createElement(React.Fragment, 
   className: "subsection-title"
 }, "Field states"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Every input renders in eight states. Async validation is a first-class state \u2014 never blank during a registry lookup."), /*#__PURE__*/React.createElement(FieldStatesDemo, null)), /*#__PURE__*/React.createElement("div", {
+}, "Every input renders in eight states. Async validation is a first-class state, never blank during a registry lookup."), /*#__PURE__*/React.createElement(FieldStatesDemo, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -12606,7 +15152,7 @@ const FormsDeepSection = () => /*#__PURE__*/React.createElement(React.Fragment, 
   style: {
     marginTop: 12
   }
-}, /*#__PURE__*/React.createElement("strong", null, "Never fire errors on every keystroke."), " A user typing is not making a mistake \u2014 they're not done. Errors fire on blur or submit.")), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("strong", null, "Never fire errors on every keystroke."), " A user typing is not making a mistake; they're not done. Errors fire on blur or submit.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -12622,7 +15168,7 @@ const FormsDeepSection = () => /*#__PURE__*/React.createElement(React.Fragment, 
   className: "inline"
 }, "<fieldset>"), " + ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "<legend>"), " when fields belong together \u2014 screen readers announce the group on each field, and the visual chrome reinforces it."), /*#__PURE__*/React.createElement(FieldGroupDemo, null)), /*#__PURE__*/React.createElement("div", {
+}, "<legend>"), " when fields belong together: screen readers announce the group on each field, and the visual chrome reinforces it."), /*#__PURE__*/React.createElement(FieldGroupDemo, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -12651,13 +15197,13 @@ const FormsDeepSection = () => /*#__PURE__*/React.createElement(React.Fragment, 
   className: "subsection-title"
 }, "React API"), /*#__PURE__*/React.createElement(FormsApi, null)), /*#__PURE__*/React.createElement("div", {
   className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "The principle:"), " a form is a conversation. The user is talking; the form is listening. Don't interrupt mid-sentence (no per-keystroke errors), don't disable the submit button to make a point, and when the user makes a mistake, make the fix obvious \u2014 not a punishment."));
+}, /*#__PURE__*/React.createElement("strong", null, "The principle:"), " a form is a conversation. The user is talking; the form is listening. Don't interrupt mid-sentence (no per-keystroke errors), don't disable the submit button to make a point, and when the user makes a mistake, make the fix obvious, not a punishment."));
 window.FormsDeepSection = FormsDeepSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-forms-deep.jsx", error: String((e && e.message) || e) }); }
 
 // section-foundations-meta.jsx
 try { (() => {
-/* Section 1 — Audit summary + Principles */
+/* Section 1: Audit summary + Principles */
 
 const AuditSummary = () => {
   const findings = [{
@@ -12666,8 +15212,8 @@ const AuditSummary = () => {
     note: "47 raw hex codes used directly across modules; 12 different greys; brand blues defined twice."
   }, {
     area: "Typography",
-    count: 7,
-    note: "7 H-level styles + 5 body sizes, mixed Lato / Open Sans / system; no semantic roles."
+    count: 6,
+    note: "6 H-level styles + 5 body sizes, mixed Lato / Open Sans / system; no semantic roles."
   }, {
     area: "Buttons",
     count: 3,
@@ -12691,7 +15237,7 @@ const AuditSummary = () => {
   }, {
     area: "Radius",
     count: 6,
-    note: "Border radius values: 3px, 4px, 5px, 6px, 12px, 9999px — all in use without rules."
+    note: "Border radius values: 3px, 4px, 5px, 6px, 12px, 9999px, all in use without rules."
   }];
   return /*#__PURE__*/React.createElement("div", {
     className: "panel",
@@ -12728,7 +15274,7 @@ const Principles = () => {
   const items = [{
     num: "01",
     title: "Clarity over decoration",
-    body: "Information density is high in monitoring software. Every visual flourish must earn its place by aiding scanning, comparison, or decision-making — not by adorning."
+    body: "Information density is high in monitoring software. Every visual flourish must earn its place by aiding scanning, comparison, or decision-making, not by adorning."
   }, {
     num: "02",
     title: "One primary action per surface",
@@ -12744,7 +15290,7 @@ const Principles = () => {
   }, {
     num: "05",
     title: "Density with hierarchy",
-    body: "Tables and dashboards are dense. Hierarchy is achieved through type weight, color contrast and whitespace — not through borders or boxes."
+    body: "Tables and dashboards are dense. Hierarchy is achieved through type weight, color contrast and whitespace, not through borders or boxes."
   }, {
     num: "06",
     title: "Accessible by default",
@@ -12764,7 +15310,7 @@ const Principles = () => {
     className: "principle"
   }, /*#__PURE__*/React.createElement("div", {
     className: "num"
-  }, "PRINCIPLE \u2014 ", p.num), /*#__PURE__*/React.createElement("h4", null, p.title), /*#__PURE__*/React.createElement("p", null, p.body))));
+  }, "PRINCIPLE: ", p.num), /*#__PURE__*/React.createElement("h4", null, p.title), /*#__PURE__*/React.createElement("p", null, p.body))));
 };
 window.AuditSummary = AuditSummary;
 window.Principles = Principles;
@@ -12773,7 +15319,7 @@ window.Principles = Principles;
 // section-foundations.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/* Section 2 — Foundations: Color, Type, Spacing, Radius/Shadow */
+/* Section 2: Foundations: Color, Type, Spacing, Radius/Shadow */
 
 const ColorSwatch = ({
   name,
@@ -12821,6 +15367,10 @@ const ColorScale = ({
 }, it)))));
 const ColorSection = () => {
   const brand = [{
+    name: "700",
+    token: "--brand-700",
+    value: "#1f5fc7"
+  }, {
     name: "600",
     token: "--brand-600",
     value: "#2d7ffb"
@@ -12887,6 +15437,11 @@ const ColorSection = () => {
     value: "#E5E7EB",
     fg: "#111827"
   }, {
+    name: "150",
+    token: "--slate-150",
+    value: "#ECEEF2",
+    fg: "#111827"
+  }, {
     name: "100",
     token: "--slate-100",
     value: "#F3F4F6",
@@ -12916,6 +15471,11 @@ const ColorSection = () => {
     value: "#DCFCE7",
     fg: "#15803D"
   }, {
+    name: "Success 050",
+    token: "--success-050",
+    value: "#F0FDF4",
+    fg: "#15803D"
+  }, {
     name: "Warning 700",
     token: "--warning-700",
     value: "#B45309"
@@ -12928,6 +15488,15 @@ const ColorSection = () => {
     token: "--warning-100",
     value: "#FEF3C7",
     fg: "#B45309"
+  }, {
+    name: "Warning 050",
+    token: "--warning-050",
+    value: "#FFFBEB",
+    fg: "#B45309"
+  }, {
+    name: "Danger 800",
+    token: "--danger-800",
+    value: "#991B1B"
   }, {
     name: "Danger 700",
     token: "--danger-700",
@@ -12942,6 +15511,11 @@ const ColorSection = () => {
     value: "#FEE2E2",
     fg: "#B91C1C"
   }, {
+    name: "Danger 050",
+    token: "--danger-050",
+    value: "#FEF2F2",
+    fg: "#B91C1C"
+  }, {
     name: "Info 700",
     token: "--info-700",
     value: "#1D4ED8"
@@ -12953,6 +15527,11 @@ const ColorSection = () => {
     name: "Info 100",
     token: "--info-100",
     value: "#DBEAFE",
+    fg: "#1D4ED8"
+  }, {
+    name: "Info 050",
+    token: "--info-050",
+    value: "#EFF6FF",
     fg: "#1D4ED8"
   }];
   const ratings = [{
@@ -12977,7 +15556,9 @@ const ColorSection = () => {
     token: "--rating-e",
     value: "#C0392B"
   }];
-  const semantic = [["--bg-app", "Page background", "#F9FAFB"], ["--bg-canvas", "Map / dashboard canvas", "#F5F7FA"], ["--bg-surface", "Cards, modals, panels", "#FFFFFF"], ["--bg-sunken", "Form rows, inset blocks", "#F9FAFB"], ["--bg-muted", "Disabled, placeholders", "#F3F4F6"], ["--bg-inverse", "Dark surfaces, tooltips", "#111827"], ["--border-subtle", "Internal dividers", "#ECEEF2"], ["--border-default", "Cards, inputs, buttons", "#E5E7EB"], ["--border-strong", "Hover, emphasized", "#D1D5DB"], ["--text-primary", "Body, headings", "#111827"], ["--text-secondary", "Supporting copy", "#4B5563"], ["--text-muted", "Help, captions, meta", "#6B7280"], ["--text-disabled", "Disabled controls", "#9CA3AF"], ["--text-link", "Inline links", "#51a2fc"], ["--text-on-brand", "On primary buttons", "#FFFFFF"]];
+  const semantic = [
+  // [token, role, lightValue, darkValue]
+  ["--bg-app", "Page background", "#F9FAFB", "#0B1220"], ["--bg-canvas", "Map / dashboard canvas", "#F5F7FA", "#0D1524"], ["--bg-surface", "Cards, modals, panels", "#FFFFFF", "#121A2A"], ["--bg-raised", "Elevated surfaces", "#FFFFFF", "#1B2536"], ["--bg-sunken", "Form rows, inset blocks", "#F9FAFB", "#0B1220"], ["--bg-muted", "Disabled, placeholders", "#F3F4F6", "#1B2536"], ["--bg-inverse", "Dark surfaces, tooltips", "#111827", "#E5E7EB"], ["--border-subtle", "Internal dividers", "#ECEEF2", "#1F2A3C"], ["--border-default", "Cards, inputs, buttons", "#E5E7EB", "#2B3854"], ["--border-strong", "Hover, emphasized", "#D1D5DB", "#3A4A66"], ["--border-info", "Info badge / alert border", "color-mix(in srgb, var(--info-500) 18%, transparent)", "color-mix(in srgb, var(--info-500) 18%, transparent)"], ["--border-success", "Success badge / alert border", "color-mix(in srgb, var(--success-500) 18%, transparent)", "color-mix(in srgb, var(--success-500) 18%, transparent)"], ["--border-warning", "Warning badge / alert border", "color-mix(in srgb, var(--warning-500) 20%, transparent)", "color-mix(in srgb, var(--warning-500) 20%, transparent)"], ["--border-danger", "Danger badge / alert border", "color-mix(in srgb, var(--danger-500) 18%, transparent)", "color-mix(in srgb, var(--danger-500) 18%, transparent)"], ["--text-primary", "Body, headings", "#111827", "#F3F4F6"], ["--text-secondary", "Supporting copy", "#4B5563", "#9CA3AF"], ["--text-muted", "Help, captions, meta", "#6B7280", "#828C9C"], ["--text-disabled", "Disabled controls", "#9CA3AF", "#4B5563"], ["--text-inverse", "On dark surfaces", "#FFFFFF", "#0B1220"], ["--text-link", "Inline links", "#51a2fc", "#8EC5FD"], ["--text-on-brand", "On primary buttons", "#FFFFFF", "#FFFFFF"]];
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ColorScale, {
     title: "Brand \xB7 for primary actions, links and focus states only",
     items: brand
@@ -12985,7 +15566,7 @@ const ColorSection = () => {
     title: "Slate \xB7 neutral UI palette",
     items: slate
   }), /*#__PURE__*/React.createElement(ColorScale, {
-    title: "Status \xB7 semantic only \u2014 never decorative",
+    title: "Status \xB7 semantic only: never decorative",
     items: status
   }), /*#__PURE__*/React.createElement("div", {
     className: "subsection"
@@ -13012,26 +15593,99 @@ const ColorSection = () => {
     style: {
       marginBottom: 10
     }
-  }, "Semantic surface, border & text tokens"), /*#__PURE__*/React.createElement("div", {
+  }, "Semantic surface, border & text tokens \xB7 Light / Dark"), /*#__PURE__*/React.createElement("div", {
     className: "panel"
-  }, semantic.map(([t, role, val]) => /*#__PURE__*/React.createElement("div", {
-    key: t,
-    className: "token-row"
-  }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
-    className: "swatch-mini",
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "token-row",
     style: {
-      background: val
+      gridTemplateColumns: "220px 1fr 118px 118px",
+      background: "var(--bg-sunken)"
     }
-  }), /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "t-label",
+    style: {
+      color: "var(--text-muted)"
+    }
+  }, "Token"), /*#__PURE__*/React.createElement("span", {
+    className: "t-label",
+    style: {
+      color: "var(--text-muted)"
+    }
+  }, "Role"), /*#__PURE__*/React.createElement("span", {
+    className: "t-label",
+    style: {
+      color: "var(--text-muted)"
+    }
+  }, "Light"), /*#__PURE__*/React.createElement("span", {
+    className: "t-label",
+    style: {
+      color: "var(--text-muted)"
+    }
+  }, "Dark")), semantic.map(([t, role, light, dark]) => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    className: "token-row",
+    style: {
+      gridTemplateColumns: "220px 1fr 118px 118px"
+    }
+  }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
     style: {
       color: "var(--text-secondary)"
     }
   }, role), /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "swatch-mini",
+    style: {
+      background: light,
+      flexShrink: 0
+    }
+  }), /*#__PURE__*/React.createElement("span", {
     className: "t-mono",
     style: {
-      color: "var(--text-muted)"
+      color: "var(--text-muted)",
+      fontSize: 10.5,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
     }
-  }, val))))), /*#__PURE__*/React.createElement("div", {
+  }, light.startsWith("#") ? light : "mix")), /*#__PURE__*/React.createElement("span", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "swatch-mini",
+    style: {
+      background: dark,
+      flexShrink: 0,
+      borderColor: "rgba(255,255,255,.14)"
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "t-mono",
+    style: {
+      color: "var(--text-muted)",
+      fontSize: 10.5,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, dark.startsWith("#") ? dark : "mix"))))), /*#__PURE__*/React.createElement("p", {
+    className: "t-caption",
+    style: {
+      marginTop: 8
+    }
+  }, "Primitives (brand / slate / status hues above) never change between themes, only these semantic aliases are re-pointed under ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "[data-theme=\"dark\"]"), ". Toggle the theme in the sidebar to see the whole spec flip. Full rationale in the ", /*#__PURE__*/React.createElement("a", {
+    href: "#darkmode"
+  }, "Dark mode"), " chapter.")), /*#__PURE__*/React.createElement("div", {
     className: "subsection"
   }, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
@@ -13042,6 +15696,7 @@ const ColorSection = () => {
     className: "spec-table"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Why"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Brand color is reserved for primary CTAs, selected nav, links, and focus rings."), /*#__PURE__*/React.createElement("td", null, "Prevents brand from competing with status colors during incidents.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors never carry decorative weight (e.g. success-100 is not a \"nice green tint\")."), /*#__PURE__*/React.createElement("td", null, "So users learn that any colored badge / row tint ", /*#__PURE__*/React.createElement("em", null, "means"), " something.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text is always ", /*#__PURE__*/React.createElement("code", null, "--text-primary"), " on light surfaces. Never < 4.5:1 contrast."), /*#__PURE__*/React.createElement("td", null, "WCAG AA on all dense table content.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Backgrounds use only the four ", /*#__PURE__*/React.createElement("code", null, "--bg-*"), " tokens. No raw hex in modules."), /*#__PURE__*/React.createElement("td", null, "Single source of truth; easier to dark-mode later.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "The legacy ", /*#__PURE__*/React.createElement("code", null, "react-light-blue / react-dark-blue"), " map to ", /*#__PURE__*/React.createElement("code", null, "--brand-300 / --brand-600"), "."), /*#__PURE__*/React.createElement("td", null, "Source compatibility during migration."))))));
 };
+const toRem = px => parseFloat((parseFloat(px) / 16).toFixed(4));
 const TypeSpecimen = ({
   cls,
   label,
@@ -13068,9 +15723,14 @@ const TypeSpecimen = ({
   className: "t-mono",
   style: {
     color: "var(--text-muted)",
-    fontSize: 11
+    fontSize: 11,
+    lineHeight: 1.45
   }
-}, family, " \xB7 ", weight, " \xB7 ", size, "/", lh));
+}, /*#__PURE__*/React.createElement("div", null, family, " \xB7 ", weight), /*#__PURE__*/React.createElement("div", null, size, "px / ", lh, "px"), /*#__PURE__*/React.createElement("div", {
+  style: {
+    opacity: 0.75
+  }
+}, toRem(size), "rem / ", toRem(lh), "rem")));
 const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("div", {
@@ -13084,7 +15744,7 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   cls: "t-display",
   label: "Display",
   role: "Page hero on dashboards. Use sparingly.",
-  family: "Inter",
+  family: "Exo",
   weight: "600",
   size: "32",
   lh: "40"
@@ -13092,7 +15752,7 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   cls: "t-h1",
   label: "H1",
   role: "Page header title (one per page).",
-  family: "Inter",
+  family: "Exo",
   weight: "600",
   size: "24",
   lh: "32"
@@ -13100,7 +15760,7 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   cls: "t-h2",
   label: "H2",
   role: "Section / card group title.",
-  family: "Inter",
+  family: "Exo",
   weight: "600",
   size: "20",
   lh: "28"
@@ -13108,7 +15768,7 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   cls: "t-h3",
   label: "H3",
   role: "Card title, modal title.",
-  family: "Inter",
+  family: "Exo",
   weight: "600",
   size: "16",
   lh: "24"
@@ -13116,7 +15776,7 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   cls: "t-h4",
   label: "H4",
   role: "Subsection within a card.",
-  family: "Inter",
+  family: "Exo",
   weight: "600",
   size: "14",
   lh: "20"
@@ -13191,21 +15851,25 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, "bodyXXsmall"), ") is removed."))));
 const SpacingSection = () => {
-  const scale = [["--space-1", 2, "Hairline gaps inside icons"], ["--space-2", 4, "Tight pairings (icon + label inside a chip)"], ["--space-3", 8, "Default form gap, button gap, badge padding"], ["--space-4", 12, "Card inner padding, list row gap"], ["--space-5", 16, "Standard section gap, card body padding"], ["--space-6", 20, "Comfortable form vertical spacing"], ["--space-7", 24, "Card-to-card gap on dashboards"], ["--space-8", 32, "Section vertical spacing on detail pages"], ["--space-9", 40, "Page header vertical padding"], ["--space-10", 48, "Major page section breaks"], ["--space-12", 64, "Page top padding (desktop)"], ["--space-16", 96, "Empty / error full-page states"]];
+  const scale = [["--space-1", 4, "Tight pairings (icon + label inside a chip)"], ["--space-2", 8, "Default form gap, button gap, badge padding"], ["--space-3", 12, "Card inner padding, list row gap"], ["--space-4", 16, "Standard section gap, card body padding"], ["--space-5", 20, "Comfortable form vertical spacing"], ["--space-6", 24, "Card-to-card gap on dashboards"], ["--space-7", 32, "Section vertical spacing on detail pages"], ["--space-8", 40, "Page header vertical padding"], ["--space-9", 48, "Major page section breaks"], ["--space-10", 64, "Page top padding (desktop)"], ["--space-11", 96, "Empty / error full-page states"]];
   return /*#__PURE__*/React.createElement("div", {
     className: "panel"
   }, scale.map(([t, v, use]) => /*#__PURE__*/React.createElement("div", {
     key: t,
     className: "token-row",
     style: {
-      gridTemplateColumns: "180px 80px 140px 1fr"
+      gridTemplateColumns: "180px 120px 120px 1fr"
     }
   }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
     className: "t-mono",
     style: {
+      color: "var(--text-secondary)"
+    }
+  }, v, "px ", /*#__PURE__*/React.createElement("span", {
+    style: {
       color: "var(--text-muted)"
     }
-  }, v, "px"), /*#__PURE__*/React.createElement("div", {
+  }, "\xB7 ", toRem(v), "rem")), /*#__PURE__*/React.createElement("div", {
     className: "preview"
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -13221,7 +15885,7 @@ const SpacingSection = () => {
   }, use))));
 };
 const RadiusShadowSection = () => {
-  const radii = [["--radius-xs", 2, "Inline tags, status dots' inner shapes"], ["--radius-sm", 4, "Badges, small chips, table cells"], ["--radius-md", 6, "Buttons, inputs, popovers — DEFAULT"], ["--radius-lg", 8, "Cards, modals, drawers"], ["--radius-xl", 12, "Onboarding & marketing surfaces (rare)"], ["--radius-pill", "9999", "Pills, switches, avatars"]];
+  const radii = [["--radius-xs", 2, "Inline tags, status dots' inner shapes"], ["--radius-sm", 4, "Badges, small chips, table cells"], ["--radius-md", 6, "Buttons, inputs, popovers: DEFAULT"], ["--radius-lg", 8, "Cards, modals, drawers"], ["--radius-xl", 12, "Onboarding & marketing surfaces (rare)"], ["--radius-pill", "9999", "Pills, switches, avatars"]];
   const shadows = [["--shadow-xs", "Resting cards, secondary buttons", "0 1px 0 rgba(15, 23, 42, 0.04)"], ["--shadow-sm", "Static panels, inline cards", "0 1px 2px rgba(15, 23, 42, 0.06)"], ["--shadow-md", "Popovers, dropdowns, tooltips", "0 4px 12px -2px rgba(15, 23, 42, 0.08)"], ["--shadow-lg", "Drawers, side panels", "0 12px 24px -8px rgba(15, 23, 42, 0.12)"], ["--shadow-xl", "Modals only", "0 24px 48px -12px rgba(15, 23, 42, 0.18)"]];
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     className: "subsection"
@@ -13299,7 +15963,7 @@ const RadiusShadowSection = () => {
     style: {
       marginTop: 16
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Rule:"), " Borders define structure; shadows define elevation. A surface should rarely use both heavily \u2014 choose one. Dashboards default to ", /*#__PURE__*/React.createElement("em", null, "border + shadow-xs"), ", never ", /*#__PURE__*/React.createElement("em", null, "shadow-md"), ".")));
+  }, /*#__PURE__*/React.createElement("strong", null, "Rule:"), " Borders define structure; shadows define elevation. A surface should rarely use both heavily, choose one. Dashboards default to ", /*#__PURE__*/React.createElement("em", null, "border + shadow-xs"), ", never ", /*#__PURE__*/React.createElement("em", null, "shadow-md"), ".")));
 };
 window.ColorSection = ColorSection;
 window.TypeSection = TypeSection;
@@ -13309,18 +15973,18 @@ window.RadiusShadowSection = RadiusShadowSection;
 
 // section-foundations2.jsx
 try { (() => {
-/* Section — Foundations II: Iconography (Lucide), Density modes, Motion */
+/* Section: Foundations II: Iconography (Lucide), Density modes, Motion */
 
 /* ============================================================
-   Iconography — Lucide
+   Iconography, Lucide
    ============================================================ */
 
 const ICON_SIZE_RULES = [["12 px", "h-3 w-3", "Inline meta, tiny badges, dense table cells, sparkline endcaps."], ["14 px", "h-3.5 w-3.5", "Menu glyphs, breadcrumb separators, inline-with-12-px-caption pairings."], ["16 px", "h-4 w-4", "Default UI size. Buttons (xs/sm), inputs, chevrons, kebabs, table actions."], ["20 px", "h-5 w-5", "Lucide default. Toolbar actions, app-shell nav items, card header actions."], ["24 px", "h-6 w-6", "Standalone affordances, alert / banner leading glyphs, empty-state guidance."], ["32 px", "h-8 w-8", "Empty-state hero, category landing tiles, large badge inside a circle."], ["40 px", "h-10 w-10", "Dashboard module tiles, marketing-style category headers. Sparingly."]];
 const LUCIDE_INVENTORY = [
-// [alias, lucideName, usage]
-["menu", "Menu", "Sidebar trigger"], ["grid", "LayoutGrid", "Dashboard nav"], ["ship", "Ship", "Marine nav, vessel detail"], ["plane", "Plane", "Aviation nav, aircraft detail"], ["bolt", "Zap", "Offshore/Energy nav"], ["building", "Building", "Property nav"], ["office", "Building2", "Companies nav"], ["briefcase", "Briefcase", "Portfolios nav"], ["cargo", "Container", "Cargo nav, container metrics"], ["doc", "FileText", "Reports nav, document rows"], ["globe", "Globe", "Regions nav, world view toggle"], ["anchor", "Anchor", "Ports nav, port detail"], ["wave", "Waves", "NatCat nav, marine events"], ["cloud", "Cloud", "Weather nav"], ["cloudrain", "CloudRain", "Weather event glyph"], ["gem", "Gem", "Assets search nav"], ["pin", "MapPin", "Location refs in popovers and lists"], ["search", "Search", "Toolbar, command palette"], ["filter", "Filter", "Filter buttons, map filter menu"], ["layers", "Layers", "Map layer switcher"], ["tag", "Tag", "Labels menu, badge editor"], ["bell", "Bell", "Notifications"], ["users", "Users", "Organizations, teams"], ["plus", "Plus", "Create actions"], ["minus", "Minus", "Zoom out, decrement"], ["x", "X", "Close, dismiss, remove chip"], ["check", "Check", "Confirm, selected state, completed"], ["chev", "ChevronRight", "Disclosure, drill-in, breadcrumbs"], ["chevDown", "ChevronDown", "Dropdown trigger, accordion"], ["arrowUp", "ArrowUp", "Sort asc, positive delta"], ["arrowDown", "ArrowDown", "Sort desc, negative delta"], ["maximize", "Maximize2", "Map fullscreen enter"], ["minimize", "Minimize2", "Map fullscreen exit"], ["alertTri", "AlertTriangle", "Warning state, alert badge"], ["radio", "RadioTower", "AIS / signal status"], ["clock", "Clock", "Time-range filters, history"], ["clipboard", "Clipboard", "Copy action, audit"], ["compass", "Compass", "Map orient, heading"], ["help", "HelpCircle", "Inline help, tooltips trigger"], ["shield", "ShieldCheck", "Permissions, security indicators"], ["news", "Newspaper", "News nav"], ["leaf", "Leaf", "ESG / sustainability filters"], ["factory", "Factory", "Industry classifications"]];
+// [alias, lucideName, usage], kept alphabetical by alias
+["alertTri", "TriangleAlert", "Warning state, alert badge"], ["anchor", "Anchor", "Ports nav, port detail"], ["arrowDown", "ArrowDown", "Sort desc, negative delta"], ["arrowUp", "ArrowUp", "Sort asc, positive delta"], ["bell", "Bell", "Notifications"], ["bolt", "Zap", "Offshore/Energy nav"], ["briefcase", "Briefcase", "Portfolios nav"], ["building", "Building", "Property nav"], ["cargo", "Container", "Cargo nav, container metrics"], ["check", "Check", "Confirm, selected state, completed"], ["chev", "ChevronRight", "Disclosure, drill-in, breadcrumbs"], ["chevDown", "ChevronDown", "Dropdown trigger, accordion"], ["clipboard", "Clipboard", "Copy action, audit"], ["clock", "Clock", "Time-range filters, history"], ["cloud", "Cloud", "Weather nav"], ["cloudrain", "CloudRain", "Weather event glyph"], ["compass", "Compass", "Map orient, heading"], ["doc", "FileText", "Reports nav, document rows"], ["download", "Download", "Export, save file, download report"], ["factory", "Factory", "Industry classifications"], ["filter", "Filter", "Filter buttons, map filter menu"], ["gem", "Gem", "Assets search nav"], ["globe", "Globe", "Regions nav, world view toggle"], ["grid", "LayoutGrid", "Dashboard nav"], ["help", "CircleHelp", "Inline help, tooltips trigger"], ["layers", "Layers", "Map layer switcher"], ["leaf", "Leaf", "ESG / sustainability filters"], ["maximize", "Maximize2", "Map fullscreen enter"], ["menu", "Menu", "Sidebar trigger"], ["minimize", "Minimize2", "Map fullscreen exit"], ["minus", "Minus", "Zoom out, decrement"], ["news", "Newspaper", "News nav"], ["office", "Building2", "Companies nav"], ["pin", "MapPin", "Location refs in popovers and lists"], ["plane", "Plane", "Aviation nav, aircraft detail"], ["plus", "Plus", "Create actions"], ["radio", "RadioTower", "AIS / signal status"], ["search", "Search", "Toolbar, command palette"], ["shield", "ShieldCheck", "Permissions, security indicators"], ["ship", "Ship", "Marine nav, vessel detail"], ["tag", "Tag", "Labels menu, badge editor"], ["upload", "Upload", "Import data, attach file, upload report"], ["users", "Users", "Organizations, teams"], ["wave", "Waves", "NatCat nav, marine events"], ["x", "X", "Close, dismiss, remove chip"]];
 
-// Inline replicas (a few of the most common) — for the spec page itself,
+// Inline replicas (a few of the most common), for the spec page itself,
 // which doesn't load Lucide. Strokes match Lucide's default (stroke-width=2,
 // linecap/linejoin=round).
 const LucideShim = {
@@ -13369,6 +16033,44 @@ const Lu = ({
   key: i,
   d: d
 })));
+
+// Real Lucide glyphs from the live library (window.lucide, UMD). Each icon is an
+// IconNode: an array of [tag, attrs] tuples. Falls back to the offline shim's
+// generic glyph only if the library hasn't loaded.
+const LuReal = ({
+  name,
+  size = 20,
+  className = ""
+}) => {
+  const icon = typeof window !== "undefined" && window.lucide ? window.lucide[name] || window.lucide.icons && window.lucide.icons[name] : null;
+  // Lucide icon node: ["svg", svgAttrs, children]. We supply our own <svg> wrapper
+  // and render only the children (paths/circles/etc.) at index [2].
+  const children = Array.isArray(icon) && Array.isArray(icon[2]) ? icon[2] : null;
+  if (!children) return /*#__PURE__*/React.createElement(Lu, {
+    name: "tag",
+    size: size,
+    className: className
+  });
+  return /*#__PURE__*/React.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    className: className,
+    "aria-hidden": "true",
+    style: {
+      display: "block"
+    }
+  }, children.map(([tag, attrs], i) => React.createElement(tag, {
+    key: i,
+    ...attrs
+  })));
+};
 const IconSizesPanel = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Size"), /*#__PURE__*/React.createElement("th", null, "Tailwind"), /*#__PURE__*/React.createElement("th", null, "Sample"), /*#__PURE__*/React.createElement("th", null, "Where to use it"))), /*#__PURE__*/React.createElement("tbody", null, ICON_SIZE_RULES.map(([px, tw, where]) => {
@@ -13405,11 +16107,11 @@ const StrokeRules = () => /*#__PURE__*/React.createElement("div", {
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, "Lucide default \u2014 ", /*#__PURE__*/React.createElement("strong", {
+}, "Lucide default: ", /*#__PURE__*/React.createElement("strong", {
   style: {
     color: "var(--text-primary)"
   }
-}, "2 px"), ". Never thin Lucide icons below 1.5 \u2014 they're designed for 2 and the optical balance breaks. Custom icons in the system follow the same weight.")), /*#__PURE__*/React.createElement("div", {
+}, "2 px"), ". Never thin Lucide icons below 1.5; they're designed for 2 and the optical balance breaks. Custom icons in the system follow the same weight.")), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head"
@@ -13422,7 +16124,7 @@ const StrokeRules = () => /*#__PURE__*/React.createElement("div", {
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, "Always ", /*#__PURE__*/React.createElement("code", null, "currentColor"), " \u2014 icons inherit from their text or button context. Status-toned icons get their color from the parent (", /*#__PURE__*/React.createElement("code", null, ".ds-alert--warning"), " etc.), never hardcoded.")), /*#__PURE__*/React.createElement("div", {
+}, "Always ", /*#__PURE__*/React.createElement("code", null, "currentColor"), ", icons inherit from their text or button context. Status-toned icons get their color from the parent (", /*#__PURE__*/React.createElement("code", null, ".ds-alert--warning"), " etc.), never hardcoded.")), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head"
@@ -13435,7 +16137,7 @@ const StrokeRules = () => /*#__PURE__*/React.createElement("div", {
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, "Icons inside a label use ", /*#__PURE__*/React.createElement("code", null, "display: inline-flex"), " + ", /*#__PURE__*/React.createElement("code", null, "gap: 6px"), " with the parent \u2014 never margins. Vertically centered to the cap-height, not the baseline.")));
+}, "Icons inside a label use ", /*#__PURE__*/React.createElement("code", null, "display: inline-flex"), " + ", /*#__PURE__*/React.createElement("code", null, "gap: 6px"), " with the parent: never margins. Vertically centered to the cap-height, not the baseline.")));
 const A11yIconRules = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-2"
 }, /*#__PURE__*/React.createElement("div", {
@@ -13548,7 +16250,7 @@ const IconographySection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, `<!-- Load order: before chrome.js, after Tailwind -->
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 
-// app/ui/icons/lucide.ts — single source of truth for aliases + sizes
+// app/ui/icons/lucide.ts: single source of truth for aliases + sizes
 export const LUCIDE_NAMES = {
   menu:  'Menu',         grid:    'LayoutGrid',
   ship:  'Ship',         plane:   'Plane',
@@ -13576,13 +16278,13 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
   className: "inline"
 }, "<Icon name=\"alias\" />"), " in React. Modules never reach for ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "lucide.icons.ShipFront"), " directly \u2014 always through the alias map.")), /*#__PURE__*/React.createElement("div", {
+}, "lucide.icons.ShipFront"), " directly: always through the alias map.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Sizes"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Seven discrete sizes. The Lucide grid is 24 \u2014 anything between rasterizes poorly. Pick from the table; don't interpolate."), /*#__PURE__*/React.createElement(IconSizesPanel, null)), /*#__PURE__*/React.createElement("div", {
+}, "Seven discrete sizes. The Lucide grid is 24, anything between rasterizes poorly. Pick from the table; don't interpolate."), /*#__PURE__*/React.createElement(IconSizesPanel, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -13594,7 +16296,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
   className: "subsection-desc"
 }, "Icon-only buttons need an ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "aria-label"), ". Icon+label buttons must not \u2014 the label IS the accessible name, and a redundant ", /*#__PURE__*/React.createElement("code", {
+}, "aria-label"), ". Icon+label buttons must not: the label IS the accessible name, and a redundant ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "aria-label"), " overrides it."), /*#__PURE__*/React.createElement(A11yIconRules, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -13602,7 +16304,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
   className: "subsection-title"
 }, "Inventory"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "The canonical alias map. Aliases are stable across product surfaces \u2014 when \"ship\" is added to a new module, every module already knows what it means. Adding to this list requires an RFC + entry in ", /*#__PURE__*/React.createElement("code", {
+}, "The canonical alias map. Aliases are stable across product surfaces, when \"ship\" is added to a new module, every module already knows what it means. Adding to this list requires an RFC + entry in ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "LUCIDE_NAMES"), "."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
@@ -13638,8 +16340,8 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
     borderRadius: "var(--radius-sm)",
     flexShrink: 0
   }
-}, /*#__PURE__*/React.createElement(Lu, {
-  name: LucideShim[alias] ? alias : "tag",
+}, /*#__PURE__*/React.createElement(LuReal, {
+  name: lucide,
   size: 16
 })), /*#__PURE__*/React.createElement("div", {
   style: {
@@ -13665,7 +16367,9 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
   style: {
     marginTop: 8
   }
-}, "Spec page renders a local SVG shim for offline display; the product uses the live Lucide library.")), /*#__PURE__*/React.createElement("div", {
+}, "Icons above render from the live Lucide library (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "lucide@0.469.0"), "): the same source the product uses.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -13751,7 +16455,7 @@ const DensityTokenMatrix = () => /*#__PURE__*/React.createElement("table", {
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Element"), /*#__PURE__*/React.createElement("th", null, "Comfortable"), /*#__PURE__*/React.createElement("th", null, "Compact"), /*#__PURE__*/React.createElement("th", null, "How it's wired"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Row padding (table, list)"), /*#__PURE__*/React.createElement("td", null, "12 px y"), /*#__PURE__*/React.createElement("td", null, "5\u20136 px y"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ".ds-table.is-comfy"), " / ", /*#__PURE__*/React.createElement("code", null, ".ds-table.is-compact"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body font size"), /*#__PURE__*/React.createElement("td", null, "13 px"), /*#__PURE__*/React.createElement("td", null, "12.5 px"), /*#__PURE__*/React.createElement("td", null, "Inherited via row class")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Card padding"), /*#__PURE__*/React.createElement("td", null, "16 px"), /*#__PURE__*/React.createElement("td", null, "12 px"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "[data-density=\"compact\"] .ds-card-body"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Gap between siblings"), /*#__PURE__*/React.createElement("td", null, "16 px (", /*#__PURE__*/React.createElement("code", null, "--space-5"), ")"), /*#__PURE__*/React.createElement("td", null, "12 px (", /*#__PURE__*/React.createElement("code", null, "--space-4"), ")"), /*#__PURE__*/React.createElement("td", null, "Utility ", /*#__PURE__*/React.createElement("code", null, ".gap-density"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Section vertical padding"), /*#__PURE__*/React.createElement("td", null, "20 px"), /*#__PURE__*/React.createElement("td", null, "12 px"), /*#__PURE__*/React.createElement("td", null, "Utility ", /*#__PURE__*/React.createElement("code", null, ".py-density"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Sidebar nav item"), /*#__PURE__*/React.createElement("td", null, "10 px y"), /*#__PURE__*/React.createElement("td", null, "6 px y"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "[data-density] .ds-sidebar-item"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Form field height"), /*#__PURE__*/React.createElement("td", null, "32 px (md)"), /*#__PURE__*/React.createElement("td", null, "28 px (sm)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-input"), " + size class")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Button default size"), /*#__PURE__*/React.createElement("td", null, "md (32 px)"), /*#__PURE__*/React.createElement("td", null, "sm (28 px)"), /*#__PURE__*/React.createElement("td", null, "Component sets default from density context"))));
 const DensityDefaults = () => /*#__PURE__*/React.createElement("div", {
   className: "panel"
-}, [["Surface", "Default density", "Why"]].map(() => null), [["Dashboards (Marine, Aviation, etc.)", "comfortable", "Information-light tiles; visual hierarchy comes from whitespace."], ["Detail pages (Vessel, Aircraft, Port)", "comfortable", "Reading mode — operators dwell on individual records."], ["List + search (Assets, Companies)", "compact", "Operator scans 50+ rows; row count beats whitespace."], ["Tables inside cards (alerts, history)", "compact", "Local density — table compresses without affecting outer card."], ["Map popovers", "compact", "Constrained 300 px width; every line counts."], ["Reports & exports", "comfortable", "Print medium; whitespace reads as quality."], ["Modals & overlays", "comfortable", "Single task focus."]].map(([s, d, w]) => /*#__PURE__*/React.createElement("div", {
+}, [["Surface", "Default density", "Why"]].map(() => null), [["Dashboards (Marine, Aviation, etc.)", "comfortable", "Information-light tiles; visual hierarchy comes from whitespace."], ["Detail pages (Vessel, Aircraft, Port)", "comfortable", "Reading mode: operators dwell on individual records."], ["List + search (Assets, Companies)", "compact", "Operator scans 50+ rows; row count beats whitespace."], ["Tables inside cards (alerts, history)", "compact", "Local density: table compresses without affecting outer card."], ["Map popovers", "compact", "Constrained 300 px width; every line counts."], ["Reports & exports", "comfortable", "Print medium; whitespace reads as quality."], ["Modals & overlays", "comfortable", "Single task focus."]].map(([s, d, w]) => /*#__PURE__*/React.createElement("div", {
   key: s,
   className: "token-row",
   style: {
@@ -13780,7 +16484,7 @@ const DensitySection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   }
 }, "Density is a single attribute on the ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "<body>"), " \u2014 ", /*#__PURE__*/React.createElement("code", {
+}, "<body>"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "data-density=\"comfortable\""), " or ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -13789,7 +16493,7 @@ const DensitySection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
 }, `<!-- Global, on <body> -->
 <body data-density="compact">
 
-<!-- Local override — affects only this subtree -->
+<!-- Local override: affects only this subtree -->
 <section data-density="compact">
   <table class="ds-table">…</table>
 </section>
@@ -13801,13 +16505,13 @@ document.body.dataset.density = 'compact';`)), /*#__PURE__*/React.createElement(
   className: "subsection-title"
 }, "Side by side"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Same content, two densities. Same tokens. The diff is mechanical \u2014 no per-table styling, no inline padding."), /*#__PURE__*/React.createElement(DensityComparison, null)), /*#__PURE__*/React.createElement("div", {
+}, "Same content, two densities. Same tokens. The diff is mechanical: no per-table styling, no inline padding."), /*#__PURE__*/React.createElement(DensityComparison, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Token mapping"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "What density actually changes. Anything not listed here is density-invariant \u2014 colors, radii, type families, icon sizes don't move with density."), /*#__PURE__*/React.createElement(DensityTokenMatrix, null)), /*#__PURE__*/React.createElement("div", {
+}, "What density actually changes. Anything not listed here is density-invariant, colors, radii, type families, icon sizes don't move with density."), /*#__PURE__*/React.createElement(DensityTokenMatrix, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -13824,8 +16528,8 @@ document.body.dataset.density = 'compact';`)), /*#__PURE__*/React.createElement(
 }, `/* In tokens.css */
 [data-density="comfortable"] .py-density { padding-top: 20px;  padding-bottom: 20px;  }
 [data-density="compact"]     .py-density { padding-top: 12px;  padding-bottom: 12px;  }
-[data-density="comfortable"] .gap-density { gap: var(--space-5); }
-[data-density="compact"]     .gap-density { gap: var(--space-4); }`), /*#__PURE__*/React.createElement("p", {
+[data-density="comfortable"] .gap-density { gap: var(--space-4); }
+[data-density="compact"]     .gap-density { gap: var(--space-3); }`), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
     marginTop: 8
@@ -13836,7 +16540,7 @@ document.body.dataset.density = 'compact';`)), /*#__PURE__*/React.createElement(
   className: "inline"
 }, ".ds-card"), " would do.")), /*#__PURE__*/React.createElement("div", {
   className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "Density is presentation, not data."), " Switching modes never changes what's on screen \u2014 just how tightly it's packed. Don't gate features behind a density state."));
+}, /*#__PURE__*/React.createElement("strong", null, "Density is presentation, not data."), " Switching modes never changes what's on screen, just how tightly it's packed. Don't gate features behind a density state."));
 
 /* ============================================================
    Motion
@@ -13997,7 +16701,7 @@ const MotionRules = () => /*#__PURE__*/React.createElement("div", {
   style: {
     marginBottom: 0
   }
-}, "Microinteractions at ", /*#__PURE__*/React.createElement("code", null, "--motion-instant"), " stay \u2014 they're the system's way of saying \"I heard you\"."))), /*#__PURE__*/React.createElement("div", {
+}, "Microinteractions at ", /*#__PURE__*/React.createElement("code", null, "--motion-instant"), " stay; they're the system's way of saying \"I heard you\"."))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head"
@@ -14028,13 +16732,13 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   style: {
     maxWidth: 820
   }
-}, "Skytek is a monitoring product. Motion has one job: confirm that the system heard the operator, or signal that something on screen changed. Anything beyond that is decoration \u2014 and decoration costs reading time during an incident. The rules below are deliberately conservative.")), /*#__PURE__*/React.createElement("div", {
+}, "Skytek is a monitoring product. Motion has one job: confirm that the system heard the operator, or signal that something on screen changed. Anything beyond that is decoration, and decoration costs reading time during an incident. The rules below are deliberately conservative.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Duration tokens"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Four durations. Pick from the list \u2014 no in-between values, no per-component overrides."), /*#__PURE__*/React.createElement("div", {
+}, "Four durations. Pick from the list: no in-between values, no per-component overrides."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, DURATION_TOKENS.map(([token, ms, where]) => /*#__PURE__*/React.createElement("div", {
   key: token,
@@ -14093,7 +16797,7 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   className: "subsection-title"
 }, "System animations"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Named keyframes that ship with the system. Modules consume by class \u2014 never duplicate the keyframes locally."), /*#__PURE__*/React.createElement(SystemAnimations, null)), /*#__PURE__*/React.createElement("div", {
+}, "Named keyframes that ship with the system. Modules consume by class: never duplicate the keyframes locally."), /*#__PURE__*/React.createElement(SystemAnimations, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -14115,9 +16819,130 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 /* Reversible: drawer */
 .ds-drawer { transition: transform var(--motion-slow) var(--ease-in-out); }
 
-/* Selection: tab pill — the only place ease-emphasis is allowed */
+/* Selection: tab pill, the only place ease-emphasis is allowed */
 .ds-tab-pill { transition: transform var(--motion-slow) var(--ease-emphasis),
                            width     var(--motion-slow) var(--ease-emphasis); }`)), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Scrollbars"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc",
+  style: {
+    maxWidth: 820
+  }
+}, "One scrollbar treatment everywhere: a ", /*#__PURE__*/React.createElement("strong", null, "6\xA0px"), " thin bar with a brand-blue thumb on a light-grey track. It replaces the OS default so dense tables, map popovers and side panels read as part of the product rather than the operating system. The page root gets it automatically; for any inner scroll container, add the ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll"), " class (or ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "data-scroll"), " attribute)."), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 24,
+    alignItems: "start"
+  }
+}, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  className: "t-label",
+  style: {
+    marginBottom: 8
+  }
+}, "Live: vertical ", /*#__PURE__*/React.createElement("code", {
+  style: {
+    fontSize: 11
+  }
+}, ".ds-scroll")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-scroll",
+  style: {
+    height: 200,
+    overflowY: "auto",
+    background: "var(--white)",
+    border: "1px solid var(--border-default)",
+    borderRadius: "var(--radius-md)",
+    padding: "8px 14px"
+  }
+}, Array.from({
+  length: 24
+}).map((_, i) => /*#__PURE__*/React.createElement("div", {
+  key: i,
+  style: {
+    padding: "7px 0",
+    borderBottom: i < 23 ? "1px solid var(--border-subtle)" : "none",
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    display: "flex",
+    justifyContent: "space-between"
+  }
+}, /*#__PURE__*/React.createElement("span", null, "Vessel record ", String(i + 1).padStart(2, "0")), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--text-muted)",
+    fontSize: 11
+  }
+}, (12 + i * 0.3).toFixed(1), " kn")))), /*#__PURE__*/React.createElement("p", {
+  className: "t-caption",
+  style: {
+    marginTop: 6
+  }
+}, "Scroll the panel: thumb is ", /*#__PURE__*/React.createElement("code", {
+  style: {
+    fontSize: 11
+  }
+}, "--brand-500"), ", track is ", /*#__PURE__*/React.createElement("code", {
+  style: {
+    fontSize: 11
+  }
+}, "--slate-100"), ".")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  className: "t-label",
+  style: {
+    marginBottom: 8
+  }
+}, "Tokens"), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, [["--scrollbar-size", "6px", "Bar thickness (width & height)"], ["--scrollbar-track", "--slate-100", "Track: light grey"], ["--scrollbar-thumb", "--brand-500", "Thumb: theme color"], ["--scrollbar-thumb-hover", "--brand-600", "Thumb on hover"]].map(([token, val, where]) => /*#__PURE__*/React.createElement("div", {
+  key: token,
+  className: "token-row",
+  style: {
+    gridTemplateColumns: "200px 110px 1fr"
+  }
+}, /*#__PURE__*/React.createElement("code", null, token), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--brand-600)"
+  }
+}, val), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, where)))), /*#__PURE__*/React.createElement("div", {
+  className: "callout",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Firefox note:"), " ", /*#__PURE__*/React.createElement("code", null, "scrollbar-width"), " only supports ", /*#__PURE__*/React.createElement("code", null, "thin"), "/", /*#__PURE__*/React.createElement("code", null, "auto"), ", so Firefox renders a system-thin bar (\u2248 8\u201311 px) rather than an exact 6 px, but the brand thumb & grey track colors match. WebKit/Blink honour the precise 6 px."))), /*#__PURE__*/React.createElement("pre", {
+  className: "code",
+  style: {
+    marginTop: 16
+  }
+}, `:root {
+  --scrollbar-size:        6px;
+  --scrollbar-track:       var(--slate-100);   /* light grey */
+  --scrollbar-thumb:       var(--brand-500);   /* theme color */
+  --scrollbar-thumb-hover: var(--brand-600);
+}
+
+/* Firefox */
+html, .ds-scroll, [data-scroll] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* WebKit / Blink, Chrome, Safari, Edge, Opera */
+.ds-scroll::-webkit-scrollbar       { width: var(--scrollbar-size); height: var(--scrollbar-size); }
+.ds-scroll::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 9999px; }
+.ds-scroll::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 9999px; }
+.ds-scroll::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }`), /*#__PURE__*/React.createElement("div", {
+  className: "callout warn",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Don't hide scrollbars."), " Operators need to know how much more is below the fold during an incident. Style the bar: never set ", /*#__PURE__*/React.createElement("code", null, "scrollbar-width: none"), " or ", /*#__PURE__*/React.createElement("code", null, "::-webkit-scrollbar { display:none }"), " on data regions.")), /*#__PURE__*/React.createElement("div", {
   className: "callout"
 }, /*#__PURE__*/React.createElement("strong", null, "The motion test:"), " if removing an animation makes the UI ", /*#__PURE__*/React.createElement("em", null, "worse"), ", keep it. If removing it makes the UI ", /*#__PURE__*/React.createElement("em", null, "faster"), ", it was decoration. Default to the second."));
 window.IconographySection = IconographySection;
@@ -14127,7 +16952,7 @@ window.MotionSection = MotionSection;
 
 // section-handoff.jsx
 try { (() => {
-/* Section 6 — Engineering Handoff */
+/* Section 6: Engineering Handoff */
 
 const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -14137,7 +16962,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   className: "subsection-desc"
 }, "Every ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "<pre class=\"code\">"), " block and every token row in the docs is auto-decorated with a one-click copy action. The enhancement is non-invasive \u2014 no JSX changes required. A single ", /*#__PURE__*/React.createElement("code", {
+}, "<pre class=\"code\">"), " block and every token row in the docs is auto-decorated with a one-click copy action. The enhancement is non-invasive: no JSX changes required. A single ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "copy-utilities.js"), " module observes the DOM and attaches buttons."), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
@@ -14161,9 +16986,9 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
     margin: 0,
     paddingLeft: 18
   }
-}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Code blocks"), " \u2014 top-right toolbar with language pill + Copy button, on every ", /*#__PURE__*/React.createElement("code", {
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Code blocks"), ", top-right toolbar with language pill + Copy button, on every ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "pre.code")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Token rows"), " \u2014 hover-revealed chip beside every token name in foundations & handoff tables"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Opt-in elements"), " \u2014 add ", /*#__PURE__*/React.createElement("code", {
+}, "pre.code")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Token rows"), ", hover-revealed chip beside every token name in foundations & handoff tables"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Opt-in elements"), ", add ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "data-copy=\"value\""), " to any element (keyboard-activated)")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -14192,7 +17017,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
     marginTop: 16,
     marginBottom: 6
   }
-}, "Try it \u2014 hover any token to see the chip:"), /*#__PURE__*/React.createElement("div", {
+}, "Try it: hover any token to see the chip:"), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, /*#__PURE__*/React.createElement("div", {
   className: "token-row",
@@ -14236,7 +17061,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
     marginTop: 16,
     marginBottom: 6
   }
-}, "API \u2014 opt-in copy for arbitrary nodes:"), /*#__PURE__*/React.createElement("pre", {
+}, "API: opt-in copy for arbitrary nodes:"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `<!-- Any element with data-copy becomes a focusable copy trigger -->
 <span class="ds-badge ds-badge--info"
@@ -14252,7 +17077,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
     marginTop: 16,
     marginBottom: 6
   }
-}, "Integration \u2014 single script, zero refactor:"), /*#__PURE__*/React.createElement("pre", {
+}, "Integration: single script, zero refactor:"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `<!-- In your shell HTML, after the docs render -->
 <script src="copy-utilities.js" defer></script>
@@ -14323,11 +17148,11 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   --border-default: var(--slate-200);
 }
 
-/* future: dark mode swaps semantics only */
+/* dark mode swaps semantics only, see the Dark mode chapter */
 [data-theme="dark"] {
-  --bg-surface: var(--slate-900);
-  --text-primary: var(--slate-50);
-  --border-default: var(--slate-700);
+  --bg-surface: #121A2A;
+  --text-primary: #F3F4F6;
+  --border-default: #2B3854;
 }`)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
@@ -14344,7 +17169,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   className: "inline"
 }, "text-primary"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "border-default"), " \u2014 never raw colors."), /*#__PURE__*/React.createElement("pre", {
+}, "border-default"), ", never raw colors."), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `// tailwind.config.js
 export default {
@@ -14381,13 +17206,13 @@ export default {
   className: "subsection-title"
 }, "Component naming conventions"), /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concept"), /*#__PURE__*/React.createElement("th", null, "Convention"), /*#__PURE__*/React.createElement("th", null, "Example"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Component file"), /*#__PURE__*/React.createElement("td", null, "PascalCase folder + same-name component"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "app/ui/Button/Button.tsx"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Component variants"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "cva"), " with ", /*#__PURE__*/React.createElement("code", null, "variant"), ", ", /*#__PURE__*/React.createElement("code", null, "size"), ", ", /*#__PURE__*/React.createElement("code", null, "tone"), " props"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, `<Button variant="primary" size="md" />`))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Compound components"), /*#__PURE__*/React.createElement("td", null, "Dot-namespace"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "Card.Header"), ", ", /*#__PURE__*/React.createElement("code", null, "Form.Field"), ", ", /*#__PURE__*/React.createElement("code", null, "Table.Row"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Data attributes"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "data-slot"), " for shadcn-style internal slots"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "data-slot=\"card-title\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Hooks"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "use<Capability>")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "useFormField()"), ", ", /*#__PURE__*/React.createElement("code", null, "useToast()"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Storybook"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "Design System / <Component>")), /*#__PURE__*/React.createElement("td", null, "Already in place \u2014 keep."))))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Concept"), /*#__PURE__*/React.createElement("th", null, "Convention"), /*#__PURE__*/React.createElement("th", null, "Example"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Component file"), /*#__PURE__*/React.createElement("td", null, "PascalCase folder + same-name component"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "app/ui/Button/Button.tsx"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Component variants"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "cva"), " with ", /*#__PURE__*/React.createElement("code", null, "variant"), ", ", /*#__PURE__*/React.createElement("code", null, "size"), ", ", /*#__PURE__*/React.createElement("code", null, "tone"), " props"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, `<Button variant="primary" size="md" />`))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Compound components"), /*#__PURE__*/React.createElement("td", null, "Dot-namespace"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "Card.Header"), ", ", /*#__PURE__*/React.createElement("code", null, "Form.Field"), ", ", /*#__PURE__*/React.createElement("code", null, "Table.Row"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Data attributes"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "data-slot"), " for shadcn-style internal slots"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "data-slot=\"card-title\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Hooks"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "use<Capability>")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "useFormField()"), ", ", /*#__PURE__*/React.createElement("code", null, "useToast()"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Storybook"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "Design System / <Component>")), /*#__PURE__*/React.createElement("td", null, "Already in place: keep."))))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Migration plan"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Five-phase rollout. Each phase lands behind no flag \u2014 the system is additive. Old code keeps working until each module is touched."), /*#__PURE__*/React.createElement("div", {
+}, "Five-phase rollout. Each phase lands behind no flag; the system is additive. Old code keeps working until each module is touched."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, [["Phase 1 · Tokens land", "Week 1", "Add tokens.css, update tailwind.config.js, ship a compat shim that maps react-dark-blue → --brand-600. Zero visual change.", "No regressions"], ["Phase 2 · Component standardization", "Weeks 2–3", "Lock app/ui as canonical. Mark common/components/* as deprecated. Build missing primitives (Toast, Dropdown, Skeleton).", "All new code uses app/ui"], ["Phase 3 · Surface migration", "Weeks 4–7", "Migrate the 4 representative surfaces (dashboard, vessels list, vessel detail, add-policy). Use as reference.", "Surfaces match the spec"], ["Phase 4 · Module sweep", "Weeks 8–12", "Module-by-module: portfolio, region, aviation, offshore, GSIN, reports. One PR per module. Codemod for raw hex → token.", "≤ 5 raw hex left in repo"], ["Phase 5 · Cleanup", "Week 13", "Delete common/components/*. Remove styled-components dependency. Snapshot Storybook for visual regression.", "Bundle size −18%"]].map(([t, w, b, o], i) => /*#__PURE__*/React.createElement("div", {
   key: i,
@@ -14439,7 +17264,7 @@ export default {
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, "Color & spacing tokens \u2014 affect everything, zero behavior change."), /*#__PURE__*/React.createElement("li", null, "Button (consolidate ", /*#__PURE__*/React.createElement("code", null, "common/button"), " + ", /*#__PURE__*/React.createElement("code", null, "app/ui/Button"), ")."), /*#__PURE__*/React.createElement("li", null, "Input / Select / FormField \u2014 the cause of most inconsistency reports."), /*#__PURE__*/React.createElement("li", null, "Table \u2014 collapse 4 implementations to 1."), /*#__PURE__*/React.createElement("li", null, "Page header pattern \u2014 visible quick win on every page.")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, "Color & spacing tokens: affect everything, zero behavior change."), /*#__PURE__*/React.createElement("li", null, "Button (consolidate ", /*#__PURE__*/React.createElement("code", null, "common/button"), " + ", /*#__PURE__*/React.createElement("code", null, "app/ui/Button"), ")."), /*#__PURE__*/React.createElement("li", null, "Input / Select / FormField, the cause of most inconsistency reports."), /*#__PURE__*/React.createElement("li", null, "Table: collapse 4 implementations to 1."), /*#__PURE__*/React.createElement("li", null, "Page header pattern: visible quick win on every page.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head",
@@ -14461,13 +17286,13 @@ export default {
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, "Highcharts theme \u2014 wrap charts to consume tokens."), /*#__PURE__*/React.createElement("li", null, "Leaflet map controls \u2014 match Button system."), /*#__PURE__*/React.createElement("li", null, "DataTable virtualization & column-resize ergonomics."), /*#__PURE__*/React.createElement("li", null, "Dark mode (semantic-only swap; the architecture supports it)."), /*#__PURE__*/React.createElement("li", null, "Removing styled-components entirely (after module sweep).")))))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, "Highcharts theme: wrap charts to consume tokens."), /*#__PURE__*/React.createElement("li", null, "Leaflet map controls: match Button system."), /*#__PURE__*/React.createElement("li", null, "DataTable virtualization & column-resize ergonomics."), /*#__PURE__*/React.createElement("li", null, "Dark mode (semantic-only swap; the architecture supports it)."), /*#__PURE__*/React.createElement("li", null, "Removing styled-components entirely (after module sweep).")))))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Linting & guardrails"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
-}, `// .eslintrc — forbid raw hex in JSX/CSS-in-JS
+}, `// .eslintrc: forbid raw hex in JSX/CSS-in-JS
 "no-restricted-syntax": ["error",
   { selector: "Literal[value=/^#[0-9a-fA-F]{3,8}$/]",
     message: "Use a design token (var(--…)) instead of a raw hex color." }
@@ -14494,7 +17319,7 @@ window.HandoffSection = HandoffSection;
 
 // section-layout-interaction-a11y.jsx
 try { (() => {
-/* Section 4 — Layout, Interaction, Accessibility */
+/* Section 4: Layout, Interaction, Accessibility */
 
 const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -14832,7 +17657,7 @@ const InteractionSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Token"), /*#__PURE__*/React.createElement("th", null, "Duration"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-instant")), /*#__PURE__*/React.createElement("td", null, "80ms"), /*#__PURE__*/React.createElement("td", null, "Pressed states, checkbox toggles")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-fast")), /*#__PURE__*/React.createElement("td", null, "140ms"), /*#__PURE__*/React.createElement("td", null, "Hover, focus, button color change")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-base")), /*#__PURE__*/React.createElement("td", null, "200ms"), /*#__PURE__*/React.createElement("td", null, "Tooltips, popovers, expand/collapse")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-slow")), /*#__PURE__*/React.createElement("td", null, "320ms"), /*#__PURE__*/React.createElement("td", null, "Drawer / modal enter & exit"))))));
 const A11ySection = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified \u2014 see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets \u2265 44 \xD7 44px on mobile."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.5)"), /*#__PURE__*/React.createElement("td", null, "Use ", /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " on mobile breakpoints; row hit areas span the full row.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon \u2014 never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified: see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets \u2265 44 \xD7 44px on mobile."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.5)"), /*#__PURE__*/React.createElement("td", null, "Use ", /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " on mobile breakpoints; row hit areas span the full row.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon, never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
 window.LayoutSection = LayoutSection;
 window.InteractionSection = InteractionSection;
 window.A11ySection = A11ySection;
@@ -14840,7 +17665,7 @@ window.A11ySection = A11ySection;
 
 // section-modal.jsx
 try { (() => {
-/* Modal — full specification section for the Skytek Design System spec page.
+/* Modal: full specification section for the Skytek Design System spec page.
    Renders the live, standardized RWModal component (components/rw-modal.*).
    Demo triggers call window.ModalDemos / window.RWModal (loaded as plain JS). */
 
@@ -14931,11 +17756,11 @@ const ModalSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
   }
 }, /*#__PURE__*/React.createElement("strong", null, "Refactored from ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "AddPortModal"), "."), " The \"Add a new Port\" demo is the original modal rebuilt on this shell \u2014 same form, standardized overlay/header/body/footer and accessibility.")), /*#__PURE__*/React.createElement("div", {
+}, "AddPortModal"), "."), " The \"Add a new Port\" demo is the original modal rebuilt on this shell, same form, standardized overlay/header/body/footer and accessibility.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, "Anatomy \u2014 five slots"), /*#__PURE__*/React.createElement("p", {
+}, "Anatomy: five slots"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
 }, "The component decomposes into five independently styleable regions. ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -14987,7 +17812,7 @@ const ModalSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
   className: "subsection-desc"
 }, "Set with the ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "size"), " prop. Each maps to one max-width token \u2014 widths are the only thing that changes."), /*#__PURE__*/React.createElement("div", {
+}, "size"), " prop. Each maps to one max-width token, widths are the only thing that changes."), /*#__PURE__*/React.createElement("div", {
   className: "panel",
   style: {
     overflow: "hidden"
@@ -15304,7 +18129,7 @@ const ModalSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
   className: "inline"
 }, "focusin"), " guard recovers escaped focus."), /*#__PURE__*/React.createElement("div", {
   className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "Return focus."), " The trigger element is refocused on close \u2014 keyboard users never lose their place."), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("strong", null, "Return focus."), " The trigger element is refocused on close, keyboard users never lose their place."), /*#__PURE__*/React.createElement("div", {
   className: "callout"
 }, /*#__PURE__*/React.createElement("strong", null, "Dismissal & lock."), " ", /*#__PURE__*/React.createElement("kbd", {
   className: "ms-kbd"
@@ -15312,7 +18137,7 @@ const ModalSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
   className: "callout"
 }, /*#__PURE__*/React.createElement("strong", null, "Visible focus."), " All controls expose a ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, ":focus-visible"), " ring \u2014 never ", /*#__PURE__*/React.createElement("code", {
+}, ":focus-visible"), " ring: never ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "outline:none"), " without a replacement."), /*#__PURE__*/React.createElement("div", {
   className: "callout"
@@ -15337,7 +18162,7 @@ const ModalSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
   style: {
     margin: "24px 0 8px"
   }
-}, "High-level \u2014 open() with slots"), /*#__PURE__*/React.createElement("pre", {
+}, "High-level: open() with slots"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `const modal = RWModal.open({
   size: 'md',
@@ -15357,7 +18182,7 @@ const ModalSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
   style: {
     margin: "24px 0 8px"
   }
-}, "Low-level \u2014 compose the sub-components"), /*#__PURE__*/React.createElement("pre", {
+}, "Low-level: compose the sub-components"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `const P = RWModal.parts;
 const overlay   = P.Overlay({ labelledby: 'm-title' });
@@ -15386,9 +18211,923 @@ Object.assign(window, {
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-modal.jsx", error: String((e && e.message) || e) }); }
 
+// section-popover.jsx
+try { (() => {
+/* Section: Popovers (full specification)
+   Own chapter, split out of Overlays. Developer-oriented: anatomy,
+   variants, placement, focus & dismissal, API, markup, a11y, edge cases.
+   Live demos use the real .ds-popover CSS so docs and component can't drift. */
+
+/* ── Live popover: click to open, outside-click + ESC to close,
+      focus moves in and returns to the trigger on close. ── */
+const DemoPopover = ({
+  placement = "bottom",
+  size,
+  noArrow,
+  render,
+  children,
+  width
+}) => {
+  const [state, setState] = React.useState("closed");
+  const [mounted, setMounted] = React.useState(false);
+  const wrapRef = React.useRef(null);
+  const panelRef = React.useRef(null);
+  const triggerRef = React.useRef(null);
+  const exitT = React.useRef(null);
+  const open = () => {
+    clearTimeout(exitT.current);
+    setMounted(true);
+    requestAnimationFrame(() => setState("open"));
+  };
+  const close = (returnFocus = true) => {
+    setState("closed");
+    exitT.current = setTimeout(() => setMounted(false), 200);
+    if (returnFocus && triggerRef.current) triggerRef.current.focus();
+  };
+  const toggle = () => mounted && state === "open" ? close() : open();
+
+  // Move focus into the panel once it is open
+  React.useEffect(() => {
+    if (state !== "open" || !panelRef.current) return;
+    const first = panelRef.current.querySelector('input, select, textarea, button, [href], [tabindex]:not([tabindex="-1"])');
+    (first || panelRef.current).focus({
+      preventScroll: true
+    });
+  }, [state]);
+
+  // Outside click + ESC
+  React.useEffect(() => {
+    if (!mounted) return;
+    const onDown = e => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) close(false);
+    };
+    const onKey = e => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        close();
+      }
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+      clearTimeout(exitT.current);
+    };
+  }, [mounted]);
+  const pos = {
+    top: {
+      bottom: "calc(100% + var(--popover-offset))",
+      left: "50%",
+      transform: "translateX(-50%)"
+    },
+    bottom: {
+      top: "calc(100% + var(--popover-offset))",
+      left: "50%",
+      transform: "translateX(-50%)"
+    },
+    left: {
+      right: "calc(100% + var(--popover-offset))",
+      top: "50%",
+      transform: "translateY(-50%)"
+    },
+    right: {
+      left: "calc(100% + var(--popover-offset))",
+      top: "50%",
+      transform: "translateY(-50%)"
+    }
+  }[placement];
+  const id = React.useMemo(() => "pop-" + Math.random().toString(36).slice(2, 8), []);
+  const isOpen = mounted && state === "open";
+  return /*#__PURE__*/React.createElement("span", {
+    className: "ds-popover-anchor",
+    ref: wrapRef
+  }, React.cloneElement(children, {
+    ref: triggerRef,
+    onClick: toggle,
+    "aria-expanded": isOpen,
+    "aria-haspopup": "dialog",
+    "aria-controls": mounted ? id : undefined
+  }), mounted && /*#__PURE__*/React.createElement("div", {
+    id: id,
+    ref: panelRef,
+    role: "dialog",
+    "aria-modal": "false",
+    tabIndex: -1,
+    "data-state": state,
+    className: `ds-popover ds-popover--${placement}${size ? ` ds-popover--${size}` : ""}${noArrow ? " ds-popover--no-arrow" : ""}`,
+    style: {
+      ...pos,
+      ...(width ? {
+        width
+      } : null),
+      textAlign: "left"
+    }
+  }, render(close)));
+};
+const PopRow = ({
+  children,
+  pad = "40px 24px"
+}) => /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 28,
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: pad
+  }
+}, children);
+
+/* Demo bodies */
+const FilterPopBody = close => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-head"
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    flex: 1
+  }
+}, /*#__PURE__*/React.createElement("h4", {
+  className: "ds-popover-title"
+}, "Filter vessels"), /*#__PURE__*/React.createElement("p", {
+  className: "ds-popover-desc"
+}, "Applies to the current result set.")), /*#__PURE__*/React.createElement("button", {
+  className: "ds-popover-close",
+  "aria-label": "Close",
+  onClick: () => close()
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.x,
+  size: 14
+}))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-body"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-field",
+  style: {
+    gap: 4
+  }
+}, /*#__PURE__*/React.createElement("label", {
+  className: "ds-field-label",
+  style: {
+    fontSize: 11
+  }
+}, "Risk grade"), /*#__PURE__*/React.createElement("select", {
+  className: "ds-input ds-select",
+  style: {
+    height: 30,
+    fontSize: 12
+  }
+}, /*#__PURE__*/React.createElement("option", null, "All grades"), /*#__PURE__*/React.createElement("option", null, "A: low"), /*#__PURE__*/React.createElement("option", null, "D: high"))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-field",
+  style: {
+    gap: 4
+  }
+}, /*#__PURE__*/React.createElement("label", {
+  className: "ds-field-label",
+  style: {
+    fontSize: 11
+  }
+}, "Flag state"), /*#__PURE__*/React.createElement("select", {
+  className: "ds-input ds-select",
+  style: {
+    height: 30,
+    fontSize: 12
+  }
+}, /*#__PURE__*/React.createElement("option", null, "Any"), /*#__PURE__*/React.createElement("option", null, "Panama"), /*#__PURE__*/React.createElement("option", null, "Liberia"))), /*#__PURE__*/React.createElement("label", {
+  style: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    fontSize: 12.5,
+    color: "var(--text-secondary)"
+  }
+}, /*#__PURE__*/React.createElement("input", {
+  type: "checkbox",
+  defaultChecked: true
+}), " AIS signal live only")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-foot ds-popover-foot--split"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost ds-btn--sm",
+  onClick: () => close()
+}, "Reset"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--primary ds-btn--sm",
+  onClick: () => close()
+}, "Apply")));
+const MenuPopBody = close => /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-menu"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-popover-item",
+  onClick: () => close()
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.eye,
+  size: 14
+}), " Open report"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-popover-item",
+  onClick: () => close()
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.download,
+  size: 14
+}), " Export CSV"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-popover-item",
+  onClick: () => close()
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.edit,
+  size: 14
+}), " Copy IMO"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-sep"
+}), /*#__PURE__*/React.createElement("button", {
+  className: "ds-popover-item ds-popover-item--danger",
+  onClick: () => close()
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.trash,
+  size: 14
+}), " Remove from portfolio"));
+const InfoPopBody = close => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-head"
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    flex: 1
+  }
+}, /*#__PURE__*/React.createElement("h4", {
+  className: "ds-popover-title"
+}, "How risk grade is calculated"))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-body",
+  style: {
+    paddingTop: 8
+  }
+}, /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: 0,
+    fontSize: 12.5,
+    lineHeight: 1.6,
+    color: "var(--text-secondary)"
+  }
+}, "A weighted blend of casualty history, detention record, flag performance and ownership sanctions exposure, refreshed nightly."), /*#__PURE__*/React.createElement("a", {
+  href: "#c-popover",
+  className: "t-caption",
+  style: {
+    fontWeight: 600
+  },
+  onClick: () => close()
+}, "Read the methodology \u2192")));
+const ConfirmPopBody = close => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-body"
+}, /*#__PURE__*/React.createElement("p", {
+  style: {
+    margin: 0,
+    fontSize: 12.5,
+    lineHeight: 1.55
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Remove 3 vessels"), " from \u201CNorth Sea Hull 2026\u201D? They stay in other portfolios.")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-popover-foot"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost ds-btn--sm",
+  onClick: () => close()
+}, "Cancel"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--danger ds-btn--sm",
+  onClick: () => close()
+}, "Remove")));
+const PopoverSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Anatomy"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "01")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "A popover is an ", /*#__PURE__*/React.createElement("strong", null, "interactive, non-modal overlay"), " anchored to the control that opened it. It holds real content: fields, actions, links, and the page behind it stays live. It is opened by ", /*#__PURE__*/React.createElement("strong", null, "click, never hover"), ", which is the line between it and a ", /*#__PURE__*/React.createElement("a", {
+  href: "#c-tooltip"
+}, "Tooltip"), ". If the user must resolve it before continuing, it is a ", /*#__PURE__*/React.createElement("a", {
+  href: "#c-modal"
+}, "Modal"), " instead."), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Live: click a trigger"), /*#__PURE__*/React.createElement("span", {
+  className: "meta"
+}, "real .ds-popover \xB7 ESC and outside-click close")), /*#__PURE__*/React.createElement("div", {
+  className: "panel-body",
+  style: {
+    background: "var(--bg-app)"
+  }
+}, /*#__PURE__*/React.createElement(PopRow, null, /*#__PURE__*/React.createElement(DemoPopover, {
+  render: FilterPopBody
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--secondary"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.filter
+}), " Filters")), /*#__PURE__*/React.createElement(DemoPopover, {
+  size: "sm",
+  render: MenuPopBody,
+  noArrow: true
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--secondary ds-btn--icon",
+  "aria-label": "Row actions"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.more
+}))), /*#__PURE__*/React.createElement(DemoPopover, {
+  size: "sm",
+  placement: "right",
+  render: InfoPopBody
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost ds-btn--icon",
+  "aria-label": "About risk grade"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.info
+}))), /*#__PURE__*/React.createElement(DemoPopover, {
+  size: "sm",
+  placement: "top",
+  render: ConfirmPopBody
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--danger ds-btn--sm"
+}, "Remove selected")))), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    border: 0,
+    borderRadius: 0,
+    borderTop: "1px solid var(--border-subtle)"
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 170
+  }
+}, "Region"), /*#__PURE__*/React.createElement("th", null, "Spec"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-popover")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--bg-raised"), " fill, 1px ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--border-default"), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--radius-lg"), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--card-shadow-raised"), ". Border ", /*#__PURE__*/React.createElement("em", null, "and"), " shadow: the border is what separates it from the page in dark mode.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-head")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Optional. 13.5px display-font title, optional 12px description, optional close button. Omit for menus and single-purpose panels.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-body")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Required. 14px padding, 10px flex gap, scrolls at ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--popover-max-height: 420px"), " with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "overscroll-behavior: contain"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-foot")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Optional. Sunken bar, right-aligned actions; ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--split"), " pushes a tertiary action (Reset) to the left.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-menu / -item")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Action-list variant: 6px padding, 7\xD79px rows, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--danger"), " modifier, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "-sep"), " divider.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Arrow"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "12px rotated square, border-matched on the two exposed edges so it reads as part of the panel outline. Suppressed via ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--no-arrow"), " for menus.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Variants & sizes"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "02")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 150
+  }
+}, "Variant"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 110
+  }
+}, "Width"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Form")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--md"), " 300px"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Filters, quick-edit, column settings. Always has a footer with an explicit Apply, never auto-apply on change, the user cannot see the result behind the panel.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Menu")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--sm"), " 240px"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Row actions, overflow menus. No header, no footer, no arrow. Closes on selection.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Info")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--sm"), " 240px"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Definitions and methodology that are too long or too interactive for a tooltip. Contains links.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Confirm")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--sm"), " 240px"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Low-stakes, reversible confirmation next to the trigger. Destructive ", /*#__PURE__*/React.createElement("em", null, "and"), " irreversible belongs in a Modal.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Rich")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--lg"), " 380px"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Entity preview cards (vessel, port, company) on hover-intent or click from a table cell.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Auto")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--auto")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Width hugs content. Only for short menus; never for anything with wrapping text."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Placement & collision"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "03")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "bottom"), " is the default; it follows the reading direction and keeps the trigger visible. The engine flips to the opposite side when there is not enough room, then shifts along the cross-axis to stay in the viewport with 16px padding."), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-body",
+  style: {
+    background: "var(--bg-app)"
+  }
+}, /*#__PURE__*/React.createElement(PopRow, {
+  pad: "56px 24px"
+}, ["top", "bottom", "left", "right"].map(p => /*#__PURE__*/React.createElement(DemoPopover, {
+  key: p,
+  placement: p,
+  size: "sm",
+  render: close => /*#__PURE__*/React.createElement("div", {
+    className: "ds-popover-body"
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: 12.5
+    }
+  }, "Placement: ", /*#__PURE__*/React.createElement("strong", null, p)), /*#__PURE__*/React.createElement("button", {
+    className: "ds-btn ds-btn--secondary ds-btn--sm",
+    onClick: () => close()
+  }, "Close"))
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--secondary",
+  style: {
+    minWidth: 92
+  }
+}, p)))))), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 170
+  }
+}, "Rule"), /*#__PURE__*/React.createElement("th", null, "Behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Default")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "bottom"), ", centre-aligned. Use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "bottom-start"), " alignment for menus so the panel edge lines up with the trigger edge.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Flip")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Flip to the opposite side before shrinking. A popover never resizes to fit; it repositions.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Shift & arrow")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "After shifting, the arrow tracks the trigger centre until 14px from the panel corner, then stops.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Reposition")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Recompute on scroll and resize while open (rAF-throttled). Unlike a tooltip, a popover follows its trigger rather than closing.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Detached trigger")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "If the trigger scrolls fully out of its scroll container, close the popover, an anchored panel pointing off-screen is disorienting.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Stacking")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--z-popover: 1050"), ". Above the page and sticky chrome, below modal (1100) so a modal launched from a popover covers it.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Portal")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Render into ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "document.body"), " so table cells and cards with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "overflow: hidden"), " cannot clip the panel."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Focus & dismissal"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "04")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "This is the part teams get wrong most often. A popover is ", /*#__PURE__*/React.createElement("strong", null, "non-modal"), ": focus moves into it, but it is not trapped, and the page behind remains interactive."), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Focus model")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.65
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18
+  }
+}, /*#__PURE__*/React.createElement("li", null, "On open, focus moves to the ", /*#__PURE__*/React.createElement("strong", null, "first focusable element"), ", or the panel itself (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "tabIndex=", -1), ") if it has none."), /*#__PURE__*/React.createElement("li", null, "Focus is ", /*#__PURE__*/React.createElement("strong", null, "not trapped"), ". Tabbing past the last element moves to the next element after the trigger in DOM order, and closes the panel."), /*#__PURE__*/React.createElement("li", null, "On close, focus ", /*#__PURE__*/React.createElement("strong", null, "returns to the trigger"), ", except when the panel was dismissed by an outside click, where the user has already moved elsewhere."), /*#__PURE__*/React.createElement("li", null, "Menus support ", /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "\u2191"), /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "\u2193"), " roving focus, ", /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Home"), "/", /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "End"), ", and type-ahead.")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Close triggers")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    border: 0,
+    borderRadius: 0
+  }
+}, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  style: {
+    width: 130
+  }
+}, /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Esc")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Closes, returns focus. Stops propagation so a parent modal stays open.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Outside click"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Closes on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "mousedown"), ", not click, so a drag that starts inside and ends outside doesn't dismiss.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Trigger click"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Toggles closed.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Selection"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Menu items close on activate; form fields do not.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Submit / Cancel"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Footer actions close explicitly.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Route change"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Always close on navigation.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "callout warn",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Never auto-apply a form popover on change."), " The panel covers the very result the change affects. Stage the changes and commit on ", /*#__PURE__*/React.createElement("em", null, "Apply"), ", and keep ", /*#__PURE__*/React.createElement("em", null, "Reset"), " visible so the user can always get back.")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Developer API"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "05")), /*#__PURE__*/React.createElement("pre", {
+  className: "code"
+}, `import { Popover } from '@skytek/ui';
+
+interface PopoverProps {
+  /** Panel content. Receives close() so actions can dismiss. */
+  children: React.ReactNode | ((close: () => void) => React.ReactNode);
+  /** The anchor. Must forward a ref and spread props. */
+  trigger: React.ReactElement;
+
+  /** Preferred side; flips on collision. @default 'bottom' */
+  placement?: 'top' | 'bottom' | 'left' | 'right';
+  /** Cross-axis alignment against the trigger. @default 'center' */
+  align?: 'start' | 'center' | 'end';
+  /** @default 'md' (300px) */
+  size?: 'sm' | 'md' | 'lg' | 'auto';
+  /** Gap between trigger and panel, px. @default 8 */
+  offset?: number;
+  hideArrow?: boolean;
+
+  /** Controlled mode, omit both for uncontrolled. */
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+
+  /** Dismissal escape hatches. Both default true. */
+  closeOnOutsideClick?: boolean;
+  closeOnEscape?: boolean;
+  /** Return focus to the trigger on close. @default true */
+  returnFocus?: boolean;
+  /** Where to portal. @default document.body */
+  container?: HTMLElement;
+  /** Fires after the exit transition completes. */
+  onCloseComplete?: () => void;
+}
+
+// Uncontrolled: the common case
+<Popover
+  trigger={<Button variant="secondary" icon={<FilterIcon />}>Filters</Button>}
+>
+  {(close) => (
+    <>
+      <Popover.Header title="Filter vessels" description="Applies to the current result set." />
+      <Popover.Body>
+        <Select label="Risk grade" options={grades} />
+      </Popover.Body>
+      <Popover.Footer split>
+        <Button variant="ghost" size="sm" onClick={reset}>Reset</Button>
+        <Button variant="primary" size="sm" onClick={() => { apply(); close(); }}>Apply</Button>
+      </Popover.Footer>
+    </>
+  )}
+</Popover>
+
+// Menu variant: no header/footer/arrow, closes on select
+<Popover size="sm" hideArrow align="end"
+         trigger={<IconButton aria-label="Row actions" icon={<MoreIcon />} />}>
+  <Popover.Menu>
+    <Popover.Item icon={<EyeIcon />} onSelect={openReport}>Open report</Popover.Item>
+    <Popover.Item icon={<DownloadIcon />} onSelect={exportCsv}>Export CSV</Popover.Item>
+    <Popover.Separator />
+    <Popover.Item danger icon={<TrashIcon />} onSelect={remove}>Remove</Popover.Item>
+  </Popover.Menu>
+</Popover>`)), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Markup & CSS contract"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "06")), /*#__PURE__*/React.createElement("pre", {
+  className: "code"
+}, `<!-- Trigger: aria-expanded reflects state, aria-controls points at the panel -->
+<button aria-haspopup="dialog" aria-expanded="true" aria-controls="pop-filters">
+  Filters
+</button>
+
+<!-- aria-modal="false", the page behind is NOT inert -->
+<div id="pop-filters" role="dialog" aria-modal="false"
+     aria-labelledby="pop-filters-title" tabindex="-1"
+     class="ds-popover ds-popover--bottom" data-state="open">
+
+  <div class="ds-popover-head">
+    <h4 class="ds-popover-title" id="pop-filters-title">Filter vessels</h4>
+    <button class="ds-popover-close" aria-label="Close">…</button>
+  </div>
+  <div class="ds-popover-body">…</div>
+  <div class="ds-popover-foot ds-popover-foot--split">…</div>
+</div>`), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 230
+  }
+}, "Class / attribute"), /*#__PURE__*/React.createElement("th", null, "Purpose"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-popover")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Base panel. ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "position: absolute"), "; you supply coordinates.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--sm / --md / --lg / --auto")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Width. Default is ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "md"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--top / --bottom / --left / --right")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Arrow edge and enter-travel direction.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--no-arrow")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Removes the arrow: menus and edge-aligned panels.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "data-state=\"open|closed\"")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Drives opacity + 4px travel + 0.98 scale. Mount ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "closed"), ", flip to ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "open"), " next frame.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "role=\"dialog\""), " + ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-modal=\"false\"")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Required. Use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "role=\"menu\""), " with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "menuitem"), " children for the menu variant instead.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-popover-anchor")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Optional relative wrapper for simple, non-portalled cases."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Accessibility"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "07")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 190
+  }
+}, "Requirement"), /*#__PURE__*/React.createElement("th", null, "Implementation"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Trigger state")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-expanded"), " must reflect open state, and ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-haspopup=\"dialog\""), " (or ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "\"menu\""), ") announces what will open.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Labelled panel")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-labelledby"), " pointing at the title, or ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label"), " when there is no visible header.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Not modal")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-modal=\"false\""), " and no ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "inert"), " on the background. Falsely claiming modality makes screen readers hide the rest of the page.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Dismissible")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Esc"), " closes from anywhere inside: WCAG 2.2 ", /*#__PURE__*/React.createElement("em", null, "1.4.13"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Focus return")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Returning focus to the trigger keeps keyboard users in place, WCAG ", /*#__PURE__*/React.createElement("em", null, "2.4.3 Focus Order"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Target size")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Menu rows are \u2265 32px tall; the close button is 24px visually with a 44px touch target via padding, WCAG 2.2 ", /*#__PURE__*/React.createElement("em", null, "2.5.8"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Scroll containment")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "overscroll-behavior: contain"), " stops a scrolled panel from chaining into the page.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Reduced motion")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Transition drops to 1ms and the travel/scale is removed.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Contrast")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Panel border carries the edge in both themes; on dark the raised surface is one step lighter than the page rather than relying on shadow."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Popover, or something else?"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "08")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 150
+  }
+}, "Use"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 240
+  }
+}, "When"), /*#__PURE__*/React.createElement("th", null, "Why not a popover"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Popover")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Optional, contextual, interactive content anchored to a control."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "\u2014")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Tooltip")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "A short label for an icon or truncated text."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "A popover needs a click; a label should cost nothing.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Modal")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "A decision that must be resolved, or a destructive irreversible action."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Popovers are dismissible by clicking anywhere, too easy to lose.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Drawer")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Long forms, detail panels, anything needing sustained work."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Above ~420px of content the popover scrolls and feels cramped.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Inline expand")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Content that should stay open while the user works elsewhere."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Popovers close on outside interaction by design.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Select / Combobox")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Choosing one value from a list."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Use the native-semantics component; it has correct listbox roles."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Edge cases"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "09")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 230
+  }
+}, "Case"), /*#__PURE__*/React.createElement("th", null, "Expected behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Nested popovers"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Allowed one level. ", /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Esc"), " closes only the innermost; outside-click closes the whole chain.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Popover inside a modal"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Portals to the modal's container, not body, so the focus trap still contains it. Sits above the modal's own content.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Opens a modal"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Close the popover first, then open the modal, so focus return does not fight the trap.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tooltip on a trigger"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The tooltip closes as soon as the popover opens; do not show both.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Content taller than 420px"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Body scrolls with the header and footer pinned. Past two screens of scrolling, use a Drawer.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Trigger unmounts while open"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Close immediately with no exit animation and return focus to the nearest stable ancestor.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Narrow viewport (< 480px)"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Form and rich popovers promote to a bottom sheet; menus stay anchored.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Unsaved changes"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Outside-click on a dirty form popover keeps it open and flashes the footer rather than silently discarding."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Do & don't"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "10")), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--success-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--success-700)"
+  }
+}, "\u2713 Do")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.7
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Open on click, and toggle closed on the same trigger."), /*#__PURE__*/React.createElement("li", null, "Commit form popovers with an explicit ", /*#__PURE__*/React.createElement("em", null, "Apply"), "."), /*#__PURE__*/React.createElement("li", null, "Portal out of clipped or scrolling containers."), /*#__PURE__*/React.createElement("li", null, "Return focus to the trigger on Esc and on Cancel."), /*#__PURE__*/React.createElement("li", null, "Keep content to one task, one panel, one job.")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--danger-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--danger-700)"
+  }
+}, "\u2717 Don't")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.7
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Open on hover, or trap focus inside."), /*#__PURE__*/React.createElement("li", null, "Use one for an irreversible destructive action."), /*#__PURE__*/React.createElement("li", null, "Set ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-modal=\"true\""), " on a non-modal panel."), /*#__PURE__*/React.createElement("li", null, "Nest more than one level deep."), /*#__PURE__*/React.createElement("li", null, "Put a multi-step flow or long form in one, use a Drawer.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Tokens"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "11")), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, [["--popover-bg", "var(--bg-raised)", "Panel fill: one step above the page"], ["--popover-border", "var(--border-default)", "Edge, carries separation in dark"], ["--popover-radius", "var(--radius-lg)", "Corner radius"], ["--popover-shadow", "var(--card-shadow-raised)", "Elevation"], ["--popover-pad", "14px", "Head / body / foot padding"], ["--popover-gap", "10px", "Body flex gap"], ["--popover-width-sm", "240px", "Menu, info, confirm"], ["--popover-width-md", "300px", "Default: forms"], ["--popover-width-lg", "380px", "Rich preview cards"], ["--popover-max-height", "420px", "Body scroll threshold"], ["--popover-arrow", "6px", "Half the arrow square"], ["--popover-offset", "8px", "Gap from trigger"], ["--popover-motion", "var(--motion-fast)", "Transition duration"], ["--popover-ease", "var(--ease-emphasis)", "Enter easing"], ["--z-popover", "1050", "Above page, below modal"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
+  key: t,
+  className: "token-row",
+  style: {
+    gridTemplateColumns: "230px 210px 1fr"
+  }
+}, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--brand-600)",
+    fontSize: 11
+  }
+}, v), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, r))))), /*#__PURE__*/React.createElement("div", {
+  className: "callout"
+}, /*#__PURE__*/React.createElement("strong", null, "The popover test:"), " if the user could reasonably want to see the page ", /*#__PURE__*/React.createElement("em", null, "while"), " the panel is open, a popover is right. If they must answer it first, it is a modal. If they need to keep it open while working, it is not an overlay at all."));
+window.PopoverSpec = PopoverSpec;
+})(); } catch (e) { __ds_ns.__errors.push({ path: "section-popover.jsx", error: String((e && e.message) || e) }); }
+
 // section-states.jsx
 try { (() => {
-/* Section — Empty, error & loading states gallery */
+/* Section: Empty, error & loading states gallery */
 
 const StateCard = ({
   icon,
@@ -15501,7 +19240,7 @@ const ErrorStatesGallery = () => /*#__PURE__*/React.createElement("div", {
   }),
   iconTone: "warn",
   title: "You're offline",
-  body: "No connection to the Skytek backend. Showing the last cached snapshot \u2014 last updated 8 min ago.",
+  body: "No connection to the Skytek backend. Showing the last cached snapshot, last updated 8 min ago.",
   actions: /*#__PURE__*/React.createElement("button", {
     className: "ds-btn ds-btn--ghost ds-btn--sm"
   }, "Try again")
@@ -15527,7 +19266,7 @@ const PartialFailureDemo = () => /*#__PURE__*/React.createElement("div", {
   className: "ds-alert-body"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-alert-title"
-}, "Loaded 12 of 15 vessels"), "3 vessels couldn't be loaded \u2014 AIS feed gap for IMO 9234567, 9234568, 9234570.", /*#__PURE__*/React.createElement("span", {
+}, "Loaded 12 of 15 vessels"), "3 vessels couldn't be loaded, AIS feed gap for IMO 9234567, 9234568, 9234570.", /*#__PURE__*/React.createElement("span", {
   style: {
     marginLeft: 8
   }
@@ -15567,7 +19306,7 @@ const PartialFailureDemo = () => /*#__PURE__*/React.createElement("div", {
   size: 12,
   stroke: "currentColor",
   className: "ico-12"
-}), " AIS feed gap \u2014 couldn't load")), /*#__PURE__*/React.createElement("tr", {
+}), " AIS feed gap: couldn't load")), /*#__PURE__*/React.createElement("tr", {
   style: {
     opacity: 0.6
   }
@@ -15586,7 +19325,7 @@ const PartialFailureDemo = () => /*#__PURE__*/React.createElement("div", {
   size: 12,
   stroke: "currentColor",
   className: "ico-12"
-}), " AIS feed gap \u2014 couldn't load")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "MV MIRAMAR")), /*#__PURE__*/React.createElement("td", null, "Tanker"), /*#__PURE__*/React.createElement("td", {
+}), " AIS feed gap: couldn't load")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "MV MIRAMAR")), /*#__PURE__*/React.createElement("td", null, "Tanker"), /*#__PURE__*/React.createElement("td", {
   className: "num"
 }, "13.4 kn"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
   className: "ds-badge ds-badge--success ds-badge--dot"
@@ -15598,7 +19337,7 @@ const LoadingStatesDemo = () => /*#__PURE__*/React.createElement("div", {
   style: {
     marginBottom: 8
   }
-}, "Skeleton \u2014 list row"), /*#__PURE__*/React.createElement("div", {
+}, "Skeleton: list row"), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, /*#__PURE__*/React.createElement("div", {
   className: "panel-body",
@@ -15651,7 +19390,7 @@ const LoadingStatesDemo = () => /*#__PURE__*/React.createElement("div", {
   style: {
     marginBottom: 8
   }
-}, "Skeleton \u2014 card"), /*#__PURE__*/React.createElement("div", {
+}, "Skeleton: card"), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-body",
@@ -15689,7 +19428,7 @@ const LoadingStatesDemo = () => /*#__PURE__*/React.createElement("div", {
   style: {
     marginBottom: 8
   }
-}, "Inline \u2014 loading more"), /*#__PURE__*/React.createElement("div", {
+}, "Inline: loading more"), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, /*#__PURE__*/React.createElement("div", {
   className: "panel-body",
@@ -15711,10 +19450,10 @@ const LoadingStatesDemo = () => /*#__PURE__*/React.createElement("div", {
 }, "Loading next 50 vessels\u2026")))));
 const StateRules = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "State"), /*#__PURE__*/React.createElement("th", null, "Visual"), /*#__PURE__*/React.createElement("th", null, "Copy template"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Empty \xB7 no data yet")), /*#__PURE__*/React.createElement("td", null, "Neutral icon, single-line title + body, primary CTA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"No [noun] yet\""), " \u2014 body explains how to add the first one. CTA is the action.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Empty \xB7 filtered out")), /*#__PURE__*/React.createElement("td", null, "Search icon, secondary \"Reset filters\" CTA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"No [noun] match\""), " \u2014 suggest which filter to widen.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Empty \xB7 personal scope")), /*#__PURE__*/React.createElement("td", null, "Info-toned icon, dual CTAs (import + browse)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"Your [list] is empty\""), " \u2014 explain how to populate it.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error \xB7 network")), /*#__PURE__*/React.createElement("td", null, "Danger icon, primary Retry"), /*#__PURE__*/React.createElement("td", null, "What failed + why + Retry. Link to status page when available.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error \xB7 permission")), /*#__PURE__*/React.createElement("td", null, "Warning icon, \"Request access\" CTA"), /*#__PURE__*/React.createElement("td", null, "Name the owner. Don't say \"Access denied\" \u2014 say ", /*#__PURE__*/React.createElement("em", null, "\"Ask [owner] for access.\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error \xB7 404 / not found")), /*#__PURE__*/React.createElement("td", null, "Danger icon, back-to-list CTA"), /*#__PURE__*/React.createElement("td", null, "Name what wasn't found. Suggest the next search.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Offline")), /*#__PURE__*/React.createElement("td", null, "Warning icon, show cached data with timestamp"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"You're offline. Showing snapshot from [time].\""), " Never hide data the user already had.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Partial failure")), /*#__PURE__*/React.createElement("td", null, "Warning banner above the rendered content; failed rows shown muted"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"Loaded N of M\""), " \u2014 show what worked. Failed rows keep their slot with retry inline.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Loading \xB7 skeleton")), /*#__PURE__*/React.createElement("td", null, "Match the layout of the real content"), /*#__PURE__*/React.createElement("td", null, "No copy. Skeleton replaces content for < 3 s; longer than that, switch to progress or \"Still loading\u2026\".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Loading \xB7 spinner")), /*#__PURE__*/React.createElement("td", null, "Inline only \u2014 for \"load more\", form submit, or action confirmation"), /*#__PURE__*/React.createElement("td", null, "Verb + noun (\"Saving notes\u2026\", \"Loading next 50 vessels\u2026\")."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "State"), /*#__PURE__*/React.createElement("th", null, "Visual"), /*#__PURE__*/React.createElement("th", null, "Copy template"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Empty \xB7 no data yet")), /*#__PURE__*/React.createElement("td", null, "Neutral icon, single-line title + body, primary CTA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"No [noun] yet\""), ", body explains how to add the first one. CTA is the action.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Empty \xB7 filtered out")), /*#__PURE__*/React.createElement("td", null, "Search icon, secondary \"Reset filters\" CTA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"No [noun] match\""), ", suggest which filter to widen.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Empty \xB7 personal scope")), /*#__PURE__*/React.createElement("td", null, "Info-toned icon, dual CTAs (import + browse)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"Your [list] is empty\""), ", explain how to populate it.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error \xB7 network")), /*#__PURE__*/React.createElement("td", null, "Danger icon, primary Retry"), /*#__PURE__*/React.createElement("td", null, "What failed + why + Retry. Link to status page when available.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error \xB7 permission")), /*#__PURE__*/React.createElement("td", null, "Warning icon, \"Request access\" CTA"), /*#__PURE__*/React.createElement("td", null, "Name the owner. Don't say \"Access denied\", say ", /*#__PURE__*/React.createElement("em", null, "\"Ask [owner] for access.\""))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error \xB7 404 / not found")), /*#__PURE__*/React.createElement("td", null, "Danger icon, back-to-list CTA"), /*#__PURE__*/React.createElement("td", null, "Name what wasn't found. Suggest the next search.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Offline")), /*#__PURE__*/React.createElement("td", null, "Warning icon, show cached data with timestamp"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"You're offline. Showing snapshot from [time].\""), " Never hide data the user already had.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Partial failure")), /*#__PURE__*/React.createElement("td", null, "Warning banner above the rendered content; failed rows shown muted"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("em", null, "\"Loaded N of M\""), ", show what worked. Failed rows keep their slot with retry inline.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Loading \xB7 skeleton")), /*#__PURE__*/React.createElement("td", null, "Match the layout of the real content"), /*#__PURE__*/React.createElement("td", null, "No copy. Skeleton replaces content for < 3 s; longer than that, switch to progress or \"Still loading\u2026\".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Loading \xB7 spinner")), /*#__PURE__*/React.createElement("td", null, "Inline only: for \"load more\", form submit, or action confirmation"), /*#__PURE__*/React.createElement("td", null, "Verb + noun (\"Saving notes\u2026\", \"Loading next 50 vessels\u2026\")."))));
 const StateChoiceFlow = () => /*#__PURE__*/React.createElement("div", {
   className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "Picking the right state \u2014 decision flow:"), /*#__PURE__*/React.createElement("ol", {
+}, /*#__PURE__*/React.createElement("strong", null, "Picking the right state: decision flow:"), /*#__PURE__*/React.createElement("ol", {
   style: {
     margin: "8px 0 0 18px",
     padding: 0,
@@ -15734,13 +19473,13 @@ const StatesSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   style: {
     maxWidth: 820
   }
-}, "Empty, loading and error states are the easiest part of a UI to skip during a build and the easiest to get wrong. They show up at the worst moments \u2014 first-use, partial outages, edge data. This chapter pulls every state into one place with the canonical copy from the Voice chapter, so a developer can copy the right pattern in ten seconds.")), /*#__PURE__*/React.createElement("div", {
+}, "Empty, loading and error states are the easiest part of a UI to skip during a build and the easiest to get wrong. They show up at the worst moments, first-use, partial outages, edge data. This chapter pulls every state into one place with the canonical copy from the Voice chapter, so a developer can copy the right pattern in ten seconds.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Empty states"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Three subtypes. Pick by why the result set is empty \u2014 not by the screen."), /*#__PURE__*/React.createElement(EmptyStatesGallery, null)), /*#__PURE__*/React.createElement("div", {
+}, "Three subtypes. Pick by why the result set is empty, not by the screen."), /*#__PURE__*/React.createElement(EmptyStatesGallery, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -15772,13 +19511,13 @@ const StatesSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
     borderLeftColor: "var(--warning-500)",
     background: "var(--warning-050)"
   }
-}, /*#__PURE__*/React.createElement("strong", null, "The principle:"), " the absence of data is not the absence of design. Empty, error, and loading screens are where users decide whether to trust the product. Treat them like first-class surfaces \u2014 because they are."));
+}, /*#__PURE__*/React.createElement("strong", null, "The principle:"), " the absence of data is not the absence of design. Empty, error, and loading screens are where users decide whether to trust the product. Treat them like first-class surfaces, because they are."));
 window.StatesSection = StatesSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-states.jsx", error: String((e && e.message) || e) }); }
 
 // section-stewardship.jsx
 try { (() => {
-/* Section — Stewardship: governance, versioning, testing, performance */
+/* Section: Stewardship: governance, versioning, testing, performance */
 
 const ComponentStatusTable = () => {
   const rows = [["Button", "1.0.0", "stable"], ["Input / Field", "1.0.0", "stable"], ["Card", "1.0.0", "stable"], ["Table", "1.0.0", "stable"], ["Badge / Rating", "1.0.0", "stable"], ["Alert", "1.0.0", "stable"], ["Tabs", "1.0.0", "stable"], ["Toast", "0.4.2", "beta"], ["Command palette", "0.2.0", "beta"], ["Date range picker", "0.1.0", "draft"], ["DataGrid (legacy)", "—", "deprecated"], ["common/Button (legacy)", "—", "deprecated"]];
@@ -15798,7 +19537,7 @@ const ComponentStatusTable = () => {
       color: "var(--text-secondary)",
       fontSize: 12.5
     }
-  }, status === "stable" && "Safe to use. Breaking changes require a major bump + 1 cycle deprecation.", status === "beta" && "API may change. No version pinning required, but flag in PR if used in critical paths.", status === "draft" && "Spec only — not in app/ui yet. Do not import.", status === "deprecated" && "Migration codemod available. Removed in v2.0.")))));
+  }, status === "stable" && "Safe to use. Breaking changes require a major bump + 1 cycle deprecation.", status === "beta" && "API may change. No version pinning required, but flag in PR if used in critical paths.", status === "draft" && "Spec only: not in app/ui yet. Do not import.", status === "deprecated" && "Migration codemod available. Removed in v2.0.")))));
 };
 const Changelog = () => /*#__PURE__*/React.createElement("div", {
   className: "changelog-rail"
@@ -15826,7 +19565,7 @@ const Changelog = () => /*#__PURE__*/React.createElement("div", {
   className: "ver"
 }, "0.9.0"), /*#__PURE__*/React.createElement("span", {
   className: "date"
-}, "14 Apr 2026 \xB7 RC")), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Token names finalized after eng + design review."), /*#__PURE__*/React.createElement("li", null, "Tailwind mapping ships in ", /*#__PURE__*/React.createElement("code", null, "tailwind.config.js"), "."), /*#__PURE__*/React.createElement("li", null, "Storybook coverage at 92% \u2014 Toast + Command palette still beta."))), /*#__PURE__*/React.createElement("div", {
+}, "14 Apr 2026 \xB7 RC")), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Token names finalized after eng + design review."), /*#__PURE__*/React.createElement("li", null, "Tailwind mapping ships in ", /*#__PURE__*/React.createElement("code", null, "tailwind.config.js"), "."), /*#__PURE__*/React.createElement("li", null, "Storybook coverage at 92%: Toast + Command palette still beta."))), /*#__PURE__*/React.createElement("div", {
   className: "changelog-entry"
 }, /*#__PURE__*/React.createElement("div", {
   style: {
@@ -15902,13 +19641,13 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
   style: {
     maxWidth: 820
   }
-}, "A design system rots without a steward. This chapter describes how the system stays current \u2014 who owns it, how it changes, how engineers can trust each release, and what the system promises in return for that trust.")), /*#__PURE__*/React.createElement("div", {
+}, "A design system rots without a steward. This chapter describes how the system stays current, who owns it, how it changes, how engineers can trust each release, and what the system promises in return for that trust.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
 }, "Ownership & governance"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "A small group with a clear contract. The system isn't a side project \u2014 it has an owner of record."), /*#__PURE__*/React.createElement("table", {
+}, "A small group with a clear contract. The system isn't a side project; it has an owner of record."), /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Role"), /*#__PURE__*/React.createElement("th", null, "Responsibility"), /*#__PURE__*/React.createElement("th", null, "Cadence"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "System lead")), /*#__PURE__*/React.createElement("td", null, "Final say on token names, public API, breaking changes. One person."), /*#__PURE__*/React.createElement("td", null, "Always-on")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Design steward")), /*#__PURE__*/React.createElement("td", null, "Reviews every PR that touches visuals or motion. Owns the Storybook canon."), /*#__PURE__*/React.createElement("td", null, "Daily review queue")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Engineering steward")), /*#__PURE__*/React.createElement("td", null, "Reviews every PR that touches the API surface. Owns the lint & build config."), /*#__PURE__*/React.createElement("td", null, "Daily review queue")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Contributors")), /*#__PURE__*/React.createElement("td", null, "Any product engineer or designer. Files RFCs, ships features behind review."), /*#__PURE__*/React.createElement("td", null, "Async")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Office hours")), /*#__PURE__*/React.createElement("td", null, "30-min open slot for any team to ask \"do we add a component for this?\""), /*#__PURE__*/React.createElement("td", null, "Wed 14:00 UTC"))))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -15916,9 +19655,9 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
   className: "subsection-title"
 }, "RFC process"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Anything that adds a token, a component, or a public API change needs an RFC. Style tweaks, bug fixes, and Storybook additions don't \u2014 those go straight to PR."), /*#__PURE__*/React.createElement("div", {
+}, "Anything that adds a token, a component, or a public API change needs an RFC. Style tweaks, bug fixes, and Storybook additions don't; those go straight to PR."), /*#__PURE__*/React.createElement("div", {
   className: "panel"
-}, [["1 · Problem", "What user need or audit finding does this address? Link to the screen / module where it's missing.", "1 paragraph"], ["2 · Proposal", "API sketch (TypeScript types), token additions, visual mock.", "1 page max"], ["3 · Prior art", "What exists in the codebase today? What do other systems do (Polaris, Carbon, Material)?", "Short list"], ["4 · Alternatives", "What did you reject, and why? (Composition vs. new primitive is the most common branch.)", "Bullets"], ["5 · Migration", "If this replaces something — what's the codemod plan? What's the deprecation window?", "Concrete steps"], ["6 · Approval", "System lead + one steward (design OR eng, whichever side the change touches more) approve before code lands.", "≤ 1 week"]].map(([k, d, m]) => /*#__PURE__*/React.createElement("div", {
+}, [["1 · Problem", "What user need or audit finding does this address? Link to the screen / module where it's missing.", "1 paragraph"], ["2 · Proposal", "API sketch (TypeScript types), token additions, visual mock.", "1 page max"], ["3 · Prior art", "What exists in the codebase today? What do other systems do (Polaris, Carbon, Material)?", "Short list"], ["4 · Alternatives", "What did you reject, and why? (Composition vs. new primitive is the most common branch.)", "Bullets"], ["5 · Migration", "If this replaces something: what's the codemod plan? What's the deprecation window?", "Concrete steps"], ["6 · Approval", "System lead + one steward (design OR eng, whichever side the change touches more) approve before code lands.", "≤ 1 week"]].map(([k, d, m]) => /*#__PURE__*/React.createElement("div", {
   key: k,
   className: "token-row",
   style: {
@@ -16036,7 +19775,7 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
   className: "subsection-title"
 }, "Testing matrix"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "What gets tested where. CI is the source of truth \u2014 if a check isn't here, it doesn't gate a release."), /*#__PURE__*/React.createElement(TestingMatrix, null)), /*#__PURE__*/React.createElement("div", {
+}, "What gets tested where. CI is the source of truth, if a check isn't here, it doesn't gate a release."), /*#__PURE__*/React.createElement(TestingMatrix, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -16097,7 +19836,7 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
     paddingLeft: 18,
     color: "var(--text-secondary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, "RFC merged (if API change)."), /*#__PURE__*/React.createElement("li", null, "Storybook story per variant \xD7 size \xD7 state."), /*#__PURE__*/React.createElement("li", null, "axe passes \xB7 keyboard happy path works."), /*#__PURE__*/React.createElement("li", null, "Tokens only \u2014 no raw hex, no magic ", /*#__PURE__*/React.createElement("code", null, "px"), " outside the scale."), /*#__PURE__*/React.createElement("li", null, "Bundle size delta \u2264 budget."), /*#__PURE__*/React.createElement("li", null, "Changelog label set (", /*#__PURE__*/React.createElement("code", null, "type:breaking"), " / ", /*#__PURE__*/React.createElement("code", null, "feature"), " / ", /*#__PURE__*/React.createElement("code", null, "fix"), ")."), /*#__PURE__*/React.createElement("li", null, "Codemod added if deprecating anything.")))))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, "RFC merged (if API change)."), /*#__PURE__*/React.createElement("li", null, "Storybook story per variant \xD7 size \xD7 state."), /*#__PURE__*/React.createElement("li", null, "axe passes \xB7 keyboard happy path works."), /*#__PURE__*/React.createElement("li", null, "Tokens only: no raw hex, no magic ", /*#__PURE__*/React.createElement("code", null, "px"), " outside the scale."), /*#__PURE__*/React.createElement("li", null, "Bundle size delta \u2264 budget."), /*#__PURE__*/React.createElement("li", null, "Changelog label set (", /*#__PURE__*/React.createElement("code", null, "type:breaking"), " / ", /*#__PURE__*/React.createElement("code", null, "feature"), " / ", /*#__PURE__*/React.createElement("code", null, "fix"), ")."), /*#__PURE__*/React.createElement("li", null, "Codemod added if deprecating anything.")))))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -16128,16 +19867,20 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
   style: {
     marginTop: 24
   }
-}, /*#__PURE__*/React.createElement("strong", null, "The system's promise:"), " if you read this spec and use the tokens, your UI will keep working \u2014 through theme swaps, library upgrades, even product rebrands \u2014 without a rewrite. The system's ask back is exactly this: only what's in the spec, never invented locally."));
+}, /*#__PURE__*/React.createElement("strong", null, "The system's promise:"), " if you read this spec and use the tokens, your UI will keep working, through theme swaps, library upgrades, even product rebrands, without a rewrite. The system's ask back is exactly this: only what's in the spec, never invented locally."));
 window.StewardshipSection = StewardshipSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-stewardship.jsx", error: String((e && e.message) || e) }); }
 
 // section-toast.jsx
 try { (() => {
-/* Toast / Snackbar — full specification for the Skytek Design System spec page.
+/* Toast / Snackbar: full specification for the Skytek Design System spec page.
    Canonical component name is "Toast"; "Snackbar" is the documented alias.
    Renders a live, self-contained toast manager (window.SkytekToast) so every
-   demo below fires the real component into a fixed top-center region. */
+   demo below fires the real component into a fixed bottom-right region.
+
+   Behaviour mirrors Sonner (ui.shadcn.com/docs/components/radix/sonner), the
+   implementation our developers ship: a collapsed stack anchored bottom-right
+   that expands on hover/focus, swipe-to-dismiss, and spring-eased transforms. */
 
 const TOAST_TONES = {
   info: {
@@ -16166,58 +19909,159 @@ const TOAST_TONES = {
   }
 };
 
-/* ---- One live toast row: owns its own auto-dismiss timer + pause-on-hover ---- */
+/* Sonner-parity constants, keep in sync with the --toast-* tokens */
+const TOAST_STACK_OFFSET = 14; // collapsed peek per toast behind the front
+const TOAST_STACK_SCALE = 0.05; // scale step per toast behind the front
+const TOAST_SWIPE_THRESH = 45; // px drag that commits a dismiss
+const TOAST_GAP = 12; // --toast-gap
+const TOAST_VISIBLE = 3; // --toast-max-stack
+const TOAST_EXIT_MS = 200; // --toast-anim-exit
+const TOAST_EST_HEIGHT = 64; // fallback before first measure
+
+/* ---- One live toast: own auto-dismiss timer, mount/exit state, swipe ---- */
 const ToastItem = ({
   t,
-  onClose
+  index,
+  offset,
+  expanded,
+  visible,
+  onClose,
+  onHeight
 }) => {
-  const [leaving, setLeaving] = React.useState(false);
-  const [paused, setPaused] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
+  const [removed, setRemoved] = React.useState(false);
+  const [swipedOut, setSwipedOut] = React.useState(false);
+  const [swipe, setSwipe] = React.useState(null);
+  const el = React.useRef(null);
   const timer = React.useRef(null);
   const started = React.useRef(0);
   const left = React.useRef(t.duration);
-  const dismiss = React.useCallback(() => {
-    setLeaving(true);
-    window.setTimeout(() => onClose(t.id), 150);
-  }, [t.id, onClose]);
+  const drag = React.useRef(null);
+  const swipeRef = React.useRef(null);
+  swipeRef.current = swipe;
+
+  /* Measure height so the expanded stack can use real offsets */
+  React.useEffect(() => {
+    if (!el.current) return;
+    const measure = () => el.current && onHeight(t.id, el.current.offsetHeight);
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(measure);
+    ro.observe(el.current);
+    return () => ro.disconnect();
+  }, [t.id, onHeight]);
+
+  /* Flip to the mounted transform on the next frame → rises into place */
+  React.useEffect(() => {
+    const raf = window.requestAnimationFrame(() => setMounted(true));
+    return () => window.cancelAnimationFrame(raf);
+  }, []);
   const clear = () => {
     if (timer.current) {
       window.clearTimeout(timer.current);
       timer.current = null;
     }
   };
+  const dismiss = React.useCallback(swiped => {
+    clear();
+    if (swiped) setSwipedOut(true);else setRemoved(true);
+    window.setTimeout(() => {
+      t.onDismiss && t.onDismiss();
+      onClose(t.id);
+    }, TOAST_EXIT_MS);
+  }, [t, onClose]);
   const arm = ms => {
     clear();
-    if (!ms || ms === Infinity || t.loading) return; // persistent / loading toasts never auto-close
+    if (!ms || ms === Infinity || t.loading) return; // persistent / loading never auto-close
     started.current = Date.now();
-    timer.current = window.setTimeout(dismiss, ms);
+    timer.current = window.setTimeout(() => dismiss(false), ms);
   };
   React.useEffect(() => {
+    left.current = t.duration;
     arm(t.duration);
     return clear;
   }, [t.duration, t.loading]);
-  const pause = () => {
-    if (!timer.current) return;
-    left.current = Math.max(0, left.current - (Date.now() - started.current));
-    clear();
-    setPaused(true);
-  };
-  const resume = () => {
-    if (paused) {
-      setPaused(false);
+
+  /* Hovering or focusing anywhere in the stack pauses every countdown (Sonner) */
+  React.useEffect(() => {
+    if (removed || swipedOut) return;
+    if (expanded) {
+      if (timer.current) {
+        left.current = Math.max(0, left.current - (Date.now() - started.current));
+        clear();
+      }
+    } else {
       arm(left.current);
+    }
+  }, [expanded]);
+
+  /* ---- Swipe to dismiss: right or down for a bottom-right anchor ---- */
+  const onPointerDown = e => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    if (e.target.closest("button")) return; // buttons keep working
+    drag.current = {
+      x: e.clientX,
+      y: e.clientY
+    };
+    setSwipe({
+      dx: 0,
+      dy: 0
+    });
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch (err) {}
+  };
+  const onPointerMove = e => {
+    if (!drag.current) return;
+    setSwipe({
+      dx: Math.max(0, e.clientX - drag.current.x),
+      dy: Math.max(0, e.clientY - drag.current.y)
+    });
+  };
+  const onPointerUp = () => {
+    if (!drag.current) return;
+    drag.current = null;
+    const s = swipeRef.current || {
+      dx: 0,
+      dy: 0
+    };
+    if (s.dx > TOAST_SWIPE_THRESH || s.dy > TOAST_SWIPE_THRESH) {
+      const horizontal = s.dx >= s.dy;
+      setSwipe({
+        dx: horizontal ? 420 : 0,
+        dy: horizontal ? 0 : 220
+      });
+      dismiss(true);
+    } else {
+      setSwipe(null); // springs back
     }
   };
   const tone = TOAST_TONES[t.tone] || TOAST_TONES.info;
   const showTimer = !t.loading && t.duration && t.duration !== Infinity;
+  const dragging = !!swipe && !!drag.current;
   return /*#__PURE__*/React.createElement("div", {
-    className: `ds-toast ds-toast--${t.tone} ${leaving ? "is-leaving" : "is-entering"} ${paused ? "is-paused" : ""}`,
+    ref: el,
+    className: `ds-toast ds-toast--${t.tone} ${expanded ? "is-paused" : ""}`,
     role: tone.role,
     "aria-live": tone.live,
-    onMouseEnter: pause,
-    onMouseLeave: resume,
-    onFocus: pause,
-    onBlur: resume
+    "aria-atomic": "true",
+    "data-mounted": mounted,
+    "data-removed": removed,
+    "data-swipe-out": swipedOut,
+    "data-swiping": dragging,
+    "data-visible": visible,
+    "data-front": index === 0,
+    style: {
+      "--y": `${-offset}px`,
+      "--scale": expanded ? 1 : 1 - index * TOAST_STACK_SCALE,
+      "--sx": swipe ? `${swipe.dx}px` : "0px",
+      "--sy": swipe ? `${swipe.dy}px` : "0px",
+      zIndex: 1000 - index
+    },
+    onPointerDown: onPointerDown,
+    onPointerMove: onPointerMove,
+    onPointerUp: onPointerUp,
+    onPointerCancel: onPointerUp
   }, t.loading ? /*#__PURE__*/React.createElement("span", {
     className: "ds-toast-spinner",
     "aria-hidden": "true"
@@ -16240,15 +20084,15 @@ const ToastItem = ({
       padding: "0 4px"
     },
     onClick: () => {
-      t.action.onClick?.();
-      dismiss();
+      t.action.onClick && t.action.onClick();
+      dismiss(false);
     }
   }, t.action.label))), /*#__PURE__*/React.createElement("div", {
     className: "ds-toast-side"
   }, /*#__PURE__*/React.createElement("button", {
     className: "ds-toast-dismiss",
     "aria-label": "Dismiss notification",
-    onClick: dismiss
+    onClick: () => dismiss(false)
   }, /*#__PURE__*/React.createElement(Icon, {
     d: I.x,
     size: 14
@@ -16295,6 +20139,9 @@ const useToastManager = () => {
     close
   };
 };
+
+/* ---- The region: owns collapsed/expanded state and computes stack offsets.
+   toasts[0] is the newest = the "front" toast, sitting on the anchor. ---- */
 const ToastRegion = ({
   toasts,
   onClose,
@@ -16302,9 +20149,10 @@ const ToastRegion = ({
 }) => {
   const [host] = React.useState(() => {
     if (typeof document === "undefined") return null;
-    const el = document.createElement("div");
-    return el;
+    return document.createElement("div");
   });
+  const [expanded, setExpanded] = React.useState(false);
+  const [heights, setHeights] = React.useState({});
   React.useEffect(() => {
     if (!host || inline) return;
     document.body.appendChild(host);
@@ -16314,13 +20162,46 @@ const ToastRegion = ({
       } catch (e) {}
     };
   }, [host, inline]);
+  const onHeight = React.useCallback((id, h) => setHeights(prev => prev[id] === h ? prev : {
+    ...prev,
+    [id]: h
+  }), []);
+  React.useEffect(() => {
+    if (!toasts.length && expanded) setExpanded(false);
+  }, [toasts.length]);
+
+  /* Collapsed: fixed peek + scale step. Expanded: real cumulative heights. */
+  let acc = 0;
+  const laid = toasts.map((t, i) => {
+    const offset = expanded ? acc : i * TOAST_STACK_OFFSET;
+    acc += (heights[t.id] || TOAST_EST_HEIGHT) + TOAST_GAP;
+    return {
+      t,
+      i,
+      offset
+    };
+  });
   const region = /*#__PURE__*/React.createElement("div", {
     className: `ds-toast-region ${inline ? "is-inline" : ""}`,
-    "aria-label": "Notifications"
-  }, toasts.map(t => /*#__PURE__*/React.createElement(ToastItem, {
+    "aria-label": "Notifications",
+    "data-expanded": expanded,
+    onMouseEnter: () => setExpanded(true),
+    onMouseLeave: () => setExpanded(false),
+    onFocus: () => setExpanded(true),
+    onBlur: () => setExpanded(false)
+  }, laid.map(({
+    t,
+    i,
+    offset
+  }) => /*#__PURE__*/React.createElement(ToastItem, {
     key: t.id,
     t: t,
-    onClose: onClose
+    index: i,
+    offset: offset,
+    expanded: expanded,
+    visible: i < TOAST_VISIBLE,
+    onClose: onClose,
+    onHeight: onHeight
   })));
   if (inline) return region;
   return host ? ReactDOM.createPortal(region, host) : null;
@@ -16406,11 +20287,26 @@ const ToastSpec = () => {
     style: {
       marginBottom: 24
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Naming."), " The canonical component is ", /*#__PURE__*/React.createElement("strong", null, "Toast"), " \u2014 that's the name in code (", /*#__PURE__*/React.createElement("code", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Implementation parity."), " This component matches ", /*#__PURE__*/React.createElement("a", {
+    href: "https://ui.shadcn.com/docs/components/radix/sonner",
+    target: "_blank",
+    rel: "noreferrer",
+    style: {
+      color: "var(--brand-600)",
+      fontWeight: 600
+    }
+  }, "shadcn/ui \xB7 Sonner"), ", the library our developers ship. The Skytek styling (tone bar, icon, timer bar, tokens) is unchanged, what is aligned is the ", /*#__PURE__*/React.createElement("strong", null, "behaviour"), ": bottom-right anchor, collapsed stack that expands on hover/focus, swipe-to-dismiss, and Sonner's spring easings. Design in Figma against this spec; build with ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "sonner"), " configured as documented below."), /*#__PURE__*/React.createElement("div", {
+    className: "callout",
+    style: {
+      marginBottom: 24
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Naming."), " The canonical component is ", /*#__PURE__*/React.createElement("strong", null, "Toast"), "; that's the name in code (", /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "useToast()"), "), the z-index token (", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "--z-toast"), "), and the Figma frame. ", /*#__PURE__*/React.createElement("strong", null, "\u201CSnackbar\u201D"), " is an accepted alias for the same component; prefer \u201CToast\u201D in specs and PRs so search stays consistent. A toast is ", /*#__PURE__*/React.createElement("em", null, "transient"), " feedback that confirms an action just happened \u2014 it is not the ", /*#__PURE__*/React.createElement("a", {
+  }, "--z-toast"), "), and the Figma frame. ", /*#__PURE__*/React.createElement("strong", null, "\u201CSnackbar\u201D"), " is an accepted alias for the same component; prefer \u201CToast\u201D in specs and PRs so search stays consistent. A toast is ", /*#__PURE__*/React.createElement("em", null, "transient"), " feedback that confirms an action just happened; it is not the ", /*#__PURE__*/React.createElement("a", {
     href: "#c-alerts",
     style: {
       color: "var(--brand-600)",
@@ -16428,7 +20324,7 @@ const ToastSpec = () => {
     className: "subsection-title"
   }, "Live behavior"), /*#__PURE__*/React.createElement("p", {
     className: "subsection-desc"
-  }, "Every button fires the production component into the fixed region at the ", /*#__PURE__*/React.createElement("strong", null, "top-center of the viewport"), ". Hover or focus a toast to pause its countdown; the timer bar resumes on leave. Newest stacks on top; only ", /*#__PURE__*/React.createElement("code", {
+  }, "Every button fires the production component into the fixed region at the ", /*#__PURE__*/React.createElement("strong", null, "bottom-right of the viewport"), ". The stack is ", /*#__PURE__*/React.createElement("strong", null, "collapsed"), " by default: the newest toast sits in front at full scale and older ones peek above it, each scaled down a step. ", /*#__PURE__*/React.createElement("strong", null, "Hover or focus the stack to expand it"), " to full height; every countdown pauses while it is expanded. ", /*#__PURE__*/React.createElement("strong", null, "Drag a toast right or down"), " to swipe it away. Only ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "--toast-max-stack"), " (3) stay visible."), /*#__PURE__*/React.createElement("div", {
     className: "panel",
@@ -16452,7 +20348,7 @@ const ToastSpec = () => {
     onClick: () => push({
       tone: "info",
       title: "View saved",
-      desc: "“Black Sea — High Risk” is now in your saved views."
+      desc: "“Black Sea: High Risk” is now in your saved views."
     })
   }, "Info"), /*#__PURE__*/React.createElement("button", {
     className: "ds-btn ds-btn--secondary ds-btn--sm",
@@ -16509,7 +20405,7 @@ const ToastSpec = () => {
     }
   }, /*#__PURE__*/React.createElement("strong", null, "Try it from the console."), " The demo registers the real API on ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "window.SkytekToast"), " \u2014 e.g. ", /*#__PURE__*/React.createElement("code", {
+  }, "window.SkytekToast"), ", e.g. ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "SkytekToast.success({ title: 'Done' })"), " or ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
@@ -16551,7 +20447,7 @@ const ToastSpec = () => {
     className: "t-caption"
   }, "Requires focus + an explicit choice.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Field-level validation error"), /*#__PURE__*/React.createElement("td", null, "Inline message"), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "Lives under the field \u2014 never a toast."))))), /*#__PURE__*/React.createElement("div", {
+  }, "Lives under the field: never a toast."))))), /*#__PURE__*/React.createElement("div", {
     className: "dodont",
     style: {
       marginTop: 16
@@ -16583,10 +20479,7 @@ const ToastSpec = () => {
       maxWidth: "100%"
     }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "ds-toast ds-toast--success",
-    style: {
-      animation: "none"
-    }
+    className: "ds-toast ds-toast--success ds-toast--static"
   }, /*#__PURE__*/React.createElement(Icon, {
     d: I.check,
     size: 18,
@@ -16640,7 +20533,7 @@ const ToastSpec = () => {
     className: "inline"
   }, "border-left")), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "4-px accent in the tone color \u2014 the only chromatic element.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "2"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Icon")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  }, "4-px accent in the tone color, the only chromatic element.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "2"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Icon")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, ".ds-toast-icon")), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
@@ -16652,7 +20545,7 @@ const ToastSpec = () => {
     className: "inline"
   }, ".ds-toast-actions")), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "Optional single link button \u2014 Undo / Retry / View only.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "5"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Dismiss + timer")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  }, "Optional single link button: Undo / Retry / View only.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "5"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Dismiss + timer")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, ".ds-toast-dismiss"), " \xB7 ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
@@ -16664,7 +20557,7 @@ const ToastSpec = () => {
     className: "subsection-title"
   }, "Variants & timing"), /*#__PURE__*/React.createElement("p", {
     className: "subsection-desc"
-  }, "Four tones, mapped to the same status families as Alerts. Duration scales with how much the user needs to read \u2014 and errors never auto-close."), /*#__PURE__*/React.createElement("div", {
+  }, "Four tones, mapped to the same status families as Alerts. Duration scales with how much the user needs to read, and errors never auto-close."), /*#__PURE__*/React.createElement("div", {
     className: "panel",
     style: {
       overflow: "hidden"
@@ -16704,7 +20597,7 @@ const ToastSpec = () => {
     className: "t-caption"
   }, "Action failed / needs attention"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Persistent")), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "role=alert \xB7 assertive"), /*#__PURE__*/React.createElement("td", null, "No \u2014 manual")), /*#__PURE__*/React.createElement("tr", {
+  }, "role=alert \xB7 assertive"), /*#__PURE__*/React.createElement("td", null, "No: manual")), /*#__PURE__*/React.createElement("tr", {
     style: {
       background: "var(--brand-050)"
     }
@@ -16728,19 +20621,31 @@ const ToastSpec = () => {
     className: "grid-2"
   }, /*#__PURE__*/React.createElement("div", {
     className: "callout"
-  }, /*#__PURE__*/React.createElement("strong", null, "Anchor."), " Fixed ", /*#__PURE__*/React.createElement("strong", null, "top-center"), ", ", /*#__PURE__*/React.createElement("code", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Anchor."), " Fixed ", /*#__PURE__*/React.createElement("strong", null, "bottom-right"), ", ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "--toast-inset"), " (20 px) from the top edge and horizontally centered, at ", /*#__PURE__*/React.createElement("code", {
+  }, "--toast-inset"), " (20 px) from the bottom and right edges, at ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "--z-toast"), " (1200) \u2014 above the modal layer."), /*#__PURE__*/React.createElement("div", {
+  }, "--z-toast"), " (1200): above the modal layer. This matches the Sonner default our developers ship and keeps confirmations clear of the top-left primary nav."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
-  }, /*#__PURE__*/React.createElement("strong", null, "Stack order."), " Newest enters at the top and pushes older ones down. Max ", /*#__PURE__*/React.createElement("code", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Stack order."), " The newest toast is the ", /*#__PURE__*/React.createElement("em", null, "front"), " toast, on the anchor at full scale. Older ones sit behind it, offset up by ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "--toast-max-stack"), " (3) visible; extras queue and appear as room frees up."), /*#__PURE__*/React.createElement("div", {
+  }, "--toast-stack-offset"), " (14 px) and scaled down ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-stack-scale"), " (0.05) per step. Max ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-max-stack"), " (3) visible."), /*#__PURE__*/React.createElement("div", {
+    className: "callout"
+  }, /*#__PURE__*/React.createElement("strong", null, "Expand on hover."), " Pointer-entering or focusing the stack expands it to real measured heights with ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-gap"), " (12 px) between toasts, and pauses every countdown. Leaving re-collapses it."), /*#__PURE__*/React.createElement("div", {
+    className: "callout"
+  }, /*#__PURE__*/React.createElement("strong", null, "Swipe to dismiss."), " Drag a toast ", /*#__PURE__*/React.createElement("strong", null, "right or down"), ", the two directions that move away from a bottom-right anchor. Past ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-swipe-thresh"), " (45 px) it commits and flies out; short of it, it springs back."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
   }, /*#__PURE__*/React.createElement("strong", null, "Width."), " ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "--toast-width"), " (380 px), capped to the viewport on small screens \u2014 full-bleed minus 16 px gutters on phones."), /*#__PURE__*/React.createElement("div", {
+  }, "--toast-width"), " (380 px), capped to the viewport on small screens, full-bleed minus 16 px gutters on phones."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
   }, /*#__PURE__*/React.createElement("strong", null, "Pointer."), " The region is click-through (", /*#__PURE__*/React.createElement("code", {
     className: "inline"
@@ -16749,7 +20654,9 @@ const ToastSpec = () => {
     style: {
       marginTop: 12
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "Mobile."), " Below 640 px the region spans the top gutter-to-gutter; reserve bottom placement for views with a fixed bottom action bar, and move the toast above it so it never covers the primary CTA.")), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Mobile."), " Below 640 px the region spans the bottom gutter-to-gutter. On views with a fixed bottom action bar, raise ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-inset"), " above that bar so a toast never covers the primary CTA.")), /*#__PURE__*/React.createElement("div", {
     className: "subsection"
   }, /*#__PURE__*/React.createElement("h3", {
     className: "subsection-title"
@@ -16761,22 +20668,22 @@ const ToastSpec = () => {
     className: "code"
   }, `const toast = useToast();
 
-// Sugar — tone is implied
+// Sugar, tone is implied
 toast.success({ title: 'Policy saved', description: 'Added to Atlantic Hull 2026.' });
 toast.error({ title: "Couldn't save policy", description: 'Refresh to see the latest.' });
 
-// Reversible action — the only time a toast carries a button
+// Reversible action, the only time a toast carries a button
 toast.success({
   title: '23 vessels archived',
   action: { label: 'Undo', onClick: restore },
   duration: 8000,
 });
 
-// Promise — one toast: loading → success | error
+// Promise, one toast: loading → success | error
 toast.promise(savePolicy(id), {
   loading: 'Saving policy…',
   success: (p) => ({ title: 'Policy saved', description: \`#\${p.id} added.\` }),
-  error:   'Could not save — try again.',
+  error:   'Could not save, try again.',
 });`), /*#__PURE__*/React.createElement("div", {
     className: "panel",
     style: {
@@ -16863,6 +20770,149 @@ toast.promise(savePolicy(id), {
     className: "subsection"
   }, /*#__PURE__*/React.createElement("h3", {
     className: "subsection-title"
+  }, "Developer setup \xB7 Sonner"), /*#__PURE__*/React.createElement("p", {
+    className: "subsection-desc"
+  }, "Mount one ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "<Toaster>"), " at the app root with the props below to get this spec's placement and stacking out of the box. Skytek's tone bar, icon and timer styling are applied through the token class map, don't restyle the toast body ad hoc."), /*#__PURE__*/React.createElement("pre", {
+    className: "code"
+  }, `// app/layout.tsx: one Toaster per app, at the root
+import { Toaster } from '@/components/ui/sonner';
+
+<Toaster
+  position="bottom-right"        // Skytek anchor
+  expand={false}                 // collapsed stack; expands on hover
+  visibleToasts={3}              // --toast-max-stack
+  gap={12}                       // --toast-gap
+  offset={20}                    // --toast-inset
+  closeButton                    // the 24px × is required
+  swipeDirections={['right', 'bottom']}
+  duration={4000}                // --toast-dur-short
+  toastOptions={{
+    classNames: {
+      toast:       'ds-toast',
+      title:       'ds-toast-title',
+      description: 'ds-toast-desc',
+      actionButton:'ds-btn ds-btn--link ds-btn--sm',
+      closeButton: 'ds-toast-dismiss',
+    },
+  }}
+/>
+
+// Tone helpers map onto Sonner's variants
+toast.success('Policy saved', { description: 'Added to Atlantic Hull 2026.' });
+toast.error('Couldn\\'t save policy', { duration: Infinity });   // errors persist
+toast('23 vessels archived', {
+  duration: 8000,
+  action: { label: 'Undo', onClick: restore },
+});`), /*#__PURE__*/React.createElement("div", {
+    className: "callout",
+    style: {
+      marginTop: 12
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Two deviations from Sonner defaults, both deliberate."), " Sonner auto-dismisses errors: Skytek keeps ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "danger"), " toasts until dismissed (pass ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "duration: Infinity"), "). Sonner hides the close button by default, Skytek always shows it, so dismissal never depends on the swipe gesture.")), /*#__PURE__*/React.createElement("div", {
+    className: "subsection"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "subsection-title"
+  }, "Motion"), /*#__PURE__*/React.createElement("p", {
+    className: "subsection-desc"
+  }, "Transforms are state-driven rather than keyframed, so an interrupted animation retargets smoothly instead of restarting, a toast arriving mid-collapse animates from wherever it currently is."), /*#__PURE__*/React.createElement("div", {
+    className: "panel",
+    style: {
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    className: "spec-table",
+    style: {
+      border: 0
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Transition"), /*#__PURE__*/React.createElement("th", null, "From \u2192 to"), /*#__PURE__*/React.createElement("th", null, "Duration"), /*#__PURE__*/React.createElement("th", null, "Easing"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Enter")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "translateY(100%)"), ", opacity 0 \u2192 resting offset, opacity 1"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "400 ms"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "spring")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Reposition")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Previous stack offset + scale \u2192 new offset + scale"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "400 ms"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "spring")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Expand / collapse")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Peek offsets + scale step \u2192 measured heights at scale 1"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "400 ms"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "spring")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Exit")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Resting offset \u2192 ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "+100%"), " down, opacity 0"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "200 ms"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "exit")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Swipe (dragging)")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Tracks the pointer 1:1 on the right / down axis"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "none"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "\u2014")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Swipe commit")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Flies out along the swipe axis, opacity 0"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "200 ms"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "exit")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Swipe cancel")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Springs back to the resting offset"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "400 ms"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "spring")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Timer bar")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "scaleX(1) \u2192 scaleX(0)"), ", paused while expanded"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "= duration"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "linear"))))), /*#__PURE__*/React.createElement("div", {
+    className: "callout",
+    style: {
+      marginTop: 12
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "State contract."), " Each toast carries ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "data-mounted"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "data-removed"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "data-swiping"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "data-swipe-out"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "data-visible"), " and ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "data-front"), ", with offsets passed as ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--y"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--scale"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--sx"), " and ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--sy"), ". Hook custom styling to those attributes rather than to class-name internals.")), /*#__PURE__*/React.createElement("div", {
+    className: "subsection"
+  }, /*#__PURE__*/React.createElement("h3", {
+    className: "subsection-title"
   }, "Design tokens"), /*#__PURE__*/React.createElement("p", {
     className: "subsection-desc"
   }, "Every dimension reads from a ", /*#__PURE__*/React.createElement("code", {
@@ -16885,7 +20935,7 @@ toast.promise(savePolicy(id), {
     className: "t-caption"
   }, "1200"), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "Stack order \u2014 above modals")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  }, "Stack order: above modals")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "--toast-width")), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
@@ -16897,13 +20947,43 @@ toast.promise(savePolicy(id), {
     className: "t-caption"
   }, "20px"), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "Distance from the top edge")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  }, "Distance from the bottom & right edges")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "--toast-gap")), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
   }, "12px"), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "Vertical gap between stacked toasts")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  }, "Gap between toasts when the stack is expanded")), /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: "var(--brand-050)"
+    }
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-stack-offset")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "14px"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Collapsed peek per toast behind the front")), /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: "var(--brand-050)"
+    }
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-stack-scale")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "0.05"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Scale step per toast behind the front")), /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: "var(--brand-050)"
+    }
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-swipe-thresh")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "45px"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Drag distance that commits a dismiss")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "--toast-radius")), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
@@ -16945,7 +21025,37 @@ toast.promise(savePolicy(id), {
     className: "t-caption"
   }, "200ms \xB7 ease-out"), /*#__PURE__*/React.createElement("td", {
     className: "t-caption"
-  }, "Enter animation")))))), /*#__PURE__*/React.createElement("div", {
+  }, "Legacy enter easing (non-stack surfaces)")), /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: "var(--brand-050)"
+    }
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-anim \xB7 --toast-anim-exit")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "400ms \xB7 200ms"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Enter / reposition \xB7 exit duration")), /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: "var(--brand-050)"
+    }
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-ease-spring")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "cubic-bezier(.21, 1.02, .73, 1)"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Enter & reposition: Sonner's spring")), /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: "var(--brand-050)"
+    }
+  }, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "--toast-ease-exit")), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "cubic-bezier(.06, .71, .55, 1)"), /*#__PURE__*/React.createElement("td", {
+    className: "t-caption"
+  }, "Exit & swipe-out")))))), /*#__PURE__*/React.createElement("div", {
     className: "subsection"
   }, /*#__PURE__*/React.createElement("h3", {
     className: "subsection-title"
@@ -16965,17 +21075,19 @@ toast.promise(savePolicy(id), {
     className: "inline"
   }, "aria-live=\"assertive\""), "."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
-  }, /*#__PURE__*/React.createElement("strong", null, "No focus theft."), " Toasts never move focus or trap it \u2014 they overlay without interrupting the user\u2019s current task."), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("strong", null, "No focus theft."), " Toasts never move focus or trap it; they overlay without interrupting the user\u2019s current task."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
-  }, /*#__PURE__*/React.createElement("strong", null, "Pause on interaction."), " Hover and keyboard focus pause the countdown (WCAG 2.2.1) so the message can\u2019t expire while being read or acted on."), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Pause on interaction."), " Hovering or focusing anywhere in the stack pauses ", /*#__PURE__*/React.createElement("em", null, "every"), " countdown (WCAG 2.2.1) so no message can expire while being read or acted on."), /*#__PURE__*/React.createElement("div", {
+    className: "callout"
+  }, /*#__PURE__*/React.createElement("strong", null, "Swipe is never the only route."), " Every toast keeps a real 24-px \xD7 button in the tab order; the drag gesture is an accelerator, not a requirement."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
   }, /*#__PURE__*/React.createElement("strong", null, "Reachable dismiss."), " The \xD7 is a real 24-px button in the tab order; the optional action is a focusable button, both with a visible focus ring."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
   }, /*#__PURE__*/React.createElement("strong", null, "Min duration."), " Auto-dismiss never falls below 4 s; toasts with an action get 8 s so the control is reachable in time."), /*#__PURE__*/React.createElement("div", {
     className: "callout"
-  }, /*#__PURE__*/React.createElement("strong", null, "Reduced motion."), " Enter / exit slides and the timer bar collapse under ", /*#__PURE__*/React.createElement("code", {
+  }, /*#__PURE__*/React.createElement("strong", null, "Reduced motion."), " Under ", /*#__PURE__*/React.createElement("code", {
     className: "inline"
-  }, "prefers-reduced-motion"), " \u2014 content simply appears."))), /*#__PURE__*/React.createElement("style", null, `
+  }, "prefers-reduced-motion"), " the rise, stack reposition and timer bar collapse to a plain opacity fade, content simply appears."))), /*#__PURE__*/React.createElement("style", null, `
         .ts-demo-row { display: flex; flex-wrap: wrap; gap: 28px; }
         .ts-demo-grp { display: flex; flex-direction: column; gap: 8px; }
         .dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -16995,36 +21107,36 @@ Object.assign(window, {
 
 // section-token-index.jsx
 try { (() => {
-/* Section — Token index: every CSS variable, searchable */
+/* Section: Token index: every CSS variable, searchable */
 
 const TOKEN_CATALOG = [
 // [name, type, value, where]
 // Color · Brand
-["--brand-600", "color", "#2d7ffb", "Primary action, key headings, link hover"], ["--brand-500", "color", "#51a2fc", "Hover/highlight, default link"], ["--brand-400", "color", "#8ec5fd", "Accent, focus rings"], ["--brand-300", "color", "#bfdbfe", "Decorative, subtle accent"], ["--brand-100", "color", "#dbeafe", "Tint backgrounds"], ["--brand-050", "color", "#eff6ff", "Lightest brand tint"],
+["--brand-700", "color", "#1f5fc7", "Pressed / active state (buttons, links)"], ["--brand-600", "color", "#2d7ffb", "Primary action, key headings, link hover"], ["--brand-500", "color", "#51a2fc", "Hover/highlight, default link"], ["--brand-400", "color", "#8ec5fd", "Accent, focus rings"], ["--brand-300", "color", "#bfdbfe", "Decorative, subtle accent"], ["--brand-100", "color", "#dbeafe", "Tint backgrounds"], ["--brand-050", "color", "#eff6ff", "Lightest brand tint"],
 // Color · Slate
 ["--slate-950", "color", "#0B1220", "Deepest text, dark surface base"], ["--slate-900", "color", "#111827", "Primary text"], ["--slate-800", "color", "#1F2937", "Dark surface variant"], ["--slate-700", "color", "#374151", "Secondary text on white"], ["--slate-600", "color", "#4B5563", "Secondary text mapping"], ["--slate-500", "color", "#6B7280", "Muted text"], ["--slate-400", "color", "#9CA3AF", "Disabled text, placeholders"], ["--slate-300", "color", "#D1D5DB", "Strong borders"], ["--slate-200", "color", "#E5E7EB", "Default borders"], ["--slate-150", "color", "#ECEEF2", "Subtle borders"], ["--slate-100", "color", "#F3F4F6", "Muted surfaces"], ["--slate-50", "color", "#F9FAFB", "App background, sunken rows"], ["--white", "color", "#FFFFFF", "Cards, modals, raised surfaces"],
 // Color · Status
-["--success-700", "color", "#15803D", "Success text, success badges"], ["--success-500", "color", "#16A34A", "Success fill, OK glyph border"], ["--success-100", "color", "#DCFCE7", "Success badge bg"], ["--success-050", "color", "#F0FDF4", "Success alert bg"], ["--warning-700", "color", "#B45309", "Warning text, warning badges"], ["--warning-500", "color", "#D97706", "Warning fill, alert glyph border"], ["--warning-100", "color", "#FEF3C7", "Warning badge bg"], ["--warning-050", "color", "#FFFBEB", "Warning alert bg"], ["--danger-700", "color", "#B91C1C", "Danger text, danger badges"], ["--danger-500", "color", "#DC2626", "Danger fill, danger glyph border"], ["--danger-100", "color", "#FEE2E2", "Danger badge bg"], ["--danger-050", "color", "#FEF2F2", "Danger alert bg"], ["--info-700", "color", "#1D4ED8", "Info text, info badges"], ["--info-500", "color", "#2563EB", "Info fill"], ["--info-100", "color", "#DBEAFE", "Info badge bg"], ["--info-050", "color", "#EFF6FF", "Info alert bg"],
+["--success-700", "color", "#15803D", "Success text, success badges"], ["--success-500", "color", "#16A34A", "Success fill, OK glyph border"], ["--success-100", "color", "#DCFCE7", "Success badge bg"], ["--success-050", "color", "#F0FDF4", "Success alert bg"], ["--warning-700", "color", "#B45309", "Warning text, warning badges"], ["--warning-500", "color", "#D97706", "Warning fill, alert glyph border"], ["--warning-100", "color", "#FEF3C7", "Warning badge bg"], ["--warning-050", "color", "#FFFBEB", "Warning alert bg"], ["--danger-800", "color", "#991B1B", "Danger button pressed / active state"], ["--danger-700", "color", "#B91C1C", "Danger text, danger badges"], ["--danger-500", "color", "#DC2626", "Danger fill, danger glyph border"], ["--danger-100", "color", "#FEE2E2", "Danger badge bg"], ["--danger-050", "color", "#FEF2F2", "Danger alert bg"], ["--info-700", "color", "#1D4ED8", "Info text, info badges"], ["--info-500", "color", "#2563EB", "Info fill"], ["--info-100", "color", "#DBEAFE", "Info badge bg"], ["--info-050", "color", "#EFF6FF", "Info alert bg"],
 // Color · Rating (locked)
-["--rating-a", "color", "#2E7D4F", "Risk rating A (best). Locked — domain semantic."], ["--rating-b", "color", "#6FA84A", "Risk rating B"], ["--rating-c", "color", "#C9A227", "Risk rating C"], ["--rating-d", "color", "#D97706", "Risk rating D"], ["--rating-e", "color", "#C0392B", "Risk rating E (worst)"],
+["--rating-a", "color", "#2E7D4F", "Risk rating A (best). Locked: domain semantic."], ["--rating-b", "color", "#6FA84A", "Risk rating B"], ["--rating-c", "color", "#C9A227", "Risk rating C"], ["--rating-d", "color", "#D97706", "Risk rating D"], ["--rating-e", "color", "#C0392B", "Risk rating E (worst)"],
 // Semantic · surfaces
-["--bg-app", "semantic", "var(--slate-50)", "Default page background"], ["--bg-canvas", "semantic", "#F5F7FA", "Map / dashboard canvas"], ["--bg-surface", "semantic", "var(--white)", "Cards, modals, panels"], ["--bg-raised", "semantic", "var(--white)", "Elevated surfaces"], ["--bg-sunken", "semantic", "var(--slate-50)", "Form rows, inset blocks"], ["--bg-muted", "semantic", "var(--slate-100)", "Disabled, placeholders"], ["--bg-inverse", "semantic", "var(--slate-900)", "Dark surfaces, tooltips"], ["--border-subtle", "semantic", "var(--slate-150)", "Internal dividers"], ["--border-default", "semantic", "var(--slate-200)", "Cards, inputs, buttons"], ["--border-strong", "semantic", "var(--slate-300)", "Hover, emphasized"],
+["--bg-app", "semantic", "var(--slate-50)", "Default page background"], ["--bg-canvas", "semantic", "#F5F7FA", "Map / dashboard canvas"], ["--bg-surface", "semantic", "var(--white)", "Cards, modals, panels"], ["--bg-raised", "semantic", "var(--white)", "Elevated surfaces"], ["--bg-sunken", "semantic", "var(--slate-50)", "Form rows, inset blocks"], ["--bg-muted", "semantic", "var(--slate-100)", "Disabled, placeholders"], ["--bg-inverse", "semantic", "var(--slate-900)", "Dark surfaces, tooltips"], ["--border-subtle", "semantic", "var(--slate-150)", "Internal dividers"], ["--border-default", "semantic", "var(--slate-200)", "Cards, inputs, buttons"], ["--border-strong", "semantic", "var(--slate-300)", "Hover, emphasized"], ["--border-info", "semantic", "color-mix(in srgb, var(--info-500) 18%, transparent)", "Info badge / alert border"], ["--border-success", "semantic", "color-mix(in srgb, var(--success-500) 18%, transparent)", "Success badge / alert border"], ["--border-warning", "semantic", "color-mix(in srgb, var(--warning-500) 20%, transparent)", "Warning badge / alert border"], ["--border-danger", "semantic", "color-mix(in srgb, var(--danger-500) 18%, transparent)", "Danger badge / alert border"],
 // Semantic · text
 ["--text-primary", "semantic", "var(--slate-900)", "Body, headings"], ["--text-secondary", "semantic", "var(--slate-600)", "Supporting copy"], ["--text-muted", "semantic", "var(--slate-500)", "Help, captions, meta"], ["--text-disabled", "semantic", "var(--slate-400)", "Disabled controls"], ["--text-inverse", "semantic", "var(--white)", "On dark surfaces"], ["--text-link", "semantic", "var(--brand-500)", "Inline links"], ["--text-on-brand", "semantic", "var(--white)", "On primary buttons"],
 // Type
 ["--font-sans", "type", "Inter · Open Sans · system-ui", "Default body family"], ["--font-display", "type", "Exo · Inter · Lato · system-ui", "Headings, titles"], ["--font-mono", "type", "JetBrains Mono · SF Mono", "Code, numbers, tokens"],
 // Spacing
-["--space-0", "spacing", "0", "Zero rail"], ["--space-1", "spacing", "2px", "Hairline"], ["--space-2", "spacing", "4px", "Tight inline gap"], ["--space-3", "spacing", "8px", "Default inline gap"], ["--space-4", "spacing", "12px", "Compact group gap"], ["--space-5", "spacing", "16px", "Default group gap (sibling default)"], ["--space-6", "spacing", "20px", "Section interior"], ["--space-7", "spacing", "24px", "Card / panel padding"], ["--space-8", "spacing", "32px", "Major break between content blocks"], ["--space-9", "spacing", "40px", "Hero / module padding"], ["--space-10", "spacing", "48px", "Page section padding (small viewport)"], ["--space-12", "spacing", "64px", "Page section padding (default)"], ["--space-16", "spacing", "96px", "Empty-state padding, marketing hero"],
+["--space-0", "spacing", "0", "Zero rail"], ["--space-1", "spacing", "4px", "Tight inline gap"], ["--space-2", "spacing", "8px", "Default inline gap"], ["--space-3", "spacing", "12px", "Compact group gap"], ["--space-4", "spacing", "16px", "Default group gap (sibling default)"], ["--space-5", "spacing", "20px", "Section interior"], ["--space-6", "spacing", "24px", "Card / panel padding"], ["--space-7", "spacing", "32px", "Major break between content blocks"], ["--space-8", "spacing", "40px", "Hero / module padding"], ["--space-9", "spacing", "48px", "Page section padding (small viewport)"], ["--space-10", "spacing", "64px", "Page section padding (default)"], ["--space-11", "spacing", "96px", "Empty-state padding, marketing hero"],
 // Radius
 ["--radius-xs", "radius", "2px", "Code chips, tiny pills"], ["--radius-sm", "radius", "4px", "Buttons (sm), badges, inputs (sm)"], ["--radius-md", "radius", "6px", "Buttons, inputs, panels, alerts (default)"], ["--radius-lg", "radius", "8px", "Cards, panels, surfaces"], ["--radius-xl", "radius", "12px", "Modals, popovers, large cards"], ["--radius-pill", "radius", "9999px", "Pills, tabs, chips"],
 // Shadow
 ["--card-shadow-flat", "shadow", "0 0 #0000", "No elevation"], ["--card-shadow-rest", "shadow", "2-layer, soft", "Resting cards, inputs at rest"], ["--card-shadow-hover", "shadow", "2-layer, lifted", "Hovered cards, popovers"], ["--card-shadow-active", "shadow", "2-layer, deeper", "Pressed / dragged elements"], ["--card-shadow-raised", "shadow", "2-layer, lifted further", "Drawers, sticky cards, map toolbar"], ["--card-shadow-modal", "shadow", "2-layer, dramatic", "Modals, command palette, popups"],
 // Motion
-["--motion-instant", "motion", "80ms", "Microinteraction: button press, switch tick"], ["--motion-fast", "motion", "140ms", "Hover, focus, color transitions"], ["--motion-base", "motion", "200ms", "Component-level: dropdown, popover, tab"], ["--motion-slow", "motion", "320ms", "Layout: modal mount, drawer, page reveal"], ["--ease-out", "motion", "cubic-bezier(0.16, 1, 0.3, 1)", "Default — enters, reveals"], ["--ease-in-out", "motion", "cubic-bezier(0.4, 0, 0.2, 1)", "Reversible transitions"], ["--ease-emphasis", "motion", "cubic-bezier(0.34, 1.2, 0.64, 1)", "Tab pill, selection — overshoots slightly"],
+["--motion-instant", "motion", "80ms", "Microinteraction: button press, switch tick"], ["--motion-fast", "motion", "140ms", "Hover, focus, color transitions"], ["--motion-base", "motion", "200ms", "Component-level: dropdown, popover, tab"], ["--motion-slow", "motion", "320ms", "Layout: modal mount, drawer, page reveal"], ["--ease-out", "motion", "cubic-bezier(0.16, 1, 0.3, 1)", "Default: enters, reveals"], ["--ease-in-out", "motion", "cubic-bezier(0.4, 0, 0.2, 1)", "Reversible transitions"], ["--ease-emphasis", "motion", "cubic-bezier(0.34, 1.2, 0.64, 1)", "Tab pill, selection: overshoots slightly"],
 // Z-index
 ["--z-base", "z-index", "1", "Default stacking"], ["--z-sticky", "z-index", "100", "Sticky headers, scrolling chrome"], ["--z-overlay", "z-index", "1000", "Popovers, dropdowns"], ["--z-modal", "z-index", "1100", "Modals"], ["--z-toast", "z-index", "1200", "Toasts (always on top)"],
 // Chart palette · categorical
-["--chart-cat-1", "chart", "#2d7ffb", "Series 1 — primary blue"], ["--chart-cat-2", "chart", "#D97706", "Series 2 — amber"], ["--chart-cat-3", "chart", "#16A34A", "Series 3 — green"], ["--chart-cat-4", "chart", "#9333EA", "Series 4 — purple"], ["--chart-cat-5", "chart", "#DB2777", "Series 5 — pink"], ["--chart-cat-6", "chart", "#0891B2", "Series 6 — cyan"], ["--chart-cat-7", "chart", "#65A30D", "Series 7 — lime"], ["--chart-cat-8", "chart", "#475569", "Series 8 — slate"],
+["--chart-cat-1", "chart", "#2d7ffb", "Series 1: primary blue"], ["--chart-cat-2", "chart", "#D97706", "Series 2: amber"], ["--chart-cat-3", "chart", "#16A34A", "Series 3: green"], ["--chart-cat-4", "chart", "#9333EA", "Series 4: purple"], ["--chart-cat-5", "chart", "#DB2777", "Series 5: pink"], ["--chart-cat-6", "chart", "#0891B2", "Series 6: cyan"], ["--chart-cat-7", "chart", "#65A30D", "Series 7: lime"], ["--chart-cat-8", "chart", "#475569", "Series 8: slate"],
 // Chart · sequential
 ["--chart-seq-1", "chart", "#eff6ff", "Sequential ramp · low"], ["--chart-seq-2", "chart", "#dbeafe", "Sequential ramp"], ["--chart-seq-3", "chart", "#bfdbfe", "Sequential ramp"], ["--chart-seq-4", "chart", "#8ec5fd", "Sequential ramp"], ["--chart-seq-5", "chart", "#51a2fc", "Sequential ramp"], ["--chart-seq-6", "chart", "#2d7ffb", "Sequential ramp"], ["--chart-seq-7", "chart", "#1d4ed8", "Sequential ramp · high"],
 // Chart · divergent
@@ -17072,7 +21184,7 @@ const TokenPreview = ({
   value
 }) => {
   if (type === "color" || type === "semantic" || type === "chart" || type === "map") {
-    if (value.startsWith("#") || value.startsWith("var(")) {
+    if (value.startsWith("#") || value.startsWith("var(") || value.startsWith("color-mix(")) {
       return /*#__PURE__*/React.createElement("span", {
         className: "ds-token-swatch-bar",
         style: {
@@ -17254,7 +21366,7 @@ const TokenIndexSection = () => {
     style: {
       maxWidth: 820
     }
-  }, "One searchable list of every CSS variable in the system \u2014 what it is, what it's worth, and where it's used. The fastest answer to \"what's the token for X\" without flipping between Foundations chapters. The whole inventory below renders directly from the token catalog; filter by category or search by name, value, or use-case.")), /*#__PURE__*/React.createElement(TokenIndexToolbar, {
+  }, "One searchable list of every CSS variable in the system, what it is, what it's worth, and where it's used. The fastest answer to \"what's the token for X\" without flipping between Foundations chapters. The whole inventory below renders directly from the token catalog; filter by category or search by name, value, or use-case.")), /*#__PURE__*/React.createElement(TokenIndexToolbar, {
     query: query,
     setQuery: setQuery,
     group: group,
@@ -17294,18 +21406,881 @@ const TokenIndexSection = () => {
     style: {
       marginTop: 32
     }
-  }, /*#__PURE__*/React.createElement("strong", null, "This index is the contract."), " If a token is in here, it ships in the system and engineers can rely on it. If it's not in here, it doesn't exist \u2014 module-local values get rejected at lint."));
+  }, /*#__PURE__*/React.createElement("strong", null, "This index is the contract."), " If a token is in here, it ships in the system and engineers can rely on it. If it's not in here, it doesn't exist, module-local values get rejected at lint."));
 };
 window.TokenIndexSection = TokenIndexSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-token-index.jsx", error: String((e && e.message) || e) }); }
 
+// section-tooltips.jsx
+try { (() => {
+/* Section: Tooltips (full specification)
+   Own chapter, split out of Overlays. Developer-oriented: anatomy,
+   placement, timing, API, a11y, edge cases. Live demos use the real
+   .ds-tooltip CSS so the docs and the component cannot drift. */
+
+/* ── Live tooltip: hover + focus, delay group, ESC, collision-free ── */
+const DemoTooltip = ({
+  label,
+  placement = "top",
+  rich,
+  kbd,
+  children,
+  delayIn = 400,
+  delayOut = 100,
+  disabled
+}) => {
+  const [state, setState] = React.useState("closed");
+  const [mounted, setMounted] = React.useState(false);
+  const inT = React.useRef(null),
+    outT = React.useRef(null);
+  const clear = () => {
+    clearTimeout(inT.current);
+    clearTimeout(outT.current);
+  };
+  const open = () => {
+    if (disabled) return;
+    clear();
+    inT.current = setTimeout(() => {
+      setMounted(true);
+      requestAnimationFrame(() => setState("open"));
+    }, delayIn);
+  };
+  const close = () => {
+    clear();
+    setState("closed");
+    outT.current = setTimeout(() => setMounted(false), delayOut + 120);
+  };
+  React.useEffect(() => {
+    const onKey = e => {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      clear();
+    };
+  }, []);
+  const pos = {
+    top: {
+      bottom: "calc(100% + var(--tooltip-offset))",
+      left: "50%",
+      transform: "translateX(-50%)"
+    },
+    bottom: {
+      top: "calc(100% + var(--tooltip-offset))",
+      left: "50%",
+      transform: "translateX(-50%)"
+    },
+    left: {
+      right: "calc(100% + var(--tooltip-offset))",
+      top: "50%",
+      transform: "translateY(-50%)"
+    },
+    right: {
+      left: "calc(100% + var(--tooltip-offset))",
+      top: "50%",
+      transform: "translateY(-50%)"
+    }
+  }[placement];
+  const id = React.useMemo(() => "tip-" + Math.random().toString(36).slice(2, 8), []);
+  return /*#__PURE__*/React.createElement("span", {
+    className: "ds-tooltip-anchor",
+    onMouseEnter: open,
+    onMouseLeave: close,
+    onFocus: open,
+    onBlur: close
+  }, React.cloneElement(children, {
+    "aria-describedby": mounted ? id : undefined
+  }), mounted && /*#__PURE__*/React.createElement("span", {
+    id: id,
+    role: "tooltip",
+    "data-state": state,
+    className: `ds-tooltip ds-tooltip--${placement}${rich ? " ds-tooltip--rich" : ""}`,
+    style: pos
+  }, rich ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", {
+    className: "ds-tooltip-title"
+  }, rich), label) : label, kbd && /*#__PURE__*/React.createElement("kbd", {
+    className: "ds-tooltip-kbd"
+  }, kbd)));
+};
+const TipRow = ({
+  children
+}) => /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 28,
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "36px 24px"
+  }
+}, children);
+const TooltipSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Anatomy"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "01")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "A tooltip is a ", /*#__PURE__*/React.createElement("strong", null, "label-only, non-interactive overlay"), " that names or clarifies the element under the pointer or keyboard focus. It never contains controls, links or anything the user must click; that is a", /*#__PURE__*/React.createElement("a", {
+  href: "#c-overlays"
+}, " Popover"), ". It is never the only place critical information lives."), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Live: hover or ", /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Tab"), " to the triggers"), /*#__PURE__*/React.createElement("span", {
+  className: "meta"
+}, "real .ds-tooltip \xB7 400 ms open delay")), /*#__PURE__*/React.createElement("div", {
+  className: "panel-body",
+  style: {
+    background: "var(--bg-app)"
+  }
+}, /*#__PURE__*/React.createElement(TipRow, null, /*#__PURE__*/React.createElement(DemoTooltip, {
+  label: "Risk score updated 4m ago"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--secondary"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.info
+}), " Label tip")), /*#__PURE__*/React.createElement(DemoTooltip, {
+  label: "Search vessels, ports and policies",
+  kbd: "\u2318K"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--secondary ds-btn--icon",
+  "aria-label": "Search"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.search
+}))), /*#__PURE__*/React.createElement(DemoTooltip, {
+  rich: "Sanctions unverified",
+  label: "The registry did not return an owner record. Re-run the check before issuing cover.",
+  placement: "bottom"
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--ghost"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.warn
+}), " Rich tip")), /*#__PURE__*/React.createElement(DemoTooltip, {
+  label: "You do not have permission to delete portfolios",
+  placement: "right"
+}, /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--danger",
+  disabled: true
+}, "Delete"))))), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    border: 0,
+    borderRadius: 0,
+    borderTop: "1px solid var(--border-subtle)"
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 150
+  }
+}, "Part"), /*#__PURE__*/React.createElement("th", null, "Spec"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Container")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--bg-inverse"), " fill, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--radius-sm"), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--shadow-md"), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "6px 8px"), " padding, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "max-width 240px"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Label")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "12px / 1.45, weight 500, white on inverse. Sentence case, no terminal period on fragments.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Arrow")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "10px rotated square inheriting the container fill. Centered on the trigger edge. Suppressed with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-tooltip--no-arrow"), " when the anchor is a dense icon row.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Offset")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--tooltip-offset: 8px"), " between trigger edge and tip body.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Kbd chip")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Optional ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-tooltip-kbd"), " for the shortcut that fires the same action.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Placement & collision"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "02")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Four sides, set with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "side"), ", plus three cross-axis alignments set with", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "align"), ". ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "bottom"), " is the default; it follows the reading direction and rarely covers the next control. The positioning engine flips to the opposite side when the tip would cross the viewport edge, then shifts along the cross-axis to stay in view; the arrow follows the trigger."), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-body",
+  style: {
+    background: "var(--bg-app)"
+  }
+}, /*#__PURE__*/React.createElement(TipRow, null, ["top", "bottom", "left", "right"].map(p => /*#__PURE__*/React.createElement(DemoTooltip, {
+  key: p,
+  label: `Placement: ${p}`,
+  placement: p,
+  delayIn: 120
+}, /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--secondary",
+  style: {
+    minWidth: 92
+  }
+}, p)))))), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 170
+  }
+}, "Rule"), /*#__PURE__*/React.createElement("th", null, "Behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Default")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "side=\"bottom\""), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "align=\"center\""), ". Use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "right"), " for items in a left sidebar, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "left"), " for right-aligned toolbars, ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "top"), " where a dropdown already occupies the space below.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alignment")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "align"), " takes ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "start"), " / ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "center"), " / ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "end"), " along the chosen side. Use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "start"), " when the trigger sits at the edge of a toolbar, so the tip does not overhang its container.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Flip")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "If the preferred side has insufficient room, flip to the opposite side. Never shrink the tip to fit.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Shift")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "After flipping, translate along the cross-axis so the tip stays fully inside the viewport with an 8px padding. The arrow stays pinned to the trigger centre until it reaches 12px from the tip corner.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Overflow containers")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Render into a portal at ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "document.body"), " so the tip is never clipped by ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "overflow: hidden"), " or a scrolling table cell.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Stacking")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--z-tooltip: 1300"), ", above modal (1100) and toast (1200), so a tip on a toast action or dialog control stays readable."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Timing & the delay group"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "03")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Tooltips open on a delay so that sweeping the pointer across a toolbar does not flash a row of tips; once one is open, neighbours open instantly until the group goes cold. Keyboard focus always opens immediately, a keyboard user has already committed to that element."), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Token"), /*#__PURE__*/React.createElement("th", null, "Value"), /*#__PURE__*/React.createElement("th", null, "Applies to"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--tooltip-delay-in")), /*#__PURE__*/React.createElement("td", null, "400ms"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Pointer rest before opening")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--tooltip-delay-out")), /*#__PURE__*/React.createElement("td", null, "100ms"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Grace period after leaving")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--tooltip-motion")), /*#__PURE__*/React.createElement("td", null, "140ms"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Fade + 4px travel")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Group window"), /*#__PURE__*/React.createElement("td", null, "300ms"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Skip-delay between siblings")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Focus open"), /*#__PURE__*/React.createElement("td", null, "0ms"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Keyboard is immediate")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Build default"), /*#__PURE__*/React.createElement("td", null, "0 / 0"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Base UI ships no delay until the provider sets one")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", null, "Open & close triggers")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.65
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18
+  }
+}, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Opens"), " on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "pointerenter"), " (after delay) and ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "focus-visible"), " (immediately)."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Closes"), " on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "pointerleave"), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "blur"), ", ", /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Esc"), ", scroll of the nearest scroll container, and on any click of the trigger."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Click always closes."), " The tip has served its purpose the moment the user acts."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Never opens"), " on a pointer that is already dragging, or while a modal is animating in."))))), /*#__PURE__*/React.createElement("div", {
+  className: "callout",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Touch devices have no hover."), " Tooltips do not open on tap. If the information matters on mobile, it belongs in visible help text, a field description, or a Popover opened by an explicit info button.")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Developer API"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "04")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "The shipped component is a ", /*#__PURE__*/React.createElement("strong", null, "compound (slot-based) API"), " built on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "@base-ui/react"), "(the shadcn Base UI variant), not a single prop-driven element. Four exports:", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "Tooltip"), " \xB7 ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "TooltipTrigger"), " \xB7", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "TooltipContent"), " \xB7 ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "TooltipProvider"), ". Content is arbitrary React: a string, or any node."), /*#__PURE__*/React.createElement("pre", {
+  className: "code"
+}, `import {
+  Tooltip, TooltipTrigger, TooltipContent, TooltipProvider,
+} from '@skytek/ui';
+
+// Provider wraps the app once and owns the shared delay group.
+<TooltipProvider>
+  <App />
+</TooltipProvider>
+
+// Basic
+<Tooltip>
+  <TooltipTrigger>
+    <IconButton aria-label="Search" icon={<SearchIcon />} />
+  </TooltipTrigger>
+  <TooltipContent>Search vessels, ports and policies</TooltipContent>
+</Tooltip>
+
+// Placement: side + align + sideOffset live on TooltipContent
+<Tooltip>
+  <TooltipTrigger>Details</TooltipTrigger>
+  <TooltipContent side="right" align="start" sideOffset={6}>
+    Risk score updated 4m ago
+  </TooltipContent>
+</Tooltip>
+
+// Rich content: any node, not just a string
+<Tooltip>
+  <TooltipTrigger>Details</TooltipTrigger>
+  <TooltipContent>
+    <strong>Vessel status</strong>
+    <div>Underway using engine · 12.4 kn</div>
+  </TooltipContent>
+</Tooltip>
+
+// Delay: per-trigger show/hide timing
+<Tooltip>
+  <TooltipTrigger delay={700} closeDelay={300}>Slow</TooltipTrigger>
+  <TooltipContent>Opens after 700ms, closes after 300ms</TooltipContent>
+</Tooltip>
+
+// Controlled: parent owns open state, independent of hover
+<Tooltip open={open} onOpenChange={setOpen}>
+  <TooltipTrigger>Anchor</TooltipTrigger>
+  <TooltipContent>Driven by the parent</TooltipContent>
+</Tooltip>
+
+// Disabled trigger: wrap in a span; disabled elements fire no pointer events
+<Tooltip>
+  <TooltipTrigger>
+    <span tabIndex={0}><Button variant="danger" disabled>Delete</Button></span>
+  </TooltipTrigger>
+  <TooltipContent side="right">
+    You do not have permission to delete portfolios
+  </TooltipContent>
+</Tooltip>`), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 130
+  }
+}, "Prop"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 128
+  }
+}, "On"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 150
+  }
+}, "Type"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 80
+  }
+}, "Default"), /*#__PURE__*/React.createElement("th", null, "Notes"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "side")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "TooltipContent"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "top | right | bottom | left"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "bottom")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Placement relative to the trigger. A preference, not a guarantee: it flips on collision.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "align")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "TooltipContent"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "start | center | end"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "center")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Alignment along the chosen side. Use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "start"), " for edge-aligned toolbar items.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "sideOffset")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "TooltipContent"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "number (px)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "6")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Gap from the trigger.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "delay")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "TooltipTrigger"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "number (ms)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "0")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Show delay, per trigger. The provider supplies the group default.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "closeDelay")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "TooltipTrigger"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "number (ms)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "0")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Hide delay, also the pointer-travel grace period.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "open")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Tooltip"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "boolean"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "\u2014"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Controlled mode. Opens independently of hover.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "onOpenChange")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Tooltip"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "(open) => void"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "\u2014"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Pairs with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "open"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "children")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "TooltipContent"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "ReactNode"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "\u2014"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "String or any node, including a bold title line plus body.")))), /*#__PURE__*/React.createElement("div", {
+  className: "callout",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Collision handling is on by default."), " Base UI flips and shifts the tip to keep it on screen, so you do not wire that yourself. Set ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "side"), " as the preferred edge and let the engine override it."), /*#__PURE__*/React.createElement("div", {
+  className: "callout warn",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("strong", null, "Disabled triggers need a focusable wrapper."), " A ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "disabled"), " button emits no pointer or focus events, so the tip would never open, and \"why is this disabled?\" is exactly when the user needs it. Wrap it in a ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "<span tabIndex=", 0, ">"), ", or use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-disabled"), "instead of the native attribute.")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Spec vs. current build"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "05")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "Four points where the shipped Base UI component and this specification currently differ. The spec column is the target; these are open reconciliation items, not licence to diverge further."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 130
+  }
+}, "Point"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 185
+  }
+}, "Design spec"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 175
+  }
+}, "Current build"), /*#__PURE__*/React.createElement("th", null, "Action"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Arrow")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "10px arrow pointing at the trigger"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "None rendered"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Add it to ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "TooltipContent"), ". Until then a 6px gap is doing all the anchoring work, which is weak in a dense toolbar where several triggers sit close together.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Offset")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--tooltip-offset: 8px")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "sideOffset=", 6)), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Move the default to 8 when the arrow lands; 6 is too tight to clear one.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Default delay")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "400ms open / 100ms close, group-shared"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "0 / 0 unless set per trigger"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Set the group default on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "TooltipProvider"), " so tips stop flashing when the pointer sweeps a toolbar.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Enter motion")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Fade + 4px travel from the trigger edge"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Fade + zoom"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Either works; pick one and apply it to Popover too so the overlays feel related. Both are reduced-motion aware."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Markup & CSS contract"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "06")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "If you are not using the React package, mapping the design onto another framework, or building a one-off; this is the exact contract ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-tooltip"), " expects."), /*#__PURE__*/React.createElement("pre", {
+  className: "code"
+}, `<!-- Trigger is described by the tip, not labelled by it -->
+<button aria-describedby="tip-flag">…</button>
+
+<!-- data-state drives the enter/exit transition; placement class sets the arrow -->
+<span id="tip-flag" role="tooltip"
+      class="ds-tooltip ds-tooltip--top"
+      data-state="open">
+  Flag state: Panama
+</span>`), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 210
+  }
+}, "Class / attribute"), /*#__PURE__*/React.createElement("th", null, "Purpose"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-tooltip")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Base. ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "position: absolute"), " + ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "pointer-events: none"), "; you supply the coordinates.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--top / --bottom / --left / --right")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Arrow edge and the direction of the 4px enter travel.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--rich")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Multi-line variant: roomier padding, enables ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-tooltip-title"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--no-arrow")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Removes the arrow pseudo-element.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "data-state=\"open|closed\"")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Drives opacity + transform. Set ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "closed"), " on mount, then ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "open"), " on the next frame so the transition runs.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-tooltip-anchor")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Optional ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "position: relative"), " inline-flex wrapper for simple, non-portalled cases.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "role=\"tooltip\"")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Required on the tip element."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Accessibility"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "07")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 190
+  }
+}, "Requirement"), /*#__PURE__*/React.createElement("th", null, "Implementation"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Describe, don't label")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The trigger keeps its own accessible name (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label"), " on icon buttons) and points at the tip with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-describedby"), ". Using the tip as the name means a screen reader announces it twice or not at all.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Never focusable")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The tip has ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "pointer-events: none"), " and is not in the tab order. Tab moves from trigger to the next control, never \"into\" the tip.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Dismissible")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("kbd", {
+  className: "ms-kbd"
+}, "Esc"), " closes the open tip without moving focus, WCAG 2.2 ", /*#__PURE__*/React.createElement("em", null, "1.4.13 Content on Hover or Focus"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Hoverable")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "1.4.13 also requires the content stay visible while the pointer travels toward it; the 100ms close grace plus the 8px offset satisfy this. Never place the tip further than the grace period allows.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Persistent")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The tip stays until blur, Esc, scroll or click; it never auto-hides on a timer.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Contrast")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "White on ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--bg-inverse"), " \u2248 16.1:1 in light. In dark the inverse surface becomes light, so the label flips to ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--text-inverse"), " (\u2248 14.8:1).")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Reduced motion")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "prefers-reduced-motion"), " drops the transition to 1ms and removes the travel; the tip still fades in place.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Not for critical info")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Anything required to complete a task must be visible without hover. Tooltips are progressive enhancement only."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Tooltip, or something else?"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "08")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 150
+  }
+}, "Use"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 230
+  }
+}, "When"), /*#__PURE__*/React.createElement("th", null, "Instead of a tooltip because\u2026"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Tooltip")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Naming an icon button, expanding a truncated cell, explaining a disabled control."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Short, non-essential, no interaction.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Popover")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Content with links, buttons, or form controls."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Tooltips are ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "pointer-events: none"), ", a user can never reach a control inside one.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Help text")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Guidance a user needs ", /*#__PURE__*/React.createElement("em", null, "while filling a field"), "."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Hidden-until-hover guidance is missed, and is unreachable on touch.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Inline alert")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Validation errors, warnings that must be acted on."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Errors must persist and be announced, not vanish on pointer-out.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Toast")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Confirming something that already happened."), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Tooltips are anchored to an element, not to an event."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Edge cases"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "09")), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 230
+  }
+}, "Case"), /*#__PURE__*/React.createElement("th", null, "Expected behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Truncated table cell"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Attach only when the text is actually clipped (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "scrollWidth > clientWidth"), "). A tip that repeats fully-visible text is noise.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Trigger unmounts while open"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Tip is removed immediately, no exit animation, an orphaned tip pointing at nothing is worse than a hard cut.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Trigger scrolls out of view"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Close on the nearest scroll container's ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "scroll"), " event rather than repositioning.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Label longer than 240px"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Wraps to a maximum of 3 lines with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "text-wrap: pretty"), ". Longer than that means it is not a tooltip, use a Popover.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Nested inside a modal"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Portals to body but sits at ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--z-tooltip"), ", above the dialog. Focus trap is unaffected: the tip is never focusable.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Two tips open at once"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Impossible by design. The provider keeps a single open tip; opening one closes the other.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "RTL"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "left"), "/", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "right"), " placements swap with direction; ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "top"), "/", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "bottom"), " are unchanged."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Do & don't"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "10")), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 16
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--success-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--success-700)"
+  }
+}, "\u2713 Do")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.7
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Name every icon-only button with a tip ", /*#__PURE__*/React.createElement("em", null, "and"), " an ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label"), "."), /*#__PURE__*/React.createElement("li", null, "Explain ", /*#__PURE__*/React.createElement("em", null, "why"), " a control is disabled."), /*#__PURE__*/React.createElement("li", null, "Keep labels under ~12 words, sentence case."), /*#__PURE__*/React.createElement("li", null, "Show the keyboard shortcut for the same action."), /*#__PURE__*/React.createElement("li", null, "Portal out of scrolling or clipped containers.")))), /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    borderTop: "3px solid var(--danger-500)"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-head"
+}, /*#__PURE__*/React.createElement("h4", {
+  style: {
+    color: "var(--danger-700)"
+  }
+}, "\u2717 Don't")), /*#__PURE__*/React.createElement("div", {
+  style: {
+    padding: 16
+  }
+}, /*#__PURE__*/React.createElement("ul", {
+  style: {
+    margin: 0,
+    paddingLeft: 18,
+    fontSize: 13,
+    color: "var(--text-secondary)",
+    lineHeight: 1.7
+  }
+}, /*#__PURE__*/React.createElement("li", null, "Put links, buttons or inputs inside a tip."), /*#__PURE__*/React.createElement("li", null, "Hide validation errors or required instructions in one."), /*#__PURE__*/React.createElement("li", null, "Repeat text that is already visible on screen."), /*#__PURE__*/React.createElement("li", null, "Attach one to a plain block of body copy."), /*#__PURE__*/React.createElement("li", null, "Auto-dismiss on a timer, or open on tap.")))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Tokens"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "11")), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, [["--tooltip-bg", "var(--bg-inverse)", "Container fill: flips with theme"], ["--tooltip-fg", "var(--white-fixed)", "Label colour (→ --text-inverse in dark)"], ["--tooltip-max-width", "240px", "Wrap boundary"], ["--tooltip-pad-y / -x", "6px / 8px", "Container padding"], ["--tooltip-font-size", "12px", "Label size"], ["--tooltip-radius", "var(--radius-sm)", "Corner radius"], ["--tooltip-arrow", "5px", "Half the arrow square"], ["--tooltip-offset", "8px", "Gap from trigger"], ["--tooltip-shadow", "var(--shadow-md)", "Elevation"], ["--tooltip-delay-in", "400ms", "Pointer rest before open"], ["--tooltip-delay-out", "100ms", "Close grace period"], ["--tooltip-motion", "var(--motion-fast)", "Transition duration"], ["--z-tooltip", "1300", "Above modal and toast"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
+  key: t,
+  className: "token-row",
+  style: {
+    gridTemplateColumns: "230px 190px 1fr"
+  }
+}, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--brand-600)",
+    fontSize: 11
+  }
+}, v), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, r))))), /*#__PURE__*/React.createElement("div", {
+  className: "callout"
+}, /*#__PURE__*/React.createElement("strong", null, "The tooltip test:"), " hide every tooltip in the build and try to complete the task. If anything becomes impossible or ambiguous, that content was never tooltip content, promote it to a visible label, help text or an alert."));
+window.TooltipSpec = TooltipSpec;
+})(); } catch (e) { __ds_ns.__errors.push({ path: "section-tooltips.jsx", error: String((e && e.message) || e) }); }
+
 // section-voice.jsx
 try { (() => {
-/* Section — Voice & terminology */
+/* Section: Voice & terminology */
 
 const VoicePrinciples = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-3"
-}, [["Direct", "Operators are scanning under time pressure. One sentence beats two. Lead with the action or the consequence — not with throat-clearing."], ["Specific", "\"Failed\" is not enough. \"Couldn't fetch vessel — connection timed out after 30 s\" is. Names beat pronouns; numbers beat adjectives."], ["Respectful", "Never blame the user. \"Required\" not \"You forgot…\". Skytek's tone is a calm colleague, not a panicked alert."], ["Consistent", "Same noun for the same thing on every screen. \"Vessel\" everywhere, never \"ship\" in one place and \"vessel\" in another."], ["Plain", "No marketing copy in product UI. No exclamation points. No \"oops\". No emoji. Jargon is OK when it's the right word."], ["Honest", "If we don't know, we say so. If it's slow, we tell the user. Loading more than 3 s shows progress; failing surfaces the cause."]].map(([t, d]) => /*#__PURE__*/React.createElement("div", {
+}, [["Direct", "Operators are scanning under time pressure. One sentence beats two. Lead with the action or the consequence, not with throat-clearing."], ["Specific", "\"Failed\" is not enough. \"Couldn't fetch vessel: connection timed out after 30 s\" is. Names beat pronouns; numbers beat adjectives."], ["Respectful", "Never blame the user. \"Required\" not \"You forgot…\". Skytek's tone is a calm colleague, not a panicked alert."], ["Consistent", "Same noun for the same thing on every screen. \"Vessel\" everywhere, never \"ship\" in one place and \"vessel\" in another."], ["Plain", "No marketing copy in product UI. No exclamation points. No \"oops\". No emoji. Jargon is OK when it's the right word."], ["Honest", "If we don't know, we say so. If it's slow, we tell the user. Loading more than 3 s shows progress; failing surfaces the cause."]].map(([t, d]) => /*#__PURE__*/React.createElement("div", {
   key: t,
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
@@ -17445,7 +22420,7 @@ const VoiceComparisons = () => /*#__PURE__*/React.createElement("div", {
 }, "Prefer"), row.good))));
 const Terminology = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Use"), /*#__PURE__*/React.createElement("th", null, "Not"), /*#__PURE__*/React.createElement("th", null, "Notes"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Vessel")), /*#__PURE__*/React.createElement("td", null, "Ship, boat, craft"), /*#__PURE__*/React.createElement("td", null, "Maritime asset across the product. \"Ship\" only appears in the IMO ship-type taxonomy.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Aircraft")), /*#__PURE__*/React.createElement("td", null, "Plane, jet"), /*#__PURE__*/React.createElement("td", null, "Aviation asset. \"Plane\" reserved for icon alias.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Asset")), /*#__PURE__*/React.createElement("td", null, "Object, entity, thing"), /*#__PURE__*/React.createElement("td", null, "Top-level term covering vessel, aircraft, offshore installation, property.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Policy")), /*#__PURE__*/React.createElement("td", null, "Cover, contract, insurance"), /*#__PURE__*/React.createElement("td", null, "The insurance instrument. \"Cover\" only in legacy report templates being phased out.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Exposure")), /*#__PURE__*/React.createElement("td", null, "Risk amount, sum insured, TSI"), /*#__PURE__*/React.createElement("td", null, "The monetary value at risk. Domain-standard.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Sanctioned")), /*#__PURE__*/React.createElement("td", null, "Banned, blacklisted, restricted"), /*#__PURE__*/React.createElement("td", null, "Specifically: appears on OFAC / UK / EU / UN sanctions lists. Don't use as a general adjective.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Watchlist")), /*#__PURE__*/React.createElement("td", null, "Flagged, marked, monitored"), /*#__PURE__*/React.createElement("td", null, "User-curated list of assets under elevated scrutiny.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Portfolio")), /*#__PURE__*/React.createElement("td", null, "Book, collection, group"), /*#__PURE__*/React.createElement("td", null, "Underwriter-defined grouping of policies.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Region")), /*#__PURE__*/React.createElement("td", null, "Area, territory, zone"), /*#__PURE__*/React.createElement("td", null, "Geographic grouping. \"Area\" reserved for sub-region inside a region.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alert")), /*#__PURE__*/React.createElement("td", null, "Notification, warning, event"), /*#__PURE__*/React.createElement("td", null, "An actionable signal. \"Notification\" is the system-wide bell-icon delivery channel.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Acknowledged")), /*#__PURE__*/React.createElement("td", null, "Seen, viewed, read"), /*#__PURE__*/React.createElement("td", null, "Specifically: a user marked the alert as seen.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Rating")), /*#__PURE__*/React.createElement("td", null, "Score, grade, rank"), /*#__PURE__*/React.createElement("td", null, "A\u2013E PSC compliance rating. Reserved noun \u2014 not generic."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Use"), /*#__PURE__*/React.createElement("th", null, "Not"), /*#__PURE__*/React.createElement("th", null, "Notes"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Vessel")), /*#__PURE__*/React.createElement("td", null, "Ship, boat, craft"), /*#__PURE__*/React.createElement("td", null, "Maritime asset across the product. \"Ship\" only appears in the IMO ship-type taxonomy.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Aircraft")), /*#__PURE__*/React.createElement("td", null, "Plane, jet"), /*#__PURE__*/React.createElement("td", null, "Aviation asset. \"Plane\" reserved for icon alias.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Asset")), /*#__PURE__*/React.createElement("td", null, "Object, entity, thing"), /*#__PURE__*/React.createElement("td", null, "Top-level term covering vessel, aircraft, offshore installation, property.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Policy")), /*#__PURE__*/React.createElement("td", null, "Cover, contract, insurance"), /*#__PURE__*/React.createElement("td", null, "The insurance instrument. \"Cover\" only in legacy report templates being phased out.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Exposure")), /*#__PURE__*/React.createElement("td", null, "Risk amount, sum insured, TSI"), /*#__PURE__*/React.createElement("td", null, "The monetary value at risk. Domain-standard.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Sanctioned")), /*#__PURE__*/React.createElement("td", null, "Banned, blacklisted, restricted"), /*#__PURE__*/React.createElement("td", null, "Specifically: appears on OFAC / UK / EU / UN sanctions lists. Don't use as a general adjective.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Watchlist")), /*#__PURE__*/React.createElement("td", null, "Flagged, marked, monitored"), /*#__PURE__*/React.createElement("td", null, "User-curated list of assets under elevated scrutiny.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Portfolio")), /*#__PURE__*/React.createElement("td", null, "Book, collection, group"), /*#__PURE__*/React.createElement("td", null, "Underwriter-defined grouping of policies.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Region")), /*#__PURE__*/React.createElement("td", null, "Area, territory, zone"), /*#__PURE__*/React.createElement("td", null, "Geographic grouping. \"Area\" reserved for sub-region inside a region.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Alert")), /*#__PURE__*/React.createElement("td", null, "Notification, warning, event"), /*#__PURE__*/React.createElement("td", null, "An actionable signal. \"Notification\" is the system-wide bell-icon delivery channel.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Acknowledged")), /*#__PURE__*/React.createElement("td", null, "Seen, viewed, read"), /*#__PURE__*/React.createElement("td", null, "Specifically: a user marked the alert as seen.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Rating")), /*#__PURE__*/React.createElement("td", null, "Score, grade, rank"), /*#__PURE__*/React.createElement("td", null, "A\u2013E PSC compliance rating. Reserved noun: not generic."))));
 const CaseRules = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-2"
 }, /*#__PURE__*/React.createElement("div", {
@@ -17470,7 +22445,7 @@ const CaseRules = () => /*#__PURE__*/React.createElement("div", {
     margin: 0,
     paddingLeft: 18
   }
-}, /*#__PURE__*/React.createElement("li", null, "\"Add vessel to portfolio\" \u2014 not \"Add Vessel To Portfolio\""), /*#__PURE__*/React.createElement("li", null, "\"Sanctioned vessels\" \u2014 proper-noun \"Sanctioned\" stays cap"), /*#__PURE__*/React.createElement("li", null, "\"Last seen\" \u2014 not \"Last Seen\"")))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, "\"Add vessel to portfolio\", not \"Add Vessel To Portfolio\""), /*#__PURE__*/React.createElement("li", null, "\"Sanctioned vessels\", proper-noun \"Sanctioned\" stays cap"), /*#__PURE__*/React.createElement("li", null, "\"Last seen\", not \"Last Seen\"")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-card-head"
@@ -17495,7 +22470,7 @@ const CaseRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("li", null, "\"Skytek Real World\", \"Marine Dashboard\""), /*#__PURE__*/React.createElement("li", null, "\"Q1 2026 Sanctions Exposure Report\""), /*#__PURE__*/React.createElement("li", null, "\"OFAC SDN List\", \"Marshall Islands Flag Authority\"")))));
 const NumberStyle = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Case"), /*#__PURE__*/React.createElement("th", null, "Style"), /*#__PURE__*/React.createElement("th", null, "Example"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "In prose, < 10"), /*#__PURE__*/React.createElement("td", null, "Spell out"), /*#__PURE__*/React.createElement("td", null, "\"Three vessels were updated.\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "In prose, \u2265 10"), /*#__PURE__*/React.createElement("td", null, "Numerals"), /*#__PURE__*/React.createElement("td", null, "\"23 vessels were updated.\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "In UI labels, any value"), /*#__PURE__*/React.createElement("td", null, "Numerals"), /*#__PURE__*/React.createElement("td", null, "\"7 active alerts\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Start of sentence"), /*#__PURE__*/React.createElement("td", null, "Spell out OR rewrite"), /*#__PURE__*/React.createElement("td", null, "\"Twelve vessels\u2026\" OR \"We updated 12 vessels\u2026\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Units & measurements"), /*#__PURE__*/React.createElement("td", null, "Numerals + non-breaking space"), /*#__PURE__*/React.createElement("td", null, "\"12.4 kn\", \"248 nm\" \u2014 see Formatting chapter")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Money"), /*#__PURE__*/React.createElement("td", null, "Numerals + symbol"), /*#__PURE__*/React.createElement("td", null, "\"$2.4M\" tile, \"$2,400,000\" table")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Time"), /*#__PURE__*/React.createElement("td", null, "Numerals + zone"), /*#__PURE__*/React.createElement("td", null, "\"14:32 UTC\" \u2014 never \"two thirty\""))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Case"), /*#__PURE__*/React.createElement("th", null, "Style"), /*#__PURE__*/React.createElement("th", null, "Example"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "In prose, < 10"), /*#__PURE__*/React.createElement("td", null, "Spell out"), /*#__PURE__*/React.createElement("td", null, "\"Three vessels were updated.\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "In prose, \u2265 10"), /*#__PURE__*/React.createElement("td", null, "Numerals"), /*#__PURE__*/React.createElement("td", null, "\"23 vessels were updated.\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "In UI labels, any value"), /*#__PURE__*/React.createElement("td", null, "Numerals"), /*#__PURE__*/React.createElement("td", null, "\"7 active alerts\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Start of sentence"), /*#__PURE__*/React.createElement("td", null, "Spell out OR rewrite"), /*#__PURE__*/React.createElement("td", null, "\"Twelve vessels\u2026\" OR \"We updated 12 vessels\u2026\"")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Units & measurements"), /*#__PURE__*/React.createElement("td", null, "Numerals + non-breaking space"), /*#__PURE__*/React.createElement("td", null, "\"12.4 kn\", \"248 nm\", see Formatting chapter")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Money"), /*#__PURE__*/React.createElement("td", null, "Numerals + symbol"), /*#__PURE__*/React.createElement("td", null, "\"$2.4M\" tile, \"$2,400,000\" table")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Time"), /*#__PURE__*/React.createElement("td", null, "Numerals + zone"), /*#__PURE__*/React.createElement("td", null, "\"14:32 UTC\", never \"two thirty\""))));
 const VoiceSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "subsection",
   style: {
@@ -17508,11 +22483,11 @@ const VoiceSection = () => /*#__PURE__*/React.createElement(React.Fragment, null
   style: {
     maxWidth: 820
   }
-}, "Words are the smallest tokens in the system, and the most often duplicated. A \"Save\" button on one screen and an \"Update\" button on another are the same UI inconsistency as two button shades of blue. This chapter is the vocabulary \u2014 verbs, nouns, tone, and the rules that hold them together.")), /*#__PURE__*/React.createElement("div", {
+}, "Words are the smallest tokens in the system, and the most often duplicated. A \"Save\" button on one screen and an \"Update\" button on another are the same UI inconsistency as two button shades of blue. This chapter is the vocabulary, verbs, nouns, tone, and the rules that hold them together.")), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, "Tone \u2014 six principles"), /*#__PURE__*/React.createElement(VoicePrinciples, null)), /*#__PURE__*/React.createElement("div", {
+}, "Tone: six principles"), /*#__PURE__*/React.createElement(VoicePrinciples, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -17524,7 +22499,7 @@ const VoiceSection = () => /*#__PURE__*/React.createElement(React.Fragment, null
   className: "subsection-title"
 }, "Button verbs"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "Twelve verbs cover the product. If you reach for a thirteenth, propose it via RFC \u2014 most \"new verb\" needs map to one of these."), /*#__PURE__*/React.createElement(VerbConventions, null)), /*#__PURE__*/React.createElement("div", {
+}, "Twelve verbs cover the product. If you reach for a thirteenth, propose it via RFC, most \"new verb\" needs map to one of these."), /*#__PURE__*/React.createElement(VerbConventions, null)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -17712,7 +22687,7 @@ function useTweaks(defaults) {
 
 // ── TweaksPanel ─────────────────────────────────────────────────────────────
 // Floating shell. Registers the protocol listener BEFORE announcing
-// availability — if the announce ran first, the host's activate could land
+// availability, if the announce ran first, the host's activate could land
 // before our handler exists and the toolbar toggle would silently no-op.
 // The close button posts __edit_mode_dismissed so the host's toolbar toggle
 // flips off in lockstep; the host echoes __deactivate_edit_mode back which
@@ -17897,7 +22872,7 @@ function TweakRadio({
   const n = opts.length;
 
   // The active value is read by pointer-move handlers attached for the lifetime
-  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  // of a drag, ref it so a stale closure doesn't fire onChange for every move.
   const valueRef = React.useRef(value);
   valueRef.current = value;
   const segAt = clientX => {
