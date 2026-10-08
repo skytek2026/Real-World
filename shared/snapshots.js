@@ -73,6 +73,13 @@
   .snap-dl:hover:not([disabled]){background:var(--slate-50,#f8fafc);border-color:var(--border-strong,#cbd5e1)}
   .snap-dl:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
   .snap-dl[disabled]{opacity:.6;cursor:progress}
+  .snap-acts{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
+  .snap-del{display:inline-grid;place-items:center;width:28px;height:28px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--text-muted,#64748b);cursor:pointer;transition:background 140ms,color 140ms,border-color 140ms}
+  .snap-del:hover{background:var(--danger-050,#fef2f2);color:var(--danger-700,#b91c1c);border-color:var(--danger-100,#fee2e2)}
+  .snap-del:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .ds-toast-side{display:inline-flex;align-items:center;gap:4px}
+  .ds-toast-action{height:24px;padding:0 8px;border:0;border-radius:6px;background:transparent;font:inherit;font-size:12px;font-weight:600;color:var(--brand-600,#2d7ffb);cursor:pointer}
+  .ds-toast-action:hover{background:var(--brand-050,#eff6ff)}
   .snap-dl-na{color:var(--text-disabled,#94a3b8)}
   .snap-empty{padding:32px 16px;text-align:center;color:var(--text-muted,#64748b);font-size:13px}
   .snap-empty b{display:block;color:var(--text-primary,#0f172a);font-weight:600;margin-bottom:2px}
@@ -164,8 +171,9 @@
       const tone = o.tone || 'info';
       t.dur = o.loading ? 0 : (o.duration ?? 4000);
       el.className = 'ds-toast ds-toast--' + tone;
-      el.innerHTML = `${o.loading ? '<span class="ds-toast-spinner" aria-hidden="true"></span>' : ICO[tone]}<div class="ds-toast-body"><div class="ds-toast-title">${o.title}</div>${o.desc ? `<div class="ds-toast-desc">${o.desc}</div>` : ''}</div><div class="ds-toast-side"><button type="button" class="ds-toast-dismiss" aria-label="Dismiss notification"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>${t.dur ? `<span class="ds-toast-timer" style="animation-duration:${t.dur}ms"></span>` : ''}`;
+      el.innerHTML = `${o.loading ? '<span class="ds-toast-spinner" aria-hidden="true"></span>' : ICO[tone]}<div class="ds-toast-body"><div class="ds-toast-title">${o.title}</div>${o.desc ? `<div class="ds-toast-desc">${o.desc}</div>` : ''}</div><div class="ds-toast-side">${o.action ? `<button type="button" class="ds-toast-action">${o.action.label}</button>` : ''}<button type="button" class="ds-toast-dismiss" aria-label="Dismiss notification"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>${t.dur ? `<span class="ds-toast-timer" style="animation-duration:${t.dur}ms"></span>` : ''}`;
       el.querySelector('.ds-toast-dismiss').onclick = close;
+      const ab = el.querySelector('.ds-toast-action'); if (ab) ab.onclick = () => { o.action.onClick(); close(); };
       clearTimeout(t.timer); t.timer = null; t.left = t.dur;
       if (t.dur && !expanded) t.resume();
       layout();
@@ -259,7 +267,7 @@
       <div class="overflow-x-auto scroll-thin">
         <table class="snap-tbl">
           <thead><tr>${th('date', 'Snapshot Date')}${th('created', 'Creation Date')}${th('status', 'Status')}<th style="text-align:right;width:1%">Actions</th></tr></thead>
-          <tbody>${pageRows.length ? pageRows.map(r => `<tr class="${r.id === snapNewId ? 'snap-row-new' : ''}"><td style="font-variant-numeric:tabular-nums">${r.dateTxt}</td><td style="font-weight:400;color:#334155;font-variant-numeric:tabular-nums">${r.createdTxt}</td><td>${badge(r.status)}</td><td style="text-align:right">${r.status === 'Ready' ? `<button type="button" class="snap-dl" data-snap-dl="${r.id}" aria-label="Download snapshot for ${pretty(r.date)} as Excel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg><span>Download</span></button>` : `<span class="snap-dl-na" title="Available once the snapshot is ready">—</span>`}</td></tr>`).join('') : ''}</tbody>
+          <tbody>${pageRows.length ? pageRows.map(r => `<tr class="${r.id === snapNewId ? 'snap-row-new' : ''}"><td style="font-variant-numeric:tabular-nums">${r.dateTxt}</td><td style="font-weight:400;color:#334155;font-variant-numeric:tabular-nums">${r.createdTxt}</td><td>${badge(r.status)}</td><td style="text-align:right"><div class="snap-acts">${r.status === 'Ready' ? `<button type="button" class="snap-dl" data-snap-dl="${r.id}" aria-label="Download snapshot for ${pretty(r.date)} as Excel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg><span>Download</span></button>` : `<span class="snap-dl-na" title="Available once the snapshot is ready">—</span>`}<button type="button" class="snap-del" data-snap-del="${r.id}" title="Delete snapshot" aria-label="Delete snapshot for ${pretty(r.date)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M10 11v6M14 11v6"></path></svg></button></div></td></tr>`).join('') : ''}</tbody>
         </table>
         ${pageRows.length ? '' : empty}
       </div>
@@ -364,6 +372,13 @@
       if (btn && btn.isConnected) { btn.disabled = false; btn.querySelector('span').textContent = 'Download'; }
     }
   }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-snap-del]'); if (!b) return;
+    const arr = load(), i = arr.findIndex(x => x.id === b.dataset.snapDel); if (i < 0) return;
+    const [gone] = arr.splice(i, 1); save(); refreshBody();
+    dsToast({ tone: 'success', title: 'Snapshot deleted', desc: `${pretty(gone.date)} has been removed.`, duration: 6000,
+      action: { label: 'Undo', onClick: () => { const a = load(); a.splice(Math.min(i, a.length), 0, gone); save(); refreshBody(); } } });
+  });
   document.addEventListener('click', e => { const b = e.target.closest('[data-snap-dl]'); if (b && !b.disabled) download(b.dataset.snapDl, b); });
 
   /* ── Single-date picker (DS datepicker) ── */
