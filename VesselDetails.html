@@ -198,16 +198,17 @@
   }
   @media (min-width:1024px) { .vessel-track-row { height:660px; } .vessel-track-row > * { min-height:0; } .vessel-track-row > :last-child { grid-column:span 2 / span 2; } }
   @media (max-width:1023px) { .vessel-track-row > :first-child { max-height:660px; } }
-  .sc-toggle { all:unset; display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:#334155; border-radius:4px; }
-  .sc-toggle:hover { color:#0f172a; }
-  .sc-toggle:focus-visible { outline:2px solid #60a5fa; outline-offset:2px; }
+  .sc-toggle { all:unset; display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:var(--brand-600,#2d7ffb); font-weight:500; border-radius:4px; }
+  .sc-toggle:hover { color:var(--brand-700,#1d6ae5); }
+  .sc-toggle:hover > span { text-decoration:underline; text-underline-offset:2px; }
+  .sc-toggle:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; }
   .sc-rel { display:inline-block; padding-left:24px; }
   .sc-count { font-size:10.5px; font-weight:600; color:#475569; background:#f1f5f9; border-radius:9999px; padding:1px 7px; }
-  .sc-link { color:#2d7ffb; font-weight:500; }
-  .sc-link:hover { color:#1d6ae5; text-decoration:underline; text-underline-offset:2px; }
-  .sc-child { background:#f8fbff; }
+  .sc-link { color:var(--brand-600,#2d7ffb); font-weight:500; }
+  .sc-link:hover { color:var(--brand-700,#1d6ae5); text-decoration:underline; text-underline-offset:2px; }
+  .sc-child { background:var(--brand-50,#eff6ff); }
   .sc-child > td:first-child { padding-left:44px; position:relative; }
-  .sc-child > td:first-child::before { content:''; position:absolute; left:19px; top:0; bottom:0; border-left:1px solid #dbeafe; }
+  .sc-child > td:first-child::before { content:''; position:absolute; left:19px; top:0; bottom:0; border-left:1px solid var(--brand-100,#dbeafe); }
   .sc-child-rel { font-size:12px; }
   .trk-leaflet .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 28px rgb(15 23 42/.22); }
   .trk-leaflet .leaflet-popup-content { margin:0; width:280px !important; max-width:calc(100vw - 48px); font-family:inherit; }
@@ -3075,7 +3076,7 @@ function InspectionTable() {
             const badBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`;
             const LISTS = ['ofac','un','eu','aus','ofsi'];
             const cells = hit => LISTS.map(k => `<td class="px-3 py-2 text-center">${hit && hit[k] ? badBadge : okBadge}</td>`).join('');
-            const folder = open => `<svg width="16" height="16" viewBox="0 0 24 24" fill="#dbeafe" stroke="#2d7ffb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/><g stroke-width="2.5">${open ? '<path d="M9 13h6"/>' : '<path d="M12 10v6"/><path d="M9 13h6"/>'}</g></svg>`;
+            const folder = open => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${open ? '<path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/>' : '<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>'}</svg>`;
             let out = '', zi = 0;
             SANCTION_COMPLIANCE.forEach((r, i) => {
               const open = state.scExpanded.has(i), kids = r.countries || [];

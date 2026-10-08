@@ -62,6 +62,11 @@
   .rtabs{align-items:stretch}
   .rtab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .rtab-pill.is-init{transition:none}
+  .rtabs--cov .rtab{font-size:12.5px;padding:7px 8px}
+  .rtabs--cov .rtab[aria-selected="true"],.rtabs--view .rtab[aria-selected="true"]{background:transparent}
+  .rtabs--view{display:inline-flex;width:auto}
+  .rtabs--view .rtab{flex:none;font-size:12.5px;padding:6px 14px}
+  .rtabs--view .rtab-label{display:inline-flex;align-items:center;gap:6px}
   .rg-filter-btn{width:100%;height:32px;display:flex;align-items:center;gap:8px;padding:0 10px;background:#fff;border:1px solid #e2e8f0;border-radius:var(--radius-md,8px);font-family:inherit;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;transition:background .15s,border-color .15s}
   .rg-filter-btn:hover{background:#f8fafc;border-color:#cbd5e1}
   .rg-map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;transition:background .15s}
@@ -434,7 +439,8 @@ function setMapType(type) {
 }
 
 /* ── SVG icons ────────────────────────────────────────────────────────────── */
-const FOLDER_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
+const FOLDER_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+const FOLDER_OPEN_SVG = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#2563eb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
 const CAL_SVG   = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 const INFO_SVG  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
 const MAP_ICO   = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>`;
@@ -545,13 +551,12 @@ function PanelMyRegions(d) {
         const hasSub = r.sub && r.sub.length > 0;
         return `<div class="r-row" data-folder="${r.id}" style="cursor:${hasSub?'pointer':'default'}">
           <span style="display:flex;align-items:center;gap:4px;flex-shrink:0">
-            ${hasSub ? CHEV(open) : '<span style="width:10px"></span>'}
-            ${FOLDER_SVG}
+            ${open && hasSub ? FOLDER_OPEN_SVG : FOLDER_SVG}
           </span>
           <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:13px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name} <span style="color:#94a3b8;font-weight:400">(${r.count.toLocaleString()})</span></span>
           <span style="color:#334155;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
         </div>
-        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:5px 0 5px 26px;border-bottom:1px solid #f8fafc;font-size:12.5px">
+        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:5px 0 5px 12px;border-bottom:1px solid #f8fafc;font-size:12.5px">
           <span style="width:12px;height:1px;background:#e2e8f0;flex-shrink:0"></span>
           <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
           <span style="color:#64748b;font-variant-numeric:tabular-nums;font-size:12px">${s.exposure}</span>
@@ -582,13 +587,12 @@ function PanelRealWorldRegions(d) {
         const hasSub = r.sub && r.sub.length > 0;
         return `<div class="r-row" data-folder="${r.id}" style="cursor:${hasSub?'pointer':'default'}">
           <span style="display:flex;align-items:center;gap:4px;flex-shrink:0">
-            ${hasSub ? CHEV(open) : '<span style="width:10px"></span>'}
-            ${FOLDER_SVG}
+            ${open && hasSub ? FOLDER_OPEN_SVG : FOLDER_SVG}
           </span>
           <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis">${r.name}</span>
           <span style="color:#334155;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
         </div>
-        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:5px 0 5px 26px;border-bottom:1px solid #f8fafc;font-size:12.5px">
+        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:5px 0 5px 12px;border-bottom:1px solid #f8fafc;font-size:12.5px">
           <span style="width:12px;height:1px;background:#e2e8f0;flex-shrink:0"></span>
           <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
           <span style="color:#64748b;font-variant-numeric:tabular-nums;font-size:12px">${s.exposure}</span>
@@ -601,8 +605,9 @@ function PanelRealWorldRegions(d) {
 function PanelStats(d) {
   const s = d.stats[activeCovTab] || Object.values(d.stats)[0];
   return `
-  <div class="info-panel scroll-thin" style="flex:2;min-width:0;overflow-y:auto;min-height:0">
-    <div style="font-size:14px;font-weight:700;color:#0f172a;margin:-16px -16px 14px;padding:14px 16px;border-bottom:1px solid #f1f5f9">${d.statsTitle}</div>
+  <div class="info-panel" style="flex:2;min-width:0;min-height:0;padding:0;display:flex;flex-direction:column;overflow:hidden">
+    <div style="font-size:14px;font-weight:700;color:#0f172a;padding:14px 16px;border-bottom:1px solid #f1f5f9;flex-shrink:0">${d.statsTitle}</div>
+    <div style="padding:14px 16px 0;flex-shrink:0">
     <div style="font-size:11.5px;color:#64748b;margin-bottom:5px">Date Range:</div>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
       <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e2e8f0;border-radius:7px;padding:0 8px;font-size:12.5px;color:#334155;background:#f8fafc;outline:none;font-family:inherit;min-width:0" />
@@ -613,9 +618,12 @@ function PanelStats(d) {
       </div>
     </div>
     <!-- Coverage tabs -->
-    <div style="display:flex;align-items:center;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px;padding:4px;gap:4px;margin-bottom:12px">
-      ${d.covTabs.map(t => `<button class="cov-tab ${t===activeCovTab?'active':''}" data-cov="${t}">${t}</button>`).join('')}
+    <div class="rtabs rtabs--cov" id="rg-covtabs" role="tablist" style="margin-bottom:12px">
+      <span class="rtab-pill is-init" id="rg-covtabs-pill"></span>
+      ${d.covTabs.map(t => `<button class="rtab" role="tab" aria-selected="${t===activeCovTab}" data-cov="${t}"><span class="rtab-label">${t}</span></button>`).join('')}
     </div>
+    </div>
+    <div class="scroll-thin" style="flex:1;min-height:0;overflow-y:auto;padding:0 16px 16px">
     <!-- Stats grid -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #f1f5f9;border-radius:10px;overflow:hidden;flex-shrink:0">
       <!-- Avg row -->
@@ -649,6 +657,7 @@ function PanelStats(d) {
         <div style="display:inline-block;background:#f1f5f9;color:#334155;font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:3px">${s.loA}</div>
         <div style="font-size:11px;color:#94a3b8">${s.loDate}</div>
       </div>
+    </div>
     </div>
   </div>`;
 }
@@ -738,9 +747,10 @@ function Content() {
       <div style="height:500px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
         <!-- Card header with Map/List toggle -->
         <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px;flex-shrink:0;background:#fff;">
-          <div class="view-toggle">
-            <button class="view-btn ${viewMode==='Map'?'active':''}" data-view="Map">${MAP_ICO} Map</button>
-            <button class="view-btn ${viewMode==='List'?'active':''}" data-view="List">${LIST_ICO} List</button>
+          <div class="rtabs rtabs--view" id="rg-viewtabs" role="tablist">
+            <span class="rtab-pill is-init" id="rg-viewtabs-pill"></span>
+            <button class="rtab" role="tab" aria-selected="${viewMode==='Map'}" data-view="Map"><span class="rtab-label">${MAP_ICO} Map</span></button>
+            <button class="rtab" role="tab" aria-selected="${viewMode==='List'}" data-view="List"><span class="rtab-label">${LIST_ICO} List</span></button>
           </div>
         </div>
         <!-- Body -->
@@ -764,15 +774,16 @@ function rc() {
 
 window.addEventListener('resize', () => positionMyTabsPill());
 
-function positionMyTabsPill() {
-  const group = document.getElementById('rg-mytabs');
-  const pill = document.getElementById('rg-mytabs-pill');
+function positionMyTabsPill() { positionRtabPill('rg-mytabs', '_rgMyPill'); positionRtabPill('rg-covtabs', '_rgCovPill'); positionRtabPill('rg-viewtabs', '_rgViewPill'); }
+function positionRtabPill(gid, key) {
+  const group = document.getElementById(gid);
+  const pill = document.getElementById(gid + '-pill');
   if (!group || !pill) return;
   const active = group.querySelector('.rtab[aria-selected="true"]');
   if (!active) return;
   const g = group.getBoundingClientRect(), a = active.getBoundingClientRect();
   const w = a.width, x = a.left - g.left;
-  const prev = window._rgMyPill;
+  const prev = window[key];
   if (prev && (prev.w !== w || prev.x !== x)) {
     pill.classList.add('is-init');
     pill.style.width = prev.w + 'px';
@@ -787,39 +798,26 @@ function positionMyTabsPill() {
     void pill.offsetWidth;
     pill.classList.remove('is-init');
   }
-  window._rgMyPill = { w:w, x:x };
+  window[key] = { w:w, x:x };
 }
 
-function positionRegionPill(animate) {
+function positionRegionPill() {
   const group = document.getElementById('rg-cat-tabs');
   const pill  = document.getElementById('rg-cat-pill');
   if (!group || !pill) return;
   const active = group.querySelector('.cat-tab[aria-selected="true"]');
   if (!active) return;
-  const gRect = group.getBoundingClientRect();
-  const aRect = active.getBoundingClientRect();
-  const targetW = aRect.width;
-  const targetX = aRect.left - gRect.left;
-  // If we have a saved previous position and want to animate from it, apply it first
-  if (animate && window._rgPrevPill) {
+  const g = group.getBoundingClientRect(), r = active.getBoundingClientRect();
+  const w = r.width, x = r.left - g.left, prev = window._rgPrevPill;
+  if (prev && (prev.w !== w || prev.x !== x)) {
     pill.classList.add('is-init');
-    pill.style.width = window._rgPrevPill.w + 'px';
-    pill.style.transform = `translateX(${window._rgPrevPill.x}px)`;
-    // Double-rAF: first frame commits the old transform/width with transition off,
-    // second frame re-enables transition and sets the target — browser animates the diff.
-    requestAnimationFrame(() => {
-      pill.classList.remove('is-init');
-      requestAnimationFrame(() => {
-        pill.style.width = targetW + 'px';
-        pill.style.transform = `translateX(${targetX}px)`;
-      });
-    });
-  } else {
-    pill.style.width = targetW + 'px';
-    pill.style.transform = `translateX(${targetX}px)`;
-    requestAnimationFrame(() => requestAnimationFrame(() => pill.classList.remove('is-init')));
+    pill.style.width = prev.w + 'px'; pill.style.transform = 'translateX(' + prev.x + 'px)';
+    void pill.offsetWidth;
+    pill.classList.remove('is-init');
   }
-  window._rgPrevPill = { w: targetW, x: targetX };
+  pill.style.width = w + 'px'; pill.style.transform = 'translateX(' + x + 'px)';
+  if (!prev) { void pill.offsetWidth; pill.classList.remove('is-init'); }
+  window._rgPrevPill = { w: w, x: x };
 }
 
 function wire() {

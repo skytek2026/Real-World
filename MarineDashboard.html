@@ -443,6 +443,7 @@ function positionTabPills() {
 
 function PortfolioCard() {
   const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
   const sortIco = `<span style="font-size:10px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   const statsRow = `
@@ -469,8 +470,7 @@ function PortfolioCard() {
         <div class="border-b border-ink-100 last:border-0">
           <button data-group-idx="${gi}" class="w-full text-left px-3 py-2 hover:bg-ink-50 flex items-center justify-between gap-2 text-xs" style="gap:8px">
             <span class="inline-flex items-center gap-1.5 min-w-0 flex-1">
-              <span style="color:#9ca3af;flex-shrink:0">${chevron}</span>
-              ${folderIco}
+              ${isExpanded ? folderOpenIco : folderIco}
               <span class="text-brand-600 font-semibold truncate hover:underline">${g.name}</span>
             </span>
             <span class="flex items-center shrink-0" style="gap:20px">
@@ -482,7 +482,7 @@ function PortfolioCard() {
             const pf = PORTFOLIOS.find(p => p.name === pName) || { name: pName, policies: '—', exposure: '—' };
             const pfIdx = PORTFOLIOS.indexOf(pf);
             return `
-          <button data-pf-idx="${pfIdx}" class="w-full text-left pl-9 pr-3 py-1.5 hover:bg-ink-50 flex items-center justify-between gap-2 text-xs bg-ink-50/60">
+          <button data-pf-idx="${pfIdx}" class="w-full text-left pl-5 pr-3 py-1.5 hover:bg-ink-50 flex items-center justify-between gap-2 text-xs bg-ink-50/60">
             <span class="text-brand-500 font-medium truncate">${pf.name}</span>
             <span class="flex items-center shrink-0" style="gap:20px">
               <span class="tabular-nums text-ink-500 text-right" style="min-width:80px">${typeof pf.policies === 'number' ? pf.policies : pf.policies}</span>

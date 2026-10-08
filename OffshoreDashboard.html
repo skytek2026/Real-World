@@ -347,7 +347,8 @@ function positionTabPills() {
 /* ----------- CARDS ----------- */
 function PortfolioCard() {
   const totalInterests = PORTFOLIOS.reduce((sum, p) => sum + (p.policies || 0), 0).toLocaleString();
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
 
   const statsCard = `
     <div style="padding:14px 16px 6px;display:flex;justify-content:center;" class="shrink-0">
@@ -374,8 +375,7 @@ function PortfolioCard() {
         <div>
           <button data-off-group-idx="${gi}" class="w-full text-left px-3 py-2 hover:bg-ink-50 grid grid-cols-[minmax(0,1fr)_70px_90px] gap-4 items-center text-xs">
             <span class="inline-flex items-center gap-2 min-w-0">
-              ${chevron}
-              ${folderIco}
+              ${isExpanded ? folderOpenIco : folderIco}
               <span class="text-brand-600 font-semibold truncate hover:underline">${g.name}</span>
             </span>
             <span class="tabular-nums text-ink-700 text-right">${g.policies.toLocaleString()}</span>
@@ -383,7 +383,7 @@ function PortfolioCard() {
           </button>
           ${isExpanded ? g.children.map(c => `
             <div class="px-3 py-2 grid grid-cols-[minmax(0,1fr)_70px_90px] gap-4 items-center text-xs bg-ink-50/40 hover:bg-ink-50">
-              <span class="text-brand-500 font-medium truncate pl-9">${c.name}</span>
+              <span class="text-brand-500 font-medium truncate pl-6">${c.name}</span>
               <span class="tabular-nums text-ink-600 text-right">${c.policies.toLocaleString()}</span>
               <span class="tabular-nums text-right font-semibold text-ink-800">${c.exposure}</span>
             </div>
@@ -434,7 +434,8 @@ function PortfolioCard() {
 }
 
 function RegionsCard() {
-  const folderSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
+  const folderSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderOpenSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
 
   const renderGroup = (groupKey, group, gi) => {
     const idKey = `${groupKey}-${gi}`;
@@ -444,15 +445,14 @@ function RegionsCard() {
       <div>
         <button data-region-grp="${idKey}" class="w-full text-left px-3 py-2 hover:bg-ink-50 grid grid-cols-[minmax(0,1fr)_auto] gap-3 items-center text-xs">
           <span class="inline-flex items-center gap-2 min-w-0">
-            ${chevron}
-            ${folderSvg}
+            ${isExpanded ? folderOpenSvg : folderSvg}
             <span class="text-brand-600 font-medium truncate hover:underline">${group.name} <span class="text-ink-500 font-normal">(${group.count.toLocaleString()})</span></span>
           </span>
           <span class="tabular-nums text-right font-semibold text-ink-900">${group.exposure}</span>
         </button>
         ${isExpanded ? (group.children || []).map(c => `
           <div class="px-3 py-1.5 grid grid-cols-[minmax(0,1fr)_auto] gap-3 items-center text-xs bg-ink-50/40 hover:bg-ink-50">
-            <span class="text-brand-500 font-medium truncate pl-9">${c.name} <span class="text-ink-500 font-normal">(${c.count.toLocaleString()})</span></span>
+            <span class="text-brand-500 font-medium truncate pl-6">${c.name} <span class="text-ink-500 font-normal">(${c.count.toLocaleString()})</span></span>
             <span class="tabular-nums text-right text-ink-700">${c.exposure}</span>
           </div>
         `).join('') : ''}

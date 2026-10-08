@@ -13,7 +13,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
+  .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
   #region-map{position:absolute;inset:0}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e2e8f0!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#334155!important;line-height:30px!important}
@@ -264,6 +264,34 @@ function mrdFlag(cc) {
 
 /* ── Notifications data ──────────────────────────────────────────────────── */
 const NOTIF_REGION = 'Persian Gulf, Oman, IO, Aden, S Red Sea [JWC]';
+const CASUALTIES = [
+  { date:'2023-09-11', vessel:'ENVAR',             place:'E Mediterranean Black Sea', type:'Hull Mchy Damage',  severity:'Not Serious', loc:'At Sea',                  desc:'Hull Mchy Equip Damage Failure' },
+  { date:'2023-06-17', vessel:'ALFA WATAN',        place:'E Mediterranean Black Sea', type:'Hull Mchy Damage',  severity:'Not Serious', loc:'At Sea',                  desc:'Hull Mchy Equip Damage Failure' },
+  { date:'2022-03-11', vessel:'KAPITAN SHYRIAGIN', place:'E Mediterranean Black Sea', type:'Wrecked Stranded',  severity:'Serious',     loc:'Restricted Waters',       desc:'Wrecked Stranded' },
+  { date:'2019-12-01', vessel:'Royad Mammadov',    place:'E Mediterranean Black Sea', type:'Wrecked Stranded',  severity:'Not Serious', loc:'Estuary River',           desc:'' },
+  { date:'2019-03-29', vessel:'ALFA WATAN',        place:'E Mediterranean Black Sea', type:'Hull Mchy Damage',  severity:'Not Serious', loc:'In Port Harbour Dock',    desc:'' },
+  { date:'2018-09-01', vessel:'Britta K.',         place:'W Mediterranean',           type:'Hull Mchy Damage',  severity:'Serious',     loc:'At Sea',                  desc:'' },
+  { date:'2017-10-08', vessel:'ALFA WATAN',        place:'E Mediterranean Black Sea', type:'Collision',         severity:'Not Serious', loc:'Restricted Waters',       desc:'' },
+];
+const CAS_COLS = [['date','Date'],['vessel','Vessel'],['place','Place of Incident'],['type','Casualty Type'],['severity','Severity'],['loc','Location Type'],['desc','Description']];
+let casQuery = '', casSort = { key:'date', dir:-1 };
+function casHead() {
+  return CAS_COLS.map(([k,l]) => { const on = casSort.key === k; return `<th aria-sort="${on ? (casSort.dir > 0 ? 'ascending' : 'descending') : 'none'}" data-cas-sort="${k}" style="cursor:pointer"><span class="th-in">${l} ${window.dsSortInd(on, casSort.dir > 0)}</span></th>`; }).join('');
+}
+function casRows() {
+  const q = casQuery.trim().toLowerCase();
+  const rows = CASUALTIES.filter(c => !q || Object.values(c).join(' ').toLowerCase().includes(q))
+    .sort((a,b) => String(a[casSort.key]).localeCompare(String(b[casSort.key]), undefined, { numeric:true }) * casSort.dir);
+  if (!rows.length) return `<tr><td colspan="7" style="text-align:center;color:#64748b;padding:32px 16px">No casualties match your search.</td></tr>`;
+  return rows.map(c => `<tr>
+    <td style="font-variant-numeric:tabular-nums">${c.date}</td>
+    <td><a href="VesselDetails.html" class="pol-link" style="text-decoration:none">${c.vessel}</a></td>
+    <td>${c.place}</td><td>${c.type}</td>
+    <td>${c.severity}</td>
+    <td>${c.loc}</td>
+    <td style="white-space:normal;min-width:200px">${c.desc || '<span style="color:#94a3b8">—</span>'}</td>
+  </tr>`).join('');
+}
 const NOTIFICATIONS = [
   { time:'Wed, 10 Jun 2026 07:20:46 GMT', type:'Exit Alert',     vessel:'Ava 10',          action:'exited region' },
   { time:'Wed, 10 Jun 2026 07:20:46 GMT', type:'Exit Alert',     vessel:'LILA JAMNAGAR',   action:'exited region' },
@@ -991,7 +1019,7 @@ function Content() {
     </div>
 
     <!-- Bottom: tab bar + map -->
-    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;min-height:840px">
+    <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;height:840px;flex-shrink:0">
       <!-- Tab selector -->
       <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9;flex-shrink:0;">
         <div class="tabs-desktop-wrap">
@@ -1101,6 +1129,21 @@ function Content() {
             </tbody>
           </table>
         </div>
+      </div>` : mapTab === 'casualties' ? `
+      <div style="display:flex;flex-direction:column;flex:1;min-height:0">
+        <div class="notif-head">
+          <span class="notif-title">Region Casualties</span>
+          <div class="pol-search" style="flex:0 0 260px;min-width:0">
+            ${SC.I.search}
+            <input id="cas-search-input" type="text" placeholder="Search" value="${casQuery.replace(/"/g,'&quot;')}" />
+          </div>
+        </div>
+        <div style="flex:1;overflow:auto" class="scroll-thin">
+          <table class="pol-tbl cas-tbl">
+            <thead><tr>${casHead()}</tr></thead>
+            <tbody>${casRows()}</tbody>
+          </table>
+        </div>
       </div>` : mapTab === 'history' ? `
       <div style="display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto" class="scroll-thin">
         <div class="hist-title">Region History</div>
@@ -1197,6 +1240,14 @@ function wire() {
         <td style="white-space:nowrap">${n.type}</td>
         <td style="white-space:normal">Vessel: <span class="pol-link">${n.vessel}</span> ${n.action} <span class="pol-link">${NOTIF_REGION}</span></td>
       </tr>`).join('');
+  });
+  const casSearch = document.getElementById('cas-search-input');
+  if (casSearch) casSearch.addEventListener('input', () => { casQuery = casSearch.value; const tb = document.querySelector('.cas-tbl tbody'); if (tb) tb.innerHTML = casRows(); });
+  const casTbl = document.querySelector('.cas-tbl');
+  if (casTbl) casTbl.addEventListener('click', e => {
+    const th = e.target.closest('[data-cas-sort]'); if (!th) return;
+    const k = th.dataset.casSort; casSort = casSort.key === k ? { key:k, dir:-casSort.dir } : { key:k, dir:1 };
+    casTbl.querySelector('thead tr').innerHTML = casHead(); casTbl.querySelector('tbody').innerHTML = casRows();
   });
   wireHistoryControls();
   window.addEventListener('resize', positionTabPills, { passive: true });

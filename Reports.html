@@ -1277,10 +1277,9 @@ function sampleTabContent() {
   const rows = SAMPLE_REPORTS
     .filter(r => sampleType === 'All' || r.type === sampleType)
     .filter(r => !q || r.title.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q) || r.tags.join(' ').toLowerCase().includes(q));
-  if (sampleSort.key) {
-    const k = sampleSort.key === 'created' ? 'updated' : 'type', s = sampleSort.dir === 'asc' ? 1 : -1;
-    rows.sort((a, b) => s * String(a[k]).localeCompare(String(b[k]), undefined, { numeric:true }));
-  }
+  const starred = r => DEV_TITLES.includes(r.title) ? 0 : 1;
+  const k = sampleSort.key === 'created' ? 'updated' : 'type', s = sampleSort.dir === 'asc' ? 1 : -1;
+  rows.sort((a, b) => (starred(a) - starred(b)) || (sampleSort.key ? s * String(a[k]).localeCompare(String(b[k]), undefined, { numeric:true }) : 0));
   const sortIco = (dir) => dir === 'asc'
     ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>'
     : dir === 'desc'
@@ -1293,8 +1292,8 @@ function sampleTabContent() {
           </th>`;
   };
   const rowBtn = (icon, label, href) => href ? `
-    <a href="${href}" class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .15s,border-color .15s;">${icon} ${label}</a>` : `
-    <button class="fleet-act-btn" style="display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;">${icon} ${label}</button>`;
+    <a href="${href}" class="fleet-act-btn" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;cursor:pointer;font-family:inherit;text-decoration:none;transition:background .15s,border-color .15s;" title="${label}" aria-label="${label}">${icon}</a>` : `
+    <button class="fleet-act-btn" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;" title="${label}" aria-label="${label}">${icon}</button>`;
   const row = (r) => {
     const c = SAMPLE_TYPE_COLORS[r.type] || SAMPLE_TYPE_COLORS['Regional Exposure & Aggregation Report'];
     return `
@@ -1314,7 +1313,7 @@ function sampleTabContent() {
       <td class="fleet-cell fleet-actions-cell" data-label="Actions" style="padding:14px 20px;vertical-align:top;text-align:right;white-space:nowrap;">
         <div style="display:inline-flex;align-items:center;gap:6px;">${r.status === 'generating'
           ? '<span class="sample-gen"><svg class="sample-gen-ico" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 7.38 16.75"/><path d="M12 6v6l4 2"/><path d="M2.5 8.875a10 10 0 0 0-.5 3"/><path d="M2.83 16a10 10 0 0 0 2.43 3.4"/><path d="M4.636 5.235a10 10 0 0 1 .891-.857"/><path d="M8.644 21.42a10 10 0 0 0 7.631-.38"/></svg>Pending</span>'
-          : rowBtn(FLEET_ICONS.eye,'Preview',r.href) + rowBtn(FLEET_ICONS.dl,'PDF')}</div>
+          : rowBtn(FLEET_ICONS.eye,'Preview',r.href) + rowBtn(FLEET_ICONS.dl,'Download PDF')}</div>
       </td>
     </tr>`;
   };
