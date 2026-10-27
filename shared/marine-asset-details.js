@@ -292,8 +292,8 @@
       : `<svg viewBox="0 0 24 24" width="16" height="16" style="color:${c}" fill="currentColor" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"></path></svg>`;
     return L.divIcon({ html:`<div class="vessel-marker" style="${stat ? '' : `transform:rotate(${v.hdg + 45}deg);transform-origin:center;`}">${shape}</div>`, className:'', iconSize:[16, 16], iconAnchor:[8, 8] });
   }
-  const flagImg = (cc, n, w = 18, h = 13) => `<img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" width="${w}" height="${h}" alt="${n}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:4px;">`;
-  const tipHTML = v => `<span class="vtip-row"><img class="vtip-flag" src="https://flagcdn.com/w40/${v.flag.cc}.png" width="18" height="13" alt="${v.flag.name}"><span class="vtip-name">${esc(v.r.asset)}</span></span><span class="vtip-type">${v.type} · ${v.flag.name}</span>`;
+  const flagImg = (cc, n, w = 18, h = 13) => `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="${w}" height="${h}" alt="${n}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:4px;">`;
+  const tipHTML = v => `<span class="vtip-row"><img class="vtip-flag" src="flags/${v.flag.cc}.svg" width="18" height="13" alt="${v.flag.name}"><span class="vtip-name">${esc(v.r.asset)}</span></span><span class="vtip-type">${v.type} · ${v.flag.name}</span>`;
   function popupHTML(v) {
     const lat = `${Math.abs(v.lat).toFixed(2)}${v.lat >= 0 ? 'N' : 'S'}`, lng = `${Math.abs(v.lng).toFixed(2)}${v.lng >= 0 ? 'E' : 'W'}`;
     return `<div class="vp">

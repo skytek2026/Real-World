@@ -71,14 +71,14 @@ const LUCIDE_NAMES = {
   menu:'Menu', grid:'LayoutGrid', shield:'ShieldCheck',
   building:'Building', building2Nav:'Warehouse', gem:'Gem', news:'Newspaper',
   plane:'Plane', bolt:'Zap', briefcase:'Briefcase', doc:'FileText',
-  globe:'Globe', wave:'Waves', chart:'BarChart3', book:'BookOpen', earth:'Earth', landplot:'LandPlot',
+  globe:'Globe', wave:'Waves', chart:'BarChart3', book:'BookOpen', earth:'Earth', landplot:'LandPlot', mapPinNav:'MapPin',
   anchor:'Anchor', cloud:'Cloud', ship:'Ship', building2:'Building2',
   plane2:'Plane', bolt2:'Zap', bell:'Bell', help:'HelpCircle',
   anchor2:'Anchor', pin:'MapPin', cloudrain:'CloudRain', cloudicon:'Cloud',
   docs2:'FileText', search2:'Search', factory:'Factory', search:'Search',
   chev:'ChevronRight', chevDown:'ChevronDown', plus:'Plus', minus:'Minus', x:'X',
   arrowUp:'ArrowUp', arrowDown:'ArrowDown', filter:'Filter', layers:'Layers',
-  compass:'Compass', maximize:'Maximize2', minimize:'Minimize2', alertTri:'AlertTriangle',
+  compass:'Compass', maximize:'Maximize2', minimize:'Minimize2', alertTri:'AlertTriangle', lifeBuoy:'LifeBuoy',
   radio:'RadioTower', check:'Check', cargo:'Container', tag:'Tag',
   clipboard:'Clipboard', users:'Users', leaf:'Leaf', fileText:'FileText', clock:'Clock',
   office:'Building2', upload:'Upload', network:'Network',
@@ -112,14 +112,15 @@ const NAV = [
   { id:'aviation',   label:'Aviation',        icon:'plane',        href:'AviationDashboard.html' },
   { id:'energy',     label:'Offshore/Energy', icon:'bolt',         href:'OffshoreDashboard.html' },
   { id:'cargo',      label:'Cargo',           icon:'cargo',        href:'CargoDashboard.html' },
+  { id:'regions',    label:'Regions',         icon:'mapPinNav',    href:'Regions.html' },
   { id:'portfolios', label:'Portfolios',      icon:'briefcase',    href:'AllPortfolios.html' },
   { id:'reports',    label:'Reports',         icon:'doc',          href:'Reports.html' },
   { id:'companies',  label:'Companies',       icon:'office',       href:'Companies.html' },
-  { id:'regions',    label:'Regions',         icon:'landplot',     href:'Regions.html' },
   { id:'events',     label:'Nat Cat Events',  icon:'earth',        href:'NatCatEvents.html', badge:true },
   { id:'assets',     label:'Assets',          icon:'gem',          href:'AssetsSearch.html' },
   { id:'ports',      label:'Ports',           icon:'anchor',       href:'Ports.html' },
   { id:'weather',    label:'Weather',         icon:'cloud',        href:'Weather.html' },
+  { id:'news',       label:'News',            icon:'news',         href:'News.html' },
 ];
 
 // Inline SVGs for profile-menu leading icons (14×14, stroke=currentColor)
@@ -215,6 +216,7 @@ function Topbar() {
       </div>
     </div>
     <div class="flex items-center gap-1 shrink-0">
+      <a href="ContactSupport.html?from=${encodeURIComponent(((window.PAGE && window.PAGE.title) || document.title.split(' — ')[0]) + '|' + location.pathname.split('/').pop())}" id="report-issue-btn" class="h-9 px-2.5 rounded-lg text-ink-600 hover:text-ink-900 hover:bg-ink-100 flex items-center gap-1.5 ring-focus no-underline text-xs font-semibold" title="Report an issue" aria-label="Report an issue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 2 1.88 1.88"/><path d="M14.12 3.88 16 2"/><path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"/><path d="M12 20v-9"/><path d="M6.53 9C4.6 8.8 3 7.1 3 5"/><path d="M6 13H2"/><path d="M3 21c0-2.1 1.7-3.9 3.8-4"/><path d="M20.97 5c0 2.1-1.6 3.8-3.5 4"/><path d="M22 13h-4"/><path d="M17.2 17c2.1.1 3.8 1.9 3.8 4"/></svg><span class="hidden lg:inline">Report issue</span></a>
       <button id="theme-toggle-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Toggle dark mode"></button>
       <button id="notif-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Notifications">
         ${I.bell}<span class="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>
@@ -259,7 +261,7 @@ function Topbar() {
       </div>
       <div class="py-1 text-sm">
         <a href="Profile.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_USER}</span>My profile</a>
-        <button class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700"><span class="text-ink-500">${SVG_HELP}</span>Support</button>
+        <a href="ContactSupport.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_HELP}</span>Support</a>
         <a href="Administration.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_SHIELD}</span>Administration</a>
       </div>
       <div class="py-1 border-t border-ink-100 text-sm">
@@ -287,7 +289,7 @@ let editMode = false;
 function TweaksPanel() {
   if (!editMode) return '';
   return `
-  <div class="fixed bottom-4 right-4 w-[280px] bg-white border border-ink-200 rounded-xl shadow-card-hover z-[10000] overflow-hidden">
+  <div class="hidden md:block fixed bottom-4 right-4 w-[280px] bg-white border border-ink-200 rounded-xl shadow-card-hover z-[10000] overflow-hidden">
     <div class="flex items-center justify-between px-3 py-2 border-b border-ink-100 bg-ink-50">
       <div class="text-xs font-bold tracking-micro uppercase text-ink-700">Tweaks</div>
     </div>
@@ -312,6 +314,7 @@ function TweaksPanel() {
           <span class="absolute top-0.5 ${TWEAKS.sidebarExpanded?'left-4':'left-0.5'} h-4 w-4 rounded-full bg-white shadow transition-all"></span>
         </button>
       </label>
+      ${typeof window.pageTweaks === 'function' ? window.pageTweaks() : ''}
     </div>
   </div>`;
 }

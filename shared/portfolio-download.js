@@ -1,9 +1,10 @@
+var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.full.min.js', document.currentScript.src).href; } catch (e) { return 'vendor/sheetjs/xlsx.full.min.js'; } })();
 /* Portfolio overview download — Excel export of the portfolio's assets (fields per "Portfolio overview download" spec). */
 (function () {
   let xp = null;
   const loadX = () => xp || (xp = new Promise((res, rej) => {
     if (window.XLSX) return res(window.XLSX);
-    const s = document.createElement('script'); s.src = 'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';
+    const s = document.createElement('script'); s.src = __XLSX_SRC__;
     s.onload = () => res(window.XLSX); s.onerror = () => { xp = null; rej(new Error('load')); }; document.head.appendChild(s);
   }));
   const HEAD = ['PolicyNumber','Reference Number','Inception Date','Expiry Date','VesselName','No. Of Ex Names','OurExposure','TotalInsuredValue','Estimated Value (M)','IMO','MMSI','Country of Build','Shipbuilder','Year Built','Flag','Generic Type','Detailed Type','Ship Status','Gross Tonnage (t)','Dead Weight (t)','Length (m)','Width (m)','Breadth Moulded (m)','Depth (m)','Main Engines Manufacturer','Model Number of Main Engine','Propulsion Type','Class','TEU','Latest Timestamp','Owner','Tech Manager','DOC Company','Group Beneficial Owner','Operator','Ship Manager','P&I','Class Narrative','Total Risk Score','Total Risk Score Comment','Sanctions Compliance','Total Inspections all','Total Inspections last 3 years','Total Inspections last 1 year','Days Detained all','Days Detained last 3 years','Days Detained last 1 year','Deficiencies all','Deficiencies last 3 years','Deficiencies last 1 year','Total Detentions all','Total Detentions last 3 years','Total Detentions last year','Casualties total','Major casualties last year','Minor casualties last year','EEXI Attained','EEXI Required','CII Attained','CII Required','CII Rating'];

@@ -1,3 +1,4 @@
+var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.full.min.js', document.currentScript.src).href; } catch (e) { return 'vendor/sheetjs/xlsx.full.min.js'; } })();
 /* Historical Snapshots card + DS toast + DS single-date picker.
    Self-contained. The host page sets window.SNAP_CFG = { storeKey(), subject(), fileBase(), sheets() }
    and calls CardSnapshots() in its render + wireSnapshots() after mounting. */
@@ -74,9 +75,32 @@
   .snap-dl:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
   .snap-dl[disabled]{opacity:.6;cursor:progress}
   .snap-acts{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
-  .snap-del{display:inline-grid;place-items:center;width:28px;height:28px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--text-muted,#64748b);cursor:pointer;transition:background 140ms,color 140ms,border-color 140ms}
-  .snap-del:hover{background:var(--danger-050,#fef2f2);color:var(--danger-700,#b91c1c);border-color:var(--danger-100,#fee2e2)}
-  .snap-del:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  /* DS Icon-only button: .ds-btn.ds-btn--secondary.ds-btn--icon (32px square, radius-md, 14px glyph, no shadow) */
+  .snap-ibtn,.snap-del{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border:1px solid var(--border-default,#e5e7eb);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:var(--slate-800,#1f2937);cursor:pointer;outline:0;box-shadow:none;transition:background var(--motion-fast,120ms) var(--ease-out,ease-out),border-color var(--motion-fast,120ms) var(--ease-out,ease-out),color var(--motion-fast,120ms) var(--ease-out,ease-out),box-shadow var(--motion-fast,120ms) var(--ease-out,ease-out)}
+  .snap-ibtn svg,.snap-del svg{width:14px;height:14px}
+  .snap-ibtn:hover:not([disabled]),.snap-del:hover:not([disabled]){background:var(--slate-50,#f9fafb);border-color:var(--border-strong,#d1d5db)}
+  .snap-ibtn:active:not([disabled]),.snap-del:active:not([disabled]){background:var(--slate-100,#f3f4f6)}
+  .snap-ibtn:focus-visible,.snap-del:focus-visible{box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .snap-ibtn[disabled],.snap-del[disabled]{color:var(--slate-400,#9ca3af);background:var(--slate-50,#f9fafb);cursor:not-allowed}
+  .snap-ibtn.is-busy svg{animation:snap-pulse .9s ease-in-out infinite}
+  @keyframes snap-pulse{50%{opacity:.35}}
+  @media (pointer:coarse){.snap-ibtn,.snap-del{position:relative}.snap-ibtn::before,.snap-del::before{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%)}}
+  .snap-view{position:fixed;inset:0;z-index:1100;display:grid;place-items:center;padding:24px;background:rgba(15,23,42,.45)}
+  .snap-view-d{width:min(960px,100%);max-height:min(640px,100%);display:flex;flex-direction:column;background:#fff;border-radius:12px;box-shadow:0 20px 50px rgba(15,23,42,.25);overflow:hidden}
+  .snap-view-h{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border-subtle,#f1f5f9)}
+  .snap-view-h b{font-size:15px;color:var(--text-primary,#0f172a)}.snap-view-h small{font-size:12px;color:var(--text-muted,#64748b)}
+  .snap-view-x{margin-left:auto;width:30px;height:30px;display:grid;place-items:center;border:0;border-radius:8px;background:transparent;color:var(--text-muted,#64748b);cursor:pointer}.snap-view-x:hover{background:var(--slate-100,#f1f5f9);color:var(--text-primary,#0f172a)}
+  .snap-view-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--border-subtle,#f1f5f9)}
+  .snap-view-tab{height:28px;padding:0 12px;border:1px solid var(--border-default,#e2e8f0);border-radius:999px;background:#fff;font:inherit;font-size:12px;font-weight:600;color:var(--text-secondary,#475569);cursor:pointer}
+  .snap-view-tab[aria-selected="true"]{background:var(--brand-600,#2d7ffb);border-color:var(--brand-600,#2d7ffb);color:#fff}
+  .snap-view-b{flex:1;min-height:0;overflow:auto}
+  .snap-view-b table{width:100%;border-collapse:collapse;font-size:12px}
+  .snap-view-b th{position:sticky;top:0;background:var(--slate-50,#f8fafc);text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted,#64748b);padding:8px 12px;border-bottom:1px solid var(--border-default,#e2e8f0);white-space:nowrap}
+  .snap-view-b td{padding:8px 12px;border-bottom:1px solid var(--border-subtle,#f1f5f9);color:var(--text-primary,#0f172a);white-space:nowrap}
+  .snap-view-cap{padding:14px 16px 6px;font-size:13px;font-weight:700;color:var(--text-primary,#0f172a)}
+  .snap-view-b .snap-view-kv th{position:static;width:40%;background:transparent;text-transform:none;letter-spacing:0;font-size:12px;font-weight:500;color:var(--text-muted,#64748b);border-bottom:1px solid var(--border-subtle,#f1f5f9)}
+  .snap-view-b .snap-view-kv td{white-space:normal;font-weight:500}
+  .snap-view-f{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;border-top:1px solid var(--border-subtle,#f1f5f9)}
   .ds-toast-side{display:inline-flex;align-items:center;gap:4px}
   .ds-toast-action{height:24px;padding:0 8px;border:0;border-radius:6px;background:transparent;font:inherit;font-size:12px;font-weight:600;color:var(--brand-600,#2d7ffb);cursor:pointer}
   .ds-toast-action:hover{background:var(--brand-050,#eff6ff)}
@@ -267,7 +291,7 @@
       <div class="overflow-x-auto scroll-thin">
         <table class="snap-tbl">
           <thead><tr>${th('date', 'Snapshot Date')}${th('created', 'Creation Date')}${th('status', 'Status')}<th style="text-align:right;width:1%">Actions</th></tr></thead>
-          <tbody>${pageRows.length ? pageRows.map(r => `<tr class="${r.id === snapNewId ? 'snap-row-new' : ''}"><td style="font-variant-numeric:tabular-nums">${r.dateTxt}</td><td style="font-weight:400;color:#334155;font-variant-numeric:tabular-nums">${r.createdTxt}</td><td>${badge(r.status)}</td><td style="text-align:right"><div class="snap-acts">${r.status === 'Ready' ? `<button type="button" class="snap-dl" data-snap-dl="${r.id}" aria-label="Download snapshot for ${pretty(r.date)} as Excel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg><span>Download</span></button>` : `<span class="snap-dl-na" title="Available once the snapshot is ready">—</span>`}<button type="button" class="snap-del" data-snap-del="${r.id}" title="Delete snapshot" aria-label="Delete snapshot for ${pretty(r.date)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M10 11v6M14 11v6"></path></svg></button></div></td></tr>`).join('') : ''}</tbody>
+          <tbody>${pageRows.length ? pageRows.map(r => `<tr class="${r.id === snapNewId ? 'snap-row-new' : ''}"><td style="font-variant-numeric:tabular-nums">${r.dateTxt}</td><td style="font-weight:400;color:#334155;font-variant-numeric:tabular-nums">${r.createdTxt}</td><td>${badge(r.status)}</td><td style="text-align:right"><div class="snap-acts">${(() => { const na = r.status !== 'Ready', tip = na ? ' (available once ready)' : ''; return `<button type="button" class="snap-ibtn" data-snap-view="${r.id}" ${na ? 'disabled' : ''} title="View snapshot${tip}" aria-label="View snapshot for ${pretty(r.date)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg></button><button type="button" class="snap-ibtn" data-snap-dl="${r.id}" ${na ? 'disabled' : ''} title="Download Excel${tip}" aria-label="Download snapshot for ${pretty(r.date)} as Excel"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg></button>`; })()}<button type="button" class="snap-del" data-snap-del="${r.id}" title="Delete snapshot" aria-label="Delete snapshot for ${pretty(r.date)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M10 11v6M14 11v6"></path></svg></button></div></td></tr>`).join('') : ''}</tbody>
         </table>
         ${pageRows.length ? '' : empty}
       </div>
@@ -350,13 +374,13 @@
   let xlsxP = null;
   const loadXlsx = () => xlsxP || (xlsxP = new Promise((res, rej) => {
     if (window.XLSX) return res(window.XLSX);
-    const sc = document.createElement('script'); sc.src = 'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';
+    const sc = document.createElement('script'); sc.src = __XLSX_SRC__;
     sc.onload = () => res(window.XLSX); sc.onerror = () => { xlsxP = null; rej(new Error('load')); }; document.head.appendChild(sc);
   }));
   async function download(id, btn) {
     const snap = load().find(x => x.id === id); if (!snap) return;
     const name = (((cfg().fileBase && cfg().fileBase()) || 'Snapshot').replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '_')) + '_Snapshot_' + snap.date + '.xlsx';
-    if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Preparing\u2026'; }
+    if (btn) { btn.disabled = true; btn.classList.add('is-busy'); }
     try {
       const X = await loadXlsx(), wb = X.utils.book_new();
       (cfg().sheets ? cfg().sheets(snap, { display, pretty }) : []).forEach(([n, rows]) => {
@@ -369,7 +393,7 @@
     } catch (e) {
       dsToast({ tone: 'danger', title: 'Download failed', desc: 'Couldn\u2019t build the Excel file. Check your connection and try again.', duration: 6000 });
     } finally {
-      if (btn && btn.isConnected) { btn.disabled = false; btn.querySelector('span').textContent = 'Download'; }
+      if (btn && btn.isConnected) { btn.disabled = false; btn.classList.remove('is-busy'); }
     }
   }
   document.addEventListener('click', e => {
@@ -379,6 +403,36 @@
     dsToast({ tone: 'success', title: 'Snapshot deleted', desc: `${pretty(gone.date)} has been removed.`, duration: 6000,
       action: { label: 'Undo', onClick: () => { const a = load(); a.splice(Math.min(i, a.length), 0, gone); save(); refreshBody(); } } });
   });
+  function viewSnap(id, opener) {
+    const snap = load().find(x => x.id === id); if (!snap) return;
+    const sheets = cfg().sheets ? cfg().sheets(snap, { display, pretty }) : [];
+    const esc = v => String(v ?? '').replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+    const ov = document.createElement('div'); ov.className = 'snap-view';
+    let cur = 0;
+    const body = () => {
+      const rows = ((sheets[cur] || [, []])[1] || []).filter(r => r && r.some(v => v !== '' && v != null));
+      if (!rows.length) return '<div style="padding:40px;text-align:center;color:#64748b;font-size:13px">No data in this sheet.</div>';
+      const w = Math.max(...rows.map(r => r.length));
+      if (rows[0].length === 1 && w <= 2) {
+        const [cap, ...kv] = rows;
+        return `<div class="snap-view-cap">${esc(cap[0])}</div><table class="snap-view-kv"><tbody>${kv.map(r => `<tr><th scope="row">${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table>`;
+      }
+      const [h, ...rest] = rows, cols = Array.from({ length: w }, (_, i) => i);
+      return `<table><thead><tr>${cols.map(i => `<th>${esc(h[i])}</th>`).join('')}</tr></thead><tbody>${rest.map(r => `<tr>${cols.map(i => `<td>${esc(r[i])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    };
+    const draw = () => { ov.innerHTML = `<div class="snap-view-d" role="dialog" aria-modal="true" aria-label="Snapshot ${pretty(snap.date)}">
+      <div class="snap-view-h"><div><b>Snapshot · ${pretty(snap.date)}</b><br><small>Read-only preview of the Excel export</small></div><button type="button" class="snap-view-x" data-v="close" aria-label="Close"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
+      ${sheets.length > 1 ? `<div class="snap-view-tabs" role="tablist">${sheets.map(([n], i) => `<button type="button" class="snap-view-tab" role="tab" aria-selected="${i === cur}" data-v="tab" data-i="${i}">${esc(n)}</button>`).join('')}</div>` : ''}
+      <div class="snap-view-b scroll-thin">${body()}</div>
+      <div class="snap-view-f"><button type="button" class="snap-dl" data-v="close">Close</button><button type="button" class="snap-btn" data-v="dl"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>Download Excel</button></div></div>`; };
+    const close = () => { ov.remove(); document.removeEventListener('keydown', onKey); if (opener && opener.isConnected) opener.focus(); };
+    const onKey = e => { if (e.key === 'Escape') close(); };
+    ov.addEventListener('click', e => { if (e.target === ov) return close(); const b = e.target.closest('[data-v]'); if (!b) return;
+      if (b.dataset.v === 'close') close(); else if (b.dataset.v === 'tab') { cur = +b.dataset.i; draw(); } else if (b.dataset.v === 'dl') download(id); });
+    document.addEventListener('keydown', onKey);
+    draw(); document.body.appendChild(ov); ov.querySelector('.snap-view-x').focus();
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-snap-view]'); if (b && !b.disabled) viewSnap(b.dataset.snapView, b); });
   document.addEventListener('click', e => { const b = e.target.closest('[data-snap-dl]'); if (b && !b.disabled) download(b.dataset.snapDl, b); });
 
   /* ── Single-date picker (DS datepicker) ── */
