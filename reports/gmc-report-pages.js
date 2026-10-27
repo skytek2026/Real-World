@@ -21,7 +21,7 @@
   const CC_NAME = { vc:'St Vincent & Gren.', kn:'St Kitts & Nevis', mh:'Marshall Islands', hk:'Hong Kong', gb:'United Kingdom', us:'United States', ae:'UAE', kr:'South Korea', ru:'Russia', ir:'Iran', tz:'Tanzania', bo:'Bolivia', kp:'North Korea', tw:'Taiwan', vn:'Vietnam', sy:'Syria', ve:'Venezuela' };
   let _dn; try { _dn = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
   const ccName = cc => !cc ? '' : CC_NAME[cc] || (_dn ? _dn.of(String(cc).toUpperCase()) : String(cc).toUpperCase());
-  const flagImg = cc => cc ? `<img class="flagimg" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="" title="${ccName(cc)}" width="19" height="13" />` : '';
+  const flagImg = cc => cc ? `<img class="flagimg" src="../flags/${cc}.svg" srcset="../flags/${cc}.svg 2x" alt="" title="${ccName(cc)}" width="19" height="13" />` : '';
   const flag = cc => cc ? `<span class="flagc" title="${ccName(cc)}">${flagImg(cc)}<span>${ccName(cc)}</span></span>` : '';
   const flagCn = cc => cc ? `<span class="flag-cn">${ccName(cc)}</span>` : '';
   const vStack = (name, imo, type) => `<div class="v-stack"><span class="v-name">${name}</span><span class="v-sub num">IMO ${imo}${type ? ' &middot; ' + type : ''}</span></div>`;

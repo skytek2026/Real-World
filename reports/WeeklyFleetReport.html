@@ -375,7 +375,7 @@
 </script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="../shared/lucide-local.js"></script>
 <script src="../shared/chrome.js?v=12"></script>
 
 <script>
@@ -422,8 +422,8 @@ const FLAG = {
    (flagcdn supports w20, w40, w80, w160, w320, w640, w1280, w2560). */
 function flagImg(code, w = 40, alt = '') {
   if (!code) return '';
-  const src = `https://flagcdn.com/w${w}/${code}.png`;
-  const srcset = `https://flagcdn.com/w${w*2}/${code}.png 2x`;
+  const src = `../flags/${code}.svg`;
+  const srcset = `../flags/${code}.svg 2x`;
   return `<img class="flag-img" src="${src}" srcset="${srcset}" alt="${alt} flag" loading="lazy" />`;
 }
 
