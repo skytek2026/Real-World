@@ -126,6 +126,7 @@
     /* Prevent horizontal page overflow */
     html, body { overflow-x: hidden; }
   }
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased">
@@ -139,7 +140,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
 <script>
@@ -417,7 +418,7 @@ function CardVessels() {
           ${VESSELS.map(v => `
             <tr>
               <td><span class="lnk">${v.name}</span></td>
-              <td style="font-size:12px;"><img src="https://flagcdn.com/w20/${v.flag.toLowerCase()}.png" width="14" style="vertical-align:middle;border-radius:2px;margin-right:4px;" />United States</td>
+              <td style="font-size:12px;"><img src="flags/${v.flag.toLowerCase()}.svg" width="14" style="vertical-align:middle;border-radius:2px;margin-right:4px;" />United States</td>
               <td><span class="lnk">${v.mmsi}</span></td>
               <td style="font-size:12px;color:#64748b;">${v.type}</td>
               <td style="tabular-nums;">${v.len}</td>

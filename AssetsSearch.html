@@ -42,7 +42,7 @@
   .asset-pill.is-init { transition: none; }
   /* Mobile tabs dropdown */
   .asset-tabs-dd { display: none; width: 100%; max-width: 320px; height: 40px; padding: 0 36px 0 14px; border: 1px solid #e2e8f0; border-radius: 999px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center; box-shadow: 0 1px 3px rgba(15,23,42,.08); font: inherit; font-size: 13px; font-weight: 600; color: #0f172a; appearance: none; -webkit-appearance: none; cursor: pointer; outline: none; text-align: center; text-align-last: center; }
-  .asset-tabs-dd:focus { border-color: #93c5fd; box-shadow: 0 1px 3px rgba(15,23,42,.08), 0 0 0 3px rgba(37,99,235,.12); }
+  .asset-tabs-dd:focus { border-color: var(--brand-300, #93c5fd); box-shadow: 0 1px 3px rgba(15,23,42,.08), 0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 12%, transparent); }
   @media (max-width: 640px) {
     .asset-tabs { display: none !important; }
     .asset-tabs-dd { display: block !important; }
@@ -51,10 +51,10 @@
   /* --- Search & filter bar --- */
   .search-wrap { position: relative; flex: 1; max-width: 360px; }
   .search-wrap input { width: 100%; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 10px 6px 32px; font-size: 13px; color: #334155; background: #fff; outline: none; }
-  .search-wrap input:focus { border-color: #93c5fd; box-shadow: 0 0 0 3px rgba(37,99,235,.08); }
+  .search-wrap input:focus { border-color: var(--brand-300, #93c5fd); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 12%, transparent); }
   .search-wrap .search-ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #94a3b8; pointer-events: none; }
   .filter-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
-  .filter-btn:hover { border-color: #93c5fd; background: #f8fafc; }
+  .filter-btn:hover { border-color: var(--brand-300, #93c5fd); background: #f8fafc; }
   .filter-btn.has-filter::after { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 9px solid #e11d48; border-left: 9px solid transparent; }
   .filter-btn.reset { color: #475569; }
   .filter-btn.edit-cols { font-weight: 600; color: #0f172a; border-color: #cbd5e1; }
@@ -63,7 +63,7 @@
   .filter-menu.is-open { display: flex; }
   .filter-menu-head { display: flex; gap: 4px; padding: 3px 4px 6px; margin-bottom: 3px; border-bottom: 1px solid #f1f5f9; }
   .filter-menu-act { flex: 1; padding: 5px 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; font-size: 11.5px; font-weight: 600; color: #475569; cursor: pointer; }
-  .filter-menu-act:hover { background: #f8fafc; border-color: #93c5fd; color: var(--brand-700, #1d4ed8); }
+  .filter-menu-act:hover { background: #f8fafc; border-color: var(--brand-300, #93c5fd); color: var(--brand-700, #1d4ed8); }
   .filter-menu-act:disabled { opacity: .45; cursor: default; pointer-events: none; }
   .filter-menu-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 10px; border: 0; border-radius: 6px; background: transparent; font-size: 12.5px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; }
   .filter-menu-item:hover { background: #f1f5f9; color: #0f172a; }
@@ -149,7 +149,7 @@
   /* --- Mobile filter button + popover --- */
   .filter-row { position: relative; }
   .filters-mobile-btn { display: none; align-items: center; justify-content: center; width: 34px; height: 34px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; color: #334155; cursor: pointer; flex-shrink: 0; position: relative; }
-  .filters-mobile-btn:hover { background: #f8fafc; border-color: #93c5fd; }
+  .filters-mobile-btn:hover { background: #f8fafc; border-color: var(--brand-300, #93c5fd); }
   .filters-mobile-btn .dot { position: absolute; top: 4px; right: 4px; width: 7px; height: 7px; border-radius: 999px; background: var(--brand-600, #2563eb); border: 1.5px solid #fff; }
   .filter-controls { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
   @media (max-width: 720px) {
@@ -227,7 +227,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
@@ -386,7 +386,7 @@ function filterMenu(f, chev, cfg) {
     return menuWrap('asset-type', f, typeFilter.size, items);
   }
   if (f === 'Flag' || f === 'Country') {
-    const items = countryList(cfg).map(([cc, nm]) => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="flag" value="${cc}" ${flagFilter.has(cc) ? 'checked' : ''}/><img class="fm-flag" src="https://flagcdn.com/w20/${cc}.png" width="16"/>${nm}</label>`).join('');
+    const items = countryList(cfg).map(([cc, nm]) => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="flag" value="${cc}" ${flagFilter.has(cc) ? 'checked' : ''}/><img class="fm-flag" src="flags/${cc}.svg" width="16"/>${nm}</label>`).join('');
     return menuWrap('flag', f, flagFilter.size, items);
   }
   if (RANGE_FILTERS[f]) return rangeMenu(f, RANGE_FILTERS[f], cfg);
@@ -401,7 +401,7 @@ function filterMenu(f, chev, cfg) {
 }
 function catItems(f, cfg) {
   if (f === 'Asset Type') return VESSEL_TYPE_LIST.map(t => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="type" value="${t}" ${(typeFilter.size === 0 || typeFilter.has(t)) ? 'checked' : ''}/>${teardropIco(TYPE_COLORS[t] || '#64748b')}${t}</label>`).join('');
-  if (f === 'Flag' || f === 'Country') return countryList(cfg).map(([cc, nm]) => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="flag" value="${cc}" ${(flagFilter.size === 0 || flagFilter.has(cc)) ? 'checked' : ''}/><img class="fm-flag" src="https://flagcdn.com/w20/${cc}.png" width="16"/>${nm}</label>`).join('');
+  if (f === 'Flag' || f === 'Country') return countryList(cfg).map(([cc, nm]) => `<label class="filter-menu-item"><input type="checkbox" class="ft-cb" data-fkey="flag" value="${cc}" ${(flagFilter.size === 0 || flagFilter.has(cc)) ? 'checked' : ''}/><img class="fm-flag" src="flags/${cc}.svg" width="16"/>${nm}</label>`).join('');
   const get = CAT_FILTERS[f].get;
   const vals = [...new Set(cfg.data.map(get).filter(Boolean))].sort((a, b) => String(a).localeCompare(String(b)));
   const set = catFilter[f] || new Set();
@@ -622,7 +622,7 @@ function offshoreBadge(type) {
 
 function flagHtml(code, country) {
   return `<span style="display:inline-flex;align-items:center;gap:5px;">
-    <img src="https://flagcdn.com/w20/${code}.png" width="16" style="border-radius:2px;vertical-align:middle;flex-shrink:0;" />
+    <img src="flags/${code}.svg" width="16" style="border-radius:2px;vertical-align:middle;flex-shrink:0;" />
     <span style="color:#334155;">${country}</span>
   </span>`;
 }

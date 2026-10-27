@@ -143,7 +143,7 @@
     "showSparklines": true
   }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
@@ -310,7 +310,7 @@ function flag(cc, size='sm') {
   if (!cc) return '';
   const h = size === 'md' ? 20 : 14;
   const w = size === 'md' ? 28 : 20;
-  return `<img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="${w}" height="${h}" class="inline-block rounded-[2px] ring-1 ring-ink-200/80 object-cover" style="width:${w}px;height:${h}px" loading="lazy" />`;
+  return `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" alt="${cc.toUpperCase()}" width="${w}" height="${h}" class="inline-block rounded-[2px] ring-1 ring-ink-200/80 object-cover" style="width:${w}px;height:${h}px" loading="lazy" />`;
 }
 
 function tabs(tabs, active, groupAttr) {
@@ -761,7 +761,7 @@ const AIRPORT_CC = {
 };
 function buildAirportTooltipHTML(a) {
   const cc = AIRPORT_CC[a.country];
-  const flag = cc ? `<img class="atip-flag" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" width="18" height="13" alt="${a.country}" />` : '';
+  const flag = cc ? `<img class="atip-flag" src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="18" height="13" alt="${a.country}" />` : '';
   return `<span class="atip-row">${flag}<span class="atip-name">${a.name}</span></span><span class="atip-sub">${a.code} \u00b7 ${a.country}</span>`;
 }
 function buildFlightTooltipHTML(p) {

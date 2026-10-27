@@ -201,7 +201,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
@@ -240,7 +240,7 @@ function positionTabPills() {
 
 /* ── Flag ───────────────────────────────────────────────────────────── */
 function flag(cc, w=18, h=13) {
-  return `<img src="https://flagcdn.com/w40/${cc}.png" width="${w}" height="${h}" style="border-radius:2px;vertical-align:middle;display:inline-block;" />`;
+  return `<img src="flags/${cc}.svg" width="${w}" height="${h}" style="border-radius:2px;vertical-align:middle;display:inline-block;" />`;
 }
 
 /* ── Storm data ─────────────────────────────────────────────────────── */
@@ -359,14 +359,14 @@ function evtVesselIcon(color, heading) {
 }
 /* Vessel hover tooltip — Marine Dashboard style (flag + name + type) */
 function evtVesselTooltip(name, info) {
-  const flag = info.cc ? `<img class="vtip-flag" src="https://flagcdn.com/w40/${info.cc}.png" srcset="https://flagcdn.com/w80/${info.cc}.png 2x" width="18" height="13" alt="${info.country || ''}" />` : '';
+  const flag = info.cc ? `<img class="vtip-flag" src="flags/${info.cc}.svg" srcset="flags/${info.cc}.svg 2x" width="18" height="13" alt="${info.country || ''}" />` : '';
   return `<span class="vtip-row">${flag}<span><span class="vtip-name">${name}</span><span class="vtip-type">${info.type}</span></span></span>`;
 }
 /* Vessel click popup card — Marine Dashboard style (.vp) */
 function evtVesselPopup(a, info) {
   const latStr = `${Math.abs(a.lat).toFixed(2)}${a.lat>=0?'N':'S'}`;
   const lngStr = `${Math.abs(a.lng).toFixed(2)}${a.lng>=0?'E':'W'}`;
-  const flagImg = info.cc ? `<img src="https://flagcdn.com/w40/${info.cc}.png" srcset="https://flagcdn.com/w80/${info.cc}.png 2x" width="18" height="13" alt="${info.country || ''}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px;" />` : '';
+  const flagImg = info.cc ? `<img src="flags/${info.cc}.svg" srcset="flags/${info.cc}.svg 2x" width="18" height="13" alt="${info.country || ''}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px;" />` : '';
   return `
   <div class="vp">
     <div class="vp-header">
@@ -465,7 +465,7 @@ function evtOffshoreIcon(color) {
   return L.divIcon({ html, className:'', iconSize:[16,16], iconAnchor:[8,8] });
 }
 function evtOffshoreTooltip(m) {
-  const flag = m.cc ? `<img class="atip-flag" src="https://flagcdn.com/w40/${m.cc}.png" srcset="https://flagcdn.com/w80/${m.cc}.png 2x" width="18" height="13" alt="${m.country || ''}" />` : '';
+  const flag = m.cc ? `<img class="atip-flag" src="flags/${m.cc}.svg" srcset="flags/${m.cc}.svg 2x" width="18" height="13" alt="${m.country || ''}" />` : '';
   return `<span class="atip-row">${flag}<span class="atip-name">${m.name}</span></span><span class="atip-type">${m.assetType}${m.country ? ' · ' + m.country : ''}</span>`;
 }
 function evtOffshorePopup(m) {
@@ -526,7 +526,7 @@ function evtPlaneIcon(rot) {
   return L.divIcon({ className:'', html:`<div style="transform:rotate(${rot}deg);color:#eab308;width:24px;height:24px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45))">${EVT_PLANE_SVG}</div>`, iconSize:[24,24], iconAnchor:[12,12] });
 }
 function evtAirportTooltip(a) {
-  const flag = a.cc ? `<img class="atip-flag" src="https://flagcdn.com/w40/${a.cc}.png" srcset="https://flagcdn.com/w80/${a.cc}.png 2x" width="18" height="13" alt="${a.country || ''}" />` : '';
+  const flag = a.cc ? `<img class="atip-flag" src="flags/${a.cc}.svg" srcset="flags/${a.cc}.svg 2x" width="18" height="13" alt="${a.country || ''}" />` : '';
   return `<span class="atip-row">${flag}<span class="atip-name">${a.code} · ${a.name}</span></span><span class="atip-sub">${a.country}</span>`;
 }
 function evtPlaneTooltip(p) {

@@ -70,20 +70,77 @@
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#334155;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f1f5f9}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
   /* Responsive top row */
-  .top-row-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}
+  .top-row-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.8fr) minmax(0,1.1fr);gap:16px;align-items:stretch}
+  @media(max-width:1279px){.top-row-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.top-row-grid > .cd-pc{grid-column:1/-1;height:360px;order:3}}
   .top-row-grid > .card{max-height:480px}
   .cd-content > *{flex-shrink:0}
+  .ra-mobile-select{display:none;position:relative;flex:1 1 auto;min-width:0}
+  .ra-mobile-select select{appearance:none;-webkit-appearance:none;width:100%;height:40px;padding:0 34px 0 12px;border:1px solid var(--border-strong,#cbd5e1);border-radius:var(--radius-md,8px);background:#fff;font:inherit;font-size:14px;font-weight:600;color:#0f172a;cursor:pointer;outline:none}
+  .ra-mobile-select select:focus-visible{border-color:var(--brand-600,#2563eb);box-shadow:var(--shadow-focus,0 0 0 3px rgb(45 127 251/.32))}
+  .ra-mobile-chev{position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:#64748b;display:flex}
+  @media(max-width:767px){.ra-mobile-select{display:block}.ra-tabs-wrap{display:none !important}}
+  .top-row-grid.is-simple{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .top-row-grid.is-single{grid-template-columns:minmax(0,1fr) !important}
+  .top-row-grid.is-single > .card{max-height:none}
+  .cd-fields-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:28px;padding-top:4px !important;padding-bottom:4px !important}
+  .cd-fields-4 .field-row{flex-direction:row;align-items:center;justify-content:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #f1f5f9 !important;min-width:0}
+  .cd-fields-4 .field-value{text-align:left;font-weight:500;color:#0f172a;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .cd-fields-4 .field-value > span{justify-content:flex-start !important}
+  @media(max-width:1023px){.cd-fields-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:539px){.cd-fields-4{grid-template-columns:1fr}}
+  @media(max-width:639px){.top-row-grid.is-simple{grid-template-columns:1fr}}
+  .cd-view-bar{display:flex;justify-content:flex-end;gap:18px;margin:-4px 0 -6px}
+  .cd-view-opt{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#334155;cursor:pointer;user-select:none}
+  .ds-radio{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid var(--border-strong,#cbd5e1);border-radius:50%;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
+  .ds-radio:checked{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
+  .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+  .ds-radio:focus-visible{outline:none;box-shadow:var(--shadow-focus,0 0 0 3px rgb(45 127 251/.32))}
+  .ra-tab-l{white-space:nowrap}.ra-tab-l svg{flex-shrink:0}
+  .pol-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .pol-table th { padding:9px 12px; text-align:left; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); border-bottom:1px solid var(--border-default,#E5E7EB); white-space:nowrap; background:var(--slate-50,#F9FAFB); }
+  .pol-table td { padding:10px 12px; border-bottom:1px solid #f1f5f9; color:#334155; white-space:normal; vertical-align:middle; }
+  .pol-table tr:last-child td { border-bottom:0; }
+  .pol-table tr:hover td { background:#f8fafc; }
+  .pol-table td.lnk { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; }
+  .pol-table td.lnk a { color:inherit; text-decoration:none; }
+  .pol-table td.lnk a:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
+  .pol-table.cas-table th svg{display:inline-block}.cas-wrap{overflow-y:hidden}.pol-table.cas-table td:nth-child(1),.pol-table.cas-table td:nth-child(5){white-space:nowrap}
+  .sel{border:1px solid #e2e8f0;border-radius:6px;padding:4px 8px;font-size:12px;color:#334155;background:#fff}
+  .env-cols > * { min-width:0; padding:0 24px; }
+  .env-cols > *:first-child { padding-left:0; }
+  .env-cols > *:last-child { padding-right:0; }
+  .env-cols > * + * { border-left:1px solid #e2e8f0; }
+  @media (max-width:767px) { .env-cols > * { padding:20px 0 0; } .env-cols > *:first-child { padding-top:0; } .env-cols > * + * { border-left:0; border-top:1px solid #e2e8f0; margin-top:20px; } }
+  .psc-box { background:#fff; border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; }
+  .psc-head { background:var(--brand-600,#2563eb); color:#fff; text-align:center; font-family:'Exo','Open Sans',sans-serif; font-weight:700; font-size:13px; padding:9px 12px; letter-spacing:.03em; }
+  .psc-subhead { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); }
+  .psc-subhead span { padding:6px 10px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-align:center; text-transform:uppercase; letter-spacing:.04em; }
+  .psc-subhead span:first-child { text-align:left; color:#64748b; }
+  .psc-row { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #f1f5f9; }
+  .psc-row:last-child { border-bottom:0; }
+  .psc-cell { padding:8px 10px; font-size:12px; color:#334155; text-align:center; tabular-nums; }
+  .psc-cell:first-child { text-align:left; font-weight:600; color:#475569; }
+  .co-psc-grid{display:grid;gap:12px;grid-template-columns:repeat(4,minmax(0,1fr));padding:14px}
+  @media(max-width:1100px){.co-psc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:560px){.co-psc-grid{grid-template-columns:1fr}}
+  .cd-tabs{display:flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;width:100%}
+  .cd-tab{flex:1;font:inherit;font-size:12px;font-weight:600;padding:7px 14px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;white-space:nowrap;transition:color .15s,background .15s}
+  .cd-tab:hover{color:#111827}
+  .cd-tab[aria-selected="true"]{background:var(--brand-600,#2d7ffb);color:#fff;box-shadow:0 1px 2px rgba(15,23,42,.12)}
   .cd-content{position:relative}
   .ds-page-btn{position:relative}
   @media(max-width:1023px){.top-row-grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:639px){.top-row-grid{grid-template-columns:1fr}}
+  @media(max-width:639px){.top-row-grid{grid-template-columns:1fr}.top-row-grid > .card:not(.cd-pc){max-height:none;height:auto !important;overflow:visible !important}.top-row-grid > .card:not(.cd-pc) > *{flex-shrink:0}.top-row-grid > .cd-pc{height:360px !important}}
+  @media(max-width:639px){.co-rs-toggles,.co-rs-grid{display:contents !important}.co-rs-sanc{order:1;align-self:flex-end;flex-direction:row-reverse}.co-rs-gauge{order:2}.co-rs-trend{order:3;align-self:flex-end;margin-top:4px}.co-rs-years{order:4}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:5}.co-rs-grid > :not(.co-rs-gauge):not(.co-rs-years){order:5}:has(> .co-rs-toggles) > :not(.co-rs-toggles):not(.co-rs-grid){order:6}}
   /* Asset header bar wraps on mobile */
   .asset-hdr{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid #e2e8f0}
   .asset-hdr-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
   @media(max-width:599px){
-    .asset-hdr-controls{margin-left:0;width:100%}
-    .search-wrap,.search-wrap input{width:100%}
-    .asset-hdr-controls select{flex:1}
+    .asset-hdr-controls{margin-left:0;width:100%;flex-wrap:nowrap}
+    .asset-hdr-controls .search-wrap{flex:1 1 auto;min-width:0}
+    .search-wrap input{width:100%}
+    .asset-hdr-controls > div:not(.search-wrap){flex:0 0 auto}
+    .asset-hdr-controls select{max-width:130px}
   }
   /* Pagination row */
   .pg-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid #e2e8f0}
@@ -107,6 +164,7 @@
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
 .ds-th--sortable{padding:0 !important}.ds-th-sort{width:100%;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:9px 12px;background:transparent;border:0;cursor:pointer;text-align:left;white-space:nowrap;transition:color .12s ease,background .12s ease}.ds-th-sort:hover{color:var(--text-secondary,#4B5563);background:var(--slate-100,#F3F4F6)}.ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}.ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#0f172a)}.ds-th--active .ds-th-sort svg{color:var(--brand-600,#2d7ffb) !important}@media (prefers-reduced-motion:reduce){.ds-th-sort{transition:none}}
 .ra-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:var(--slate-100,#f1f5f9);border:1px solid var(--border-subtle,#e2e8f0);border-radius:999px}.ra-tab{position:relative;font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:999px;color:var(--text-secondary,#475569);cursor:pointer;transition:color var(--motion-fast,140ms)}.ra-tab:hover{color:var(--text-primary,#0f172a)}.ra-tab[aria-selected="true"],.ra-tab[aria-selected="true"]:hover{color:var(--white,#fff)}.ra-tab:focus-visible{outline:2px solid var(--brand-400,#8ec5fd);outline-offset:2px}.ra-tab-l{position:relative;z-index:1}.ra-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);width:0;background:var(--brand-600,#2d7ffb);border-radius:999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform var(--motion-base,200ms) var(--ease-out,cubic-bezier(.16,1,.3,1)),width var(--motion-base,200ms) var(--ease-out,cubic-bezier(.16,1,.3,1))}.ra-pill.no-anim{transition:none}@media (prefers-reduced-motion:reduce){.ra-pill,.cd-sort-th,.cd-sort-th svg{transition:none}}
+  @container (max-width:110px){ .co-pie-sub{display:none;} }
 </style>
 <style>
   .cd-export{padding:5px 10px;font-size:12px}
@@ -141,8 +199,9 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "density":"compact","accent":"blue","sidebarExpanded":false
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
+<script src="shared/regions-history.js"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -166,7 +225,7 @@ const CD_CC = { 'Greece':'gr','China':'cn','Hong Kong':'hk','Singapore':'sg','Ja
 function cdFlagVal(name) {
   const cc = CD_CC[name] || (name === co.country && co.flag && /^[a-z]{2}$/i.test(co.flag) ? co.flag.toLowerCase() : null);
   if (!cc) return name;
-  return `<span style="display:inline-flex;align-items:center;gap:6px;justify-content:flex-end"><img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" width="20" height="14" alt="${cc.toUpperCase()}" style="width:20px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgb(15 23 42/.1);flex-shrink:0">${name}</span>`;
+  return `<span style="display:inline-flex;align-items:center;gap:6px;justify-content:flex-end"><img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="20" height="14" alt="${cc.toUpperCase()}" style="width:20px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgb(15 23 42/.1);flex-shrink:0">${name}</span>`;
 }
 const avgRisk         = co.avgRisk        !== undefined ? co.avgRisk : 55;
 const sanctioned      = co.sanctioned     || false;
@@ -268,9 +327,15 @@ let assetQuery   = '';
 let assetFilter  = 'all';
 let assetPage    = 1;
 let assetPerPage = 5;
-let raTab = 'PSC Inspections';
+let raTab = 'PSC Analysis';
 let pscPage = 1, pscPerPage = 5, pscSev = 'all';
 let coWithSanctions = true;
+let coWithTrends = true;
+let coTopTab = 'Company Details';
+let coView = 'Standard';
+const coSimple = () => coView === 'Simple' || coView === 'P&I Club Company';
+let coRiskTab = 'Risk Score';
+const CO_COMPLIANCE = { 'Not sanctioned':{ fill:'#4ad41c', ring:'#a6e88a', changed:'Thu, 6 Aug 2026' }, 'Warning':{ fill:'#f59e0b', ring:'#fcd68a', changed:'Mon, 14 Sep 2026' }, 'Sanctioned':{ fill:'#dc2626', ring:'#f4a3a3', changed:'Fri, 2 Oct 2026' } };
 
 /* ── SVG icons ────────────────────────────────────────────────────────────── */
 const IC = {
@@ -333,6 +398,41 @@ function DonutChart(risk) {
 }
 
 /* ── Card: Company Details ───────────────────────────────────────────────── */
+const CO_TOP_PORTS = [
+  { port:'Singapore', cc:'sg', country:'Singapore',   calls:86, vessels:14, last:'2026-10-12' },
+  { port:'Fujairah',  cc:'ae', country:'UAE',         calls:71, vessels:12, last:'2026-10-09' },
+  { port:'Rotterdam', cc:'nl', country:'Netherlands', calls:58, vessels:9,  last:'2026-09-30' },
+  { port:'Jebel Ali', cc:'ae', country:'UAE',         calls:47, vessels:11, last:'2026-10-15' },
+  { port:'Colombo',   cc:'lk', country:'Sri Lanka',   calls:39, vessels:8,  last:'2026-10-02' },
+  { port:'Mumbai',    cc:'in', country:'India',       calls:33, vessels:7,  last:'2026-09-24' },
+  { port:'Algeciras', cc:'es', country:'Spain',       calls:28, vessels:6,  last:'2026-09-19' },
+  { port:'Port Said', cc:'eg', country:'Egypt',       calls:24, vessels:9,  last:'2026-10-06' },
+  { port:'Piraeus',   cc:'gr', country:'Greece',      calls:19, vessels:5,  last:'2026-09-11' },
+  { port:'Valletta',  cc:'mt', country:'Malta',       calls:12, vessels:4,  last:'2026-08-28' },
+];
+function CardPortCalls() {
+  const max = Math.max(...CO_TOP_PORTS.map(p => p.calls));
+  const fl = cc => `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" alt="${cc.toUpperCase()}" width="20" height="14" style="width:20px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgb(226 232 240);flex-shrink:0" loading="lazy">`;
+  return `
+  <div class="card cd-pc flex flex-col">
+    <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center">
+      <span style="font-size:14px;font-weight:700;color:#0f172a">Port Calls</span>
+    </div>
+    <div class="flex-1" style="position:relative;min-height:0"><div class="overflow-y-auto scroll-thin" style="position:absolute;inset:0">
+      <div class="px-3 pt-2.5 pb-2 text-[11px] text-ink-500 border-b border-ink-200 sticky top-0 bg-white" style="z-index:1">Top 10 ports visited by fleet &middot; last 24 months</div>
+      ${CO_TOP_PORTS.map((p, i) => `
+      <div class="px-3 py-2 border-b border-ink-100 last:border-0 grid grid-cols-[16px_1fr_auto] gap-2.5 items-center">
+        <span class="text-[11px] font-semibold text-ink-400 text-right" style="font-variant-numeric:tabular-nums;">${i + 1}</span>
+        <div class="flex flex-col gap-1 min-w-0">
+          <div class="flex items-center gap-1.5 min-w-0">${fl(p.cc)}<span class="text-xs font-semibold text-ink-900 truncate">${p.port}</span><span class="text-[11px] text-ink-400 truncate">${p.country}</span></div>
+          <div class="h-1 rounded-full bg-ink-100 overflow-hidden"><div class="h-full rounded-full bg-brand-600" style="width:${Math.round(p.calls / max * 100)}%;"></div></div>
+          <span class="text-[11px] text-ink-500">${p.vessels} vessels &middot; last ${p.last}</span>
+        </div>
+        <span class="text-xs font-semibold text-ink-800 whitespace-nowrap" style="font-variant-numeric:tabular-nums;">${p.calls} calls</span>
+      </div>`).join('')}
+    </div></div>
+  </div>`;
+}
 function CardCompanyDetails() {
   const complianceBadge = sanctioned
     ? `<span style="display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:999px;background:#fee2e2;color:#dc2626;font-size:11px;font-weight:700;"><span style="width:6px;height:6px;border-radius:50%;background:#dc2626;"></span>Sanctioned</span>`
@@ -341,7 +441,7 @@ function CardCompanyDetails() {
   const fields = [
     { ico: IC.coIco,    lbl:'Name:',                 val: co.name || '—'       },
     { ico: IC.codeIco,  lbl:'Code:',                 val: coCode               },
-    { ico: IC.tagIco,   lbl:'Type:',                 val: co.type || '—'       },
+    { ico: IC.tagIco,   lbl:'Type:',                 val: coView === 'P&I Club Company' ? 'P&amp;I Club' : (co.type || '—') },
     { ico: IC.pinIco,   lbl:'Country Registration:', val: co.country ? cdFlagVal(co.country) : '—' },
     { ico: IC.globeIco, lbl:'Country Control:',      val: countryControl !== '—' ? cdFlagVal(countryControl) : '—' },
     { ico: IC.homeIco, lbl:'Country Domicile:',     val: (co.countryDomicile || co.country) ? cdFlagVal(co.countryDomicile || co.country) : '—' },
@@ -350,10 +450,15 @@ function CardCompanyDetails() {
   return `
   <div class="card flex flex-col" style="min-height:280px">
     <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center">
-      <span style="font-size:14px;font-weight:700;color:#0f172a">Company Details</span>
+      ${coSimple() ? '<span style="font-size:14px;font-weight:700;color:#0f172a">Company Details</span>' : `<div class="cd-tabs" role="tablist">${['Company Details','Company Activity'].map(t => `<button type="button" class="cd-tab" role="tab" aria-selected="${coTopTab===t}" data-co-toptab="${t}">${t}</button>`).join('')}</div>`}
     </div>
-    <div class="flex-1 overflow-y-auto scroll-thin" style="padding:0 14px">
-      ${fields.map(f => `
+    ${coTopTab === 'Company Activity' && !coSimple() ? `<div class="flex-1 flex flex-col items-center justify-center text-center gap-2 px-6" style="color:#94a3b8">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+      <div style="font-size:13px;font-weight:600;color:#475569">Company Activity</div>
+      <div style="font-size:12px">Content coming soon.</div>
+    </div>` : `
+    <div class="flex-1 overflow-y-auto scroll-thin${coView === 'P&I Club Company' ? ' cd-fields-4' : ''}" style="padding:0 14px">
+      ${fields.filter(f => !/Overall Compliance/.test(f.lbl)).map(f => `
       <div class="field-row">
         <span class="field-label">${f.ico} ${f.lbl}</span>
         <span class="field-value">${f.val}</span>
@@ -362,7 +467,7 @@ function CardCompanyDetails() {
     <div class="cd-card-foot">
       <button type="button" class="cd-ghost" onclick="window.__goCompare()">${IC.compare}<span>Compare This Company</span></button>
       <button type="button" class="cd-ghost" onclick="window.__cdExport()" title="Export company page as PDF"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg><span>Export</span></button>
-    </div>
+    </div>`}
   </div>`;
 }
 
@@ -447,73 +552,91 @@ function CardRiskBreakdown() {
     const rsFactorRows = factors.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
     const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
     let body = `
-    <div style="padding:10px 12px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:8px;">
-      <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
-        <button data-co-sanctions style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+    <div class="co-rs-body" style="padding:8px 12px 14px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:6px;">
+      <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:6px 8px;flex-wrap:wrap;">
+        <button data-co-trends class="co-rs-trend" role="switch" aria-checked="${coWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Trends
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${coWithTrends?'var(--brand-600,#2d7ffb)':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${coWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+      </div>
+      <div class="co-rs-grid" style="display:grid;grid-template-columns:${coWithTrends?'repeat(auto-fit,minmax(180px,1fr))':'1fr'};gap:8px;">
+        <!-- Gauge -->
+        <div class="co-rs-gauge" style="position:relative;background:#f9fafb;border:1px solid ${coWithSanctions ? '#dc2626' : '#e5e7eb'};border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;">
+        <button data-co-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;margin-bottom:4px;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${coWithSanctions?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${coWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
-        <!-- Gauge -->
-        <div style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;"><div style="position:absolute;top:6px;right:6px;z-index:5;">${rsInfoIcon('Current · Risk Score ' + rsScore)}</div>
-          <div style="position:relative;width:100%;max-width:188px;">
-            <svg viewBox="0 0 200 192" style="width:100%;height:auto;overflow:visible;" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <radialGradient id="rsGaugeGlowCo" cx="50%" cy="55%" r="42%">
-                  <stop offset="0%" stop-color="${risk.glow}" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="${risk.glow}" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-              <!-- Soft glow behind fill -->
-              <ellipse cx="100" cy="108" rx="70" ry="60" fill="url(#rsGaugeGlowCo)"/>
-              <!-- Glow at fill tip -->
-              ${glowPath}
-              <!-- White casing behind segments for crisp separators -->
-              ${whiteCasing}
-              <!-- Banded fill segments (grey when unfilled) -->
-              ${segPaths}
-              <!-- Score number -->
-              <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#111827" font-family="Inter,sans-serif">${rsScore}</text>
+          <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
+          <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div>
+          <div style="position:relative;width:100%;max-width:150px;aspect-ratio:1;margin:4px 0 6px;container-type:inline-size;">
+            <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="2026 risk score ${rsScore} of 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+              <circle class="co-rs-arc" data-score="${rsScore}" cx="50" cy="50" r="46" fill="none" stroke="${risk.c}" stroke-width="8" stroke-dasharray="${(Math.min(rsScore,100)/100*289.03).toFixed(2)} 289.03"><title>Risk Score ${rsScore} / 100 · ${risk.label}</title></circle>
             </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
+              <span class="co-rs-num" style="font-size:clamp(16px,26cqi,40px);font-weight:800;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${rsScore}</span>
+            </div>
           </div>
-          <div style="background:transparent;border:0;border-radius:8px;padding:2px 10px;text-align:center;width:100%;">
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;color:${risk.c};font-weight:700;font-size:13px;">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-              +${rsDelta25} (+${rsPct}%)
+          <div style="background:transparent;border:0;border-radius:8px;padding:0 10px;text-align:center;width:100%;">
+            <div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta25}
             </div>
           </div>
         </div>
+        ${coWithTrends ? `
         <!-- Year comparisons -->
-        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2025 · Avg. Risk Score ' + rs2025, 'c')}</div>
+        <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+            <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2025: ' + rs2025, 'c')}</div>
             <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
             </div>
-            <div style="background:${yearPill(rs2025).bg};color:${yearPill(rs2025).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2025).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+            <div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;align-items:center;gap:3px;white-space:nowrap;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta2025}
             </div>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">Avg. Risk Score ${rsInfoIcon('2024 · Avg. Risk Score ' + rs2024, 'r')}</div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+            <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2024: ' + rs2024, 'r')}</div>
             <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2024)} ${rs2024*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2024}</span>
             </div>
+            <div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;align-items:center;gap:3px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>+ 2</div>
           </div>
-        </div>
+        </div>` : ''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:11.5px;color:#334155;padding-top:0;">
+        ${[{label:'Good',range:'0 → 25',c:'#16a34a'},{label:'Average',range:'25+ → 50',c:'#d97706'},{label:'Below average',range:'50+ → 100',c:'#dc2626'}].map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#64748b;">[${b.range}]</span></span>`).join('')}
       </div>
     </div>`;
+  if (coRiskTab === 'Compliance') {
+    const st = sanctioned ? 'Sanctioned' : 'Not sanctioned', cs = CO_COMPLIANCE[st], riskBody = body;
+    body = `<div style="flex:1;display:grid;min-height:0;"><div style="grid-area:1/1;visibility:hidden;display:flex;flex-direction:column;" aria-hidden="true" inert>${riskBody}</div><div class="flex flex-col items-center px-6 pt-10 pb-5 text-center" style="grid-area:1/1;min-height:0;">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
+        <div style="width:116px;height:116px;border-radius:50%;background:${cs.ring};display:flex;align-items:center;justify-content:center;">
+          <div style="width:94px;height:94px;border-radius:50%;background:${cs.fill};display:flex;align-items:center;justify-content:center;color:#fff;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 15s1.2-1 4-1 4.6 2 7.4 2S20 15 20 15V4s-1.2 1-4 1-4.6-2-7.4-2S5 4 5 4z"></path><path d="M5 22V15" fill="none" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+        <div style="font-size:18px;font-weight:700;color:#0f2a44;">${st}</div>
+      </div>
+      <div style="font-size:11.5px;line-height:1.5;color:#64748b;">Updated at: 2026-08-15</div>
+    </div></div>`;
+  }
   return `
   <div class="card flex flex-col" style="min-height:0;overflow:visible">
-    <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9"><span style="font-size:14px;font-weight:700;color:#0f172a">Risk Breakdown</span></div>
+    <div style="padding:10px 14px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center">
+      <div class="cd-tabs" role="tablist">${['Risk Score','Compliance'].map(t => `<button type="button" class="cd-tab" role="tab" aria-selected="${coRiskTab===t}" data-co-risktab="${t}">${t}</button>`).join('')}</div>
+    </div>
     ${body}
   </div>`;
 }
@@ -618,20 +741,231 @@ function PscTable() {
     </div>
     <div id="psc-pg">${dsPagination({ page: pscPage, totalPages, totalItems: total, perPage: pscPerPage, perPageOptions: [5, 10, 20], label: 'defects' })}</div>`;
 }
+const CO_PSC_BOXES = [
+  { title:'Inspections',  rows:[ ['Avg',60.68,33.66],['Last 1 Year',0.88,1.23],['Last 3 Years',3.76,5] ] },
+  { title:'Deficiencies', rows:[ ['Avg',8.45,5.32],  ['Last 1 Year',2.43,2.43],['Last 3 Years',11.87,8.83] ] },
+  { title:'Detentions',   rows:[ ['Avg',0.18,0.12],  ['Last 1 Year',0.09,0.05],['Last 3 Years',0.35,0.24] ] },
+  { title:'Casualties',   rows:[ ['Avg',0.25,0.11],  ['Last 1 Year',0.83,0.15],['Last 3 Years',0.17,0.07] ] },
+];
+function CoPscAnalysis() {
+  return `<div class="co-psc-grid">${CO_PSC_BOXES.map(b => `
+    <div class="psc-box">
+      <div class="psc-head">${b.title}</div>
+      <div class="psc-subhead"><span></span><span>Fleet</span><span>Global</span></div>
+      ${b.rows.map(([l, f, g]) => `<div class="psc-row"><div class="psc-cell">${l}</div><div class="psc-cell">${f}</div><div class="psc-cell">${g}</div></div>`).join('')}
+    </div>`).join('')}</div>`;
+}
+function CoUtilisation() {
+  const cards = [
+    { title:'Main Sailed',     accent:'var(--brand-400,#60a5fa)', rows:[['2024','150 nm','125 nm'],['2023','200 nm','200 nm']] },
+    { title:'Ports Visited',   accent:'var(--brand-500,#3b82f6)', rows:[['2024','4.1','3.2'],['2023','21 nm','21 nm']] },
+    { title:'Days in Port',    accent:'var(--brand-600,#2563eb)', rows:[['2024','142.8','104.2'],['2023','24','30']] },
+    { title:'Days Travelling', accent:'var(--brand-700,#1d4ed8)', rows:[['2024','153.4','202.9'],['2023','102.8','261.2']] },
+    { title:'Flop Idle',       accent:'var(--brand-800,#1e40af)', rows:[['2024','139.6','133.0'],['2023','70.4','66.8']] },
+  ];
+  return `
+  <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;padding:14px;">
+    ${cards.map(c => `
+      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.04)">
+        <div style="background:${c.accent};color:#fff;text-align:center;padding:8px 10px;font-size:13px;font-weight:700">${c.title}</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+          <thead>
+            <tr style="background:var(--slate-50,#F9FAFB)">
+              <th style="padding:7px 10px;text-align:center;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Period</th>
+              <th style="padding:7px 10px;text-align:center;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Company</th>
+              <th style="padding:7px 10px;text-align:center;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Global</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${c.rows.map(r => `
+              <tr>
+                <td style="padding:9px 10px;text-align:center;color:#334155;border-bottom:1px solid #f1f5f9">${r[0]}</td>
+                <td style="padding:9px 10px;text-align:center;color:#0f172a;font-weight:600;font-variant-numeric:tabular-nums;border-bottom:1px solid #f1f5f9">${r[1]}</td>
+                <td style="padding:9px 10px;text-align:center;color:#0f172a;font-weight:600;font-variant-numeric:tabular-nums;border-bottom:1px solid #f1f5f9">${r[2]}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`).join('')}
+  </div>`;
+}
+const CO_ENV_RATING = {
+  grade: 'B',
+  operational: [
+    { label:'Avg. Required EEXI:', value:'5.53' },
+    { label:'Avg. Attained EEXI:', value:'5.81' },
+    { label:'Avg. Required CII:',  value:'7.42' },
+    { label:'Avg. Attained CII:',  value:'7.11' },
+  ],
+  operationalAspect: [
+    { label:'Major Superior', badge:'A', color:'#2e7d4f' },
+    { label:'Minor Superior', badge:'B', color:'#6fa84a', icon:true },
+    { label:'Moderate',       badge:'C', color:'#c9a227' },
+    { label:'Minor Inferior', badge:'D', color:'#d97706' },
+    { label:'Inferior',       badge:'E', color:'#c0392b' },
+  ],
+  technical: [
+    { label:'Avg. Required EEXI:', value:'5.53', sub:'1,202.08 Hrs\nAverage time spent at sea', pct:'13%' },
+    { label:'Avg. Attained EEXI:', value:'5.81', sub:'3,660.09 CO₂\nAverage CO₂ emissions 2022 [in tonnes]' },
+    { label:'Avg. Required CII:',  value:'7.42' },
+    { label:'Avg. Attained CII:',  value:'7.11', sub:'6 days\nAverage Time in ECA', pct:'13%' },
+    { label:'Average Speed:',      value:'11.04 Kts' },
+  ],
+  compliance: [
+    { label:'Sox/Nox reduction measures',   value:'None Specified', pct:'75%' },
+    { label:'Ballast treatment compliance', value:'None Specified', pct:'75%' },
+    { label:'Recycling compliance',         value:'None Specified', pct:'75%' },
+    { label:'IHM Green Passport',           value:'75%' },
+    { label:'Open Loop (MG)',               value:'25%' },
+  ],
+};
+function CoEnvRating() {
+  const gradeBox = `
+    <div class="flex items-center justify-center w-20 h-20 rounded-lg mb-3" style="background:#6fa84a;">
+      <span class="text-4xl font-bold text-white">${CO_ENV_RATING.grade}</span>
+    </div>`;
+
+  const aspectBadge = (item) => `
+    <div class="flex items-center justify-between py-1.5">
+      <span class="text-xs text-ink-700">${item.label}</span>
+      <div class="flex items-center gap-2">
+        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
+        <span class="px-2 py-0.5 rounded text-xs font-bold text-white" style="background:${item.color}">${item.badge}</span>
+      </div>
+    </div>`;
+
+  return `
+    <div class="p-1">
+      <div class="text-sm font-semibold text-ink-900 mb-4">Environmental Rating 2025Q4</div>
+      <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)] env-cols">
+        <!-- Left: Operational -->
+        <div>
+          <div class="text-xs font-semibold text-ink-900 mb-3">Operational - CII (Carbon Intensity Fleet Index)</div>
+          ${gradeBox}
+          <div class="space-y-2">
+            ${CO_ENV_RATING.operational.map(item => `
+              <div class="flex justify-between text-xs">
+                <span class="text-ink-700">${item.label}</span>
+                <span class="${item.label.includes('Attained') ? 'text-red-600 font-semibold' : 'text-ink-900 font-medium'}">${item.value}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <!-- Middle: Operational Aspect -->
+        <div>
+          <div class="text-xs font-semibold text-ink-900 mb-3">Operational Aspect</div>
+          <div class="space-y-1">
+            ${CO_ENV_RATING.operationalAspect.map(aspectBadge).join('')}
+          </div>
+        </div>
+        <!-- Right: Technical Aspect -->
+        <div>
+          <div class="text-xs font-semibold text-ink-900 mb-3">Technical Aspect</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 items-start">
+          <div class="space-y-2 min-w-0">
+            ${CO_ENV_RATING.technical.slice(0,5).map(item => `
+              <div class="flex justify-between items-start text-xs">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between mb-0.5">
+                    <span class="text-ink-700">${item.label}</span>
+                    <span class="${item.label.includes('Attained') ? 'text-red-600 font-semibold' : 'text-ink-900 font-medium'}">${item.value}</span>
+                  </div>
+                  ${item.sub ? `<div class="text-[10px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
+                  ${item.sub && item.sub.includes('\n') ? `<div class="text-[10px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+            <div class="space-y-2 min-w-0">
+              ${CO_ENV_RATING.compliance.map(item => `
+                <div class="flex justify-between text-xs">
+                  <span class="text-ink-700">${item.label}</span>
+                  <div class="flex items-center gap-2">
+                    <span class="text-ink-600">${item.value}</span>
+                    ${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+let coCasSort = { key:'date', dir:-1 };
+const CO_CASUALTIES = [
+  { date:'2023-12-13', vessel:'ARDMORE ENCOUNTER',   place:'Red Sea',                   type:'Ship Casualties',  sev:'Not Serious', loc:'At Sea',                desc:'War-loss / Hostilities' },
+  { date:'2022-02-05', vessel:'ARDMORE SEAVANGUARD', place:'Satlantic Ecoast Samerica', type:'Contact',          sev:'Not Serious', loc:'Estuary River',         desc:'-' },
+  { date:'2018-04-20', vessel:'ARDMORE EXPORTER',    place:'Australasia',               type:'Hull Mchy Damage', sev:'Serious',     loc:'At Sea',                desc:'-' },
+  { date:'2016-10-04', vessel:'ARDMORE SEALION',     place:'Australasia',               type:'Wrecked Stranded', sev:'Not Serious', loc:'In Port Harbour Dock At', desc:'-' },
+];
+function CoCasualties() {
+  const rows = [...CO_CASUALTIES].sort((a,b) => a[coCasSort.key] < b[coCasSort.key] ? -coCasSort.dir : a[coCasSort.key] > b[coCasSort.key] ? coCasSort.dir : 0);
+  const sortIco = k => {
+    const on = coCasSort.key === k, c = on ? 'var(--brand-600, #2563eb)' : '#94a3b8';
+    return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;vertical-align:-1px;">${on ? (coCasSort.dir < 0 ? '<path d="M12 5v14M6 13l6 6 6-6"/>' : '<path d="M12 19V5M6 11l6-6 6 6"/>') : '<path d="M8 4v16M4 16l4 4 4-4M16 20V4M12 8l4-4 4 4"/>'}</svg>`;
+  };
+  const th = (k, label) => `<th style="cursor:pointer;user-select:none;" data-cocas-sort="${k}">${label}${sortIco(k)}</th>`;
+  return `
+  <div class="text-sm font-semibold text-ink-800 mb-2">Company Casualties</div>
+  <div class="cas-wrap overflow-x-auto scroll-thin border border-ink-100 rounded-lg">
+    <table class="pol-table cas-table">
+      <thead><tr>${th('date','Date')}<th>Vessel</th>${th('place','Place of Incident')}<th>Casualty Type</th><th>Severity</th><th>Location Type</th><th>Description</th></tr></thead>
+      <tbody>${rows.map(r => `<tr><td>${r.date}</td><td class="lnk"><a href="VesselDetails.html">${r.vessel}</a></td><td>${r.place}</td><td>${r.type}</td><td>${r.sev}</td><td>${r.loc}</td><td>${r.desc}</td></tr>`).join('')}</tbody>
+    </table>
+  </div>
+  <div class="flex flex-wrap items-center justify-between gap-2 pt-3 text-xs text-ink-600">
+    <label class="flex items-center gap-2">Items per page:<select class="sel text-xs py-1"><option>10</option><option selected>25</option><option>50</option></select></label>
+    <span>Page 1 of 1 (${rows.length} total items)</span>
+  </div>`;
+}
+document.addEventListener('click', e => { const h = e.target.closest('[data-cocas-sort]'); if (!h) return; const k = h.dataset.cocasSort; coCasSort = coCasSort.key === k ? { key:k, dir:-coCasSort.dir } : { key:k, dir: k === 'date' ? -1 : 1 }; rc(); });
+const CO_TAB_ICONS = {
+  'PSC Analysis': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>`,
+  'Company Casualties': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`,
+  'Avg / Utilisation Report': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>`,
+  'Environmental Rating': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
+  'Regions History': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>`,
+  'Risk Associations': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>`,
+};
+function coAnimateRiskPie(prev) {
+  const C = 289.03;
+  const arc = document.querySelector('.co-rs-arc'), num = document.querySelector('.co-rs-num');
+  const gauge = arc && arc.closest('.co-rs-gauge');
+  if (!arc || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const to = +arc.dataset.score, toDash = arc.getAttribute('stroke-dasharray'), toColor = arc.getAttribute('stroke');
+  arc.style.transition = 'none';
+  arc.setAttribute('stroke-dasharray', (Math.min(prev.score,100)/100*C).toFixed(2) + ' ' + C);
+  arc.setAttribute('stroke', prev.color);
+  if (gauge) { gauge.style.transition = 'none'; gauge.style.borderColor = coWithSanctions ? '#e5e7eb' : '#dc2626'; }
+  arc.getBoundingClientRect();
+  requestAnimationFrame(() => {
+    arc.style.transition = 'stroke-dasharray .7s cubic-bezier(.22,1,.36,1), stroke .5s ease';
+    arc.setAttribute('stroke-dasharray', toDash); arc.setAttribute('stroke', toColor);
+    if (gauge) { gauge.style.transition = 'border-color .5s ease'; gauge.style.borderColor = coWithSanctions ? '#dc2626' : '#e5e7eb'; }
+  });
+  if (num) {
+    const t0 = performance.now(), D = 700, from = prev.score;
+    const step = now => { const p = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - p, 3);
+      num.textContent = Math.round(from + (to - from) * e); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+    num.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
+  }
+}
 function CardRiskAssociations() {
   return `
   <div class="card flex flex-col">
     <div style="padding:10px 14px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      ${co.type === 'Shipping Company' ? `<div class="ra-tabs" id="ra-tabs"><span class="ra-pill" data-ra-pill></span>${['PSC Inspections','Risk Associations'].map(t => `<button class="ra-tab" aria-selected="${t === raTab}" data-ra-tab="${t}"><span class="ra-tab-l">${t}</span></button>`).join('')}</div>` : `<span style="font-size:14px;font-weight:700;color:#0f172a">Risk Associations</span>`}
-      ${raTab === 'PSC Inspections' && co.type === 'Shipping Company' ? `<div style="position:relative;margin-left:auto">
+      <div class="ra-mobile-select"><select id="ra-tab-select" aria-label="Select tab">${['PSC Analysis','Company Casualties','Avg / Utilisation Report','Environmental Rating','Regions History','Risk Associations'].map(t => `<option value="${t}" ${t === raTab ? 'selected' : ''}>${t}</option>`).join('')}</select><span class="ra-mobile-chev">${IC.chevDown}</span></div>
+      ${true ? `<div class="scroll-thin ra-tabs-wrap" style="overflow-x:auto;min-width:0;flex:1 1 auto;padding-bottom:2px"><div class="ra-tabs" id="ra-tabs" style="min-width:max-content"><span class="ra-pill" data-ra-pill></span>${['PSC Analysis','Company Casualties','Avg / Utilisation Report','Environmental Rating','Regions History','Risk Associations'].map(t => `<button class="ra-tab" aria-selected="${t === raTab}" data-ra-tab="${t}"><span class="ra-tab-l" style="display:inline-flex;align-items:center;gap:5px;">${CO_TAB_ICONS[t] || ''}${t}</span></button>`).join('')}</div></div>` : `<span style="font-size:14px;font-weight:700;color:#0f172a">Risk Associations</span>`}
+      ${raTab === 'PSC Inspections' && true ? `<div style="position:relative;margin-left:auto">
         <select id="psc-sev" aria-label="Filter by severity" style="appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 10px;border:1px solid #e2e8f0;border-radius:8px;font-size:12px;color:#334155;background:#fff;cursor:pointer;font-family:inherit;outline:none;font-weight:600">
           ${[['all','All Severities'],['High','High'],['Medium','Medium']].map(([v,l]) => `<option value="${v}" ${pscSev===v?'selected':''}>${l}</option>`).join('')}
         </select>
         <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);pointer-events:none;color:#64748b;display:flex">${IC.chevDown}</span>
       </div>` : ''}
     </div>
-    ${cdPrinting && co.type === 'Shipping Company' ? `<div class="cd-print-sub">PSC Inspections</div>${PscTable()}<div class="cd-print-sub">Risk Associations</div>` : ''}
-    ${!cdPrinting && raTab === 'PSC Inspections' && co.type === 'Shipping Company' ? PscTable() : `
+    ${cdPrinting && true ? `<div class="cd-print-sub">PSC Inspections</div>${PscTable()}<div class="cd-print-sub">Risk Associations</div>` : ''}
+    ${!cdPrinting && raTab === 'PSC Analysis' && true ? CoPscAnalysis() : !cdPrinting && raTab === 'Avg / Utilisation Report' ? CoUtilisation() : !cdPrinting && raTab === 'Company Casualties' ? `<div style="padding:14px">${CoCasualties()}</div>` : !cdPrinting && raTab === 'Regions History' ? `<div style="padding:14px">${window.RegionsHistoryContent()}</div>` : !cdPrinting && raTab === 'Environmental Rating' ? `<div style="padding:14px">${CoEnvRating()}</div>` : !cdPrinting && raTab === 'PSC Inspections' && true ? PscTable() : `
     <div class="overflow-x-auto scroll-thin">
       <table class="at-tbl">
         <thead><tr>${cdTh('ra','rel','Relationship')}${cdTh('ra','entity','Connected Entity')}${cdTh('ra','type','Entity Type')}${cdTh('ra','evidence','Evidence')}</tr></thead>
@@ -651,16 +985,17 @@ function CardRiskAssociations() {
 
 /* ── Card: Assets ────────────────────────────────────────────────────────── */
 function CardAssets() {
-  let rows = [...ALL_ASSETS];
+  const simple = coView === 'Simple', src = simple ? ALL_ASSETS.slice(0, 5) : ALL_ASSETS;
+  let rows = [...src];
   if (assetQuery)         rows = rows.filter(a => a.name.toLowerCase().includes(assetQuery.toLowerCase()) || a.kind.toLowerCase().includes(assetQuery.toLowerCase()));
   if (assetFilter !== 'all') rows = rows.filter(a => a.kind === assetFilter);
   rows = cdSort(rows, 'asset');
   const total      = rows.length;
-  const totalPages = Math.max(1, Math.ceil(total / assetPerPage));
+  const totalPages = simple ? 1 : Math.max(1, Math.ceil(total / assetPerPage));
   if (assetPage > totalPages) assetPage = totalPages;
-  const start    = (assetPage - 1) * assetPerPage;
-  const pageRows = rows.slice(start, start + assetPerPage);
-  const types    = [...new Set(ALL_ASSETS.map(a => a.kind))];
+  const start    = simple ? 0 : (assetPage - 1) * assetPerPage;
+  const pageRows = simple ? rows : rows.slice(start, start + assetPerPage);
+  const types    = [...new Set(src.map(a => a.kind))];
 
   return `
   <div class="card flex flex-col">
@@ -718,14 +1053,14 @@ function CardAssets() {
         </tbody>
       </table>
     </div>
-    <div id="asset-pg">${dsPagination({
+    ${simple ? '' : `<div id="asset-pg">${dsPagination({
       page: assetPage,
       totalPages,
       totalItems: total,
       perPage: assetPerPage,
       perPageOptions: [5, 10, 20],
       label: 'assets',
-    })}</div>
+    })}</div>`}
   </div>`;
 }
 
@@ -733,11 +1068,13 @@ function CardAssets() {
 function Content() {
   return `
   <div class="cd-content flex-1 overflow-y-auto scroll-thin px-4 lg:px-6 py-4" style="display:flex;flex-direction:column;gap:16px">
-    <div class="top-row-grid">
+    <div class="cd-view-bar" role="radiogroup" aria-label="Page view">${['Standard','Simple','P&I Club Company'].map(v => `<label class="cd-view-opt"><input type="radio" class="ds-radio" name="cd-view" value="${v.replace(/&/g,'&amp;')}" data-cd-view ${coView === v ? 'checked' : ''}><span>${({ Standard:'Standard Company', Simple:'Simple Company' }[v] || v).replace(/&/g,'&amp;')}</span></label>`).join('')}</div>
+    <div class="top-row-grid${coSimple() ? ' is-simple' : ''}${coView === 'P&I Club Company' ? ' is-single' : ''}">
       ${CardCompanyDetails()}
-      ${CardRiskBreakdown()}
+      ${coSimple() ? '' : CardPortCalls()}
+      ${coView === 'P&I Club Company' ? '' : CardRiskBreakdown()}
     </div>
-    ${CardRiskAssociations()}
+    ${coSimple() ? '' : CardRiskAssociations()}
     ${CardAssets()}
   </div>`;
 }
@@ -752,7 +1089,16 @@ function wireInteractions() {
   }
   const filterSel = document.getElementById('asset-filter');
   if (filterSel) filterSel.onchange = () => { assetFilter = filterSel.value; assetPage = 1; rc(); };
-  document.querySelectorAll('[data-co-sanctions]').forEach(b => b.onclick = () => { coWithSanctions = !coWithSanctions; rc(); });
+  document.querySelectorAll('[data-cd-view]').forEach(r => r.onchange = () => { coView = r.value; rc(); });
+  document.querySelectorAll('[data-co-risktab]').forEach(b => b.onclick = () => { coRiskTab = b.dataset.coRisktab; rc(); });
+  document.querySelectorAll('[data-co-toptab]').forEach(b => b.onclick = () => { coTopTab = b.dataset.coToptab; rc(); });
+  document.querySelectorAll('[data-co-trends]').forEach(b => b.onclick = () => { coWithTrends = !coWithTrends; rc(); });
+  document.querySelectorAll('[data-co-sanctions]').forEach(b => b.onclick = () => {
+    const a0 = document.querySelector('.co-rs-arc');
+    const prev = a0 ? { score: +a0.dataset.score, color: a0.getAttribute('stroke') } : null;
+    coWithSanctions = !coWithSanctions; rc();
+    if (prev) coAnimateRiskPie(prev);
+  });
   /* Pagination (DS-compliant) */
   const sevSel = document.getElementById('psc-sev');
   if (sevSel) sevSel.onchange = () => { pscSev = sevSel.value; pscPage = 1; rc(); };
@@ -765,6 +1111,8 @@ function wireInteractions() {
     pill.getBoundingClientRect();
     requestAnimationFrame(() => { pill.classList.remove('no-anim'); at(raTab); window.__raPrevTab = raTab; });
   })();
+  const raSel = document.getElementById('ra-tab-select');
+  if (raSel) raSel.onchange = () => { window.__raPrevTab = raTab; raTab = raSel.value; rc(); };
   document.querySelectorAll('[data-ra-tab]').forEach(b => b.onclick = () => { if (b.dataset.raTab === raTab) return; window.__raPrevTab = raTab; raTab = b.dataset.raTab; rc(); });
   const pscPg = document.querySelector('#psc-pg .ds-pagination-wrap') || document.querySelector('#psc-pg > *');
   if (pscPg) dsWirePagination(pscPg, { onPage: (p) => { pscPage = p; rc(); }, onPerPage: (n) => { pscPerPage = n; pscPage = 1; rc(); } });

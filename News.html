@@ -138,6 +138,43 @@
   .chip-tag{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:999px;font-size:11px;font-weight:600;color:#475569}
   .chip-x{cursor:pointer;color:#94a3b8;font-weight:700;line-height:1}
   .chip-x:hover{color:#0f172a}
+  /* Bookmarks */
+  .bm-btn{position:absolute;top:8px;right:8px;z-index:5;width:32px;height:32px;border-radius:999px;border:0;background:rgba(255,255,255,.95);color:#334155;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 3px rgba(15,23,42,.15);transition:transform .15s,color .15s,background .15s}
+  .bm-btn:hover{transform:scale(1.08);color:var(--brand-600,#2563eb)}
+  .bm-btn.is-on{background:var(--brand-600,#2563eb);color:#fff}
+  .bm-btn:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px}
+  @media (max-width:560px){.bm-btn{width:28px;height:28px;top:6px;right:6px}.bm-btn svg{width:14px;height:14px}}
+  .bm-open{height:36px;padding:0 12px;border:1px solid #e2e8f0;background:#fff;border-radius:10px;font:inherit;font-size:13px;font-weight:500;color:#334155;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+  .bm-open:hover{border-color:var(--brand-300,#93c5fd);color:var(--brand-700,#1d4ed8)}
+  .bm-count{min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--brand-600,#2563eb);color:#fff;font-size:10.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+  .bm-count[hidden]{display:none}
+  .bm-drawer{position:fixed;inset:0;z-index:3000;visibility:hidden}
+  .bm-drawer.open{visibility:visible}
+  .bm-overlay{position:absolute;inset:0;background:rgba(15,23,42,.38);opacity:0;transition:opacity .25s ease}
+  .bm-drawer.open .bm-overlay{opacity:1}
+  .bm-panel{position:absolute;top:0;right:0;height:100%;width:400px;max-width:92vw;background:#fff;box-shadow:-10px 0 30px rgba(15,23,42,.16);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+  .bm-drawer.open .bm-panel{transform:translateX(0)}
+  .bm-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #eef2f7;font-size:15px;font-weight:700;color:#0f172a}
+  .bm-head > span > svg{color:var(--brand-600,#2563eb)}
+  .bm-close{border:0;background:none;cursor:pointer;color:#64748b;padding:5px;border-radius:7px;display:inline-flex}
+  .bm-close:hover{background:#f1f5f9;color:#0f172a}
+  .bm-body{flex:1;overflow-y:auto;padding:8px 12px 16px;display:flex;flex-direction:column;gap:2px}
+  .bm-item{display:flex;align-items:flex-start;gap:8px;padding:10px 8px;border-radius:10px;transition:background .15s}
+  .bm-item:hover{background:#f8fafc}
+  .bm-link{display:flex;gap:12px;flex:1;min-width:0;text-decoration:none;color:inherit}
+  .bm-thumb{position:relative;width:72px;height:54px;border-radius:8px;flex-shrink:0;overflow:hidden;background:linear-gradient(135deg,var(--c1),var(--c2))}
+  .bm-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .bm-txt{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .bm-cat{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#64748b}
+  .bm-title{font-size:13px;font-weight:600;line-height:1.35;color:#0f172a;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-wrap:pretty}
+  .bm-link:hover .bm-title{color:var(--brand-700,#1d4ed8)}
+  .bm-meta{display:flex;align-items:center;gap:6px;font-size:11px;color:#94a3b8}
+  .bm-remove{width:32px;height:32px;flex-shrink:0;border:1px solid #e2e8f0;background:#fff;border-radius:8px;color:#64748b;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+  .bm-remove:hover{color:#dc2626;border-color:#fecaca;background:#fef2f2}
+  .bm-empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:64px 24px;color:#94a3b8}
+  .bm-empty h3{font-size:15px;color:#475569;font-weight:600;margin:12px 0 4px}
+  .bm-empty p{font-size:13px;line-height:1.5;max-width:260px}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -152,9 +189,9 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
 <script src="news-data.js"></script>
-<script src="news-page.js"></script>
+<script src="news-page.js?v=2"></script>
 </body>
 </html>

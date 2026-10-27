@@ -98,6 +98,7 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -112,7 +113,7 @@
     "showSparklines": true
   }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
@@ -159,7 +160,7 @@ const COUNTRY_CC = {
 function flagImg(country) {
   const cc = COUNTRY_CC[country];
   if (!cc) return '';
-  return `<img src="https://flagcdn.com/w20/${cc}.png" width="16" height="12" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px;flex-shrink:0;" alt="${country}" />`;
+  return `<img src="flags/${cc}.svg" width="16" height="12" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px;flex-shrink:0;" alt="${country}" />`;
 }
 
 const DETAIL_ROWS = [

@@ -142,7 +142,7 @@
     "showSparklines": true
   }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
@@ -558,7 +558,7 @@ const COUNTRY_CC = {
 function offshoreAssetTooltipHTML(m) {
   const cc = COUNTRY_CC[m.country];
   const flagImg = cc
-    ? `<img class="atip-flag" src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" width="18" height="13" alt="${m.country}" />`
+    ? `<img class="atip-flag" src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="18" height="13" alt="${m.country}" />`
     : '';
   return `<span class="atip-row">${flagImg}<span class="atip-name">${m.name || m.fullName}</span></span><span class="atip-type">${m.assetType}${m.country ? ' \u00b7 ' + m.country : ''}</span>`;
 }

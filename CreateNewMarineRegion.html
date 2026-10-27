@@ -62,6 +62,7 @@
   .ds-tab[aria-selected="true"],.ds-tab[aria-selected="true"]:hover{background:var(--brand-600,#2563eb);color:#fff;box-shadow:0 1px 2px rgba(15,23,42,.12)}
   @media(max-width:640px){.ds-tabs{width:100%;display:flex}.ds-tab{flex:1 1 0;padding:8px 10px;font-size:12px}}
   @media(max-width:900px){.cnr-cols{grid-template-columns:1fr!important}.cnr-map-wrap{height:340px!important}}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-white text-slate-900">
@@ -74,7 +75,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "sidebarExpanded": false
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>

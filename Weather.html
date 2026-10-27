@@ -72,6 +72,8 @@
   .wx-tbl th{padding:10px 14px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap}
   .wx-tbl td{padding:12px 14px;font-size:13px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
   .wx-tbl tr:hover td{background:#f8fafc}
+  .wx-link{font-weight:600;color:var(--brand-600,#2d7ffb);text-decoration:none}.wx-link:hover{color:var(--brand-700,#1d6ae5);text-decoration:underline;text-underline-offset:2px}.wx-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;border-radius:2px}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -86,7 +88,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
 <script>
@@ -416,7 +418,7 @@ function ListView() {
           <td>
             <div style="display:flex;align-items:center;gap:8px">
               <span style="width:10px;height:10px;border-radius:50%;background:${s.color};flex-shrink:0;box-shadow:0 0 0 2px ${s.glow}"></span>
-              <span style="font-weight:600;color:#0f172a">${s.name}</span>
+              <a href="WeatherEventDetails.html" class="wx-link" data-storm-id="${s.id}">${s.name}</a>
             </div>
           </td>
           <td>${s.type}</td>
@@ -430,6 +432,12 @@ function ListView() {
     </table>
   </div>`;
 }
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('.wx-link'); if (!a || e.metaKey || e.ctrlKey) return;
+  const storm = SYSTEMS.find(x => String(x.id) === a.dataset.stormId);
+  if (storm) sessionStorage.setItem('selectedStorm', JSON.stringify(storm));
+});
 
 function Content() {
   return `

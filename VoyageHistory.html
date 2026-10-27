@@ -110,6 +110,7 @@
   .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:6px; opacity:.9; }
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
   @media (max-width:720px){ .voy-overlay .voy-overlay-row { flex-direction:column !important; align-items:stretch !important; gap:10px !important; } }
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -124,7 +125,7 @@
     "showSparklines": true
   };
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
@@ -239,7 +240,7 @@ function svg(path, size = 16, sw = 1.9) {
   return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 }
 function flag(cc) {
-  return `<img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="20" height="14" class="inline-block rounded-[2px] ring-1 ring-ink-200 object-cover align-middle" style="width:20px;height:14px" loading="lazy" />`;
+  return `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" alt="${cc.toUpperCase()}" width="20" height="14" class="inline-block rounded-[2px] ring-1 ring-ink-200 object-cover align-middle" style="width:20px;height:14px" loading="lazy" />`;
 }
 /* Sortable table helpers (Port Calls / Region tabs) */
 function parseDur(s) {

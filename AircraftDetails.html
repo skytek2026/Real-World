@@ -55,6 +55,7 @@
   /* Info grid */
   .info-label{font-size:10px;color:#64748b;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
   .info-value{font-size:12px;font-weight:600;color:#0f172a}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -69,7 +70,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
@@ -189,7 +190,7 @@ function CardInfo() {
           <div class="info-label">Country of Reg.</div>
           <div class="info-value flex items-center gap-1">
             United Kingdom
-            <img src="https://flagcdn.com/w20/gb.png" alt="GB" width="14" height="10" class="rounded-sm ring-1 ring-black/10 object-cover" style="width:14px;height:10px" />
+            <img src="flags/gb.svg" alt="GB" width="14" height="10" class="rounded-sm ring-1 ring-black/10 object-cover" style="width:14px;height:10px" />
           </div>
         </div>
         <div>

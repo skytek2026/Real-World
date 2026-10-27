@@ -102,8 +102,17 @@
   .notif-tbl td{font-size:13.5px}
   /* Region History */
   .hist-title{font-size:15px;font-weight:700;color:#0f172a;padding:14px 16px 4px}
-  .hist-legend{display:grid;grid-template-columns:repeat(5,1fr);gap:8px 18px;padding:8px 20px 16px}
-  .hist-leg{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:#334155;min-width:0}
+  .hist-legend{padding:6px 20px 16px}.hist-legend:empty{display:none}
+  .hist-legend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 12px}
+  .hist-leg-bar{display:flex;align-items:center;gap:10px;font-size:11.5px;color:#64748b;margin-bottom:6px;min-height:24px}
+  .hist-leg-clear{font:inherit;font-size:11.5px;font-weight:600;color:var(--brand-600,#2563eb);background:none;border:0;cursor:pointer;padding:2px 4px;border-radius:4px}
+  .hist-leg-clear:hover{text-decoration:underline}
+  button.hist-leg{font:inherit;font-size:11.5px;background:transparent;border:1px solid transparent;border-radius:6px;padding:4px 6px;cursor:pointer;text-align:left;transition:background .12s,opacity .12s,border-color .12s}
+  button.hist-leg:hover{background:#f1f5f9}
+  button.hist-leg.is-on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:#0f172a;font-weight:600}
+  button.hist-leg.is-dim{opacity:.45}
+  button.hist-leg:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:1px}
+  .hist-leg{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#334155;min-width:0}
   .hist-leg svg{flex-shrink:0}
   .hist-leg span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hist-controls{display:flex;gap:14px;padding:4px 20px 20px;flex-wrap:wrap}
@@ -112,6 +121,11 @@
   .hist-panel .hist-sub{font-size:12px;color:#94a3b8;margin-bottom:10px}
   .hist-opt{display:flex;align-items:center;gap:9px;font-size:13.5px;color:#334155;padding:5px 0;cursor:pointer;user-select:none}
   .hist-radio{width:18px;height:18px;border-radius:50%;border:1.5px solid #cbd5e1;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
+  .hist-inline{display:flex;flex-wrap:wrap;gap:2px 18px}
+  .ds-radio{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid var(--border-strong,#cbd5e1);border-radius:50%;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
+  .ds-radio:checked{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
+  .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+  .ds-radio:focus-visible{outline:none;box-shadow:var(--shadow-focus,0 0 0 3px rgb(45 127 251/.32))}
   .hist-radio.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   .hist-check{width:18px;height:18px;border-radius:5px;border:1.5px solid #cbd5e1;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
   .hist-check.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
@@ -202,11 +216,14 @@
   .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){
-    .mrd-top-row{flex-direction:column;}
+    .mrd-top-row{flex-direction:column;height:auto!important;}
+    .mrd-top-row>div{width:100%!important;min-width:0!important;flex:0 0 auto!important;height:auto!important;max-height:none;min-height:0;}
     .mrd-left-panel{width:100%!important;flex-shrink:unset;}
+    .mrd-top-row>div:has(.leaflet-container){height:360px!important;}
     .mobile-tab-select{display:block!important;}
     .tabs-desktop-wrap{display:none!important;}
   }
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -219,8 +236,9 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 const regionName = sessionStorage.getItem('selectedMarineRegion') || 'North Sea Block A';
 window.PAGE = { id:'regions', title:'Marine Region', crumb: regionName };
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
 <script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;
@@ -259,7 +277,7 @@ const POLICIES = [
 ];
 function mrdFlag(cc) {
   const names = { ru:'Russia', gb:'United Kingdom', us:'United States', cn:'China', ir:'Iran', pa:'Panama' };
-  return `<span class="pol-flag"><img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" width="20" height="14" alt="${cc}" style="border-radius:2px;box-shadow:0 0 0 1px rgba(15,23,42,.12);flex-shrink:0" /><span>${names[cc] || cc.toUpperCase()}</span></span>`;
+  return `<span class="pol-flag"><img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="20" height="14" alt="${cc}" style="border-radius:2px;box-shadow:0 0 0 1px rgba(15,23,42,.12);flex-shrink:0" /><span>${names[cc] || cc.toUpperCase()}</span></span>`;
 }
 
 /* ── Notifications data ──────────────────────────────────────────────────── */
@@ -355,65 +373,82 @@ function histVal(profile, t, si, pi) {
     default:     return Math.max(0, 0.12 + n*0.18);
   }
 }
+const HIST_START = Date.UTC(2025, 5, 16), HIST_DAYS = 351, DAY = 864e5;
+let histSel = new Set();
+function histDaily(si) {
+  const s = HIST_SERIES[si], out = [];
+  for (let d = 0; d < HIST_DAYS; d++) out.push([HIST_START + d * DAY, histVal(s.profile, d / (HIST_DAYS - 1), si, d)]);
+  return out;
+}
+function histAgg(pts) {
+  if (histInterval === 'Daily') return pts;
+  const buckets = new Map();
+  pts.forEach(([x, v]) => { const dt = new Date(x); let k;
+    if (histInterval === 'Weekly') k = x - ((dt.getUTCDay() + 6) % 7) * DAY;
+    else k = Date.UTC(dt.getUTCFullYear(), dt.getUTCMonth(), 1);
+    const e = buckets.get(k) || [0, 0]; e[0] += v; e[1]++; buckets.set(k, e); });
+  return [...buckets].map(([k, [s, n]]) => [k, s / n]);
+}
+const HIST_UNITS = {
+  'Our Exposure':          { mul:1,    fmt: v => '$' + v.toFixed(1) + 'B', axis:'Total exposure' },
+  'Policy Count':          { mul:6,    fmt: v => Math.round(v).toLocaleString(), axis:'Policy count' },
+  'Merchant Market Value': { mul:1.85, fmt: v => '$' + v.toFixed(1) + 'B', axis:'Merchant market value' },
+};
+/* Vessel count per point: derived from exposure (~1 vessel per $0.12B) with deterministic jitter */
+function histVessels(v, x, si) {
+  const rnd = k => { const h = Math.sin(k) * 43758.5453; return h - Math.floor(h); };
+  const base = 4 + Math.floor(rnd(si * 91.7 + 3.1) * 70);
+  const swing = 0.35 + rnd(x / DAY * 12.9898 + si * 78.233) * 1.6;
+  const trend = 0.85 + Math.min(1.5, v / 12) * 0.3;
+  return Math.max(1, Math.round(base * swing * trend));
+}
+function histSeriesData() {
+  const u = HIST_UNITS[histValue], idx = HIST_SERIES.map((_, i) => i), shown = histSel.size ? idx.filter(i => histSel.has(i)) : idx;
+  const raw = histGroup
+    ? (() => { const sum = histDaily(0).map(([x]) => [x, 0]); idx.forEach(i => histDaily(i).forEach(([, v], d) => sum[d][1] += v)); return [{ name:'All portfolios', color:'#2563eb', si:99, pts: histAgg(sum) }]; })()
+    : shown.map(i => ({ name: HIST_SERIES[i].name, color: HIST_SERIES[i].color, si:i, pts: histAgg(histDaily(i)) }));
+  const MAX_PTS = 26;
+  raw.forEach(s => { const st = Math.max(1, Math.ceil(s.pts.length / MAX_PTS)); s.pts = s.pts.filter((_, k) => k % st === 0); });
+  raw.forEach(s => s.pts = s.pts.map(([x, v]) => ({ x, y: +(v * u.mul).toFixed(3), vessels: histVessels(v, x, s.si) })));
+  const all = raw.flatMap(s => s.pts.map(p => p.vessels)), lo = Math.min(...all), hi = Math.max(...all);
+  const rMin = 8, rMax = 17;
+  const rad = n => hi === lo ? (rMin + rMax) / 2 : rMin + (rMax - rMin) * Math.sqrt((n - lo) / (hi - lo));
+  return raw.map(s => ({ name: s.name, color: s.color, turboThreshold: 0, states: { hover: { halo: { size: 15, opacity: 1, attributes: { fill: Highcharts.color(s.color).setOpacity(.3).get('rgba'), 'stroke-width': 0 } } } }, data: s.pts.map(p => { const r = +rad(p.vessels).toFixed(2); return { ...p, marker: { radius: r } }; }) }));
+}
+if (window.Highcharts && !Highcharts.__histHaloWrap) {
+  Highcharts.__histHaloWrap = true;
+  Highcharts.wrap(Highcharts.Point.prototype, 'haloPath', function (proceed, size) {
+    const c = this.series && this.series.chart;
+    if (c && c.renderTo && c.renderTo.id === 'hist-hc') size = ((this.options.marker && this.options.marker.radius) || 8) + 7;
+    return proceed.call(this, size);
+  });
+}
 function renderHistoryChart() {
-  const N = 130, W = 1640, H = 430;
-  const ml = 70, mr = 24, mt = 14, mb = 38;
-  const pw = W - ml - mr, ph = H - mt - mb;
-  const yMax = 80;
-  const ptX = t => ml + t*pw;
-  const ptY = v => mt + (1 - v/yMax)*ph;
-  // gridlines + y labels
-  let grid = '';
-  for (let g = 0; g <= 80; g += 20) {
-    const y = ptY(g);
-    grid += `<line x1="${ml}" y1="${y.toFixed(1)}" x2="${W-mr}" y2="${y.toFixed(1)}" stroke="#f1f5f9" stroke-width="1"/>`;
-    grid += `<text x="${ml-10}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="12" fill="#94a3b8">$${g}.0B</text>`;
-  }
-  // x labels
-  let xlab = '';
-  HIST_TICKS.forEach((d, i) => {
-    const x = ptX(i/(HIST_TICKS.length-1));
-    xlab += `<text x="${x.toFixed(1)}" y="${H-12}" text-anchor="middle" font-size="11.5" fill="#64748b">${d}</text>`;
+  return window.Highcharts ? '<div id="hist-hc" style="height:430px"></div><div style="display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:2px 16px 0;font-size:11.5px;color:#64748b"><span style="display:inline-flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#94a3b8"></span><span style="width:9px;height:9px;border-radius:50%;background:#94a3b8"></span><span style="width:14px;height:14px;border-radius:50%;background:#94a3b8"></span></span>Dot size = number of vessels</div>' : '<div style="padding:40px;text-align:center;color:#94a3b8;font-size:13px">Chart library failed to load.</div>';
+}
+function mountHistoryChart() {
+  const el = document.getElementById('hist-hc'); if (!el || !window.Highcharts) return;
+  const u = HIST_UNITS[histValue];
+  Highcharts.chart(el, {
+    chart: { type:'scatter', style:{ fontFamily:'inherit' }, spacing:[10, 6, 6, 6], zooming:{ type:'x' }, animation:false },
+    title: { text: null }, credits: { enabled:false }, legend: { enabled:false }, accessibility: { enabled:false },
+    xAxis: { type:'datetime', lineColor:'#e2e8f0', tickColor:'#e2e8f0', labels:{ style:{ color:'#64748b', fontSize:'11.5px' }, format:'{value:%e %b}' } },
+    yAxis: { title:{ text:u.axis, style:{ color:'#64748b', fontSize:'12px' } }, min:0, gridLineColor:'#f1f5f9', labels:{ style:{ color:'#94a3b8', fontSize:'12px' }, formatter(){ return u.fmt(this.value); } } },
+    tooltip: { shared:false, outside:true, borderRadius:8, borderColor:'#e2e8f0', backgroundColor:'#fff', shadow:{ color:'rgba(15,23,42,.12)', width:8, offsetY:4 }, style:{ fontSize:'12px', color:'#0f172a' },
+      formatter() { return '<b>' + Highcharts.dateFormat(histInterval === 'Monthly' ? '%B %Y' : '%a, %e %b %Y', this.x) + '</b><br><span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + u.fmt(this.y) + '</b><br><span style="color:#64748b">Vessels:</span> <b>' + (this.point.vessels || 0).toLocaleString() + '</b>'; } },
+    plotOptions: { series: { lineWidth:0, dataLabels:{ enabled:true, format:'{point.vessels}', align:'center', verticalAlign:'middle', y:0, padding:0, crop:false, allowOverlap:false, style:{ fontSize:'9.5px', fontWeight:'700', color:'#ffffff', textOutline:'none' } }, marker:{ enabled:true, symbol:'circle', lineWidth:1, lineColor:'#ffffff', fillOpacity:.9, states:{ hover:{ enabled:true, radiusPlus:0, lineWidthPlus:0 } } }, states:{ hover:{ lineWidthPlus:0, halo:{ size:7, opacity:.3 } }, inactive:{ opacity:.25 } }, findNearestPointBy:'xy', stickyTracking:false, animation:{ duration:300 } } },
+    series: histSeriesData(),
   });
-  // series — draw flat/low first, prominent last
-  const order = HIST_SERIES.map((s,i)=>i).sort((a,b)=>{
-    const rank = p => p==='peaks'?3 : (p==='mid5'||p==='mid4')?2 : p==='low'?1 : 0;
-    return rank(HIST_SERIES[a].profile) - rank(HIST_SERIES[b].profile);
-  });
-  let lines = '';
-  if (histGroup) {
-    // sum all series into one
-    let pts = [];
-    for (let p = 0; p < N; p++) {
-      const t = p/(N-1);
-      let sum = 0;
-      HIST_SERIES.forEach((s,si)=> sum += histVal(s.profile, t, si, p));
-      pts.push(`${ptX(t).toFixed(1)},${ptY(Math.min(yMax,sum)).toFixed(1)}`);
-    }
-    lines = `<polyline points="${pts.join(' ')}" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>`;
-  } else {
-    order.forEach(si => {
-      const s = HIST_SERIES[si];
-      let pts = [];
-      for (let p = 0; p < N; p++) {
-        const t = p/(N-1);
-        pts.push(`${ptX(t).toFixed(1)},${ptY(histVal(s.profile, t, si, p)).toFixed(1)}`);
-      }
-      const prom = s.profile === 'peaks';
-      lines += `<polyline points="${pts.join(' ')}" fill="none" stroke="${s.color}" stroke-width="${prom?2:1.5}" stroke-linejoin="round" opacity="${prom?1:.9}"/>`;
-    });
-  }
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" style="display:block;font-family:'Inter',sans-serif">
-    <text transform="translate(20,${mt+ph/2}) rotate(-90)" text-anchor="middle" font-size="12" fill="#64748b">Total exposure</text>
-    ${grid}${lines}${xlab}
-  </svg>`;
 }
 function historyLegend() {
-  return HIST_SERIES.map(s => `<span class="hist-leg"><svg width="22" height="10"><line x1="0" y1="5" x2="22" y2="5" stroke="${s.color}" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="${s.color}"/></svg><span>${s.name}</span></span>`).join('');
+  if (histGroup) return `<div style="display:flex;justify-content:center"><span class="hist-leg" style="padding:4px 6px;font-weight:600;color:#0f172a"><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#2563eb" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="#2563eb"/></svg><span>All portfolios</span></span></div>`;
+  const all = !histSel.size;
+  return `<div class="hist-leg-bar"><span>${all ? 'Showing all portfolios' : `Showing ${histSel.size} of ${HIST_SERIES.length} portfolios`} &middot; click to select, click again to deselect</span>${all ? '' : '<button type="button" class="hist-leg-clear" data-hist-clear>Show all</button>'}</div>
+  <div class="hist-legend-grid">${HIST_SERIES.map((s, i) => { const on = histSel.has(i), dim = !all && !on;
+    return `<button type="button" class="hist-leg ${on ? 'is-on' : ''} ${dim ? 'is-dim' : ''}" data-hist-leg="${i}" aria-pressed="${on}" title="${s.name}"><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="${s.color}" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="${s.color}"/></svg><span>${s.name}</span></button>`; }).join('')}</div>`;
 }
 function histRadio(group, val, cur) {
-  const on = val === cur;
-  return `<label class="hist-opt"><span class="hist-radio ${on?'on':''}" data-hist-radio="${group}" data-hist-val="${val.replace(/"/g,'&quot;')}">${on?'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>':''}</span><span>${val}</span></label>`;
+  return `<label class="hist-opt"><input type="radio" class="ds-radio" name="hist-${group}" data-hist-radio="${group}" value="${val.replace(/"/g,'&quot;')}" ${val === cur ? 'checked' : ''}><span>${val}</span></label>`;
 }
 const HIST_CHECK_SVG = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
 function renderHistoryControls() {
@@ -421,12 +456,12 @@ function renderHistoryControls() {
     <div class="hist-panel">
       <h4>Interval</h4>
       <div class="hist-sub">How should the history be displayed?</div>
-      ${['Daily','Weekly','Monthly'].map(v => histRadio('interval', v, histInterval)).join('')}
+      <div class="hist-inline" role="radiogroup" aria-label="Interval">${['Daily','Weekly','Monthly'].map(v => histRadio('interval', v, histInterval)).join('')}</div>
     </div>
     <div class="hist-panel">
       <h4>Values</h4>
       <div class="hist-sub">What should be displayed?</div>
-      ${['Our Exposure','Policy Count','Merchant Market Value'].map(v => histRadio('value', v, histValue)).join('')}
+      <div class="hist-inline" role="radiogroup" aria-label="Values">${['Our Exposure','Policy Count','Merchant Market Value'].map(v => histRadio('value', v, histValue)).join('')}</div>
     </div>
     <div class="hist-panel">
       <h4>Portfolios</h4>
@@ -435,8 +470,8 @@ function renderHistoryControls() {
     </div>`;
 }
 function wireHistoryControls() {
-  document.querySelectorAll('[data-hist-radio]').forEach(el => el.addEventListener('click', () => {
-    const g = el.dataset.histRadio, v = el.dataset.histVal;
+  document.querySelectorAll('[data-hist-radio]').forEach(el => el.addEventListener('change', () => {
+    const g = el.dataset.histRadio, v = el.value;
     if (g === 'interval') histInterval = v; else if (g === 'value') histValue = v;
     updateHistory();
   }));
@@ -446,9 +481,16 @@ function wireHistoryControls() {
 function updateHistory() {
   const chart = document.getElementById('hist-chart');
   const ctrls = document.getElementById('hist-controls');
-  if (chart) chart.innerHTML = renderHistoryChart();
+  const leg = document.getElementById('hist-legend');
+  if (chart) { chart.innerHTML = renderHistoryChart(); mountHistoryChart(); }
+  if (leg) leg.innerHTML = historyLegend();
   if (ctrls) { ctrls.innerHTML = renderHistoryControls(); wireHistoryControls(); }
 }
+document.addEventListener('click', e => {
+  const l = e.target.closest('[data-hist-leg]');
+  if (l) { const i = +l.dataset.histLeg; histSel.has(i) ? histSel.delete(i) : histSel.add(i); updateHistory(); return; }
+  if (e.target.closest('[data-hist-clear]')) { histSel.clear(); updateHistory(); }
+});
 
 /* ── Stats data by sub-tab ───────────────────────────────────────────────── */
 const STATS = {
@@ -577,12 +619,12 @@ function mrdVesselIcon(color, heading, nav) {
   return L.divIcon({ html:`<div class="vessel-marker" style="${rot}">${shape}</div>`, className:'', iconSize:[16,16], iconAnchor:[8,8] });
 }
 function mrdVesselTooltip(v) {
-  return `<span class="vtip-row"><img class="vtip-flag" src="https://flagcdn.com/w40/${v.flag.cc}.png" srcset="https://flagcdn.com/w80/${v.flag.cc}.png 2x" width="18" height="13" alt="${v.flag.name}" /><span class="vtip-name">${v.name}</span></span><span class="vtip-type">${v.type} · ${v.flag.name}</span>`;
+  return `<span class="vtip-row"><img class="vtip-flag" src="flags/${v.flag.cc}.svg" srcset="flags/${v.flag.cc}.svg 2x" width="18" height="13" alt="${v.flag.name}" /><span class="vtip-name">${v.name}</span></span><span class="vtip-type">${v.type} · ${v.flag.name}</span>`;
 }
 function mrdVesselPopup(v) {
   const latStr = `${Math.abs(v.lat).toFixed(2)}°${v.lat>=0?'N':'S'}`;
   const lngStr = `${Math.abs(v.lng).toFixed(2)}°${v.lng>=0?'E':'W'}`;
-  const flagImg = `<img src="https://flagcdn.com/w40/${v.flag.cc}.png" srcset="https://flagcdn.com/w80/${v.flag.cc}.png 2x" width="18" height="13" alt="${v.flag.name}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px" />`;
+  const flagImg = `<img src="flags/${v.flag.cc}.svg" srcset="flags/${v.flag.cc}.svg 2x" width="18" height="13" alt="${v.flag.name}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px" />`;
   return `
   <div class="vp">
     <div class="vp-header">
@@ -1025,18 +1067,18 @@ function Content() {
         <div class="tabs-desktop-wrap">
           <div class="ds-tabs" id="map-view-tabs" style="display:inline-flex;flex-wrap:wrap;max-width:100%">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
-            <button class="ds-tab" aria-selected="${mapTab==='map'}"        data-mtab="map"><span class="ds-tab-label">Map</span></button>
-            <button class="ds-tab" aria-selected="${mapTab==='policies'}"   data-mtab="policies"><span class="ds-tab-label">Policies</span></button>
-            <button class="ds-tab" aria-selected="${mapTab==='notif'}"      data-mtab="notif"><span class="ds-tab-label">Notifications</span></button>
-            <button class="ds-tab" aria-selected="${mapTab==='history'}"    data-mtab="history"><span class="ds-tab-label">Region History</span></button>
-            <button class="ds-tab" aria-selected="${mapTab==='casualties'}" data-mtab="casualties"><span class="ds-tab-label">Region Casualties</span></button>
+            <button class="ds-tab" aria-selected="${mapTab==='map'}"        data-mtab="map"><span class="ds-tab-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.1 6.1 9.9 3.9a2 2 0 0 0-1.8 0L3.6 6.2A1 1 0 0 0 3 7.1v12.3a1 1 0 0 0 1.4.9l3.7-1.9a2 2 0 0 1 1.8 0l4.2 2.2a2 2 0 0 0 1.8 0l4.5-2.3a1 1 0 0 0 .6-.9V5.1a1 1 0 0 0-1.4-.9l-3.7 1.9a2 2 0 0 1-1.8 0Z"/><path d="M15 6.8v14"/><path d="M9 3.2v14"/></svg>Map</span></button>
+            <button class="ds-tab" aria-selected="${mapTab==='policies'}"   data-mtab="policies"><span class="ds-tab-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>Policies</span></button>
+            <button class="ds-tab" aria-selected="${mapTab==='notif'}"      data-mtab="notif"><span class="ds-tab-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Notifications</span></button>
+            <button class="ds-tab" aria-selected="${mapTab==='history'}"    data-mtab="history"><span class="ds-tab-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>Vessel Region History</span></button>
+            <button class="ds-tab" aria-selected="${mapTab==='casualties'}" data-mtab="casualties"><span class="ds-tab-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Region Casualties</span></button>
           </div>
         </div>
         <select class="mobile-tab-select" id="map-tab-sel" aria-label="Select view">
           <option value="map" ${mapTab==='map'?'selected':''}>Map</option>
           <option value="policies" ${mapTab==='policies'?'selected':''}>Policies</option>
           <option value="notif" ${mapTab==='notif'?'selected':''}>Notifications</option>
-          <option value="history" ${mapTab==='history'?'selected':''}>Region History</option>
+          <option value="history" ${mapTab==='history'?'selected':''}>Vessel Region History</option>
           <option value="casualties" ${mapTab==='casualties'?'selected':''}>Region Casualties</option>
         </select>
       </div>
@@ -1083,7 +1125,7 @@ function Content() {
             <thead><tr>
               <th><span class="th-in">Date ${window.dsSortInd(true,false)}</span></th>
               <th><span class="th-in">Asset ${window.dsSortInd(false,true)}</span></th>
-              <th><span class="th-in">Monitored Countries ${window.dsSortInd(false,true)}</span></th>
+              <th><span class="th-in">Country Watchlist ${window.dsSortInd(false,true)}</span></th>
               <th><span class="th-in">Exposure ${window.dsSortInd(false,true)}</span></th>
               <th><span class="th-in">War Exposure ${window.dsSortInd(false,true)}</span></th>
               <th><span class="th-in">Portfolio ${window.dsSortInd(false,true)}</span></th>
@@ -1146,9 +1188,8 @@ function Content() {
         </div>
       </div>` : mapTab === 'history' ? `
       <div style="display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto" class="scroll-thin">
-        <div class="hist-title">Region History</div>
-        <div id="hist-chart" style="padding:0 16px">${renderHistoryChart()}</div>
-        <div class="hist-legend">${historyLegend()}</div>
+        <div id="hist-chart" style="padding:14px 16px 0">${renderHistoryChart()}</div>
+        <div class="hist-legend" id="hist-legend">${historyLegend()}</div>
         <div class="hist-controls" id="hist-controls">${renderHistoryControls()}</div>
       </div>` : `
       <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#94a3b8;font-size:13px;padding:48px">
@@ -1250,6 +1291,7 @@ function wire() {
     casTbl.querySelector('thead tr').innerHTML = casHead(); casTbl.querySelector('tbody').innerHTML = casRows();
   });
   wireHistoryControls();
+  mountHistoryChart();
   window.addEventListener('resize', positionTabPills, { passive: true });
   const mapTabSel = document.getElementById('map-tab-sel');
   if (mapTabSel) mapTabSel.onchange = () => { mapTab = mapTabSel.value; rc(); };

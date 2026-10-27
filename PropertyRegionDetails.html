@@ -67,7 +67,7 @@
   .tab-dd:hover{border-color:#cbd5e1}
   .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none}
-  @media(max-width:1023px){.prd-top-row{grid-template-columns:1fr}}
+  @media(max-width:1023px){.prd-top-row{grid-template-columns:1fr;height:auto}.prd-top-row>div{height:auto;max-height:none;min-width:0}.prd-top-row>div:has(.leaflet-container){height:360px}}
   @media(max-width:767px){.mobile-tab-select{display:block!important}.tabs-desktop-wrap{display:none!important}}
   /* DS card footer + Tertiary/Ghost button (ALL CAPS) — per Skytek DS */
   .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
@@ -75,6 +75,7 @@
   .ds-card-foot--center{justify-content:center;}
   .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -87,7 +88,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 const regionName = sessionStorage.getItem('selectedPropertyRegion') || 'Miami';
 window.PAGE = { id:'regions', title:'Property Region', crumb: regionName };
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
 <script>
@@ -266,7 +267,7 @@ function Content() {
           <div class="det-row"><span class="det-label">Affected Assets:</span><span class="det-value">${d.affectedAssets}</span></div>
           <div class="det-row"><span class="det-label">Region Exposure Threshold:</span><span class="det-value">${d.exposureThreshold}</span></div>
           <div class="det-row"><span class="det-label">Asset Count Threshold:</span><span class="det-value">${d.assetCountThreshold}</span></div>
-          <div class="det-row"><span class="det-label">Monitored Countries:</span><span class="det-value" style="font-size:16px">${d.countries}</span></div>
+          <div class="det-row"><span class="det-label">Country Watchlist:</span><span class="det-value" style="font-size:16px">${d.countries}</span></div>
         </div>
         <div class="ds-card-foot ds-card-foot--end">
           <a href="#" class="ds-foot-btn">Further Investigate

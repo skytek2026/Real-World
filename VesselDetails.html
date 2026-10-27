@@ -79,7 +79,7 @@
   .voyage-tabs .ds-tabs{width:100%;min-width:0;}
   .voyage-tabs .ds-tab{font-size:10.5px !important;padding:5px 4px !important;min-width:0 !important;white-space:normal !important;overflow-wrap:break-word;line-height:1.15;text-align:center;justify-content:center;}
   .voyage-tabs .ds-tab-label{font-size:10.5px !important;justify-content:center;text-align:center;white-space:normal !important;}
-  @media (min-width:1280px){.voyage-tabs .ds-tab,.voyage-tabs .ds-tab-label{font-size:11.5px !important;}.voyage-tabs .ds-tab{padding:6px 9px !important;}}
+  @media (min-width:1280px){.voyage-tabs .ds-tab,.voyage-tabs .ds-tab-label{font-size:12px !important;}.voyage-tabs .ds-tab{padding:8px 10px !important;line-height:1.2;}}
   .voyage-tabs .ds-tab-label{justify-content:center;text-align:center;}
   .rs-tip-lgd{display:flex;flex-direction:column;gap:3px;margin-top:7px;padding-top:6px;border-top:1px solid #f1f5f9;}
   .rs-tip-lgd-h{font-size:9px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;}
@@ -121,8 +121,10 @@
   .map-btn { position:relative; }
   .map-btn.is-on { background:#eff6ff; color:#2d7ffb; border-color:#bfdbfe; }
   .ev-row { display:flex; align-items:center; gap:8px; padding:6px 12px; font-size:13px; color:#374151; cursor:pointer; }
-  .ev-row:hover { background:#f3f4f6; }
-  .ev-cb { width:15px; height:15px; accent-color:#2d7ffb; cursor:pointer; flex-shrink:0; margin:0; }
+  .ev-row:hover { background:var(--brand-50,#eff6ff); }
+  .ev-cb { width:15px; height:15px; accent-color:var(--brand-600,#2d7ffb); cursor:pointer; flex-shrink:0; margin:0; }
+  .ev-cb:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
+  #map-events-count { color:var(--brand-600,#2d7ffb) !important; font-weight:600; }
   .map-btn.has-active:not(.is-on) { color:#2d7ffb; }
   .map-btn:disabled { color:#cbd5e1; cursor:not-allowed; background:#fff; }
   #map-layers-menu.hidden, #map-events-menu.hidden, #map-regions-menu.hidden, #map-weather-menu.hidden, .rg-children.hidden { display:none !important; }
@@ -275,6 +277,14 @@
   .sts-facet-head { padding:8px 12px; border-bottom:1px solid #f1f5f9; font-size:11.5px; font-weight:600; color:#64748b; text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
   .sts-facet-row { display:flex; align-items:center; gap:8px; padding:6px 12px; font-size:12.5px; color:#0f172a; cursor:pointer; }
   .sts-facet-row:hover { background:#f8fafc; }
+  .ds-fdrawer{--z-drawer:1080;--bg-surface:#fff;--bg-muted:#f1f5f9;--bg-sunken:#f8fafc;--border-subtle:#eef2f7;--border-default:#e2e8f0;--text-primary:#0f172a;--text-secondary:#334155;--text-muted:#64748b;--danger-500:#ef4444;--radius-sm:6px;--radius-pill:999px;--shadow-focus:0 0 0 3px rgb(45 127 251/.32);--motion-fast:140ms;--motion-base:200ms;--ease-out:cubic-bezier(.2,.8,.2,1);--font-display:inherit;--fdrawer-width:        360px;--fdrawer-max-width:    92vw;--fdrawer-scrim:        rgba(15, 23, 42, 0.38);--fdrawer-shadow:       -10px 0 30px rgba(15, 23, 42, 0.16);--fdrawer-pad-x:        18px;--fdrawer-head-pad:     16px 20px;--fdrawer-slide:        300ms;--fdrawer-slide-ease:   cubic-bezier(0.4, 0, 0.2, 1);--fdrawer-scrim-motion: 250ms;--fdrawer-acc-motion:   220ms;--fdrawer-list-max:     210px;}
+  .ds-fdrawer { position: fixed; inset: 0; z-index: var(--z-drawer); visibility: hidden; } .ds-fdrawer.is-open { visibility: visible; } .ds-fdrawer-scrim { position: absolute; inset: 0; background: var(--fdrawer-scrim); opacity: 0; transition: opacity var(--fdrawer-scrim-motion) var(--ease-out); } .ds-fdrawer.is-open .ds-fdrawer-scrim { opacity: 1; } .ds-fdrawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: var(--fdrawer-width); max-width: var(--fdrawer-max-width); background: var(--bg-surface); box-shadow: var(--fdrawer-shadow); display: flex; flex-direction: column; transform: translateX(100%); transition: transform var(--fdrawer-slide) var(--fdrawer-slide-ease); } .ds-fdrawer.is-open .ds-fdrawer-panel { transform: translateX(0); } .ds-fdrawer-head { display: flex; align-items: center; justify-content: space-between; padding: var(--fdrawer-head-pad); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text-primary); flex: 0 0 auto; } .ds-fdrawer-close { border: 0; background: none; cursor: pointer; color: var(--text-muted); padding: 5px; border-radius: 7px; display: inline-flex; transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-close:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-close:focus-visible { outline: 0; box-shadow: var(--shadow-focus); } .ds-fdrawer-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 4px var(--fdrawer-pad-x) 12px; display: flex; flex-direction: column; } .ds-fdrawer-section { padding: 16px 0; border-bottom: 1px solid var(--border-subtle); flex: 0 0 auto; transition: padding var(--motion-base) var(--ease-out); } .ds-fdrawer-section:not(.is-open) { padding: 11px 0; } .ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; } .ds-fdrawer-section:last-child { border-bottom: 0; } .ds-fdrawer-acc-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; } .ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); } .ds-fdrawer-sec-title { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 7px; } .ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); } .ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); } .ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; } .ds-fdrawer-acc-body { display: none; padding-top: 12px; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { display: flex; flex-direction: column; flex: 1; min-height: 0; animation: ds-fdrawer-acc-in var(--fdrawer-acc-motion) var(--ease-out); } @keyframes ds-fdrawer-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } } .ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; } .ds-fdrawer-act { flex: 1; padding: 5px 8px; border: 1px solid var(--border-default); border-radius: var(--radius-sm); background: var(--bg-surface); font: inherit; font-size: 11.5px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); } .ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; } .ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; } .ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; } .ds-fdrawer-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 10px; border: 0; border-radius: var(--radius-sm); background: transparent; font-size: 12.5px; font-weight: 500; color: var(--text-secondary); cursor: pointer; white-space: nowrap; } .ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; } .ds-fdrawer-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px var(--fdrawer-pad-x); border-top: 1px solid var(--border-subtle); flex: 0 0 auto; } .ds-fdrawer-foot > * { justify-content: center; height: 40px; padding: 0 16px; } .ds-fdrawer-foot > *:disabled { opacity: 0.45; cursor: default; pointer-events: none; } @media (prefers-reduced-motion: reduce) { .ds-fdrawer-panel, .ds-fdrawer-scrim { transition-duration: 1ms; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { animation-duration: 1ms; } }
+  .ds-fdrawer-item input[type="radio"]{width:15px;height:15px;accent-color:var(--brand-600);cursor:pointer;margin:0;flex-shrink:0}
+  .sts-ibtn{width:32px;padding:0;justify-content:center;color:#475569}
+  .sts-ibtn.has-active::after{display:none}
+  .sts-ibtn .ds-fdrawer-dot{position:absolute;top:5px;right:5px}
+  .sts-btn--primary{background:var(--brand-600,#2d7ffb);border-color:var(--brand-600,#2d7ffb);color:#fff}
+  .sts-btn--primary:hover:not(:disabled){background:var(--brand-700,#1d6ae5)!important;border-color:var(--brand-700,#1d6ae5)!important}
   .env-period-sel.is-set { color:#2d7ffb; border-color:#bfdbfe; background:#eff6ff; }
   .rg-head { padding-right:6px; }
   .rg-toggle { width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; color:#6b7280; border-radius:6px; cursor:pointer; flex-shrink:0; transition:transform .15s; }
@@ -282,41 +292,55 @@
   .rg-toggle.is-open { transform:rotate(180deg); }
   .rg-child { padding-left:35px; font-size:12.5px; color:#4b5563; }
   .ev-marker { width:26px; height:26px; border-radius:50%; border:2px solid #fff; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(15,23,42,.35); }
-  .ev-marker { transition:transform .15s, box-shadow .15s; }
+  @container (max-width:110px){ .vd-pie-sub{display:none;} }
+  .vd-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,.667fr);gap:16px 28px}
+  @media(max-width:1279px){.vd-split{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:767px){.vd-split{grid-template-columns:1fr}}
+  .vd-split-card{height:400px}
+  .vd-split{min-height:0;overflow:hidden}
+  .vd-split > div{min-height:0}
+  .vd-split-scroll{display:flex;flex-direction:column;min-height:0}
+  .vd-split-body{flex:1;min-height:0;overflow-y:auto;padding-right:4px}
+  @media(max-width:1279px){.vd-split-card{height:auto}.vd-split{overflow:visible}.vd-split-scroll{max-height:340px}}
+  .vd-split-embed{flex:1;display:flex;flex-direction:column}
+  .vd-split-embed > div{border:0 !important;box-shadow:none !important;border-radius:0 !important;height:auto !important;flex:1}
+  .vd-split-embed > div > div:first-child{display:none !important}
+  .vd-split-embed > div > div:nth-child(2){padding-left:0 !important;padding-right:0 !important}
+  .alt-row-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#64748b;padding-top:6px}
+  .alt-top-row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:12px;height:440px}
+  .alt-top-row > div{min-height:0;min-width:0}
+  .alt-stack{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1.25fr);gap:12px;min-width:0}
+  .alt-stack > div{min-height:0;min-width:0}
+  .alt-vd .space-y-0\.5{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:24px}
+  .alt-vd .space-y-0\.5 > *{margin-top:0 !important}
+  .alt-vd .space-y-0\.5 > div:last-child{border-bottom-width:1px}
+  @media(max-width:1279px){.alt-top-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);height:auto}.alt-vd{grid-column:1/-1;height:360px}.alt-stack{height:470px}.alt-risk{height:470px}}
+  @media(max-width:767px){.alt-top-row{grid-template-columns:1fr}.alt-vd .space-y-0\.5{grid-template-columns:1fr}.alt-vd{height:auto;max-height:480px}}
+  #vessel-map .leaflet-tooltip { background:#0f172a !important; border:0 !important; border-radius:5px !important; color:#fff !important; font-size:11px !important; font-weight:600 !important; padding:3px 7px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
+  #vessel-map .leaflet-tooltip span[style]{color:#cbd5e1 !important;font-weight:500}
+  #vessel-map .leaflet-tooltip-top::before { border-top-color:#0f172a !important; }
+  #vessel-map .leaflet-tooltip-bottom::before { border-bottom-color:#0f172a !important; }
+  #vessel-map .leaflet-tooltip-left::before { border-left-color:#0f172a !important; }
+  #vessel-map .leaflet-tooltip-right::before { border-right-color:#0f172a !important; }
+  @media(max-width:639px){.co-rs-toggles,.co-rs-grid{display:contents !important}.co-rs-sanc{order:1;align-self:flex-end;flex-direction:row-reverse}.co-rs-gauge{order:2}.co-rs-trend{order:3;align-self:flex-end;margin-top:4px}.co-rs-years{order:4}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:5}.co-rs-grid > :not(.co-rs-gauge):not(.co-rs-years){order:5}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:6}}
+  .ev-marker { transition:transform .15s, box-shadow .15s; cursor:pointer; }
+  .leaflet-marker-icon:hover .ev-marker:not(.is-sel) { transform:scale(1.1); box-shadow:0 0 0 5px rgba(255,255,255,.55), 0 2px 6px rgba(15,23,42,.35); }
+  .leaflet-marker-icon:hover .ev-marker.is-sel { box-shadow:0 0 0 3px var(--brand-600,#2d7ffb), 0 0 0 7px color-mix(in srgb, var(--brand-600,#2d7ffb) 30%, transparent), 0 2px 8px rgba(15,23,42,.35); }
+  .vd-vessel, .leaflet-marker-icon > div[style*="border-radius:50%"] { transition:box-shadow .15s; }
+  .leaflet-marker-icon:hover > div[style*="border-radius:50%"] { box-shadow:0 0 0 4px rgba(255,255,255,.55), 0 1px 4px rgba(0,0,0,.3) !important; }
   .ev-marker.is-sel { transform:scale(1.25); box-shadow:0 0 0 3px var(--brand-600,#2d7ffb), 0 2px 8px rgba(15,23,42,.35); }
   .ev-pop-b { padding:10px 14px 12px; font-size:12.5px; line-height:1.5; color:#334155; text-wrap:pretty; }
   .ev-pop-note { margin-top:8px; font-size:11.5px; color:#b45309; }
   .ev-pop-f { display:flex; justify-content:center; margin-top:10px; padding-top:10px; border-top:1px solid #e2e8f0; }
   .hist-ev { cursor:pointer; position:relative; }
   .nc-mk { background:transparent; border:0; filter:drop-shadow(0 1px 1px rgba(255,255,255,.9)) drop-shadow(0 0 1px rgba(255,255,255,.9)); }
-  .nc-wrap { position:absolute; top:12px; left:50%; transform:translateX(-50%); z-index:450; display:flex; flex-direction:column; align-items:center; gap:6px; max-width:calc(100% - 120px); }
-  .nc-row { display:flex; align-items:center; gap:6px; }
-  .nc-key-btn { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:999px; box-shadow:0 1px 2px rgb(15 23 42/.08); font:inherit; font-size:12.5px; font-weight:600; color:var(--brand-600,#2d7ffb); cursor:pointer; white-space:nowrap; }
-  .nc-key-btn[hidden] { display:none; }
-  .nc-key-btn:hover, .nc-key-btn[aria-expanded="true"] { background:var(--brand-050,#eff6ff); }
-  .nc-key-btn:focus-visible, .nc-key-x:focus-visible { outline:0; box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32)); }
-  .nc-key { width:340px; max-width:100%; max-height:360px; display:flex; flex-direction:column; overflow:hidden; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:12px; box-shadow:var(--card-shadow-raised,0 20px 32px -8px rgb(15 23 42/.2)); }
-  .nc-key-b { flex:1 1 auto; min-height:0; overflow-y:auto; padding:12px 8px 12px 14px; margin:4px 6px 4px 0; scrollbar-gutter:stable; }
-  .nc-key[hidden] { display:none !important; }
-  .nc-key-h { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 10px 10px 14px; border-bottom:1px solid var(--border-subtle,#f1f5f9); background:var(--slate-50,#f8fafc); }
-  .nc-key-h b { font-size:13px; color:var(--text-primary,#0f172a); }
-  .nc-key-x { width:24px; height:24px; display:grid; place-items:center; border:0; border-radius:6px; background:transparent; color:var(--text-muted,#64748b); cursor:pointer; }
-  .nc-key-x:hover { background:var(--slate-100,#f1f5f9); color:var(--text-primary,#0f172a); }
-  .nc-key-list { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
-  .nc-key-list li { display:grid; grid-template-columns:28px 1fr; gap:8px; align-items:start; }
-  .nc-key-i { width:28px; height:28px; border-radius:6px; background:#e6f0f5; display:grid; place-items:center; }
-  .nc-key-list b { display:block; font-size:12px; font-weight:600; color:var(--text-primary,#0f172a); }
-  .nc-key-list small { display:block; font-size:11.5px; line-height:1.4; color:var(--text-secondary,#475569); }
-  .nc-key-f { margin:10px 0 0; padding-top:8px; border-top:1px solid var(--border-subtle,#f1f5f9); font-size:11px; color:var(--text-muted,#64748b); }
-  .nc-badge { position:relative; display:inline-flex; align-items:center; gap:8px; height:32px; padding:0 12px 0 10px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:999px; box-shadow:0 1px 2px rgb(15 23 42/.08); font-size:12.5px; font-weight:600; color:var(--text-primary,#0f172a); cursor:pointer; user-select:none; white-space:nowrap; transition:background 140ms, border-color 140ms, color 140ms, opacity 140ms; }
-  .nc-badge:hover:not([data-disabled="true"]) { background:#f8fafc; border-color:var(--border-strong,#cbd5e1); }
-  .nc-badge input { position:absolute; opacity:0; width:1px; height:1px; margin:0; pointer-events:none; }
-  .nc-box { width:16px; height:16px; border-radius:4px; border:1.5px solid var(--slate-400,#94a3b8); background:#fff; display:grid; place-items:center; color:transparent; flex-shrink:0; transition:background 140ms, border-color 140ms; }
-  .nc-badge input:checked + .nc-box { background:var(--brand-600,#2d7ffb); border-color:var(--brand-600,#2d7ffb); color:#fff; }
-  .nc-badge:has(input:checked) { border-color:var(--brand-400,#8ec5fd); background:var(--brand-050,#eff6ff); color:var(--brand-700,#1f5fc7); }
-  .nc-badge input:focus-visible + .nc-box { box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32)); }
-  .nc-badge[data-disabled="true"] { cursor:not-allowed; color:var(--text-muted,#64748b); background:rgba(255,255,255,.88); }
-  .nc-badge[data-disabled="true"] .nc-box { border-color:var(--slate-300,#cbd5e1); background:var(--slate-100,#f1f5f9); }
+  .nc-row[data-disabled="true"] { cursor:not-allowed; color:var(--text-muted,#64748b); }
+  .nc-row[data-disabled="true"] input { cursor:not-allowed; }
+  .br-tbd { display:none; }
+  .br-card[data-br="Alerts"] > :not(:first-child):not(.br-tbd) { display:none !important; }
+  .br-card[data-br="Alerts"] > .br-tbd { flex:1; min-height:240px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; font-size:13px; font-weight:600; color:var(--text-muted,#64748b); }
+  .br-tbd-ico { width:44px; height:44px; border-radius:999px; display:grid; place-items:center; background:var(--brand-50,#eff6ff); color:var(--brand-600,#2d7ffb); }
+  .br-tbd-ico svg { width:20px; height:20px; }
   .nc-hint { font-weight:500; color:var(--text-muted,#64748b); }
   .nc-hint:empty { display:none; }
   .hist-range { width:100%; display:flex; align-items:center; gap:12px; padding:10px 12px; background:#fff; border:1px solid var(--border-default,#e2e8f0); border-radius:8px; cursor:pointer; text-align:left; font:inherit; box-shadow:0 1px 2px rgb(15 23 42/.05); transition:border-color 140ms cubic-bezier(.16,1,.3,1), box-shadow 140ms cubic-bezier(.16,1,.3,1), background 140ms; }
@@ -334,7 +358,8 @@
   .hist-range[aria-expanded="true"] .hist-range-chev { transform:rotate(180deg); }
   .hist-cal-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; border:1px solid #e2e8f0; background:#fff; color:var(--brand-600,#2d7ffb); cursor:pointer; box-shadow:0 1px 2px rgb(15 23 42/.05); flex-shrink:0; position:relative; }
   .hist-cal-btn:hover { background:#f8fafc; border-color:#cbd5e1; color:var(--brand-700,#1d6ae5); }
-  .hist-cal-btn:focus-visible { outline:none; box-shadow:0 0 0 3px rgb(45 127 251/.25); }
+  .hist-cal-btn:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#2d7ffb) 25%, transparent); }
+  .hist-cal-btn[aria-expanded="true"] { background:var(--brand-50,#eff6ff); border-color:var(--brand-300,#93c5fd); }
   .hist-pager { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; padding:8px 12px; border-top:1px solid #e2e8f0; }
   .hist-pager-sum { font-size:12px; color:#64748b; font-variant-numeric:tabular-nums; }
   .hist-ev:hover { background:#f8fafc; }
@@ -384,6 +409,7 @@
   .bg-purple-100{background-color:#f3f4f6!important}.text-purple-700{color:#9333ea!important}
   .bg-cyan-100{background-color:#f3f4f6!important}.text-cyan-700{color:#0891b2!important}
   .bg-pink-100{background-color:#f3f4f6!important}.text-pink-700{color:#db2777!important}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -400,7 +426,7 @@
     "showSparklines": true
   }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
@@ -485,6 +511,8 @@ let state = {
   topRightTabCopy8: 'Risk Score',
   casualtyExpandedCopy8: new Set([0]),
   withSanctionsCopy8: true,
+  complianceStatus: (() => { const q = new URLSearchParams(location.search).get('compliance'); return ['Not sanctioned','Warning','Sanctioned'].includes(q) ? q : 'Not sanctioned'; })(),
+  withTrendsCopy8: true,
   showAltDesigns: false,
 };
 
@@ -496,7 +524,7 @@ const VESSEL = {
   yearBuilt: '2009',
   latestTs: 'Mon, 13 Oct 2025 02:37:51 GMT',
   compliance: 'Sanctioned',
-  monitoredCountries: 'No monitored countries are connected with this vessel',
+  monitoredCountries: 'No watchlist countries are connected with this vessel',
   imo: '9419265',
   mmsi: '224158000',
   callSign: 'EAVP',
@@ -551,6 +579,18 @@ const VOYAGE_HISTORY = [
   { port:'Bremerhaven',cc:'de', arr:'2024-08-28', dep:'2024-08-31' },
 ];
 
+const COMPLIANCE_STATUS = {
+  'Not sanctioned': { fill:'#4ad41c', ring:'#a6e88a', changed:'Thu, 6 Aug 2026' },
+  'Warning':        { fill:'#f59e0b', ring:'#fcd68a', changed:'Mon, 14 Sep 2026' },
+  'Sanctioned':     { fill:'#dc2626', ring:'#f4a3a3', changed:'Fri, 2 Oct 2026' },
+};
+window.pageTweaks = () => `<label class="block">
+  <div class="text-[11px] font-semibold text-ink-600 mb-1 uppercase tracking-micro">Compliance status</div>
+  <div class="grid grid-cols-3 gap-1 bg-ink-100 p-1 rounded-lg">
+    ${Object.keys(COMPLIANCE_STATUS).map(v => `<button data-tweak-compliance="${v}" class="text-[11px] py-1 rounded-md ${state.complianceStatus===v?'bg-white shadow-sm font-semibold text-ink-900':'text-ink-500'}">${v}</button>`).join('')}
+  </div>
+</label>`;
+document.addEventListener('click', e => { const b = e.target.closest('[data-tweak-compliance]'); if (b) { state.complianceStatus = b.dataset.tweakCompliance; state.topRightTabCopy8 = 'Compliance'; render(); } });
 const CASUALTY_DATA = [
   { date:'2024-08-15', severity:'Minor',    location:'Singapore Strait', type:'Collision',   desc:'Minor collision with fishing vessel, no injuries reported' },
   { date:'2024-03-22', severity:'Moderate', location:'Gulf of Aden',     type:'Grounding',   desc:'Vessel grounded on sandbar, refloated after 4 hours with tug assistance' },
@@ -706,7 +746,7 @@ function flag(cc, size='sm') {
   if (!cc) return '';
   const h = size === 'md' ? 18 : 14;
   const w = size === 'md' ? 26 : 20;
-  return `<img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${cc.toUpperCase()}" width="${w}" height="${h}" class="inline-block rounded-[2px] ring-1 ring-ink-200/80 object-cover" style="width:${w}px;height:${h}px" loading="lazy" />`;
+  return `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" alt="${cc.toUpperCase()}" width="${w}" height="${h}" class="inline-block rounded-[2px] ring-1 ring-ink-200/80 object-cover" style="width:${w}px;height:${h}px" loading="lazy" />`;
 }
 
 function tabs(tabs, active, attr, stretch = false) {
@@ -783,6 +823,96 @@ function complianceBadge(status) {
     + `<span class="w-1.5 h-1.5 rounded-full" style="background:${dot};"></span>${status}</span>`;
 }
 
+function vdAnimateRiskPie(prev) {
+  const C = 289.03, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const arc = document.querySelector('.vd-rs-arc'), num = document.querySelector('.vd-rs-num');
+  const gauge = arc && arc.closest('.co-rs-gauge');
+  if (!arc || reduce) return;
+  const to = +arc.dataset.score, toDash = arc.getAttribute('stroke-dasharray'), toColor = arc.getAttribute('stroke');
+  arc.style.transition = 'none';
+  arc.setAttribute('stroke-dasharray', (Math.min(prev.score,100)/100*C).toFixed(2) + ' ' + C);
+  arc.setAttribute('stroke', prev.color);
+  if (gauge) { gauge.style.transition = 'none'; gauge.style.borderColor = state.withSanctionsCopy8 ? '#e5e7eb' : '#dc2626'; }
+  arc.getBoundingClientRect();
+  requestAnimationFrame(() => {
+    arc.style.transition = 'stroke-dasharray .7s cubic-bezier(.22,1,.36,1), stroke .5s ease';
+    arc.setAttribute('stroke-dasharray', toDash);
+    arc.setAttribute('stroke', toColor);
+    if (gauge) { gauge.style.transition = 'border-color .5s ease'; gauge.style.borderColor = state.withSanctionsCopy8 ? '#dc2626' : '#e5e7eb'; }
+  });
+  if (num) {
+    const t0 = performance.now(), D = 700, from = prev.score;
+    const step = now => { const p = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - p, 3);
+      num.textContent = Math.round(from + (to - from) * e); if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+    num.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
+  }
+}
+function riskCardAs(tab) {
+  const prev = state.topRightTabCopy8; state.topRightTabCopy8 = tab;
+  const html = CasualtyRiskCardCopy8(); state.topRightTabCopy8 = prev; return html;
+}
+function VesselDetailsSplitCard() {
+  const row = (label, value, isBold) => `
+    <div class="flex justify-between items-start gap-4 text-xs py-1.5 border-b last:border-b-0" style="border-color:#f3f4f6;">
+      <span class="text-ink-500 shrink-0">${label}</span>
+      <span class="vd-split-v min-w-0 flex flex-wrap items-center justify-end gap-1.5 text-right ${isBold?'font-semibold text-ink-900':'text-ink-700'}">${value}</span>
+    </div>`;
+  const head = (ico, t) => `<div class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-ink-500 pb-2 mb-1 border-b border-ink-200"><span class="inline-flex text-brand-600 [&_svg]:h-3.5 [&_svg]:w-3.5">${ico}</span>${t}</div>`;
+  return `
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col vd-split-card">
+    <div class="px-4 py-3 border-b border-ink-200"><span style="font-size:14px;font-weight:700;color:#0f172a;">Details</span></div>
+    <div class="vd-split p-4 flex-1">
+      <div class="min-w-0 vd-split-scroll">${head(SC.I.ship || '', 'Vessel Details')}<div class="vd-split-body scroll-thin">
+      <div class="space-y-0.5">
+        ${row('Name:', VESSEL.name, true)}
+        ${row('Flag:', `${flag(VESSEL.flag.cc)} ${VESSEL.flag.name}`)}
+        ${row('Type:', VESSEL.type)}
+        ${row('Year Built:', VESSEL.yearBuilt)}
+        ${row('Country Watchlist:', `<span class="block text-right">${VESSEL.monitoredCountries}</span>`)}
+        ${row('IMO:', VESSEL.imo)}
+        ${row('MMSI:', VESSEL.mmsi)}
+        ${row('Call Sign:', VESSEL.callSign)}
+        ${row('Ship Status:', VESSEL.shipStatus)}
+        ${row('Ship Builder:', VESSEL.shipBuilder)}
+        ${row('Ship Status Date:', VESSEL.shipStatusDate)}
+        ${row('Width (m):', VESSEL.width)}
+        ${row('Length (m):', VESSEL.length)}
+        ${row('Draught (m):', VESSEL.draught)}
+        ${row('Deadweight:', VESSEL.deadweight)}
+        ${row('Gross Tonnage:', VESSEL.grossTonnage)}
+        ${row('TEU:', VESSEL.teu)}
+        ${row('Market / Scrap Value (Mil $):', VESSEL.marketScrapValue)}
+        ${row('ExName:', VESSEL.exName)}
+        ${row('In portfolios:', VESSEL.inPortfolios)}
+      </div>
+      </div></div>
+      <div class="min-w-0 vd-split-scroll">${head(SC.I.office || '', 'Company Details')}<div class="vd-split-body scroll-thin">
+      <div class="space-y-0.5">
+        ${(() => {
+          const CN = { mh:'Marshall Islands', mc:'Monaco', it:'Italy', in:'India' };
+          const fl = cc => `<span title="${CN[cc]}" class="inline-flex">${flag(cc)}</span>`;
+          const ent = (name, ccs) => `<span class="inline-flex items-center gap-1.5 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-600 hover:underline text-right">${name}</a></span>`;
+          return `
+        ${row('Flag:', `<span class="inline-flex items-center gap-1.5">${flag('mh')} Marshall Islands</span>`)}
+        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1.5 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-[9px] font-bold" style="background:#d97706">i</span>View company details</a>`)}
+        ${row('Classification Society:', 'American Bureau of Shipping')}
+        ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-600 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
+        ${row('Group Owner:', ent('Scorpio Group', ['mc','it','mc']))}
+        ${row('Third Party Operator:', 'N/A')}
+        ${row('Operator:', ent('Scorpio Tankers Incorporated', ['mc','it','mc']))}
+        ${row('Registered Owner:', ent('STI Westminster Shipping Company Limited', ['mh','it','mh']))}
+        ${row('Technical Manager:', ent('Scorpio Marine Management (India) Private Limited', ['in']))}
+        ${row('DOC Company:', ent('Scorpio Marine Management (India) Private Limited', ['in']), true)}`;
+        })()}
+      </div>
+      </div></div>
+      <div class="min-w-0 flex flex-col">${head('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>', 'Risk Score')}<div class="vd-split-embed">${riskCardAs('Risk Score')}</div></div>
+      <div class="min-w-0 flex flex-col">${head('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>', 'Compliance')}<div class="vd-split-embed">${riskCardAs('Compliance')}</div></div>
+    </div>
+  </div>`;
+}
+
 function VesselDetailsCard() {
   const topTabs = [
     { k:'Vessel Details',  icon:'ship'   },
@@ -804,17 +934,7 @@ function VesselDetailsCard() {
         ${row('Flag:', `${flag(VESSEL.flag.cc)} ${VESSEL.flag.name}`)}
         ${row('Type:', VESSEL.type)}
         ${row('Year Built:', VESSEL.yearBuilt)}
-        <div class="flex justify-between gap-3 text-xs py-1.5 border-b last:border-b-0" style="border-color:#f3f4f6;">
-          <span class="flex flex-col text-ink-500">
-            <span>Overall Compliance:</span>
-            <span class="text-[11px]">Unknown Affiliations not screened.</span>
-          </span>
-          <span class="flex flex-col items-end gap-1">
-            ${complianceBadge(VESSEL.compliance)}
-            <span class="text-[11px] text-ink-500">Updated at: <span class="text-ink-700 font-medium">${VESSEL.latestTs.replace(/\s\d{2}:\d{2}:\d{2}.*$/, '')}</span></span>
-          </span>
-        </div>
-        ${row('Monitored Countries:', `<span class="block text-right">${VESSEL.monitoredCountries}</span>`)}
+        ${row('Country Watchlist:', `<span class="block text-right">${VESSEL.monitoredCountries}</span>`)}
         ${row('IMO:', VESSEL.imo)}
         ${row('MMSI:', VESSEL.mmsi)}
         ${row('Call Sign:', VESSEL.callSign)}
@@ -1119,6 +1239,7 @@ function CasualtyRiskCard() {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <!-- Gauge -->
         <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;">
+          <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
           <div style="position:relative;width:100%;max-width:185px;">
             <svg viewBox="0 0 200 192" style="width:100%;height:auto;overflow:visible;" preserveAspectRatio="xMidYMid meet">
               <defs>
@@ -1152,7 +1273,7 @@ function CasualtyRiskCard() {
           </div>
         </div>
         <!-- Year comparisons -->
-        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:start;">
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:center;align-content:center;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
             <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
             <div style="font-size:9px;color:#6b7280;text-align:center;line-height:1.4;">Avg. Risk Score</div>
@@ -1375,6 +1496,7 @@ function CasualtyRiskCardCopy7() {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <!-- Gauge -->
         <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;">
+          <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
           <div style="position:relative;width:100%;max-width:185px;">
             <svg viewBox="0 0 200 192" style="width:100%;height:auto;overflow:visible;" preserveAspectRatio="xMidYMid meet">
               <defs>
@@ -1408,7 +1530,7 @@ function CasualtyRiskCardCopy7() {
           </div>
         </div>
         <!-- Year comparisons -->
-        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:start;">
+        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:12px 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px;align-items:center;align-content:center;">
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
             <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
             <div style="font-size:9px;color:#6b7280;text-align:center;line-height:1.4;">Avg. Risk Score</div>
@@ -1526,7 +1648,7 @@ function CasualtyRiskCardCopy8() {
                   :                  { bg:'bg-red-100',    text:'text-red-700' };
   const topRightTabs = [
     { k:'Risk Score', scoreBadge: { value: avgScore, up: avgScore > score2025, tone: scoreTone } },
-    { k:'Casualty Data', badge: CASUALTY_DATA.length },
+    { k:'Compliance' },
   ];
   
   const severityBadge = (c) => {
@@ -1543,7 +1665,21 @@ function CasualtyRiskCardCopy8() {
   };
 
   let body = '';
-  if (state.topRightTabCopy8 === 'Casualty Data') {
+  if (state.topRightTabCopy8 !== 'Compliance') state.topRightTabCopy8 = 'Risk Score';
+  if (state.topRightTabCopy8 === 'Compliance') {
+    const cs = COMPLIANCE_STATUS[state.complianceStatus] || COMPLIANCE_STATUS['Not sanctioned'];
+    body = `<div class="flex-1 flex flex-col items-center px-6 pt-10 pb-5 text-center" style="min-height:0;">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
+        <div style="width:116px;height:116px;border-radius:50%;background:${cs.ring};display:flex;align-items:center;justify-content:center;">
+          <div style="width:94px;height:94px;border-radius:50%;background:${cs.fill};display:flex;align-items:center;justify-content:center;color:#fff;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 15s1.2-1 4-1 4.6 2 7.4 2S20 15 20 15V4s-1.2 1-4 1-4.6-2-7.4-2S5 4 5 4z"></path><path d="M5 22V15" fill="none" stroke-linecap="round"></path></svg>
+          </div>
+        </div>
+        <div style="font-size:18px;font-weight:700;color:#0f2a44;">${state.complianceStatus}</div>
+      </div>
+      <div style="font-size:11.5px;line-height:1.5;color:#64748b;">Status last changed: ${cs.changed}<br>Unknown Affiliations not screened.</div>
+    </div>`;
+  } else if (false) {
     body = `
     <div class="flex-1 overflow-y-auto scroll-thin">
       <div class="px-4 py-2 grid grid-cols-[1fr_auto] gap-4 border-b border-ink-200 sticky top-0 bg-white">
@@ -1627,68 +1763,73 @@ function CasualtyRiskCardCopy8() {
     const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
     const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table><div class="rs-tip-lgd"><div class="rs-tip-lgd-h">Risk level guide</div><div class="rs-tip-lgd-r"><span style="background:#16a34a"></span><b style="color:#16a34a">Good</b><i>0 → 25</i></div><div class="rs-tip-lgd-r"><span style="background:#d97706"></span><b style="color:#d97706">Average</b><i>25+ → 50</i></div><div class="rs-tip-lgd-r"><span style="background:#dc2626"></span><b style="color:#dc2626">Below Avg.</b><i>50+ → 100</i></div></div></div></span>`;
     body = `
-    <div style="padding:10px 12px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:8px;">
-      <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
-        <button data-sanctions-toggle-copy8 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+    <div class="co-rs-body" style="padding:8px 12px 14px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:6px;">
+      <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:6px 8px;flex-wrap:wrap;">
+        <button data-trends-toggle-copy8 class="co-rs-trend" role="switch" aria-checked="${state.withTrendsCopy8}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Trends
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withTrendsCopy8?'var(--brand-600,#2d7ffb)':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${state.withTrendsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+      </div>
+      <div class="co-rs-grid" style="display:grid;grid-template-columns:${state.withTrendsCopy8?'1fr 1fr':'1fr'};gap:8px;">
+        <!-- Gauge -->
+        <div class="co-rs-gauge" style="position:relative;background:#f9fafb;border:1px solid ${state.withSanctionsCopy8 ? '#dc2626' : '#e5e7eb'};border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;">
+        <button data-sanctions-toggle-copy8 class="co-rs-sanc" style="align-self:flex-end;max-width:100%;margin-bottom:4px;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy8?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${state.withSanctionsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <!-- Gauge -->
-        <div style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px;display:flex;flex-direction:column;align-items:center;"><div style="position:absolute;top:6px;right:6px;z-index:5;">${rsInfoIcon('Current · Risk Score ' + rsScore)}</div>
-          <div style="position:relative;width:100%;max-width:188px;">
-            <svg viewBox="0 0 200 192" style="width:100%;height:auto;overflow:visible;" preserveAspectRatio="xMidYMid meet">
-              <defs>
-                <radialGradient id="rsGaugeGlowCopy8" cx="50%" cy="55%" r="42%">
-                  <stop offset="0%" stop-color="${risk.glow}" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="${risk.glow}" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-              <!-- Soft glow behind fill -->
-              <ellipse cx="100" cy="108" rx="70" ry="60" fill="url(#rsGaugeGlowCopy8)"/>
-              <!-- Glow at fill tip -->
-              ${glowPath}
-              <!-- White casing behind segments for crisp separators -->
-              ${whiteCasing}
-              <!-- Banded fill segments (grey when unfilled) -->
-              ${segPaths}
-              <!-- Score number -->
-              <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#111827" font-family="Inter,sans-serif">${rsScore}</text>
+          <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
+          <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div>
+          <div style="position:relative;width:100%;max-width:150px;aspect-ratio:1;margin:4px 0 6px;container-type:inline-size;">
+            <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="2026 risk score ${rsScore} of 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+              <circle class="vd-rs-arc" data-score="${rsScore}" cx="50" cy="50" r="46" fill="none" stroke="${risk.c}" stroke-width="8" stroke-dasharray="${(Math.min(rsScore,100)/100*289.03).toFixed(2)} 289.03"><title>Risk Score ${rsScore} / 100 · ${risk.label}</title></circle>
             </svg>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
+              <span class="vd-rs-num" style="font-size:clamp(16px,26cqi,40px);font-weight:800;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${rsScore}</span>
+            </div>
           </div>
-          <div style="background:transparent;border:0;border-radius:8px;padding:2px 10px;text-align:center;width:100%;">
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;color:${risk.c};font-weight:700;font-size:13px;">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-              +${rsDelta25} (+${rsPct}%)
+          <div style="background:transparent;border:0;border-radius:8px;padding:0 10px;text-align:center;width:100%;">
+            <div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;display:inline-flex;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta25}
             </div>
           </div>
         </div>
+        ${state.withTrendsCopy8 ? `
         <!-- Year comparisons -->
-        <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">1st Jan 2025 ${rsInfoIcon('Risk score on 1st Jan 2025: ' + rs2025, 'l')}</div>
+        <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+            <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;">2025</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2025: ' + rs2025, 'l')}</div>
             <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2025)} ${rs2025*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2025}</span>
             </div>
-            <div style="background:${yearPill(rs2025).bg};color:${yearPill(rs2025).txt};border:1px solid color-mix(in srgb, ${yearPill(rs2025).txt} 30%, transparent);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+            <div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta2025}
             </div>
           </div>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
-            <span style="background:#6b7280;color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
-            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;">1st Jan 2024 ${rsInfoIcon('Risk score on 1st Jan 2024: ' + rs2024, 'r')}</div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+            <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;">2024</span>
+            <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2024: ' + rs2024, 'r')}</div>
             <div style="position:relative;width:60px;height:60px;border-radius:50%;background:conic-gradient(${yearColor(rs2024)} ${rs2024*3.6}deg, #e5e7eb 0deg);display:flex;align-items:center;justify-content:center;">
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:800;color:#111827;line-height:1;">${rs2024}</span>
             </div>
+            <div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:3px;white-space:nowrap;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              + ${rsDelta24}
+            </div>
           </div>
-        </div>
+        </div>` : ''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:11.5px;color:#334155;padding-top:0;">
+        ${[{label:'Good',range:'0 → 25',c:'#16a34a'},{label:'Average',range:'25+ → 50',c:'#d97706'},{label:'Below average',range:'50+ → 100',c:'#dc2626'}].map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#64748b;">[${b.range}]</span></span>`).join('')}
       </div>
     </div>`;
   }
@@ -3016,22 +3157,23 @@ function InspectionTable() {
   </button>`;
   
   return `
-  <div class="bg-white rounded-lg border border-ink-200 shadow-card overflow-hidden">
-    <div class="px-4 py-3 border-b border-ink-200 scroll-thin" style="overflow-x:auto;">
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card overflow-hidden" style="height:560px;display:flex;flex-direction:column;">
+    <div class="px-4 py-3 border-b border-ink-200 scroll-thin" style="overflow-x:auto;flex-shrink:0;">
       <div class="tabs-desktop-wrap">
         ${iconTabs([
           { k:'Inspection Data', icon:'clipboard' },
           { k:'Sanction Compliance', icon:'shield' },
+          { k:'Casualty Data', icon:'lifeBuoy' },
           { k:'Ship-To-Ship', icon:'anchor' },
           { k:'Suspicious Activity', icon:'alertTri' },
           { k:'Risk Associations', icon:'network', dot:true },
         ], state.sectionTab, 'data-section-tab')}
       </div>
       <select class="mobile-tab-select" id="section-tab-mobile-sel">
-        ${['Inspection Data','Sanction Compliance','Ship-To-Ship','Suspicious Activity','Risk Associations'].map(t=>`<option value="${t}" ${t===state.sectionTab?'selected':''}>${t}</option>`).join('')}
+        ${['Inspection Data','Sanction Compliance','Casualty Data','Ship-To-Ship','Suspicious Activity','Risk Associations'].map(t=>`<option value="${t}" ${t===state.sectionTab?'selected':''}>${t}</option>`).join('')}
       </select>
     </div>
-    <div class="overflow-x-auto">
+    <div class="overflow-auto scroll-thin" style="flex:1;min-height:0;">
       ${state.sectionTab === 'Risk Associations' ? `
       <div>
         <div class="px-4 py-3 flex items-center justify-end border-b border-ink-200">${AssocRoleMenu()}</div>
@@ -3050,7 +3192,7 @@ function InspectionTable() {
               ${ASSOC_ROWS.filter(r => state.assocRoles.includes(r.role)).map(r => `
               <tr class="border-b border-ink-100 last:border-0">
                 <td class="px-3 py-2.5 text-xs text-ink-700"><span class="inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5">${r.rel.map((p,idx)=> p==='STS' ? ASSOC_STS : (idx===0||r.rel[idx-1]==='STS'?'':ASSOC_ARROW)+`<span>${p}</span>`).join('')}</span></td>
-                <td class="px-3 py-2.5 text-xs text-ink-700">${r.entity}</td>
+                <td class="px-3 py-2.5 text-xs"><a href="#" class="sc-link" onclick="event.preventDefault()">${r.entity}</a></td>
                 <td class="px-3 py-2.5 text-xs text-ink-700">${r.type}</td>
                 <td class="px-3 py-2.5 text-xs text-ink-700">${r.evidence}</td>
               </tr>`).join('')}
@@ -3099,6 +3241,29 @@ function InspectionTable() {
             });
             return out;
           })()}
+        </tbody>
+      </table>` : state.sectionTab === 'Casualty Data' ? `
+      <table class="w-full text-xs min-w-[800px]">
+        <thead class="bg-ink-50">
+          <tr>
+            <th class="px-3 py-2 text-left">${sortHead('Date')}</th>
+            <th class="px-3 py-2 text-left">${sortHead('Severity')}</th>
+            <th class="px-3 py-2 text-left">${sortHead('Type')}</th>
+            <th class="px-3 py-2 text-left">${sortHead('Location')}</th>
+            <th class="px-3 py-2 text-left">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${CASUALTY_DATA.map((c, i) => {
+            const s = ({ Severe:{bg:'#fee2e2',text:'#b91c1c',dot:'#dc2626'}, Moderate:{bg:'#fef3c7',text:'#b45309',dot:'#d97706'}, Minor:{bg:'#dbeafe',text:'#1d4ed8',dot:'#2563eb'} })[c.severity] || {bg:'#dbeafe',text:'#1d4ed8',dot:'#2563eb'};
+            return `<tr class="${i%2===0?'bg-white':'bg-ink-50'} hover:bg-brand-50 border-b border-ink-100">
+              <td class="px-3 py-2 text-ink-700 whitespace-nowrap">${c.date}</td>
+              <td class="px-3 py-2"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold" style="background:${s.bg};color:${s.text};"><span class="w-1.5 h-1.5 rounded-full" style="background:${s.dot};"></span>${c.severity}</span></td>
+              <td class="px-3 py-2 text-ink-900 font-medium">${c.type}</td>
+              <td class="px-3 py-2 text-ink-700">${c.location}</td>
+              <td class="px-3 py-2 text-ink-500">${c.desc}</td>
+            </tr>`;
+          }).join('')}
         </tbody>
       </table>` : state.sectionTab === 'Ship-To-Ship' ? `
       ${StsFilters()}
@@ -3247,7 +3412,7 @@ function InspectionTable() {
         </tbody>
       </table>`}
     </div>
-    ${state.sectionTab === 'Risk Associations' ? '' : (() => {
+    ${state.sectionTab === 'Risk Associations' ? '' : '<div style="flex-shrink:0">' + (() => {
       const total = state.sectionTab === 'Ship-To-Ship' ? STS_DATA.length
         : state.sectionTab === 'Sanction Compliance' ? SANCTION_COMPLIANCE.length : 6;
       const per = Math.max(total, 5);
@@ -3256,7 +3421,7 @@ function InspectionTable() {
       totalItems: total, perPage: per,
       perPageOptions: [5, 10, 25],
       label: 'results',
-    }); })()}
+    }); })() + '</div>'}
   </div>`;
 }
 
@@ -3289,7 +3454,6 @@ const STS_DIST = [['','Any distance'],['12','> 12 nm'],['24','> 24 nm'],['50','>
 function StsFilters() {
   const f = state.stsF, open = state.stsOpen;
   const dirty = f.ports || f.clusters || f.chains || !!f.dist;
-  const exOn = STS_EXCL.filter(([k]) => f[k]);
   const chev = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sts-chev"><path d="m6 9 6 6 6-6"/></svg>';
   const trig = (id, label, active) => `<button type="button" class="sts-btn ${active ? 'is-active' : ''} ${open === id ? 'is-open' : ''}" data-sts-open="${id}" aria-haspopup="true" aria-expanded="${open === id}">${label}${chev}</button>`;
   return `
@@ -3299,23 +3463,69 @@ function StsFilters() {
       <li><span class="sts-sw sts-sw--orange" aria-hidden="true"></span>An entity was or is currently sanctioned</li>
     </ul>
     <div class="sts-ctrls" role="toolbar" aria-label="Ship-To-Ship filters">
-      <div class="relative">
-        ${trig('exclude', 'Exclude', exOn.length > 0)}
-        ${open === 'exclude' ? `<div class="sts-facet" role="menu" data-sts-facet>
-          <div class="sts-facet-head">Exclude from results</div>
-          ${STS_EXCL.map(([k, l]) => `<label class="sts-facet-row"><input type="checkbox" class="ev-cb" data-sts-f="${k}" ${f[k] ? 'checked' : ''}>${l}</label>`).join('')}
-        </div>` : ''}
-      </div>
-      <div class="relative">
-        ${trig('dist', 'Distance to coast', !!f.dist)}
-        ${open === 'dist' ? `<div class="sts-facet" role="menu" data-sts-facet>
-          <div class="sts-facet-head">Distance to coast</div>
-          ${STS_DIST.map(([v, l]) => `<label class="sts-facet-row"><input type="radio" name="sts-dist" class="ev-cb" data-sts-dist="${v}" ${v === f.dist ? 'checked' : ''}>${l}</label>`).join('')}
-        </div>` : ''}
-      </div>
-      <button type="button" id="sts-reset" class="sts-btn" ${dirty ? '' : 'disabled'} title="Clear all filters">Reset</button>
+      <button type="button" class="sts-btn sts-ibtn" id="sts-filter-btn" title="Filters" aria-label="Filters${dirty ? ' (active)' : ''}" aria-haspopup="dialog"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/></svg>${dirty ? '<span class="ds-fdrawer-dot" aria-hidden="true"></span>' : ''}</button>
     </div>
   </div>`;
+}
+let stsAcc = 0;
+function stsDrawerBody() {
+  const f = state.stsF, dirty = f.ports || f.clusters || f.chains || !!f.dist;
+  const chev = '<svg class="ds-fdrawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+  const sec = (i, title, active, acts, items) => `<div class="ds-fdrawer-section${stsAcc === i ? ' is-open' : ''}">
+    <button type="button" class="ds-fdrawer-acc-head" data-sts-acc="${i}" aria-expanded="${stsAcc === i}"><span class="ds-fdrawer-sec-title">${title}${active ? '<span class="ds-fdrawer-dot"></span>' : ''}</span>${chev}</button>
+    <div class="ds-fdrawer-acc-body"><div class="ds-fdrawer-acts">${acts}</div><div class="ds-fdrawer-list scroll-thin">${items}</div></div></div>`;
+  const exAny = STS_EXCL.some(([k]) => f[k]);
+  return `<div class="ds-fdrawer-body">
+    ${sec(0, 'Exclude from results', exAny,
+      `<button type="button" class="ds-fdrawer-act" data-sts-act="ex-all" ${STS_EXCL.every(([k]) => f[k]) ? 'disabled' : ''}>Select all</button><button type="button" class="ds-fdrawer-act" data-sts-act="ex-none" ${exAny ? '' : 'disabled'}>Unselect all</button>`,
+      STS_EXCL.map(([k, l]) => `<label class="ds-fdrawer-item"><input type="checkbox" data-sts-f="${k}" ${f[k] ? 'checked' : ''}>${l}</label>`).join(''))}
+    ${sec(1, 'Distance to coast', !!f.dist,
+      `<button type="button" class="ds-fdrawer-act" data-sts-act="dist-reset" ${f.dist ? '' : 'disabled'}>Reset</button>`,
+      STS_DIST.map(([v, l]) => `<label class="ds-fdrawer-item"><input type="radio" name="sts-dist" data-sts-dist="${v}" ${v === f.dist ? 'checked' : ''}>${l}</label>`).join(''))}
+  </div>
+  <div class="ds-fdrawer-foot"><button type="button" class="sts-btn" data-sts-act="clear" ${dirty ? '' : 'disabled'}>Clear all</button><button type="button" class="sts-btn sts-btn--primary" data-sts-act="done">Done</button></div>`;
+}
+function stsDrawerEl() {
+  let el = document.getElementById('sts-fdrawer');
+  if (el) return el;
+  el = document.createElement('div');
+  el.id = 'sts-fdrawer'; el.className = 'ds-fdrawer'; el.setAttribute('aria-hidden', 'true');
+  el.innerHTML = `<div class="ds-fdrawer-scrim" data-sts-act="done"></div><div class="ds-fdrawer-panel" role="dialog" aria-modal="true" aria-label="Ship-To-Ship filters"><div class="ds-fdrawer-head">Filters<button type="button" class="ds-fdrawer-close" data-sts-act="done" aria-label="Close filters"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div><div id="sts-fdrawer-inner" style="display:flex;flex-direction:column;flex:1;min-height:0"></div></div>`;
+  document.body.appendChild(el);
+  const upd = () => { render(); document.getElementById('sts-fdrawer-inner').innerHTML = stsDrawerBody(); };
+  el.addEventListener('click', e => {
+    const acc = e.target.closest('[data-sts-acc]');
+    if (acc) { const i = +acc.dataset.stsAcc; stsAcc = stsAcc === i ? -1 : i; document.getElementById('sts-fdrawer-inner').innerHTML = stsDrawerBody(); return; }
+    const b = e.target.closest('[data-sts-act]'); if (!b) return;
+    const k = b.dataset.stsAct, f = state.stsF;
+    if (k === 'done') return stsDrawerClose();
+    if (k === 'ex-all') state.stsF = { ...f, ports:true, clusters:true, chains:true };
+    if (k === 'ex-none') state.stsF = { ...f, ports:false, clusters:false, chains:false };
+    if (k === 'dist-reset') state.stsF = { ...f, dist:'' };
+    if (k === 'clear') state.stsF = { ports:false, clusters:false, chains:false, dist:'' };
+    upd();
+  });
+  el.addEventListener('change', e => {
+    const c = e.target;
+    if (c.dataset.stsF) state.stsF = { ...state.stsF, [c.dataset.stsF]: c.checked };
+    else if (c.dataset.stsDist !== undefined) state.stsF = { ...state.stsF, dist: c.dataset.stsDist };
+    else return;
+    upd();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && el.classList.contains('is-open')) stsDrawerClose(); });
+  return el;
+}
+function stsDrawerOpen() {
+  const el = stsDrawerEl();
+  document.getElementById('sts-fdrawer-inner').innerHTML = stsDrawerBody();
+  void el.offsetWidth;
+  el.classList.add('is-open'); el.setAttribute('aria-hidden', 'false');
+  setTimeout(() => el.querySelector('.ds-fdrawer-close').focus(), 50);
+}
+function stsDrawerClose() {
+  const el = document.getElementById('sts-fdrawer'); if (!el) return;
+  el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true');
+  const t = document.getElementById('sts-filter-btn'); if (t) t.focus();
 }
 const ENV_PERIODS = ['2026Q2','2026Q1','2025Q4','2025Q3','2025Q2','2025Q1','2025','2024Q4','2024','2023Q4','2023Q3','2023Q2','2023Q1','2023','2022Q4','2022Q3','2022Q2','2022Q1','2022','2021'];
 function EnvironmentalRatingCard() {
@@ -3436,7 +3646,7 @@ function FullVesselDetailsBody() {
   const idPairs = [
     [['Name', 'SAGA FRONTIER'], ['Latest Timestamp', '2026-09-28 14:23:38 UTC']],
     [['Flag', `<span class="inline-flex items-center gap-1.5">${flag('bs')} Bahamas</span>`], ['Speed', '11.1']],
-    [['Monitored Countries', 'No monitored countries are connected with this vessel'], ['Draught (m)', '11.60 (max 11.82)']],
+    [['Country Watchlist', 'No watchlist countries are connected with this vessel'], ['Draught (m)', '11.60 (max 11.82)']],
     [['Ship Status', 'In Service/Commission'], ['Ship Builder', 'Oshima Shipbuilding Co Ltd']],
     [['Ship Status Date', '2007-04-01'], ['Width (m)', '31']],
     [['IMO', '9343510'], ['Length (m)', '199']],
@@ -3641,28 +3851,11 @@ function VesselTrackingCard() {
   return `
   <div id="vessel-tracking-card" class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
     <div class="px-4 py-3 border-b border-ink-200 flex items-center gap-2">
-      <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2v4m0 12v4M2 12h4m12 0h4m-4.8 4.8l2.8 2.8M4.2 4.2l2.8 2.8m0 9.6l-2.8 2.8m12.8-12.8l2.8-2.8"/></svg>
+      <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
       <span class="text-sm font-semibold text-ink-900">Vessel Tracking</span>
     </div>
     <div id="map-wrapper" class="flex-1 relative" style="min-height:420px;">
       <div id="vessel-map"></div>
-      <div class="nc-wrap" id="nc-wrap">
-      <div class="nc-row">
-      <label class="nc-badge" id="nc-badge" data-disabled="true" title="Zoom in to view nautical charts">
-        <input type="checkbox" id="nc-cb" disabled aria-describedby="nc-hint">
-        <span class="nc-box" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-        <span class="nc-lbl">Nautical Charts</span><span class="nc-hint" id="nc-hint">(zoom in)</span>
-      </label>
-      <button type="button" class="nc-key-btn" id="nc-key-btn" hidden aria-expanded="false" aria-controls="nc-key" title="What do the chart symbols mean?"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg><span>Chart key</span></button>
-      </div>
-      <div class="nc-key" id="nc-key" hidden role="region" aria-label="Nautical chart key">
-        <div class="nc-key-h"><b>Chart key</b><button type="button" class="nc-key-x" id="nc-key-x" aria-label="Close chart key"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"></path></svg></button></div>
-        <div class="nc-key-b scroll-thin">
-        <ul class="nc-key-list"><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21h6l-1.2-11h-3.6z" fill="#dc2626" stroke="#111" stroke-width=".8"/><rect x="10.6" y="6" width="2.8" height="4" fill="#dc2626" stroke="#111" stroke-width=".8"/></svg></span><span><b>Port-hand buoy (red)</b><small>Keep it on your left when heading into port.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8l-4-12z" fill="#16a34a" stroke="#111" stroke-width=".8"/><path d="M12 3v6" stroke="#111" stroke-width="1"/></svg></span><span><b>Starboard-hand buoy (green)</b><small>Keep it on your right when heading into port.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 21h8l-4-12z" fill="#facc15" stroke="#111" stroke-width=".8"/><path d="M8 21h8l-1.6-5H9.6z" fill="#111"/><path d="M12 3l-2 4h4z" fill="#111"/></svg></span><span><b>Cardinal mark (yellow & black)</b><small>Shows the safe side of a hazard — north, south, east or west of it.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#c026d3" stroke-width="1"/><path d="M12 12l5 3" stroke="#facc15" stroke-width="2.4" stroke-linecap="round"/><path d="M12 6l1.2 3.6h-2.4z" fill="#111"/></svg></span><span><b>Light</b><small>A lit navigation aid. The flare points to the light; the circle marks it on the chart.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10v11" stroke="#111" stroke-width="1.2"/><path d="M12 10l-6-3M12 10l6-3M12 10v-7" stroke="#111" stroke-width="1.2" stroke-linecap="round"/></svg></span><span><b>Wind turbine</b><small>Offshore wind farm structure. Vessels keep clear.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20 21 4" stroke="#c084fc" stroke-width="3" stroke-dasharray="1.5 1.5"/></svg></span><span><b>Submarine cable or pipeline</b><small>Anchoring and trawling are usually prohibited along the line.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18 9 6l12 4" fill="none" stroke="#111" stroke-width="1.4" stroke-dasharray="3 2"/></svg></span><span><b>Restricted area boundary</b><small>Limits of a zone with special rules, e.g. no anchoring or no entry.</small></span></li><li><span class="nc-key-i"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#111" stroke-width="1"/><path d="M12 6v12M9 9h6M7 14c1 3 3 4 5 4s4-1 5-4" fill="none" stroke="#111" stroke-width="1.2" stroke-linecap="round"/></svg></span><span><b>Anchorage</b><small>Designated area where vessels may anchor.</small></span></li></ul>
-        <p class="nc-key-f">Symbols from OpenSeaMap. Coverage varies by area.</p>
-        </div>
-      </div>
-      </div>
       <!-- Fullscreen button — top-left -->
       <button id="map-fullscreen" class="map-btn" title="Toggle fullscreen" style="position:absolute;top:12px;left:12px;z-index:400;">
         <svg id="fs-expand-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
@@ -3680,6 +3873,7 @@ function VesselTrackingCard() {
               ${[{id:'osm',label:'Open Street Map'},{id:'imagery',label:'World Imagery'},{id:'street',label:'World Street Map'},{id:'oceans',label:'Oceans'}].map(o => `<label class="ev-row"><input type="radio" name="vessel-map-type" class="ev-cb" data-vessel-map-type="${o.id}"><span>${o.label}</span></label>`).join('')}
               <div style="height:1px;background:#e5e7eb;margin:4px 12px;"></div>
               <label class="ev-row"><input type="checkbox" class="ev-cb" data-map-overlay="grid"><span>Grid Lines</span></label>
+              <label class="ev-row nc-row" id="nc-badge" data-disabled="true" title="Zoom in to view nautical charts"><input type="checkbox" class="ev-cb" id="nc-cb" disabled aria-describedby="nc-hint"><span>Nautical Charts <span class="nc-hint" id="nc-hint">(zoom in)</span></span></label>
             </div>
           </div>
         </div>
@@ -3790,18 +3984,19 @@ function histRangeDays() { const n = Math.round((new Date(state.trackRange.end) 
 function histRangeAria() { return histFmt(state.trackRange.start) + ' to ' + histFmt(state.trackRange.end); }
 function HistoricalEventsCard() {
   return `
-  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full br-card" data-br="${state.brTab || 'Historical Events'}">
     <div class="px-4 py-3 border-b border-ink-200">
       <div class="ds-tabs is-stretch" data-tab-group="data-bottom-right-tab" style="display:flex;width:100%;">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
-        <button data-bottom-right-tab="Historical Events" aria-selected="true" class="ds-tab" style="font-size:12px;padding:8px 14px;flex:1;">
+        <button data-bottom-right-tab="Historical Events" aria-selected="${(state.brTab || 'Historical Events') === 'Historical Events'}" class="ds-tab" style="font-size:12px;padding:8px 14px;flex:1;">
           <span class="ds-tab-label"><span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I.clock}</span> Historical Events</span>
         </button>
-        <button data-bottom-right-tab="Alerts" aria-selected="false" class="ds-tab" style="font-size:12px;padding:8px 14px;flex:1;">
+        <button data-bottom-right-tab="Alerts" aria-selected="${state.brTab === 'Alerts'}" class="ds-tab" style="font-size:12px;padding:8px 14px;flex:1;">
           <span class="ds-tab-label"><span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I.bell}</span> Alerts</span>
         </button>
       </div>
     </div>
+    <div class="br-tbd" role="status"><span class="br-tbd-ico" aria-hidden="true">${SC.I.bell}</span><span>TBD</span></div>
     <div class="px-4 py-3 border-b border-ink-200">
       <button type="button" id="hist-cal-btn" class="hist-range" aria-haspopup="dialog" aria-label="Date range ${histRangeAria()}. Change date range">
         <span class="hist-range-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
@@ -3818,9 +4013,9 @@ function HistoricalEventsCard() {
         <svg class="w-4 h-4 text-ink-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
       </div>
         <div style="position:relative;">
-          <button id="map-events-btn" type="button" class="hist-cal-btn" title="Filter events" aria-label="Filter events" aria-haspopup="true" aria-expanded="false">
+          <button id="map-events-btn" type="button" class="hist-cal-btn" title="Filter events" aria-label="Filter events" aria-haspopup="true" aria-expanded="false" style="width:auto;padding:0 10px;gap:6px;display:inline-flex;align-items:center;font-size:12.5px;font-weight:500;">
             <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-calendar-cog" width="16" height="16" aria-hidden="true"><path d="m15.2 16.9-.9-.4"/><path d="m15.2 19.1-.9.4"/><path d="M16 2v4"/><path d="m16.9 15.2-.4-.9"/><path d="m16.9 20.8-.4.9"/><path d="m19.5 14.3-.4.9"/><path d="m19.5 21.7-.4-.9"/><path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m21.7 16.5-.9.4"/><path d="m21.7 19.5-.9-.4"/><path d="M3 10h18"/><path d="M8 2v4"/><circle cx="18" cy="18" r="3"/></svg>
-            <span id="map-events-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:#ef4444;border:2px solid #fff;"></span>
+            <span>Event types</span><span id="map-events-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:var(--brand-600,#2d7ffb);border:2px solid #fff;"></span>
           </button>
           <div id="map-events-menu" class="hidden" role="menu" style="position:absolute;top:calc(100% + 6px);right:0;z-index:60;width:248px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:var(--ev-max, 340px);">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
@@ -3849,10 +4044,10 @@ function HistoricalEventsCard() {
 /* ----------- MAP EVENTS ----------- */
 const _ei = p => `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 var MAP_EVENT_TYPES = [
-  { id:'sts',     label:'Ship-To-Ship',            bg:'#dbeafe', fg:'#1d4ed8', icon:_ei('<path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/>') },
-  { id:'dark',    label:'Dark Activity',           bg:'#e5e7eb', fg:'#111827', icon:_ei('<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>') },
+  { id:'sts',     label:'Ship-To-Ship',            bg:'#dbeafe', fg:'#1d4ed8', icon:'<svg width="14" height="13" viewBox="0 0 30 27" fill="currentColor" aria-hidden="true"><path d="M2.29156 2.92955H9.16624V5.24976L5.7289 4.10137L2.29156 5.24976V2.92955ZM1.11141 10.5464H1.14578C2.0624 10.5464 2.86445 10.0308 3.43734 9.37456C4.01023 10.0308 4.81228 10.5464 5.7289 10.5464C6.64552 10.5464 7.44757 10.0308 8.02046 9.37456C8.59335 10.0308 9.3954 10.5464 10.312 10.5464H10.3407L11.4292 6.62665C11.475 6.48017 11.4578 6.31611 11.3948 6.17549C11.3203 6.03488 11.2 5.92941 11.0511 5.88254L10.312 5.63646V2.92955C10.312 2.27919 9.79642 1.75773 9.16624 1.75773H7.44757V0H4.01023V1.75773H2.29156C1.98768 1.75773 1.69625 1.88119 1.48137 2.10095C1.2665 2.32071 1.14578 2.61877 1.14578 2.92955V5.63646L0.406752 5.88254C0.257801 5.92941 0.137494 6.03488 0.0630178 6.17549C-5.96046e-08 6.31611 -0.0171867 6.48017 0.0286445 6.62665L1.11141 10.5464ZM10.312 11.7182C9.5157 11.7182 8.71939 11.4428 8.02046 10.9389C6.62261 11.9409 4.83519 11.9409 3.43734 10.9389C2.73841 11.4428 1.9421 11.7182 1.14578 11.7182H0V12.89H1.14578C1.93064 12.89 2.7155 12.685 3.43734 12.3041C4.86957 13.0658 6.58823 13.0658 8.02046 12.3041C8.7423 12.685 9.52143 12.89 10.312 12.89H11.4578V11.7182H10.312Z"/><path d="M20.6767 16.9839H27.5514V19.3041L24.1141 18.1557L20.6767 19.3041V16.9839ZM19.4966 24.6007H19.5309C20.4476 24.6007 21.2496 24.0851 21.8225 23.4289C22.3954 24.0851 23.1974 24.6007 24.1141 24.6007C25.0307 24.6007 25.8327 24.0851 26.4056 23.4289C26.9785 24.0851 27.7806 24.6007 28.6972 24.6007H28.7258L29.8143 20.681C29.8601 20.5345 29.843 20.3704 29.7799 20.2298C29.7055 20.0892 29.5852 19.9837 29.4362 19.9368L28.6972 19.6908V16.9839C28.6972 16.3335 28.1816 15.812 27.5514 15.812H25.8327V14.0543H22.3954V15.812H20.6767C20.3728 15.812 20.0814 15.9355 19.8665 16.1553C19.6517 16.375 19.5309 16.6731 19.5309 16.9839V19.6908L18.7919 19.9368C18.643 19.9837 18.5227 20.0892 18.4482 20.2298C18.3852 20.3704 18.368 20.5345 18.4138 20.681L19.4966 24.6007ZM28.6972 25.7725C27.9009 25.7725 27.1046 25.4971 26.4056 24.9933C25.0078 25.9952 23.2204 25.9952 21.8225 24.9933C21.1236 25.4971 20.3273 25.7725 19.5309 25.7725H18.3852V26.9443H19.5309C20.3158 26.9443 21.1007 26.7393 21.8225 26.3584C23.2547 27.1201 24.9734 27.1201 26.4056 26.3584C27.1275 26.7393 27.9066 26.9443 28.6972 26.9443H29.843V25.7725H28.6972Z"/><path d="M17.0542 10.7867L16.0898 10.7867V12.5179L13.9197 10.3478L13.2398 11.0278L15.4098 13.1978H13.6786L13.6786 14.1623H17.0542V10.7867Z"/><path d="M16.726 18.9367L14.5559 16.7667L16.2871 16.7667V15.8022H12.9115V19.1779H13.876V17.4466L16.046 19.6167L16.726 18.9367Z"/></svg>' },
+  { id:'dark',    label:'Dark Activity',           bg:'#e5e7eb', fg:'#111827', icon:'<svg width="14" height="14" viewBox="0 0 30 29" fill="none" aria-hidden="true"><path d="M3.72028 12.7282H14.8811V16.495L9.3007 14.6306L3.72028 16.495V12.7282ZM1.80434 25.0939H1.86014C3.34825 25.0939 4.65035 24.2568 5.58042 23.1915C6.51049 24.2568 7.81259 25.0939 9.3007 25.0939C10.7888 25.0939 12.0909 24.2568 13.021 23.1915C13.951 24.2568 15.2531 25.0939 16.7413 25.0939H16.7878L18.5549 18.7303C18.6293 18.4925 18.6014 18.2262 18.4991 17.9979C18.3782 17.7696 18.1829 17.5984 17.941 17.5223L16.7413 17.1228V12.7282C16.7413 11.6724 15.9042 10.8258 14.8811 10.8258H12.0909V7.97217H6.51049V10.8258H3.72028C3.22694 10.8258 2.75381 11.0262 2.40496 11.383C2.05612 11.7398 1.86014 12.2237 1.86014 12.7282V17.1228L0.66035 17.5223C0.418532 17.5984 0.223217 17.7696 0.102308 17.9979C-9.70139e-08 18.2262 -0.0279021 18.4925 0.0465035 18.7303L1.80434 25.0939ZM16.7413 26.9963C15.4485 26.9963 14.1557 26.5493 13.021 25.7312C10.7516 27.3578 7.84979 27.3578 5.58042 25.7312C4.44573 26.5493 3.15294 26.9963 1.86014 26.9963H0V28.8987H1.86014C3.13434 28.8987 4.40853 28.5658 5.58042 27.9475C7.90559 29.1841 10.6958 29.1841 13.021 27.9475C14.1929 28.5658 15.4578 28.8987 16.7413 28.8987H18.6014V26.9963H16.7413Z" fill="currentColor"></path><path d="M22.1887 4.1958L24.4054 6.40559C24.4054 6.37063 24.4054 6.32867 24.4054 6.29371C24.4054 5.73731 24.1844 5.2037 23.791 4.81027C23.3976 4.41683 22.8639 4.1958 22.3075 4.1958C22.2656 4.1958 22.2306 4.1958 22.1887 4.1958ZM19.1817 4.75524L20.2656 5.83916C20.2306 5.98601 20.2096 6.13287 20.2096 6.29371C20.2096 6.8501 20.4307 7.38371 20.8241 7.77715C21.2175 8.17058 21.7511 8.39161 22.3075 8.39161C22.4614 8.39161 22.6152 8.37063 22.7621 8.33566L23.846 9.41958C23.3775 9.65035 22.86 9.79021 22.3075 9.79021C21.3802 9.79021 20.4909 9.42183 19.8351 8.76611C19.1794 8.11039 18.811 7.22104 18.811 6.29371C18.811 5.74126 18.9509 5.22378 19.1817 4.75524ZM15.3145 0.888112L16.9089 2.48252L17.2236 2.7972C16.0698 3.70629 15.1607 4.8951 14.6152 6.29371C15.825 9.36364 18.811 11.5385 22.3075 11.5385C23.3915 11.5385 24.4264 11.3287 25.3705 10.951L25.6712 11.2448L27.7131 13.2867L28.6012 12.3986L16.2026 0L15.3145 0.888112ZM22.3075 2.7972C23.2349 2.7972 24.1242 3.16558 24.7799 3.82131C25.4357 4.47703 25.804 5.36638 25.804 6.29371C25.804 6.74126 25.7131 7.17483 25.5523 7.56643L27.6012 9.61539C28.6502 8.74126 29.4894 7.59441 29.9999 6.29371C28.7901 3.22378 25.804 1.04895 22.3075 1.04895C21.3285 1.04895 20.3915 1.22378 19.5103 1.53846L21.0278 3.04196C21.4264 2.88811 21.853 2.7972 22.3075 2.7972Z" fill="currentColor"></path></svg>' },
   { id:'sog',     label:'Speed Over Ground',       bg:'#fae8ff', fg:'#a21caf', icon:_ei('<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>') },
-  { id:'loiter',  label:'Loitering',               bg:'#cffafe', fg:'#0e7490', icon:_ei('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>') },
+  { id:'loiter',  label:'Loitering',               bg:'#cffafe', fg:'#0e7490', icon:'<svg width="14" height="14" viewBox="0 0 30 31" fill="none" aria-hidden="true"><path d="M30 5.79L23.1 2.14577e-08L21.165 2.295L28.065 8.085L30 5.79ZM8.82 2.295L6.9 2.14577e-08L0 5.775L1.935 8.07L8.82 2.295ZM15.75 9.21H13.5V18.21L20.625 22.485L21.75 20.64L15.75 17.085V9.21ZM15 3.21C7.545 3.21 1.5 9.255 1.5 16.71C1.5 24.165 7.53 30.21 15 30.21C22.455 30.21 28.5 24.165 28.5 16.71C28.5 9.255 22.455 3.21 15 3.21ZM15 27.21C9.195 27.21 4.5 22.515 4.5 16.71C4.5 10.905 9.195 6.21 15 6.21C20.805 6.21 25.5 10.905 25.5 16.71C25.5 22.515 20.805 27.21 15 27.21Z" fill="currentColor"></path></svg>' },
   { id:'enter',   label:'Entering Alert',          bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>') },
   { id:'exit',    label:'Exit Alert',              bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>') },
   { id:'weather', label:'Vessel affected by Weather', bg:'#ede9fe', fg:'#6d28d9', icon:_ei('<path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>') },
@@ -4064,9 +4259,20 @@ function markHistSel(i) {
   document.querySelectorAll('.hist-ev').forEach(el => { const on = +el.dataset.histIdx === i; el.classList.toggle('is-sel', on); el.setAttribute('aria-pressed', on); });
   document.querySelectorAll('.ev-marker').forEach(el => el.classList.toggle('is-sel', +el.dataset.evMk === i));
 }
+const EV_ZOOM = 6;
+function zoomToEvent(ll, after) {
+  if (!map) return;
+  const z = Math.max(map.getZoom(), EV_ZOOM);
+  const pt = map.project(ll, z).subtract([0, 110]);
+  const target = map.unproject(pt, z);
+  if (after) map.once('moveend', after);
+  map.flyTo(target, z, { duration:0.8 });
+}
 function selectHistEvent(i, from) {
   markHistSel(i);
   if (from === 'map') {
+    const mk = window._eventMarkers && window._eventMarkers[i];
+    if (mk) zoomToEvent(mk.getLatLng(), () => { if (state.histSel === i && !mk.isPopupOpen()) mk.openPopup(); });
     const pos = histVisible().findIndex(x => x.i === i), want = Math.floor(Math.max(0, pos) / HIST_PER) + 1;
     if (want !== state.histPage) { state.histPage = want; drawHistList(); }
     const el = document.querySelector(`.hist-ev[data-hist-idx="${i}"]`), list = el && el.parentElement;
@@ -4079,12 +4285,16 @@ function selectHistEvent(i, from) {
   if (!map || !window._eventMarkers) return;
   const m = window._eventMarkers[i], p = EVENTS[i], t = MAP_EVENT_TYPES.find(x => x.id === p.type);
   if (map.hasLayer(m)) {
-    map.panInside(m.getLatLng(), { paddingTopLeft:[40,40], paddingBottomRight:[70,110] });
-    m.openPopup();
+    map.closePopup();
+    zoomToEvent(m.getLatLng(), () => { m.openPopup(); markHistSel(i); });
     markHistSel(i);
   } else {
-    L.popup(EV_POPUP_OPTS).setLatLng(p.ll).setContent(eventPopupHtml(p, t, 'This event type is hidden by the Events filter.')).openOn(map)
-      .on('remove', () => { if (state.histSel === i) markHistSel(null); });
+    map.closePopup();
+    zoomToEvent(p.ll, () => {
+      L.popup(EV_POPUP_OPTS).setLatLng(p.ll).setContent(eventPopupHtml(p, t, 'This event type is hidden by the Events filter.')).openOn(map)
+        .on('remove', () => { if (state.histSel === i) markHistSel(null); });
+      markHistSel(i);
+    });
   }
 }
 function applyEventFilter() {
@@ -4221,17 +4431,9 @@ function initMap() {
       cb.disabled = !ok; badge.dataset.disabled = String(!ok);
       if (!ok && cb.checked) { cb.checked = false; setMapOverlay('nautical', false); }
       hint.textContent = ok ? '' : '(zoom in)';
-      keyBtn.hidden = !cb.checked; if (!cb.checked) setKey(false);
       badge.title = ok ? (cb.checked ? 'Hide nautical charts' : 'Show nautical charts') : 'Zoom in to view nautical charts';
     };
-    const keyBtn = document.getElementById('nc-key-btn'), key = document.getElementById('nc-key');
-    const setKey = v => { key.hidden = !v; keyBtn.setAttribute('aria-expanded', v); };
-    keyBtn.onclick = () => setKey(key.hidden);
-    document.getElementById('nc-key-x').onclick = () => { setKey(false); keyBtn.focus(); };
-    let keySeen = false;
-    cb.onchange = () => { setMapOverlay('nautical', cb.checked); if (cb.checked && !keySeen) { keySeen = true; setKey(true); } sync(); };
-    L.DomEvent.disableClickPropagation(document.getElementById('nc-wrap'));
-    L.DomEvent.disableScrollPropagation(document.getElementById('nc-wrap'));
+    cb.onchange = () => { setMapOverlay('nautical', cb.checked); sync(); };
     map.on('zoomend', sync);
     sync();
   })();
@@ -4355,7 +4557,10 @@ function initMap() {
     const t = MAP_EVENT_TYPES.find(x => x.id === p.type);
     const icon = L.divIcon({ className:'', iconSize:[26,26], iconAnchor:[13,13],
       html:`<div class="ev-marker" data-ev-mk="${i}" style="background:${t.bg};color:${t.fg};">${t.icon}</div>` });
-    const m = L.marker(p.ll, { icon, zIndexOffset:500, keyboard:true, title:t.label }).bindPopup(eventPopupHtml(p, t), EV_POPUP_OPTS);
+    const m = L.marker(p.ll, { icon, zIndexOffset:500, keyboard:true, alt:t.label }).bindPopup(eventPopupHtml(p, t), EV_POPUP_OPTS)
+      .bindTooltip(`<b>${t.label}</b>`, { direction:'top', offset:[0,-15], className:'ev-tip' });
+    m.on('popupopen', () => { m.closeTooltip(); m.getTooltip().options.opacity = 0; });
+    m.on('popupclose', () => { m.getTooltip().options.opacity = 0.9; });
     m._evType = p.type; m._evIdx = i;
     m.on('click', () => selectHistEvent(i, 'map'));
     m.on('popupclose', () => { if (state.histSel === i) markHistSel(null); });
@@ -4632,26 +4837,6 @@ function Content() {
       ${HistoricalEventsCard()}
       ${VesselTrackingCard()}
     </section>
-    <div style="display:flex;justify-content:flex-start;">
-      <button data-toggle-alt-designs style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#2d7ffb;font-family:inherit;padding:2px 0;">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(${state.showAltDesigns?'90deg':'0deg'});transition:transform .15s;"><path d="M9 18l6-6-6-6"/></svg>
-        Show/Hide Alt Risk Score Designs
-      </button>
-    </div>
-    ${state.showAltDesigns ? `
-    <section class="grid grid-cols-1 md:grid-cols-12 gap-3">
-      <div class="md:col-span-4" style="height:440px;">${CasualtyRiskCardCopy()}</div>
-      <div class="md:col-span-4" style="height:440px;">${CasualtyRiskCardCopy2()}</div>
-      <div class="md:col-span-4" style="height:440px;">${CasualtyRiskCardCopy3()}</div>
-    </section>
-    <section class="grid grid-cols-1 md:grid-cols-12 gap-3">
-      <div class="md:col-span-4" style="height:330px;">${CasualtyRiskCardCopy4()}</div>
-      <div class="md:col-span-4" style="height:330px;">${CasualtyRiskCardCopy5()}</div>
-      <div class="md:col-span-4" style="height:330px;">${CasualtyRiskCardCopy6()}</div>
-    </section>
-    <section class="grid grid-cols-1 md:grid-cols-12 gap-3">
-      <div class="md:col-span-4" style="height:440px;">${CasualtyRiskCardCopy7()}</div>
-    </section>` : ''}
   </div>`;
 }
 
@@ -4714,7 +4899,13 @@ window.render = function render() {
   document.querySelectorAll('[data-sanctions-toggle-copy5]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy5 = !state.withSanctionsCopy5; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy6]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy6 = !state.withSanctionsCopy6; render(); }; });
   document.querySelectorAll('[data-sanctions-toggle-copy7]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy7 = !state.withSanctionsCopy7; render(); }; });
-  document.querySelectorAll('[data-sanctions-toggle-copy8]').forEach(btn => { btn.onclick = () => { state.withSanctionsCopy8 = !state.withSanctionsCopy8; render(); }; });
+  document.querySelectorAll('[data-trends-toggle-copy8]').forEach(btn => { btn.onclick = () => { state.withTrendsCopy8 = !state.withTrendsCopy8; render(); }; });
+  document.querySelectorAll('[data-sanctions-toggle-copy8]').forEach(btn => { btn.onclick = () => {
+    const arc0 = document.querySelector('.vd-rs-arc');
+    const prev = arc0 ? { score: +arc0.dataset.score, color: arc0.getAttribute('stroke') } : null;
+    state.withSanctionsCopy8 = !state.withSanctionsCopy8; render();
+    if (prev) vdAnimateRiskPie(prev);
+  }; });
   wireTab('data-voyage-tab',      'voyageTab');
   wireTab('data-section-tab',     'sectionTab');
   document.querySelectorAll('[data-affil-tab]').forEach(b => { b.onclick = () => { state.affilTab = b.getAttribute('data-affil-tab'); render(); }; });
@@ -4747,6 +4938,9 @@ window.render = function render() {
   document.querySelectorAll('[data-sts-facet]').forEach(m => m.onclick = ev => ev.stopPropagation());
   document.querySelectorAll('[data-sts-f]').forEach(c => c.onchange = () => { state.stsF = { ...state.stsF, [c.dataset.stsF]: c.checked }; render(); });
   document.querySelectorAll('[data-sts-dist]').forEach(r => r.onchange = () => { state.stsF = { ...state.stsF, dist: r.dataset.stsDist }; render(); });
+  document.querySelectorAll('[data-bottom-right-tab]').forEach(b => b.addEventListener('click', () => { if (state.brTab === b.dataset.bottomRightTab) return; state.brTab = b.dataset.bottomRightTab; render(); }));
+  const stsFilterBtn = document.getElementById('sts-filter-btn');
+  if (stsFilterBtn) stsFilterBtn.onclick = ev => { ev.stopPropagation(); stsDrawerOpen(); };
   const stsReset = document.getElementById('sts-reset');
   if (stsReset) stsReset.onclick = () => { state.stsF = { ports:false, clusters:false, chains:false, dist:'' }; state.stsOpen = null; render(); };
   if (!window.__stsDocWired) { window.__stsDocWired = true;

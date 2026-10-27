@@ -2,12 +2,12 @@
 const { useState, useEffect, useRef } = React;
 
 const SLIDES = [
-{ kind: 'Marine', img: 'https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=2400&q=80', tag: 'Marine', title: 'An end-to-end solution for marine hull (re)insurers.' },
-{ kind: 'Property', img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=2400&q=80', tag: 'Property', title: 'One intelligent view of your global property portfolio.' },
-{ kind: 'Aviation', img: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2400&q=80', tag: 'Aviation', title: 'Aviation intelligence for a connected global portfolio.' },
-{ kind: 'Energy', img: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=2400&q=80', tag: 'Energy', title: 'Monitor risks and potential exposure for your fixed and mobile energy assets.' },
-{ kind: 'Cargo', img: 'https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=2400&q=80', tag: 'Cargo', title: 'Track cargo exposure and accumulation across every global trade lane.' },
-{ kind: 'Ports', img: 'https://images.unsplash.com/photo-1577416412292-747c6607f055?auto=format&fit=crop&w=2400&q=80', tag: 'Ports', title: 'Live visibility into port calls, congestion, and accumulation risk.' }];
+{ kind: 'Marine', img: 'images/login/marine.jpg', tag: 'Marine', title: 'An end-to-end solution for marine hull (re)insurers.' },
+{ kind: 'Property', img: 'images/login/property.jpg', tag: 'Property', title: 'One intelligent view of your global property portfolio.' },
+{ kind: 'Aviation', img: 'images/login/aviation.jpg', tag: 'Aviation', title: 'Aviation intelligence for a connected global portfolio.' },
+{ kind: 'Energy', img: 'images/login/energy.jpg', tag: 'Energy', title: 'Monitor risks and potential exposure for your fixed and mobile energy assets.' },
+{ kind: 'Cargo', img: 'images/login/cargo.jpg', tag: 'Cargo', title: 'Track cargo exposure and accumulation across every global trade lane.' },
+{ kind: 'Ports', img: 'images/login/ports.jpg', tag: 'Ports', title: 'Live visibility into port calls, congestion, and accumulation risk.' }];
 
 
 function LoginScreen() {

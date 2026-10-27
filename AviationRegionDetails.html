@@ -39,6 +39,15 @@
   .airport-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s,box-shadow .15s;cursor:pointer}
   /* Map airport marker — matches Aviation Dashboard */
   .airport-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--brand-600,#2d7ffb);border:2px solid #fff;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.28)}
+  .ap-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .ap-stats > div{min-width:0}
+  .ap-stats > div > span:first-child{min-width:0;overflow-wrap:anywhere}
+  .ap-stats > div > span:last-child{flex-shrink:0;white-space:nowrap}
+  @media(max-width:899px){.ap-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:539px){.ap-stats{grid-template-columns:minmax(0,1fr)}}
+  .airport-card{min-width:0}
+  .airport-card .pf-tbl{min-width:420px}
+  .airport-card div:has(> .pf-tbl){overflow-x:auto!important}
   .airport-card:hover{border-color:#cbd5e1;box-shadow:0 2px 8px rgba(15,23,42,.05)}
   /* Stat pills */
   .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb);font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:7px;font-variant-numeric:tabular-nums}
@@ -61,7 +70,7 @@
   #ard-layers-menu button:hover{background:#f1f5f9}
   /* Mobile */
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none}
-  @media(max-width:1199px){.ard-top-row{grid-template-columns:1fr}.ard-bottom-row{grid-template-columns:1fr}}
+  @media(max-width:1199px){.ard-top-row{grid-template-columns:1fr;height:auto}.ard-top-row>div{height:auto;max-height:none;min-width:0}.ard-top-row>div:has(.leaflet-container){height:360px}.ard-bottom-row{grid-template-columns:1fr;height:auto}.ard-bottom-row>div{min-height:420px;min-width:0}}
   @media(max-width:767px){.mobile-tab-select{display:block!important}.tabs-desktop-wrap{display:none!important}}
   /* Region popup */
   .region-popup .leaflet-popup-content-wrapper{padding:0;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.15)}
@@ -77,6 +86,7 @@
   .ds-card-foot--center{justify-content:center;}
   .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -92,7 +102,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 const regionName = sessionStorage.getItem('selectedAviationRegion') || 'East Asia Corridor';
 window.PAGE = { id:'regions', title:'Aviation Region', crumb: regionName };
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
 <script>
@@ -350,9 +360,8 @@ function airportRow(a) {
         <div style="font-size:14px;font-weight:700;color:#0f172a">${a.name}</div>
         <div style="font-size:11.5px;color:#64748b;font-weight:600;letter-spacing:.04em">${a.code}</div>
       </div>
-      <button type="button" data-airport-toggle="${a.code}" aria-expanded="${open}" style="background:transparent;border:0;cursor:pointer;color:var(--brand-600,#2563eb);transform:${open?'rotate(180deg)':'rotate(0)'};transition:transform .15s">${CHEV_ICO}</button>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 16px;font-size:12px;color:#64748b;margin-top:12px">
+    <div class="ap-stats" style="display:grid;gap:10px 16px;font-size:12px;color:#64748b;margin-top:12px">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Aircraft on Ground:</span><span class="spill-gray">${PLANE_ICO('#334155')}&nbsp;${a.aog}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total Portfolios:</span><span class="spill-gray">${BRIEF_ICO}&nbsp;${a.portfolios}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total Hull:</span><span class="spill-blue">${a.hull}</span></div>
@@ -360,9 +369,11 @@ function airportRow(a) {
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total HULLW:</span><span class="spill-blue">${a.hullw}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total TLOHW:</span><span class="spill-blue">${a.tlohw}</span></div>
     </div>
+    <div style="margin-top:12px;border-top:1px solid #f1f5f9;padding-top:10px">
+      <button type="button" data-airport-toggle="${a.code}" aria-expanded="${open}" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;padding:4px 0;cursor:pointer;color:var(--brand-600,#2563eb);font:inherit;font-size:12.5px;font-weight:600">Portfolios<span style="display:inline-flex;transform:${open?'rotate(180deg)':'rotate(0)'};transition:transform .15s">${CHEV_ICO}</span></button>
+    </div>
     ${open ? `
-    <div style="margin-top:14px;border-top:1px solid #f1f5f9;padding-top:12px">
-      <div style="font-size:12.5px;font-weight:600;color:#64748b;margin-bottom:8px">Portfolios:</div>
+    <div style="margin-top:8px">
       <div style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
         <table class="pf-tbl">
           <thead><tr>

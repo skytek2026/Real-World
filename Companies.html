@@ -101,13 +101,13 @@
   .svc-more{font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8);display:inline-block;margin:1px 0}
   /* Filter drawer (shared pattern with Assets page) */
   .filter-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
-  .filter-btn:hover { border-color: #93c5fd; background: #f8fafc; }
+  .filter-btn:hover { border-color: var(--brand-300, #93c5fd); background: #f8fafc; }
   .filter-btn.has-filter::after { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 9px solid #e11d48; border-left: 9px solid transparent; }
   .filter-btn.reset { color: #475569; }
   .filter-btn.edit-cols { font-weight: 600; color: #0f172a; border-color: #cbd5e1; }
   .filter-menu-head { display: flex; gap: 4px; padding: 3px 4px 6px; margin-bottom: 3px; border-bottom: 1px solid #f1f5f9; }
   .filter-menu-act { flex: 1; padding: 5px 8px; border: 1px solid #e2e8f0; border-radius: 6px; background: #fff; font-size: 11.5px; font-weight: 600; color: #475569; cursor: pointer; }
-  .filter-menu-act:hover { background: #f8fafc; border-color: #93c5fd; color: var(--brand-700, #1d4ed8); }
+  .filter-menu-act:hover { background: #f8fafc; border-color: var(--brand-300, #93c5fd); color: var(--brand-700, #1d4ed8); }
   .filter-menu-act:disabled { opacity: .45; cursor: default; pointer-events: none; }
   .filter-menu-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 10px; border: 0; border-radius: 6px; background: transparent; font-size: 12.5px; font-weight: 500; color: #334155; cursor: pointer; white-space: nowrap; }
   .filter-menu-item:hover { background: #f1f5f9; color: #0f172a; }
@@ -151,7 +151,7 @@
   .fbtn{display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 11px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;font-size:12.5px;font-weight:500;color:#334155;cursor:pointer;white-space:nowrap;transition:background .1s,border-color .1s;font-family:inherit}
   .fbtn:hover{background:#f8fafc;border-color:#cbd5e1}.fbtn.factive{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:var(--brand-600,#2563eb)}
   .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:180px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
-  .fdrop-item{padding:8px 12px;font-size:12px;color:#334155;cursor:pointer;display:flex;align-items:center;gap:8px}.fdrop-item:hover{background:#f8fafc}.fdrop-item.fsel{color:var(--brand-600,#2563eb);font-weight:600;background:#eff6ff}
+  .fdrop-item{padding:8px 12px;font-size:12px;color:#334155;cursor:pointer;display:flex;align-items:center;gap:8px}.fdrop-item:hover{background:#f8fafc}.fdrop-item.fsel{color:var(--brand-600,#2563eb);font-weight:600;background:var(--brand-50,#eff6ff)}
   /* Pagination / action */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#334155;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f1f5f9}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
@@ -171,7 +171,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
@@ -198,8 +198,9 @@ window.__COMPANIES = COMPANIES;
 
 const COUNTRY_CC = { Cyprus:'cy', Panama:'pa', 'Marshall Islands':'mh', Netherlands:'nl', Canada:'ca', Norway:'no', Malta:'mt', Latvia:'lv', Singapore:'sg', Greece:'gr', 'United Kingdom':'gb', Ireland:'ie' };
 function countryFlag(name) {
-  const cc = COUNTRY_CC[name] || 'un';
-  return `<img src="https://flagcdn.com/w40/${cc}.png" srcset="https://flagcdn.com/w80/${cc}.png 2x" alt="${name}" width="20" height="14" style="border-radius:2px;box-shadow:0 0 0 1px rgba(15,23,42,.12);object-fit:cover;flex-shrink:0" loading="lazy" />`;
+  const cc = COUNTRY_CC[name];
+  if (!cc) return '';
+  return `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" alt="${name}" width="20" height="14" style="border-radius:2px;box-shadow:0 0 0 1px rgba(15,23,42,.12);object-fit:cover;flex-shrink:0" loading="lazy" />`;
 }
 
 const COMPANY_TYPES = [...new Set(COMPANIES.map(c => c.type))].sort();

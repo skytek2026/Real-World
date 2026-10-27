@@ -25,6 +25,7 @@
   .extras-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   @media(max-width:1023px){.extras-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:599px){.extras-grid{grid-template-columns:1fr;}}
+  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -39,7 +40,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
 <script>
 const SC = window.sharedChrome;

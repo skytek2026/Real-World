@@ -15,6 +15,13 @@
     sourcesOpen: false,
     catOpen:   false,
   };
+  const BM_KEY = 'news.bookmarks.v1';
+  const bookmarks = (() => { try { return JSON.parse(localStorage.getItem(BM_KEY) || '[]'); } catch { return []; }})();
+  const isBm = id => bookmarks.includes(id);
+  const saveBm = () => localStorage.setItem(BM_KEY, JSON.stringify(bookmarks));
+  const artId = a => a.id || a.url;
+  let bmDrawerOpen = false;
+  const BM_ICO = (on, s=16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="${on?'currentColor':'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>`;
   const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify({
     cat: state.cat, sources: [...state.sources],
   }));
@@ -69,6 +76,7 @@
           ${a.image ? `<img class="news-photo" src="${a.image}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.remove('has-photo')">` : ''}
           <div class="glyph">${CAT_GLYPH[a.cat] || ''}</div>
           <span class="news-cat">${catLabel(a.cat)}</span>
+          <button type="button" class="bm-btn ${isBm(artId(a))?'is-on':''}" data-bm="${artId(a)}" aria-pressed="${isBm(artId(a))}" title="${isBm(artId(a))?'Remove bookmark':'Bookmark article'}" aria-label="${isBm(artId(a))?'Remove bookmark':'Bookmark article'}">${BM_ICO(isBm(artId(a)))}</button>
           <div class="news-hover" aria-hidden="true">
             <span class="news-hover-arrow">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -230,7 +238,72 @@
     });
 
     wireActiveChips();
+    const bo = document.getElementById('bm-open');
+    if (bo) bo.onclick = () => openBmDrawer(true);
   }
+
+  // ── Bookmarks ──────────────────────────────────────────────────────────
+  function toggleBm(id) {
+    const i = bookmarks.indexOf(id);
+    if (i >= 0) bookmarks.splice(i, 1); else bookmarks.unshift(id);
+    saveBm(); syncBm();
+  }
+  function syncBm() {
+    document.querySelectorAll('.bm-btn[data-bm]').forEach(b => {
+      const on = isBm(b.dataset.bm);
+      b.classList.toggle('is-on', on); b.setAttribute('aria-pressed', on);
+      const t = on ? 'Remove bookmark' : 'Bookmark article';
+      b.title = t; b.setAttribute('aria-label', t); b.innerHTML = BM_ICO(on);
+    });
+    const c = document.getElementById('bm-count');
+    if (c) { c.textContent = bookmarks.length; c.hidden = !bookmarks.length; }
+    const dc = document.getElementById('bm-drawer-count');
+    if (dc) dc.textContent = bookmarks.length;
+    const body = document.getElementById('bm-drawer-body');
+    if (body) body.innerHTML = BmList();
+  }
+  function BmList() {
+    const list = bookmarks.map(id => ARTICLES.find(a => artId(a) === id)).filter(Boolean);
+    if (!list.length) return `<div class="bm-empty">${BM_ICO(false,36)}<h3>No bookmarks yet</h3><p>Use the bookmark icon on any article to save it here for later.</p></div>`;
+    return list.map(a => { const src = sourceById(a.source); return `
+      <div class="bm-item cat-${a.cat}">
+        <a class="bm-link" href="${a.url}" target="_blank" rel="noopener noreferrer">
+          <span class="bm-thumb">${a.image ? `<img src="${a.image}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}</span>
+          <span class="bm-txt">
+            <span class="bm-cat">${catLabel(a.cat)}</span>
+            <span class="bm-title">${a.title}</span>
+            <span class="bm-meta"><span class="src-dot" style="background:${src.color}">${src.short}</span>${src.name} · ${relTime(a.hoursAgo)}</span>
+          </span>
+        </a>
+        <button type="button" class="bm-remove" data-bm-remove="${artId(a)}" title="Remove bookmark" aria-label="Remove bookmark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+      </div>`; }).join('');
+  }
+  function ensureBmDrawer() {
+    if (document.getElementById('bm-drawer')) return;
+    const d = document.createElement('div');
+    d.id = 'bm-drawer'; d.className = 'bm-drawer'; d.setAttribute('aria-hidden', 'true');
+    d.innerHTML = `<div class="bm-overlay"></div><aside class="bm-panel" role="dialog" aria-label="Bookmarked articles">
+      <div class="bm-head"><span style="display:flex;align-items:center;gap:8px">${BM_ICO(true,16)}Bookmarks<span class="bm-count" id="bm-drawer-count">${bookmarks.length}</span></span>
+      <button type="button" class="bm-close" aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+      <div class="bm-body scroll-thin" id="bm-drawer-body">${BmList()}</div></aside>`;
+    document.body.appendChild(d);
+    d.querySelector('.bm-overlay').onclick = () => openBmDrawer(false);
+    d.querySelector('.bm-close').onclick = () => openBmDrawer(false);
+    d.addEventListener('click', e => { const r = e.target.closest('[data-bm-remove]'); if (r) toggleBm(r.dataset.bmRemove); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && bmDrawerOpen) openBmDrawer(false); });
+  }
+  function openBmDrawer(open) {
+    ensureBmDrawer(); bmDrawerOpen = open;
+    const d = document.getElementById('bm-drawer');
+    if (open) document.getElementById('bm-drawer-body').innerHTML = BmList();
+    d.classList.toggle('open', open); d.setAttribute('aria-hidden', !open);
+  }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.bm-btn[data-bm]');
+    if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    toggleBm(b.dataset.bm);
+  }, true);
 
   function wireCat() {
     document.querySelectorAll('#cat-pop .cat-opt').forEach(btn => {
@@ -313,6 +386,7 @@
             <input id="news-search" class="search-input" placeholder="Search articles…" value="${state.search.replace(/"/g,'&quot;')}">
           </div>
           ${SourcePicker()}
+          <button type="button" class="bm-open" id="bm-open" title="View bookmarked articles">${BM_ICO(false,15)}<span>Bookmarks</span><span class="bm-count" id="bm-count" ${bookmarks.length?'':'hidden'}>${bookmarks.length}</span></button>
         </div>
       </div>
 

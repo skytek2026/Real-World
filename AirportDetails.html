@@ -124,7 +124,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "showSparklines": true
 }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=13"></script>
@@ -510,7 +510,7 @@ function CardGeneralInfo() {
         </div>
         <div class="col-span-2 min-w-0">
           <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Location</div>
-          <div class="font-semibold text-ink-900" style="display:flex;align-items:center;gap:5px;">${(AIRPORT.cc || COUNTRY_CC[AIRPORT.country]) ? `<img src="https://flagcdn.com/w20/${AIRPORT.cc || COUNTRY_CC[AIRPORT.country]}.png" width="16" style="border-radius:2px;flex-shrink:0;" />` : ''}<span style="text-wrap:pretty;">${AIRPORT.country || 'Unknown'}</span></div>
+          <div class="font-semibold text-ink-900" style="display:flex;align-items:center;gap:5px;">${(AIRPORT.cc || COUNTRY_CC[AIRPORT.country]) ? `<img src="flags/${AIRPORT.cc || COUNTRY_CC[AIRPORT.country]}.svg" width="16" style="border-radius:2px;flex-shrink:0;" />` : ''}<span style="text-wrap:pretty;">${AIRPORT.country || 'Unknown'}</span></div>
         </div>
         <div>
           <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Area</div>
