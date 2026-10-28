@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Page not found — Real World</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-700,#1d4ed8);text-decoration:underline}
+.scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
+
+/* Developer preview bar: visibly not part of the product UI */
+.e4-dev{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.e4-dev-box{display:inline-flex;align-items:center;gap:10px;padding:6px 6px 6px 12px;border:1px dashed #cbd5e1;border-radius:10px;background:#fff}
+.e4-dev-lbl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#475569;white-space:nowrap}
+.e4-dev-lbl svg{width:14px;height:14px;color:#64748b}
+.e4-select{height:32px;min-width:150px;border:1px solid #e2e8f0;border-radius:7px;padding:0 32px 0 10px;font:600 13px/1 'Inter',sans-serif;color:#0f172a;background:#f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer}
+.e4-select:focus{outline:none;border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-500,#3b82f6) 16%,transparent);background-color:#fff}
+
+/* The ghost record: the row you expected, with nothing in it */
+.e4-ghost{position:relative;display:flex;align-items:center;gap:14px;width:100%;max-width:380px;padding:14px 16px;border:1.5px dashed #cbd5e1;border-radius:12px;background:#fff}
+.e4-ghost-ico{flex-shrink:0;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
+.e4-ghost-ico svg{width:22px;height:22px}
+.e4-ghost-body{flex:1;min-width:0}
+.e4-ghost-id{font-size:14px;font-weight:600;color:#0f172a;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.e4-ghost-kind{font-size:12px;color:#64748b;margin-top:1px}
+.e4-ghost-bars{display:flex;gap:6px;margin-top:9px}
+.e4-ghost-bars span{height:6px;border-radius:3px;background:#e2e8f0}
+.e4-ghost-code{flex-shrink:0;align-self:flex-start;font:700 12px/1 'Exo',sans-serif;letter-spacing:.02em;color:#64748b;background:#f1f5f9;border-radius:6px;padding:5px 7px}
+.e4-swap{animation:e4Swap .28s ease-out}
+@keyframes e4Swap{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.e4-swap{animation:none}}
+
+.e4-title{font-family:'Exo',sans-serif;font-weight:700;font-size:28px;line-height:1.15;letter-spacing:-.01em;color:#0f172a}
+.e4-lede{font-size:15px;line-height:1.6;color:#475569;max-width:58ch}
+.e4-btn{height:40px;padding:0 18px;border-radius:9px;font:600 13.5px/1 'Inter',sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;text-decoration:none!important;transition:background .12s,border-color .12s}
+.e4-btn svg{width:16px;height:16px}
+.e4-btn--primary{background:var(--brand-600,#2563eb);color:#fff!important}
+.e4-btn--primary:hover{background:var(--brand-700,#1d4ed8)}
+.e4-btn--ghost{background:#fff;border:1px solid #e2e8f0;color:#334155!important}
+.e4-btn--ghost:hover{background:#f1f5f9;color:#0f172a!important}
+.e4-btn:focus-visible,.e4-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px}
+.e4-checks{list-style:none;display:flex;flex-direction:column;gap:10px}
+.e4-checks li{display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:#334155}
+.e4-checks li svg{flex-shrink:0;width:16px;height:16px;margin-top:2px;color:var(--brand-600,#2563eb)}
+.e4-tech{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;font-size:12.5px}
+.e4-tech dt{color:#94a3b8}
+.e4-tech dd{color:#475569;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.e4-copy{border:0;background:none;color:var(--brand-600,#2563eb);font:600 12px/1 'Inter',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:4px 6px;margin:-4px -6px;border-radius:6px}
+.e4-copy:hover{background:var(--brand-50,#eff6ff)}
+.e4-copy svg{width:13px;height:13px}
+@media (max-width:639px){
+  .e4-title{font-size:23px}
+  .e4-actions{flex-direction:column;align-items:stretch}
+  .e4-dev{justify-content:stretch}.e4-dev-box{width:100%}.e4-select{flex:1}
+}
+
+/* Dark theme (the shared chrome remaps Tailwind classes; these are this page's own colours) */
+html[data-theme="dark"] .e4-dev-box,html[data-theme="dark"] .e4-ghost{background:#161f2e;border-color:#34435c}
+html[data-theme="dark"] .e4-dev-lbl{color:#c0c9d8}
+html[data-theme="dark"] .e4-select{background-color:#1e293b;border-color:#2a374d;color:#e7ecf4}
+html[data-theme="dark"] .e4-ghost-ico{background:color-mix(in srgb,var(--brand-500,#3b82f6) 18%,transparent);color:var(--brand-300,#93c5fd)}
+html[data-theme="dark"] .e4-ghost-id,html[data-theme="dark"] .e4-title{color:#e7ecf4}
+html[data-theme="dark"] .e4-ghost-kind,html[data-theme="dark"] .e4-lede,html[data-theme="dark"] .e4-checks li,html[data-theme="dark"] .e4-tech dd{color:#c0c9d8}
+html[data-theme="dark"] .e4-ghost-bars span{background:#2a374d}
+html[data-theme="dark"] .e4-ghost-code{background:#1e293b;color:#93a0b4}
+html[data-theme="dark"] .e4-btn--ghost{background:#161f2e;border-color:#2a374d;color:#e7ecf4!important}
+html[data-theme="dark"] .e4-btn--ghost:hover{background:#1e293b}
+html[data-theme="dark"] .e4-checks li svg,html[data-theme="dark"] .e4-copy{color:var(--brand-300,#93c5fd)}
+html[data-theme="dark"] .e4-copy:hover{background:#1e293b}
+</style>
+</head>
+<body class="bg-slate-100 text-slate-900">
+<div id="app" class="h-screen w-full flex overflow-hidden"></div>
+<script>
+window.PAGE = { id:'marine', title:'Marine', crumb:'Vessel not found' };
+window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "density": "comfortable",
+  "accent": "sky",
+  "sidebarExpanded": false,
+  "showSparklines": true
+}/*EDITMODE-END*/;
+</script>
+<script src="shared/lucide-local.js"></script>
+<script src="shared/chrome.js?v=13"></script>
+<script>
+const SC = window.sharedChrome;
+const esc = v => String(v == null ? '' : v).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+/* Lucide glyph at any size (the shared helper has fixed sizes) */
+function icon(name) {
+  const d = window.lucide && lucide.icons && lucide.icons[name];
+  if (!d) return '';
+  const [tag, attrs, kids] = d;
+  const a = Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ');
+  return `<${tag} ${a} aria-hidden="true">${(kids || []).map(([t, ca]) => `<${t} ${Object.entries(ca).map(([k, v]) => `${k}="${v}"`).join(' ')}/>`).join('')}</${tag}>`;
+}
+
+/* One entry per asset type. `nav` is the sidebar section the error belongs to. */
+const TYPES = {
+  vessel: {
+    label: 'Vessel', icon: 'Ship', nav: 'marine', section: 'Marine',
+    id: 'IMO 9876543', kind: 'Vessel',
+    title: 'Vessel not found',
+    lede: 'There’s no vessel with IMO 9876543 in Real World. The IMO number in the link may be wrong, or the vessel may have been removed from your portfolios.',
+    checks: [
+      'IMO numbers are 7 digits. Check the link hasn’t been cut short or had a digit changed.',
+      'If you followed a link in a report, the vessel may have left the portfolio since the report was run.',
+      'Search by vessel name instead. Names stay findable after an IMO is corrected.'
+    ],
+    primary: { label: 'Search assets', href: 'AssetsSearch.html', icon: 'Search' },
+    secondary: { label: 'Go to Marine', href: 'MarineDashboard.html' },
+    path: 'VesselDetails.html?imo=9876543'
+  },
+  portfolio: {
+    label: 'Portfolio', icon: 'Briefcase', nav: 'portfolios', section: 'Portfolios',
+    id: 'PF-20418', kind: 'Portfolio',
+    title: 'Portfolio not found',
+    lede: 'There’s no portfolio PF-20418 that you can open. It may have been deleted, or it belongs to a team you don’t have access to.',
+    checks: [
+      'Portfolios keep their ID when renamed, so a deleted portfolio is the most likely cause.',
+      'If a colleague shared this link, ask them to share the portfolio with you.',
+      'Group portfolios are listed under the Portfolio Groups tab.'
+    ],
+    primary: { label: 'View all portfolios', href: 'AllPortfolios.html', icon: 'Briefcase' },
+    secondary: { label: 'Go to Dashboard', href: 'Dashboard.html' },
+    path: 'MarinePortfolioDetails.html?id=PF-20418'
+  },
+  policy: {
+    label: 'Policy', icon: 'FileText', nav: 'portfolios', section: 'Portfolios',
+    id: 'Policy MAR-2025-00417', kind: 'Policy',
+    title: 'Policy not found',
+    lede: 'No policy matches MAR-2025-00417. It may have expired and been archived, or the policy number in the link is wrong.',
+    checks: [
+      'Policy numbers follow the pattern line of business, year, then a 5-digit number.',
+      'Expired policies leave their portfolio when they’re archived.',
+      'Open the portfolio the policy belonged to and check its policy list.'
+    ],
+    primary: { label: 'View all portfolios', href: 'AllPortfolios.html', icon: 'Briefcase' },
+    secondary: { label: 'Go to Dashboard', href: 'Dashboard.html' },
+    path: 'PolicyDetails.html?policy=MAR-2025-00417'
+  },
+  property: {
+    label: 'Property', icon: 'Building2', nav: 'property', section: 'Property',
+    id: 'PRP-48213', kind: 'Property',
+    title: 'Property not found',
+    lede: 'There’s no property PRP-48213 in Real World. It may have been removed from your schedule of values, or the property ID in the link is wrong.',
+    checks: [
+      'Properties removed at renewal no longer appear in search.',
+      'If the address changed, the property may have been re-added under a new ID.',
+      'Search by address or site name instead.'
+    ],
+    primary: { label: 'Search assets', href: 'AssetsSearch.html', icon: 'Search' },
+    secondary: { label: 'Go to Property', href: 'PropertyDashboard.html' },
+    path: 'PropertyDetails.html?id=PRP-48213'
+  },
+  aircraft: {
+    label: 'Aircraft', icon: 'Plane', nav: 'aviation', section: 'Aviation',
+    id: 'Registration N734KX', kind: 'Aircraft',
+    title: 'Aircraft not found',
+    lede: 'There’s no aircraft registered N734KX in Real World. It may have been re-registered or removed from your portfolios.',
+    checks: [
+      'Aircraft that change registration keep their serial number (MSN). Search by MSN to find them.',
+      'Registrations include the country prefix, for example N for the United States.',
+      'Aircraft removed from a portfolio no longer appear in search.'
+    ],
+    primary: { label: 'Search assets', href: 'AssetsSearch.html', icon: 'Search' },
+    secondary: { label: 'Go to Aviation', href: 'AviationDashboard.html' },
+    path: 'AircraftDetails.html?reg=N734KX'
+  },
+  region: {
+    label: 'Region', icon: 'MapPin', nav: 'regions', section: 'Regions',
+    id: 'North Sea Block A', kind: 'Custom region',
+    title: 'Region not found',
+    lede: 'The region North Sea Block A doesn’t exist or isn’t shared with you. Custom regions are removed when their owner deletes them.',
+    checks: [
+      'If a colleague shared this region, it may have been deleted or unshared.',
+      'Region names can change, so check the Regions list for a renamed copy.',
+      'You can recreate the area as your own custom region.'
+    ],
+    primary: { label: 'View all regions', href: 'Regions.html', icon: 'MapPin' },
+    secondary: { label: 'Create a region', href: 'CreateNewRegion.html' },
+    path: 'MarineRegionDetails.html?region=north-sea-block-a'
+  }
+};
+const ORDER = ['vessel', 'portfolio', 'policy', 'property', 'aircraft', 'region'];
+
+const qp = new URLSearchParams(location.search);
+let current = TYPES[(qp.get('type') || '').toLowerCase()] ? qp.get('type').toLowerCase() : 'vessel';
+
+function setPage() {
+  const t = TYPES[current];
+  window.PAGE = { id: t.nav, title: t.section, crumb: t.title };
+  document.title = `${t.title} — Real World`;
+}
+
+function Main() {
+  const t = TYPES[current];
+  const bars = [62, 38, 48].map(w => `<span style="width:${w}px"></span>`).join('');
+  const support = `ContactSupport.html?from=${encodeURIComponent(t.title + '|error_404.html?type=' + current)}`;
+  return `
+  <div class="scroll-thin" style="flex:1;overflow-y:auto;padding:20px 16px 40px">
+    <div style="max-width:760px;margin:0 auto">
+      <div class="e4-dev">
+        <div class="e4-dev-box">
+          <label class="e4-dev-lbl" for="e4-type">${icon('Code')}Developer preview</label>
+          <select id="e4-type" class="e4-select" aria-describedby="e4-dev-hint">
+            ${ORDER.map(k => `<option value="${k}" ${k === current ? 'selected' : ''}>${TYPES[k].label}</option>`).join('')}
+          </select>
+        </div>
+        <span id="e4-dev-hint" class="sr-only">Changes which asset type this 404 page shows. The link updates so you can share it.</span>
+      </div>
+
+      <section class="bg-white rounded-xl border border-ink-200 shadow-sm mt-4" style="padding:clamp(22px,4vw,40px)" aria-labelledby="e4-title">
+        <div id="e4-swap" class="e4-swap">
+          <div class="e4-ghost" role="img" aria-label="${esc(t.kind)} ${esc(t.id)}: no record">
+            <div class="e4-ghost-ico">${icon(t.icon)}</div>
+            <div class="e4-ghost-body">
+              <div class="e4-ghost-id">${esc(t.id)}</div>
+              <div class="e4-ghost-kind">${esc(t.kind)}</div>
+              <div class="e4-ghost-bars" aria-hidden="true">${bars}</div>
+            </div>
+            <span class="e4-ghost-code" aria-hidden="true">404</span>
+          </div>
+
+          <h1 id="e4-title" class="e4-title" style="margin-top:28px">${esc(t.title)}</h1>
+          <p class="e4-lede" style="margin-top:10px">${esc(t.lede)}</p>
+
+          <div class="e4-actions flex flex-wrap items-center gap-3" style="margin-top:24px">
+            <a class="e4-btn e4-btn--primary" href="${t.primary.href}">${icon(t.primary.icon)}${esc(t.primary.label)}</a>
+            <a class="e4-btn e4-btn--ghost" href="${t.secondary.href}">${esc(t.secondary.label)}</a>
+          </div>
+
+          <div class="border-t border-ink-100" style="margin-top:32px;padding-top:24px">
+            <h2 class="text-sm font-semibold text-ink-900">Things to check</h2>
+            <ul class="e4-checks" style="margin-top:12px">
+              ${t.checks.map(c => `<li>${icon('Check')}<span>${esc(c)}</span></li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="border-t border-ink-100 flex flex-wrap items-start justify-between gap-4" style="margin-top:24px;padding-top:20px">
+            <dl class="e4-tech">
+              <dt>Status</dt><dd>404 Not Found</dd>
+              <dt>Requested</dt><dd id="e4-path">${esc(t.path)}</dd>
+            </dl>
+            <div class="flex items-center gap-4">
+              <button type="button" class="e4-copy" id="e4-copy">${icon('Copy')}<span>Copy details</span></button>
+              <a class="e4-link text-[12.5px] font-semibold" href="${support}">Report a broken link</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>`;
+}
+
+let _main;
+function paint(animate) {
+  _main.innerHTML = Main();
+  if (!animate) document.getElementById('e4-swap').classList.remove('e4-swap');
+  document.getElementById('e4-type').addEventListener('change', e => {
+    current = e.target.value;
+    const u = new URL(location.href); u.searchParams.set('type', current);
+    try { history.replaceState(null, '', u.pathname.split('/').pop() + u.search); } catch (err) {}
+    window.render();
+    document.getElementById('e4-type').focus();
+  });
+  document.getElementById('e4-copy').addEventListener('click', e => {
+    const t = TYPES[current];
+    const text = `404 Not Found\n${t.kind}: ${t.id}\nRequested: ${t.path}`;
+    const btn = e.currentTarget, lbl = btn.querySelector('span');
+    const done = () => { lbl.textContent = 'Copied'; setTimeout(() => { lbl.textContent = 'Copy details'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, () => { lbl.textContent = 'Copy failed'; });
+    else lbl.textContent = 'Copy failed';
+  });
+}
+
+let _first = true;
+window.render = function () {
+  setPage();
+  document.getElementById('app').innerHTML = `
+    ${SC.Sidebar()}
+    <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
+      ${SC.Topbar()}
+      <main id="e4-main" class="flex-1 min-h-0 overflow-hidden flex flex-col bg-slate-100"></main>
+    </div>
+    ${SC.TweaksPanel()}`;
+  SC.wireChrome();
+  _main = document.getElementById('e4-main');
+  paint(!_first);
+  _first = false;
+};
+window.render();
+</script>
+</body>
+</html>
