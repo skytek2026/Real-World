@@ -81,7 +81,7 @@ html[data-theme="dark"] .e4-foot{background:#121a27;border-color:#212d40}
 <body class="bg-slate-100 text-slate-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 <script>
-window.PAGE = { id:'marine', title:'Marine', crumb:'Vessel not found' };
+window.PAGE = { id:'dash', title:'Dashboard', crumb:'Page not found' };
 window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "density": "comfortable",
   "accent": "sky",
@@ -106,6 +106,15 @@ function icon(name) {
 
 /* One entry per asset type. `nav` is the sidebar section the error belongs to. */
 const TYPES = {
+  catchall: {
+    label: 'Catch All', icon: 'Compass', nav: 'dash', section: 'Dashboard',
+    id: 'reports/q3-exposure-summary', kind: 'Page',
+    title: 'Page not found',
+    lede: 'There’s no page at this address in Real World. The link may be broken or out of date, or the page may have moved.',
+    primary: { label: 'Return to dashboard', href: 'Dashboard.html', icon: 'LayoutGrid' },
+    secondary: null,
+    path: 'reports/q3-exposure-summary.html'
+  },
   vessel: {
     label: 'Vessel', icon: 'Ship', nav: 'marine', section: 'Marine',
     id: 'IMO 9876543', kind: 'Vessel',
@@ -161,10 +170,10 @@ const TYPES = {
     path: 'MarineRegionDetails.html?region=north-sea-block-a'
   }
 };
-const ORDER = ['vessel', 'portfolio', 'policy', 'property', 'aircraft', 'region'];
+const ORDER = ['catchall', 'vessel', 'portfolio', 'policy', 'property', 'aircraft', 'region'];
 
 const qp = new URLSearchParams(location.search);
-let current = TYPES[(qp.get('type') || '').toLowerCase()] ? qp.get('type').toLowerCase() : 'vessel';
+let current = TYPES[(qp.get('type') || '').toLowerCase()] ? qp.get('type').toLowerCase() : 'catchall';
 
 function setPage() {
   const t = TYPES[current];
@@ -217,7 +226,7 @@ function Main() {
 
           <div class="e4-foot border-t border-ink-100 bg-ink-50">
             <div class="e4-actions flex flex-wrap items-center justify-center" style="gap:12px">
-              <a class="e4-btn e4-btn--ghost" href="${t.secondary.href}">${esc(t.secondary.label)}</a>
+              ${t.secondary ? `<a class="e4-btn e4-btn--ghost" href="${t.secondary.href}">${esc(t.secondary.label)}</a>` : ''}
               <a class="e4-btn e4-btn--primary" href="${t.primary.href}">${icon(t.primary.icon)}${esc(t.primary.label)}</a>
             </div>
           </div>
