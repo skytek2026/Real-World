@@ -160,6 +160,30 @@
   /* Card */
   .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
   /* ── Cargo map controls (ported from Marine Dashboard) ───────────────── */
+  /* Declarations + Clash Alerts: tables on wider screens, one card per row on phones */
+  .decl-cards, .clash-cards { display:none; }
+  @media (max-width:767px) {
+    .decl-table, .clash-table { display:none; }
+    .decl-cards, .clash-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .decl-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; box-shadow:0 1px 2px rgb(15 23 42/.04); padding:12px 14px; }
+  .decl-cards .decl-card { padding:0; overflow:hidden; }
+  .decl-card.is-expanded { border-color:#bfdbfe; }
+  .decl-card--new { animation:voy-row-land 1.9s ease-out; }
+  .decl-card-main { padding:12px 14px; cursor:pointer; }
+  .decl-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f1f5f9; }
+  .decl-kv--top { grid-template-columns:minmax(0,1fr) auto; margin:0; padding:0; border:0; }
+  .decl-kv--top > div:last-child { text-align:right; }
+  .decl-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .decl-kv dd { margin:3px 0 0; font-size:13px; color:#334155; overflow-wrap:anywhere; }
+  .decl-kv-wide { grid-column:1 / -1; }
+  .clash-vessels { line-height:1.75; }
+  .decl-toggle { all:unset; display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:12.5px; font-weight:600; color:var(--brand-600,#2d7ffb); cursor:pointer; border-radius:4px; }
+  .decl-toggle:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; }
+  .decl-card-detail { background:#eff6ff; border-top:1px solid #bfdbfe; }
+  .decl-card-detail .cargo-detail-layout { padding:10px !important; }
+  .decl-card-detail .cargo-map-wrap { flex:none !important; height:300px !important; }
+  @media (prefers-reduced-motion: reduce) { .decl-card--new { animation:none; } }
   .cargo-map-wrap{position:relative;}
   .cargo-map-wrap .leaflet-control-zoom,.cargo-map-wrap .leaflet-bar{border:1px solid #e2e8f0 !important;box-shadow:0 1px 2px rgb(15 23 42 / .08) !important;border-radius:8px !important;overflow:hidden;}
   .cargo-map-wrap .leaflet-bar a{background:#fff !important;color:#334155 !important;}
@@ -673,6 +697,39 @@ function renderPortfolioSummary() {
   </div>`;
 }
 
+/* Phones (<=767px) show declarations as cards; the expanded route map renders in exactly one place. */
+function declIsPhone() { return !!(window.matchMedia && window.matchMedia('(max-width:767px)').matches); }
+function declDetail(i) {
+  return `<div class="cargo-detail-sticky" id="cargo-detail-${i}" style="position:sticky;left:0;">
+              <div class="cargo-detail-layout" style="display:flex;gap:12px;padding:12px;align-items:stretch;">
+                <!-- Leaflet map (full width) -->
+                <div class="cargo-map-wrap" id="cargo-map-wrap-${i}" style="flex:2;min-width:0;height:400px;border-radius:12px;overflow:hidden;">
+                  <div id="cargo-map-${i}" style="height:100%;width:100%;"></div>
+                  <!-- fullscreen button (top-left, above zoom control) -->
+                  <button class="map-btn map-btn-fs" data-map-fs="${i}" title="Toggle fullscreen" style="position:absolute;top:12px;left:12px;z-index:400;">${SC.I.maximize}</button>
+                  <!-- map type selector (top-right) -->
+                  <div style="position:absolute;top:12px;right:12px;z-index:400;">
+                    <div style="position:relative;">
+                      <button class="map-btn" data-map-layers="${i}" title="Map type">${SC.I.layers}</button>
+                      <div class="map-type-menu hidden" data-map-menu="${i}">
+                        ${[
+                          { id:'satellite', label:'Satellite' },
+                          { id:'street',    label:'Street View' },
+                          { id:'dark',      label:'Dark Mode' },
+                          { id:'light',     label:'Light Mode' },
+                        ].map(o => `
+                          <button class="map-type-opt" data-map-type="${o.id}">
+                            <span data-label>${o.label}</span>
+                            <span style="color:var(--brand-600,#2d7ffb);opacity:0;" data-check>${SC.I.check}</span>
+                          </button>`).join('')}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>`;
+}
+
 function renderDeclarationsTable() {
   const rows = filteredVoyages();
   const th = (label, col) => {
@@ -681,7 +738,7 @@ function renderDeclarationsTable() {
     return `<th data-sort="${col}" scope="col" class="ds-th--sortable${active ? ' ds-th--active' : ''}" aria-sort="${aria}"><button type="button" class="ds-th-sort"><span>${label}</span>${sortInd(col)}</button></th>`;
   };
   return `
-  <div style="overflow-x:auto;" class="scroll-thin">
+  <div style="overflow-x:auto;" class="scroll-thin decl-table">
     <table class="voy-table" style="min-width:1280px;">
       <thead>
         <tr>
@@ -725,48 +782,53 @@ function renderDeclarationsTable() {
             <td style="color:${v.breachEnd ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</td>
             <td style="text-align:center;">${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#94a3b8;">—</span>'}</td>
           </tr>
-          ${expanded ? `
+          ${expanded && !declIsPhone() ? `
           <tr class="expanded-detail">
             <td colspan="14" style="padding:0;border-bottom:2px solid #bfdbfe;">
-              <div class="cargo-detail-sticky" id="cargo-detail-${i}" style="position:sticky;left:0;">
-              <div class="cargo-detail-layout" style="display:flex;gap:12px;padding:12px;align-items:stretch;">
-                <!-- Leaflet map (full width) -->
-                <div class="cargo-map-wrap" id="cargo-map-wrap-${i}" style="flex:2;min-width:0;height:400px;border-radius:12px;overflow:hidden;">
-                  <div id="cargo-map-${i}" style="height:100%;width:100%;"></div>
-                  <!-- fullscreen button (top-left, above zoom control) -->
-                  <button class="map-btn map-btn-fs" data-map-fs="${i}" title="Toggle fullscreen" style="position:absolute;top:12px;left:12px;z-index:400;">${SC.I.maximize}</button>
-                  <!-- map type selector (top-right) -->
-                  <div style="position:absolute;top:12px;right:12px;z-index:400;">
-                    <div style="position:relative;">
-                      <button class="map-btn" data-map-layers="${i}" title="Map type">${SC.I.layers}</button>
-                      <div class="map-type-menu hidden" data-map-menu="${i}">
-                        ${[
-                          { id:'satellite', label:'Satellite' },
-                          { id:'street',    label:'Street View' },
-                          { id:'dark',      label:'Dark Mode' },
-                          { id:'light',     label:'Light Mode' },
-                        ].map(o => `
-                          <button class="map-type-opt" data-map-type="${o.id}">
-                            <span data-label>${o.label}</span>
-                            <span style="color:var(--brand-600,#2d7ffb);opacity:0;" data-check>${SC.I.check}</span>
-                          </button>`).join('')}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
+              ${declDetail(i)}
             </td>
           </tr>` : ''}`;  
         }).join('')}
       </tbody>
     </table>
+  </div>
+  <div class="decl-cards" role="list" aria-label="Declarations">
+    ${rows.map((v, i) => {
+      const expanded = st.expanded.has(i);
+      return `
+    <article class="decl-card${expanded ? ' is-expanded' : ''}${v._new ? ' decl-card--new' : ''}" role="listitem">
+      <div class="decl-card-main" data-card-row="${i}">
+        <dl class="decl-kv decl-kv--top">
+          <div><dt>Vessel Name</dt><dd style="font-weight:600;"><a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation();" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.name}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+          <div><dt>Status</dt><dd>${statusBadge(v)}</dd></div>
+        </dl>
+        <dl class="decl-kv">
+              <div><dt>Vessel IMO</dt><dd style="color:#475569;font-variant-numeric:tabular-nums;">${v.imo}</dd></div>
+              <div><dt>Est. Load Date</dt><dd style="font-variant-numeric:tabular-nums;">${v.estLoad}</dd></div>
+              <div><dt>Actual Loading Date</dt><dd style="color:${v.actLoad ? '#d97706' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</dd></div>
+              <div><dt>Load Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+              <div><dt>Discharge Date</dt><dd style="color:#64748b;">${v.dischDate || '—'}</dd></div>
+              <div><dt>Discharge Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+              <div><dt>Actual Discharge Date</dt><dd style="color:${v.actDisch ? '#1d4ed8' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</dd></div>
+              <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#94a3b8;">—</span>'}</dd></div>
+              <div><dt>Breach Start Date</dt><dd style="color:${v.breachStart ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</dd></div>
+              <div><dt>Breach End Date</dt><dd style="color:${v.breachEnd ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</dd></div>
+              <div><dt>Days</dt><dd>${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#94a3b8;">—</span>'}</dd></div>
+        </dl>
+        <button type="button" class="decl-toggle" aria-expanded="${expanded}">
+          <span>${expanded ? 'Hide route map' : 'Show route map'}</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(${expanded ? 90 : 0}deg);transition:transform 150ms;"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+      ${expanded && declIsPhone() ? `<div class="decl-card-detail">${declDetail(i)}</div>` : ''}
+    </article>`;
+    }).join('')}
   </div>`;
 }
 
 function renderClashAlertsTable() {
   return `
-  <div style="overflow-x:auto;" class="scroll-thin">
+  <div style="overflow-x:auto;" class="scroll-thin clash-table">
     <table class="voy-table" style="min-width:560px;">
       <thead>
         <tr>
@@ -786,6 +848,19 @@ function renderClashAlertsTable() {
         </tr>`).join('')}
       </tbody>
     </table>
+  </div>
+  <div class="clash-cards" role="list" aria-label="Clash alerts">
+    ${CLASH_ALERTS.map(a => `
+    <article class="decl-card" role="listitem">
+      <dl class="decl-kv decl-kv--top">
+        <div><dt>Port</dt><dd style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+        <div><dt>Exposure ($)</dt><dd style="font-weight:700;color:#dc2626;">${a.exposure}</dd></div>
+      </dl>
+      <dl class="decl-kv">
+        <div><dt>Date</dt><dd style="font-variant-numeric:tabular-nums;">${a.date}</dd></div>
+        <div class="decl-kv-wide"><dt>Vessels</dt><dd class="clash-vessels" style="color:#64748b;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</dd></div>
+      </dl>
+    </article>`).join('')}
   </div>`;
 }
 
@@ -1773,6 +1848,26 @@ function wireContent() {
       const m = document.getElementById('status-filter-menu');
       const b = document.getElementById('status-filter-btn');
       if (m && !m.hidden) { m.hidden = true; if (b) b.setAttribute('aria-expanded', 'false'); }
+    });
+  }
+
+  /* Card expand (phones): same behaviour as tapping a table row */
+  document.querySelectorAll('[data-card-row]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      const i = parseInt(el.dataset.cardRow);
+      if (st.expanded.has(i)) st.expanded.delete(i);
+      else st.expanded.add(i);
+      window.render();
+      setTimeout(initMaps, 80);
+    });
+  });
+  if (!window.__declMqWired && window.matchMedia) {
+    window.__declMqWired = true;
+    window.matchMedia('(max-width:767px)').addEventListener('change', () => {
+      if (!st.expanded.size) return;
+      window.render();
+      setTimeout(initMaps, 80);
     });
   }
 
