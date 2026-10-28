@@ -46,9 +46,6 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 .e4-btn--ghost{background:#fff;border:1px solid #e2e8f0;color:#334155!important}
 .e4-btn--ghost:hover{background:#f1f5f9;color:#0f172a!important}
 .e4-btn:focus-visible,.e4-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px}
-.e4-checks{list-style:none;display:flex;flex-direction:column;gap:10px}
-.e4-checks li{display:flex;gap:10px;font-size:13.5px;line-height:1.5;color:#334155}
-.e4-checks li svg{flex-shrink:0;width:16px;height:16px;margin-top:2px;color:var(--brand-600,#2563eb)}
 .e4-tech{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;font-size:12.5px}
 .e4-tech dt{color:#94a3b8}
 .e4-tech dd{color:#475569;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
@@ -67,12 +64,12 @@ html[data-theme="dark"] .e4-dev-lbl{color:#c0c9d8}
 html[data-theme="dark"] .e4-select{background-color:#1e293b;border-color:#2a374d;color:#e7ecf4}
 html[data-theme="dark"] .e4-ghost-ico{background:color-mix(in srgb,var(--brand-500,#3b82f6) 18%,transparent);color:var(--brand-300,#93c5fd)}
 html[data-theme="dark"] .e4-ghost-id,html[data-theme="dark"] .e4-title{color:#e7ecf4}
-html[data-theme="dark"] .e4-ghost-kind,html[data-theme="dark"] .e4-lede,html[data-theme="dark"] .e4-checks li,html[data-theme="dark"] .e4-tech dd{color:#c0c9d8}
+html[data-theme="dark"] .e4-ghost-kind,html[data-theme="dark"] .e4-lede,html[data-theme="dark"] .e4-tech dd{color:#c0c9d8}
 html[data-theme="dark"] .e4-ghost-bars span{background:#2a374d}
 html[data-theme="dark"] .e4-ghost-code{background:#1e293b;color:#93a0b4}
 html[data-theme="dark"] .e4-btn--ghost{background:#161f2e;border-color:#2a374d;color:#e7ecf4!important}
 html[data-theme="dark"] .e4-btn--ghost:hover{background:#1e293b}
-html[data-theme="dark"] .e4-checks li svg,html[data-theme="dark"] .e4-copy{color:var(--brand-300,#93c5fd)}
+html[data-theme="dark"] .e4-copy{color:var(--brand-300,#93c5fd)}
 html[data-theme="dark"] .e4-copy:hover{background:#1e293b}
 </style>
 </head>
@@ -109,11 +106,6 @@ const TYPES = {
     id: 'IMO 9876543', kind: 'Vessel',
     title: 'Vessel not found',
     lede: 'There’s no vessel with IMO 9876543 in Real World. The IMO number in the link may be wrong, or the vessel may have been removed from your portfolios.',
-    checks: [
-      'IMO numbers are 7 digits. Check the link hasn’t been cut short or had a digit changed.',
-      'If you followed a link in a report, the vessel may have left the portfolio since the report was run.',
-      'Search by vessel name instead. Names stay findable after an IMO is corrected.'
-    ],
     primary: { label: 'Search assets', href: 'AssetsSearch.html', icon: 'Search' },
     secondary: { label: 'Go to Marine', href: 'MarineDashboard.html' },
     path: 'VesselDetails.html?imo=9876543'
@@ -123,11 +115,6 @@ const TYPES = {
     id: 'PF-20418', kind: 'Portfolio',
     title: 'Portfolio not found',
     lede: 'There’s no portfolio PF-20418 that you can open. It may have been deleted, or it belongs to a team you don’t have access to.',
-    checks: [
-      'Portfolios keep their ID when renamed, so a deleted portfolio is the most likely cause.',
-      'If a colleague shared this link, ask them to share the portfolio with you.',
-      'Group portfolios are listed under the Portfolio Groups tab.'
-    ],
     primary: { label: 'View all portfolios', href: 'AllPortfolios.html', icon: 'Briefcase' },
     secondary: { label: 'Go to Dashboard', href: 'Dashboard.html' },
     path: 'MarinePortfolioDetails.html?id=PF-20418'
@@ -137,11 +124,6 @@ const TYPES = {
     id: 'Policy MAR-2025-00417', kind: 'Policy',
     title: 'Policy not found',
     lede: 'No policy matches MAR-2025-00417. It may have expired and been archived, or the policy number in the link is wrong.',
-    checks: [
-      'Policy numbers follow the pattern line of business, year, then a 5-digit number.',
-      'Expired policies leave their portfolio when they’re archived.',
-      'Open the portfolio the policy belonged to and check its policy list.'
-    ],
     primary: { label: 'View all portfolios', href: 'AllPortfolios.html', icon: 'Briefcase' },
     secondary: { label: 'Go to Dashboard', href: 'Dashboard.html' },
     path: 'PolicyDetails.html?policy=MAR-2025-00417'
@@ -151,11 +133,6 @@ const TYPES = {
     id: 'PRP-48213', kind: 'Property',
     title: 'Property not found',
     lede: 'There’s no property PRP-48213 in Real World. It may have been removed from your schedule of values, or the property ID in the link is wrong.',
-    checks: [
-      'Properties removed at renewal no longer appear in search.',
-      'If the address changed, the property may have been re-added under a new ID.',
-      'Search by address or site name instead.'
-    ],
     primary: { label: 'Search assets', href: 'AssetsSearch.html', icon: 'Search' },
     secondary: { label: 'Go to Property', href: 'PropertyDashboard.html' },
     path: 'PropertyDetails.html?id=PRP-48213'
@@ -165,11 +142,6 @@ const TYPES = {
     id: 'Registration N734KX', kind: 'Aircraft',
     title: 'Aircraft not found',
     lede: 'There’s no aircraft registered N734KX in Real World. It may have been re-registered or removed from your portfolios.',
-    checks: [
-      'Aircraft that change registration keep their serial number (MSN). Search by MSN to find them.',
-      'Registrations include the country prefix, for example N for the United States.',
-      'Aircraft removed from a portfolio no longer appear in search.'
-    ],
     primary: { label: 'Search assets', href: 'AssetsSearch.html', icon: 'Search' },
     secondary: { label: 'Go to Aviation', href: 'AviationDashboard.html' },
     path: 'AircraftDetails.html?reg=N734KX'
@@ -179,11 +151,6 @@ const TYPES = {
     id: 'North Sea Block A', kind: 'Custom region',
     title: 'Region not found',
     lede: 'The region North Sea Block A doesn’t exist or isn’t shared with you. Custom regions are removed when their owner deletes them.',
-    checks: [
-      'If a colleague shared this region, it may have been deleted or unshared.',
-      'Region names can change, so check the Regions list for a renamed copy.',
-      'You can recreate the area as your own custom region.'
-    ],
     primary: { label: 'View all regions', href: 'Regions.html', icon: 'MapPin' },
     secondary: { label: 'Create a region', href: 'CreateNewRegion.html' },
     path: 'MarineRegionDetails.html?region=north-sea-block-a'
@@ -237,14 +204,7 @@ function Main() {
             <a class="e4-btn e4-btn--ghost" href="${t.secondary.href}">${esc(t.secondary.label)}</a>
           </div>
 
-          <div class="border-t border-ink-100" style="margin-top:32px;padding-top:24px">
-            <h2 class="text-sm font-semibold text-ink-900">Things to check</h2>
-            <ul class="e4-checks" style="margin-top:12px">
-              ${t.checks.map(c => `<li>${icon('Check')}<span>${esc(c)}</span></li>`).join('')}
-            </ul>
-          </div>
-
-          <div class="border-t border-ink-100 flex flex-wrap items-start justify-between gap-4" style="margin-top:24px;padding-top:20px">
+          <div class="border-t border-ink-100 flex flex-wrap items-start justify-between gap-4" style="margin-top:32px;padding-top:20px">
             <dl class="e4-tech">
               <dt>Status</dt><dd>404 Not Found</dd>
               <dt>Requested</dt><dd id="e4-path">${esc(t.path)}</dd>
