@@ -61,6 +61,13 @@
   .pf-kv--stack { display:flex; flex-direction:column; gap:10px; }
   .pf-kv--grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px 16px; margin-top:12px; padding-top:12px; border-top:1px solid #f1f5f9; }
   .pf-card-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; padding-top:8px; border-top:1px solid #f1f5f9; }
+  @media (max-width:767px) { .pg-table { display:none; } }
+  .pg-cards .group-toggle { width:22px; height:22px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; cursor:pointer; border-radius:4px; margin-left:-3px; }
+  .pg-cards .group-toggle:hover { background:#f1f5f9; }
+  .pg-name .porto-name { align-items:center; }
+  .pg-kids { display:flex; flex-direction:column; gap:8px; margin-top:12px; }
+  .pg-kid { background:var(--brand-50,#eff6ff); border-left:2px solid var(--brand-100,#dbeafe); border-radius:8px; padding:10px 12px; }
+  .pg-kid .pf-kv--grid, .pg-kid .pf-card-foot { border-top-color:var(--brand-100,#dbeafe); }
   .porto-table { width:100%; border-collapse:collapse; }
   .porto-table th { padding:10px 14px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; text-align:left; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); white-space:nowrap; }
   .porto-table td { padding:11px 14px; font-size:13px; color:#334155; border-bottom:1px solid #f1f5f9; vertical-align:middle; }
@@ -392,7 +399,7 @@ function GroupsTable(groups) {
     </tr>`;
 
   return `
-    <table class="porto-table groups-table">
+    <table class="porto-table groups-table pg-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -434,7 +441,53 @@ function GroupsTable(groups) {
           ${isOpen ? g.children.map(childRow).join('') : ''}
         `;}).join('')}
       </tbody>
-    </table>`;
+    </table>
+    <div class="pf-cards pg-cards" role="list" aria-label="Portfolio groups">
+      ${groups.map(g => {
+        const isOpen = expandedGroups.has(g.name);
+        const metrics = x => `
+          <dl class="pf-kv pf-kv--grid">
+            <div><dt>Policies</dt><dd class="tabular-nums">${x.policies.toLocaleString()}</dd></div>
+            <div><dt>Our Exposure</dt><dd class="tabular-nums font-semibold text-ink-900">${x.exposure}</dd></div>
+            <div><dt>Risk Score</dt><dd><span class="risk-score ${riskClass(x.risk)}">${x.risk}</span></dd></div>
+            <div><dt>EEMI</dt><dd class="tabular-nums">${x.eemi}</dd></div>
+            <div><dt>CII</dt><dd class="tabular-nums">${x.cii}</dd></div>
+            <div><dt>Sanctions/<wbr>Compliance</dt><dd>${statusBadge(x.status)}</dd></div>
+          </dl>`;
+        const actions = x => `
+          <div class="pf-card-foot">
+            <span class="pf-label">Actions</span>
+            <div class="flex items-center gap-1">
+              <button class="action-btn is-edit" title="Edit" aria-label="Edit ${escapeAttr(x.name)}" data-pf-edit data-pf-name="${escapeAttr(x.name)}" data-pf-desc="" data-pf-cat-key="${catTab}">${EDIT_ICO}</button>
+              <button class="action-btn is-delete" title="Delete" aria-label="Delete ${escapeAttr(x.name)}" data-pf-delete data-pf-name="${escapeAttr(x.name)}">${DEL_ICO}</button>
+            </div>
+          </div>`;
+        return `
+      <article class="pf-card" role="listitem">
+        <dl class="pf-kv pf-kv--stack">
+          <div><dt>Name</dt><dd>
+            <div class="flex items-center gap-1 pg-name">
+              <button class="group-toggle" data-group-toggle="${escapeAttr(g.name)}" aria-expanded="${isOpen}" aria-controls="pg-kids-${escapeAttr(g.name).replace(/[^A-Za-z0-9]/g, '-')}" title="${isOpen ? 'Collapse' : 'Expand'}">
+                <span class="folder-ico" style="color:var(--brand-600,#2563eb);display:inline-flex;">${isOpen ? FOLDER_OPEN_ICO : FOLDER_CLOSED_ICO}</span>
+              </button>
+              <span class="porto-name" role="button" tabindex="0" aria-expanded="${isOpen}" data-group-toggle="${escapeAttr(g.name)}">${g.name}</span>
+            </div>
+          </dd></div>
+        </dl>
+        ${metrics(g)}
+        ${actions(g)}
+        ${isOpen ? `<div class="pg-kids" id="pg-kids-${escapeAttr(g.name).replace(/[^A-Za-z0-9]/g, '-')}">${g.children.map(c => `
+          <div class="pg-kid">
+            <dl class="pf-kv pf-kv--stack">
+              <div><dt>Name</dt><dd><span class="porto-name" data-pf-child-cat="${catTab}" data-pf-child-name="${encodeURIComponent(c.name)}" data-pf-child-policies="${c.policies}" data-pf-child-exposure="${escapeAttr(c.exposure)}">${PORTFOLIO_ICO} ${c.name}</span></dd></div>
+            </dl>
+            ${metrics(c)}
+            ${actions(c)}
+          </div>`).join('')}
+        </div>` : ''}
+      </article>`;
+      }).join('')}
+    </div>`;
 }
 
 function Content() {
