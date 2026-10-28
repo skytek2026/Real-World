@@ -171,6 +171,10 @@
   .bg-emerald-100{background-color:#dcfce7!important}.text-emerald-700{color:#15803d!important}
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){.mobile-tab-select{display:block!important}.tabs-desktop-wrap{display:none!important}}
+  /* Folder toggle on expandable rows: only the folder opens/closes the row */
+  .folder-btn { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; margin:-4px -3px -4px -5px; padding:0; border:0; border-radius:5px; background:transparent; cursor:pointer; }
+  .folder-btn:hover { background:var(--brand-50,#eff6ff); }
+  .folder-btn:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -599,14 +603,14 @@ function RegionsCard() {
         const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
         return `
         <div>
-          <button data-agg-idx="${ai}" aria-expanded="${open}" class="w-full text-left px-3 py-2 flex items-center justify-between gap-4 text-xs hover:bg-ink-50">
+          <div class="w-full text-left px-3 py-2 flex items-center justify-between gap-4 text-xs">
             <span class="inline-flex items-center gap-1.5 min-w-0">
-              <span class="shrink-0 inline-flex">${open ? folderOpenIco : folderIco}</span>
-              <span class="text-brand-600 font-semibold truncate">${a.name}</span>
+              <button type="button" data-agg-idx="${ai}" aria-expanded="${open}" aria-label="${open ? 'Collapse' : 'Expand'} ${a.name}" class="folder-btn">${open ? folderOpenIco : folderIco}</button>
+              <span class="text-ink-900 font-semibold truncate">${a.name}</span>
               <span class="text-ink-400 shrink-0">(${a.count.toLocaleString()})</span>
             </span>
             <span class="tabular-nums font-semibold text-ink-900 shrink-0">${a.riskValue}</span>
-          </button>
+          </div>
           ${open ? `<div class="bg-ink-50/60 border-t border-ink-100 divide-y divide-ink-100">
             ${a.subs.map(s => `
             <button data-subagg="${s.name}" data-subagg-count="${s.count}" data-subagg-value="${s.riskValue}" class="w-full text-left pl-9 pr-3 py-1.5 flex items-center justify-between gap-4 text-xs hover:bg-ink-100/60">
@@ -637,15 +641,15 @@ function RegionsCard() {
         const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
         return `
         <div>
-          <button data-region-idx="${ri}" aria-expanded="${open}" class="w-full text-left px-3 py-2 hover:bg-ink-50 grid grid-cols-[1fr_96px_88px] gap-4 items-center text-xs">
+          <div class="w-full text-left px-3 py-2 grid grid-cols-[1fr_96px_88px] gap-4 items-center text-xs">
             <span class="inline-flex items-center gap-2 min-w-0">
-              <span class="shrink-0 inline-flex">${open ? folderOpenIco : folderIco}</span>
+              <button type="button" data-region-idx="${ri}" aria-expanded="${open}" aria-label="${open ? 'Collapse' : 'Expand'} ${r.name}" class="folder-btn">${open ? folderOpenIco : folderIco}</button>
               <span class="shrink-0">${flag(r.cc,'sm')}</span>
-              <span class="truncate text-brand-600 font-semibold">${r.name}</span>
+              <span class="truncate text-ink-900 font-semibold">${r.name}</span>
             </span>
             <span class="tabular-nums text-rose-600 font-semibold text-right">${r.above}</span>
             <span class="tabular-nums text-right font-semibold text-ink-900">${r.ours}</span>
-          </button>
+          </div>
           ${open ? `<div class="bg-ink-50/60 border-t border-ink-100 divide-y divide-ink-100">
             ${r.subs.map(s => `
             <button data-subregion="${s.name}" class="w-full text-left pl-9 pr-3 py-1.5 grid grid-cols-[1fr_96px_88px] gap-4 items-center text-xs hover:bg-ink-100/60">
@@ -1421,6 +1425,7 @@ window.render = function render() {
       if (state.expandedRegions.has(ri)) state.expandedRegions.delete(ri);
       else state.expandedRegions.add(ri);
       render();
+      document.querySelector(`[data-region-idx="${ri}"]`)?.focus();
     });
   });
 
@@ -1431,6 +1436,7 @@ window.render = function render() {
       if (state.expandedAggs.has(ai)) state.expandedAggs.delete(ai);
       else state.expandedAggs.add(ai);
       render();
+      document.querySelector(`[data-agg-idx="${ai}"]`)?.focus();
     });
   });
 
