@@ -38,7 +38,7 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 @media (prefers-reduced-motion: reduce){.e4-swap{animation:none}}
 
 .e4-title{font-family:'Exo',sans-serif;font-weight:700;font-size:28px;line-height:1.15;letter-spacing:-.01em;color:#0f172a}
-.e4-lede{font-size:15px;line-height:1.6;color:#475569;max-width:58ch}
+.e4-lede{font-size:15px;line-height:1.6;color:#475569;max-width:52ch}
 .e4-btn{height:40px;padding:0 18px;border-radius:9px;font:600 13.5px/1 'Inter',sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;text-decoration:none!important;transition:background .12s,border-color .12s}
 .e4-btn svg{width:16px;height:16px}
 .e4-btn--primary{background:var(--brand-600,#2563eb);color:#fff!important}
@@ -46,7 +46,11 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 .e4-btn--ghost{background:#fff;border:1px solid #e2e8f0;color:#334155!important}
 .e4-btn--ghost:hover{background:#f1f5f9;color:#0f172a!important}
 .e4-btn:focus-visible,.e4-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px}
-.e4-tech{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 16px;font-size:12.5px}
+.e4-body{display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(26px,5vw,44px) clamp(18px,4vw,40px) clamp(22px,4vw,32px)}
+.e4-body .e4-ghost{text-align:left}
+.e4-foot{padding:16px clamp(16px,4vw,24px)}
+.e4-tech{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12.5px}
+.e4-tech > div{display:flex;flex-wrap:wrap;justify-content:center;gap:0 8px}
 .e4-tech dt{color:#94a3b8}
 .e4-tech dd{color:#475569;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .e4-copy{border:0;background:none;color:var(--brand-600,#2563eb);font:600 12px/1 'Inter',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:4px 6px;margin:-4px -6px;border-radius:6px}
@@ -54,7 +58,7 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 .e4-copy svg{width:13px;height:13px}
 @media (max-width:639px){
   .e4-title{font-size:23px}
-  .e4-actions{flex-direction:column;align-items:stretch}
+  .e4-actions{flex-direction:column-reverse;align-items:stretch}
   .e4-dev{justify-content:stretch}.e4-dev-box{width:100%}.e4-select{flex:1}
 }
 
@@ -71,6 +75,7 @@ html[data-theme="dark"] .e4-btn--ghost{background:#161f2e;border-color:#2a374d;c
 html[data-theme="dark"] .e4-btn--ghost:hover{background:#1e293b}
 html[data-theme="dark"] .e4-copy{color:var(--brand-300,#93c5fd)}
 html[data-theme="dark"] .e4-copy:hover{background:#1e293b}
+html[data-theme="dark"] .e4-foot{background:#121a27;border-color:#212d40}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -184,34 +189,36 @@ function Main() {
         <span id="e4-dev-hint" class="sr-only">Changes which asset type this 404 page shows. The link updates so you can share it.</span>
       </div>
 
-      <section class="bg-white rounded-xl border border-ink-200 shadow-sm mt-4" style="padding:clamp(22px,4vw,40px)" aria-labelledby="e4-title">
+      <section class="bg-white rounded-xl border border-ink-200 shadow-sm mt-4 overflow-hidden" aria-labelledby="e4-title">
         <div id="e4-swap" class="e4-swap">
-          <div class="e4-ghost" role="img" aria-label="${esc(t.kind)} ${esc(t.id)}: no record">
-            <div class="e4-ghost-ico">${icon(t.icon)}</div>
-            <div class="e4-ghost-body">
-              <div class="e4-ghost-id">${esc(t.id)}</div>
-              <div class="e4-ghost-kind">${esc(t.kind)}</div>
-              <div class="e4-ghost-bars" aria-hidden="true">${bars}</div>
+          <div class="e4-body">
+            <div class="e4-ghost" role="img" aria-label="${esc(t.kind)} ${esc(t.id)}: no record">
+              <div class="e4-ghost-ico">${icon(t.icon)}</div>
+              <div class="e4-ghost-body">
+                <div class="e4-ghost-id">${esc(t.id)}</div>
+                <div class="e4-ghost-kind">${esc(t.kind)}</div>
+                <div class="e4-ghost-bars" aria-hidden="true">${bars}</div>
+              </div>
+              <span class="e4-ghost-code" aria-hidden="true">404</span>
             </div>
-            <span class="e4-ghost-code" aria-hidden="true">404</span>
-          </div>
 
-          <h1 id="e4-title" class="e4-title" style="margin-top:28px">${esc(t.title)}</h1>
-          <p class="e4-lede" style="margin-top:10px">${esc(t.lede)}</p>
+            <h1 id="e4-title" class="e4-title" style="margin-top:28px">${esc(t.title)}</h1>
+            <p class="e4-lede" style="margin-top:10px">${esc(t.lede)}</p>
 
-          <div class="e4-actions flex flex-wrap items-center gap-3" style="margin-top:24px">
-            <a class="e4-btn e4-btn--primary" href="${t.primary.href}">${icon(t.primary.icon)}${esc(t.primary.label)}</a>
-            <a class="e4-btn e4-btn--ghost" href="${t.secondary.href}">${esc(t.secondary.label)}</a>
-          </div>
-
-          <div class="border-t border-ink-100 flex flex-wrap items-start justify-between gap-4" style="margin-top:32px;padding-top:20px">
-            <dl class="e4-tech">
-              <dt>Status</dt><dd>404 Not Found</dd>
-              <dt>Requested</dt><dd id="e4-path">${esc(t.path)}</dd>
+            <dl class="e4-tech" style="margin-top:24px">
+              <div><dt>Status</dt><dd>404 Not Found</dd></div>
+              <div><dt>Requested</dt><dd id="e4-path">${esc(t.path)}</dd></div>
             </dl>
-            <div class="flex items-center gap-4">
+            <div class="flex flex-wrap items-center justify-center" style="margin-top:12px;gap:8px 22px">
               <button type="button" class="e4-copy" id="e4-copy">${icon('Copy')}<span>Copy details</span></button>
               <a class="e4-link text-[12.5px] font-semibold" href="${support}">Report a broken link</a>
+            </div>
+          </div>
+
+          <div class="e4-foot border-t border-ink-100 bg-ink-50">
+            <div class="e4-actions flex flex-wrap items-center justify-center" style="gap:12px">
+              <a class="e4-btn e4-btn--ghost" href="${t.secondary.href}">${esc(t.secondary.label)}</a>
+              <a class="e4-btn e4-btn--primary" href="${t.primary.href}">${icon(t.primary.icon)}${esc(t.primary.label)}</a>
             </div>
           </div>
         </div>
