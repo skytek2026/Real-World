@@ -48,6 +48,19 @@
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;}
 
   /* Table */
+  /* Portfolios tab: table on wider screens, one card per portfolio on phones */
+  .pf-cards { display:none; }
+  @media (max-width:767px) {
+    .pf-table { display:none; }
+    .pf-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .pf-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .pf-kv { margin:0; }
+  .pf-kv dt, .pf-label { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .pf-kv dd { margin:3px 0 0; font-size:13px; color:#334155; }
+  .pf-kv--stack { display:flex; flex-direction:column; gap:10px; }
+  .pf-kv--grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px 16px; margin-top:12px; padding-top:12px; border-top:1px solid #f1f5f9; }
+  .pf-card-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; padding-top:8px; border-top:1px solid #f1f5f9; }
   .porto-table { width:100%; border-collapse:collapse; }
   .porto-table th { padding:10px 14px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; text-align:left; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); white-space:nowrap; }
   .porto-table td { padding:11px 14px; font-size:13px; color:#334155; border-bottom:1px solid #f1f5f9; vertical-align:middle; }
@@ -298,7 +311,7 @@ const PORTFOLIO_GROUPS = {
 
 function PortfoliosTable(rows) {
   return `
-    <table class="porto-table">
+    <table class="porto-table pf-table">
       <thead>
         <tr>
           <th style="width:180px;">Name</th>
@@ -331,7 +344,31 @@ function PortfoliosTable(rows) {
             </td>
           </tr>`).join('')}
       </tbody>
-    </table>`;
+    </table>
+    <div class="pf-cards" role="list" aria-label="Portfolios">
+      ${rows.map(p => `
+      <article class="pf-card" role="listitem">
+        <dl class="pf-kv pf-kv--stack">
+          <div><dt>Name</dt><dd><span class="porto-name" data-pf-cat="${catTab}" data-pf-name="${encodeURIComponent(p.name)}">${PORTFOLIO_ICO} ${p.name}</span></dd></div>
+          <div><dt>Description</dt><dd><span class="porto-desc">${p.desc}</span></dd></div>
+        </dl>
+        <dl class="pf-kv pf-kv--grid">
+          <div><dt>Policies</dt><dd class="tabular-nums">${p.policies.toLocaleString()}</dd></div>
+          <div><dt>Our Exposure</dt><dd class="tabular-nums font-semibold text-ink-900">${p.exposure}</dd></div>
+          <div><dt>Risk Score</dt><dd><span class="risk-score ${riskClass(p.risk)}">${p.risk}</span></dd></div>
+          <div><dt>EEMI</dt><dd class="tabular-nums">${p.eemi}</dd></div>
+          <div><dt>CII</dt><dd class="tabular-nums">${p.cii}</dd></div>
+          <div><dt>Sanctions/<wbr>Compliance</dt><dd>${statusBadge(p.status)}</dd></div>
+        </dl>
+        <div class="pf-card-foot">
+          <span class="pf-label">Actions</span>
+          <div class="flex items-center gap-1">
+            <button class="action-btn is-edit" title="Edit" aria-label="Edit ${escapeAttr(p.name)}" data-pf-edit data-pf-name="${escapeAttr(p.name)}" data-pf-desc="${escapeAttr(p.desc)}" data-pf-cat-key="${catTab}">${EDIT_ICO}</button>
+            <button class="action-btn is-delete" title="Delete" aria-label="Delete ${escapeAttr(p.name)}" data-pf-delete data-pf-name="${escapeAttr(p.name)}">${DEL_ICO}</button>
+          </div>
+        </div>
+      </article>`).join('')}
+    </div>`;
 }
 
 function GroupsTable(groups) {
