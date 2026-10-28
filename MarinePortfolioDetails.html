@@ -419,7 +419,7 @@ function DonutSVG(score = 100) {
 function PanelPortfolioDetails() {
   const compStatus = PORTFOLIO.sanctioned ? 'SANCTIONED' : 'OK';
   const compBadge = compStatus === 'OK'
-    ? `<span style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:#dcfce7;color:#16a34a">OK</span>`
+    ? `<span style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)">OK</span>`
     : `<span style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:#fee2e2;color:#dc2626">SANCTIONED</span>`;
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0 overflow-hidden">
@@ -534,12 +534,12 @@ function ActivityGrid() {
       <!-- Row 3 -->
       <div>
         <div class="text-[11px] text-ink-500 mb-1">Max. Exposure:</div>
-        <span class="stat-badge green">$1.8B</span>
+        <span class="stat-badge blue">$1.8B</span>
         <div class="text-[11px] text-ink-400 mt-1">Dec 18th 2024</div>
       </div>
       <div>
         <div class="text-[11px] text-ink-500 mb-1">Min Exposure:</div>
-        <span class="stat-badge purple">$198.3M</span>
+        <span class="stat-badge blue">$198.3M</span>
         <div class="text-[11px] text-ink-400 mt-1">Dec 25th 2024</div>
       </div>
       <!-- Row 4 -->

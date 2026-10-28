@@ -12,7 +12,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-700,#1d4ed8);text-decoration:underline}
+a{color:var(--brand-600,var(--brand-600,#2563eb));text-decoration:none}a:hover{color:var(--brand-700,var(--brand-700,#1d4ed8));text-decoration:underline}
 .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
 .pcard{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
 .cs-lbl{display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:6px}
@@ -21,7 +21,7 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 .pfield{width:100%;height:38px;border:1px solid #e2e8f0;border-radius:8px;padding:0 12px;font-size:13.5px;color:#0f172a;background:#f8fafc;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
 textarea.pfield{height:auto;min-height:120px;padding:10px 12px;line-height:1.5;resize:vertical}
 select.pfield{appearance:none;-webkit-appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;cursor:pointer}
-.pfield:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12);background-color:#fff}
+.pfield:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-500,#3b82f6) 14%,transparent);background-color:#fff}
 .pfield.err{border-color:#fca5a5;background-color:#fef2f2}
 .cs-err{font-size:11.5px;color:#dc2626;margin-top:5px}
 .cs-hint{font-size:11.5px;color:#64748b;margin-top:5px}
@@ -29,24 +29,24 @@ select.pfield{appearance:none;-webkit-appearance:none;padding-right:34px;backgro
 .cs-full{grid-column:1/-1}
 @media(max-width:639px){.cs-grid{grid-template-columns:1fr}.pcard{padding:18px}}
 .cs-seg{display:flex;flex-wrap:wrap;gap:8px}
-.cs-seg label{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 12px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;font-weight:500;color:#334155;cursor:pointer;user-select:none;transition:border-color .12s,background .12s}
+.cs-seg label{display:inline-flex;align-items:center;gap:8px;height:36px;white-space:nowrap;flex-shrink:0;padding:0 12px;border:1.5px solid #e2e8f0;border-radius:9px;font-size:13px;font-weight:500;color:#334155;cursor:pointer;user-select:none;transition:border-color .12s,background .12s}
 .cs-seg label:hover{border-color:#cbd5e1}
-.cs-seg label:has(input:checked){border-color:#2563eb;background:#f8fbff;color:#0f172a}
+.cs-seg label:has(input:checked){border-color:var(--brand-600,#2563eb);background:var(--brand-50,#f8fbff);color:#0f172a}
 .cs-dot{width:8px;height:8px;border-radius:50%}
 .ds-radio,.ds-check{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid #cbd5e1;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
 .ds-radio{border-radius:50%}.ds-check{border-radius:4px}
-.ds-radio:checked,.ds-check:checked{background:#2563eb;border-color:#2563eb}
+.ds-radio:checked,.ds-check:checked{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
 .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
 .ds-check:checked::after{content:"";width:9px;height:5px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
-.ds-radio:focus-visible,.ds-check:focus-visible{outline:none;box-shadow:0 0 0 3px rgb(45 127 251/.32)}
+.ds-radio:focus-visible,.ds-check:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-500,#3b82f6) 35%,transparent)}
 .cs-drop{display:flex;align-items:center;gap:12px;border:1.5px dashed #cbd5e1;border-radius:10px;padding:14px 16px;background:#f8fafc;cursor:pointer;transition:border-color .12s,background .12s}
-.cs-drop:hover,.cs-drop.over{border-color:#93c5fd;background:#eff6ff}
+.cs-drop:hover,.cs-drop.over{border-color:var(--brand-300,#93c5fd);background:var(--brand-50,#eff6ff)}
 .cs-file{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#334155;background:#f1f5f9;border-radius:7px;padding:6px 8px 6px 10px}
 .cs-file button{margin-left:auto;background:none;border:0;color:#64748b;cursor:pointer;display:flex;padding:2px;border-radius:4px}
 .cs-file button:hover{color:#0f172a;background:#e2e8f0}
-.btn-primary{height:38px;padding:0 18px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-size:13.5px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .12s}
-.btn-primary:hover{background:#1d4ed8}
-.btn-primary:disabled{background:#93c5fd;cursor:default}
+.btn-primary{height:38px;padding:0 18px;border:0;border-radius:8px;background:var(--brand-600,#2563eb);color:#fff;font-size:13.5px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .12s}
+.btn-primary:hover{background:var(--brand-700,#1d4ed8)}
+.btn-primary:disabled{background:var(--brand-300,#93c5fd);cursor:default}
 .btn-ghost{height:38px;padding:0 16px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;color:#334155;font-size:13.5px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
 .btn-ghost:hover{background:#f1f5f9;text-decoration:none;color:#0f172a}
 .cs-tech{font-size:12px;color:#475569;background:#f8fafc;border:1px solid #f1f5f9;border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px}
@@ -105,18 +105,13 @@ function FormView() {
           ${['Report an issue','Ask a question','Request a feature'].map(t => `<label><input type="radio" class="ds-radio" name="type" value="${t}" ${CS.type === t ? 'checked' : ''}>${t}</label>`).join('')}
         </div>
       </div>
-      <div>
+      <div class="cs-full">
         <label class="cs-lbl" for="cs-page">Page</label>
         <select id="cs-page" class="pfield" name="page">
           <option value="" ${!CS.page ? 'selected' : ''}>Select a page…</option>
           ${pageOpts.map(p => `<option ${CS.page === p ? 'selected' : ''}>${esc(p)}</option>`).join('')}
         </select>
         ${fromTitle ? `<div class="cs-hint">Filled in from the page you came from.</div>` : ''}
-      </div>
-      <div>
-        <label class="cs-lbl" for="cs-email">Reply to <span class="req">*</span></label>
-        <input id="cs-email" class="pfield ${e.email ? 'err' : ''}" type="email" name="email" value="${esc(CS.email)}" autocomplete="email">
-        ${e.email ? `<div class="cs-err">${e.email}</div>` : ''}
       </div>
       ${isIssue() ? `
       <div class="cs-full">
@@ -145,7 +140,7 @@ function FormView() {
         <label class="cs-drop" id="cs-drop">
           <input id="cs-file" type="file" multiple accept="image/*,.pdf,.txt,.csv,.xlsx" style="display:none">
           ${UP_ICO}
-          <span style="font-size:13px;color:#334155"><span style="color:#2563eb;font-weight:600">Choose files</span> or drag screenshots here</span>
+          <span style="font-size:13px;color:#334155"><span style="color:var(--brand-600,#2563eb);font-weight:600">Choose files</span> or drag screenshots here</span>
         </label>
         ${e.files ? `<div class="cs-err">${e.files}</div>` : ''}
         ${CS.files.length ? `<div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">${CS.files.map((f, i) => `<div class="cs-file"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span><span style="color:#94a3b8;flex-shrink:0">${(f.size / 1024 / 1024).toFixed(1)} MB</span><button type="button" data-rm="${i}" aria-label="Remove ${esc(f.name)}">${X_ICO}</button></div>`).join('')}</div>` : ''}
@@ -206,7 +201,6 @@ function wire() {
   form.onsubmit = ev => {
     ev.preventDefault();
     const er = {};
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(CS.email.trim())) er.email = 'Enter a valid email address.';
     if (!CS.subject.trim()) er.subject = 'Add a short subject.';
     if (CS.description.trim().length < 10) er.description = 'Add a little more detail (at least 10 characters).';
     CS.errors = er;

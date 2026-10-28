@@ -215,11 +215,13 @@ if (!co) {
     name:'Ramous Maritime Company Ltd', type:'Shipping Company', country:'Cyprus',
     flag:'🇨🇾', hq:'Limassol', reg:'HE 123456', fleet:25, fleetVal:'$1.2B',
     services:['Container Shipping','Bulk Cargo'], est:1995, employees:450, status:'Active',
-    code:'RMC-CY-001', countryControl:'United Kingdom', avgRisk:75,
+    code:'RMC-CY-001', imo:'5413287', countryControl:'United Kingdom', avgRisk:75,
     sanctioned:true, updatedDate:'2025-07-22'
   };
 }
 const coCode          = co.code          || co.reg  || 'N/A';
+// IMO company numbers exist only for shipping companies (same rule as the Companies table).
+const coImo           = co.type === 'Shipping Company' && co.imo ? co.imo : 'N/A';
 const countryControl  = co.countryControl || co.country || '—';
 const CD_CC = { 'Greece':'gr','China':'cn','Hong Kong':'hk','Singapore':'sg','Japan':'jp','South Korea':'kr','Korea':'kr','Norway':'no','Denmark':'dk','Germany':'de','United Kingdom':'gb','UK':'gb','United States':'us','USA':'us','Liberia':'lr','Panama':'pa','Marshall Islands':'mh','Malta':'mt','Cyprus':'cy','Bahamas':'bs','Switzerland':'ch','Netherlands':'nl','France':'fr','Italy':'it','Spain':'es','Turkey':'tr','Türkiye':'tr','India':'in','United Arab Emirates':'ae','UAE':'ae','Saudi Arabia':'sa','Russia':'ru','Iran':'ir','Taiwan':'tw','Belgium':'be','Sweden':'se','Finland':'fi','Canada':'ca','Brazil':'br','Monaco':'mc','Bermuda':'bm','Indonesia':'id','Malaysia':'my','Vietnam':'vn','Thailand':'th','Philippines':'ph','Egypt':'eg','Australia':'au','Portugal':'pt','Poland':'pl','Ireland':'ie','Qatar':'qa','Oman':'om','Kuwait':'kw','Nigeria':'ng','South Africa':'za','Mexico':'mx','Chile':'cl','Argentina':'ar','Israel':'il','Ukraine':'ua','Romania':'ro','Croatia':'hr','Luxembourg':'lu','Isle of Man':'im','Gibraltar':'gi','Cayman Islands':'ky','Antigua and Barbuda':'ag','Belize':'bz','Tanzania':'tz','Togo':'tg','Comoros':'km','Cameroon':'cm','Sierra Leone':'sl','Palau':'pw','Tuvalu':'tv','Vanuatu':'vu','Mongolia':'mn','St Kitts & Nevis':'kn','Saint Kitts and Nevis':'kn','Moldova':'md','Gabon':'ga' };
 function cdFlagVal(name) {
@@ -235,68 +237,68 @@ const complianceLabel = co.complianceLabel || (sanctioned ? 'Sanctioned' : 'Comp
 /* ── Assets seed based on company type ───────────────────────────────────── */
 const ASSET_SEEDS = {
   'Shipping Company': [
-    { name:'MV Baltic Star',        type:'Marine',   risk:65, compliance:'Compliant',     value:'$45M'  },
-    { name:'Container Terminal A',  type:'Property', risk:42, compliance:'Compliant',     value:'$120M' },
-    { name:'MV Ocean Explorer',     type:'Marine',   risk:58, compliance:'Compliant',     value:'$38M'  },
-    { name:'Freight Aircraft B737', type:'Aviation', risk:71, compliance:'Minor Issues',  value:'$25M'  },
-    { name:'Warehouse Complex B',   type:'Property', risk:38, compliance:'Compliant',     value:'$18M'  },
-    { name:'MV Neptune',            type:'Marine',   risk:82, compliance:'Non-Compliant', value:'$52M'  },
-    { name:'MV Atlantic Pride',     type:'Marine',   risk:44, compliance:'Compliant',     value:'$67M'  },
-    { name:'Cargo Terminal B',      type:'Property', risk:31, compliance:'Compliant',     value:'$95M'  },
-    { name:'MV Pacific Star',       type:'Marine',   risk:77, compliance:'Minor Issues',  value:'$41M'  },
-    { name:'Bulk Carrier Titan',    type:'Marine',   risk:55, compliance:'Compliant',     value:'$33M'  },
-    { name:'MV Arctic Breeze',      type:'Marine',   risk:49, compliance:'Compliant',     value:'$58M'  },
-    { name:'MV Coral Dawn',         type:'Marine',   risk:36, compliance:'Compliant',     value:'$29M'  },
-    { name:'MV Northern Light',     type:'Marine',   risk:69, compliance:'Minor Issues',  value:'$74M'  },
-    { name:'MY Serenity',           type:'Marine',   risk:27, compliance:'Compliant',     value:'$22M'  },
+    { name:'MV Baltic Star',        type:'Marine',   risk:65, compliance:'Ok',            value:'$45M'  },
+    { name:'Container Terminal A',  type:'Property', risk:42, compliance:'Ok',            value:'$120M' },
+    { name:'MV Ocean Explorer',     type:'Marine',   risk:58, compliance:'Ok',            value:'$38M'  },
+    { name:'Freight Aircraft B737', type:'Aviation', risk:71, compliance:'Warning',       value:'$25M'  },
+    { name:'Warehouse Complex B',   type:'Property', risk:38, compliance:'Ok',            value:'$18M'  },
+    { name:'MV Neptune',            type:'Marine',   risk:82, compliance:'Sanctioned',    value:'$52M'  },
+    { name:'MV Atlantic Pride',     type:'Marine',   risk:44, compliance:'Ok',            value:'$67M'  },
+    { name:'Cargo Terminal B',      type:'Property', risk:31, compliance:'Ok',            value:'$95M'  },
+    { name:'MV Pacific Star',       type:'Marine',   risk:77, compliance:'Warning',       value:'$41M'  },
+    { name:'Bulk Carrier Titan',    type:'Marine',   risk:55, compliance:'Ok',            value:'$33M'  },
+    { name:'MV Arctic Breeze',      type:'Marine',   risk:49, compliance:'Ok',            value:'$58M'  },
+    { name:'MV Coral Dawn',         type:'Marine',   risk:36, compliance:'Ok',            value:'$29M'  },
+    { name:'MV Northern Light',     type:'Marine',   risk:69, compliance:'Warning',       value:'$74M'  },
+    { name:'MY Serenity',           type:'Marine',   risk:27, compliance:'Ok',            value:'$22M'  },
   ],
   'Energy Company': [
-    { name:'Offshore Platform Alpha', type:'Offshore', risk:60, compliance:'Compliant',     value:'$320M' },
-    { name:'LNG Tanker Poseidon',     type:'Marine',   risk:48, compliance:'Compliant',     value:'$185M' },
-    { name:'Pipeline Section 7',      type:'Property', risk:35, compliance:'Compliant',     value:'$90M'  },
-    { name:'Refinery Terminal C',     type:'Property', risk:72, compliance:'Minor Issues',  value:'$440M' },
-    { name:'MV Energy Star',          type:'Marine',   risk:55, compliance:'Compliant',     value:'$78M'  },
-    { name:'Platform Beta',           type:'Offshore', risk:83, compliance:'Non-Compliant', value:'$210M' },
-    { name:'Storage Facility D',      type:'Property', risk:29, compliance:'Compliant',     value:'$65M'  },
-    { name:'Crude Carrier Titan',     type:'Marine',   risk:68, compliance:'Minor Issues',  value:'$95M'  },
+    { name:'Offshore Platform Alpha', type:'Offshore', risk:60, compliance:'Ok',            value:'$320M' },
+    { name:'LNG Tanker Poseidon',     type:'Marine',   risk:48, compliance:'Ok',            value:'$185M' },
+    { name:'Pipeline Section 7',      type:'Property', risk:35, compliance:'Ok',            value:'$90M'  },
+    { name:'Refinery Terminal C',     type:'Property', risk:72, compliance:'Warning',       value:'$440M' },
+    { name:'MV Energy Star',          type:'Marine',   risk:55, compliance:'Ok',            value:'$78M'  },
+    { name:'Platform Beta',           type:'Offshore', risk:83, compliance:'Sanctioned',    value:'$210M' },
+    { name:'Storage Facility D',      type:'Property', risk:29, compliance:'Ok',            value:'$65M'  },
+    { name:'Crude Carrier Titan',     type:'Marine',   risk:68, compliance:'Warning',       value:'$95M'  },
   ],
   'Investment Company': [
-    { name:'MV Meridian Star',      type:'Marine',    risk:52, compliance:'Compliant',     value:'$80M'  },
-    { name:'Logistics Hub A',       type:'Property',  risk:38, compliance:'Compliant',     value:'$150M' },
-    { name:'Cargo Aircraft 777F',   type:'Aviation',  risk:65, compliance:'Minor Issues',  value:'$55M'  },
-    { name:'MV Pacific Venture',    type:'Marine',    risk:76, compliance:'Minor Issues',  value:'$62M'  },
-    { name:'Warehouse District 4',  type:'Property',  risk:31, compliance:'Compliant',     value:'$210M' },
-    { name:'Chemical Tanker Lyra',  type:'Marine',    risk:84, compliance:'Non-Compliant', value:'$48M'  },
-    { name:'Container Depot E',     type:'Property',  risk:40, compliance:'Compliant',     value:'$95M'  },
+    { name:'MV Meridian Star',      type:'Marine',    risk:52, compliance:'Ok',            value:'$80M'  },
+    { name:'Logistics Hub A',       type:'Property',  risk:38, compliance:'Ok',            value:'$150M' },
+    { name:'Cargo Aircraft 777F',   type:'Aviation',  risk:65, compliance:'Warning',       value:'$55M'  },
+    { name:'MV Pacific Venture',    type:'Marine',    risk:76, compliance:'Warning',       value:'$62M'  },
+    { name:'Warehouse District 4',  type:'Property',  risk:31, compliance:'Ok',            value:'$210M' },
+    { name:'Chemical Tanker Lyra',  type:'Marine',    risk:84, compliance:'Sanctioned',    value:'$48M'  },
+    { name:'Container Depot E',     type:'Property',  risk:40, compliance:'Ok',            value:'$95M'  },
   ],
   'Property Company': [
-    { name:'Harbourline Tower',        type:'Property', risk:32, compliance:'Compliant',     value:'$420M' },
-    { name:'Thames Logistics Park',    type:'Property', risk:45, compliance:'Compliant',     value:'$185M' },
-    { name:'Canary Wharf Plaza 3',     type:'Property', risk:28, compliance:'Compliant',     value:'$610M' },
-    { name:'Felixstowe Warehouse 12',  type:'Property', risk:58, compliance:'Minor Issues',  value:'$74M'  },
-    { name:'Southampton Port Store B', type:'Property', risk:66, compliance:'Minor Issues',  value:'$52M'  },
-    { name:'Manchester Retail Centre', type:'Property', risk:39, compliance:'Compliant',     value:'$230M' },
-    { name:'Bristol Distribution Hub', type:'Property', risk:81, compliance:'Non-Compliant', value:'$96M'  },
+    { name:'Harbourline Tower',        type:'Property', risk:32, compliance:'Ok',            value:'$420M' },
+    { name:'Thames Logistics Park',    type:'Property', risk:45, compliance:'Ok',            value:'$185M' },
+    { name:'Canary Wharf Plaza 3',     type:'Property', risk:28, compliance:'Ok',            value:'$610M' },
+    { name:'Felixstowe Warehouse 12',  type:'Property', risk:58, compliance:'Warning',       value:'$74M'  },
+    { name:'Southampton Port Store B', type:'Property', risk:66, compliance:'Warning',       value:'$52M'  },
+    { name:'Manchester Retail Centre', type:'Property', risk:39, compliance:'Ok',            value:'$230M' },
+    { name:'Bristol Distribution Hub', type:'Property', risk:81, compliance:'Sanctioned',    value:'$96M'  },
   ],
   'Aviation Company': [
-    { name:'A320neo EI-SKA',           type:'Aviation', risk:34, compliance:'Compliant',     value:'$52M'  },
-    { name:'B737 MAX 8 EI-SKB',        type:'Aviation', risk:41, compliance:'Compliant',     value:'$55M'  },
-    { name:'A350-900 EI-SKC',          type:'Aviation', risk:29, compliance:'Compliant',     value:'$148M' },
-    { name:'B777F EI-SKD',             type:'Aviation', risk:63, compliance:'Minor Issues',  value:'$162M' },
-    { name:'ATR 72-600 EI-SKE',        type:'Aviation', risk:47, compliance:'Compliant',     value:'$26M'  },
-    { name:'B787-9 EI-SKF',            type:'Aviation', risk:78, compliance:'Non-Compliant', value:'$135M' },
-    { name:'A321XLR EI-SKG',           type:'Aviation', risk:52, compliance:'Minor Issues',  value:'$68M'  },
+    { name:'A320neo EI-SKA',           type:'Aviation', risk:34, compliance:'Ok',            value:'$52M'  },
+    { name:'B737 MAX 8 EI-SKB',        type:'Aviation', risk:41, compliance:'Ok',            value:'$55M'  },
+    { name:'A350-900 EI-SKC',          type:'Aviation', risk:29, compliance:'Ok',            value:'$148M' },
+    { name:'B777F EI-SKD',             type:'Aviation', risk:63, compliance:'Warning',       value:'$162M' },
+    { name:'ATR 72-600 EI-SKE',        type:'Aviation', risk:47, compliance:'Ok',            value:'$26M'  },
+    { name:'B787-9 EI-SKF',            type:'Aviation', risk:78, compliance:'Sanctioned',    value:'$135M' },
+    { name:'A321XLR EI-SKG',           type:'Aviation', risk:52, compliance:'Warning',       value:'$68M'  },
   ],
   'Conglomerate': [
-    { name:'Container Terminal 1',  type:'Property',  risk:42, compliance:'Compliant',     value:'$380M' },
-    { name:'MV Asian Sunrise',      type:'Marine',    risk:58, compliance:'Compliant',     value:'$112M' },
-    { name:'A380 Freighter Alpha',  type:'Aviation',  risk:33, compliance:'Compliant',     value:'$90M'  },
-    { name:'Offshore Rig Kappa',    type:'Offshore',  risk:79, compliance:'Minor Issues',  value:'$450M' },
-    { name:'Port Logistics Hub 3',  type:'Property',  risk:45, compliance:'Compliant',     value:'$290M' },
-    { name:'MV Pacific Express',    type:'Marine',    risk:62, compliance:'Compliant',     value:'$78M'  },
-    { name:'B747 Cargo Vessel',     type:'Aviation',  risk:88, compliance:'Non-Compliant', value:'$65M'  },
-    { name:'MV Orient Star',        type:'Marine',    risk:38, compliance:'Compliant',     value:'$95M'  },
-    { name:'Industrial Park F',     type:'Property',  risk:29, compliance:'Compliant',     value:'$180M' },
+    { name:'Container Terminal 1',  type:'Property',  risk:42, compliance:'Ok',            value:'$380M' },
+    { name:'MV Asian Sunrise',      type:'Marine',    risk:58, compliance:'Ok',            value:'$112M' },
+    { name:'A380 Freighter Alpha',  type:'Aviation',  risk:33, compliance:'Ok',            value:'$90M'  },
+    { name:'Offshore Rig Kappa',    type:'Offshore',  risk:79, compliance:'Warning',       value:'$450M' },
+    { name:'Port Logistics Hub 3',  type:'Property',  risk:45, compliance:'Ok',            value:'$290M' },
+    { name:'MV Pacific Express',    type:'Marine',    risk:62, compliance:'Ok',            value:'$78M'  },
+    { name:'B747 Cargo Vessel',     type:'Aviation',  risk:88, compliance:'Sanctioned',    value:'$65M'  },
+    { name:'MV Orient Star',        type:'Marine',    risk:38, compliance:'Ok',            value:'$95M'  },
+    { name:'Industrial Park F',     type:'Property',  risk:29, compliance:'Ok',            value:'$180M' },
   ],
 };
 const VESSEL_TYPES = [
@@ -363,9 +365,9 @@ function riskColor(r) {
 }
 
 function complianceCls(c) {
-  if (c === 'Compliant')     return 'cb-compliant';
-  if (c === 'Minor Issues')  return 'cb-minor';
-  return 'cb-noncompliant';
+  if (c === 'Ok')       return 'cb-compliant';
+  if (c === 'Warning')  return 'cb-minor';
+  return 'cb-noncompliant';   // Sanctioned
 }
 
 function typeDisplay(t) {
@@ -440,7 +442,7 @@ function CardCompanyDetails() {
   const shieldIco = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/></svg>`;
   const fields = [
     { ico: IC.coIco,    lbl:'Name:',                 val: co.name || '—'       },
-    { ico: IC.codeIco,  lbl:'Code:',                 val: coCode               },
+    { ico: IC.codeIco,  lbl:'IMO Number:',           val: coImo                },
     { ico: IC.tagIco,   lbl:'Type:',                 val: coView === 'P&I Club Company' ? 'P&amp;I Club' : (co.type || '—') },
     { ico: IC.pinIco,   lbl:'Country Registration:', val: co.country ? cdFlagVal(co.country) : '—' },
     { ico: IC.globeIco, lbl:'Country Control:',      val: countryControl !== '—' ? cdFlagVal(countryControl) : '—' },
@@ -688,7 +690,7 @@ const PSC_DEFECTS = [
   { vessel:'OCEAN VIGOUR', imo:'9412785', code:'03102', cat:'Structural Condition',         desc:'Heavy corrosion and pitting on main deck plating',           sev:'Medium', action:'Rectify at next port' },
 ];
 const CD_SORT = { psc:{ key:null, dir:1 }, ra:{ key:null, dir:1 }, asset:{ key:null, dir:1 } };
-const CD_RANK = { sev:{ High:2, Medium:1, Low:0 }, compliance:{ 'Non-Compliant':2, 'Minor Issues':1, 'Compliant':0 } };
+const CD_RANK = { sev:{ High:2, Medium:1, Low:0 }, compliance:{ 'Sanctioned':2, 'Warning':1, 'Ok':0 } };
 function cdVal(k, v) {
   if (CD_RANK[k] && v in CD_RANK[k]) return CD_RANK[k][v];
   if (v == null || v === 'N/A' || v === '—') return null;
@@ -1026,7 +1028,7 @@ function CardAssets() {
             ${cdTh('asset','imo','IMO')}
             ${cdTh('asset','mmsi','MMSI')}
             ${cdTh('asset','risk','Risk Score')}
-            ${cdTh('asset','compliance','Compliance')}
+            ${cdTh('asset','compliance','Overall Compliance')}
             ${cdTh('asset','value','Value')}
           </tr>
         </thead>
@@ -1156,7 +1158,7 @@ window.__goCompare = function() {
       flag: co.flag || '', code: co.code || co.reg || '—', fleet: co.fleet || 0,
       fleetVal: co.fleetVal || '—', risk: (co.avgRisk !== undefined ? co.avgRisk : 55),
       hq: co.hq || '—', established: co.est || '—',
-      countryControl: co.countryControl || co.country || '—', countryDomicile: co.country || '—',
+      countryControl: co.countryControl || co.country || '—', countryDomicile: co.countryDomicile || co.country || '—',
       website: co.website || slug, compliance: co.sanctioned ? 'Sanctioned' : 'Not Sanctioned',
     };
     sessionStorage.setItem('compareCompany', JSON.stringify(c));

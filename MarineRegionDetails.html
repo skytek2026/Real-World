@@ -114,6 +114,10 @@
   button.hist-leg:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:1px}
   .hist-leg{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#334155;min-width:0}
   .hist-leg svg{flex-shrink:0}
+  .hist-cb{width:14px;height:14px;flex-shrink:0;border:1px solid #cbd5e1;border-radius:4px;background:#fff;display:inline-grid;place-content:center;transition:background .12s,border-color .12s}
+  .hist-cb.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
+  .hist-cb.on::after{content:"";width:8px;height:4px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+  button.hist-leg:hover .hist-cb:not(.on){border-color:#94a3b8}
   .hist-leg span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hist-controls{display:flex;gap:14px;padding:4px 20px 20px;flex-wrap:wrap}
   .hist-panel{border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;min-width:200px}
@@ -374,7 +378,7 @@ function histVal(profile, t, si, pi) {
   }
 }
 const HIST_START = Date.UTC(2025, 5, 16), HIST_DAYS = 351, DAY = 864e5;
-let histSel = new Set();
+let histHidden = new Set();
 function histDaily(si) {
   const s = HIST_SERIES[si], out = [];
   for (let d = 0; d < HIST_DAYS; d++) out.push([HIST_START + d * DAY, histVal(s.profile, d / (HIST_DAYS - 1), si, d)]);
@@ -403,7 +407,7 @@ function histVessels(v, x, si) {
   return Math.max(1, Math.round(base * swing * trend));
 }
 function histSeriesData() {
-  const u = HIST_UNITS[histValue], idx = HIST_SERIES.map((_, i) => i), shown = histSel.size ? idx.filter(i => histSel.has(i)) : idx;
+  const u = HIST_UNITS[histValue], idx = HIST_SERIES.map((_, i) => i), shown = idx.filter(i => !histHidden.has(i));
   const raw = histGroup
     ? (() => { const sum = histDaily(0).map(([x]) => [x, 0]); idx.forEach(i => histDaily(i).forEach(([, v], d) => sum[d][1] += v)); return [{ name:'All portfolios', color:'#2563eb', si:99, pts: histAgg(sum) }]; })()
     : shown.map(i => ({ name: HIST_SERIES[i].name, color: HIST_SERIES[i].color, si:i, pts: histAgg(histDaily(i)) }));
@@ -432,20 +436,25 @@ function mountHistoryChart() {
   Highcharts.chart(el, {
     chart: { type:'scatter', style:{ fontFamily:'inherit' }, spacing:[10, 6, 6, 6], zooming:{ type:'x' }, animation:false },
     title: { text: null }, credits: { enabled:false }, legend: { enabled:false }, accessibility: { enabled:false },
-    xAxis: { type:'datetime', lineColor:'#e2e8f0', tickColor:'#e2e8f0', labels:{ style:{ color:'#64748b', fontSize:'11.5px' }, format:'{value:%e %b}' } },
+    xAxis: (() => {
+      const base = { type:'datetime', lineColor:'#e2e8f0', tickColor:'#e2e8f0', labels:{ style:{ color:'#64748b', fontSize:'11.5px' } }, gridLineWidth:0 };
+      if (histInterval === 'Monthly') return { ...base, tickInterval: 30.44 * DAY, labels:{ ...base.labels, format:'{value:%b %Y}' }, title:{ text:'Month', style:{ color:'#94a3b8', fontSize:'11px' } } };
+      if (histInterval === 'Weekly') return { ...base, tickInterval: 4 * 7 * DAY, labels:{ ...base.labels, formatter() { const d = new Date(this.value), j = new Date(Date.UTC(d.getUTCFullYear(), 0, 1)); const wk = Math.ceil(((d - j) / DAY + j.getUTCDay() + 1) / 7); return 'Wk ' + wk + '<br><span style="color:#94a3b8">' + Highcharts.dateFormat('%e %b', this.value) + '</span>'; } }, title:{ text:'Week', style:{ color:'#94a3b8', fontSize:'11px' } } };
+      return { ...base, tickInterval: 14 * DAY, labels:{ ...base.labels, format:'{value:%e %b}' }, title:{ text:'Day', style:{ color:'#94a3b8', fontSize:'11px' } } };
+    })(),
     yAxis: { title:{ text:u.axis, style:{ color:'#64748b', fontSize:'12px' } }, min:0, gridLineColor:'#f1f5f9', labels:{ style:{ color:'#94a3b8', fontSize:'12px' }, formatter(){ return u.fmt(this.value); } } },
     tooltip: { shared:false, outside:true, borderRadius:8, borderColor:'#e2e8f0', backgroundColor:'#fff', shadow:{ color:'rgba(15,23,42,.12)', width:8, offsetY:4 }, style:{ fontSize:'12px', color:'#0f172a' },
-      formatter() { return '<b>' + Highcharts.dateFormat(histInterval === 'Monthly' ? '%B %Y' : '%a, %e %b %Y', this.x) + '</b><br><span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + u.fmt(this.y) + '</b><br><span style="color:#64748b">Vessels:</span> <b>' + (this.point.vessels || 0).toLocaleString() + '</b>'; } },
+      formatter() { return '<b>' + (histInterval === 'Monthly' ? Highcharts.dateFormat('%B %Y', this.x) : histInterval === 'Weekly' ? 'Week of ' + Highcharts.dateFormat('%e %b %Y', this.x) : Highcharts.dateFormat('%a, %e %b %Y', this.x)) + '</b><br><span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + u.fmt(this.y) + '</b><br><span style="color:#64748b">Vessels:</span> <b>' + (this.point.vessels || 0).toLocaleString() + '</b>'; } },
     plotOptions: { series: { lineWidth:0, dataLabels:{ enabled:true, format:'{point.vessels}', align:'center', verticalAlign:'middle', y:0, padding:0, crop:false, allowOverlap:false, style:{ fontSize:'9.5px', fontWeight:'700', color:'#ffffff', textOutline:'none' } }, marker:{ enabled:true, symbol:'circle', lineWidth:1, lineColor:'#ffffff', fillOpacity:.9, states:{ hover:{ enabled:true, radiusPlus:0, lineWidthPlus:0 } } }, states:{ hover:{ lineWidthPlus:0, halo:{ size:7, opacity:.3 } }, inactive:{ opacity:.25 } }, findNearestPointBy:'xy', stickyTracking:false, animation:{ duration:300 } } },
     series: histSeriesData(),
   });
 }
 function historyLegend() {
   if (histGroup) return `<div style="display:flex;justify-content:center"><span class="hist-leg" style="padding:4px 6px;font-weight:600;color:#0f172a"><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#2563eb" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="#2563eb"/></svg><span>All portfolios</span></span></div>`;
-  const all = !histSel.size;
-  return `<div class="hist-leg-bar"><span>${all ? 'Showing all portfolios' : `Showing ${histSel.size} of ${HIST_SERIES.length} portfolios`} &middot; click to select, click again to deselect</span>${all ? '' : '<button type="button" class="hist-leg-clear" data-hist-clear>Show all</button>'}</div>
-  <div class="hist-legend-grid">${HIST_SERIES.map((s, i) => { const on = histSel.has(i), dim = !all && !on;
-    return `<button type="button" class="hist-leg ${on ? 'is-on' : ''} ${dim ? 'is-dim' : ''}" data-hist-leg="${i}" aria-pressed="${on}" title="${s.name}"><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="${s.color}" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="${s.color}"/></svg><span>${s.name}</span></button>`; }).join('')}</div>`;
+  const n = HIST_SERIES.length - histHidden.size, all = !histHidden.size;
+  return `<div class="hist-leg-bar"><span>${all ? 'Showing all portfolios' : `Showing ${n} of ${HIST_SERIES.length} portfolios`}</span><button type="button" class="hist-leg-clear" data-hist-all="${all ? 'none' : 'all'}">${all ? 'Clear all' : 'Select all'}</button></div>
+  <div class="hist-legend-grid">${HIST_SERIES.map((s, i) => { const on = !histHidden.has(i);
+    return `<button type="button" class="hist-leg ${on ? '' : 'is-dim'}" data-hist-leg="${i}" role="checkbox" aria-checked="${on}" title="${s.name}"><span class="hist-cb ${on ? 'on' : ''}" aria-hidden="true"></span><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="${s.color}" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="${s.color}"/></svg><span>${s.name}</span></button>`; }).join('')}</div>`;
 }
 function histRadio(group, val, cur) {
   return `<label class="hist-opt"><input type="radio" class="ds-radio" name="hist-${group}" data-hist-radio="${group}" value="${val.replace(/"/g,'&quot;')}" ${val === cur ? 'checked' : ''}><span>${val}</span></label>`;
@@ -488,8 +497,9 @@ function updateHistory() {
 }
 document.addEventListener('click', e => {
   const l = e.target.closest('[data-hist-leg]');
-  if (l) { const i = +l.dataset.histLeg; histSel.has(i) ? histSel.delete(i) : histSel.add(i); updateHistory(); return; }
-  if (e.target.closest('[data-hist-clear]')) { histSel.clear(); updateHistory(); }
+  if (l) { const i = +l.dataset.histLeg; histHidden.has(i) ? histHidden.delete(i) : histHidden.add(i); updateHistory(); return; }
+  const ca = e.target.closest('[data-hist-all]');
+  if (ca) { if (ca.dataset.histAll === 'all') histHidden.clear(); else HIST_SERIES.forEach((_, i) => histHidden.add(i)); updateHistory(); }
 });
 
 /* ── Stats data by sub-tab ───────────────────────────────────────────────── */

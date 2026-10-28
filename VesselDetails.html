@@ -200,6 +200,109 @@
   }
   @media (min-width:1024px) { .vessel-track-row { height:660px; } .vessel-track-row > * { min-height:0; } .vessel-track-row > :last-child { grid-column:span 2 / span 2; } }
   @media (max-width:1023px) { .vessel-track-row > :first-child { max-height:660px; } }
+  /* Historical Details: table on wider screens, one card per record on phones */
+  .hd-cards { display:none; }
+  @media (max-width:767px) {
+    .hd-table { display:none; }
+    .hd-cards { display:flex; flex-direction:column; gap:10px; padding:0 12px 12px; }
+  }
+  .hd-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .hd-kv { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f1f5f9; }
+  .hd-kv--top { margin:0; padding:0; border:0; }
+  .hd-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .hd-kv dd { margin:2px 0 0; font-size:13px; color:#334155; overflow-wrap:anywhere; }
+  .hd-kv dd.hd-date { font-weight:600; color:#0f172a; font-variant-numeric:tabular-nums; }
+  .hd-kv dd.hd-changed { color:#ea580c; font-weight:600; }
+  /* Additional Details: table on wider screens, one card per record on phones */
+  .ad-cards { display:none; }
+  @media (max-width:767px) {
+    .ad-table { display:none; }
+    .ad-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .ad-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .ad-kv { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin:0; }
+  .ad-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .ad-kv dd { margin:2px 0 0; font-size:13px; color:#334155; }
+  /* Ship-To-Ship: table on wider screens, one card per transfer on phones */
+  .sts-cards { display:none; }
+  @media (max-width:767px) {
+    .sts-table { display:none; }
+    .sts-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .sts-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .sts-card--red { background:#fef2f2; border-color:#fca5a5; border-left:4px solid #f87171; }
+  .sts-card--orange { background:#fff7ed; border-color:#fdba74; border-left:4px dashed #fb923c; }
+  .sts-sec-label { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .sts-vessel { margin-top:6px; }
+  .sts-vessel-name { display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:var(--brand-600,#2d7ffb); }
+  .sts-kv { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:8px 0 0; }
+  .sts-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .sts-kv dd { margin:2px 0 0; font-size:12.5px; color:#334155; font-variant-numeric:tabular-nums; min-height:18px; display:flex; align-items:center; }
+  .sts-hop { display:flex; gap:10px; margin:10px 0; padding:10px 12px; background:rgb(255 255 255/.7); border:1px solid #e2e8f0; border-radius:8px; }
+  .sts-card:not(.sts-card--red):not(.sts-card--orange) .sts-hop { background:#f8fafc; }
+  .sts-hop-icon { padding-top:2px; color:#94a3b8; }
+  .sts-kv--hop { flex:1; margin:0; }
+  .sts-kv--hop > div:first-child { grid-column:1 / -1; }
+  .sts-dur { font-weight:600; color:#0f172a; }
+  .sts-card-foot { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; padding-top:10px; border-top:1px solid rgb(15 23 42/.08); }
+  /* Risk Associations: table on wider screens, one card per connection on phones */
+  .ra-cards { display:none; }
+  @media (max-width:767px) {
+    .ra-table { display:none; }
+    .ra-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .ra-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .ra-entity { font-size:14px; line-height:1.35; }
+  .ra-kv { display:flex; flex-direction:column; gap:10px; margin:10px 0 0; padding-top:10px; border-top:1px solid #f1f5f9; }
+  .ra-kv--top { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px 20px; margin-top:0; padding-top:0; border-top:0; }
+  .ra-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .ra-kv dd { margin:3px 0 0; font-size:13px; line-height:1.45; color:#334155; }
+  /* Suspicious Activity: table on wider screens, one card per alert on phones */
+  .sa-cards { display:none; }
+  @media (max-width:767px) {
+    .sa-table { display:none; }
+    .sa-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .sa-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .sa-card-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .sa-duration { flex-shrink:0; font-size:12px; font-weight:600; color:#334155; font-variant-numeric:tabular-nums; }
+  .sa-region { margin-top:8px; font-size:14px; font-weight:600; color:#0f172a; }
+  .sa-kv { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin:10px 0 0; padding-top:10px; border-top:1px solid #f1f5f9; }
+  .sa-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .sa-kv dd { margin:2px 0 0; font-size:12.5px; color:#334155; font-variant-numeric:tabular-nums; }
+  .sa-desc { margin:10px 0 0; font-size:13px; line-height:1.45; color:#475569; }
+  /* Casualty Data: table on wider screens, one card per casualty on phones */
+  .cas-cards { display:none; }
+  @media (max-width:767px) {
+    .cas-table { display:none; }
+    .cas-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .cas-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .cas-card-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .cas-type { font-size:14px; font-weight:600; color:#0f172a; min-width:0; }
+  .cas-card-top > span { flex-shrink:0; }
+  .cas-meta { display:flex; flex-wrap:wrap; gap:2px 6px; margin-top:4px; font-size:12px; color:#64748b; }
+  .cas-meta > span:first-child { font-variant-numeric:tabular-nums; }
+  .cas-desc { margin:10px 0 0; padding-top:10px; border-top:1px solid #f1f5f9; font-size:13px; line-height:1.45; color:#475569; }
+  /* Sanction Compliance: table on wider screens, one card per entity on phones */
+  .sc-cards { display:none; }
+  @media (max-width:767px) {
+    .sc-table { display:none; }
+    .sc-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .sc-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .sc-card-rel-row { font-size:12px; color:#64748b; }
+  .sc-card-rel { display:inline-block; font-weight:500; }
+  .sc-card-name { margin-top:4px; font-size:14px; line-height:1.35; }
+  .sc-lists { display:grid; grid-template-columns:repeat(auto-fill, minmax(128px, 1fr)); gap:8px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f1f5f9; }
+  .sc-lists > div { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:4px 8px; min-height:24px; }
+  .sc-lists dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; white-space:nowrap; }
+  .sc-lists dd { margin:0; }
+  .sc-card-kids { margin-top:12px; display:flex; flex-direction:column; gap:8px; }
+  .sc-card-kid { background:var(--brand-50,#eff6ff); border-left:2px solid var(--brand-100,#dbeafe); border-radius:8px; padding:10px 12px; }
+  .sc-card-kid-rel { font-size:12px; color:#64748b; }
+  .sc-card-kid-name { display:flex; align-items:center; gap:6px; margin-top:3px; font-size:13px; color:#0f172a; font-weight:500; }
+  .sc-card-kid .sc-lists { border-top-color:var(--brand-100,#dbeafe); margin-top:10px; padding-top:10px; }
   .sc-toggle { all:unset; display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:var(--brand-600,#2d7ffb); font-weight:500; border-radius:4px; }
   .sc-toggle:hover { color:var(--brand-700,#1d6ae5); }
   .sc-toggle:hover > span { text-decoration:underline; text-underline-offset:2px; }
@@ -235,6 +338,21 @@
   .trk-ts { font-size:11.5px; color:#64748b; font-variant-numeric:tabular-nums; }
   .trk-cta { display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 14px; font:inherit; font-size:13px; font-weight:600; color:#2d7ffb; background:#fff; border:1px solid #93c5fd; border-radius:8px; cursor:pointer; }
   .trk-cta:hover { background:#eff6ff; border-color:#2d7ffb; }
+  /* Inspection Data: table on wider screens, one card per inspection on phones */
+  .insp-cards { display:none; }
+  @media (max-width:767px) {
+    .insp-table { display:none; }
+    .insp-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .insp-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .insp-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+  .insp-port { font-size:14px; line-height:1.35; min-width:0; }
+  .insp-port a { font-weight:600; }
+  .insp-date { flex-shrink:0; font-size:12px; color:#64748b; font-variant-numeric:tabular-nums; padding-top:2px; }
+  .insp-country { display:flex; align-items:center; gap:8px; margin-top:4px; font-size:13px; color:#475569; }
+  .insp-kv { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f1f5f9; }
+  .insp-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .insp-kv dd { margin:2px 0 0; font-size:13px; color:#334155; }
   .defects-link { color:var(--brand-600,#2d7ffb); font-weight:600; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
   .defects-link:hover { color:var(--brand-700,#1d6ae5); text-decoration-thickness:2px; }
   .defects-link:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; border-radius:2px; }
@@ -3177,7 +3295,7 @@ function InspectionTable() {
       ${state.sectionTab === 'Risk Associations' ? `
       <div>
         <div class="px-4 py-3 flex items-center justify-end border-b border-ink-200">${AssocRoleMenu()}</div>
-        <div class="overflow-x-auto scroll-thin">
+        <div class="ra-table overflow-x-auto scroll-thin">
           <table class="w-full" style="border-collapse:collapse;min-width:720px;table-layout:fixed;">
             <colgroup><col style="width:46%"><col style="width:20%"><col style="width:11%"><col style="width:23%"></colgroup>
             <thead class="bg-ink-50">
@@ -3199,8 +3317,21 @@ function InspectionTable() {
             </tbody>
           </table>
         </div>
+        <div class="ra-cards" role="list" aria-label="Risk associations">
+          ${ASSOC_ROWS.filter(r => state.assocRoles.includes(r.role)).map(r => `
+          <article class="ra-card" role="listitem">
+            <dl class="ra-kv ra-kv--top">
+              <div><dt>Connected Entity</dt><dd><a href="#" class="sc-link ra-entity" onclick="event.preventDefault()">${r.entity}</a></dd></div>
+              <div><dt>Entity Type</dt><dd>${r.type}</dd></div>
+            </dl>
+            <dl class="ra-kv">
+              <div><dt>Relationship</dt><dd><span class="inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5">${r.rel.map((p,idx)=> p==='STS' ? ASSOC_STS : (idx===0||r.rel[idx-1]==='STS'?'':ASSOC_ARROW)+`<span>${p}</span>`).join('')}</span></dd></div>
+              <div><dt>Evidence</dt><dd>${r.evidence}</dd></div>
+            </dl>
+          </article>`).join('')}
+        </div>
       </div>` : state.sectionTab === 'Sanction Compliance' ? `
-      <table class="w-full text-xs min-w-[800px]">
+      <table class="sc-table w-full text-xs min-w-[800px]">
         <thead class="bg-ink-50">
           <tr>
             <th class="px-3 py-2 text-left">${sortHead('Relationship')}</th>
@@ -3242,8 +3373,37 @@ function InspectionTable() {
             return out;
           })()}
         </tbody>
-      </table>` : state.sectionTab === 'Casualty Data' ? `
-      <table class="w-full text-xs min-w-[800px]">
+      </table>
+      <div class="sc-cards" role="list" aria-label="Sanction compliance">
+        ${(() => {
+            const okBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
+            const badBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`;
+            const folder = open => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${open ? '<path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/>' : '<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>'}</svg>`;
+            const LISTS = [['ofac','OFAC'],['un','UN'],['eu','EU'],['aus','Australia'],['ofsi','OFSI']];
+            const lists = hit => `<dl class="sc-lists">${LISTS.map(([k, lbl]) => `<div><dt title="${lbl} sanctions list">${lbl}</dt><dd>${hit && hit[k] ? badBadge : okBadge}</dd></div>`).join('')}</dl>`;
+            return SANCTION_COMPLIANCE.map((r, i) => {
+              const open = state.scExpanded.has(i), kids = r.countries || [];
+              const name = r.link ? `<a href="#" class="sc-link" onclick="event.preventDefault()">${r.name}</a>` : `<span class="text-ink-900 font-medium">${r.name}</span>`;
+              const rel = kids.length
+                ? `<button type="button" class="sc-toggle" data-sc-toggle="${i}" aria-expanded="${open}" aria-controls="sc-card-kids-${i}">${folder(open)}<span>${r.relationship}</span></button>`
+                : `<span class="sc-card-rel">${r.relationship}</span>`;
+              return `
+        <article class="sc-card${open ? ' sc-open' : ''}" role="listitem">
+          <div class="sc-card-rel-row">${rel}</div>
+          <div class="sc-card-name">${name}</div>
+          ${lists(null)}
+          ${open ? `<div class="sc-card-kids" id="sc-card-kids-${i}">${kids.map(([cc, cn], k) => `
+            <div class="sc-card-kid">
+              <div class="sc-card-kid-rel">${r.relationship}'s ${['Registration','Control','Domicile'][k]} Country</div>
+              <div class="sc-card-kid-name">${flag(cc)}<span>${cn}</span></div>
+              ${lists(null)}
+            </div>`).join('')}
+          </div>` : ''}
+        </article>`;
+            }).join('');
+          })()}
+      </div>` : state.sectionTab === 'Casualty Data' ? `
+      <table class="cas-table w-full text-xs min-w-[800px]">
         <thead class="bg-ink-50">
           <tr>
             <th class="px-3 py-2 text-left">${sortHead('Date')}</th>
@@ -3265,9 +3425,23 @@ function InspectionTable() {
             </tr>`;
           }).join('')}
         </tbody>
-      </table>` : state.sectionTab === 'Ship-To-Ship' ? `
+      </table>
+      <div class="cas-cards" role="list" aria-label="Casualties">
+        ${CASUALTY_DATA.map(c => {
+            const s = ({ Severe:{bg:'#fee2e2',text:'#b91c1c',dot:'#dc2626'}, Moderate:{bg:'#fef3c7',text:'#b45309',dot:'#d97706'}, Minor:{bg:'#dbeafe',text:'#1d4ed8',dot:'#2563eb'} })[c.severity] || {bg:'#dbeafe',text:'#1d4ed8',dot:'#2563eb'};
+            return `
+        <article class="cas-card" role="listitem">
+          <div class="cas-card-top">
+            <div class="cas-type">${c.type}</div>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold" style="background:${s.bg};color:${s.text};"><span class="w-1.5 h-1.5 rounded-full" style="background:${s.dot};"></span>${c.severity}</span>
+          </div>
+          <div class="cas-meta"><span>${c.date}</span><span aria-hidden="true">·</span><span>${c.location}</span></div>
+          <p class="cas-desc">${c.desc}</p>
+        </article>`;
+          }).join('')}
+      </div>` : state.sectionTab === 'Ship-To-Ship' ? `
       ${StsFilters()}
-      <table class="w-full text-xs min-w-[1100px]">
+      <table class="sts-table w-full text-xs min-w-[1100px]">
         <thead class="bg-ink-50">
           <tr>
             <th class="px-3 py-2 text-left">${sortHead('Vessel(s)')}</th>
@@ -3347,8 +3521,54 @@ function InspectionTable() {
             </tr>`;
           }).join('')}
         </tbody>
-      </table>` : state.sectionTab === 'Suspicious Activity' ? `
-      <table class="w-full text-xs min-w-[900px]">
+      </table>
+      <div class="sts-cards" role="list" aria-label="Ship-to-ship transfers">
+        ${STS_DATA.map(r => {
+            const okBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
+            const sanctionBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
+            const warnBadge = `<span class="inline-flex items-center gap-1 text-[11px] font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
+            const compBadge = (c) => c === 'sanctioned' ? sanctionBadge : c === 'ok-warn' ? warnBadge : okBadge;
+            const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
+            const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
+            const vessel = v => `
+          <div class="sts-vessel">
+            <div class="sts-vessel-name">${vesselIcon}<span>${v.name}</span></div>
+            <dl class="sts-kv">
+              <div><dt>Compliance at Time of STS</dt><dd>${compBadge(v.stsCompliance)}</dd></div>
+              <div><dt>Current Compliance</dt><dd>${compBadge(v.compliance)}</dd></div>
+              <div><dt>Draught</dt><dd>${v.draught}</dd></div>
+              <div><dt>Destination</dt><dd>${v.dest}</dd></div>
+            </dl>
+          </div>`;
+            const hop = e => `
+          <div class="sts-hop">
+            <div class="sts-hop-icon" aria-hidden="true">${arrowIcon}</div>
+            <dl class="sts-kv sts-kv--hop">
+              <div><dt>STS Region</dt><dd>${e.region}</dd></div>
+              <div><dt>Ports</dt><dd>${e.ports}</dd></div>
+              <div><dt>STS Start</dt><dd>${e.start}</dd></div>
+              <div><dt>STS End</dt><dd>${e.end}</dd></div>
+              <div><dt>STS Duration</dt><dd class="sts-dur">${e.duration}</dd></div>
+            </dl>
+          </div>`;
+            const tone = r.highlight === 'red' ? ' sts-card--red' : r.highlight === 'orange' ? ' sts-card--orange' : '';
+            return `
+        <article class="sts-card${tone}" role="listitem">
+          <div class="sts-sec-label">Vessel(s)</div>
+          ${vessel(r.v1)}
+          ${r.mid ? hop(r.mid) + vessel(r.mid) : ''}
+          ${hop(r)}
+          ${vessel(r.v2)}
+          <div class="sts-card-foot">
+            <span class="sts-sec-label">Actions</span>
+            <button class="inline-flex items-center gap-1 px-3 py-1.5 border border-brand-600 text-brand-600 text-[11px] font-semibold rounded-lg hover:bg-brand-50 transition-colors">
+                  Create Analysis <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+                </button>
+          </div>
+        </article>`;
+          }).join('')}
+      </div>` : state.sectionTab === 'Suspicious Activity' ? `
+      <table class="sa-table w-full text-xs min-w-[900px]">
         <thead class="bg-ink-50">
           <tr>
             <th class="px-3 py-2 text-left">${sortHead('Start Time')}</th>
@@ -3379,8 +3599,26 @@ function InspectionTable() {
             </tr>`;
           }).join('')}
         </tbody>
-      </table>` : `
-      <table class="w-full text-xs min-w-[1100px]">
+      </table>
+      <div class="sa-cards" role="list" aria-label="Suspicious activity">
+        ${SUSPICIOUS_ACTIVITY.map(r => {
+            const flagIcon = `<svg class="w-3 h-3 text-red-400 inline ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg>`;
+            return `
+        <article class="sa-card" role="listitem">
+          <div class="sa-card-top">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold ${r.alertColor}">${r.alertType}</span>
+            <span class="sa-duration">${r.duration}</span>
+          </div>
+          <div class="sa-region">${r.region}${r.regionFlag ? flagIcon : ''}</div>
+          <dl class="sa-kv">
+            <div><dt>Start Time</dt><dd>${r.start}</dd></div>
+            <div><dt>End Time</dt><dd>${r.end}</dd></div>
+          </dl>
+          <p class="sa-desc">${r.desc}</p>
+        </article>`;
+          }).join('')}
+      </div>` : `
+      <table class="insp-table w-full text-xs min-w-[1100px]">
         <thead class="bg-ink-50">
           <tr>
             <th class="px-3 py-2 text-left">${sortHead('Date')}</th>
@@ -3410,7 +3648,23 @@ function InspectionTable() {
             </tr>
           `).join('')}
         </tbody>
-      </table>`}
+      </table>
+      <div class="insp-cards" role="list" aria-label="Inspections">
+        ${INSPECTIONS.map(r => `
+        <article class="insp-card" role="listitem">
+          <div class="insp-card-top">
+            <div class="insp-port"><a href="PortDetails.html" class="text-brand-600 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</div>
+            <span class="insp-date">${r.date}</span>
+          </div>
+          <div class="insp-country">${flag(r.cc)}<span>${r.country}</span></div>
+          <dl class="insp-kv">
+            <div><dt>PSC Organization</dt><dd>${r.psc || '—'}</dd></div>
+            <div><dt>Type of Inspection</dt><dd>${r.type}</dd></div>
+            <div><dt>Defects</dt><dd>${r.defects > 0 ? `<a href="#" class="defects-link" data-defects="${r.date}" title="View ${r.defects} defects from the ${r.port} inspection">${r.defects}</a>` : r.defects}</dd></div>
+            <div><dt>Detained</dt><dd>${r.detained}</dd></div>
+          </dl>
+        </article>`).join('')}
+      </div>`}
     </div>
     ${state.sectionTab === 'Risk Associations' ? '' : '<div style="flex-shrink:0">' + (() => {
       const total = state.sectionTab === 'Ship-To-Ship' ? STS_DATA.length
@@ -3742,7 +3996,7 @@ function AdditionalDetailsBody() {
   </button>`;
   return `
   <div>
-    <div class="overflow-x-auto scroll-thin">
+    <div class="ad-table overflow-x-auto scroll-thin">
       <table class="w-full text-xs">
         <thead class="bg-ink-50 border-b border-ink-200">
           <tr>
@@ -3764,6 +4018,18 @@ function AdditionalDetailsBody() {
             </tr>`).join('')}
         </tbody>
       </table>
+    </div>
+    <div class="ad-cards" role="list" aria-label="Additional details">
+      ${ROWS.map(r => `
+      <article class="ad-card" role="listitem">
+        <dl class="ad-kv">
+          <div><dt>Name</dt><dd class="${r.name === '—' ? 'text-ink-400' : ''}">${r.name}</dd></div>
+          <div><dt>MMSI</dt><dd class="tabular-nums">${r.mmsi}</dd></div>
+          <div><dt>Flag</dt><dd><span class="inline-flex items-center gap-2">${flag(r.flag)}<span>Russia</span></span></dd></div>
+          <div><dt>Call Sign</dt><dd>${r.call}</dd></div>
+          <div><dt>Timestamp</dt><dd class="tabular-nums">${r.ts}</dd></div>
+        </dl>
+      </article>`).join('')}
     </div>
   </div>`;
 }
@@ -3796,7 +4062,7 @@ function HistoricalDetailsBody() {
         <span class="inline-block w-2 h-2 rounded-full bg-orange-500"></span>Highlighted cells indicate a change from the prior record
       </span>
     </div>
-    <div class="overflow-x-auto scroll-thin border-t border-ink-100">
+    <div class="hd-table overflow-x-auto scroll-thin border-t border-ink-100">
       <table class="w-full text-xs hist-tbl" style="min-width:1400px;">
           <thead class="bg-ink-50 border-b border-ink-200">
             <tr>
@@ -3843,6 +4109,37 @@ function HistoricalDetailsBody() {
             }).join('')}
           </tbody>
         </table>
+    </div>
+    <div class="hd-cards" role="list" aria-label="Historical details">
+      ${HISTORICAL_DETAILS.map(r => {
+        const ch = (k) => r.changed.includes(k);
+        const flagLabel = r.flag === 'hk' ? 'Hong Kong' : r.flag === 'pa' ? 'Panama' : r.flag.toUpperCase();
+        const durBadge = r.duration === 'Current'
+          ? `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-blue-100 text-blue-700"><span class="inline-block w-1.5 h-1.5 rounded-full bg-blue-600"></span>Current</span>`
+          : `<span>${r.duration}</span>`;
+        const item = (label, val, key) => ch(key)
+          ? `<div><dt>${label}</dt><dd class="hd-changed"><span class="inline-flex items-center flex-wrap gap-x-2">${val}${arrow}</span></dd></div>`
+          : `<div><dt>${label}</dt><dd>${val}</dd></div>`;
+        return `
+      <article class="hd-card" role="listitem">
+        <dl class="hd-kv hd-kv--top">
+          <div><dt>Effective Date</dt><dd class="hd-date">${r.date}</dd></div>
+          <div><dt>Duration</dt><dd>${durBadge}</dd></div>
+        </dl>
+        <dl class="hd-kv">
+          ${item('Name', r.name, 'name')}
+          ${item('Flag', `<span class="inline-flex items-center gap-2">${flag(r.flag)}<span>${flagLabel}</span></span>`, 'flag')}
+          ${item('Group Owner', r.groupOwner, 'groupOwner')}
+          ${item('Operator', r.operator, 'operator')}
+          ${item('Manager', r.manager, 'manager')}
+          ${item('Registered Owner', r.regOwner, 'regOwner')}
+          ${item('Technical Manager', r.techMgr, 'techMgr')}
+          ${item('Classification Society', r.classSoc, 'classSoc')}
+          ${item('P&I Club', r.piClub, 'piClub')}
+          ${item('DOC Company', r.docCo, 'docCo')}
+        </dl>
+      </article>`;
+      }).join('')}
     </div>
   </div>`;
 }
@@ -4951,7 +5248,8 @@ window.render = function render() {
     const i = +b.dataset.scToggle;
     state.scExpanded.has(i) ? state.scExpanded.delete(i) : state.scExpanded.add(i);
     render();
-    document.querySelector(`[data-sc-toggle="${i}"]`)?.focus();
+    // Table and phone cards both carry this toggle; return focus to the one that is showing.
+    [...document.querySelectorAll(`[data-sc-toggle="${i}"]`)].find(el => el.offsetParent !== null)?.focus();
   });
   if (!window.__defectsWired) { window.__defectsWired = true;
     document.addEventListener('click', ev => {
