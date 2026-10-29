@@ -934,44 +934,6 @@ function UtilisationContent() {
   </div>`;
 }
 
-function AffiliationsContent() {
-  const ROLE_TILES = [
-    { label:'Registered owner',       n:21, of:21, missing:0, flag:'red' },
-    { label:'Group beneficial',       n:2,  of:21, missing:0, flag:'amber' },
-    { label:'Operator',               n:3,  of:21, missing:0, flag:'amber' },
-    { label:'Ship manager',           n:2,  of:21, missing:0, fleet:1 },
-    { label:'Technical manager',      n:3,  of:21, missing:0, flag:'amber' },
-    { label:'DOC company',            n:1,  of:20, missing:1, flag:'amber' },
-    { label:'P&I club',               n:2,  of:21, missing:0, fleet:9,   note:'not in summary', flag:'amber' },
-    { label:'Classification society', n:4,  of:21, missing:0, fleet:328, note:'not in summary' },
-  ];
-  const redFlag = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-px"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg>';
-  const amberFlag = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-px"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>';
-  return `
-  <div class="flex items-center justify-between gap-3 mb-3">
-    <div class="text-sm font-semibold text-ink-900">Key findings</div>
-    <div class="hidden md:block text-[11px] italic text-ink-500">What this portfolio means at a glance — company roles only, excluding the P&amp;I Club and the Classification Society</div>
-  </div>
-  <div class="grid gap-2.5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8">
-    ${ROLE_TILES.map(t => `
-      <div class="relative rounded-lg border border-ink-200 bg-white px-3 py-2.5">
-        ${t.note ? `<span class="absolute left-1/2 -translate-x-1/2 -top-[7px] inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase tracking-wider bg-ink-100 text-ink-500 whitespace-nowrap">${t.note}</span>` : ''}
-        <div class="flex items-start gap-1.5">
-          ${t.flag === 'red' ? redFlag : t.flag === 'amber' ? amberFlag : ''}
-          <span class="text-[12px] font-semibold text-ink-800 leading-snug">${t.label}</span>
-        </div>
-        <div class="mt-1 flex items-baseline gap-1">
-          <span class="text-xl font-bold leading-none tabular-nums ${t.flag === 'red' ? 'text-red-600' : t.flag === 'amber' ? 'text-amber-600' : 'text-ink-900'}">${t.n}</span>
-          <span class="text-xs font-medium text-ink-400 tabular-nums">/ ${t.of}</span>
-        </div>
-        <div class="mt-1.5 text-[11px] italic text-ink-500 leading-snug">${t.missing} of 21 not on file</div>
-        ${t.fleet ? `<div class="mt-0.5 text-[11px] italic text-ink-500 leading-snug">${t.fleet} sanctioned vessel${t.fleet === 1 ? '' : 's'} fleet wide</div>` : ''}
-      </div>`).join('')}
-  </div>
-  <p class="mt-4 text-xs leading-relaxed text-ink-600" style="text-wrap:pretty;">Each tile reads <strong class="font-semibold text-ink-800">unique companies / vessels with that role recorded</strong>. The denominator is <em>not</em> the whole portfolio — vessels with no value on file for the role are excluded and reported on a separate "not on file" line so the figures above aren't diluted by missing data. Placeholder entities ("Unknown", "Not Applicable", …) count as <em>no value on file</em>, not as companies. Tiles flagged <strong class="font-semibold text-red-600">red</strong> contain at least one sanctioned company; tiles flagged <strong class="font-semibold text-amber-600">amber</strong> contain a clean company that's linked to a sanctioned vessel in the portfolio. Tiles marked <em>not in summary</em> are excluded from the totals at the top of the page.</p>
-`;
-}
-
 function analysisContentFor(tab) {
   if (tab === 'PSC Analysis')             return PSCContent();
   if (tab === 'Avg / Utilisation Report') return UtilisationContent();
