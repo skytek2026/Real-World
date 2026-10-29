@@ -95,6 +95,13 @@
   #download-template:hover,#export-excel-btn:hover,#wb-cancel:hover{background:var(--slate-50,#F9FAFB);border-color:var(--border-strong,#D1D5DB);}
   #download-template:active,#export-excel-btn:active,#wb-cancel:active{background:var(--slate-100,#F3F4F6);}
   #download-template:focus-visible,#export-excel-btn:focus-visible,#wb-cancel:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(45,127,251,.32);}
+  /* Dark theme: these buttons are inline-styled with light-only colours, so restyle them here
+     to match the other dark controls (e.g. the date pickers). */
+  html[data-theme="dark"] #download-template,html[data-theme="dark"] #export-excel-btn,html[data-theme="dark"] #wb-cancel,html[data-theme="dark"] #upload-card-toggle{background:#161f2e!important;border-color:#2a374d!important;color:#e7ecf4!important}
+  html[data-theme="dark"] #upload-card-toggle{color:#c0c9d8!important}
+  html[data-theme="dark"] #download-template:hover,html[data-theme="dark"] #export-excel-btn:hover,html[data-theme="dark"] #wb-cancel:hover{background:#1e293b!important;border-color:#34435c!important}
+  html[data-theme="dark"] #download-template:active,html[data-theme="dark"] #export-excel-btn:active,html[data-theme="dark"] #wb-cancel:active{background:#243048!important}
+  html[data-theme="dark"] #upload-card-toggle:hover{background:color-mix(in srgb,var(--brand-500,#3b82f6) 18%,transparent)!important;border-color:color-mix(in srgb,var(--brand-500,#3b82f6) 45%,transparent)!important;color:var(--brand-300,#93c5fd)!important}
   /* Skytek primary buttons — hover / active / focus (DS: brand-600 → brand-500 → #1f5fc7) */
   #browse-files-btn:hover,#confirm-upload:hover,#wb-save:hover{background:var(--brand-500,#51a2fc);border-color:var(--brand-500,#51a2fc);}
   #browse-files-btn:active,#confirm-upload:active,#wb-save:active{background:#1f5fc7;border-color:#1f5fc7;}
