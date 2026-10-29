@@ -38,7 +38,7 @@ a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;bo
 .pgo-ghost:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8)}
 .pgo-ghost:focus-visible{outline:2px solid #60a5fa;outline-offset:1px}
 .pgo-ghost svg{width:14px;height:14px}
-.pgo-card--fit{align-self:start}
+.pgo-strip--top{margin:12px 14px 4px}
 .pgo-strip{margin:12px 14px 14px;display:flex;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;overflow:hidden}
 .pgo-metric{flex:1;padding:14px 16px;text-align:center}
 .pgo-metric + .pgo-metric{border-left:1px solid var(--brand-100,#dbeafe)}
@@ -589,6 +589,7 @@ function GroupDetailsCard(d) {
   return `
   <section class="pgo-card" aria-labelledby="pgo-details-h">
     <div class="pgo-card-h"><h2 id="pgo-details-h">Group Details</h2></div>
+    ${MetricStrip()}
     <dl class="pgo-fields">
       ${rows.map(([ico, label, val]) => `<div class="pgo-row"><dt>${icon(ico)}${label}:</dt><dd>${val}</dd></div>`).join('')}
     </dl>
@@ -598,23 +599,22 @@ function GroupDetailsCard(d) {
   </section>`;
 }
 
-/* Totals: a metric strip; add more { label, value } entries to show more metrics side by side. */
-function TotalsCard() {
-  const metrics = [
-    { label: 'Our Aggregated Exposure', value: '$60.2B' },
-  ];
+/* Metric strip at the top of Group Details; add more { label, value } entries to show more metrics side by side. */
+const STRIP_METRICS = [
+  { label: 'Our Aggregated Exposure', value: '$60.2B' },
+];
+function MetricStrip() {
+  const metrics = STRIP_METRICS;
   return `
-  <section class="pgo-card pgo-card--fit" aria-labelledby="pgo-totals-h">
-    <div class="pgo-card-h"><h2 id="pgo-totals-h">Totals</h2></div>
-    <div class="pgo-strip">
+    <div class="pgo-strip pgo-strip--top">
       ${metrics.map(m => `<div class="pgo-metric"><div class="pgo-metric-l">${esc(m.label)}</div><div class="pgo-metric-v">${esc(m.value)}</div></div>`).join('')}
-    </div>
-  </section>`;
+    </div>`;
 }
 
 function downloadReport(d) {
   const rows = [
     ['Group Details', ''],
+    ...STRIP_METRICS.map(m => [m.label, m.value]),
     ['Name', d.name],
     ['Total Number of Policies', d.total],
     ['Number of Active Policies', d.active],
@@ -646,7 +646,6 @@ function Main() {
 
       <div class="pgo-grid">
         ${GroupDetailsCard(details)}
-        ${TotalsCard()}
         ${PanelRiskBreakdown()}
       </div>
       <div style="margin-top:12px">
