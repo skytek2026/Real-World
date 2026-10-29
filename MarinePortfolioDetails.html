@@ -139,7 +139,7 @@
   .stat-pill { display:block; width:100%; padding:5px 10px; border-radius:6px; background:var(--brand-100,#dbeafe); color:var(--brand-700,#1d4ed8); font-size:12px; font-weight:700; text-align:center; margin-top:4px; }
   /* Dark theme: Portfolio Activity metric badges match the Our Aggregated Exposure box
      (same background and border colour); inset outline so badge sizes don't change */
-  html[data-theme="dark"] .stat-badge.blue, html[data-theme="dark"] .stat-pill { background:#15233c; color:#e7ecf4; box-shadow:inset 0 0 0 1px #2a374d; }
+  html[data-theme="dark"] .stat-badge.blue, html[data-theme="dark"] .stat-pill, html[data-theme="dark"] .pf-ok-badge { background:#15233c !important; color:#e7ecf4 !important; box-shadow:inset 0 0 0 1px #2a374d; }
   /* Select chrome */
   .sel { border:1px solid #e2e8f0; border-radius:6px; padding:4px 24px 4px 8px; font-size:12px; color:#334155; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
   /* Compliance circle */
@@ -425,7 +425,7 @@ function DonutSVG(score = 100) {
 function PanelPortfolioDetails() {
   const compStatus = PORTFOLIO.sanctioned ? 'SANCTIONED' : 'OK';
   const compBadge = compStatus === 'OK'
-    ? `<span style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)">OK</span>`
+    ? `<span class="pf-ok-badge" style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)">OK</span>`
     : `<span style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:#fee2e2;color:#dc2626">SANCTIONED</span>`;
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0 overflow-hidden">
@@ -528,14 +528,14 @@ function ActivityGrid() {
       </div>
       <!-- Row 2 -->
       <div>
-        <div class="text-[11px] text-ink-500">Day with Max. No. of Ships in Region:</div>
-        <div class="text-sm font-semibold text-ink-900">34</div>
-        <div class="text-[11px] text-ink-400">Dec 15th 2024</div>
+        <div class="text-[11px] text-ink-500 mb-1">Day with Max. No. of Ships in Region:</div>
+        <span class="stat-badge blue">34</span>
+        <div class="text-[11px] text-ink-400 mt-1">Dec 15th 2024</div>
       </div>
       <div>
-        <div class="text-[11px] text-ink-500">Day with Min. No. of Ships in Region:</div>
-        <div class="text-sm font-semibold text-ink-900">7</div>
-        <div class="text-[11px] text-ink-400">Dec 25th 2024</div>
+        <div class="text-[11px] text-ink-500 mb-1">Day with Min. No. of Ships in Region:</div>
+        <span class="stat-badge blue">7</span>
+        <div class="text-[11px] text-ink-400 mt-1">Dec 25th 2024</div>
       </div>
       <!-- Row 3 -->
       <div>
