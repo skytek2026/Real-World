@@ -639,11 +639,11 @@ function mpAnimateRiskPie() {
   const segs = [...wrap.querySelectorAll('.rs-seg')];
   const finals = segs.map(s => s.getAttribute('stroke-dasharray'));
   segs.forEach(s => { const C = (+s.getAttribute('r')) * 2 * Math.PI; s.style.transition = 'none'; s.setAttribute('stroke-dasharray', '0 ' + C.toFixed(3)); });
-  if (gauge) { gauge.style.transition = 'none'; gauge.style.borderColor = mpWithSanctions ? '#e5e7eb' : '#dc2626'; }
+  if (gauge) { gauge.classList.add('co-rs-gauge--still'); gauge.classList.toggle('co-rs-gauge--sanc', !mpWithSanctions); }
   wrap.getBoundingClientRect();
   requestAnimationFrame(() => {
     segs.forEach((s, i) => { s.style.transition = 'stroke-dasharray .75s cubic-bezier(.22,1,.36,1) ' + (i * 60) + 'ms'; s.setAttribute('stroke-dasharray', finals[i]); });
-    if (gauge) { gauge.style.transition = 'border-color .5s ease'; gauge.style.borderColor = mpWithSanctions ? '#dc2626' : '#e5e7eb'; }
+    if (gauge) { gauge.classList.remove('co-rs-gauge--still'); gauge.classList.toggle('co-rs-gauge--sanc', !!mpWithSanctions); }
   });
   const center = wrap.querySelector('.mp-rs-center');
   if (center) center.animate([{ opacity: 0, transform: 'scale(.85)' }, { opacity: 1, transform: 'scale(1.06)', offset: .7 }, { opacity: 1, transform: 'scale(1)' }], { duration: 500, easing: 'ease-out' });
@@ -739,7 +739,7 @@ function PanelRiskBreakdown() {
         </button>
       </div>
       <div class="co-rs-grid" style="display:grid;grid-template-columns:${mpWithTrends ? 'repeat(auto-fit,minmax(180px,1fr))' : '1fr'};gap:8px;">
-        <div class="co-rs-gauge" style="position:relative;background:#f9fafb;border:1px solid ${mpWithSanctions ? '#dc2626' : '#e5e7eb'};border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+        <div class="co-rs-gauge${mpWithSanctions ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
         <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">

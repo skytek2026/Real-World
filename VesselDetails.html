@@ -950,13 +950,13 @@ function vdAnimateRiskPie(prev) {
   arc.style.transition = 'none';
   arc.setAttribute('stroke-dasharray', (Math.min(prev.score,100)/100*C).toFixed(2) + ' ' + C);
   arc.setAttribute('stroke', prev.color);
-  if (gauge) { gauge.style.transition = 'none'; gauge.style.borderColor = state.withSanctionsCopy8 ? '#e5e7eb' : '#dc2626'; }
+  if (gauge) { gauge.classList.add('co-rs-gauge--still'); gauge.classList.toggle('co-rs-gauge--sanc', !state.withSanctionsCopy8); }
   arc.getBoundingClientRect();
   requestAnimationFrame(() => {
     arc.style.transition = 'stroke-dasharray .7s cubic-bezier(.22,1,.36,1), stroke .5s ease';
     arc.setAttribute('stroke-dasharray', toDash);
     arc.setAttribute('stroke', toColor);
-    if (gauge) { gauge.style.transition = 'border-color .5s ease'; gauge.style.borderColor = state.withSanctionsCopy8 ? '#dc2626' : '#e5e7eb'; }
+    if (gauge) { gauge.classList.remove('co-rs-gauge--still'); gauge.classList.toggle('co-rs-gauge--sanc', !!state.withSanctionsCopy8); }
   });
   if (num) {
     const t0 = performance.now(), D = 700, from = prev.score;
@@ -1892,7 +1892,7 @@ function CasualtyRiskCardCopy8() {
       </div>
       <div class="co-rs-grid" style="display:grid;grid-template-columns:${state.withTrendsCopy8?'1fr 1fr':'1fr'};gap:8px;">
         <!-- Gauge -->
-        <div class="co-rs-gauge" style="position:relative;background:#f9fafb;border:1px solid ${state.withSanctionsCopy8 ? '#dc2626' : '#e5e7eb'};border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;">
+        <div class="co-rs-gauge${state.withSanctionsCopy8 ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;">
         <button data-sanctions-toggle-copy8 class="co-rs-sanc" style="align-self:flex-end;max-width:100%;margin-bottom:4px;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy8?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">

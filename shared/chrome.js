@@ -617,6 +617,11 @@ function applyTweaks() {
        ignore ::-webkit-scrollbar widths, so the width has to be set the standard way too.
        Low specificity on purpose: class rules such as scrollbar-width:none still win. */
     html, html body, html *{scrollbar-width:thin}
+    /* Risk Score gauge: the red "sanctioned" border is a class (works in light and dark, animates). */
+    .co-rs-gauge{transition:border-color .5s ease}
+    .co-rs-gauge.co-rs-gauge--still{transition:none}
+    .co-rs-gauge.co-rs-gauge--sanc, html[data-theme="dark"] .co-rs-gauge.co-rs-gauge--sanc{border-color:#dc2626!important}
+    @media (prefers-reduced-motion: reduce){.co-rs-gauge{transition:none}}
     html:not([data-theme="dark"]), html:not([data-theme="dark"]) body, html:not([data-theme="dark"]) *{scrollbar-color:${c[400]} #f3f4f6!important}
     html:not([data-theme="dark"])::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb{background:${c[400]}!important;border-radius:999px}
     html:not([data-theme="dark"])::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb:hover{background:${c[600]}!important}
