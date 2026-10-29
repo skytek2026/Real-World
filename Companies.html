@@ -157,6 +157,13 @@
   .pgbtn:hover:not([disabled]){background:#f1f5f9}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
   .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;border:1px solid #e2e8f0;background:#fff;color:#94a3b8;cursor:pointer;transition:background .1s,color .1s,border-color .1s}
   .actbtn:hover{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
+  /* Company search field: focus ring and dark theme in CSS (no inline style writes) */
+  #co-search { background:#fff; }
+  #co-search::placeholder { color:#9ca3af; }
+  #co-search:focus { border-color:var(--brand-300,#93c5fd) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#3b82f6) 14%, transparent); }
+  html[data-theme="dark"] #co-search { background:#161f2e !important; border-color:#2a374d !important; color:#e7ecf4 !important; }
+  html[data-theme="dark"] #co-search::placeholder { color:#7d8aa0; }
+  html[data-theme="dark"] #co-search:focus { border-color:var(--brand-400,#60a5fa) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#3b82f6) 28%, transparent); }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -493,8 +500,7 @@ function wireCompanies() {
   const si = document.getElementById('co-search');
   if (si) {
     si.addEventListener('input', e => { ST.query = e.target.value; ST.page = 1; rc(); });
-    si.addEventListener('focus', e => { e.target.style.borderColor = 'var(--brand-300,#93c5fd)'; e.target.style.boxShadow = '0 0 0 3px color-mix(in srgb, var(--brand-500,#3b82f6) 14%, transparent)'; });
-    si.addEventListener('blur',  e => { e.target.style.borderColor = '#e2e8f0'; e.target.style.boxShadow = ''; });
+    /* Focus styling lives in CSS (#co-search:focus) so dark mode isn't lost when focusing */
   }
 
   /* Column sort */
