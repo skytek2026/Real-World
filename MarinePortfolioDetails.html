@@ -7,11 +7,11 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <script>
   tailwind.config = {
     theme: { extend: {
-      fontFamily: { sans:['Open Sans','ui-sans-serif','system-ui','sans-serif'], display:['Exo','Open Sans','sans-serif'] },
+      fontFamily: { sans:['Inter','ui-sans-serif','system-ui','sans-serif'], display:['Exo','Inter','sans-serif'] },
       colors: {
         brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
         ink:   {900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'},
@@ -24,8 +24,8 @@
   };
 </script>
 <style>
-  html,body { font-family:'Open Sans',system-ui,sans-serif; }
-  h1,h2,h3,h4,h5,h6,.font-display,.tracking-micro { font-family:'Exo','Open Sans',sans-serif; }
+  html,body { font-family:'Inter',system-ui,sans-serif; }
+  h1,h2,h3,h4,h5,h6,.font-display,.tracking-micro { font-family:'Exo','Inter',sans-serif; }
   .tracking-micro { letter-spacing:.08em; }
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
@@ -86,7 +86,7 @@
   .atab:hover:not(.active) { color:#334155; }
   /* PSC stat boxes */
   .psc-box { background:#fff; border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; }
-  .psc-head { background:var(--brand-600,#2563eb); color:#fff; text-align:center; font-family:'Exo','Open Sans',sans-serif; font-weight:700; font-size:13px; padding:9px 12px; letter-spacing:.03em; }
+  .psc-head { background:var(--brand-600,#2563eb); color:#fff; text-align:center; font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:13px; padding:9px 12px; letter-spacing:.03em; }
   .psc-subhead { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); }
   .psc-subhead span { padding:6px 10px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-align:center; text-transform:uppercase; letter-spacing:.04em; }
   .psc-subhead span:first-child { text-align:left; color:#64748b; }
@@ -409,7 +409,7 @@ function DonutSVG(score = 100) {
         ${glowPath}
         ${whiteCasing}
         ${segPaths}
-        <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#0f172a" font-family="Exo,Open Sans,sans-serif">${rsScore}</text>
+        <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#0f172a" font-family="Exo,Inter,sans-serif">${rsScore}</text>
       </svg>
     </div>
     <div style="display:flex;align-items:center;gap:4px;margin-top:-10px;">
