@@ -38,6 +38,24 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    version: "v2.0.1",
+    dateISO: "2026-10-29T11:49:00Z",
+    date: "29/10/2026",
+    time: "11:49 UTC",
+    category: "Token",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Removed the unused Open Sans fallback from --font-sans; the body stack is now Inter with system fallbacks.",
+    changes: [
+      "--font-sans: \"Inter\", \"Open Sans\", system-ui, … → \"Inter\", system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif (styles.css, design-ref/styles.css and the _ds export).",
+      "Token Index: --font-sans value updated to \"Inter · system-ui\".",
+      "Design system manifests (_ds_manifest.json) updated to the new --font-sans value.",
+      "Cache-busting: styles.css?v=17 and section-token-index.jsx?v=3 in Skytek Design System.html; styles.css?v=15 in the print view; styles.css?v=16 and changelog-data.js?v=3 in Changelog.html."
+    ],
+    reason: "Open Sans is no longer loaded anywhere in the product, so the fallback could never be used. Removing it keeps the token aligned with the type system (Exo / Inter / JetBrains Mono).",
+    affected: ["Typography tokens (--font-sans)", "Token Index", "Skytek Design System", "Changelog"]
+  },
+  {
     version: "v2.0.0",
     dateISO: "2026-06-15T15:10:00Z",
     date: "15/06/2026",

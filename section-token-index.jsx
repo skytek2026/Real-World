@@ -66,7 +66,7 @@ const TOKEN_CATALOG = [
   ["--text-link",      "semantic", "var(--brand-500)", "Inline links"],
   ["--text-on-brand",  "semantic", "var(--white)",     "On primary buttons"],
   // Type
-  ["--font-sans",    "type", "Inter · Open Sans · system-ui",  "Default body family"],
+  ["--font-sans",    "type", "Inter · system-ui",  "Default body family"],
   ["--font-display", "type", "Exo · Inter · Lato · system-ui",  "Headings, titles"],
   ["--font-mono",    "type", "JetBrains Mono · SF Mono",        "Code, numbers, tokens"],
   // Spacing
