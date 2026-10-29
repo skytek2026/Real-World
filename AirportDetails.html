@@ -101,7 +101,7 @@
   }
   .airport-row1 > *, .airport-row2 > * { min-width: 0; max-width: 100%; }
   .data-table td, .data-table th { white-space: nowrap; }
-  @media(max-width:1023px){ .page-col, .page-content { overflow-x: hidden; } }
+  @media(max-width:1023px){ .page-col, .page-content { overflow-x: clip; } }
   @media(max-width:767px){
     .airport-row1,.airport-row2{ grid-template-columns:minmax(0,1fr); }
     .mobile-tab-select{display:block!important;}
@@ -951,7 +951,7 @@ async function loadWeather() {
 window.render = function() {
   document.getElementById('app').innerHTML = `
     ${SC.Sidebar()}
-    <div class="page-col flex-1 min-w-0 flex flex-col overflow-hidden">
+    <div class="page-col flex-1 min-w-0 flex flex-col" style="overflow:clip">
       ${SC.Topbar()}
       ${Content()}
     </div>

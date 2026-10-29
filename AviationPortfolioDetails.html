@@ -107,7 +107,7 @@
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900">
-<div id="app" class="min-h-screen w-full flex overflow-hidden"></div>
+<div id="app" class="min-h-screen w-full flex" style="overflow:clip"></div>
 
 <script>
 window.PAGE = { id:'aviation', title:'Aviation', crumb:'Portfolio Details' };
@@ -831,7 +831,7 @@ function initAviationDetailMap() {
 window.render = function() {
   document.getElementById('app').innerHTML = `
     ${SC.Sidebar()}
-    <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
+    <div class="flex-1 min-w-0 flex flex-col" style="overflow:clip">
       ${SC.Topbar()}
       <main id="main-content" class="flex-1 overflow-y-auto scroll-thin bg-ink-100 px-4 lg:px-5 py-4">
         <!-- Top 3 panels -->

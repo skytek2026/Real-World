@@ -517,7 +517,7 @@ function initDetailMap() {
 window.render = function() {
   document.getElementById('app').innerHTML = `
     ${SC.Sidebar()}
-    <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
+    <div class="flex-1 min-w-0 flex flex-col" style="overflow:clip">
       ${SC.Topbar()}
       ${Content()}
     </div>
