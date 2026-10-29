@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Portfolio Group Overview — Marine — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}},boxShadow:{card:'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)','card-hover':'0 4px 10px -2px rgb(15 23 42 / 0.08), 0 8px 24px -4px rgb(15 23 42 / 0.08)'}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -62,6 +62,75 @@ html[data-theme="dark"] .pgo-badge--ok{background:rgba(34,197,94,.16);color:#86e
 html[data-theme="dark"] .pgo-badge--warn{background:rgba(245,158,11,.16);color:#fcd34d}
 html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fca5a5}
 html[data-theme="dark"] .pgo-title,html[data-theme="dark"] html[data-theme="dark"] .pgo-eyebrow,html[data-theme="dark"] html[data-theme="dark"] html[data-theme="dark"] html[data-theme="dark"] a{color:var(--brand-300,#93c5fd)}
+  /* ── Policy Details / Asset Details / Map card (copied from Marine Portfolio Details) ── */
+  .tracking-micro { letter-spacing:.08em; }
+  /* Pill tabs */
+  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:9999px; }
+  .ds-tab  { position:relative; font:inherit; font-size:12px; font-weight:600; padding:6px 14px; background:transparent; border:0; border-radius:9999px; color:#64748b; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+  .ds-tab:hover { color:#0f172a; }
+  .ds-tab[aria-selected="true"] { color:#fff; }
+  .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:var(--brand-600,#2563eb); border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transition:transform 300ms cubic-bezier(.34,1.2,.64,1), width 300ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
+  .ds-tab-pill.is-init { transition:none; }
+  .ds-tab-label { position:relative; z-index:1; }
+  /* Policy table */
+  .pol-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .pol-table th { padding:9px 12px; text-align:left; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); border-bottom:1px solid var(--border-default,#E5E7EB); white-space:nowrap; background:var(--slate-50,#F9FAFB); ;text-transform:uppercase;letter-spacing:.04em}
+  .pol-table td { padding:10px 12px; border-bottom:1px solid #f1f5f9; color:#334155; white-space:nowrap; vertical-align:middle; }
+  .pol-table tr:last-child td { border-bottom:0; }
+  .pol-table tr:hover td { background:#f8fafc; }
+  .pol-table th:nth-child(-n+2), .pol-table td:nth-child(-n+2) { position:sticky; z-index:1; background:#fff; }
+  .pol-table thead th:nth-child(-n+2) { z-index:2; background:var(--slate-50,#F9FAFB); }
+  .pol-table th:first-child, .pol-table td:first-child { left:0; width:38px; min-width:38px; max-width:38px; }
+  .pol-table th:nth-child(2), .pol-table td:nth-child(2) { left:38px; box-shadow:inset -1px 0 0 #e2e8f0; }
+  .pol-table tr:hover td:nth-child(-n+2) { background:#f8fafc; }
+  .pol-table td.lnk { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; }
+  .pol-table td.lnk:hover { color:var(--brand-700,#1d4ed8); }
+  .pol-table td.lnk a, .pcard-sub a.lnk { color:inherit; text-decoration:none; }
+  .pol-table td.lnk a:hover, .pcard-sub a.lnk:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
+  .pcard-sub a.lnk { color:var(--brand-600,#2563eb); font-weight:600; }
+  /* Mobile policy cards */
+  .pol-cards { display:none; }
+  .pcard { padding:14px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
+  .pcard:last-child { border-bottom:0; }
+  .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
+  .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-600,#2563eb); word-break:break-word; }
+  .pcard-sub { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#64748b; }
+  .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; }
+  .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .pcard-k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#94a3b8; }
+  .pcard-v { font-size:13.5px; font-weight:500; color:#334155; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .pcard-v.is-strong { font-size:15px; font-weight:700; color:#0f172a; }
+  .pcard-v.is-mono { font-family:monospace; font-size:12px; }
+  .pcard-more { display:none; }
+  .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e2e8f0; animation:pcardIn .22s ease; }
+  @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:12.5px; font-weight:600; color:var(--brand-600,#2563eb); }
+  .pcard-chev { transition:transform .2s ease; }
+  .pcard.open .pcard-chev { transform:rotate(180deg); }
+  /* Stat badge */
+  .stat-badge { display:inline-block; padding:1px 8px; border-radius:999px; font-size:12px; font-weight:700; }
+  .stat-badge.blue   { background:var(--brand-100,#dbeafe); color:var(--brand-700,#1d4ed8); }
+  .stat-badge.green  { background:#dcfce7; color:#15803d; }
+  .stat-badge.purple { background:#ede9fe; color:#6d28d9; }
+  /* Select chrome */
+  .sel { border:1px solid #e2e8f0; border-radius:6px; padding:4px 24px 4px 8px; font-size:12px; color:#334155; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
+  @media(max-width:767px){
+    .ds-tabs.mobile-stretch { display:flex; width:100%; }
+    .ds-tabs.mobile-stretch .ds-tab { flex:1 1 0; min-width:0; justify-content:center; padding-left:6px; padding-right:6px; }
+    .ds-tabs.mobile-stretch .ds-tab-label { justify-content:center; }
+    .pvw-desktop { display:none !important; }
+    .pvw-mobile { width:100%; }
+    .analysis-tabs-mobile  { display:block !important; }
+    .pol-table-scroll { display:none; }
+    .pol-cards { display:block; }
+    .pol-toolbar { flex-wrap:wrap; }
+    .pol-toolbar .relative, .pol-toolbar input[type=text] { width:100%; }
+    .pol-edit-cols { display:none !important; }
+  }
+  /* Mobile dropdown for analysis tabs (hidden by default) */
+  .analysis-tabs-mobile { display:none; }
+  .analysis-tabs-mobile select { width:100%; border:1px solid #e2e8f0; border-radius:9999px; padding:8px 32px 8px 14px; font-size:13px; font-weight:600; color:#0f172a; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -77,6 +146,11 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="shared/pagination.css" />
+<script src="shared/pagination.js"></script>
+<script src="shared/marine-asset-details.js"></script>
 <script>
 const SC = window.sharedChrome;
 const esc = v => String(v == null ? '' : v).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
@@ -88,6 +162,196 @@ function selectedGroup() {
   try { stored = JSON.parse(sessionStorage.getItem('selectedPortfolioGroup') || 'null'); } catch (e) {}
   if (fromUrl) return stored && stored.name === fromUrl ? stored : { name: fromUrl };
   return stored;
+}
+
+/* ── Policy Details / Asset Details / Map card (copied from MarinePortfolioDetails.html).
+      Asset Details and Map come from shared/marine-asset-details.js. ── */
+let policyView = 'details';
+let policyPage = 1;
+const POLICY_PAGE_SIZE = 10;
+const POLICIES = [
+  { num:'Policy 1',  vessel:'MORNING MIDAS',      exp:'$22.0M',  tiv:'$27.9M',  period:'2024-02-20 / 2008-02-20', type:'Hull & Machinery',        placement:'Direct',      insurer:'Lloyd\'s Syndicate 2003', broker:'Marsh Marine',         assured:'Global Shipping Ltd',     umr:'B0123ABC456DEF789', delegate:'Maritime Underwriters Ltd', uw:'John Smith' },
+  { num:'Policy 2',  vessel:'Zenon Star',          exp:'$500.0K', tiv:'$620.0K', period:'2024-02-20 / 2008-02-20', type:'Protection & Indemnity',  placement:'Facultative', insurer:'AXA XL',                  broker:'Willis Towers Watson', assured:'Ocean Transport Inc',       umr:'B0234BCD567FG890',  delegate:'P&I Services Group',        uw:'Sarah Johnson' },
+  { num:'Policy 3',  vessel:'Car Sun',             exp:'$3.5M',   tiv:'$4.3M',   period:'2024-02-20 / 2008-02-20', type:'War Risks',               placement:'Direct',      insurer:'Allianz Global',           broker:'Aon Marine',           assured:'Pacific Fleet Co',          umr:'B0345CDE678FGH901', delegate:'War Risk Specialists',      uw:'Michael Chen' },
+  { num:'Policy 4',  vessel:'SIEM CONFUCIUS',      exp:'$35.0M',  tiv:'$43.6M',  period:'2024-02-20 / 2008-02-20', type:'Hull & Machinery',        placement:'Coinsurance', insurer:'Zurich Insurance',         broker:'Marsh Marine',         assured:'Eastern Shipping Corp',     umr:'B0456DEF789GHI012', delegate:'Marine Insurance Brokers',  uw:'Emma Wilson' },
+  { num:'Policy 5',  vessel:'STIBING',             exp:'$24.0M',  tiv:'$79.8M',  period:'2024-02-20 / 2008-02-20', type:'Protection & Indemnity',  placement:'Facultative', insurer:'Liberty Mutual',           broker:'JLT Specialty',        assured:'Nordic Marine AS',          umr:'B0567EFG890HIJ123', delegate:'Scandinavian P&I',          uw:'Lars Andersen' },
+  { num:'Policy 6',  vessel:'NEPTUNE PAROS',       exp:'$24.0M',  tiv:'$79.8M',  period:'2024-02-20 / 2008-02-20', type:'War Risks',               placement:'Direct',      insurer:'Munich Re',                broker:'Willis Towers Watson', assured:'Mediterranean Lines',       umr:'B0678FGH901IJK234', delegate:'International War Cover',   uw:'Hans Mueller' },
+  { num:'Policy 7',  vessel:'ATLANTIC PRIDE',      exp:'$18.5M',  tiv:'$22.8M',  period:'2024-03-15 / 2009-03-15', type:'Hull & Machinery',        placement:'Direct',      insurer:'RSA Insurance',            broker:'Aon Marine',           assured:'Atlantic Cargo Lines',      umr:'B0789GHI012JKL345', delegate:'Marine Placement Group',    uw:'Robert Taylor' },
+  { num:'Policy 8',  vessel:'OCEAN VOYAGER',       exp:'$42.0M',  tiv:'$52.3M',  period:'2024-01-10 / 2007-01-10', type:'Hull & Machinery',        placement:'Coinsurance', insurer:'Chubb Marine',             broker:'Marsh Marine',         assured:'Global Tanker Fleet',       umr:'B0890HIJ123KLM456', delegate:'Tanker Insurance Services', uw:'Patricia Lee' },
+  { num:'Policy 9',  vessel:'STAR NAVIGATOR',      exp:'$15.2M',  tiv:'$18.9M',  period:'2024-04-22 / 2010-04-22', type:'Protection & Indemnity',  placement:'Facultative', insurer:'Skuld P&I',                broker:'JLT Specialty',        assured:'Container Transport SA',    umr:'B0901IJK234LMN567', delegate:'P&I Coverage Experts',      uw:'David Brown' },
+  { num:'Policy 10', vessel:'PACIFIC SPIRIT',      exp:'$85.0M',  tiv:'$105.6M', period:'2024-02-28 / 2012-02-28', type:'Hull & Machinery',        placement:'Direct',      insurer:'Sompo International',      broker:'Willis Towers Watson', assured:'LNG Maritime Corp',          umr:'B1012JKL345MNO678', delegate:'Energy Vessel Underwriters',uw:'Yuki Tanaka' },
+  { num:'Policy 11', vessel:'CORAL SEA',           exp:'$31.0M',  tiv:'$38.5M',  period:'2024-05-01 / 2011-05-01', type:'Hull & Machinery',        placement:'Direct',      insurer:'Lloyd\'s Syndicate 2003', broker:'Marsh Marine',         assured:'Pacific Carriers Ltd',      umr:'B1123KLM456NOP789', delegate:'Maritime Underwriters Ltd', uw:'James Wright' },
+  { num:'Policy 12', vessel:'ARCTIC EXPLORER',     exp:'$55.0M',  tiv:'$68.2M',  period:'2024-06-15 / 2013-06-15', type:'Protection & Indemnity',  placement:'Facultative', insurer:'AXA XL',                  broker:'Willis Towers Watson', assured:'Nordic Bulk AS',             umr:'B1234LMN567OPQ890', delegate:'P&I Services Group',        uw:'Anna Eriksen' },
+  { num:'Policy 13', vessel:'BLUE HORIZON',        exp:'$19.0M',  tiv:'$23.8M',  period:'2024-07-01 / 2014-07-01', type:'War Risks',               placement:'Direct',      insurer:'Allianz Global',           broker:'Aon Marine',           assured:'Blue Horizon Shipping',     umr:'B1345MNO678PQR901', delegate:'War Risk Specialists',      uw:'Oliver Smith' },
+  { num:'Policy 14', vessel:'GOLDEN TRADER',       exp:'$47.0M',  tiv:'$58.7M',  period:'2024-08-20 / 2015-08-20', type:'Hull & Machinery',        placement:'Coinsurance', insurer:'Zurich Insurance',         broker:'Marsh Marine',         assured:'Golden Trade Lines',        umr:'B1456NOP789QRS012', delegate:'Marine Insurance Brokers',  uw:'Sophie Brown' },
+  { num:'Policy 15', vessel:'SEA PHOENIX',         exp:'$28.0M',  tiv:'$34.9M',  period:'2024-09-10 / 2016-09-10', type:'Protection & Indemnity',  placement:'Facultative', insurer:'Liberty Mutual',           broker:'JLT Specialty',        assured:'Phoenix Maritime SA',       umr:'B1567OPQ890RST123', delegate:'Scandinavian P&I',          uw:'Lars Nielsen' },
+  { num:'Policy 16', vessel:'MEDITERRANEAN STAR',  exp:'$63.0M',  tiv:'$78.8M',  period:'2024-10-05 / 2017-10-05', type:'Hull & Machinery',        placement:'Direct',      insurer:'Munich Re',                broker:'Willis Towers Watson', assured:'Med Star Lines',            umr:'B1678PQR901STU234', delegate:'International War Cover',   uw:'Giulia Rossi' },
+  { num:'Policy 17', vessel:'NORTHERN WAVE',       exp:'$11.5M',  tiv:'$14.4M',  period:'2024-11-18 / 2018-11-18', type:'War Risks',               placement:'Direct',      insurer:'RSA Insurance',            broker:'Aon Marine',           assured:'Northern Wave Corp',        umr:'B1789QRS012TUV345', delegate:'Marine Placement Group',    uw:'Karl Jensen' },
+  { num:'Policy 18', vessel:'PACIFIC DAWN',        exp:'$72.0M',  tiv:'$90.0M',  period:'2024-12-01 / 2019-12-01', type:'Hull & Machinery',        placement:'Coinsurance', insurer:'Chubb Marine',             broker:'Marsh Marine',         assured:'Pacific Dawn LLC',          umr:'B1890RST123UVW456', delegate:'Tanker Insurance Services', uw:'Mei Zhang' },
+  { num:'Policy 19', vessel:'EASTERN PROMISE',     exp:'$9.0M',   tiv:'$11.3M',  period:'2024-01-25 / 2020-01-25', type:'Protection & Indemnity',  placement:'Facultative', insurer:'Skuld P&I',                broker:'JLT Specialty',        assured:'Eastern Promise Ltd',       umr:'B1901STU234VWX567', delegate:'P&I Coverage Experts',      uw:'Chen Wei' },
+  { num:'Policy 20', vessel:'GRAND VICTORIA',      exp:'$96.0M',  tiv:'$120.0M', period:'2024-02-14 / 2021-02-14', type:'Hull & Machinery',        placement:'Direct',      insurer:'Sompo International',      broker:'Willis Towers Watson', assured:'Grand Victoria Corp',       umr:'B2012TUV345WXY678', delegate:'Energy Vessel Underwriters',uw:'Isabella Park' },
+];
+
+function PolicySection() {
+  const totalPages = Math.ceil(POLICIES.length / POLICY_PAGE_SIZE);
+  const rows = POLICIES.slice((policyPage-1)*POLICY_PAGE_SIZE, policyPage*POLICY_PAGE_SIZE);
+  const chev = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">`;
+  const tabsHtml = `
+      <div class="analysis-tabs-mobile pvw-mobile"><select id="pvw-select" aria-label="Select view">${[['details','Policy Details'],['list','Asset Details'],['map','Map']].map(([v,l]) => `<option value="${v}" ${policyView===v?'selected':''}>${l}</option>`).join('')}</select></div>
+      <div class="ds-tabs shrink-0 mobile-stretch pvw-desktop" id="policy-view-tabs">
+        <span class="ds-tab-pill is-init" data-tab-pill></span>
+        <button class="ds-tab" aria-selected="${policyView==='details'}" data-pvw="details">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Policy Details
+          </span>
+        </button>
+        <button class="ds-tab" aria-selected="${policyView==='list'}" data-pvw="list">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            Asset Details
+          </span>
+        </button>
+        <button class="ds-tab" aria-selected="${policyView==='map'}" data-pvw="map">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            Map
+          </span>
+        </button>
+      </div>
+`;
+  if (policyView === 'list') return AssetDetailsSection(tabsHtml);
+  if (policyView === 'map') return PortfolioMapSection(tabsHtml);
+
+  return `
+  <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="pol-card">
+    <!-- Toolbar -->
+    <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">
+      ${tabsHtml}
+      <div class="flex-1"></div>
+      <!-- Search -->
+      <div class="relative">
+        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search" class="pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
+      </div>
+      <button type="button" class="flex items-center justify-center shrink-0 border border-ink-200 rounded-lg text-ink-600 hover:bg-ink-50 hover:text-ink-900" style="width:32px;height:32px;" title="Reset filters" aria-label="Reset filters">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+      <select class="sel text-xs py-1.5">
+        <option>All</option><option>Active</option><option>Expired</option>
+      </select>
+      <select class="sel text-xs py-1.5">
+        <option>All Types</option><option>Hull &amp; Machinery</option><option>P&amp;I</option><option>War Risks</option>
+      </select>
+      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+        Edit Columns
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+    <!-- Delete bar -->
+    <div class="flex items-center gap-3 px-3 py-2 border-b border-ink-100 bg-ink-50/50">
+      <button class="flex items-center gap-1.5 text-xs border border-ink-200 rounded-md px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        Delete
+      </button>
+      <span class="text-xs text-ink-400">0 selected</span>
+    </div>
+    <!-- Table -->
+    <div class="overflow-x-auto scroll-thin pol-table-scroll">
+      <table class="pol-table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></th>
+            <th>Policy Number</th>
+            <th>Vessel Name</th>
+            <th>Exposure</th>
+            <th>Total Insured Value</th>
+            <th>Coverage Period</th>
+            <th>Policy Type</th>
+            <th>Placement Type</th>
+            <th>Insurer Details</th>
+            <th>Broker Details</th>
+            <th>Assured Details</th>
+            <th>UMR</th>
+            <th>Delegate Details</th>
+            <th>Underwriter</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(p => `
+            <tr>
+              <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></td>
+              <td class="lnk">${p.num}</td>
+              <td class="lnk"><a href="VesselDetails.html">${p.vessel}</a></td>
+              <td style="font-weight:600;">${p.exp}</td>
+              <td>${p.tiv}</td>
+              <td style="color:#64748b;font-size:11.5px;">${p.period}</td>
+              <td>${p.type}</td>
+              <td style="color:#64748b;">${p.placement}</td>
+              <td style="color:#64748b;">${p.insurer}</td>
+              <td style="color:#64748b;">${p.broker}</td>
+              <td style="color:#64748b;">${p.assured}</td>
+              <td style="font-size:11px;color:#64748b;font-family:monospace;">${p.umr}</td>
+              <td style="color:#64748b;">${p.delegate}</td>
+              <td style="color:#64748b;">${p.uw}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="pol-cards">
+      ${rows.map((p, i) => `
+        <article class="pcard">
+          <div class="pcard-top">
+            <div class="pcard-id">
+              <span class="pcard-title">${p.num}</span>
+              <div class="pcard-sub"><a href="VesselDetails.html" class="lnk">${p.vessel}</a></div>
+            </div>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;">${p.type}</span>
+          </div>
+          <div class="pcard-key">
+            <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${p.exp}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Total Insured Value</span><span class="pcard-v is-strong">${p.tiv}</span></div>
+            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Coverage Period</span><span class="pcard-v">${p.period}</span></div>
+          </div>
+          <div class="pcard-more" id="pcard-more-${i}">
+            <div class="pcard-key">
+              <div class="pcard-kv"><span class="pcard-k">Placement Type</span><span class="pcard-v">${p.placement}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Insurer Details</span><span class="pcard-v">${p.insurer}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Broker Details</span><span class="pcard-v">${p.broker}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Assured Details</span><span class="pcard-v">${p.assured}</span></div>
+              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">UMR</span><span class="pcard-v is-mono">${p.umr}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Delegate Details</span><span class="pcard-v">${p.delegate}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Underwriter</span><span class="pcard-v">${p.uw}</span></div>
+            </div>
+          </div>
+          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="pcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </article>`).join('')}
+    </div>
+    ${dsPagination({
+      page: policyPage,
+      totalPages,
+      totalItems: POLICIES.length,
+      perPage: POLICY_PAGE_SIZE,
+      perPageOptions: [10, 25, 50],
+      label: 'policies',
+    })}
+  </div>`;
+}
+
+function positionTabPills() {
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.ds-tabs').forEach(group => {
+      const pill   = group.querySelector('[data-tab-pill]');
+      const active = group.querySelector('.ds-tab[aria-selected="true"]');
+      if (!pill || !active) return;
+      const gRect = group.getBoundingClientRect();
+      const aRect = active.getBoundingClientRect();
+      if (!aRect.width) return;
+      pill.style.width     = aRect.width + 'px';
+      pill.style.transform = `translateX(${aRect.left - gRect.left}px)`;
+      requestAnimationFrame(() => pill.classList.remove('is-init'));
+    });
+  });
 }
 
 /* Lucide glyph at any size */
@@ -218,6 +482,9 @@ function Main() {
         ${GroupDetailsCard(details)}
         ${TotalsCard()}
       </div>
+      <div style="margin-top:12px">
+        ${PolicySection()}
+      </div>
     </div>
   </div>`;
 }
@@ -233,7 +500,45 @@ window.render = function () {
   SC.wireChrome();
   const dl = document.getElementById('pgo-download');
   if (dl) dl.addEventListener('click', () => downloadReport(window.__pgoDetails));
+
+  /* Policy / Asset / Map card */
+  positionTabPills();
+  (function syncPolCardHeight() {
+    const pc = document.getElementById('pol-card');
+    if (pc) { window.__polCardH = pc.offsetHeight; return; }
+    const c = document.getElementById('ad-card') || document.getElementById('pm-card');
+    if (c && window.__polCardH && window.innerWidth > 860) { c.style.height = window.__polCardH + 'px'; c.classList.add('pol-fixed'); }
+  })();
+  wireAssetDetails();
+  wirePortfolioMap();
+  const pvwSel = document.getElementById('pvw-select');
+  if (pvwSel) pvwSel.onchange = () => { policyView = pvwSel.value; window.render(); };
+  document.querySelectorAll('[data-pvw]').forEach(btn => {
+    btn.onclick = () => {
+      policyView = btn.dataset.pvw;
+      const group = btn.closest('.ds-tabs');
+      if (group) {
+        group.querySelectorAll('.ds-tab').forEach(t => t.setAttribute('aria-selected', String(t === btn)));
+        positionTabPills();
+        setTimeout(() => window.render(), 220);
+      } else { window.render(); }
+    };
+  });
+  if (!window.__pcardWired) {
+    window.__pcardWired = true;
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('.pcard-toggle');
+      if (!t) return;
+      const card = t.closest('.pcard');
+      const open = card.classList.toggle('open');
+      t.setAttribute('aria-expanded', String(open));
+      t.querySelector('.pcard-toggle-txt').textContent = open ? 'Show less' : 'Show more';
+    });
+  }
+  const pag = document.querySelector('#pol-card .ds-pagination-wrap');
+  if (pag) dsWirePagination(pag, { onPage: (p) => { policyPage = p; window.render(); } });
 };
+window.addEventListener('resize', positionTabPills, { passive: true });
 window.render();
 </script>
 </body>
