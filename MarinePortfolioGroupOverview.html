@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}},boxShadow:{card:'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)','card-hover':'0 4px 10px -2px rgb(15 23 42 / 0.08), 0 8px 24px -4px rgb(15 23 42 / 0.08)'}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
@@ -105,7 +105,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .pcard-k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#94a3b8; }
   .pcard-v { font-size:13.5px; font-weight:500; color:#334155; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
   .pcard-v.is-strong { font-size:15px; font-weight:700; color:#0f172a; }
-  .pcard-v.is-mono { font-family:monospace; font-size:12px; }
+  .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
   .pcard-more { display:none; }
   .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e2e8f0; animation:pcardIn .22s ease; }
   @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
@@ -481,7 +481,7 @@ function PolicySection() {
               <td style="color:#64748b;">${p.insurer}</td>
               <td style="color:#64748b;">${p.broker}</td>
               <td style="color:#64748b;">${p.assured}</td>
-              <td style="font-size:11px;color:#64748b;font-family:monospace;">${p.umr}</td>
+              <td style="font-size:11px;color:#64748b;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
               <td style="color:#64748b;">${p.delegate}</td>
               <td style="color:#64748b;">${p.uw}</td>
             </tr>`).join('')}

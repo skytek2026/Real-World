@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script>
   tailwind.config = {
     theme: { extend: {
@@ -123,7 +123,7 @@
   .pcard-k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#94a3b8; }
   .pcard-v { font-size:13.5px; font-weight:500; color:#334155; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
   .pcard-v.is-strong { font-size:15px; font-weight:700; color:#0f172a; }
-  .pcard-v.is-mono { font-family:monospace; font-size:12px; }
+  .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
   .pcard-more { display:none; }
   .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e2e8f0; animation:pcardIn .22s ease; }
   @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
@@ -1243,7 +1243,7 @@ function PolicySection() {
               <td style="color:#64748b;">${p.insurer}</td>
               <td style="color:#64748b;">${p.broker}</td>
               <td style="color:#64748b;">${p.assured}</td>
-              <td style="font-size:11px;color:#64748b;font-family:monospace;">${p.umr}</td>
+              <td style="font-size:11px;color:#64748b;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
               <td style="color:#64748b;">${p.delegate}</td>
               <td style="color:#64748b;">${p.uw}</td>
             </tr>`).join('')}
