@@ -613,6 +613,10 @@ function applyTweaks() {
     .text-brand-500{color:${c[500]}!important}.text-brand-600{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
     .border-brand-300{border-color:${c[300]}!important}.border-brand-500{border-color:${c[500]}!important}
     .ring-brand-100{--tw-ring-color:${c[100]}!important}
+    /* Every scrollbar in the app is the thin style. The colour rule here makes current Chrome/Edge
+       ignore ::-webkit-scrollbar widths, so the width has to be set the standard way too.
+       Low specificity on purpose: class rules such as scrollbar-width:none still win. */
+    html, html body, html *{scrollbar-width:thin}
     html:not([data-theme="dark"]), html:not([data-theme="dark"]) body, html:not([data-theme="dark"]) *{scrollbar-color:${c[400]} #f3f4f6!important}
     html:not([data-theme="dark"])::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb{background:${c[400]}!important;border-radius:999px}
     html:not([data-theme="dark"])::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb:hover{background:${c[600]}!important}
