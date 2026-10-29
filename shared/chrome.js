@@ -617,6 +617,14 @@ function applyTweaks() {
        ignore ::-webkit-scrollbar widths, so the width has to be set the standard way too.
        Low specificity on purpose: class rules such as scrollbar-width:none still win. */
     html, html body, html *{scrollbar-width:thin}
+    /* Dark theme form fields: text inputs, text areas and dropdowns that would otherwise stay white.
+       background-color only (keeps dropdown arrow images). Fields styled inside a search box
+       (.search-input, .vh-search) stay transparent. */
+    html[data-theme="dark"] :is(input, textarea, select):not(:where([type=checkbox],[type=radio],[type=range],[type=file],[type=color],[type=hidden],[type=submit],[type=button])){background-color:#161f2e;color:#e7ecf4;border-color:#2a374d}
+    html[data-theme="dark"] :is(input, textarea, select):is([style*="background:#fff"],[style*="background: #fff"],[style*="background:#ffffff"],[style*="background:white"],[style*="background-color:#fff"],[style*="background:var(--white"]){background-color:#161f2e!important;color:#e7ecf4!important}
+    html[data-theme="dark"] :is(.search-input, .vh-search) input{background-color:transparent}
+    html[data-theme="dark"] :is(input, textarea)::placeholder{color:#7d8aa0}
+    html[data-theme="dark"] :is(input, textarea, select):not(:where([type=checkbox],[type=radio],[type=range])):focus{border-color:var(--brand-400,#60a5fa)}
     /* Risk Score gauge: the red "sanctioned" border is a class (works in light and dark, animates). */
     .co-rs-gauge{transition:border-color .5s ease}
     .co-rs-gauge.co-rs-gauge--still{transition:none}
