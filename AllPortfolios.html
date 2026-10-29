@@ -83,6 +83,8 @@
   .uap-primary:hover { background:var(--brand-700,#1d4ed8) !important; }
   .porto-name { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; display:flex; align-items:flex-start; gap:8px; line-height:18px; }
   .porto-name svg { width:14px; height:14px; flex-shrink:0; margin-top:2px; }
+  a.porto-name { text-decoration:none; }
+  a.porto-name:hover { text-decoration:underline; text-underline-offset:2px; }
   .group-row td:first-child > .flex { align-items:flex-start; }
   .group-row .group-toggle, .group-row .folder-ico { margin-top:-1px; }
   .porto-name:hover { color:var(--brand-700,#1d4ed8); }
@@ -378,6 +380,14 @@ function PortfoliosTable(rows) {
     </div>`;
 }
 
+/* Marine group names open the Portfolio Group Overview; other categories keep toggling the group. */
+function groupNameHTML(g, isOpen) {
+  if (catTab === 'Marine') {
+    return `<a class="porto-name" href="MarinePortfolioGroupOverview.html?group=${encodeURIComponent(g.name)}" data-pf-group-link="${escapeAttr(g.name)}">${g.name}</a>`;
+  }
+  return `<span class="porto-name" role="button" tabindex="0" aria-expanded="${isOpen}" data-group-toggle="${escapeAttr(g.name)}">${g.name}</span>`;
+}
+
 function GroupsTable(groups) {
   const childRow = (c) => `
     <tr class="group-child">
@@ -422,7 +432,7 @@ function GroupsTable(groups) {
                 <button class="group-toggle" data-group-toggle="${escapeAttr(g.name)}" aria-expanded="${isOpen}" title="${isOpen ? 'Collapse' : 'Expand'}">
                   <span class="folder-ico" style="color:var(--brand-600,#2563eb);display:inline-flex;">${isOpen ? FOLDER_OPEN_ICO : FOLDER_CLOSED_ICO}</span>
                 </button>
-                <span class="porto-name" role="button" tabindex="0" aria-expanded="${isOpen}" data-group-toggle="${escapeAttr(g.name)}">${g.name}</span>
+                ${groupNameHTML(g, isOpen)}
               </div>
             </td>
             <td class="tabular-nums">${g.policies.toLocaleString()}</td>
@@ -470,7 +480,7 @@ function GroupsTable(groups) {
               <button class="group-toggle" data-group-toggle="${escapeAttr(g.name)}" aria-expanded="${isOpen}" aria-controls="pg-kids-${escapeAttr(g.name).replace(/[^A-Za-z0-9]/g, '-')}" title="${isOpen ? 'Collapse' : 'Expand'}">
                 <span class="folder-ico" style="color:var(--brand-600,#2563eb);display:inline-flex;">${isOpen ? FOLDER_OPEN_ICO : FOLDER_CLOSED_ICO}</span>
               </button>
-              <span class="porto-name" role="button" tabindex="0" aria-expanded="${isOpen}" data-group-toggle="${escapeAttr(g.name)}">${g.name}</span>
+              ${groupNameHTML(g, isOpen)}
             </div>
           </dd></div>
         </dl>
@@ -638,6 +648,16 @@ window.render = function() {
   if (pp) pp.addEventListener('change', e => { perPage = parseInt(e.target.value); render(); });
 
   /* Group expand/collapse */
+  /* Marine group name → Portfolio Group Overview (group also passed in the URL) */
+  document.querySelectorAll('[data-pf-group-link]').forEach(a => {
+    a.addEventListener('click', () => {
+      const g = (PORTFOLIO_GROUPS[catTab] || []).find(x => x.name === a.dataset.pfGroupLink);
+      if (g) sessionStorage.setItem('selectedPortfolioGroup', JSON.stringify({
+        name: g.name, policies: g.policies, exposure: g.exposure, portfolios: (g.children || []).map(c => c.name), category: catTab
+      }));
+    });
+  });
+
   document.querySelectorAll('[data-group-toggle]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
