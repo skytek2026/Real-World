@@ -160,7 +160,17 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .rs-dtip i{width:10px;height:10px;border-radius:2px;display:inline-block}
 </style>
 <style>@media(max-width:639px){.co-rs-toggles,.co-rs-grid{display:contents !important}.co-rs-sanc{order:1;align-self:flex-end;flex-direction:row-reverse}.co-rs-gauge{order:2}.co-rs-trend{order:3;align-self:flex-end;margin-top:4px}.co-rs-years{order:4}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:5}}</style>
-<style>.rs-tip{display:none}.rs-info:hover .rs-tip,.rs-info:focus-within .rs-tip{display:block}</style>
+<style>.rs-tip{display:none}.rs-info:hover .rs-tip,.rs-info:focus-within .rs-tip{display:block}  /* ── Environmental Rating (copied from Marine Portfolio Details) ── */
+  .env-cols > * { min-width:0; padding:0 24px; }
+  .env-cols > *:first-child { padding-left:0; }
+  .env-cols > *:last-child { padding-right:0; }
+  .env-cols > * + * { border-left:1px solid #e2e8f0; }
+  @media (max-width:767px) {
+    .env-cols > * { padding:20px 0 0; }
+    .env-cols > *:first-child { padding-top:0; }
+    .env-cols > * + * { border-left:0; border-top:1px solid #e2e8f0; margin-top:20px; }
+  }
+</style>
 </head>
 <body class="bg-slate-100 text-slate-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
@@ -175,8 +185,6 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/marine-asset-details.js"></script>
@@ -379,7 +387,7 @@ function PolicySection() {
   const rows = POLICIES.slice((policyPage-1)*POLICY_PAGE_SIZE, policyPage*POLICY_PAGE_SIZE);
   const chev = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">`;
   const tabsHtml = `
-      <div class="analysis-tabs-mobile pvw-mobile"><select id="pvw-select" aria-label="Select view">${[['details','Policy Details'],['list','Asset Details'],['map','Map']].map(([v,l]) => `<option value="${v}" ${policyView===v?'selected':''}>${l}</option>`).join('')}</select></div>
+      <div class="analysis-tabs-mobile pvw-mobile"><select id="pvw-select" aria-label="Select view">${[['details','Policy Details'],['list','Asset Details'],['env','Environmental Rating']].map(([v,l]) => `<option value="${v}" ${policyView===v?'selected':''}>${l}</option>`).join('')}</select></div>
       <div class="ds-tabs shrink-0 mobile-stretch pvw-desktop" id="policy-view-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         <button class="ds-tab" aria-selected="${policyView==='details'}" data-pvw="details">
@@ -394,16 +402,16 @@ function PolicySection() {
             Asset Details
           </span>
         </button>
-        <button class="ds-tab" aria-selected="${policyView==='map'}" data-pvw="map">
+        <button class="ds-tab" aria-selected="${policyView==='env'}" data-pvw="env">
           <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-            Map
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            Environmental Rating
           </span>
         </button>
       </div>
 `;
   if (policyView === 'list') return AssetDetailsSection(tabsHtml);
-  if (policyView === 'map') return PortfolioMapSection(tabsHtml);
+  if (policyView === 'env') return EnvironmentalSection(tabsHtml);
 
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="pol-card">
@@ -534,6 +542,124 @@ function positionTabPills() {
       requestAnimationFrame(() => pill.classList.remove('is-init'));
     });
   });
+}
+
+/* ── Environmental Rating tab (content copied from MarinePortfolioDetails.html) ── */
+const ENV_RATING = {
+  grade: 'B',
+  operational: [
+    { label:'Avg. Required EEXI:', value:'5.53' },
+    { label:'Avg. Attained EEXI:', value:'5.81' },
+    { label:'Avg. Required CII:',  value:'7.42' },
+    { label:'Avg. Attained CII:',  value:'7.11' },
+  ],
+  operationalAspect: [
+    { label:'Major Superior', badge:'A', color:'#2e7d4f' },
+    { label:'Minor Superior', badge:'B', color:'#6fa84a', icon:true },
+    { label:'Moderate',       badge:'C', color:'#c9a227' },
+    { label:'Minor Inferior', badge:'D', color:'#d97706' },
+    { label:'Inferior',       badge:'E', color:'#c0392b' },
+  ],
+  technical: [
+    { label:'Avg. Required EEXI:', value:'5.53', sub:'1,202.08 Hrs\nAverage time spent at sea', pct:'13%' },
+    { label:'Avg. Attained EEXI:', value:'5.81', sub:'3,660.09 CO₂\nAverage CO₂ emissions 2022 [in tonnes]' },
+    { label:'Avg. Required CII:',  value:'7.42' },
+    { label:'Avg. Attained CII:',  value:'7.11', sub:'6 days\nAverage Time in ECA', pct:'13%' },
+    { label:'Average Speed:',      value:'11.04 Kts' },
+  ],
+  compliance: [
+    { label:'Sox/Nox reduction measures',   value:'None Specified', pct:'75%' },
+    { label:'Ballast treatment compliance', value:'None Specified', pct:'75%' },
+    { label:'Recycling compliance',         value:'None Specified', pct:'75%' },
+    { label:'IHM Green Passport',           value:'75%' },
+    { label:'Open Loop (MG)',               value:'25%' },
+  ],
+};
+
+function EnvironmentalRatingContent() {
+  const gradeBox = `
+    <div class="flex items-center justify-center w-20 h-20 rounded-lg mb-3" style="background:#6fa84a;">
+      <span class="text-4xl font-bold text-white">${ENV_RATING.grade}</span>
+    </div>`;
+
+  const aspectBadge = (item) => `
+    <div class="flex items-center justify-between py-1.5">
+      <span class="text-xs text-ink-700">${item.label}</span>
+      <div class="flex items-center gap-2">
+        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
+        <span class="px-2 py-0.5 rounded text-xs font-bold text-white" style="background:${item.color}">${item.badge}</span>
+      </div>
+    </div>`;
+
+  return `
+    <div class="p-1">
+      <div class="text-sm font-semibold text-ink-900 mb-4">Environmental Rating 2025Q4</div>
+      <div class="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)] env-cols">
+        <!-- Left: Operational -->
+        <div>
+          <div class="text-xs font-semibold text-ink-900 mb-3">Operational - CII (Carbon Intensity Fleet Index)</div>
+          ${gradeBox}
+          <div class="space-y-2">
+            ${ENV_RATING.operational.map(item => `
+              <div class="flex justify-between text-xs">
+                <span class="text-ink-700">${item.label}</span>
+                <span class="${item.label.includes('Attained') ? 'text-red-600 font-semibold' : 'text-ink-900 font-medium'}">${item.value}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <!-- Middle: Operational Aspect -->
+        <div>
+          <div class="text-xs font-semibold text-ink-900 mb-3">Operational Aspect</div>
+          <div class="space-y-1">
+            ${ENV_RATING.operationalAspect.map(aspectBadge).join('')}
+          </div>
+        </div>
+        <!-- Right: Technical Aspect -->
+        <div>
+          <div class="text-xs font-semibold text-ink-900 mb-3">Technical Aspect</div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 items-start">
+          <div class="space-y-2 min-w-0">
+            ${ENV_RATING.technical.slice(0,5).map(item => `
+              <div class="flex justify-between items-start text-xs">
+                <div class="flex-1">
+                  <div class="flex items-center justify-between mb-0.5">
+                    <span class="text-ink-700">${item.label}</span>
+                    <span class="${item.label.includes('Attained') ? 'text-red-600 font-semibold' : 'text-ink-900 font-medium'}">${item.value}</span>
+                  </div>
+                  ${item.sub ? `<div class="text-[10px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
+                  ${item.sub && item.sub.includes('\n') ? `<div class="text-[10px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+            <div class="space-y-2 min-w-0">
+              ${ENV_RATING.compliance.map(item => `
+                <div class="flex justify-between text-xs">
+                  <span class="text-ink-700">${item.label}</span>
+                  <div class="flex items-center gap-2">
+                    <span class="text-ink-600">${item.value}</span>
+                    ${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function EnvironmentalSection(tabsHtml) {
+  return `
+  <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="env-card">
+    <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">
+      ${tabsHtml}
+    </div>
+    <div class="p-3">
+      ${EnvironmentalRatingContent()}
+    </div>
+  </div>`;
 }
 
 /* Lucide glyph at any size */
@@ -694,7 +820,6 @@ window.render = function () {
     if (c && window.__polCardH && window.innerWidth > 860) { c.style.height = window.__polCardH + 'px'; c.classList.add('pol-fixed'); }
   })();
   wireAssetDetails();
-  wirePortfolioMap();
   const pvwSel = document.getElementById('pvw-select');
   if (pvwSel) pvwSel.onchange = () => { policyView = pvwSel.value; window.render(); };
   document.querySelectorAll('[data-pvw]').forEach(btn => {
