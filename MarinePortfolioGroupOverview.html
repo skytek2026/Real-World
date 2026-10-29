@@ -18,16 +18,40 @@ a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;bo
 .pgo-back svg{width:13px;height:13px}
 .pgo-eyebrow{font-size:12px;font-weight:600;color:#64748b}
 .pgo-title{font-family:'Exo',sans-serif;font-weight:700;font-size:26px;line-height:1.2;color:#0f172a;margin-top:2px;overflow-wrap:anywhere}
-.pgo-empty{border:1.5px dashed #cbd5e1;border-radius:12px;padding:40px 20px;text-align:center}
-.pgo-empty-ico{width:44px;height:44px;margin:0 auto;border-radius:10px;display:grid;place-items:center;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
-.pgo-empty-ico svg{width:22px;height:22px}
-.pgo-empty h2{font-size:15px;font-weight:600;color:#0f172a;margin-top:12px}
-.pgo-empty p{font-size:13.5px;color:#64748b;margin-top:4px;max-width:46ch;margin-left:auto;margin-right:auto;line-height:1.5}
-html[data-theme="dark"] .pgo-title,html[data-theme="dark"] .pgo-empty h2{color:#e7ecf4}
-html[data-theme="dark"] .pgo-eyebrow,html[data-theme="dark"] .pgo-empty p{color:#93a0b4}
-html[data-theme="dark"] .pgo-empty{border-color:#34435c}
-html[data-theme="dark"] .pgo-empty-ico{background:color-mix(in srgb,var(--brand-500,#3b82f6) 18%,transparent);color:var(--brand-300,#93c5fd)}
-html[data-theme="dark"] a{color:var(--brand-300,#93c5fd)}
+.pgo-grid{display:grid;gap:12px;grid-template-columns:1fr;margin-top:12px}
+@media (min-width:1024px){.pgo-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.pgo-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 4px 0 rgb(15 23 42/.08),0 1px 2px 0 rgb(15 23 42/.06);display:flex;flex-direction:column}
+.pgo-card-h{padding:12px 14px;border-bottom:1px solid #f1f5f9}
+.pgo-card-h h2{font-size:14px;font-weight:700;color:#0f172a}
+.pgo-fields{padding:2px 14px 6px;margin:0}
+.pgo-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #f1f5f9}
+.pgo-row:last-child{border-bottom:0}
+.pgo-row dt{display:flex;align-items:center;gap:7px;font-size:12px;color:#64748b;flex-shrink:0}
+.pgo-row dt svg{width:15px;height:15px;flex-shrink:0;color:var(--brand-600,#2d7ffb)}
+.pgo-row dd{margin:0;font-size:13px;font-weight:600;color:#0f172a;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
+.pgo-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
+.pgo-badge i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.pgo-badge--ok{background:#dcfce7;color:#15803d}.pgo-badge--warn{background:#fef3c7;color:#b45309}.pgo-badge--bad{background:#fee2e2;color:#dc2626}
+.pgo-flags{display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.pgo-flags img{width:20px;height:14px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
+.pgo-more{font-size:11px;font-weight:600;color:#64748b}
+.pgo-foot{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid #eceef2;background:#f9fafb;margin-top:auto}
+.pgo-ghost{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font:600 11px/1 'Inter',sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2d7ffb)}
+.pgo-ghost:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8)}
+.pgo-ghost:focus-visible{outline:2px solid #60a5fa;outline-offset:1px}
+.pgo-ghost svg{width:14px;height:14px}
+@media (max-width:639px){.pgo-row{align-items:flex-start}.pgo-row dt{flex-shrink:1;min-width:0}}
+html[data-theme="dark"] .pgo-card{background:#161f2e;border-color:#243046;box-shadow:none}
+html[data-theme="dark"] .pgo-card-h,html[data-theme="dark"] .pgo-row{border-color:#1f2a3d}
+html[data-theme="dark"] .pgo-card-h h2,html[data-theme="dark"] .pgo-row dd{color:#e7ecf4}
+html[data-theme="dark"] .pgo-row dt,html[data-theme="dark"] .pgo-more{color:#93a0b4}
+html[data-theme="dark"] .pgo-row dt svg,html[data-theme="dark"] .pgo-ghost{color:var(--brand-300,#93c5fd)}
+html[data-theme="dark"] .pgo-foot{background:#121a27;border-color:#212d40}
+html[data-theme="dark"] .pgo-ghost:hover{background:#1e293b}
+html[data-theme="dark"] .pgo-badge--ok{background:rgba(34,197,94,.16);color:#86efac}
+html[data-theme="dark"] .pgo-badge--warn{background:rgba(245,158,11,.16);color:#fcd34d}
+html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fca5a5}
+html[data-theme="dark"] .pgo-title,html[data-theme="dark"] html[data-theme="dark"] .pgo-eyebrow,html[data-theme="dark"] html[data-theme="dark"] html[data-theme="dark"] html[data-theme="dark"] a{color:var(--brand-300,#93c5fd)}
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -56,9 +80,102 @@ function selectedGroup() {
   return stored;
 }
 
+/* Lucide glyph at any size */
+function icon(name) {
+  const d = window.lucide && lucide.icons && lucide.icons[name];
+  if (!d) return '';
+  const [tag, attrs, kids] = d;
+  const a = o => Object.entries(o).map(([k, v]) => `${k}="${v}"`).join(' ');
+  return `<${tag} ${a(attrs)} aria-hidden="true">${(kids || []).map(([t, ca]) => `<${t} ${a(ca)}/>`).join('')}</${tag}>`;
+}
+const toNum = v => typeof v === 'number' ? v : (v ? parseFloat(String(v).replace(/[^0-9.]/g, '')) : NaN);
+
+/* Group Details. Uses the group's own data where the dashboards provide it (policies, active
+   policies, risk, compliance); the remaining fields are prototype placeholders, seeded from the
+   group name so each group always shows the same values. */
+function groupDetails(g) {
+  let seed = 0; for (const ch of (g.name || 'group')) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+  const rnd = () => { seed = (seed + 0x6D2B79F5) >>> 0; let t = seed; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const between = (lo, hi) => lo + rnd() * (hi - lo);
+
+  const total = Number.isFinite(toNum(g.policies)) ? Math.round(toNum(g.policies)) : Math.round(between(150, 6000));
+  const active = Number.isFinite(toNum(g.policiesActive)) ? Math.round(toNum(g.policiesActive)) : Math.max(0, total - Math.round(total * between(0, 0.04)));
+  const risk = Number.isFinite(toNum(g.risk)) ? toNum(g.risk) : Math.round(between(12, 62));
+  const st = String(g.status || '').toLowerCase();
+  const compliance = st === 'ok' ? 'Ok' : st === 'warning' ? 'Warning' : st === 'sanctioned' || st === 'non-compliant' ? 'Sanctioned'
+                   : (r => r < 0.6 ? 'Ok' : r < 0.9 ? 'Warning' : 'Sanctioned')(rnd());
+  const POOL = [['pa','Panama'],['lr','Liberia'],['mh','Marshall Islands'],['mt','Malta'],['sg','Singapore'],['gr','Greece'],['bs','Bahamas'],['cy','Cyprus'],['no','Norway'],['hk','Hong Kong'],['gb','United Kingdom'],['nl','Netherlands'],['cn','China'],['jp','Japan'],['ae','United Arab Emirates'],['tr','Turkey']];
+  const nCountries = Math.round(between(4, 16));
+  const countries = POOL.slice().sort(() => rnd() - 0.5).slice(0, nCountries);
+  return {
+    name: g.name || 'Portfolio group',
+    total, active,
+    casualties: Math.round(total * between(0.004, 0.018)),
+    risk,
+    age: between(7, 19).toFixed(1),
+    gt: Math.round(total * between(9000, 38000)),
+    inspections: between(1.4, 4.6).toFixed(1),
+    compliance,
+    countries
+  };
+}
+
+function riskColour(n) { return n <= 25 ? '#16a34a' : n <= 50 ? '#d97706' : '#dc2626'; }   // Good / Average / Below average bands
+
+function GroupDetailsCard(d) {
+  const badge = { Ok:'pgo-badge--ok', Warning:'pgo-badge--warn', Sanctioned:'pgo-badge--bad' }[d.compliance];
+  const flags = d.countries.slice(0, 4).map(([cc, n]) => `<img src="flags/${cc}.svg" alt="${esc(n)}" title="${esc(n)}" loading="lazy">`).join('');
+  const rows = [
+    ['Tag',           'Name',                         esc(d.name)],
+    ['FileText',      'Total Number of Policies',     d.total.toLocaleString()],
+    ['CircleCheck',   'Number of Active Policies',    d.active.toLocaleString()],
+    ['TriangleAlert', 'Total Casualties',             d.casualties.toLocaleString()],
+    ['Gauge',         'Average Risk Score',           `<span style="color:${riskColour(d.risk)}">${d.risk}</span>`],
+    ['Calendar',      'Average Portfolio Age',        `${d.age} years`],
+    ['Anchor',        'Total Gross Tonnage',          `${d.gt.toLocaleString()} GT`],
+    ['Clipboard',     'Average Inspections',          d.inspections],
+    ['ShieldCheck',   'Overall Sanctions Compliance', `<span class="pgo-badge ${badge}"><i></i>${d.compliance}</span>`],
+    ['Globe',         'Monitored Countries',          `<span class="pgo-flags">${flags}<span>${d.countries.length} <span class="pgo-more">${d.countries.length === 1 ? 'country' : 'countries'}</span></span></span>`],
+  ];
+  return `
+  <section class="pgo-card" aria-labelledby="pgo-details-h">
+    <div class="pgo-card-h"><h2 id="pgo-details-h">Group Details</h2></div>
+    <dl class="pgo-fields">
+      ${rows.map(([ico, label, val]) => `<div class="pgo-row"><dt>${icon(ico)}${label}:</dt><dd>${val}</dd></div>`).join('')}
+    </dl>
+    <div class="pgo-foot">
+      <button type="button" class="pgo-ghost" id="pgo-download">${icon('Download')}<span>Download report</span></button>
+    </div>
+  </section>`;
+}
+
+function downloadReport(d) {
+  const rows = [
+    ['Group Details', ''],
+    ['Name', d.name],
+    ['Total Number of Policies', d.total],
+    ['Number of Active Policies', d.active],
+    ['Total Casualties', d.casualties],
+    ['Average Risk Score', d.risk],
+    ['Average Portfolio Age (years)', d.age],
+    ['Total Gross Tonnage (GT)', d.gt],
+    ['Average Inspections', d.inspections],
+    ['Overall Sanctions Compliance', d.compliance],
+    ['Monitored Countries', `${d.countries.length}: ${d.countries.map(c => c[1]).join(', ')}`],
+    ['Generated', new Date().toISOString().slice(0, 10)],
+  ];
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8' }));
+  const a = Object.assign(document.createElement('a'), { href: url, download: `${d.name.replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'portfolio-group'}-group-details.csv` });
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
 function Main() {
-  const g = selectedGroup();
-  const name = g && g.name ? g.name : 'Portfolio group';
+  const g = selectedGroup() || {};
+  const name = g.name || 'Portfolio group';
+  const details = groupDetails(g);
+  window.__pgoDetails = details;
   document.title = `${name} — Portfolio Group Overview — Real World`;
   return `
   <div class="scroll-thin" style="flex:1;overflow-y:auto;padding:16px">
@@ -73,16 +190,9 @@ function Main() {
         <h1 id="pgo-title" class="pgo-title">${esc(name)}</h1>
       </section>
 
-      <!-- Page content goes here (to be defined). -->
-      <section class="bg-white rounded-xl border border-ink-200 shadow-sm" style="margin-top:12px;padding:16px" aria-label="Portfolio group content">
-        <div class="pgo-empty">
-          <div class="pgo-empty-ico" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
-          </div>
-          <h2>Overview content coming soon</h2>
-          <p>This page will show an overview of the ${esc(name)} portfolio group. Its content hasn’t been defined yet.</p>
-        </div>
-      </section>
+      <div class="pgo-grid">
+        ${GroupDetailsCard(details)}
+      </div>
     </div>
   </div>`;
 }
@@ -96,6 +206,8 @@ window.render = function () {
     </div>
     ${SC.TweaksPanel()}`;
   SC.wireChrome();
+  const dl = document.getElementById('pgo-download');
+  if (dl) dl.addEventListener('click', () => downloadReport(window.__pgoDetails));
 };
 window.render();
 </script>

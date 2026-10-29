@@ -653,7 +653,7 @@ window.render = function() {
     a.addEventListener('click', () => {
       const g = (PORTFOLIO_GROUPS[catTab] || []).find(x => x.name === a.dataset.pfGroupLink);
       if (g) sessionStorage.setItem('selectedPortfolioGroup', JSON.stringify({
-        name: g.name, policies: g.policies, exposure: g.exposure, portfolios: (g.children || []).map(c => c.name), category: catTab
+        name: g.name, policies: g.policies, exposure: g.exposure, risk: g.risk, status: g.status, eemi: g.eemi, cii: g.cii, portfolios: (g.children || []).map(c => c.name), category: catTab
       }));
     });
   });
