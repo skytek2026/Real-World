@@ -126,7 +126,32 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   /* Mobile dropdown for analysis tabs (hidden by default) */
   .analysis-tabs-mobile { display:none; }
   .analysis-tabs-mobile select { width:100%; border:1px solid #e2e8f0; border-radius:9999px; padding:8px 32px 8px 14px; font-size:13px; font-weight:600; color:#0f172a; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
+  /* ── Risk Score card (copied from Marine Portfolio Details) ── */
+  /* Risk Score info popups (ported from Vessel Details) */
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer;margin-top:1px;}
+  .rs-info:hover{color:#2d7ffb;}
+  .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
+  .rs-tip.c{left:50%;transform:translateX(-50%);}
+  .rs-tip.l{left:-6px;}
+  .rs-tip.r{right:-6px;}
+  .rs-tip::after{content:'';position:absolute;bottom:100%;width:9px;height:9px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:translateY(50%) rotate(45deg);}
+  .rs-tip.c::after{left:50%;margin-left:-4.5px;}
+  .rs-tip.l::after{left:14px;}
+  .rs-tip.r::after{right:14px;}
+  .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f1f5f9;}
+  .rs-tip-tbl th:first-child{text-align:left;}
+  .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
+  .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
+  .rs-seg{cursor:pointer;transition:stroke-width .15s,opacity .15s}
+  svg:hover > .rs-seg{opacity:.55}svg > .rs-seg:hover{opacity:1;stroke-width:19}
+  .rs-dtip{position:fixed;z-index:1200;pointer-events:none;display:none;align-items:center;gap:6px;padding:5px 9px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 4px 12px rgba(15,23,42,.12);font-size:12px;color:#111827;white-space:nowrap}
+  .rs-dtip i{width:10px;height:10px;border-radius:2px;display:inline-block}
 </style>
+<style>@media(max-width:639px){.co-rs-toggles,.co-rs-grid{display:contents !important}.co-rs-sanc{order:1;align-self:flex-end;flex-direction:row-reverse}.co-rs-gauge{order:2}.co-rs-trend{order:3;align-self:flex-end;margin-top:4px}.co-rs-years{order:4}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:5}}</style>
+<style>.rs-tip{display:none}.rs-info:hover .rs-tip,.rs-info:focus-within .rs-tip{display:block}</style>
 </head>
 <body class="bg-slate-100 text-slate-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
@@ -157,6 +182,159 @@ function selectedGroup() {
   try { stored = JSON.parse(sessionStorage.getItem('selectedPortfolioGroup') || 'null'); } catch (e) {}
   if (fromUrl) return stored && stored.name === fromUrl ? stored : { name: fromUrl };
   return stored;
+}
+
+/* ── Risk Score card (copied from MarinePortfolioDetails.html) ── */
+let mpWithSanctions = false;
+let mpWithTrends = true;
+const RS_FACTORS = [
+  { name:'AIS Coverage',      score:0,  impact:0    },
+  { name:'Days Loitering',     score:33, impact:0.50 },
+  { name:'Distance Sailed',    score:50, impact:0.75 },
+  { name:'Major Incidents',    score:0,  impact:0    },
+  { name:'Minor Incidents',    score:0,  impact:0    },
+  { name:'Overall Compliance', score:0,  impact:0    },
+  { name:'PSC Deficiencies',   score:44, impact:6.62 },
+];
+
+function mpAnimateRiskPie() {
+  const wrap = document.querySelector('.mp-rs-2026');
+  if (!wrap || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const gauge = wrap.closest('.co-rs-gauge');
+  const segs = [...wrap.querySelectorAll('.rs-seg')];
+  const finals = segs.map(s => s.getAttribute('stroke-dasharray'));
+  segs.forEach(s => { const C = (+s.getAttribute('r')) * 2 * Math.PI; s.style.transition = 'none'; s.setAttribute('stroke-dasharray', '0 ' + C.toFixed(3)); });
+  if (gauge) { gauge.style.transition = 'none'; gauge.style.borderColor = mpWithSanctions ? '#e5e7eb' : '#dc2626'; }
+  wrap.getBoundingClientRect();
+  requestAnimationFrame(() => {
+    segs.forEach((s, i) => { s.style.transition = 'stroke-dasharray .75s cubic-bezier(.22,1,.36,1) ' + (i * 60) + 'ms'; s.setAttribute('stroke-dasharray', finals[i]); });
+    if (gauge) { gauge.style.transition = 'border-color .5s ease'; gauge.style.borderColor = mpWithSanctions ? '#dc2626' : '#e5e7eb'; }
+  });
+  const center = wrap.querySelector('.mp-rs-center');
+  if (center) center.animate([{ opacity: 0, transform: 'scale(.85)' }, { opacity: 1, transform: 'scale(1.06)', offset: .7 }, { opacity: 1, transform: 'scale(1)' }], { duration: 500, easing: 'ease-out' });
+}
+
+function PanelRiskBreakdown() {
+    const rsScore = mpWithSanctions ? 100 : 58, rs2025 = 32, rs2024 = 6, rs2023 = 4;
+    const rsDelta25   = rsScore - rs2025;   // current (main gauge) vs 2025
+    const rsDelta2025 = rs2025  - rs2024;   // 2025 card vs 2024
+    const rsDelta24   = rs2024  - rs2023;   // 2024 card vs 2023
+    const rsPct = Math.round(Math.abs(rsDelta25) / rs2025 * 100);
+    const risk = rsScore <= 25
+      ? { label:'GOOD', c:'#16a34a', glow:'#16a34a', pillBg:'#dcfce7', pillTxt:'#15803d' }
+      : rsScore <= 50
+      ? { label:'AVERAGE RISK', c:'#d97706', glow:'#fef3c7', pillBg:'#fef3c7', pillTxt:'#b45309' }
+      : { label:'BELOW AVERAGE', c:'#dc2626', glow:'#fee2e2', pillBg:'#fee2e2', pillTxt:'#dc2626' };
+    // Year score → band colour (matches the gauge bands: green ≤25, orange ≤50, red >50)
+    const yearColor = s => s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626';
+    const yearPill  = s => s <= 25 ? { bg:'#dcfce7', txt:'#15803d' } : s <= 50 ? { bg:'#fef3c7', txt:'#b45309' } : { bg:'#fee2e2', txt:'#dc2626' };
+    // Gauge geometry: 270° arc, start=135° (7:30 o'clock), sweep clockwise
+    const CX=100, CY=108, R=80, RO=95, SW=11;
+    const toRad = d => d * Math.PI / 180;
+    const pt = (a, r) => [+(CX + r*Math.cos(toRad(a))).toFixed(2), +(CY + r*Math.sin(toRad(a))).toFixed(2)];
+    const [sx,sy]   = pt(135, R);   // arc track start
+    const [ex,ey]   = pt(45,  R);   // arc track end (135+270=405≡45°)
+    const [sox,soy] = pt(135, RO);  // outer dot ring start
+    const [eox,eoy] = pt(45,  RO);  // outer dot ring end
+    // Smooth gradient gauge: 54 fine arc segments, each with interpolated color
+    const GAUGE_MAX = 100, GAUGE_START = 135, GAUGE_SWEEP_DEG = 270;
+    const gAngle = s => GAUGE_START + (Math.min(s, GAUGE_MAX) / GAUGE_MAX) * GAUGE_SWEEP_DEG;
+    const arcD = (a1, a2, r) => {
+      const [x1,y1] = pt(a1, r), [x2,y2] = pt(a2, r);
+      const sw = ((a2 - a1) % 360 + 360) % 360;
+      return `M ${x1},${y1} A ${r},${r} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
+    };
+    // Banded segment color: green ≤25, orange ≤50, red >50
+    const gaugeColor = s => (s <= 25 ? '#16a34a' : s <= 50 ? '#d97706' : '#dc2626');
+    const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
+    // Continuous band arcs — divider only between the main bands (at 25 & 50)
+    const BANDS = mpWithSanctions ? [[0,100,'#dc2626']] : [[0,25,'#16a34a'],[25,50,'#d97706'],[50,100,'#dc2626']];
+    const BAND_GAP = 1.4; // degrees of separation between main bands
+    const segPaths = BANDS.map(([bs, be, col], bi) => {
+      const aStart = gAngle(bs) + (bi > 0 ? BAND_GAP / 2 : 0);
+      const aEnd   = gAngle(be) - (bi < BANDS.length - 1 ? BAND_GAP / 2 : 0);
+      const fillEnd = Math.max(bs, Math.min(rsScore, be));
+      const aFill = gAngle(fillEnd);
+      let out = '';
+      if (fillEnd > bs) out += `<path d="${arcD(aStart, Math.min(aFill, aEnd), R)}" fill="none" stroke="${col}" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      if (fillEnd < be) out += `<path d="${arcD(Math.max(aFill, aStart), aEnd, R)}" fill="none" stroke="#e5e7eb" stroke-width="${SW}" stroke-linecap="butt"/>`;
+      return out;
+    }).join('');
+    const glowColor = rsScore <= 25 ? '#16a34a' : rsScore <= 50 ? '#d97706' : '#fee2e2';
+    const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
+    const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
+    const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
+    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
+    const RS_BANDS = [
+      { k:'good', label:'Good',          range:'0 → 25',    c:'#16a34a' },
+      { k:'avg',  label:'Average',       range:'25+ → 50',  c:'#d97706' },
+      { k:'bad',  label:'Below average', range:'50+ → 100', c:'#dc2626' },
+    ];
+    const RS_DIST = {
+      2026: mpWithSanctions ? { good:0, avg:0, bad:21 } : { good:3, avg:6, bad:12 },
+      2025: { good:5, avg:11, bad:5 },
+      2024: { good:18, avg:2, bad:1 },
+    };
+    const deltaPill = (d, extra='') => { const up = d >= 0, p = yearPill(up ? 60 : 10);
+      return `<div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
+    const donut = (year, score, max, sw, numPx) => {
+      const dist = RS_DIST[year], total = RS_BANDS.reduce((t, b) => t + dist[b.k], 0);
+      const r = 50 - sw / 2, C = 2 * Math.PI * r, live = RS_BANDS.filter(b => dist[b.k] > 0), gap = live.length > 1 ? 0.9 : 0;
+      let off = 0;
+      const segs = live.map(b => { const n = dist[b.k], len = n / total * C, pct = Math.round(n / total * 100);
+        const el = `<circle class="rs-seg" cx="50" cy="50" r="${r}" fill="none" stroke="${b.c}" stroke-width="${sw}" stroke-dasharray="${Math.max(0, len - gap).toFixed(3)} ${(C - Math.max(0, len - gap)).toFixed(3)}" stroke-dashoffset="${(-off).toFixed(3)}" data-rs-tip="${b.label} (${pct}%): Num. Assets: ${n}" data-rs-c="${b.c}"><title>${year} · ${b.label} (${pct}%): ${n} assets</title></circle>`;
+        off += len; return el; }).join('');
+      return `<div class="${year === 2026 ? 'mp-rs-2026' : ''}" style="position:relative;width:100%;max-width:${max}px;aspect-ratio:1;">
+        <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="${year} average risk score ${score}; ${RS_BANDS.map(b => b.label + ' ' + dist[b.k]).join(', ')} assets">${segs}</svg>
+        <div class="mp-rs-center" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
+          ${year === 2026 && mpWithSanctions ? `<span style="font-size:${Math.round(numPx * 0.38)}px;font-weight:800;color:#111827;line-height:1;">Sanctioned</span>` : `<span style="font-size:${numPx}px;font-weight:800;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${score}</span>
+          ${year === 2026 ? '' : `<span style="font-size:${Math.max(10, Math.round(numPx / 3.4))}px;color:#6b7280;margin-top:2px;">Avg Score</span>`}`}
+        </div>
+      </div>`;
+    };
+    const yearPillTag = y => `<span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;">${y}</span>`;
+    let body = `
+    <div class="co-rs-body" style="padding:8px 12px 14px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:6px;">
+      <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:6px 8px;flex-wrap:wrap;">
+        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Trends
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#2d7ffb)':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+      </div>
+      <div class="co-rs-grid" style="display:grid;grid-template-columns:${mpWithTrends ? 'repeat(auto-fit,minmax(180px,1fr))' : '1fr'};gap:8px;">
+        <div class="co-rs-gauge" style="position:relative;background:#f9fafb;border:1px solid ${mpWithSanctions ? '#dc2626' : '#e5e7eb'};border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          With Sanctions
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+          </span>
+        </button>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
+          ${donut(2026, rsScore, 170, 8, 44)}
+          ${deltaPill(rsDelta25)}
+        </div>
+        ${mpWithTrends ? `
+        <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
+          ${[[2025, rs2025, rsDelta2025, 'c'], [2024, rs2024, rsDelta24, 'r']].map(([y, v, d, al]) => `
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(y)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st ' + y + ': ' + v, al)}</div></div>
+            ${donut(y, v, 104, 9, 24)}
+            ${deltaPill(d)}
+          </div>`).join('')}
+        </div>` : ''}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:11.5px;color:#334155;padding-top:0;">
+        ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#64748b;">[${b.range}]</span></span>`).join('')}
+      </div>
+    </div>`;
+  return `
+  <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0">
+    <div class="px-4 pt-3 pb-2 border-b border-ink-100"><div class="text-sm font-bold text-ink-900">Risk Score</div></div>
+    ${body}
+  </div>`;
 }
 
 /* ── Policy Details / Asset Details / Map card (copied from MarinePortfolioDetails.html).
@@ -467,6 +645,7 @@ function Main() {
       <div class="pgo-grid">
         ${GroupDetailsCard(details)}
         ${TotalsCard()}
+        ${PanelRiskBreakdown()}
       </div>
       <div style="margin-top:12px">
         ${PolicySection()}
@@ -486,6 +665,17 @@ window.render = function () {
   SC.wireChrome();
   const dl = document.getElementById('pgo-download');
   if (dl) dl.addEventListener('click', () => downloadReport(window.__pgoDetails));
+
+  /* Risk Score card: segment hover tooltip + toggles (same as Marine Portfolio Details) */
+  if (!window._rsTipWired) { window._rsTipWired = true;
+    const tip = document.createElement('div'); tip.className = 'rs-dtip'; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip);
+    document.addEventListener('mousemove', e => { const seg = e.target.closest && e.target.closest('[data-rs-tip]');
+      if (!seg) { tip.style.display = 'none'; return; }
+      tip.innerHTML = '<i style="background:' + seg.dataset.rsC + '"></i>' + seg.dataset.rsTip; tip.style.display = 'flex';
+      const w = tip.offsetWidth, x = Math.min(e.clientX + 14, innerWidth - w - 8); tip.style.left = x + 'px'; tip.style.top = (e.clientY + 14) + 'px'; });
+  }
+  document.querySelectorAll('[data-mp-trends]').forEach(b => b.onclick = () => { mpWithTrends = !mpWithTrends; window.render(); });
+  document.querySelectorAll('[data-mp-sanctions]').forEach(b => b.onclick = () => { mpWithSanctions = !mpWithSanctions; window.render(); mpAnimateRiskPie(); });
 
   /* Policy / Asset / Map card */
   positionTabPills();
