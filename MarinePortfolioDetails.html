@@ -47,6 +47,9 @@
   .pg-sum-l { font-size:11px; font-weight:500; color:#6b7280; margin-bottom:4px; }
   .pg-sum-v { font-size:20px; font-weight:700; color:#111827; font-variant-numeric:tabular-nums; letter-spacing:-.02em; line-height:1; }
   .pg-sum-div { width:1px; height:28px; background:var(--brand-100,#dbeafe); }
+  /* Dark theme: same tint/border the shared chrome gives the other metric strips */
+  html[data-theme="dark"] .pg-summary { background:#15233c; border-color:#2a374d; }
+  html[data-theme="dark"] .pg-sum-div { background:#2a374d; }
   .pg-table { width:100%; border-collapse:collapse; font-size:12px; }
   .pg-table thead th { position:sticky; top:0; z-index:1; background:#fff; border-bottom:1px solid #e2e8f0; text-align:left; padding:0; }
   .pg-table td { padding:9px 12px; border-bottom:1px solid #f1f5f9; color:#334155; white-space:nowrap; font-variant-numeric:tabular-nums; }
