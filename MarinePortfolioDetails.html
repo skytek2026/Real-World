@@ -969,9 +969,7 @@ function AffiliationsContent() {
       </div>`).join('')}
   </div>
   <p class="mt-4 text-xs leading-relaxed text-ink-600" style="text-wrap:pretty;">Each tile reads <strong class="font-semibold text-ink-800">unique companies / vessels with that role recorded</strong>. The denominator is <em>not</em> the whole portfolio — vessels with no value on file for the role are excluded and reported on a separate "not on file" line so the figures above aren't diluted by missing data. Placeholder entities ("Unknown", "Not Applicable", …) count as <em>no value on file</em>, not as companies. Tiles flagged <strong class="font-semibold text-red-600">red</strong> contain at least one sanctioned company; tiles flagged <strong class="font-semibold text-amber-600">amber</strong> contain a clean company that's linked to a sanctioned vessel in the portfolio. Tiles marked <em>not in summary</em> are excluded from the totals at the top of the page.</p>
-  <div class="mt-4 flex justify-center">
-    <button onclick="window.location.href='MarinePortfolioAffiliations.html'" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro"><span>VIEW DETAILS</span><span class="inline-flex items-center [&_svg]:h-3.5 [&_svg]:w-3.5">${SC.I.chev}</span></button>
-  </div>`;
+`;
 }
 
 function analysisContentFor(tab) {

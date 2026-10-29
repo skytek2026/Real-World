@@ -71,7 +71,7 @@ NAME_OVERRIDE = {
     'AssetOffshoreDetails.html': 'Offshore Energy Details',
     'VesselDetails.html': 'Vessel Details', 'VesselDetails-standalone.html': 'Vessel Details (standalone copy)',
     'VoyageHistory.html': 'Voyage History', 'VesselAffiliations.html': 'Vessel Affiliations',
-    'MarinePortfolioDetails.html': 'Marine Portfolio Details', 'MarinePortfolioAffiliations.html': 'Marine Portfolio Affiliations',
+    'MarinePortfolioDetails.html': 'Marine Portfolio Details',
     'Landing Page.html': 'Landing Page', 'index.html': 'Sign in (start page)', 'Login.html': 'Sign in',
     'MarineDashboard.html': 'Marine Dashboard', 'PropertyDashboard.html': 'Property Dashboard',
     'AviationDashboard.html': 'Aviation Dashboard', 'OffshoreDashboard.html': 'Offshore/Energy Dashboard',
