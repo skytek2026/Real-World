@@ -72,6 +72,19 @@
   .wx-tbl th{padding:10px 14px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap}
   .wx-tbl td{padding:12px 14px;font-size:13px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
   .wx-tbl tr:hover td{background:#f8fafc}
+  /* List view: table on wider screens, one card per weather system on phones */
+  .wx-cards{display:none}
+  @media (max-width:767px){
+    .wx-tbl--wide{display:none}
+    .wx-cards{display:flex;flex-direction:column;gap:10px;padding:12px}
+  }
+  .wx-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px;box-shadow:0 1px 2px rgb(15 23 42/.04)}
+  .wx-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;margin:12px 0 0;padding-top:12px;border-top:1px solid #f1f5f9}
+  .wx-kv--top{grid-template-columns:minmax(0,1fr) auto;margin:0;padding:0;border:0}
+  .wx-kv--top > div:last-child{text-align:right}
+  .wx-kv dt{font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#94a3b8}
+  .wx-kv dd{margin:3px 0 0;font-size:13px;color:#334155}
+  .wx-kv-wide{grid-column:1 / -1}
   .wx-link{font-weight:600;color:var(--brand-600,#2d7ffb);text-decoration:none}.wx-link:hover{color:var(--brand-700,#1d6ae5);text-decoration:underline;text-underline-offset:2px}.wx-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;border-radius:2px}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
@@ -401,7 +414,7 @@ function MapView() {
 function ListView() {
   return `
   <div class="flex-1 overflow-y-auto scroll-thin">
-    <table class="wx-tbl">
+    <table class="wx-tbl wx-tbl--wide">
       <thead>
         <tr>
           <th>System</th>
@@ -430,6 +443,27 @@ function ListView() {
         </tr>`).join('')}
       </tbody>
     </table>
+    <div class="wx-cards" role="list" aria-label="Weather systems">
+      ${SYSTEMS.map(s => `
+      <article class="wx-card" role="listitem">
+        <dl class="wx-kv wx-kv--top">
+          <div><dt>System</dt><dd>
+            <span style="display:inline-flex;align-items:center;gap:8px">
+              <span style="width:10px;height:10px;border-radius:50%;background:${s.color};flex-shrink:0;box-shadow:0 0 0 2px ${s.glow}"></span>
+              <a href="WeatherEventDetails.html" class="wx-link" data-storm-id="${s.id}">${s.name}</a>
+            </span>
+          </dd></div>
+          <div><dt>Status</dt><dd><span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0fdf4;color:#16a34a">Active</span></dd></div>
+        </dl>
+        <dl class="wx-kv">
+          <div><dt>Type</dt><dd>${s.type}</dd></div>
+          <div><dt>Category</dt><dd style="font-weight:600;color:${s.color}">${s.cat}</dd></div>
+          <div><dt>Max Winds</dt><dd style="font-variant-numeric:tabular-nums;font-weight:500">${s.wind} km/h</dd></div>
+          <div><dt>Pressure</dt><dd style="font-variant-numeric:tabular-nums">${s.pressure} hPa</dd></div>
+          <div class="wx-kv-wide"><dt>Movement</dt><dd>${s.movement}</dd></div>
+        </dl>
+      </article>`).join('')}
+    </div>
   </div>`;
 }
 
