@@ -127,6 +127,8 @@
     html, body { overflow-x: hidden; }
   }
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  /* Donut slice separators take the card surface colour in dark mode */
+  html[data-theme="dark"] .donut-seg { stroke:#161f2e; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased">
@@ -229,13 +231,15 @@ const TERMINALS = [
   { name:'Eurosammel (Southwestraat) Terminal',berths:4 },
 ];
 
+/* Design System categorical chart palette (--chart-cat-N), used in legend order;
+   Unknown/Other takes the palette's neutral (cat-8) so it doesn't read as a real category. */
 const BERTH_PURPOSE = [
-  { label:'Breakbulk',      color:'#f9a8d4', pct:22 },
-  { label:'Tender',         color:'#93c5fd', pct:18 },
-  { label:'Container',      color:'#6ee7b7', pct:28 },
-  { label:'Unknown/Other',  color:'#cbd5e1', pct:14 },
-  { label:'Ore',            color:'#fde68a', pct:8  },
-  { label:'Roro',           color:'#1e293b', pct:10 },
+  { label:'Breakbulk',      color:'#2d7ffb', pct:22 },  /* --chart-cat-1 */
+  { label:'Tender',         color:'#D97706', pct:18 },  /* --chart-cat-2 */
+  { label:'Container',      color:'#16A34A', pct:28 },  /* --chart-cat-3 */
+  { label:'Unknown/Other',  color:'#475569', pct:14 },  /* --chart-cat-8 (neutral) */
+  { label:'Ore',            color:'#9333EA', pct:8  },  /* --chart-cat-4 */
+  { label:'Roro',           color:'#DB2777', pct:10 },  /* --chart-cat-5 */
 ];
 
 /* ---- Bar chart SVG (grouped: 2023 / 2024 / Current Year) ---- */
@@ -310,7 +314,7 @@ function DonutChart(slices) {
     const large = angle > Math.PI ? 1 : 0;
     const d = `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${ir} ${ir} 0 ${large} 0 ${ix1} ${iy1} Z`;
     cumAngle += angle;
-    return `<path d="${d}" fill="${s.color}" stroke="#fff" stroke-width="1.5"/>`;
+    return `<path class="donut-seg" d="${d}" fill="${s.color}" stroke="#fff" stroke-width="1.5"/>`;
   }).join('');
   return `<svg viewBox="0 0 200 200" style="width:160px;height:160px;">${paths}</svg>`;
 }
@@ -543,7 +547,7 @@ function CardBerthPurpose() {
       <div style="display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;">
         ${BERTH_PURPOSE.map(s => `
           <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#475569;">
-            <div style="width:10px;height:10px;border-radius:2px;background:${s.color};flex-shrink:0;${s.color==='#1e293b'?'border:1px solid #e2e8f0;':''}"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:${s.color};flex-shrink:0;"></div>
             ${s.label}
           </div>`).join('')}
       </div>
