@@ -4783,21 +4783,33 @@ function initMap() {
   const idx = (lat, lng) => route.findIndex(p => near(p, lat, lng));
   const lowRanges = [[idx(36.50, 18.00), idx(37.40, 11.60)], [idx(36.30, -1.50), idx(36.40, -8.00)], [idx(49.70, -3.00), route.length - 1]].filter(([a, b]) => a > -1 && b > a);
   const isLow = i => lowRanges.some(([a, b]) => i >= a && i < b);
+  // Gradient between speeds: each leg (route[i] -> route[i+1]) is 1 when low speed, 0 otherwise.
+  // Each point takes the average of the legs it joins, so the colour ramps across the legs either
+  // side of a change (long low-speed runs stay solid red). Legs are drawn as short pieces coloured
+  // along green -> amber -> red, which reads as one continuous gradient.
+  const TRACK_AMBER = '#d97706';
+  const legLow = route.slice(0, -1).map((_, i) => isLow(i) ? 1 : 0);
+  const ptLow = route.map((_, i) => i === 0 ? legLow[0] : i === route.length - 1 ? legLow[legLow.length - 1] : (legLow[i - 1] + legLow[i]) / 2);
+  const hex = c => [1, 3, 5].map(k => parseInt(c.slice(k, k + 2), 16));
+  const mix = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, k) => Math.round(v + (B[k] - v) * t).toString(16).padStart(2, '0')).join(''); };
+  const trackColour = t => t <= 0.5 ? mix(TRACK_GREEN, TRACK_AMBER, t * 2) : mix(TRACK_AMBER, TRACK_RED, (t - 0.5) * 2);
+  const PIECES = 14;
   window._trackSegments = [];
-  let start = 0;
-  for (let i = 1; i <= route.length - 1; i++) {
-    const last = i === route.length - 1;
-    if (last || isLow(i) !== isLow(start)) {
-      const end = last ? i : i;
-      const seg = L.polyline(route.slice(start, end + 1), { color: isLow(start) ? TRACK_RED : TRACK_GREEN, weight:3, opacity:0.9, lineJoin:'round', lineCap:'round' }).addTo(map);
-      window._trackSegments.push(seg);
-      start = i;
+  for (let i = 0; i < route.length - 1; i++) {
+    const [a, b] = [route[i], route[i + 1]], [ta, tb] = [ptLow[i], ptLow[i + 1]];
+    const n = ta === tb ? 1 : PIECES;                       // solid legs stay one line
+    for (let k = 0; k < n; k++) {
+      const f0 = k / n, f1 = (k + 1) / n;
+      const p0 = [a[0] + (b[0] - a[0]) * f0, a[1] + (b[1] - a[1]) * f0];
+      const p1 = [a[0] + (b[0] - a[0]) * f1, a[1] + (b[1] - a[1]) * f1];
+      const t = ta + (tb - ta) * ((f0 + f1) / 2);
+      window._trackSegments.push(L.polyline([p0, p1], { color: trackColour(t), weight:3, opacity:1, lineJoin:'round', lineCap:'round', interactive:false }).addTo(map));
     }
   }
   const TrackLegend = L.Control.extend({ options:{ position:'bottomleft' }, onAdd() {
     const el = L.DomUtil.create('div', 'track-legend');
     el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Track legend');
-    el.innerHTML = `<span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_GREEN}"></span>Normal/Optimal Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_RED}"></span>Low Speed</span>`;
+    el.innerHTML = `<span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_GREEN}"></span>Normal/Optimal Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="width:28px;background:linear-gradient(90deg,${TRACK_GREEN},${TRACK_AMBER},${TRACK_RED})"></span>Slowing</span><span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_RED}"></span>Low Speed</span>`;
     L.DomEvent.disableClickPropagation(el);
     return el;
   } });
