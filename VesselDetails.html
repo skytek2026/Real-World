@@ -628,7 +628,7 @@ let state = {
   withSanctionsCopy7: true,
   topRightTabCopy8: 'Risk Score',
   casualtyExpandedCopy8: new Set([0]),
-  withSanctionsCopy8: true,
+  withSanctionsCopy8: false,   // Risk Score card: "With Sanctions" off by default
   complianceStatus: (() => { const q = new URLSearchParams(location.search).get('compliance'); return ['Not sanctioned','Warning','Sanctioned'].includes(q) ? q : 'Not sanctioned'; })(),
   withTrendsCopy8: true,
   showAltDesigns: false,
