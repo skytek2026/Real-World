@@ -215,7 +215,8 @@ const COUNTRIES     = [...new Set(COMPANIES.map(c => c.country))].sort();
 
 /* ── State ────────────────────────────────────────────────────────────────── */
 let ST = {
-  query:'', f:{ type:null, country:null, status:null, fleet:null, est:null },
+  /* query can be pre-filled from the Dashboard search via ?q= */
+  query:(() => { try { return new URLSearchParams(location.search).get('q') || ''; } catch (e) { return ''; } })(), f:{ type:null, country:null, status:null, fleet:null, est:null },
   sortCol:null, sortDir:'asc',
   page:1, perPage:10,
 };
