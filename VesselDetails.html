@@ -4835,8 +4835,11 @@ function initMap() {
     .bindPopup('<b>FRESH BREEZE</b><br>Lat 50.6° N &nbsp;Lon 1.2° W<br>Speed: 8.2 kts');
   window._vesselRoute = route;
   buildTrackPoints(route);
-  map.fitBounds(L.latLngBounds(route), { paddingTopLeft:[48,48], paddingBottomRight:[64,160], maxZoom:6 });
-  map.setZoom(map.getZoom() + 1, { animate:false });
+  // Fit the whole route (no animation, so the zoom below isn't overwritten when an animation lands),
+  // then open two levels closer.
+  map.fitBounds(L.latLngBounds(route), { paddingTopLeft:[48,48], paddingBottomRight:[64,160], maxZoom:6, animate:false });
+  map.setView(L.latLngBounds(route).getCenter(), map.getZoom() + 2, { animate:false });   // centred on the route
+  map.panBy([0, 60], { animate:false });   // lift it clear of the timeline and legend along the bottom
 
   // Origin / destination pins
   const pinIcon = (color) => L.divIcon({
