@@ -4794,8 +4794,16 @@ function initMap() {
   const mix = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, k) => Math.round(v + (B[k] - v) * t).toString(16).padStart(2, '0')).join(''); };
   const trackColour = t => t <= 0.5 ? mix(TRACK_GREEN, TRACK_AMBER, t * 2) : mix(TRACK_AMBER, TRACK_RED, (t - 0.5) * 2);
   const PIECES = 14;
+  // AIS gap: no position reports between these points, drawn as a dashed neutral line (no speed data).
+  const TRACK_NOAIS = '#64748b';
+  const noAisRanges = [[idx(37.70, 8.00), idx(37.20, 3.00)]].filter(([a, b]) => a > -1 && b > a);
+  const isNoAis = i => noAisRanges.some(([a, b]) => i >= a && i < b);
   window._trackSegments = [];
   for (let i = 0; i < route.length - 1; i++) {
+    if (isNoAis(i)) {
+      window._trackSegments.push(L.polyline([route[i], route[i + 1]], { color: TRACK_NOAIS, weight:3, opacity:1, dashArray:'2 9', lineCap:'round', interactive:false }).addTo(map));
+      continue;
+    }
     const [a, b] = [route[i], route[i + 1]], [ta, tb] = [ptLow[i], ptLow[i + 1]];
     const n = ta === tb ? 1 : PIECES;                       // solid legs stay one line
     for (let k = 0; k < n; k++) {
@@ -4809,7 +4817,7 @@ function initMap() {
   const TrackLegend = L.Control.extend({ options:{ position:'bottomleft' }, onAdd() {
     const el = L.DomUtil.create('div', 'track-legend');
     el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Track legend');
-    el.innerHTML = `<span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_GREEN}"></span>Normal/Optimal Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="width:28px;background:linear-gradient(90deg,${TRACK_GREEN},${TRACK_AMBER},${TRACK_RED})"></span>Slowing</span><span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_RED}"></span>Low Speed</span>`;
+    el.innerHTML = `<span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_GREEN}"></span>Normal/Optimal Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="width:28px;background:linear-gradient(90deg,${TRACK_GREEN},${TRACK_AMBER},${TRACK_RED})"></span>Slowing</span><span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_RED}"></span>Low Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="background:repeating-linear-gradient(90deg,${TRACK_NOAIS} 0 4px,transparent 4px 8px)"></span>No AIS</span>`;
     L.DomEvent.disableClickPropagation(el);
     return el;
   } });
