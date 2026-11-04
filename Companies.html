@@ -164,6 +164,16 @@
   html[data-theme="dark"] #co-search { background:#161f2e !important; border-color:#2a374d !important; color:#e7ecf4 !important; }
   html[data-theme="dark"] #co-search::placeholder { color:#7d8aa0; }
   html[data-theme="dark"] #co-search:focus { border-color:var(--brand-400,#60a5fa) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#3b82f6) 28%, transparent); }
+  /* Risk Score column */
+  .co-risk-num { font-weight:700; font-variant-numeric:tabular-nums; }
+  .co-risk-num--good { color:#16A34A; } .co-risk-num--avg { color:#D97706; } .co-risk-num--poor { color:#DC2626; }
+  .co-risk-badge { display:inline-flex; align-items:center; gap:5px; padding:2px 9px; border-radius:999px; font-size:11px; font-weight:700; white-space:nowrap; }
+  .co-risk-badge i { width:6px; height:6px; border-radius:50%; background:currentColor; }
+  .co-risk-badge--sanc { background:#fee2e2; color:#dc2626; }
+  .co-risk-badge--warn { background:#fef3c7; color:#b45309; }
+  html[data-theme="dark"] .co-risk-badge--sanc { background:rgba(239,68,68,.16); color:#fca5a5; }
+  html[data-theme="dark"] .co-risk-badge--warn { background:rgba(245,158,11,.16); color:#fcd34d; }
+  html[data-theme="dark"] .co-risk-num--good { color:#4ade80; } html[data-theme="dark"] .co-risk-num--avg { color:#fbbf24; } html[data-theme="dark"] .co-risk-num--poor { color:#f87171; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -189,10 +199,10 @@ const SC = window.sharedChrome;
 const COMPANIES = [
   { name:'Harbourline Property Holdings',  type:'Property Company',   country:'United Kingdom',   flag:'🇬🇧', hq:'London',      reg:'GB-08452173', fleet:64,  fleetVal:'$3.6B',  fleetM:3600,  services:['Commercial Real Estate','Logistics Warehousing','Port Facilities'], est:1994, employees:420,  status:'Active', code:'HPH-GB-001', countryControl:'United Kingdom', countryDomicile:'United Kingdom',    avgRisk:34, sanctioned:false, updatedDate:'2025-04-12', complianceLabel:'Compliant'   },
   { name:'Skyward Aviation Leasing Ltd',   type:'Aviation Company',   country:'Ireland',          flag:'🇮🇪', hq:'Dublin',      reg:'IE-614208',   fleet:42,  fleetVal:'$2.9B',  fleetM:2900,  services:['Aircraft Leasing','Fleet Management','Air Cargo'],   est:2003, employees:260,  status:'Active', code:'SAL-IE-001', countryControl:'Ireland', countryDomicile:'Ireland',           avgRisk:41, sanctioned:false, updatedDate:'2025-04-18', complianceLabel:'Compliant'   },
-  { name:'Ramous Maritime Company Ltd',    type:'Shipping Company',   country:'Cyprus',           flag:'🇨🇾', hq:'Limassol',    reg:'HE 123456', imo:'5413287',  fleet:25,  fleetVal:'$1.2B',  fleetM:1200,  services:['Container Shipping','Bulk Cargo'],                    est:1995, employees:450,  status:'Active', code:'RMC-CY-001', countryControl:'United Kingdom', countryDomicile:'Cyprus',    avgRisk:75, sanctioned:true,  updatedDate:'2025-07-22', complianceLabel:'Sanctioned' },
+  { name:'Ramous Maritime Company Ltd',    type:'Shipping Company',   country:'Cyprus',           flag:'🇨🇾', hq:'Limassol',    reg:'HE 123456', imo:'5413287',  fleet:25,  fleetVal:'$1.2B',  fleetM:1200,  services:['Container Shipping','Bulk Cargo'],                    est:1995, employees:450,  status:'Active', code:'RMC-CY-001', countryControl:'United Kingdom', countryDomicile:'Cyprus',    avgRisk:75, riskScore:'Sanctioned', sanctioned:true,  updatedDate:'2025-07-22', complianceLabel:'Sanctioned' },
   { name:'Turvalu Naviera S.A.',           type:'Shipping Company',   country:'Panama',           flag:'🇵🇦', hq:'Panama City', reg:'PA-456789', imo:'5928416',  fleet:8,   fleetVal:'$145M',  fleetM:145,   services:['Container Shipping','General Cargo'],                est:2008, employees:120,  status:'Active', code:'TVN-PA-001', countryControl:'Panama', countryDomicile:'Panama',            avgRisk:48, sanctioned:false, updatedDate:'2025-05-10', complianceLabel:'Compliant'   },
   { name:'Ship Owner Investment Co.',      type:'Investment Company', country:'Marshall Islands', flag:'🇲🇭', hq:'Majuro',      reg:'MI-789012',  fleet:35,  fleetVal:'$2.8B',  fleetM:2800,  services:['Ship Investment','Fleet Management'],                est:1987, employees:85,   status:'Active', code:'SOI-MI-001', countryControl:'Marshall Islands', countryDomicile:'Greece',  avgRisk:52, sanctioned:false, updatedDate:'2025-04-18', complianceLabel:'Compliant'   },
-  { name:'Eternal Light Shipping Limited', type:'Shipping Company',   country:'Panama',           flag:'🇵🇦', hq:'Panama City', reg:'PA-345678', imo:'6045173',  fleet:12,  fleetVal:'$68M',   fleetM:68,    services:['Vehicle Carriers','RoRo Services'],                  est:2001, employees:200,  status:'Active', code:'ELS-PA-001', countryControl:'Panama', countryDomicile:'Hong Kong',            avgRisk:61, sanctioned:false, updatedDate:'2025-03-30', complianceLabel:'Minor Issues'},
+  { name:'Eternal Light Shipping Limited', type:'Shipping Company',   country:'Panama',           flag:'🇵🇦', hq:'Panama City', reg:'PA-345678', imo:'6045173',  fleet:12,  fleetVal:'$68M',   fleetM:68,    services:['Vehicle Carriers','RoRo Services'],                  est:2001, employees:200,  status:'Active', code:'ELS-PA-001', countryControl:'Panama', countryDomicile:'Hong Kong',            avgRisk:61, riskScore:'Warning', sanctioned:false, updatedDate:'2025-03-30', complianceLabel:'Minor Issues'},
   { name:'Cosco Netherlands Shipping',     type:'Shipping Company',   country:'Netherlands',      flag:'🇳🇱', hq:'Rotterdam',   reg:'NL-567890', imo:'4182967',  fleet:185, fleetVal:'$12.5B', fleetM:12500, services:['Container Shipping','Terminal Operations'],          est:1978, employees:2500, status:'Active', code:'CNS-NL-001', countryControl:'China', countryDomicile:'Netherlands',             avgRisk:44, sanctioned:false, updatedDate:'2025-05-01', complianceLabel:'Compliant'   },
   { name:'Shell Canada Limited',           type:'Energy Company',     country:'Canada',           flag:'🇨🇦', hq:'Calgary',     reg:'CA-678901',  fleet:45,  fleetVal:'$3.2B',  fleetM:3200,  services:['Oil Transport','LNG Shipping'],                      est:1954, employees:3200, status:'Active', code:'SCL-CA-001', countryControl:'United Kingdom', countryDomicile:'Canada',    avgRisk:38, sanctioned:false, updatedDate:'2025-05-15', complianceLabel:'Compliant'   },
   { name:'Nordic Maritime Solutions',      type:'Shipping Company',   country:'Norway',           flag:'🇳🇴', hq:'Oslo',        reg:'NO-789012', imo:'5637014',  fleet:18,  fleetVal:'$420M',  fleetM:420,   services:['Offshore Support','Subsea Services'],                est:1992, employees:380,  status:'Active', code:'NMS-NO-001', countryControl:'Norway', countryDomicile:'Norway',            avgRisk:55, sanctioned:false, updatedDate:'2025-04-22', complianceLabel:'Compliant'   },
@@ -273,10 +283,10 @@ function getFiltered() {
   if (F.fleet)   rows = rows.filter(c => FLEET_B.some(b => F.fleet.has(b[0]) && c.fleet >= b[2] && c.fleet <= b[3]));
   if (F.est)     rows = rows.filter(c => EST_B.some(b => F.est.has(b[0]) && c.est >= b[2] && c.est <= b[3]));
   if (ST.sortCol) {
-    const numCols = new Set(['fleet']);
+    const numCols = new Set(['fleet','riskScore']);
     rows.sort((a, b) => {
-      let va = ST.sortCol === 'fleetVal' ? a.fleetM : a[ST.sortCol];
-      let vb = ST.sortCol === 'fleetVal' ? b.fleetM : b[ST.sortCol];
+      let va = ST.sortCol === 'fleetVal' ? a.fleetM : ST.sortCol === 'riskScore' ? riskSortKey(a) : a[ST.sortCol];
+      let vb = ST.sortCol === 'fleetVal' ? b.fleetM : ST.sortCol === 'riskScore' ? riskSortKey(b) : b[ST.sortCol];
       if (!numCols.has(ST.sortCol) && ST.sortCol !== 'fleetVal') { va = String(va).toLowerCase(); vb = String(vb).toLowerCase(); }
       return (va < vb ? -1 : va > vb ? 1 : 0) * (ST.sortDir === 'asc' ? 1 : -1);
     });
@@ -288,6 +298,17 @@ function getFiltered() {
 /* IMO company numbers exist only for shipping companies; everyone else shows N/A. */
 function flagged(country) {
   return `<span style="display:inline-flex;align-items:center;gap:6px">${countryFlag(country)}<span>${country}</span></span>`;
+}
+/* Risk Score: 'Sanctioned' / 'Warning' where set, otherwise the company's numeric avgRisk
+   (coloured with the app's risk bands: <=25 good, <=50 average, >50 below average). */
+function riskOf(co) { return co.riskScore || co.avgRisk; }
+function riskSortKey(co) { const r = riskOf(co); return r === 'Sanctioned' ? 1000 : r === 'Warning' ? 500 : +r; }
+function riskCell(co) {
+  const r = riskOf(co);
+  if (r === 'Sanctioned') return '<span class="co-risk-badge co-risk-badge--sanc"><i></i>Sanctioned</span>';
+  if (r === 'Warning')    return '<span class="co-risk-badge co-risk-badge--warn"><i></i>Warning</span>';
+  const n = +r, c = n <= 25 ? 'good' : n <= 50 ? 'avg' : 'poor';
+  return `<span class="co-risk-num co-risk-num--${c}">${n}</span>`;
 }
 function imoCell(co) {
   return co.type === 'Shipping Company' && co.imo ? co.imo : '<span style="color:#94a3b8">N/A</span>';
@@ -306,7 +327,7 @@ function renderCoCards(pageRows) {
         </div>
         ${typeBadge(co.type)}
       </div>
-      <div class="acard-key">${kv([['Assets', co.fleet.toLocaleString(), 'strong'], ['Assets Value', co.fleetVal, 'strong']])}</div>
+      <div class="acard-key">${kv([['Risk Score', riskCell(co)], ['Assets', co.fleet.toLocaleString(), 'strong'], ['Assets Value', co.fleetVal, 'strong']])}</div>
       <div class="acard-more" id="acard-more-${i}">
         <div class="acard-key">${kv([['Country Control', flagged(co.countryControl)], ['Country Domicile', flagged(co.countryDomicile)], ['Registration #', co.reg], ['IMO Number', imoCell(co)]])}</div>
       </div>
@@ -366,6 +387,7 @@ function renderPage() {
             <tr>
               <th scope="col" class="ds-th--sortable${ST.sortCol === 'name' ? ' ds-th--active' : ''}" data-sort="name" aria-sort="${ST.sortCol === 'name' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:190px"><button type="button" class="ds-th-sort"><span>Company Name</span>${sortIcon('name')}</button></th>
               <th scope="col" class="ds-th--sortable${ST.sortCol === 'type' ? ' ds-th--active' : ''}" data-sort="type" aria-sort="${ST.sortCol === 'type' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:150px"><button type="button" class="ds-th-sort"><span>Type</span>${sortIcon('type')}</button></th>
+              <th scope="col" class="ds-th--sortable${ST.sortCol === 'riskScore' ? ' ds-th--active' : ''}" data-sort="riskScore" aria-sort="${ST.sortCol === 'riskScore' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:120px"><button type="button" class="ds-th-sort"><span>Risk Score</span>${sortIcon('riskScore')}</button></th>
               <th scope="col" class="ds-th--sortable${ST.sortCol === 'country' ? ' ds-th--active' : ''}" data-sort="country" aria-sort="${ST.sortCol === 'country' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:180px"><button type="button" class="ds-th-sort"><span>Country Registration</span>${sortIcon('country')}</button></th>
               <th scope="col" class="ds-th--sortable${ST.sortCol === 'countryControl' ? ' ds-th--active' : ''}" data-sort="countryControl" aria-sort="${ST.sortCol === 'countryControl' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:160px"><button type="button" class="ds-th-sort"><span>Country Control</span>${sortIcon('countryControl')}</button></th>
               <th scope="col" class="ds-th--sortable${ST.sortCol === 'countryDomicile' ? ' ds-th--active' : ''}" data-sort="countryDomicile" aria-sort="${ST.sortCol === 'countryDomicile' ? (ST.sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}" style="min-width:160px"><button type="button" class="ds-th-sort"><span>Country Domicile</span>${sortIcon('countryDomicile')}</button></th>
@@ -379,13 +401,14 @@ function renderPage() {
           </thead>
           <tbody>
             ${pageRows.length === 0 ? `
-              <tr><td colspan="11" style="text-align:center;padding:64px 0;color:#94a3b8;font-size:13px">
+              <tr><td colspan="12" style="text-align:center;padding:64px 0;color:#94a3b8;font-size:13px">
                 No companies match your current filters.
               </td></tr>
             ` : pageRows.map(co => {
               return `<tr>
                 <td><a class="co-link" href="CompanyDetails.html" onclick="sessionStorage.setItem('selectedCompany', JSON.stringify(window.__COMPANIES[${COMPANIES.indexOf(co)}]))">${co.name}</a></td>
                 <td>${typeBadge(co.type)}</td>
+                <td>${riskCell(co)}</td>
                 <td><span style="display:inline-flex;align-items:center;gap:8px">${countryFlag(co.country)}<span>${co.country}</span></span></td>
                 <td><span style="display:inline-flex;align-items:center;gap:8px">${countryFlag(co.countryControl)}<span>${co.countryControl}</span></span></td>
                 <td><span style="display:inline-flex;align-items:center;gap:8px">${countryFlag(co.countryDomicile)}<span>${co.countryDomicile}</span></span></td>
