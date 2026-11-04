@@ -575,12 +575,14 @@ function CardRiskBreakdown() {
           <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
           <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div>
           <div style="position:relative;width:100%;max-width:150px;aspect-ratio:1;margin:4px 0 6px;container-type:inline-size;">
-            <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="2026 risk score ${rsScore} of 100">
+            <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="${coWithSanctions ? '2026 risk: Sanctioned' : `2026 risk score ${rsScore} of 100`}">
               <circle cx="50" cy="50" r="46" fill="none" stroke="#e5e7eb" stroke-width="8"/>
               <circle class="co-rs-arc" data-score="${rsScore}" cx="50" cy="50" r="46" fill="none" stroke="${risk.c}" stroke-width="8" stroke-dasharray="${(Math.min(rsScore,100)/100*289.03).toFixed(2)} 289.03"><title>Risk Score ${rsScore} / 100 · ${risk.label}</title></circle>
             </svg>
             <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
-              <span class="co-rs-num" style="font-size:clamp(16px,26cqi,40px);font-weight:800;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${rsScore}</span>
+              ${coWithSanctions
+                ? '<span class="co-rs-num co-rs-sanc" style="font-size:clamp(9px,10cqi,15px);font-weight:800;color:#111827;line-height:1;">Sanctioned</span>'
+                : `<span class="co-rs-num" style="font-size:clamp(16px,26cqi,40px);font-weight:800;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${rsScore}</span>`}
             </div>
           </div>
           <div style="background:transparent;border:0;border-radius:8px;padding:0 10px;text-align:center;width:100%;">
@@ -946,10 +948,12 @@ function coAnimateRiskPie(prev) {
     if (gauge) { gauge.classList.remove('co-rs-gauge--still'); gauge.classList.toggle('co-rs-gauge--sanc', !!coWithSanctions); }
   });
   if (num) {
-    const t0 = performance.now(), D = 700, from = prev.score;
-    const step = now => { const p = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - p, 3);
-      num.textContent = Math.round(from + (to - from) * e); if (p < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
+    if (!coWithSanctions) {                    // count only when showing a number ("Sanctioned" stays as text)
+      const t0 = performance.now(), D = 700, from = prev.score;
+      const step = now => { const p = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - p, 3);
+        num.textContent = Math.round(from + (to - from) * e); if (p < 1) requestAnimationFrame(step); };
+      requestAnimationFrame(step);
+    }
     num.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.12)' }, { transform: 'scale(1)' }], { duration: 450, easing: 'ease-out' });
   }
 }
