@@ -414,27 +414,24 @@ function histSeriesData() {
   const MAX_PTS = 26;
   raw.forEach(s => { const st = Math.max(1, Math.ceil(s.pts.length / MAX_PTS)); s.pts = s.pts.filter((_, k) => k % st === 0); });
   raw.forEach(s => s.pts = s.pts.map(([x, v]) => ({ x, y: +(v * u.mul).toFixed(3), vessels: histVessels(v, x, s.si) })));
-  const all = raw.flatMap(s => s.pts.map(p => p.vessels)), lo = Math.min(...all), hi = Math.max(...all);
-  const rMin = 8, rMax = 17;
-  const rad = n => hi === lo ? (rMin + rMax) / 2 : rMin + (rMax - rMin) * Math.sqrt((n - lo) / (hi - lo));
-  return raw.map(s => ({ name: s.name, color: s.color, turboThreshold: 0, states: { hover: { halo: { size: 15, opacity: 1, attributes: { fill: Highcharts.color(s.color).setOpacity(.3).get('rgba'), 'stroke-width': 0 } } } }, data: s.pts.map(p => { const r = +rad(p.vessels).toFixed(2); return { ...p, marker: { radius: r } }; }) }));
+  return raw.map(s => ({ name: s.name, color: s.color, turboThreshold: 0, states: { hover: { halo: { size: 9, opacity: 1, attributes: { fill: Highcharts.color(s.color).setOpacity(.3).get('rgba'), 'stroke-width': 0 } } } }, data: s.pts }));
 }
 if (window.Highcharts && !Highcharts.__histHaloWrap) {
   Highcharts.__histHaloWrap = true;
   Highcharts.wrap(Highcharts.Point.prototype, 'haloPath', function (proceed, size) {
     const c = this.series && this.series.chart;
-    if (c && c.renderTo && c.renderTo.id === 'hist-hc') size = ((this.options.marker && this.options.marker.radius) || 8) + 7;
+    if (c && c.renderTo && c.renderTo.id === 'hist-hc') size = ((this.options.marker && this.options.marker.radius) || 4) + 5;
     return proceed.call(this, size);
   });
 }
 function renderHistoryChart() {
-  return window.Highcharts ? '<div id="hist-hc" style="height:430px"></div><div style="display:flex;align-items:center;justify-content:flex-end;gap:6px;padding:2px 16px 0;font-size:11.5px;color:#64748b"><span style="display:inline-flex;align-items:center;gap:3px"><span style="width:5px;height:5px;border-radius:50%;background:#94a3b8"></span><span style="width:9px;height:9px;border-radius:50%;background:#94a3b8"></span><span style="width:14px;height:14px;border-radius:50%;background:#94a3b8"></span></span>Dot size = number of vessels</div>' : '<div style="padding:40px;text-align:center;color:#94a3b8;font-size:13px">Chart library failed to load.</div>';
+  return window.Highcharts ? '<div id="hist-hc" style="height:430px"></div>' : '<div style="padding:40px;text-align:center;color:#94a3b8;font-size:13px">Chart library failed to load.</div>';
 }
 function mountHistoryChart() {
   const el = document.getElementById('hist-hc'); if (!el || !window.Highcharts) return;
   const u = HIST_UNITS[histValue];
   Highcharts.chart(el, {
-    chart: { type:'scatter', style:{ fontFamily:'inherit' }, spacing:[10, 6, 6, 6], zooming:{ type:'x' }, animation:false },
+    chart: { type:'line', style:{ fontFamily:'inherit' }, spacing:[10, 6, 6, 6], zooming:{ type:'x' }, animation:false },
     title: { text: null }, credits: { enabled:false }, legend: { enabled:false }, accessibility: { enabled:false },
     xAxis: (() => {
       const base = { type:'datetime', lineColor:'#e2e8f0', tickColor:'#e2e8f0', labels:{ style:{ color:'#64748b', fontSize:'11.5px' } }, gridLineWidth:0 };
@@ -445,7 +442,7 @@ function mountHistoryChart() {
     yAxis: { title:{ text:u.axis, style:{ color:'#64748b', fontSize:'12px' } }, min:0, gridLineColor:'#f1f5f9', labels:{ style:{ color:'#94a3b8', fontSize:'12px' }, formatter(){ return u.fmt(this.value); } } },
     tooltip: { shared:false, outside:true, borderRadius:8, borderColor:'#e2e8f0', backgroundColor:'#fff', shadow:{ color:'rgba(15,23,42,.12)', width:8, offsetY:4 }, style:{ fontSize:'12px', color:'#0f172a' },
       formatter() { return '<b>' + (histInterval === 'Monthly' ? Highcharts.dateFormat('%B %Y', this.x) : histInterval === 'Weekly' ? 'Week of ' + Highcharts.dateFormat('%e %b %Y', this.x) : Highcharts.dateFormat('%a, %e %b %Y', this.x)) + '</b><br><span style="color:' + this.color + '">\u25CF</span> ' + this.series.name + ': <b>' + u.fmt(this.y) + '</b><br><span style="color:#64748b">Vessels:</span> <b>' + (this.point.vessels || 0).toLocaleString() + '</b>'; } },
-    plotOptions: { series: { lineWidth:0, dataLabels:{ enabled:true, format:'{point.vessels}', align:'center', verticalAlign:'middle', y:0, padding:0, crop:false, allowOverlap:false, style:{ fontSize:'9.5px', fontWeight:'700', color:'#ffffff', textOutline:'none' } }, marker:{ enabled:true, symbol:'circle', lineWidth:1, lineColor:'#ffffff', fillOpacity:.9, states:{ hover:{ enabled:true, radiusPlus:0, lineWidthPlus:0 } } }, states:{ hover:{ lineWidthPlus:0, halo:{ size:7, opacity:.3 } }, inactive:{ opacity:.25 } }, findNearestPointBy:'xy', stickyTracking:false, animation:{ duration:300 } } },
+    plotOptions: { series: { lineWidth:2, dataLabels:{ enabled:false }, marker:{ enabled:false, symbol:'circle', radius:4, lineWidth:2, lineColor:'#ffffff', states:{ hover:{ enabled:true, radiusPlus:1, lineWidthPlus:0 } } }, states:{ hover:{ lineWidthPlus:1, halo:{ size:9, opacity:.3 } }, inactive:{ opacity:.25 } }, findNearestPointBy:'x', stickyTracking:true, animation:{ duration:300 } } },
     series: histSeriesData(),
   });
 }
