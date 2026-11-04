@@ -229,7 +229,10 @@ function cdFlagVal(name) {
   if (!cc) return name;
   return `<span style="display:inline-flex;align-items:center;gap:6px;justify-content:flex-end"><img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="20" height="14" alt="${cc.toUpperCase()}" style="width:20px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px rgb(15 23 42/.1);flex-shrink:0">${name}</span>`;
 }
-const avgRisk         = co.avgRisk        !== undefined ? co.avgRisk : 55;
+/* Risk score handed over from the Companies table: co.riskScore is 'Sanctioned' or 'Warning' where set,
+   otherwise the numeric co.avgRisk. A 'Warning' company always shows a score above 50. */
+const riskLabel       = co.riskScore || null;
+const avgRisk         = (() => { const n = co.avgRisk !== undefined ? co.avgRisk : 55; return riskLabel === 'Warning' && n <= 50 ? 65 : n; })();
 const sanctioned      = co.sanctioned     || false;
 const updatedDate     = co.updatedDate    || '2025-05-25';
 const complianceLabel = co.complianceLabel || (sanctioned ? 'Sanctioned' : 'Compliant');
@@ -331,7 +334,8 @@ let assetPage    = 1;
 let assetPerPage = 5;
 let raTab = 'PSC Analysis';
 let pscPage = 1, pscPerPage = 5, pscSev = 'all';
-let coWithSanctions = true;
+// 'With Sanctions' starts on only for a Sanctioned company (the sample company, when none was clicked, is sanctioned)
+let coWithSanctions = riskLabel ? riskLabel === 'Sanctioned' : !!co.sanctioned;
 let coWithTrends = true;
 let coTopTab = 'Company Details';
 let coView = 'Standard';
