@@ -632,7 +632,8 @@ function CardRiskBreakdown() {
       </div>
     </div>`;
   if (coRiskTab === 'Compliance') {
-    const st = sanctioned ? 'Sanctioned' : 'Not sanctioned', cs = CO_COMPLIANCE[st], riskBody = body;
+    // Compliance flag: Warning (orange) for a 'Warning' company from the Companies table, else sanctioned / not
+    const st = riskLabel === 'Warning' ? 'Warning' : sanctioned ? 'Sanctioned' : 'Not sanctioned', cs = CO_COMPLIANCE[st], riskBody = body;
     body = `<div style="flex:1;display:grid;min-height:0;"><div style="grid-area:1/1;visibility:hidden;display:flex;flex-direction:column;" aria-hidden="true" inert>${riskBody}</div><div class="flex flex-col items-center px-6 pt-10 pb-5 text-center" style="grid-area:1/1;min-height:0;">
       <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
         <div style="width:116px;height:116px;border-radius:50%;background:${cs.ring};display:flex;align-items:center;justify-content:center;">
