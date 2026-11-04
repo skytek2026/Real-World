@@ -168,6 +168,9 @@
   /* Warning companies: note above the score in the Risk Score ring */
   .co-rs-assoc { max-width:64%; margin-bottom:5px; font-size:clamp(7px,6.2cqi,10px); font-weight:700; line-height:1.2; color:#b45309; text-align:center; text-wrap:balance; }
   html[data-theme="dark"] .co-rs-assoc { color:#fcd34d; }
+  /* Compliance tab: note under the Warning flag label */
+  .co-cmp-assoc { margin-top:4px; font-size:13px; font-weight:600; color:#b45309; }
+  html[data-theme="dark"] .co-cmp-assoc { color:#fcd34d; }
 </style>
 <style>
   .cd-export{padding:5px 10px;font-size:12px}
@@ -641,7 +644,10 @@ function CardRiskBreakdown() {
             <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 15s1.2-1 4-1 4.6 2 7.4 2S20 15 20 15V4s-1.2 1-4 1-4.6-2-7.4-2S5 4 5 4z"></path><path d="M5 22V15" fill="none" stroke-linecap="round"></path></svg>
           </div>
         </div>
-        <div style="font-size:18px;font-weight:700;color:#0f2a44;">${st}</div>
+        <div style="text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#0f2a44;">${st}</div>
+          ${st === 'Warning' ? '<div class="co-cmp-assoc">Associated with sanctioned entities</div>' : ''}
+        </div>
       </div>
       <div style="font-size:11.5px;line-height:1.5;color:#64748b;">Updated at: 2026-08-15</div>
     </div></div>`;
