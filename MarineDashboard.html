@@ -790,7 +790,7 @@ function AlertsCard() {
       <div class="px-3 py-2 grid items-center text-xs" style="grid-template-columns:1fr auto auto;gap:0 16px;">
         <span class="flex items-center gap-1.5 min-w-0">
           ${flagIco}
-          <a href="VesselDetails.html" class="text-brand-600 font-semibold truncate hover:underline">${v.name}</a>
+          <a href="VesselDetails.html?compliance=Sanctioned&v=${encodeURIComponent(v.name)}" class="text-brand-600 font-semibold truncate hover:underline">${v.name}</a>
         </span>
         <span class="text-ink-600 whitespace-nowrap">${v.date}</span>
         <span class="text-brand-600 font-medium whitespace-nowrap">${v.portfolio}</span>
@@ -1006,7 +1006,7 @@ function vesselPopupHTML(v) {
       <div class="vp-span"><div class="vp-k">Timestamp:</div><div class="vp-v">${v.ts}</div></div>
       <div class="vp-span"><div class="vp-k">Policy Type:</div><div class="vp-v vp-strong">${v.policy}</div></div>
     </div>
-    <a href="VesselDetails.html?compliance=${encodeURIComponent(v.compliance === 'Ok' ? 'Not sanctioned' : v.compliance)}" class="vp-cta" style="text-decoration:none; text-align:center;">View Full Vessel Details</a>
+    <a href="VesselDetails.html?compliance=${encodeURIComponent(v.compliance === 'Ok' ? 'Not sanctioned' : v.compliance)}&v=${encodeURIComponent(v.name)}" class="vp-cta" style="text-decoration:none; text-align:center;">View Full Vessel Details</a>
   </div>`;
 }
 

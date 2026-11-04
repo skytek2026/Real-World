@@ -628,7 +628,7 @@ let state = {
   withSanctionsCopy7: true,
   topRightTabCopy8: 'Risk Score',
   casualtyExpandedCopy8: new Set([0]),
-  withSanctionsCopy8: false,   // Risk Score card: "With Sanctions" off by default
+  withSanctionsCopy8: new URLSearchParams(location.search).get('compliance') === 'Sanctioned',   // Risk Score: on only for a sanctioned vessel
   complianceStatus: (() => { const q = new URLSearchParams(location.search).get('compliance'); return ['Not sanctioned','Warning','Sanctioned'].includes(q) ? q : 'Not sanctioned'; })(),
   withTrendsCopy8: true,
   showAltDesigns: false,
@@ -708,7 +708,7 @@ window.pageTweaks = () => `<label class="block">
     ${Object.keys(COMPLIANCE_STATUS).map(v => `<button data-tweak-compliance="${v}" class="text-[11px] py-1 rounded-md ${state.complianceStatus===v?'bg-white shadow-sm font-semibold text-ink-900':'text-ink-500'}">${v}</button>`).join('')}
   </div>
 </label>`;
-document.addEventListener('click', e => { const b = e.target.closest('[data-tweak-compliance]'); if (b) { state.complianceStatus = b.dataset.tweakCompliance; state.topRightTabCopy8 = 'Compliance'; render(); } });
+document.addEventListener('click', e => { const b = e.target.closest('[data-tweak-compliance]'); if (b) { state.complianceStatus = b.dataset.tweakCompliance; state.withSanctionsCopy8 = state.complianceStatus === 'Sanctioned'; state.topRightTabCopy8 = 'Compliance'; render(); } });
 const CASUALTY_DATA = [
   { date:'2024-08-15', severity:'Minor',    location:'Singapore Strait', type:'Collision',   desc:'Minor collision with fishing vessel, no injuries reported' },
   { date:'2024-03-22', severity:'Moderate', location:'Gulf of Aden',     type:'Grounding',   desc:'Vessel grounded on sandbar, refloated after 4 hours with tug assistance' },
@@ -941,6 +941,15 @@ function complianceBadge(status) {
     + `<span class="w-1.5 h-1.5 rounded-full" style="background:${dot};"></span>${status}</span>`;
 }
 
+/* Risk score by compliance status (passed from the Marine Dashboard as ?compliance=…&v=<vessel>):
+   Ok ('Not sanctioned') 0-50, Warning 51-100, Sanctioned = 'With Sanctions' on (score behind it 70-95).
+   Seeded from the vessel name so each vessel always shows the same score. */
+function vdRiskBase() {
+  const name = new URLSearchParams(location.search).get('v') || 'FRESH BREEZE';
+  let h = 0; for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  const s = state.complianceStatus;
+  return s === 'Warning' ? 51 + (h % 50) : s === 'Sanctioned' ? 70 + (h % 26) : 10 + (h % 41);
+}
 function vdAnimateRiskPie(prev) {
   const C = 289.03, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const arc = document.querySelector('.vd-rs-arc'), num = document.querySelector('.vd-rs-num');
@@ -1831,7 +1840,7 @@ function CasualtyRiskCardCopy8() {
       }).join('')}
     </div>`;
   } else if (state.topRightTabCopy8 === 'Risk Score') {
-    const rsScore = state.withSanctionsCopy8 ? 100 : 58, rs2025 = 32, rs2024 = 6, rs2023 = 4;
+    const rsScore = state.withSanctionsCopy8 ? 100 : vdRiskBase(), rs2025 = 32, rs2024 = 6, rs2023 = 4;
     const rsDelta25   = rsScore - rs2025;   // current (main gauge) vs 2025
     const rsDelta2025 = rs2025  - rs2024;   // 2025 card vs 2024
     const rsDelta24   = rs2024  - rs2023;   // 2024 card vs 2023
@@ -1895,12 +1904,12 @@ function CasualtyRiskCardCopy8() {
       <div class="co-rs-grid" style="display:grid;grid-template-columns:${state.withTrendsCopy8?'1fr 1fr':'1fr'};gap:8px;">
         <!-- Gauge -->
         <div class="co-rs-gauge${state.withSanctionsCopy8 ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;">
-        <button data-sanctions-toggle-copy8 class="co-rs-sanc" style="align-self:flex-end;max-width:100%;margin-bottom:4px;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+        ${state.complianceStatus === 'Sanctioned' ? `<button data-sanctions-toggle-copy8 class="co-rs-sanc" style="align-self:flex-end;max-width:100%;margin-bottom:4px;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy8?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${state.withSanctionsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
-        </button>
+        </button>` : ''}
           <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
           <div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div>
           <div style="position:relative;width:100%;max-width:150px;aspect-ratio:1;margin:4px 0 6px;container-type:inline-size;">
