@@ -89,9 +89,14 @@
   .tab-dd:hover{border-color:#cbd5e1;}
   .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
-  @media(max-width:767px){
-    .mrd-top-row{flex-direction:column;}
+  /* Phones and tablet portrait: stack the three top-row cards full width (same as Marine Region Details) */
+  @media(max-width:1023px){
+    .mrd-top-row{flex-direction:column;height:auto!important;}
+    .mrd-top-row>div{width:100%!important;min-width:0!important;flex:0 0 auto!important;height:auto!important;max-height:none;min-height:0;}
     .mrd-left-panel{width:100%!important;flex-shrink:unset;}
+    .mrd-top-row>div:has(.leaflet-container){height:360px!important;}
+  }
+  @media(max-width:767px){
     .mobile-tab-select{display:block!important;}
     .tabs-desktop-wrap{display:none!important;}
   }
@@ -102,6 +107,27 @@
   .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  /* Phones: Totals / Region Details tabs fill the card; exposure rows as cards (all headings kept) */
+  .mrd-pf-cards { display:none; }
+  @media (max-width:767px) {
+    .mrd-ltabs { display:flex; width:100%; }
+    .mrd-ltabs .ds-tab { flex:1 1 0; justify-content:center; }
+    .mrd-ltabs .ds-tab-label { justify-content:center; }
+    .mrd-pf-tbl { display:none; }
+    .mrd-pf-cards { display:flex; flex-direction:column; gap:10px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
+  }
+  .mrd-pf-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .mrd-pf-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
+  .mrd-pf-kv .mrd-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f1f5f9; }
+  .mrd-pf-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .mrd-pf-kv dd { margin:3px 0 0; font-size:13px; color:#334155; font-variant-numeric:tabular-nums; }
+  .mrd-pf-kv dd strong { font-weight:700; color:#0f172a; }
+  .mrd-pf-name { color:var(--brand-600,#2563eb) !important; font-weight:600; }
+  html[data-theme="dark"] .mrd-pf-card { background:#161f2e; border-color:#2a374d; }
+  html[data-theme="dark"] .mrd-pf-kv .mrd-wide { border-color:#1f2a3d; }
+  html[data-theme="dark"] .mrd-pf-kv dd { color:#c0c9d8; }
+  html[data-theme="dark"] .mrd-pf-kv dd strong { color:#e7ecf4; }
+  html[data-theme="dark"] .mrd-pf-name { color:var(--brand-300,#93c5fd) !important; }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -361,7 +387,7 @@ function Content() {
       <!-- LEFT: Totals / Region Details -->
       <div class="mrd-left-panel" style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
         <div style="padding:10px 12px;border-bottom:1px solid #f1f5f9;">
-          <div class="ds-tabs" data-tab-group="data-ltab">
+          <div class="ds-tabs mrd-ltabs" data-tab-group="data-ltab">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
             <button class="ds-tab" aria-selected="${leftTab==='totals'}"  data-ltab="totals"><span class="ds-tab-label">Totals</span></button>
             <button class="ds-tab" aria-selected="${leftTab==='details'}" data-ltab="details"><span class="ds-tab-label">Region Details</span></button>
@@ -395,7 +421,7 @@ function Content() {
           <span style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:#64748b">${LINK_SVG} ${PORTFOLIOS.length}</span>
         </div>
         <div style="flex:1;overflow-y:auto" class="scroll-thin">
-          <table class="pf-tbl">
+          <table class="pf-tbl mrd-pf-tbl">
             <thead><tr>
               <th>Name</th><th>Total</th>
               <th><div style="display:flex;align-items:center;gap:3px">${INFO_SVG}Hull</div></th>
@@ -410,6 +436,18 @@ function Content() {
               </tr>`).join('')}
             </tbody>
           </table>
+          <div class="mrd-pf-cards" role="list" aria-label="Region exposure by portfolio">
+            ${PORTFOLIOS.map(p => `
+            <article class="mrd-pf-card" role="listitem">
+              <dl class="mrd-pf-kv">
+                <div class="mrd-wide"><dt>Name</dt><dd class="mrd-pf-name">${p.name}</dd></div>
+                <div><dt>Total</dt><dd><strong>${p.total}</strong></dd></div>
+                <div><dt>Hull</dt><dd>${p.hull}</dd></div>
+                <div><dt>Cargo</dt><dd>${p.cargo}</dd></div>
+                <div><dt>Liability</dt><dd>${p.liab}</dd></div>
+              </dl>
+            </article>`).join('')}
+          </div>
         </div>
         <div class="ds-card-foot">
           <button class="ds-foot-btn">View All Portfolios</button>
