@@ -109,6 +109,25 @@
     /* Pagination strip wraps cleanly on narrow screens */
     .pager-strip{flex-direction:column;gap:6px;align-items:flex-start;}
   }
+  /* Phones: table rows as cards (every column heading kept) */
+  .ad-mcards { display:none; }
+  @media (max-width:767px) {
+    .ad-tbl { display:none; }
+    .ad-mcards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+  }
+  .ad-mcard { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .ad-mkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
+  .ad-mkv .ad-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f1f5f9; }
+  .ad-mkv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .ad-mkv dd { margin:3px 0 0; font-size:13px; color:#334155; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .ad-mkv dd strong { font-weight:700; color:#0f172a; }
+  .ad-link { color:var(--brand-600,#2563eb); font-weight:600; text-decoration:none; }
+  a.ad-link:hover { text-decoration:underline; }
+  html[data-theme="dark"] .ad-mcard { background:#161f2e; border-color:#2a374d; }
+  html[data-theme="dark"] .ad-mkv .ad-wide { border-color:#1f2a3d; }
+  html[data-theme="dark"] .ad-mkv dd { color:#c0c9d8; }
+  html[data-theme="dark"] .ad-mkv dd strong { color:#e7ecf4; }
+  html[data-theme="dark"] .ad-link { color:var(--brand-300,#93c5fd); }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -331,9 +350,18 @@ function CardPortfolioGround() {
     <div class="flex-1 overflow-auto scroll-thin" id="ad-ground-body">${groundBody()}</div>
   </div>`;
 }
+/* Phones (<=767px): each table row becomes a card that keeps every column heading.
+   fields: [heading, row => html, extra class]. Rows are the same (sorted/paged) rows as the table. */
+function mobileCards(rows, fields, label) {
+  return `<div class="ad-mcards" role="list" aria-label="${label}">${rows.map(r => `
+    <article class="ad-mcard" role="listitem"><dl class="ad-mkv">${fields.map(([l, v, cls]) => `<div${cls ? ` class="${cls}"` : ''}><dt>${l}</dt><dd>${v(r)}</dd></div>`).join('')}</dl></article>`).join('')}
+  </div>`;
+}
+const linkTxt = s => `<span class="ad-link">${s}</span>`;
+
 function groundBody() {
   return `
-      <table class="data-table">
+      <table class="data-table ad-tbl">
         <thead><tr>
           ${sortTh('Portfolio','portfolio',false,groundSort)}${sortTh('Terminal','terminal',false,groundSort)}${sortTh('Reg No','reg',false,groundSort)}${sortTh('Type','type',false,groundSort)}${sortTh('Value','value',true,groundSort)}
         </tr></thead>
@@ -346,7 +374,10 @@ function groundBody() {
             <td class="text-right tabular-nums font-semibold">${r.value}</td>
           </tr>`).join('')}
         </tbody>
-      </table>`;
+      </table>
+      ${mobileCards(sortRows(AIRCRAFT_GROUND, groundSort), [
+        ['Portfolio', r => linkTxt(r.portfolio), 'ad-wide'], ['Terminal', r => r.terminal], ['Reg No', r => r.reg],
+        ['Type', r => r.type], ['Value', r => `<strong>${r.value}</strong>`]], 'Portfolio aircraft on the ground')}`;
 }
 
 function CardExposure() {
@@ -368,7 +399,7 @@ function CardExposure() {
         </div>`).join('')}
     </div>
     <div class="flex-1 overflow-auto scroll-thin">
-      <table class="data-table">
+      <table class="data-table ad-tbl">
         <thead><tr>
           <th>Name</th><th class="text-right">Hull</th>
           <th class="text-right"><span class="inline-flex items-center gap-1">${infoIco} CHW</span></th>
@@ -385,6 +416,9 @@ function CardExposure() {
           </tr>`).join('')}
         </tbody>
       </table>
+      ${mobileCards(EXPOSURE, [
+        ['Name', r => `<a href="AviationPortfolioDetails.html" data-pf-link="${r.name}" class="ad-link">${r.name}</a>`, 'ad-wide'],
+        ['Hull', r => `<strong>${r.hull}</strong>`], ['CHW', r => r.chw], ['HULLW', r => r.hullw], ['TLOHW', r => r.tlohw]], 'Our exposure by portfolio')}
     </div>
   </div>`;
 }
@@ -642,7 +676,7 @@ function tableBody() {
     const rows = sortRows(ENGINES_TABLE).slice(start, start+PAGE_SIZE);
     return `
     <div class="overflow-x-auto">
-      <table class="data-table">
+      <table class="data-table ad-tbl">
         <thead><tr>
           ${sortTh('Name','name')}${sortTh('Type','type')}${sortTh('Operator','operator')}${sortTh('Value','value', true)}
         </tr></thead>
@@ -656,6 +690,9 @@ function tableBody() {
         </tbody>
       </table>
     </div>
+    ${mobileCards(rows, [
+      ['Name', r => `<strong>${r.name}</strong>`, 'ad-wide'], ['Type', r => r.type], ['Operator', r => linkTxt(r.operator)],
+      ['Value', r => `<strong>${r.value}</strong>`]], 'Engines and spares')}
     ${dsPagination({
       page: tablePage,
       totalPages,
@@ -671,7 +708,7 @@ function tableBody() {
   const rows = sortRows(AIRCRAFT_TABLE).slice(start, start+PAGE_SIZE);
   return `
     <div class="overflow-x-auto">
-      <table class="data-table">
+      <table class="data-table ad-tbl">
         <thead><tr>
           ${sortTh('Aircraft','type')}${sortTh('Registration','reg')}${sortTh('Operator','operator')}${sortTh('Status','status')}${sortTh('Time','time')}${sortTh('Gate','gate')}${sortTh('Value','value', true)}
         </tr></thead>
@@ -688,6 +725,9 @@ function tableBody() {
         </tbody>
       </table>
     </div>
+    ${mobileCards(rows, [
+      ['Aircraft', r => `<strong>${r.type}</strong>`, 'ad-wide'], ['Registration', r => linkTxt(r.reg)], ['Operator', r => linkTxt(r.operator)],
+      ['Status', r => statusBadge(r.status)], ['Time', r => r.time], ['Gate', r => r.gate], ['Value', r => `<strong>${r.value}</strong>`]], 'Aircraft')}
     ${dsPagination({
       page: tablePage,
       totalPages,
