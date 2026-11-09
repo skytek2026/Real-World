@@ -134,6 +134,11 @@
     .card-subtabs-row .search-input input{width:100%!important;}
   }
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  /* Phones: stack Add Portfolio and Update All Portfolios, full width, labels on one line */
+  @media (max-width:767px) {
+    .ap-actions { flex-direction:column; align-items:stretch; }
+    .ap-actions > button { justify-content:center; white-space:nowrap; min-height:44px; }
+  }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased">
@@ -511,7 +516,7 @@ function Content() {
   return `
   <div class="flex-1 flex flex-col overflow-hidden">
     <!-- Top bar with Add button -->
-    <div class="flex items-center justify-end gap-2 px-6 py-3">
+    <div class="flex items-center justify-end gap-2 px-6 py-3 ap-actions">
       <button class="inline-flex items-center gap-2 bg-brand-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors uap-primary" style="background:var(--brand-600,#2563eb);">
         ${PLUS_ICO} Add Portfolio
       </button>
