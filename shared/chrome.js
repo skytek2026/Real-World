@@ -625,6 +625,9 @@ function applyTweaks() {
     html[data-theme="dark"] :is(.search-input, .vh-search) input{background-color:transparent}
     html[data-theme="dark"] :is(input, textarea)::placeholder{color:#7d8aa0}
     html[data-theme="dark"] :is(input, textarea, select):not(:where([type=checkbox],[type=radio],[type=range])):focus{border-color:var(--brand-400,#60a5fa)}
+    /* Maps: keep Leaflet controls and map buttons (z-index up to 1000) inside the map's own layer, so they
+       scroll under the sticky header (z 50) instead of over it. Popups/tooltips still work within the map. */
+    .leaflet-container, :has(> .leaflet-container){isolation:isolate}
     /* Risk Score gauge: the red "sanctioned" border is a class (works in light and dark, animates). */
     .co-rs-gauge{transition:border-color .5s ease}
     .co-rs-gauge.co-rs-gauge--still{transition:none}
