@@ -87,6 +87,24 @@
   .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  /* Phones: portfolio tables as cards (all headings kept); lists scroll inside their card */
+  .ard-mcards { display:none; }
+  @media (max-width:767px) {
+    .ard-tbl { display:none; }
+    .ard-mcards { display:flex; flex-direction:column; gap:10px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
+  }
+  .ard-mcard { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .ard-mkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
+  .ard-mkv .ard-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f1f5f9; }
+  .ard-mkv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .ard-mkv dd { margin:3px 0 0; font-size:13px; color:#334155; font-variant-numeric:tabular-nums; }
+  .ard-mkv dd strong { font-weight:700; color:#0f172a; }
+  .ard-name { display:inline-flex; align-items:center; gap:6px; color:var(--brand-600,#2563eb); font-weight:600; }
+  html[data-theme="dark"] .ard-mcard { background:#161f2e; border-color:#2a374d; }
+  html[data-theme="dark"] .ard-mkv .ard-wide { border-color:#1f2a3d; }
+  html[data-theme="dark"] .ard-mkv dd { color:#c0c9d8; }
+  html[data-theme="dark"] .ard-mkv dd strong { color:#e7ecf4; }
+  html[data-theme="dark"] .ard-name { color:var(--brand-300,#93c5fd); }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -350,6 +368,13 @@ function alertCard(al) {
   </div>`;
 }
 
+/* Phones (<=767px): table rows as cards that keep every column heading. fields: [heading, row => html, wide?] */
+function ardCards(rows, fields, label) {
+  return `<div class="ard-mcards" role="list" aria-label="${label}">${rows.map(r => `
+    <article class="ard-mcard" role="listitem"><dl class="ard-mkv">${fields.map(([l, v, wide]) => `<div${wide ? ' class="ard-wide"' : ''}><dt>${l}</dt><dd>${v(r)}</dd></div>`).join('')}</dl></article>`).join('')}
+  </div>`;
+}
+
 function airportRow(a) {
   const open = expandedAirports.has(a.code);
   return `
@@ -375,7 +400,7 @@ function airportRow(a) {
     ${open ? `
     <div style="margin-top:8px">
       <div style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
-        <table class="pf-tbl">
+        <table class="pf-tbl ard-tbl">
           <thead><tr>
             <th>Name</th>
             <th style="text-align:right">Hull</th>
@@ -393,6 +418,9 @@ function airportRow(a) {
             </tr>`).join('')}
           </tbody>
         </table>
+        ${ardCards(AIRPORT_PORTFOLIOS, [
+          ['Name', p => `<span class="ard-name">${BRIEF_ICO}${p.name}</span>`, true],
+          ['Hull', p => `<strong>${p.hull}</strong>`], ['CHW', p => p.chw], ['HULLW', p => p.hullw], ['TLOHW', p => p.tlohw]], 'Portfolios at this airport')}
       </div>
     </div>` : ''}
   </div>`;
@@ -441,7 +469,7 @@ function Content() {
           <span style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:#64748b">${LINK_ICO} ${PORTFOLIOS.length}</span>
         </div>
         <div style="flex:1;overflow-y:auto" class="scroll-thin">
-          <table class="pf-tbl">
+          <table class="pf-tbl ard-tbl">
             <thead><tr>
               <th>Name</th>
               <th>Total</th>
@@ -459,6 +487,9 @@ function Content() {
               </tr>`).join('')}
             </tbody>
           </table>
+          ${ardCards(PORTFOLIOS, [
+            ['Name', p => `<span class="ard-name">${p.name}</span>`, true],
+            ['Total', p => `<strong>${p.total}</strong>`], ['CHW', p => p.chw], ['HULLW', p => p.hullw], ['TLOHW', p => p.tlohw]], 'Region exposure by portfolio')}
         </div>
         <div class="ds-card-foot ds-card-foot--center">
           <button class="ds-foot-btn">View All Portfolios</button>
