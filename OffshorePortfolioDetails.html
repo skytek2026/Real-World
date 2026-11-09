@@ -61,7 +61,7 @@
   .pol-table th{padding:9px 12px;text-align:left;font-size:11.5px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
   .pol-table th:hover{color:var(--brand-600,#2563eb)}
   /* Mobile policy cards */
-  .pol-cards{display:none}
+  @media (min-width:768px){ .pol-cards{display:none} }   /* phones show the cards (rule above); must not override it */
   .pcard{padding:14px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
   .pcard:last-child{border-bottom:0}
   .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
