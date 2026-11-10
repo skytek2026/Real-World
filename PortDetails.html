@@ -129,6 +129,36 @@
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
   /* Donut slice separators take the card surface colour in dark mode */
   html[data-theme="dark"] .donut-seg { stroke:#161f2e; }
+  /* Vessels & Cargo: totals strip, table (phones: cards) */
+  .pcc-strip { display:flex; margin:12px 12px 8px; background:var(--brand-050,#eff6ff); border:1px solid var(--brand-100,#dbeafe); border-radius:8px; overflow:hidden; }
+  .pcc-metric { flex:1; min-width:0; padding:10px 8px; text-align:center; }
+  .pcc-metric + .pcc-metric { border-left:1px solid var(--brand-100,#dbeafe); }
+  .pcc-metric-l { font-size:11px; font-weight:500; color:#6b7280; margin-bottom:4px; }
+  .pcc-metric-v { font-size:22px; font-weight:700; color:var(--brand-600,#2563eb); line-height:1.1; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
+  .pcc-vcards { display:none; }
+  .pcc-vtbl th, .pcc-vtbl td { padding-left:10px; padding-right:10px; }
+  .pcc-vtbl th { white-space:normal; line-height:1.25; vertical-align:bottom; }
+  .pcc-vcard { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; }
+  .pcc-vkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
+  .pcc-vkv .pcc-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f1f5f9; }
+  .pcc-vkv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
+  .pcc-vkv dd { margin:3px 0 0; font-size:13px; color:#334155; font-variant-numeric:tabular-nums; }
+  .pcc-vkv dd strong { font-weight:700; color:#0f172a; }
+  /* switch to cards whenever the card itself is narrow (phones, and the 3-column row at ~1024px) */
+  #pcc-body { container-type:inline-size; }
+  @container (max-width:420px) {
+    .pcc-vtbl { display:none; }
+    .pcc-vcards { display:flex; flex-direction:column; gap:10px; padding:4px 12px 12px; }
+    .pcc-metric-v { font-size:18px; }
+  }
+  html[data-theme="dark"] .pcc-strip { background:#15233c; border-color:#2a374d; }
+  html[data-theme="dark"] .pcc-metric + .pcc-metric { border-color:#2a374d; }
+  html[data-theme="dark"] .pcc-metric-l { color:#93a0b4; }
+  html[data-theme="dark"] .pcc-metric-v { color:var(--brand-300,#93c5fd); }
+  html[data-theme="dark"] .pcc-vcard { background:#161f2e; border-color:#2a374d; }
+  html[data-theme="dark"] .pcc-vkv .pcc-wide { border-color:#1f2a3d; }
+  html[data-theme="dark"] .pcc-vkv dd { color:#c0c9d8; }
+  html[data-theme="dark"] .pcc-vkv dd strong { color:#e7ecf4; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased">
@@ -344,26 +374,56 @@ function CardExposureSummary() {
   </div>`;
 }
 
-function CardExposureCargo() {
-  const rows = [
-    { type:'Roll on Roll off exposure', qty:'4.77K Cars', val:'$142.97M' },
-    { type:'Containers exposure',       qty:'90.90K TEU', val:'$2.73B'   },
-    { type:'Reefer exposure',           qty:'7.27K TEU',  val:'$218.17M' },
-    { type:'Crude Oil',                 qty:'115.0K MT',  val:'$63.00M'  },
-    { type:'Petroleum Products',        qty:'103.0K MT',  val:'$47.00M'  },
-    { type:'Chemical',                  qty:'85.0K MT',   val:'$36.00M'  },
-  ];
-  return `
-  <div class="card" style="display:flex;flex-direction:column;">
-    <div class="card-hdr">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div class="stab">
-          <button class="stab-btn active">Port Side Cargo</button>
-          <button class="stab-btn">Vessels &amp; Cargo</button>
-        </div>
-        <span style="font-size:12px;font-weight:600;color:#94a3b8;">08/08/2024</span>
-      </div>
+/* Port Side Cargo / Vessels & Cargo card: the tabs swap the card body only (no full re-render). */
+let pccTab = 'port';
+const PCC_PORT_ROWS = [
+  { type:'Roll on Roll off exposure', qty:'4.77K Cars', val:'$142.97M' },
+  { type:'Containers exposure',       qty:'90.90K TEU', val:'$2.73B'   },
+  { type:'Reefer exposure',           qty:'7.27K TEU',  val:'$218.17M' },
+  { type:'Crude Oil',                 qty:'115.0K MT',  val:'$63.00M'  },
+  { type:'Petroleum Products',        qty:'103.0K MT',  val:'$47.00M'  },
+  { type:'Chemical',                  qty:'85.0K MT',   val:'$36.00M'  },
+];
+const PCC_VESSEL_TOTALS = [
+  { label:'Total Vessels',           value:'11' },
+  { label:'Total Vessel Value',      value:'$450.0M' },
+  { label:'Total Ship Cargo Value',  value:'$4.0B' },
+];
+const PCC_VESSEL_ROWS = [
+  { type:'Crude Oil Tanker', no:10, hull:'$400.0M', onboard:'100.0K TEU', agg:'$4.0B'  },
+  { type:'Chemical Tanker',  no:1,  hull:'$50.0M',  onboard:'44.0K MT',   agg:'$44.0M' },
+];
+function pccBody() {
+  if (pccTab === 'vessels') return `
+    <div class="pcc-strip" role="group" aria-label="Vessels and cargo totals">
+      ${PCC_VESSEL_TOTALS.map(m => `<div class="pcc-metric"><div class="pcc-metric-l">${m.label}</div><div class="pcc-metric-v">${m.value}</div></div>`).join('')}
     </div>
+    <div style="flex:1;overflow:auto;" class="scroll-thin">
+      <table class="dt pcc-vtbl">
+        <thead><tr><th>Type</th><th style="text-align:right;">No</th><th style="text-align:right;">Hull Value</th><th style="text-align:right;">Cargo Onboard</th><th style="text-align:right;">Agg. Cargo Value</th></tr></thead>
+        <tbody>
+          ${PCC_VESSEL_ROWS.map(r => `
+            <tr>
+              <td style="white-space:nowrap;"><span class="lnk">${r.type}</span></td>
+              <td style="text-align:right;">${r.no}</td>
+              <td style="text-align:right;">${r.hull}</td>
+              <td style="text-align:right;">${r.onboard}</td>
+              <td style="text-align:right;font-weight:600;">${r.agg}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+      <div class="pcc-vcards" role="list" aria-label="Vessels and cargo by type">
+        ${PCC_VESSEL_ROWS.map(r => `
+          <article class="pcc-vcard" role="listitem"><dl class="pcc-vkv">
+            <div class="pcc-wide"><dt>Type</dt><dd><span class="lnk">${r.type}</span></dd></div>
+            <div><dt>No</dt><dd>${r.no}</dd></div>
+            <div><dt>Hull Value</dt><dd>${r.hull}</dd></div>
+            <div><dt>Cargo Onboard</dt><dd>${r.onboard}</dd></div>
+            <div><dt>Agg. Cargo Value</dt><dd><strong>${r.agg}</strong></dd></div>
+          </dl></article>`).join('')}
+      </div>
+    </div>`;
+  return `
     <div style="display:flex;justify-content:center;padding:12px 0 4px;">
       <span style="display:inline-block;background:var(--brand-050,#eff6ff);color:var(--brand-600,#2563eb);font-weight:700;font-size:14px;padding:6px 18px;border-radius:8px;">$3.34B</span>
     </div>
@@ -371,7 +431,7 @@ function CardExposureCargo() {
       <table class="dt">
         <thead><tr><th>Type</th><th style="text-align:right;">Qty</th><th style="text-align:right;">Est. Value</th></tr></thead>
         <tbody>
-          ${rows.map(r => `
+          ${PCC_PORT_ROWS.map(r => `
             <tr>
               <td style="font-weight:600;">${r.type}</td>
               <td style="text-align:right;tabular-nums;">${r.qty}</td>
@@ -379,8 +439,30 @@ function CardExposureCargo() {
             </tr>`).join('')}
         </tbody>
       </table>
+    </div>`;
+}
+function CardExposureCargo() {
+  return `
+  <div class="card" style="display:flex;flex-direction:column;">
+    <div class="card-hdr">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="stab" role="group" aria-label="Cargo view">
+          <button type="button" class="stab-btn${pccTab === 'port' ? ' active' : ''}" data-pcc-tab="port" aria-pressed="${pccTab === 'port'}">Port Side Cargo</button>
+          <button type="button" class="stab-btn${pccTab === 'vessels' ? ' active' : ''}" data-pcc-tab="vessels" aria-pressed="${pccTab === 'vessels'}">Vessels &amp; Cargo</button>
+        </div>
+        <span style="font-size:12px;font-weight:600;color:#94a3b8;">08/08/2024</span>
+      </div>
     </div>
+    <div id="pcc-body" style="flex:1;min-height:0;display:flex;flex-direction:column;">${pccBody()}</div>
   </div>`;
+}
+function wirePortCargoTabs() {
+  document.querySelectorAll('[data-pcc-tab]').forEach(btn => btn.addEventListener('click', () => {
+    if (pccTab === btn.dataset.pccTab) return;
+    pccTab = btn.dataset.pccTab;
+    document.querySelectorAll('[data-pcc-tab]').forEach(b => { const on = b.dataset.pccTab === pccTab; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on); });
+    const body = document.getElementById('pcc-body'); if (body) body.innerHTML = pccBody();
+  }));
 }
 
 function CardTrendsSummary() {
@@ -624,6 +706,7 @@ window.render = function() {
   `;
   SC.wireChrome();
   wireTrends();
+  wirePortCargoTabs();
   setTimeout(initMap, 80);
 };
 
