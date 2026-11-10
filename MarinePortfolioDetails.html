@@ -207,6 +207,8 @@
   svg:hover > .rs-seg{opacity:.55}svg > .rs-seg:hover{opacity:1;stroke-width:19}
   .rs-dtip{position:fixed;z-index:1200;pointer-events:none;display:none;align-items:center;gap:6px;padding:5px 9px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 4px 12px rgba(15,23,42,.12);font-size:12px;color:#111827;white-space:nowrap}
   .rs-dtip i{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .pol-empty { padding:24px 12px !important; text-align:center; font-size:13px; color:#64748b; }
+  html[data-theme="dark"] .pol-empty { color:#93a0b4; }
 </style>
 <style>.pol-table.cas-table th,.pol-table.cas-table td{position:static !important;left:auto !important;width:auto !important;min-width:0 !important;max-width:none !important;box-shadow:none !important;white-space:normal}.pol-table.cas-table{width:100%;min-width:0 !important;table-layout:auto}.pol-table.cas-table th{text-transform:none;letter-spacing:0;white-space:nowrap}.pol-table.cas-table th svg{display:inline-block}.cas-wrap{overflow-y:hidden}.pol-table.cas-table td:nth-child(1),.pol-table.cas-table td:nth-child(5){white-space:nowrap !important}</style>
 <style>.voy-sel{appearance:none;-webkit-appearance:none;height:30px;padding:0 28px 0 10px;border:1px solid #e2e8f0;border-radius:8px;font:inherit;font-size:12px;font-weight:600;color:#334155;background:#fff;cursor:pointer;outline:none}.voy-sel:focus{border-color:var(--brand-500,#3b82f6);box-shadow:0 0 0 3px rgb(59 130 246/.15)}.voy-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid #e2e8f0;border-radius:6px;box-shadow:0 4px 14px rgb(15 23 42/.14);padding:7px 10px;font-size:12px;color:#0f172a;white-space:nowrap;z-index:5}.voy-tip-d{font-weight:600;margin-bottom:3px}.voy-tip-r{display:flex;align-items:center;gap:6px}.voy-tip-r b{font-weight:600}.voy-tip-r span:last-child{margin-left:8px}.voy-tip-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-500,#3b82f6)}.voy-radio{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#334155;cursor:pointer}.voy-radio input{width:15px;height:15px;accent-color:var(--brand-600,#2563eb);margin:0;cursor:pointer}</style>
@@ -1153,9 +1155,106 @@ function PSCContent() {
 }
 
 /* ── Policy table ── */
+/* Policy search: matches Asset ID, Asset Name or Policy Ref (case-insensitive). */
+let policyQuery = '';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+function filteredPolicies() {
+  const q = policyQuery.trim().toLowerCase();
+  return q ? POLICIES.filter(p => [p.num, p.vessel, p.ref].some(v => String(v).toLowerCase().includes(q))) : POLICIES;
+}
+/* Table rows, phone cards and paging; re-rendered on its own while typing in the search box. */
+function PolicyResults() {
+  const list = filteredPolicies();
+  const totalPages = Math.max(1, Math.ceil(list.length / POLICY_PAGE_SIZE));
+  if (policyPage > totalPages) policyPage = totalPages;
+  const rows = list.slice((policyPage-1)*POLICY_PAGE_SIZE, policyPage*POLICY_PAGE_SIZE);
+  return `
+    <div class="overflow-x-auto scroll-thin pol-table-scroll">
+      <table class="pol-table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></th>
+            <th>Asset ID</th>
+            <th>Asset Name</th>
+            <th>Policy Ref</th>
+            <th>Exposure</th>
+            <th>Total Insured Value</th>
+            <th>Coverage Period</th>
+            <th>Policy Type</th>
+            <th>Placement Type</th>
+            <th>Insurer Details</th>
+            <th>Broker Details</th>
+            <th>Assured Details</th>
+            <th>UMR</th>
+            <th>Delegate Details</th>
+            <th>Underwriter</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.length ? '' : `<tr><td colspan="15" class="pol-empty">No policies match “${esc(policyQuery.trim())}”. Try an Asset ID, Asset Name or Policy Ref.</td></tr>`}
+          ${rows.map(p => `
+            <tr>
+              <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></td>
+              <td class="lnk">${p.num}</td>
+              <td class="lnk"><a href="VesselDetails.html">${p.vessel}</a></td>
+              <td style="white-space:nowrap;">${p.ref}</td>
+              <td style="font-weight:600;">${p.exp}</td>
+              <td>${p.tiv}</td>
+              <td style="color:#64748b;font-size:11.5px;">${p.period}</td>
+              <td>${p.type}</td>
+              <td style="color:#64748b;">${p.placement}</td>
+              <td style="color:#64748b;">${p.insurer}</td>
+              <td style="color:#64748b;">${p.broker}</td>
+              <td style="color:#64748b;">${p.assured}</td>
+              <td style="font-size:11px;color:#64748b;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
+              <td style="color:#64748b;">${p.delegate}</td>
+              <td style="color:#64748b;">${p.uw}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="pol-cards">
+      ${rows.length ? '' : `<p class="pol-empty">No policies match “${esc(policyQuery.trim())}”.</p>`}
+      ${rows.map((p, i) => `
+        <article class="pcard">
+          <div class="pcard-top">
+            <div class="pcard-id">
+              <span class="pcard-title">#${p.num}</span>
+              <div class="pcard-sub"><a href="VesselDetails.html" class="lnk">${p.vessel}</a></div>
+            </div>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;">${p.type}</span>
+          </div>
+          <div class="pcard-key">
+            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Policy Ref</span><span class="pcard-v">${p.ref}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${p.exp}</span></div>
+            <div class="pcard-kv"><span class="pcard-k">Total Insured Value</span><span class="pcard-v is-strong">${p.tiv}</span></div>
+            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Coverage Period</span><span class="pcard-v">${p.period}</span></div>
+          </div>
+          <div class="pcard-more" id="pcard-more-${i}">
+            <div class="pcard-key">
+              <div class="pcard-kv"><span class="pcard-k">Placement Type</span><span class="pcard-v">${p.placement}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Insurer Details</span><span class="pcard-v">${p.insurer}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Broker Details</span><span class="pcard-v">${p.broker}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Assured Details</span><span class="pcard-v">${p.assured}</span></div>
+              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">UMR</span><span class="pcard-v is-mono">${p.umr}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Delegate Details</span><span class="pcard-v">${p.delegate}</span></div>
+              <div class="pcard-kv"><span class="pcard-k">Underwriter</span><span class="pcard-v">${p.uw}</span></div>
+            </div>
+          </div>
+          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="pcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+        </article>`).join('')}
+    </div>
+    ${!list.length ? '' : dsPagination({
+      page: policyPage,
+      totalPages,
+      totalItems: list.length,
+      perPage: POLICY_PAGE_SIZE,
+      perPageOptions: [10, 25, 50],
+      label: 'policies',
+    })}
+`;
+}
 function PolicySection() {
-  const totalPages = Math.ceil(POLICIES.length / POLICY_PAGE_SIZE);
-  const rows = POLICIES.slice((policyPage-1)*POLICY_PAGE_SIZE, policyPage*POLICY_PAGE_SIZE);
   const chev = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">`;
   const tabsHtml = `
       <div class="analysis-tabs-mobile pvw-mobile"><select id="pvw-select" aria-label="Select view">${[['details','Policy Details'],['list','Asset Details'],['map','Map']].map(([v,l]) => `<option value="${v}" ${policyView===v?'selected':''}>${l}</option>`).join('')}</select></div>
@@ -1193,9 +1292,9 @@ function PolicySection() {
       <!-- Search -->
       <div class="relative">
         <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" placeholder="Search" class="pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
+        <input type="search" id="pol-search" value="${esc(policyQuery)}" placeholder="Search" aria-label="Search policies by Asset ID, Asset Name or Policy Ref" aria-controls="pol-results" autocomplete="off" class="pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
       </div>
-      <button type="button" class="flex items-center justify-center shrink-0 border border-ink-200 rounded-lg text-ink-600 hover:bg-ink-50 hover:text-ink-900" style="width:32px;height:32px;" title="Reset filters" aria-label="Reset filters">
+      <button type="button" id="pol-reset" class="flex items-center justify-center shrink-0 border border-ink-200 rounded-lg text-ink-600 hover:bg-ink-50 hover:text-ink-900" style="width:32px;height:32px;" title="Reset filters" aria-label="Reset filters">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
       </button>
       <select class="sel text-xs py-1.5">
@@ -1218,88 +1317,20 @@ function PolicySection() {
       <span class="text-xs text-ink-400">0 selected</span>
     </div>
     <!-- Table -->
-    <div class="overflow-x-auto scroll-thin pol-table-scroll">
-      <table class="pol-table">
-        <thead>
-          <tr>
-            <th><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></th>
-            <th>Asset ID</th>
-            <th>Asset Name</th>
-            <th>Policy Ref</th>
-            <th>Exposure</th>
-            <th>Total Insured Value</th>
-            <th>Coverage Period</th>
-            <th>Policy Type</th>
-            <th>Placement Type</th>
-            <th>Insurer Details</th>
-            <th>Broker Details</th>
-            <th>Assured Details</th>
-            <th>UMR</th>
-            <th>Delegate Details</th>
-            <th>Underwriter</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows.map(p => `
-            <tr>
-              <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></td>
-              <td class="lnk">${p.num}</td>
-              <td class="lnk"><a href="VesselDetails.html">${p.vessel}</a></td>
-              <td style="white-space:nowrap;">${p.ref}</td>
-              <td style="font-weight:600;">${p.exp}</td>
-              <td>${p.tiv}</td>
-              <td style="color:#64748b;font-size:11.5px;">${p.period}</td>
-              <td>${p.type}</td>
-              <td style="color:#64748b;">${p.placement}</td>
-              <td style="color:#64748b;">${p.insurer}</td>
-              <td style="color:#64748b;">${p.broker}</td>
-              <td style="color:#64748b;">${p.assured}</td>
-              <td style="font-size:11px;color:#64748b;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
-              <td style="color:#64748b;">${p.delegate}</td>
-              <td style="color:#64748b;">${p.uw}</td>
-            </tr>`).join('')}
-        </tbody>
-      </table>
-    </div>
-    <div class="pol-cards">
-      ${rows.map((p, i) => `
-        <article class="pcard">
-          <div class="pcard-top">
-            <div class="pcard-id">
-              <span class="pcard-title">#${p.num}</span>
-              <div class="pcard-sub"><a href="VesselDetails.html" class="lnk">${p.vessel}</a></div>
-            </div>
-            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;">${p.type}</span>
-          </div>
-          <div class="pcard-key">
-            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Policy Ref</span><span class="pcard-v">${p.ref}</span></div>
-            <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${p.exp}</span></div>
-            <div class="pcard-kv"><span class="pcard-k">Total Insured Value</span><span class="pcard-v is-strong">${p.tiv}</span></div>
-            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Coverage Period</span><span class="pcard-v">${p.period}</span></div>
-          </div>
-          <div class="pcard-more" id="pcard-more-${i}">
-            <div class="pcard-key">
-              <div class="pcard-kv"><span class="pcard-k">Placement Type</span><span class="pcard-v">${p.placement}</span></div>
-              <div class="pcard-kv"><span class="pcard-k">Insurer Details</span><span class="pcard-v">${p.insurer}</span></div>
-              <div class="pcard-kv"><span class="pcard-k">Broker Details</span><span class="pcard-v">${p.broker}</span></div>
-              <div class="pcard-kv"><span class="pcard-k">Assured Details</span><span class="pcard-v">${p.assured}</span></div>
-              <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">UMR</span><span class="pcard-v is-mono">${p.umr}</span></div>
-              <div class="pcard-kv"><span class="pcard-k">Delegate Details</span><span class="pcard-v">${p.delegate}</span></div>
-              <div class="pcard-kv"><span class="pcard-k">Underwriter</span><span class="pcard-v">${p.uw}</span></div>
-            </div>
-          </div>
-          <button type="button" class="pcard-toggle" aria-expanded="false" aria-controls="pcard-more-${i}"><span class="pcard-toggle-txt">Show more</span><svg class="pcard-chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-        </article>`).join('')}
-    </div>
-    ${dsPagination({
-      page: policyPage,
-      totalPages,
-      totalItems: POLICIES.length,
-      perPage: POLICY_PAGE_SIZE,
-      perPageOptions: [10, 25, 50],
-      label: 'policies',
-    })}
+    <div id="pol-results">${PolicyResults()}</div>
   </div>`;
+}
+
+function refreshPolicyResults() {
+  const box = document.getElementById('pol-results'); if (!box) return;
+  box.innerHTML = PolicyResults();
+  dsWirePagination(box.querySelector('.ds-pagination-wrap'), { onPage: (p) => { policyPage = p; refreshPolicyResults(); } });
+}
+function wirePolicySearch() {
+  const input = document.getElementById('pol-search');
+  if (input) input.addEventListener('input', () => { policyQuery = input.value; policyPage = 1; refreshPolicyResults(); });
+  const reset = document.getElementById('pol-reset');
+  if (reset) reset.addEventListener('click', () => { policyQuery = ''; policyPage = 1; if (input) { input.value = ''; input.focus(); } refreshPolicyResults(); });
 }
 
 /* ── Tab pill positioning ── */
@@ -1465,9 +1496,10 @@ window.render = function() {
       t.querySelector('.pcard-toggle-txt').textContent = open ? 'Show less' : 'Show more';
     });
   }
-  dsWirePagination(document.querySelector('.ds-pagination-wrap'), {
+  dsWirePagination(document.querySelector('#pol-results .ds-pagination-wrap') || document.querySelector('.ds-pagination-wrap'), {
     onPage: (p) => { policyPage = p; window.render(); },
   });
+  wirePolicySearch();
   wireSnapshots();
 };
 
