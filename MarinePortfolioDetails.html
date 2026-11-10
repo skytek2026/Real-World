@@ -357,6 +357,12 @@ const POLICIES = [
   { num:'Policy 19', vessel:'EASTERN PROMISE',     exp:'$9.0M',   tiv:'$11.3M',  period:'2024-01-25 / 2020-01-25', type:'Protection & Indemnity',  placement:'Facultative', insurer:'Skuld P&I',                broker:'JLT Specialty',        assured:'Eastern Promise Ltd',       umr:'B1901STU234VWX567', delegate:'P&I Coverage Experts',      uw:'Chen Wei' },
   { num:'Policy 20', vessel:'GRAND VICTORIA',      exp:'$96.0M',  tiv:'$120.0M', period:'2024-02-14 / 2021-02-14', type:'Hull & Machinery',        placement:'Direct',      insurer:'Sompo International',      broker:'Willis Towers Watson', assured:'Grand Victoria Corp',       umr:'B2012TUV345WXY678', delegate:'Energy Vessel Underwriters',uw:'Isabella Park' },
 ];
+/* Policy Ref: <type code>-<coverage start year>-<number>, e.g. HM-2024-001 (derived from each row's own data) */
+const POLICY_TYPE_CODE = { 'Hull & Machinery':'HM', 'Protection & Indemnity':'PI', 'War Risks':'WR' };
+POLICIES.forEach((p, i) => {
+  const code = POLICY_TYPE_CODE[p.type] || p.type.split(/[^A-Za-z]+/).filter(Boolean).map(w => w[0]).join('').toUpperCase();
+  p.ref = `${code}-${String(p.period).slice(0, 4)}-${String(i + 1).padStart(3, '0')}`;
+});
 
 /* ── Donut chart SVG ── */
 // Banded gradient gauge — matches the Risk Score gauge on the Vessel Details page.
@@ -1219,6 +1225,7 @@ function PolicySection() {
             <th><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></th>
             <th>Asset ID</th>
             <th>Asset Name</th>
+            <th>Policy Ref</th>
             <th>Exposure</th>
             <th>Total Insured Value</th>
             <th>Coverage Period</th>
@@ -1238,6 +1245,7 @@ function PolicySection() {
               <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-brand-600" /></td>
               <td class="lnk">${p.num}</td>
               <td class="lnk"><a href="VesselDetails.html">${p.vessel}</a></td>
+              <td style="white-space:nowrap;">${p.ref}</td>
               <td style="font-weight:600;">${p.exp}</td>
               <td>${p.tiv}</td>
               <td style="color:#64748b;font-size:11.5px;">${p.period}</td>
@@ -1264,6 +1272,7 @@ function PolicySection() {
             <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;">${p.type}</span>
           </div>
           <div class="pcard-key">
+            <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Policy Ref</span><span class="pcard-v">${p.ref}</span></div>
             <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${p.exp}</span></div>
             <div class="pcard-kv"><span class="pcard-k">Total Insured Value</span><span class="pcard-v is-strong">${p.tiv}</span></div>
             <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Coverage Period</span><span class="pcard-v">${p.period}</span></div>
