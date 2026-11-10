@@ -159,6 +159,15 @@
   html[data-theme="dark"] .pcc-vkv .pcc-wide { border-color:#1f2a3d; }
   html[data-theme="dark"] .pcc-vkv dd { color:#c0c9d8; }
   html[data-theme="dark"] .pcc-vkv dd strong { color:#e7ecf4; }
+  /* Card footer ghost button (DS tertiary, ALL CAPS) */
+  .ds-card-foot { padding:10px 16px; border-top:1px solid #ECEEF2; background:#F9FAFB; display:flex; justify-content:flex-end; align-items:center; gap:8px; flex-shrink:0; border-bottom-left-radius:inherit; border-bottom-right-radius:inherit; }
+  .ds-card-foot--start { justify-content:flex-start; }
+  .pd-foot-btn { display:inline-flex; align-items:center; gap:5px; height:28px; padding:0 8px; border-radius:6px; background:transparent; border:0; cursor:pointer; font-family:inherit; font-size:11px; font-weight:600; line-height:1; letter-spacing:.05em; text-transform:uppercase; color:var(--brand-600,#2563eb); }
+  .pd-foot-btn:hover { background:#f3f4f6; color:var(--brand-700,#1d4ed8); }
+  .pd-foot-btn:focus-visible { outline:2px solid #60a5fa; outline-offset:1px; }
+  html[data-theme="dark"] .ds-card-foot { background:#121a27; border-color:#212d40; }
+  html[data-theme="dark"] .pd-foot-btn { color:var(--brand-300,#93c5fd); }
+  html[data-theme="dark"] .pd-foot-btn:hover { background:#1e293b; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased">
@@ -465,15 +474,16 @@ function wirePortCargoTabs() {
   }));
 }
 
-function CardTrendsSummary() {
-  const rows = [
+const TRENDS_SUMMARY = [
     { label:'Total Dry Bulk',     y2023:'1.1M MT',  y2024:'1.0M MT',  ytd:'967.0K MT'  },
     { label:'Total Liquid Bulk',  y2023:'92.6M MT', y2024:'92.3M MT', ytd:'86.4M MT'   },
     { label:'Roll On Roll Off',   y2023:'64.3K Cars',y2024:'76.1K Cars',ytd:'76.0K Cars'},
     { label:'Total Containers',   y2023:'9.0M TEU', y2024:'10.3M TEU',ytd:'8.7M TEU'   },
-  ];
+];
+function CardTrendsSummary() {
+  const rows = TRENDS_SUMMARY;
   return `
-  <div class="card">
+  <div class="card" style="display:flex;flex-direction:column;">
     <div class="card-hdr"><span class="card-title">Trends &amp; Statistics</span></div>
     <div style="padding:0;" class="trends-summary-scroll">
       <div class="trends-summary-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid #f1f5f9;">
@@ -490,7 +500,24 @@ function CardTrendsSummary() {
           <div style="padding:10px 14px;text-align:center;font-size:12px;color:#64748b;">${r.ytd}</div>
         </div>`).join('')}
     </div>
+    <div class="ds-card-foot ds-card-foot--start" style="margin-top:auto;">
+      <button type="button" class="pd-foot-btn" id="trends-download">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download</span>
+      </button>
+    </div>
   </div>`;
+}
+
+/* Trends & Statistics download: the card's figures as a CSV named after the port */
+function downloadTrendsSummary() {
+  const rows = [['Trends & Statistics', PORT.name || ''], ['', '2023', '2024', 'YTD'],
+    ...TRENDS_SUMMARY.map(r => [r.label, r.y2023, r.y2024, r.ytd])];
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob(['\ufeff' + csv], { type:'text/csv;charset=utf-8' }));
+  const slug = (PORT.name || 'port').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const a = Object.assign(document.createElement('a'), { href:url, download:`${slug}-trends-statistics.csv` });
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function CardVessels() {
@@ -707,6 +734,7 @@ window.render = function() {
   SC.wireChrome();
   wireTrends();
   wirePortCargoTabs();
+  document.getElementById('trends-download')?.addEventListener('click', downloadTrendsSummary);
   setTimeout(initMap, 80);
 };
 
