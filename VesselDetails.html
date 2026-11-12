@@ -4843,7 +4843,7 @@ function initMap() {
   const TrackLegend = L.Control.extend({ options:{ position:'bottomleft' }, onAdd() {
     const el = L.DomUtil.create('div', 'track-legend');
     el.setAttribute('role', 'group'); el.setAttribute('aria-label', 'Track legend');
-    el.innerHTML = `<span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_GREEN}"></span>Normal/Optimal Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="width:28px;background:linear-gradient(90deg,${TRACK_GREEN},${TRACK_AMBER},${TRACK_RED})"></span>Slowing</span><span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_RED}"></span>Low Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="background:repeating-linear-gradient(90deg,${TRACK_NOAIS} 0 4px,transparent 4px 8px)"></span>No AIS</span>`;
+    el.innerHTML = `<span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_GREEN}"></span>Service Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="background:${TRACK_RED}"></span>Low Speed</span><span class="track-legend-i"><span class="track-legend-sw" style="background:repeating-linear-gradient(90deg,${TRACK_NOAIS} 0 4px,transparent 4px 8px)"></span>No AIS</span>`;
     L.DomEvent.disableClickPropagation(el);
     return el;
   } });
