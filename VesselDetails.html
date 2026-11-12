@@ -4953,16 +4953,25 @@ const TR_PRESETS = [
   ['7d', 'Last 7 Days', () => [addDays(TODAY_ISO, -6), TODAY_ISO]],
   ['14d', 'Last 14 Days', () => [addDays(TODAY_ISO, -13), TODAY_ISO]],
   ['30d', 'Last 30 Days', () => [addDays(TODAY_ISO, -29), TODAY_ISO]],
+  ['90d', 'Last 90 Days', () => [addDays(TODAY_ISO, -89), TODAY_ISO]],
+  ['6m', 'Last 6 Months', () => [addDays(addMonths(TODAY_ISO, -6), 1), TODAY_ISO]],
+  ['1y', 'Last Year', () => [addDays(addMonths(TODAY_ISO, -12), 1), TODAY_ISO]],
   ['custom', 'Custom Range', null],
 ];
-const TR_MIN_ISO = addDays(TODAY_ISO, -29);
+const TR_MIN_ISO = addDays(addMonths(TODAY_ISO, -12), 1);   // ranges can reach back 12 months
 let _trp = null;
+// first of the month before `endIso`, never earlier than the 12-month limit, never later than last month
+function trpViewFor(endIso) {
+  const e = fromIso(endIso); let v = iso(new Date(Date.UTC(e.getUTCFullYear(), e.getUTCMonth() - 1, 1)));
+  const minV = TR_MIN_ISO.slice(0, 8) + '01', maxV = addMonths(TODAY_ISO.slice(0, 8) + '01', -1);
+  return v < minV ? minV : v > maxV ? maxV : v;
+}
 function openTrackCalendar(anchor) {
   closeTrackCalendar();
   const r = state.trackRange;
   const s = fromIso(r.start);
   _trp = { start:r.start, end:r.end, preset:r.preset || '7d', detailed:!!r.detailed, pending:false, hover:null,
-           view: iso(new Date(Date.UTC(s.getUTCFullYear(), s.getUTCMonth(), 1))), anchor };
+           view: trpViewFor(r.end), anchor };
   const el = document.createElement('div');
   el.id = 'trp'; el.className = 'trp'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-label', 'Track date range');
   document.body.appendChild(el);
@@ -5023,16 +5032,16 @@ function drawTrackCalendar() {
   el.innerHTML = `
     <div class="trp-body">
       <div class="trp-presets" role="listbox" aria-label="Quick ranges">${TR_PRESETS.map(([k, l]) => `<button type="button" class="trp-preset ${t.preset === k ? 'is-active' : ''}" data-preset="${k}" role="option" aria-selected="${t.preset === k}">${l}</button>`).join('')}</div>
-      <div class="trp-months">${trpMonth(TR_MIN_ISO.slice(0, 8) + '01', false, false)}${TR_MIN_ISO.slice(0, 7) !== TODAY_ISO.slice(0, 7) ? trpMonth(TODAY_ISO.slice(0, 8) + '01', false, false) : ''}</div>
+      <div class="trp-months">${trpMonth(t.view, t.view.slice(0, 7) > TR_MIN_ISO.slice(0, 7), false)}${trpMonth(second, false, second.slice(0, 7) < TODAY_ISO.slice(0, 7))}</div>
     </div>
     <div class="trp-foot">
       <label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${t.detailed}" data-trp-detailed></button><span class="trp-switch-v">${t.detailed ? 'On' : 'Off'}</span></label>
-      <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${histFmt(t.start)} – ${histFmt(t.end)}`}<span class="trp-limit">Limited to the last 30 days</span></div>
+      <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${histFmt(t.start)} – ${histFmt(t.end)}`}<span class="trp-limit">Limited to the last 12 months</span></div>
       <div class="trp-acts"><button type="button" class="trp-btn trp-btn--sec" data-trp-cancel>Cancel</button><button type="button" class="trp-btn trp-btn--pri" data-trp-apply ${t.pending ? 'disabled' : ''}>Apply</button></div>
     </div>`;
   el.querySelectorAll('[data-preset]').forEach(b => b.onclick = () => {
     const p = TR_PRESETS.find(x => x[0] === b.dataset.preset); t.preset = p[0]; t.pending = false;
-    if (p[2]) { const [a, z] = p[2](); t.start = a; t.end = z; const ze = fromIso(z); t.view = iso(new Date(Date.UTC(ze.getUTCFullYear(), ze.getUTCMonth() - 1, 1))); }
+    if (p[2]) { const [a, z] = p[2](); t.start = a; t.end = z; t.view = trpViewFor(z); }
     drawTrackCalendar();
   });
   el.querySelectorAll('[data-trp-nav]').forEach(b => b.onclick = () => { t.view = addMonths(t.view, +b.dataset.trpNav); drawTrackCalendar(); });
