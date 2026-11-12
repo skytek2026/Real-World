@@ -4236,7 +4236,7 @@ function VesselTrackingCard() {
       <div class="ds-tabs" role="tablist" aria-label="Vessel tracking views" data-vt-tabs>
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         <button type="button" class="ds-tab" role="tab" id="vt-tab-track" aria-selected="${state.vtTab !== 'events'}" aria-controls="map-wrapper" data-vt-tab="track">
-          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:6px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>Vessel Tracking</span>
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:6px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>Vessel Track</span>
         </button>
         <button type="button" class="ds-tab" role="tab" id="vt-tab-events" aria-selected="${state.vtTab === 'events'}" aria-controls="event-history-panel" data-vt-tab="events">
           <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>Historical Events</span>
@@ -5364,6 +5364,16 @@ function VesselTrackingCard() {
     </div>
     <div id="he-map-wrapper" class="flex-1 relative" style="min-height:420px;">
       <div id="he-vessel-map"></div>
+      <div class="map-range" role="group" aria-label="Events date range">
+      <button type="button" id="he-hist-cal-btn" class="hist-range" aria-haspopup="dialog" aria-label="Date range ${histRangeAria()}. Change date range">
+        <span class="hist-range-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
+        <span class="hist-range-body">
+          <span class="hist-range-top"><span class="hist-range-tag">${histRangeLabel()}</span><span class="hist-range-days">${histRangeDays()}</span></span>
+          <span class="hist-range-dates"><span class="hist-range-v">${histFmt(state.trackRange.start)}</span><svg class="hist-range-arrow" width="16" height="12" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h23"></path><path d="m18 3 7 7-7 7"></path></svg><span class="hist-range-v">${histFmt(state.trackRange.end)}</span></span>
+        </span>
+        <span class="hist-range-chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+      </button>
+      </div>
       <!-- Fullscreen button — top-left -->
       <button id="he-vt-map-fullscreen" class="map-btn" title="Toggle fullscreen" style="position:absolute;top:12px;left:12px;z-index:400;">
         <svg id="he-fs-expand-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
@@ -5502,16 +5512,6 @@ function histRangeAria() { return histFmt(state.trackRange.start) + ' to ' + his
 function HistoricalEventsCard() {
   return `
   <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full br-card" data-br="Historical Events">
-    <div class="px-4 py-3 border-b border-ink-200">
-      <button type="button" id="he-hist-cal-btn" class="hist-range" aria-haspopup="dialog" aria-label="Date range ${histRangeAria()}. Change date range">
-        <span class="hist-range-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
-        <span class="hist-range-body">
-          <span class="hist-range-top"><span class="hist-range-tag">${histRangeLabel()}</span><span class="hist-range-days">${histRangeDays()}</span></span>
-          <span class="hist-range-dates"><span class="hist-range-v">${histFmt(state.trackRange.start)}</span><svg class="hist-range-arrow" width="16" height="12" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h23"></path><path d="m18 3 7 7-7 7"></path></svg><span class="hist-range-v">${histFmt(state.trackRange.end)}</span></span>
-        </span>
-        <span class="hist-range-chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
-      </button>
-    </div>
     <div class="px-4 py-3 border-b border-ink-200" style="display:flex;align-items:center;gap:8px;">
       <div class="relative" style="flex:1;min-width:0;">
         <input type="search" placeholder="Search Historical events..." class="w-full px-3 py-2 pr-8 border border-ink-200 rounded-md text-xs" />
@@ -6203,6 +6203,7 @@ function openTrackCalendar(anchor) {
   setTimeout(() => document.addEventListener('click', closeTrackCalendar, { once:true }), 0);
   document.addEventListener('keydown', _trpKey);
   window.addEventListener('resize', placeTrackCalendar);
+  if (window.innerWidth < 768 && anchor.id === 'he-hist-cal-btn') anchor.scrollIntoView({ block:'start', behavior:'instant' });
   drawTrackCalendar();
   anchor.setAttribute('aria-expanded', 'true');
   el.querySelector('.trp-preset.is-active, .trp-preset')?.focus();
@@ -6223,8 +6224,9 @@ function placeTrackCalendar() {
   const b = _trp.anchor.getBoundingClientRect(), w = el.offsetWidth, hgt = el.offsetHeight, vw = window.innerWidth, vh = window.innerHeight;
   let left, top;
   if (_trp.anchor.id === 'he-hist-cal-btn') {
-    left = Math.min(Math.max(8, b.left), vw - w - 8); top = b.bottom + 6;
-    if (top + hgt > vh - 8) top = Math.max(8, b.top - hgt - 6);
+    left = Math.min(Math.max(8, b.left + b.width / 2 - w / 2), vw - w - 8); top = b.bottom + 6;
+    if (vw < 768) { el.style.maxHeight = Math.max(240, vh - top - 8) + 'px'; el.style.overflowY = 'auto'; }
+    else if (top + hgt > vh - 8) top = Math.max(8, b.top - hgt - 6);
   } else {
     left = Math.min(Math.max(8, b.right - w), vw - w - 8); top = b.top - hgt - 8;
     if (top < 8) top = Math.min(b.bottom + 8, vh - hgt - 8);
