@@ -554,6 +554,8 @@
   @media (min-width:1024px) { .he-grid > :first-child { border-right:1px solid #e2e8f0 !important; } }
   @media (max-width:1023px) { .he-grid > :first-child { max-height:420px; border-bottom:1px solid #e2e8f0 !important; } .he-grid > :last-child { height:440px !important; } #event-history-panel { overflow-y:auto; } }
   #he-vessel-tracking-card > :first-child { display:none; }   /* the outer tab already says what this is */
+  /* keep the card's rounded bottom corners when the Historical Events tab is showing */
+  #event-history-panel { border-bottom-left-radius:inherit; border-bottom-right-radius:inherit; overflow:hidden; }
   html[data-theme="dark"] .he-grid > :first-child { border-color:#2a374d !important; }
 
   #he-vessel-map { background:#0b1220; position:absolute; inset:0; }
