@@ -191,7 +191,8 @@
   @media (max-width:700px) {
     .trp-body { flex-direction:column; }
     .trp-presets { flex-direction:row; overflow-x:auto; border-right:0; border-bottom:1px solid #f1f5f9; min-width:0; }
-    .trp-months > .trp-month:last-child { display:none; }
+    .trp-months > .trp-month:first-child:not(:only-child) { display:none; }   /* show the later month: it holds the range end */
+    .trp-nav-sp--desk { display:none; }
   }
   @media (min-width:701px) { .trp-mnext .trp-nav { visibility:hidden; } }
   @media (max-width:700px) {
@@ -588,6 +589,17 @@
   #he-vessel-tracking-card.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; }
   #he-vessel-tracking-card.is-fullscreen #he-map-wrapper { min-height:0; flex:1; }
   #he-map-wrapper[hidden] { display:none !important; }
+  /* Date picker on phones: presets as a dropdown instead of a sideways-scrolling row */
+  .trp-preset-sel-l { display:none; }
+  @media (max-width:767px) {
+    .trp .trp-presets { display:none; }
+    .trp-preset-sel-l { display:block; padding:12px 12px 4px; }
+    .trp-preset-sel { width:100%; height:40px; padding:0 36px 0 12px; border:1px solid #e2e8f0; border-radius:8px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance:none; appearance:none; font:inherit; font-size:14px; font-weight:600; color:#0f172a; }
+    .trp-preset-sel:focus-visible { outline:none; border-color:var(--brand-400,#8ec5fd); box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#2d7ffb) 25%,transparent); }
+  }
+  html[data-theme="dark"] .trp-preset-sel { background-color:#161f2e; border-color:#2a374d; color:#e7ecf4; }
+  .trp-nav--phone { display:none; }
+  @media (max-width:767px) { .trp-nav--phone { display:inline-flex; } }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -5091,7 +5103,9 @@ function trpMonth(firstIso, showPrev, showNext) {
   const title = f.toLocaleString('en-GB', { month:'long', year:'numeric', timeZone:'UTC' });
   const lead = f.getUTCDay(), days = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
   const t = _trp, lo = t.pending ? [t.start, t.hover || t.start].sort()[0] : t.start, hi = t.pending ? [t.start, t.hover || t.start].sort()[1] : t.end;
-  const nav = (dir, show) => show ? `<button type="button" class="trp-nav" data-trp-nav="${dir}" aria-label="${dir < 0 ? 'Previous' : 'Next'} month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${dir < 0 ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'}"/></svg></button>` : '<span class="trp-nav-sp"></span>';
+  const nav = (dir, show) => show === 'phone'
+    ? `<span class="trp-nav-sp trp-nav-sp--desk"></span><button type="button" class="trp-nav trp-nav--phone" data-trp-nav="${dir}" aria-label="Previous month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>`
+    : show ? `<button type="button" class="trp-nav" data-trp-nav="${dir}" aria-label="${dir < 0 ? 'Previous' : 'Next'} month"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${dir < 0 ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'}"/></svg></button>` : '<span class="trp-nav-sp"></span>';
   let cells = '';
   for (let i = 0; i < lead; i++) cells += '<span></span>';
   for (let d = 1; d <= days; d++) {
@@ -5108,15 +5122,23 @@ function drawTrackCalendar() {
   const el = document.getElementById('trp'); if (!el || !_trp) return;
   const t = _trp, second = addMonths(t.view, 1);
   el.innerHTML = `
+    <label class="trp-preset-sel-l"><span class="sr-only">Quick range</span>
+      <select class="trp-preset-sel" data-trp-preset-sel aria-label="Quick range">
+        ${TR_PRESETS.map(([k, l]) => `<option value="${k}" ${t.preset === k ? 'selected' : ''}>${l}</option>`).join('')}
+      </select>
+    </label>
     <div class="trp-body">
       <div class="trp-presets" role="listbox" aria-label="Quick ranges">${TR_PRESETS.map(([k, l]) => `<button type="button" class="trp-preset ${t.preset === k ? 'is-active' : ''}" data-preset="${k}" role="option" aria-selected="${t.preset === k}">${l}</button>`).join('')}</div>
-      <div class="trp-months">${trpMonth(t.view, t.view.slice(0, 7) > TR_MIN_ISO.slice(0, 7), false)}${trpMonth(second, false, second.slice(0, 7) < TODAY_ISO.slice(0, 7))}</div>
+      <div class="trp-months">${trpMonth(t.view, t.view.slice(0, 7) > TR_MIN_ISO.slice(0, 7), false)}${trpMonth(second, t.view.slice(0, 7) >= TR_MIN_ISO.slice(0, 7) ? 'phone' : false, second.slice(0, 7) < TODAY_ISO.slice(0, 7))}</div>
     </div>
     <div class="trp-foot">
       <label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${t.detailed}" data-trp-detailed></button><span class="trp-switch-v">${t.detailed ? 'On' : 'Off'}</span></label>
       <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${histFmt(t.start)} – ${histFmt(t.end)}`}<span class="trp-limit">Limited to the last 12 months</span></div>
       <div class="trp-acts"><button type="button" class="trp-btn trp-btn--sec" data-trp-cancel>Cancel</button><button type="button" class="trp-btn trp-btn--pri" data-trp-apply ${t.pending ? 'disabled' : ''}>Apply</button></div>
     </div>`;
+  // phones: the dropdown does exactly what clicking the matching preset does
+  const presetSel = el.querySelector('[data-trp-preset-sel]');
+  if (presetSel) presetSel.onchange = () => el.querySelector(`[data-preset="${presetSel.value}"]`)?.click();
   el.querySelectorAll('[data-preset]').forEach(b => b.onclick = () => {
     const p = TR_PRESETS.find(x => x[0] === b.dataset.preset); t.preset = p[0]; t.pending = false;
     if (p[2]) { const [a, z] = p[2](); t.start = a; t.end = z; t.view = trpViewFor(z); }
@@ -6265,6 +6287,11 @@ function drawTrackCalendar() {
   const el = document.getElementById('he-trp'); if (!el || !_trp) return;
   const t = _trp, second = addMonths(t.view, 1);
   el.innerHTML = `
+    <label class="trp-preset-sel-l"><span class="sr-only">Quick range</span>
+      <select class="trp-preset-sel" data-trp-preset-sel aria-label="Quick range">
+        ${TR_PRESETS.map(([k, l]) => `<option value="${k}" ${t.preset === k ? 'selected' : ''}>${l}</option>`).join('')}
+      </select>
+    </label>
     <div class="trp-body">
       <div class="trp-presets" role="listbox" aria-label="Quick ranges">${TR_PRESETS.map(([k, l]) => `<button type="button" class="trp-preset ${t.preset === k ? 'is-active' : ''}" data-preset="${k}" role="option" aria-selected="${t.preset === k}">${l}</button>`).join('')}</div>
       <div class="trp-months">${trpMonth(TR_MIN_ISO.slice(0, 8) + '01', false, false)}${TR_MIN_ISO.slice(0, 7) !== TODAY_ISO.slice(0, 7) ? trpMonth(TODAY_ISO.slice(0, 8) + '01', false, false) : ''}</div>
@@ -6274,6 +6301,9 @@ function drawTrackCalendar() {
       <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${histFmt(t.start)} – ${histFmt(t.end)}`}<span class="trp-limit">Limited to the last 30 days</span></div>
       <div class="trp-acts"><button type="button" class="trp-btn trp-btn--sec" data-trp-cancel>Cancel</button><button type="button" class="trp-btn trp-btn--pri" data-trp-apply ${t.pending ? 'disabled' : ''}>Apply</button></div>
     </div>`;
+  // phones: the dropdown does exactly what clicking the matching preset does
+  const presetSel = el.querySelector('[data-trp-preset-sel]');
+  if (presetSel) presetSel.onchange = () => el.querySelector(`[data-preset="${presetSel.value}"]`)?.click();
   el.querySelectorAll('[data-preset]').forEach(b => b.onclick = () => {
     const p = TR_PRESETS.find(x => x[0] === b.dataset.preset); t.preset = p[0]; t.pending = false;
     if (p[2]) { const [a, z] = p[2](); t.start = a; t.end = z; const ze = fromIso(z); t.view = iso(new Date(Date.UTC(ze.getUTCFullYear(), ze.getUTCMonth() - 1, 1))); }
