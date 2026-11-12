@@ -5501,19 +5501,7 @@ function histRangeAria() { return histFmt(state.trackRange.start) + ' to ' + his
 
 function HistoricalEventsCard() {
   return `
-  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full br-card" data-br="${state.brTab || 'Historical Events'}">
-    <div class="px-4 py-3 border-b border-ink-200">
-      <div class="ds-tabs is-stretch" data-tab-group="data-bottom-right-tab" style="display:flex;width:100%;">
-        <span class="ds-tab-pill is-init" data-tab-pill></span>
-        <button data-bottom-right-tab="Historical Events" aria-selected="${(state.brTab || 'Historical Events') === 'Historical Events'}" class="ds-tab" style="font-size:12px;padding:8px 14px;flex:1;">
-          <span class="ds-tab-label"><span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I.clock}</span> Historical Events</span>
-        </button>
-        <button data-bottom-right-tab="Alerts" aria-selected="${state.brTab === 'Alerts'}" class="ds-tab" style="font-size:12px;padding:8px 14px;flex:1;">
-          <span class="ds-tab-label"><span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I.bell}</span> Alerts</span>
-        </button>
-      </div>
-    </div>
-    <div class="br-tbd" role="status"><span class="br-tbd-ico" aria-hidden="true">${SC.I.bell}</span><span>TBD</span></div>
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full br-card" data-br="Historical Events">
     <div class="px-4 py-3 border-b border-ink-200">
       <button type="button" id="he-hist-cal-btn" class="hist-range" aria-haspopup="dialog" aria-label="Date range ${histRangeAria()}. Change date range">
         <span class="hist-range-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
