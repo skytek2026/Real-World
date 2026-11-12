@@ -537,6 +537,16 @@
   .map-range .hist-range { padding:6px 10px; gap:10px; box-shadow:0 4px 14px rgb(15 23 42/.18); }
   .map-range .hist-range-ico { width:30px; height:30px; }
   @media (max-width:767px) { .map-range .hist-range-ico { display:none; } .map-range .hist-range-days { display:none; } }
+  /* Vessel Tracking card: tabs + Event History placeholder */
+  #map-wrapper[hidden], #event-history-panel[hidden] { display:none !important; }
+  .vt-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; text-align:center; padding:32px 16px; margin:16px; border:1.5px dashed #cbd5e1; border-radius:12px; }
+  .vt-ph-ico { width:44px; height:44px; border-radius:10px; display:grid; place-items:center; background:var(--brand-050,#eff6ff); color:var(--brand-600,#2d7ffb); margin-bottom:4px; }
+  .vt-ph-t { font-size:15px; font-weight:600; color:#0f172a; }
+  .vt-ph-d { font-size:13px; color:#64748b; }
+  html[data-theme="dark"] .vt-placeholder { border-color:#34435c; }
+  html[data-theme="dark"] .vt-ph-ico { background:#15233c; color:var(--brand-300,#93c5fd); }
+  html[data-theme="dark"] .vt-ph-t { color:#e7ecf4; }
+  html[data-theme="dark"] .vt-ph-d { color:#93a0b4; }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -4169,14 +4179,38 @@ function HistoricalDetailsBody() {
   </div>`;
 }
 
+/* Vessel Tracking card tabs: show/hide the map without rebuilding it (keeps zoom, range, position) */
+function wireVesselTrackingTabs() {
+  document.querySelectorAll('[data-vt-tab]').forEach(b => b.addEventListener('click', () => {
+    const v = b.dataset.vtTab; if ((state.vtTab || 'track') === v) return;
+    state.vtTab = v;
+    document.querySelectorAll('[data-vt-tab]').forEach(t => t.setAttribute('aria-selected', String(t.dataset.vtTab === v)));
+    positionTabPills();
+    document.getElementById('map-wrapper').hidden = v !== 'track';
+    document.getElementById('event-history-panel').hidden = v !== 'events';
+    if (v === 'track') setTimeout(() => map && map.invalidateSize(), 0);
+  }));
+}
 function VesselTrackingCard() {
   return `
   <div id="vessel-tracking-card" class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
     <div class="px-4 py-3 border-b border-ink-200 flex items-center gap-2">
-      <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
-      <span class="text-sm font-semibold text-ink-900">Vessel Tracking</span>
+      <div class="ds-tabs" role="tablist" aria-label="Vessel tracking views" data-vt-tabs>
+        <span class="ds-tab-pill is-init" data-tab-pill></span>
+        <button type="button" class="ds-tab" role="tab" id="vt-tab-track" aria-selected="${state.vtTab !== 'events'}" aria-controls="map-wrapper" data-vt-tab="track">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:6px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>Vessel Tracking</span>
+        </button>
+        <button type="button" class="ds-tab" role="tab" id="vt-tab-events" aria-selected="${state.vtTab === 'events'}" aria-controls="event-history-panel" data-vt-tab="events">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>Event History</span>
+        </button>
+      </div>
     </div>
-    <div id="map-wrapper" class="flex-1 relative" style="min-height:420px;">
+    <div id="event-history-panel" class="flex-1 vt-placeholder" role="tabpanel" aria-labelledby="vt-tab-events" ${state.vtTab === 'events' ? '' : 'hidden'}>
+      <div class="vt-ph-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></div>
+      <div class="vt-ph-t">Event History</div>
+      <div class="vt-ph-d">This view’s content is coming soon.</div>
+    </div>
+    <div id="map-wrapper" class="flex-1 relative" role="tabpanel" aria-labelledby="vt-tab-track" style="min-height:420px;" ${state.vtTab === 'events' ? 'hidden' : ''}>
       <div id="vessel-map"></div>
       <!-- Track date range, top centre of the map (moved from the Historical Events card) -->
       <div class="map-range" role="group" aria-label="Track date range">
@@ -5395,6 +5429,7 @@ window.render = function render() {
   }
   setTimeout(initMap, 50);
   setTimeout(wireTimeline, 100);
+  wireVesselTrackingTabs();
 };
 window.render();
 </script>
