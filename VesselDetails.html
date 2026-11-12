@@ -200,6 +200,10 @@
   }
   @media (min-width:1024px) { .vessel-track-row { height:660px; } .vessel-track-row > * { min-height:0; } .vessel-track-row > :last-child { grid-column:span 2 / span 2; } }
   @media (max-width:1023px) { .vessel-track-row > :first-child { max-height:660px; } }
+  /* map on its own: full width (the events card was removed) */
+  .vessel-track-row--solo { display:block; }
+  .vessel-track-row--solo > * { height:660px; max-height:none !important; }
+  @media (max-width:767px) { .vessel-track-row--solo > * { height:520px; } }
   /* Historical Details: table on wider screens, one card per record on phones */
   .hd-cards { display:none; }
   @media (max-width:767px) {
@@ -4895,20 +4899,7 @@ function initMap() {
     }
     L.DomEvent.disableClickPropagation(el);
   });
-  window._eventMarkers = EVENTS.map((p, i) => {
-    const t = MAP_EVENT_TYPES.find(x => x.id === p.type);
-    const icon = L.divIcon({ className:'', iconSize:[26,26], iconAnchor:[13,13],
-      html:`<div class="ev-marker" data-ev-mk="${i}" style="background:${t.bg};color:${t.fg};">${t.icon}</div>` });
-    const m = L.marker(p.ll, { icon, zIndexOffset:500, keyboard:true, alt:t.label }).bindPopup(eventPopupHtml(p, t), EV_POPUP_OPTS)
-      .bindTooltip(`<b>${t.label}</b>`, { direction:'top', offset:[0,-15], className:'ev-tip' });
-    m.on('popupopen', () => { m.closeTooltip(); m.getTooltip().options.opacity = 0; });
-    m.on('popupclose', () => { m.getTooltip().options.opacity = 0.9; });
-    m._evType = p.type; m._evIdx = i;
-    m.on('click', () => selectHistEvent(i, 'map'));
-    m.on('popupclose', () => { if (state.histSel === i) markHistSel(null); });
-    return m;
-  });
-  applyEventFilter();
+  window._eventMarkers = [];   // event icons are not shown on this map
 
   // Force a size recalculation once layout is stable
   setTimeout(() => map && map.invalidateSize(), 200);
@@ -5178,8 +5169,7 @@ function Content() {
     <section>
       ${EnvironmentalRatingCard()}
     </section>
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-3 vessel-track-row" style="min-height:660px;">
-      ${HistoricalEventsCard()}
+    <section class="vessel-track-row vessel-track-row--solo" style="min-height:660px;">
       ${VesselTrackingCard()}
     </section>
   </div>`;
