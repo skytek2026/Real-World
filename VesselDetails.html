@@ -5258,6 +5258,10 @@ function wireTimeline() {
 }
 
 /* ----------- CONTENT ----------- */
+/* The original Vessel Track card (4th row) is hidden for now; set to true to show it again.
+   Its code is unchanged; the map/timeline setup skips it when it isn't on the page. */
+const SHOW_VESSEL_TRACK_CARD = false;
+
 function Content() {
   return `
   <div class="px-4 lg:px-6 py-4 space-y-3">
@@ -5273,9 +5277,9 @@ function Content() {
     <section>
       ${EnvironmentalRatingCard()}
     </section>
-    <section class="vessel-track-row vessel-track-row--solo" style="min-height:660px;">
+    ${SHOW_VESSEL_TRACK_CARD ? `<section class="vessel-track-row vessel-track-row--solo" style="min-height:660px;">
       ${VesselTrackingCard()}
-    </section>
+    </section>` : ''}
     <section class="vt2-row" aria-label="Vessel Track with date range">
       <div class="vt2-card bg-white rounded-lg border border-ink-200 shadow-card">
         <div class="px-4 py-3 border-b border-ink-200 flex items-center gap-2">
