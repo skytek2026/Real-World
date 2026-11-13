@@ -307,7 +307,7 @@ html[data-theme="dark"] .ds-fdrawer {
 }
 /* Marine Dashboard additions: option marks + counts, result line, footer buttons (DS secondary / primary) */
 .ds-fdrawer-dot[hidden] { display:none; }   /* the DS dot sets display:inline-block, which would beat [hidden] */
-.mfd-swatch { width:10px; height:10px; border-radius:2px; transform:rotate(45deg); flex-shrink:0; }
+.mfd-vessel { flex-shrink:0; transform:rotate(45deg); }   /* same arrowhead as the map's vessel markers */
 .mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
 .mfd-n { font-size:11.5px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
@@ -1265,7 +1265,7 @@ function initMap() {
   function fdSectionHTML(s, i) {
     const open = state.fdOpenSection === i, items = s.items.map(it => {
       const n = fdCount(s.field, it.v);
-      const mark = it.swatch ? `<span class="mfd-swatch" style="background:${it.swatch}"></span>` : it.dot ? `<span class="mfd-dot" style="background:${it.dot}"></span>` : '';
+      const mark = it.swatch ? `<svg class="mfd-vessel" viewBox="0 0 24 24" width="16" height="16" style="color:${it.swatch}" fill="currentColor" stroke="#fff" stroke-width="1.2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg>` : it.dot ? `<span class="mfd-dot" style="background:${it.dot}"></span>` : '';
       return `<label class="ds-fdrawer-item"><input type="checkbox" data-fd-sec="${i}" value="${fdEsc(it.v)}" ${state[s.key].has(it.v) ? 'checked' : ''}>${mark}<span class="mfd-label">${fdEsc(it.v)}</span><span class="mfd-n">${n}</span></label>`;
     }).join('');
     return `<div class="ds-fdrawer-section${open ? ' is-open' : ''}" data-fd-section="${i}">
