@@ -171,6 +171,159 @@
   .folder-btn:hover { background:var(--brand-50,#eff6ff); }
   .folder-btn:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
 </style>
+
+<style>
+/* ── Filter drawer: Skytek Design System .ds-fdrawer (07h · Filter drawer), copied from the org DS styles.css ── */
+.ds-fdrawer {
+  --z-drawer:1080; --fdrawer-width:360px; --fdrawer-max-width:92vw; --fdrawer-scrim:rgba(15,23,42,.38); --fdrawer-shadow:-10px 0 30px rgba(15,23,42,.16);
+  --fdrawer-pad-x:18px; --fdrawer-head-pad:16px 20px; --fdrawer-slide:300ms; --fdrawer-slide-ease:cubic-bezier(.4,0,.2,1); --fdrawer-scrim-motion:250ms;
+  --fdrawer-acc-motion:220ms; --fdrawer-list-max:210px; --motion-fast:140ms; --motion-base:200ms; --ease-out:cubic-bezier(.16,1,.3,1);
+  --radius-sm:4px; --radius-pill:9999px; --font-display:"Exo","Inter",system-ui,sans-serif; --danger-500:#DC2626;
+  --bg-surface:#FFFFFF; --bg-muted:#F3F4F6; --bg-sunken:#F9FAFB; --border-default:#E5E7EB; --border-subtle:#ECEEF2;
+  --text-primary:#111827; --text-secondary:#4B5563; --text-muted:#6B7280; --shadow-focus:0 0 0 3px rgba(46,134,192,.32);
+}
+html[data-theme="dark"] .ds-fdrawer {
+  --bg-surface:#121A2A; --bg-muted:#1B2536; --bg-sunken:#0B1220; --border-default:#2B3854; --border-subtle:#1F2A3C;
+  --text-primary:#F3F4F6; --text-secondary:#9CA3AF; --text-muted:#828C9C; --shadow-focus:0 0 0 3px rgba(142,197,253,.45);
+}
+@keyframes ds-fdrawer-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+/* ===== Filter drawer =====
+   Right-edge sheet holding the full filter set for a data view.
+   Distinct from the generic Drawer: narrower, single-open accordion
+   sections, and LIVE-APPLY, every change re-queries immediately and
+   the result is visible behind the scrim. There is no Apply button.
+
+   Visibility (not display) is toggled so the panel can transition. */
+.ds-fdrawer { position: fixed; inset: 0; z-index: var(--z-drawer); visibility: hidden; }
+.ds-fdrawer.is-open { visibility: visible; }
+.ds-fdrawer-scrim {
+  position: absolute; inset: 0;
+  background: var(--fdrawer-scrim);
+  opacity: 0;
+  transition: opacity var(--fdrawer-scrim-motion) var(--ease-out);
+}
+.ds-fdrawer.is-open .ds-fdrawer-scrim { opacity: 1; }
+.ds-fdrawer-panel {
+  position: absolute; top: 0; right: 0;
+  height: 100%;
+  width: var(--fdrawer-width);
+  max-width: var(--fdrawer-max-width);
+  background: var(--bg-surface);
+  box-shadow: var(--fdrawer-shadow);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--fdrawer-slide) var(--fdrawer-slide-ease);
+}
+.ds-fdrawer.is-open .ds-fdrawer-panel { transform: translateX(0); }
+.ds-fdrawer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--fdrawer-head-pad);
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 700; color: var(--text-primary);
+  flex: 0 0 auto;
+}
+.ds-fdrawer-close {
+  border: 0; background: none; cursor: pointer;
+  color: var(--text-muted); padding: 5px; border-radius: 7px;
+  display: inline-flex;
+  transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+.ds-fdrawer-close:hover { background: var(--bg-muted); color: var(--text-primary); }
+.ds-fdrawer-close:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
+/* Body is the accordion host. The OPEN section grows to fill it, so its
+   option list scrolls instead of the whole drawer. */
+.ds-fdrawer-body {
+  flex: 1 1 auto; min-height: 0;
+  overflow-y: auto;
+  padding: 4px var(--fdrawer-pad-x) 12px;
+  display: flex; flex-direction: column;
+}
+.ds-fdrawer-section {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  flex: 0 0 auto;
+  transition: padding var(--motion-base) var(--ease-out);
+}
+.ds-fdrawer-section:not(.is-open) { padding: 11px 0; }
+.ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.ds-fdrawer-section:last-child { border-bottom: 0; }
+.ds-fdrawer-acc-head {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  background: none; border: 0; padding: 0; cursor: pointer;
+}
+.ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); }
+.ds-fdrawer-sec-title {
+  font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); margin: 0;
+  display: flex; align-items: center; gap: 7px;
+}
+/* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
+.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
+.ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
+.ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); }
+/* Active-filter marker */
+.ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; }
+.ds-fdrawer-acc-body { display: none; padding-top: 12px; }
+.ds-fdrawer-section.is-open .ds-fdrawer-acc-body {
+  display: flex; flex-direction: column; flex: 1; min-height: 0;
+  animation: ds-fdrawer-acc-in var(--fdrawer-acc-motion) var(--ease-out);
+}
+/* Section toolbar (Reset / Unselect all) */
+.ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; }
+.ds-fdrawer-act {
+  flex: 1; padding: 5px 8px;
+  border: 1px solid var(--border-default); border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  font: inherit; font-size: 11.5px; font-weight: 600; color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+.ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); }
+.ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+/* Option list. Capped when collapsed-ish; the open section lets it fill. */
+.ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; }
+.ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; }
+.ds-fdrawer-item {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  text-align: left; padding: 7px 10px;
+  border: 0; border-radius: var(--radius-sm); background: transparent;
+  font-size: 12.5px; font-weight: 500; color: var(--text-secondary);
+  cursor: pointer; white-space: nowrap;
+}
+.ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); }
+.ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; }
+.ds-fdrawer-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px var(--fdrawer-pad-x);
+  border-top: 1px solid var(--border-subtle);
+  flex: 0 0 auto;
+}
+.ds-fdrawer-foot > * { justify-content: center; height: 40px; padding: 0 16px; }
+.ds-fdrawer-foot > *:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ds-fdrawer-panel, .ds-fdrawer-scrim { transition-duration: 1ms; }
+  .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { animation-duration: 1ms; }
+}
+/* Marine Dashboard additions: option marks + counts, result line, footer buttons (DS secondary / primary) */
+.ds-fdrawer-dot[hidden] { display:none; }   /* the DS dot sets display:inline-block, which would beat [hidden] */
+.mfd-swatch { width:10px; height:10px; border-radius:2px; transform:rotate(45deg); flex-shrink:0; }
+.mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.mfd-n { font-size:11.5px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
+.mfd-result { padding:10px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
+.mfd-btn { display:inline-flex; align-items:center; border-radius:6px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid transparent; }
+.mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
+.mfd-btn--secondary:hover { background:var(--bg-sunken); }
+.mfd-btn--primary { background:var(--brand-600,#2d7ffb); color:#fff; }
+.mfd-btn--primary:hover { background:var(--brand-700,#1f5fc7); }
+.mfd-btn:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
+/* active-filter count on the map's Filter button */
+#map-filters-btn { position:relative; }
+#map-filters-btn.is-active { color:var(--brand-600,#2d7ffb); }
+.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#2d7ffb); color:#fff; font-size:10px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
+html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
+</style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
 <div id="app" class="min-h-screen w-full flex"></div>
@@ -837,92 +990,7 @@ function MapCard() {
           </div>
         </div>
         <div class="relative">
-          <button id="map-filters-btn" class="map-btn" title="Filter vessels">${Ico.filter}</button>
-          <!-- Filter menu -->
-          <div id="map-filters-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[240px] bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden flex flex-col" style="max-height:420px;">
-            <div class="px-3 py-2.5 border-b border-ink-200 flex items-center justify-between">
-              <div class="text-sm font-bold text-ink-800">Filter Vessels</div>
-              <div class="flex items-center gap-1">
-                <button id="vf-all"  class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">All</button>
-                <button id="vf-none" class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">None</button>
-              </div>
-            </div>
-            <div class="px-3 py-2 bg-ink-50 border-b border-ink-200 text-[11px] font-semibold uppercase tracking-micro text-ink-600">Vessel Type</div>
-            <div class="overflow-y-auto scroll-thin py-1" id="vf-list">
-              ${VESSEL_TYPES.map(t => `
-                <label class="vf-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-vtype="${t.k}">
-                  <input type="checkbox" class="vf-cb h-4 w-4 rounded border-ink-300 accent-brand-600" checked />
-                  <svg viewBox="0 0 24 24" width="16" height="16" style="transform:rotate(45deg); color:${t.color};" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg>
-                  <span class="text-[13px] text-ink-700">${t.k}</span>
-                </label>`).join('')}
-            </div>
-          </div>
-        </div>
-        <div class="relative">
-          <button id="map-portfolio-btn" class="map-btn" title="Filter by portfolio"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></button>
-          <!-- Portfolio filter menu -->
-          <div id="map-portfolio-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[240px] bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden flex flex-col" style="max-height:420px;">
-            <div class="px-3 py-2.5 border-b border-ink-200 flex items-center justify-between">
-              <div class="text-sm font-bold text-ink-800">Filter Portfolios</div>
-              <div class="flex items-center gap-1">
-                <button id="pf-all"  class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">All</button>
-                <button id="pf-none" class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">None</button>
-              </div>
-            </div>
-            <div class="px-3 py-2 bg-ink-50 border-b border-ink-200 text-[11px] font-semibold uppercase tracking-micro text-ink-600">Portfolio</div>
-            <div class="overflow-y-auto scroll-thin py-1" id="pf-list">
-              ${PORTFOLIOS.map(p => `
-                <label class="pf-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-portfolio="${p.name}">
-                  <input type="checkbox" class="pf-cb h-4 w-4 rounded border-ink-300 accent-brand-600" checked />
-                  <span class="text-[13px] text-ink-700 truncate">${p.name}</span>
-                </label>`).join('')}
-            </div>
-          </div>
-        </div>
-        <div class="relative">
-          <button id="map-compliance-btn" class="map-btn" title="Filter by compliance status"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></button>
-          <!-- Compliance filter menu -->
-          <div id="map-compliance-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[220px] bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden flex flex-col">
-            <div class="px-3 py-2.5 border-b border-ink-200 flex items-center justify-between">
-              <div class="text-sm font-bold text-ink-800">Compliance Status</div>
-              <div class="flex items-center gap-1">
-                <button id="cs-all"  class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">All</button>
-                <button id="cs-none" class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">None</button>
-              </div>
-            </div>
-            <div class="py-1">
-              ${[
-                { k:'Ok',         color:'#16a34a' },
-                { k:'Warning',    color:'#d97706' },
-                { k:'Sanctioned', color:'#dc2626' },
-              ].map(s => `
-                <label class="cs-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-compliance="${s.k}">
-                  <input type="checkbox" class="cs-cb h-4 w-4 rounded border-ink-300 accent-brand-600" checked />
-                  <span class="inline-block h-2.5 w-2.5 rounded-full" style="background:${s.color}"></span>
-                  <span class="text-[13px] text-ink-700">${s.k}</span>
-                </label>`).join('')}
-            </div>
-          </div>
-        </div>
-        <div class="relative">
-          <button id="map-policy-btn" class="map-btn" title="Filter by policy type"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></button>
-          <!-- Policy type filter menu -->
-          <div id="map-policy-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[220px] bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden flex flex-col" style="max-height:420px;">
-            <div class="px-3 py-2.5 border-b border-ink-200 flex items-center justify-between">
-              <div class="text-sm font-bold text-ink-800">Policy Type</div>
-              <div class="flex items-center gap-1">
-                <button id="pt-all"  class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">All</button>
-                <button id="pt-none" class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">None</button>
-              </div>
-            </div>
-            <div class="overflow-y-auto scroll-thin py-1" id="pt-list">
-              ${POLICY_TYPES.map(p => `
-                <label class="pt-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-policy="${p}">
-                  <input type="checkbox" class="pt-cb h-4 w-4 rounded border-ink-300 accent-brand-600" checked />
-                  <span class="text-[13px] text-ink-700">${p}</span>
-                </label>`).join('')}
-            </div>
-          </div>
+          <button id="map-filters-btn" class="map-btn" title="Filter vessels" aria-label="Filter vessels" aria-haspopup="dialog" aria-controls="map-fdrawer" aria-expanded="false">${Ico.filter}<span id="map-filters-count" class="map-filter-count" hidden></span></button>
         </div>
         <div class="relative">
           <button id="map-labels-btn" class="map-btn" title="Vessel labels">${Ico.tag}</button>
@@ -1175,124 +1243,132 @@ function initMap() {
     });
   }
 
-  // Filters menu
-  const filtersBtn  = document.getElementById('map-filters-btn');
-  const filtersMenu = document.getElementById('map-filters-menu');
-  function syncFilterUI() {
-    filtersMenu.querySelectorAll('.vf-row').forEach(row => {
-      const on = state.vesselFilter.has(row.dataset.vtype);
-      row.querySelector('.vf-cb').checked = on;
-    });
+  // ── Map filter drawer (Skytek DS "Filter drawer", .ds-fdrawer) ───────────────────────────────
+  // Live apply: every change filters the map immediately (visible behind the scrim). One section open
+  // at a time. Each section is a Set of selected values: all = unfiltered, subset = filtered, empty =
+  // explicitly none. Footer: Reset (all sections) on the left, Done on the right (never "Apply").
+  const filtersMenu = null, pfMenu = null, csMenu = null, ptMenu = null, pfBtn = null, csBtn = null, ptBtn = null;
+  const filtersBtn = document.getElementById('map-filters-btn');
+  const fdEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+  const fdCount = (field, v) => vessels.filter(x => x[field] === v).length;
+  const FD_SECTIONS = [
+    { key:'vesselFilter',     title:'Vessel Type',       field:'type',       items: VESSEL_TYPES.map(t => ({ v:t.k, swatch:t.color })) },
+    { key:'portfolioFilter',  title:'Portfolios',        field:'portfolio',  items: PORTFOLIOS.map(p => ({ v:p.name })) },
+    { key:'complianceFilter', title:'Compliance Status', field:'compliance', items: [{ v:'Ok', dot:'#16a34a' }, { v:'Warning', dot:'#d97706' }, { v:'Sanctioned', dot:'#dc2626' }] },
+    { key:'policyTypeFilter', title:'Policy Type',       field:'policyType', items: POLICY_TYPES.map(v => ({ v })) },
+  ];
+  const fdIsAll  = s => s.items.every(it => state[s.key].has(it.v));
+  const fdIsNone = s => s.items.every(it => !state[s.key].has(it.v));
+  const fdActive = () => FD_SECTIONS.filter(s => !fdIsAll(s)).length;
+  if (state.fdOpenSection == null) state.fdOpenSection = 0;
+  const chev = '<svg class="ds-fdrawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function fdSectionHTML(s, i) {
+    const open = state.fdOpenSection === i, items = s.items.map(it => {
+      const n = fdCount(s.field, it.v);
+      const mark = it.swatch ? `<span class="mfd-swatch" style="background:${it.swatch}"></span>` : it.dot ? `<span class="mfd-dot" style="background:${it.dot}"></span>` : '';
+      return `<label class="ds-fdrawer-item"><input type="checkbox" data-fd-sec="${i}" value="${fdEsc(it.v)}" ${state[s.key].has(it.v) ? 'checked' : ''}>${mark}<span class="mfd-label">${fdEsc(it.v)}</span><span class="mfd-n">${n}</span></label>`;
+    }).join('');
+    return `<div class="ds-fdrawer-section${open ? ' is-open' : ''}" data-fd-section="${i}">
+      <button type="button" class="ds-fdrawer-acc-head" data-fd-acc="${i}" aria-expanded="${open}" aria-controls="mfd-sec-${i}">
+        <span class="ds-fdrawer-sec-title">${s.title}<span class="ds-fdrawer-dot" data-fd-dot="${i}" ${fdIsAll(s) ? 'hidden' : ''} aria-label="Filtered"></span></span>${chev}
+      </button>
+      <div class="ds-fdrawer-acc-body" id="mfd-sec-${i}" role="group" aria-label="${s.title}">
+        <div class="ds-fdrawer-acts">
+          <button type="button" class="ds-fdrawer-act" data-fd-act="reset" data-fd-i="${i}" ${fdIsAll(s) ? 'disabled' : ''}>Reset</button>
+          <button type="button" class="ds-fdrawer-act" data-fd-act="none" data-fd-i="${i}" ${fdIsNone(s) ? 'disabled' : ''}>Unselect all</button>
+        </div>
+        <div class="ds-fdrawer-list scroll-thin">${items}</div>
+      </div>
+    </div>`;
   }
-  if (filtersBtn && filtersMenu) {
-    filtersBtn.onclick = (e) => { e.stopPropagation(); filtersMenu.classList.toggle('hidden'); layersMenu && layersMenu.classList.add('hidden'); pfMenu && pfMenu.classList.add('hidden'); csMenu && csMenu.classList.add('hidden'); ptMenu && ptMenu.classList.add('hidden'); };
-    filtersMenu.querySelectorAll('.vf-row').forEach(row => {
-      row.onclick = (e) => {
-        e.stopPropagation();
-        const t = row.dataset.vtype;
-        if (state.vesselFilter.has(t)) state.vesselFilter.delete(t); else state.vesselFilter.add(t);
-        syncFilterUI(); applyVesselFilter();
-      };
+  // update everything that depends on the filters, in place (keeps list scroll positions)
+  function fdSync() {
+    const el = document.getElementById('map-fdrawer');
+    FD_SECTIONS.forEach((s, i) => {
+      if (!el) return;
+      el.querySelector(`[data-fd-dot="${i}"]`).hidden = fdIsAll(s);
+      el.querySelector(`[data-fd-act="reset"][data-fd-i="${i}"]`).disabled = fdIsAll(s);
+      el.querySelector(`[data-fd-act="none"][data-fd-i="${i}"]`).disabled = fdIsNone(s);
+      el.querySelectorAll(`input[data-fd-sec="${i}"]`).forEach(cb => { cb.checked = state[s.key].has(cb.value); });
     });
-    const allBtn  = document.getElementById('vf-all');
-    const noneBtn = document.getElementById('vf-none');
-    if (allBtn)  allBtn.onclick  = (e) => { e.stopPropagation(); state.vesselFilter = new Set(VESSEL_TYPES.map(t=>t.k)); syncFilterUI(); applyVesselFilter(); };
-    if (noneBtn) noneBtn.onclick = (e) => { e.stopPropagation(); state.vesselFilter = new Set();                        syncFilterUI(); applyVesselFilter(); };
+    const n = fdActive();
+    if (el) {
+      el.querySelector('[data-fd-act="reset-all"]').disabled = n === 0;
+      const shown = vessels.filter(v => FD_SECTIONS.every(s => state[s.key].has(v[s.field]))).length;
+      el.querySelector('#mfd-result').textContent = `Showing ${shown} of ${vessels.length} vessels`;
+    }
+    const badge = document.getElementById('map-filters-count');
+    if (badge) { badge.hidden = n === 0; badge.textContent = n; }
+    if (filtersBtn) { filtersBtn.classList.toggle('is-active', n > 0); filtersBtn.setAttribute('aria-label', n ? `Filter vessels (${n} active)` : 'Filter vessels'); }
   }
-
-  // Portfolio filter menu
-  const pfBtn  = document.getElementById('map-portfolio-btn');
-  const pfMenu = document.getElementById('map-portfolio-menu');
-  function syncPortfolioUI() {
-    pfMenu.querySelectorAll('.pf-row').forEach(row => {
-      row.querySelector('.pf-cb').checked = state.portfolioFilter.has(row.dataset.portfolio);
+  function fdClose() {
+    const el = document.getElementById('map-fdrawer'); if (!el || !el.classList.contains('is-open')) return;
+    el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true');
+    filtersBtn && filtersBtn.setAttribute('aria-expanded', 'false');
+    const main = document.querySelector('main'); if (main) main.style.overflow = '';
+    document.removeEventListener('keydown', fdKeys, true);
+    filtersBtn && filtersBtn.focus();
+  }
+  function fdKeys(e) {
+    const el = document.getElementById('map-fdrawer'); if (!el) return;
+    if (e.key === 'Escape') { e.preventDefault(); fdClose(); return; }
+    if (e.key !== 'Tab') return;   // keep focus inside the drawer while it's open
+    const f = [...el.querySelectorAll('.ds-fdrawer-panel button:not([disabled]), .ds-fdrawer-panel input')].filter(x => x.offsetParent);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  function fdOpen() {
+    document.getElementById('map-fdrawer')?.remove();
+    const el = document.createElement('div');
+    el.id = 'map-fdrawer'; el.className = 'ds-fdrawer'; el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = `<div class="ds-fdrawer-scrim" data-fd-act="done"></div>
+      <div class="ds-fdrawer-panel" role="dialog" aria-modal="true" aria-labelledby="mfd-title">
+        <div class="ds-fdrawer-head"><span id="mfd-title">Filter vessels</span>
+          <button type="button" class="ds-fdrawer-close" data-fd-act="done" aria-label="Close filters"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="mfd-result" id="mfd-result" aria-live="polite"></div>
+        <div class="ds-fdrawer-body">${FD_SECTIONS.map(fdSectionHTML).join('')}</div>
+        <div class="ds-fdrawer-foot">
+          <button type="button" class="mfd-btn mfd-btn--secondary" data-fd-act="reset-all">Reset</button>
+          <button type="button" class="mfd-btn mfd-btn--primary" data-fd-act="done">Done</button>
+        </div>
+      </div>`;
+    document.body.appendChild(el);
+    el.addEventListener('change', e => {
+      const cb = e.target.closest('input[data-fd-sec]'); if (!cb) return;
+      const s = FD_SECTIONS[+cb.dataset.fdSec];
+      if (cb.checked) state[s.key].add(cb.value); else state[s.key].delete(cb.value);
+      applyVesselFilter(); fdSync();
     });
-  }
-  if (pfBtn && pfMenu) {
-    pfBtn.onclick = (e) => {
-      e.stopPropagation();
-      pfMenu.classList.toggle('hidden');
-      layersMenu && layersMenu.classList.add('hidden');
-      filtersMenu && filtersMenu.classList.add('hidden');
-      csMenu && csMenu.classList.add('hidden');
-      ptMenu && ptMenu.classList.add('hidden');
-    };
-    pfMenu.querySelectorAll('.pf-row').forEach(row => {
-      row.onclick = (e) => {
-        e.stopPropagation();
-        const p = row.dataset.portfolio;
-        if (state.portfolioFilter.has(p)) state.portfolioFilter.delete(p); else state.portfolioFilter.add(p);
-        syncPortfolioUI(); applyVesselFilter();
-      };
+    el.addEventListener('click', e => {
+      const acc = e.target.closest('[data-fd-acc]');
+      if (acc) {
+        const i = +acc.dataset.fdAcc; state.fdOpenSection = state.fdOpenSection === i ? -1 : i;
+        el.querySelectorAll('[data-fd-section]').forEach(sec => {
+          const on = +sec.dataset.fdSection === state.fdOpenSection;
+          sec.classList.toggle('is-open', on); sec.querySelector('[data-fd-acc]').setAttribute('aria-expanded', String(on));
+        });
+        return;
+      }
+      const act = e.target.closest('[data-fd-act]'); if (!act) return;
+      const a = act.dataset.fdAct, s = FD_SECTIONS[+act.dataset.fdI];
+      if (a === 'done') { fdClose(); return; }
+      if (a === 'reset') state[s.key] = new Set(s.items.map(it => it.v));
+      if (a === 'none') state[s.key] = new Set();
+      if (a === 'reset-all') FD_SECTIONS.forEach(x => { state[x.key] = new Set(x.items.map(it => it.v)); });
+      applyVesselFilter(); fdSync();
     });
-    const pfAll  = document.getElementById('pf-all');
-    const pfNone = document.getElementById('pf-none');
-    if (pfAll)  pfAll.onclick  = (e) => { e.stopPropagation(); state.portfolioFilter = new Set(PORTFOLIOS.map(p=>p.name)); syncPortfolioUI(); applyVesselFilter(); };
-    if (pfNone) pfNone.onclick = (e) => { e.stopPropagation(); state.portfolioFilter = new Set();                          syncPortfolioUI(); applyVesselFilter(); };
+    fdSync();
+    requestAnimationFrame(() => { el.classList.add('is-open'); el.setAttribute('aria-hidden', 'false'); });
+    filtersBtn && filtersBtn.setAttribute('aria-expanded', 'true');
+    const main = document.querySelector('main'); if (main) main.style.overflow = 'hidden';   // scroll-lock (DS: accepted trade)
+    document.addEventListener('keydown', fdKeys, true);
+    setTimeout(() => el.querySelector('.ds-fdrawer-close').focus(), 60);
   }
-
-  // Compliance filter menu
-  const csBtn  = document.getElementById('map-compliance-btn');
-  const csMenu = document.getElementById('map-compliance-menu');
-  function syncComplianceUI() {
-    csMenu.querySelectorAll('.cs-row').forEach(row => {
-      row.querySelector('.cs-cb').checked = state.complianceFilter.has(row.dataset.compliance);
-    });
-  }
-  if (csBtn && csMenu) {
-    csBtn.onclick = (e) => {
-      e.stopPropagation();
-      csMenu.classList.toggle('hidden');
-      layersMenu && layersMenu.classList.add('hidden');
-      filtersMenu && filtersMenu.classList.add('hidden');
-      pfMenu && pfMenu.classList.add('hidden');
-      ptMenu && ptMenu.classList.add('hidden');
-    };
-    csMenu.querySelectorAll('.cs-row').forEach(row => {
-      row.onclick = (e) => {
-        e.stopPropagation();
-        const s = row.dataset.compliance;
-        if (state.complianceFilter.has(s)) state.complianceFilter.delete(s); else state.complianceFilter.add(s);
-        syncComplianceUI(); applyVesselFilter();
-      };
-    });
-    const csAll  = document.getElementById('cs-all');
-    const csNone = document.getElementById('cs-none');
-    if (csAll)  csAll.onclick  = (e) => { e.stopPropagation(); state.complianceFilter = new Set(['Ok','Warning','Sanctioned']); syncComplianceUI(); applyVesselFilter(); };
-    if (csNone) csNone.onclick = (e) => { e.stopPropagation(); state.complianceFilter = new Set();                              syncComplianceUI(); applyVesselFilter(); };
-  }
-
-  // Policy type filter menu
-  const ptBtn  = document.getElementById('map-policy-btn');
-  const ptMenu = document.getElementById('map-policy-menu');
-  function syncPolicyUI() {
-    ptMenu.querySelectorAll('.pt-row').forEach(row => {
-      row.querySelector('.pt-cb').checked = state.policyTypeFilter.has(row.dataset.policy);
-    });
-  }
-  if (ptBtn && ptMenu) {
-    ptBtn.onclick = (e) => {
-      e.stopPropagation();
-      ptMenu.classList.toggle('hidden');
-      layersMenu && layersMenu.classList.add('hidden');
-      filtersMenu && filtersMenu.classList.add('hidden');
-      pfMenu && pfMenu.classList.add('hidden');
-      csMenu && csMenu.classList.add('hidden');
-    };
-    ptMenu.querySelectorAll('.pt-row').forEach(row => {
-      row.onclick = (e) => {
-        e.stopPropagation();
-        const p = row.dataset.policy;
-        if (state.policyTypeFilter.has(p)) state.policyTypeFilter.delete(p); else state.policyTypeFilter.add(p);
-        syncPolicyUI(); applyVesselFilter();
-      };
-    });
-    const ptAll  = document.getElementById('pt-all');
-    const ptNone = document.getElementById('pt-none');
-    if (ptAll)  ptAll.onclick  = (e) => { e.stopPropagation(); state.policyTypeFilter = new Set(POLICY_TYPES); syncPolicyUI(); applyVesselFilter(); };
-    if (ptNone) ptNone.onclick = (e) => { e.stopPropagation(); state.policyTypeFilter = new Set();            syncPolicyUI(); applyVesselFilter(); };
-  }
-
+  if (filtersBtn) filtersBtn.onclick = (e) => { e.stopPropagation(); fdOpen(); };
+  fdSync();
   // Labels menu
   const labelsBtn  = document.getElementById('map-labels-btn');
   const labelsMenu = document.getElementById('map-labels-menu');
