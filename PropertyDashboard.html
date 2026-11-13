@@ -129,6 +129,160 @@
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 5px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
 </style>
+
+<style>
+/* ── Filter drawer: Skytek Design System .ds-fdrawer (07h · Filter drawer), copied from the org DS styles.css ── */
+.ds-fdrawer {
+  --z-drawer:1080; --fdrawer-width:360px; --fdrawer-max-width:92vw; --fdrawer-scrim:rgba(15,23,42,.38); --fdrawer-shadow:-10px 0 30px rgba(15,23,42,.16);
+  --fdrawer-pad-x:18px; --fdrawer-head-pad:16px 20px; --fdrawer-slide:300ms; --fdrawer-slide-ease:cubic-bezier(.4,0,.2,1); --fdrawer-scrim-motion:250ms;
+  --fdrawer-acc-motion:220ms; --fdrawer-list-max:210px; --motion-fast:140ms; --motion-base:200ms; --ease-out:cubic-bezier(.16,1,.3,1);
+  --radius-sm:4px; --radius-pill:9999px; --font-display:"Exo","Inter",system-ui,sans-serif; --danger-500:#DC2626;
+  --bg-surface:#FFFFFF; --bg-muted:#F3F4F6; --bg-sunken:#F9FAFB; --border-default:#E5E7EB; --border-subtle:#ECEEF2;
+  --text-primary:#111827; --text-secondary:#4B5563; --text-muted:#6B7280; --shadow-focus:0 0 0 3px rgba(46,134,192,.32);
+}
+html[data-theme="dark"] .ds-fdrawer {
+  --bg-surface:#121A2A; --bg-muted:#1B2536; --bg-sunken:#0B1220; --border-default:#2B3854; --border-subtle:#1F2A3C;
+  --text-primary:#F3F4F6; --text-secondary:#9CA3AF; --text-muted:#828C9C; --shadow-focus:0 0 0 3px rgba(142,197,253,.45);
+}
+@keyframes ds-fdrawer-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+/* ===== Filter drawer =====
+   Right-edge sheet holding the full filter set for a data view.
+   Distinct from the generic Drawer: narrower, single-open accordion
+   sections, and LIVE-APPLY, every change re-queries immediately and
+   the result is visible behind the scrim. There is no Apply button.
+
+   Visibility (not display) is toggled so the panel can transition. */
+.ds-fdrawer { position: fixed; inset: 0; z-index: var(--z-drawer); visibility: hidden; }
+.ds-fdrawer.is-open { visibility: visible; }
+.ds-fdrawer-scrim {
+  position: absolute; inset: 0;
+  background: var(--fdrawer-scrim);
+  opacity: 0;
+  transition: opacity var(--fdrawer-scrim-motion) var(--ease-out);
+}
+.ds-fdrawer.is-open .ds-fdrawer-scrim { opacity: 1; }
+.ds-fdrawer-panel {
+  position: absolute; top: 0; right: 0;
+  height: 100%;
+  width: var(--fdrawer-width);
+  max-width: var(--fdrawer-max-width);
+  background: var(--bg-surface);
+  box-shadow: var(--fdrawer-shadow);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--fdrawer-slide) var(--fdrawer-slide-ease);
+}
+.ds-fdrawer.is-open .ds-fdrawer-panel { transform: translateX(0); }
+.ds-fdrawer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--fdrawer-head-pad);
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 700; color: var(--text-primary);
+  flex: 0 0 auto;
+}
+.ds-fdrawer-close {
+  border: 0; background: none; cursor: pointer;
+  color: var(--text-muted); padding: 5px; border-radius: 7px;
+  display: inline-flex;
+  transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+.ds-fdrawer-close:hover { background: var(--bg-muted); color: var(--text-primary); }
+.ds-fdrawer-close:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
+/* Body is the accordion host. The OPEN section grows to fill it, so its
+   option list scrolls instead of the whole drawer. */
+.ds-fdrawer-body {
+  flex: 1 1 auto; min-height: 0;
+  overflow-y: auto;
+  padding: 4px var(--fdrawer-pad-x) 12px;
+  display: flex; flex-direction: column;
+}
+.ds-fdrawer-section {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  flex: 0 0 auto;
+  transition: padding var(--motion-base) var(--ease-out);
+}
+.ds-fdrawer-section:not(.is-open) { padding: 11px 0; }
+.ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.ds-fdrawer-section:last-child { border-bottom: 0; }
+.ds-fdrawer-acc-head {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  background: none; border: 0; padding: 0; cursor: pointer;
+}
+.ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); }
+.ds-fdrawer-sec-title {
+  font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); margin: 0;
+  display: flex; align-items: center; gap: 7px;
+}
+/* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
+.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
+.ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
+.ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); }
+/* Active-filter marker */
+.ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; }
+.ds-fdrawer-acc-body { display: none; padding-top: 12px; }
+.ds-fdrawer-section.is-open .ds-fdrawer-acc-body {
+  display: flex; flex-direction: column; flex: 1; min-height: 0;
+  animation: ds-fdrawer-acc-in var(--fdrawer-acc-motion) var(--ease-out);
+}
+/* Section toolbar (Reset / Unselect all) */
+.ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; }
+.ds-fdrawer-act {
+  flex: 1; padding: 5px 8px;
+  border: 1px solid var(--border-default); border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  font: inherit; font-size: 11.5px; font-weight: 600; color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+.ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); }
+.ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+/* Option list. Capped when collapsed-ish; the open section lets it fill. */
+.ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; }
+.ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; }
+.ds-fdrawer-item {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  text-align: left; padding: 7px 10px;
+  border: 0; border-radius: var(--radius-sm); background: transparent;
+  font-size: 12.5px; font-weight: 500; color: var(--text-secondary);
+  cursor: pointer; white-space: nowrap;
+}
+.ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); }
+.ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; }
+.ds-fdrawer-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px var(--fdrawer-pad-x);
+  border-top: 1px solid var(--border-subtle);
+  flex: 0 0 auto;
+}
+.ds-fdrawer-foot > * { justify-content: center; height: 40px; padding: 0 16px; }
+.ds-fdrawer-foot > *:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ds-fdrawer-panel, .ds-fdrawer-scrim { transition-duration: 1ms; }
+  .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { animation-duration: 1ms; }
+}
+/* Dashboard additions: option marks + counts, result line, footer buttons (DS secondary / primary) */
+.ds-fdrawer-dot[hidden] { display:none; }   /* the DS dot sets display:inline-block, which would beat [hidden] */
+.pfd-marker { width:22px; height:22px; box-sizing:border-box; border:1.5px solid #fff; border-radius:5px; display:inline-grid; place-items:center; color:#fff; flex-shrink:0; box-shadow:0 1px 4px rgba(0,0,0,.28); }   /* the map marker (34px, 8px radius, white border) scaled down */
+.pfd-marker svg { width:12px; height:12px; }
+.mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.mfd-n { font-size:11.5px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
+.mfd-result { padding:10px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
+.mfd-btn { display:inline-flex; align-items:center; border-radius:6px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid transparent; }
+.mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
+.mfd-btn--secondary:hover { background:var(--bg-sunken); }
+.mfd-btn--primary { background:var(--brand-600,#2d7ffb); color:#fff; }
+.mfd-btn--primary:hover { background:var(--brand-700,#1f5fc7); }
+.mfd-btn:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
+/* active-filter count on the map's Filter button */
+#map-filters-btn { position:relative; }
+#map-filters-btn.is-active { color:var(--brand-600,#2d7ffb); }
+.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#2d7ffb); color:#fff; font-size:10px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
+html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
+</style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
 <div id="app" class="min-h-screen w-full flex"></div>
@@ -481,7 +635,7 @@ function initMap() {
   const layersBtn = document.getElementById('map-layers-btn');
   const layersMenu = document.getElementById('map-layers-menu');
   const filtersBtn  = document.getElementById('map-filters-btn');
-  const filtersMenu = document.getElementById('map-filters-menu');
+  const filtersMenu = null;   // the Filter button opens the filter drawer (no popover menu)
   if (layersBtn && layersMenu) {
     layersBtn.onclick = (e) => { e.stopPropagation(); layersMenu.classList.toggle('hidden'); filtersMenu && filtersMenu.classList.add('hidden'); portfolioMenu && portfolioMenu.classList.add('hidden'); };
     layersMenu.querySelectorAll('[data-map-type]').forEach(opt => {
@@ -489,75 +643,133 @@ function initMap() {
     });
   }
 
-  // Property category filter
-  if (filtersBtn && filtersMenu) {
-    const applyPropertyFilter = () => {
-      propLeafletMarkers.forEach(m => {
-        const show = state.propertyFilter.has(m._propCat) && state.portfolioFilter.has(m._portfolio);
-        if (show && !map.hasLayer(m)) m.addTo(map);
-        if (!show && map.hasLayer(m)) map.removeLayer(m);
-      });
-    };
-    const syncFilterUI = () => {
-      filtersMenu.querySelectorAll('.pf-row').forEach(row => {
-        row.querySelector('.pf-cb').checked = state.propertyFilter.has(row.dataset.pcat);
-      });
-    };
-    filtersBtn.onclick = (e) => {
-      e.stopPropagation();
-      filtersMenu.classList.toggle('hidden');
-      layersMenu && layersMenu.classList.add('hidden');
-      portfolioMenu && portfolioMenu.classList.add('hidden');
-    };
-    filtersMenu.querySelectorAll('.pf-row').forEach(row => {
-      row.onclick = (e) => {
-        e.stopPropagation();
-        const c = row.dataset.pcat;
-        if (state.propertyFilter.has(c)) state.propertyFilter.delete(c); else state.propertyFilter.add(c);
-        syncFilterUI(); applyPropertyFilter();
-      };
+  // ── Map filter drawer (Skytek DS "Filter drawer", .ds-fdrawer) — same pattern as the Marine Dashboard ──
+  // Live apply; one section open at a time; each section is a Set (all = unfiltered, subset, empty = none);
+  // footer Reset (all sections) left, Done right.
+  const portfolioBtn = null, portfolioMenu = null;
+  const fdEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+  const applyPropertyFilter = () => {
+    propLeafletMarkers.forEach(m => {
+      const show = state.propertyFilter.has(m._propCat) && state.portfolioFilter.has(m._portfolio);
+      if (show && !map.hasLayer(m)) m.addTo(map);
+      if (!show && map.hasLayer(m)) map.removeLayer(m);
     });
-    const allBtn  = document.getElementById('pf-all');
-    const noneBtn = document.getElementById('pf-none');
-    if (allBtn)  allBtn.onclick  = (e) => { e.stopPropagation(); state.propertyFilter = new Set(PROPERTY_CATEGORIES.map(c=>c.k)); syncFilterUI(); applyPropertyFilter(); };
-    if (noneBtn) noneBtn.onclick = (e) => { e.stopPropagation(); state.propertyFilter = new Set();                                  syncFilterUI(); applyPropertyFilter(); };
+  };
+  const FD_SECTIONS = [
+    { key:'propertyFilter',  title:'Property Type', field:'_propCat',   items: PROPERTY_CATEGORIES.map(c => ({ v:c.k, cat:c })) },
+    { key:'portfolioFilter', title:'Portfolios',    field:'_portfolio', items: PORTFOLIOS.map(p => ({ v:p.name })) },
+  ];
+  const fdCount = (field, v) => propLeafletMarkers.filter(m => m[field] === v).length;
+  const fdIsAll  = s => s.items.every(it => state[s.key].has(it.v));
+  const fdIsNone = s => s.items.every(it => !state[s.key].has(it.v));
+  const fdActive = () => FD_SECTIONS.filter(s => !fdIsAll(s)).length;
+  if (state.fdOpenSection == null) state.fdOpenSection = 0;
+  const chev = '<svg class="ds-fdrawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  function fdSectionHTML(s, i) {
+    const open = state.fdOpenSection === i, items = s.items.map(it => {
+      const mark = it.cat ? `<span class="pfd-marker" style="background:${it.cat.color}" aria-hidden="true">${it.cat.ico}</span>` : '';
+      return `<label class="ds-fdrawer-item"><input type="checkbox" data-fd-sec="${i}" value="${fdEsc(it.v)}" ${state[s.key].has(it.v) ? 'checked' : ''}>${mark}<span class="mfd-label">${fdEsc(it.v)}</span><span class="mfd-n">${fdCount(s.field, it.v)}</span></label>`;
+    }).join('');
+    return `<div class="ds-fdrawer-section${open ? ' is-open' : ''}" data-fd-section="${i}">
+      <button type="button" class="ds-fdrawer-acc-head" data-fd-acc="${i}" aria-expanded="${open}" aria-controls="pfd-sec-${i}">
+        <span class="ds-fdrawer-sec-title">${s.title}<span class="ds-fdrawer-dot" data-fd-dot="${i}" ${fdIsAll(s) ? 'hidden' : ''} aria-label="Filtered"></span></span>${chev}
+      </button>
+      <div class="ds-fdrawer-acc-body" id="pfd-sec-${i}" role="group" aria-label="${s.title}">
+        <div class="ds-fdrawer-acts">
+          <button type="button" class="ds-fdrawer-act" data-fd-act="reset" data-fd-i="${i}" ${fdIsAll(s) ? 'disabled' : ''}>Reset</button>
+          <button type="button" class="ds-fdrawer-act" data-fd-act="none" data-fd-i="${i}" ${fdIsNone(s) ? 'disabled' : ''}>Unselect all</button>
+        </div>
+        <div class="ds-fdrawer-list scroll-thin">${items}</div>
+      </div>
+    </div>`;
   }
-
-  // Portfolio filter
-  const portfolioBtn  = document.getElementById('map-portfolio-btn');
-  const portfolioMenu = document.getElementById('map-portfolio-menu');
-  if (portfolioBtn && portfolioMenu) {
-    const applyPortfolioFilter = () => {
-      propLeafletMarkers.forEach(m => {
-        const show = state.propertyFilter.has(m._propCat) && state.portfolioFilter.has(m._portfolio);
-        if (show && !map.hasLayer(m)) m.addTo(map);
-        if (!show && map.hasLayer(m)) map.removeLayer(m);
-      });
-    };
-    const syncPortfolioUI = () => {
-      portfolioMenu.querySelectorAll('.po-row').forEach(row => {
-        row.querySelector('.po-cb').checked = state.portfolioFilter.has(row.dataset.pfolio);
-      });
-    };
-    portfolioBtn.onclick = (e) => {
-      e.stopPropagation();
-      portfolioMenu.classList.toggle('hidden');
-      layersMenu && layersMenu.classList.add('hidden');
-      filtersMenu && filtersMenu.classList.add('hidden');
-    };
-    portfolioMenu.querySelectorAll('.po-row').forEach(row => {
-      row.onclick = (e) => {
-        e.stopPropagation();
-        const p = row.dataset.pfolio;
-        if (state.portfolioFilter.has(p)) state.portfolioFilter.delete(p); else state.portfolioFilter.add(p);
-        syncPortfolioUI(); applyPortfolioFilter();
-      };
+  function fdSync() {
+    const el = document.getElementById('map-fdrawer');
+    FD_SECTIONS.forEach((s, i) => {
+      if (!el) return;
+      el.querySelector(`[data-fd-dot="${i}"]`).hidden = fdIsAll(s);
+      el.querySelector(`[data-fd-act="reset"][data-fd-i="${i}"]`).disabled = fdIsAll(s);
+      el.querySelector(`[data-fd-act="none"][data-fd-i="${i}"]`).disabled = fdIsNone(s);
+      el.querySelectorAll(`input[data-fd-sec="${i}"]`).forEach(cb => { cb.checked = state[s.key].has(cb.value); });
     });
-    const poAll  = document.getElementById('po-all');
-    const poNone = document.getElementById('po-none');
-    if (poAll)  poAll.onclick  = (e) => { e.stopPropagation(); state.portfolioFilter = new Set(PORTFOLIOS.map(p=>p.name)); syncPortfolioUI(); applyPortfolioFilter(); };
-    if (poNone) poNone.onclick = (e) => { e.stopPropagation(); state.portfolioFilter = new Set();                          syncPortfolioUI(); applyPortfolioFilter(); };
+    const n = fdActive();
+    if (el) {
+      el.querySelector('[data-fd-act="reset-all"]').disabled = n === 0;
+      const shown = propLeafletMarkers.filter(m => FD_SECTIONS.every(s => state[s.key].has(m[s.field]))).length;
+      el.querySelector('#pfd-result').textContent = `Showing ${shown} of ${propLeafletMarkers.length} properties`;
+    }
+    const badge = document.getElementById('map-filters-count');
+    if (badge) { badge.hidden = n === 0; badge.textContent = n; }
+    if (filtersBtn) { filtersBtn.classList.toggle('is-active', n > 0); filtersBtn.setAttribute('aria-label', n ? `Filter properties (${n} active)` : 'Filter properties'); }
   }
+  function fdClose() {
+    const el = document.getElementById('map-fdrawer'); if (!el || !el.classList.contains('is-open')) return;
+    el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true');
+    filtersBtn && filtersBtn.setAttribute('aria-expanded', 'false');
+    const main = document.querySelector('main'); if (main) main.style.overflow = '';
+    document.removeEventListener('keydown', fdKeys, true);
+    filtersBtn && filtersBtn.focus();
+  }
+  function fdKeys(e) {
+    const el = document.getElementById('map-fdrawer'); if (!el) return;
+    if (e.key === 'Escape') { e.preventDefault(); fdClose(); return; }
+    if (e.key !== 'Tab') return;
+    const f = [...el.querySelectorAll('.ds-fdrawer-panel button:not([disabled]), .ds-fdrawer-panel input')].filter(x => x.offsetParent);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+  function fdOpen() {
+    document.getElementById('map-fdrawer')?.remove();
+    const el = document.createElement('div');
+    el.id = 'map-fdrawer'; el.className = 'ds-fdrawer'; el.setAttribute('aria-hidden', 'true');
+    el.innerHTML = `<div class="ds-fdrawer-scrim" data-fd-act="done"></div>
+      <div class="ds-fdrawer-panel" role="dialog" aria-modal="true" aria-labelledby="pfd-title">
+        <div class="ds-fdrawer-head"><span id="pfd-title">Filter properties</span>
+          <button type="button" class="ds-fdrawer-close" data-fd-act="done" aria-label="Close filters"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="mfd-result" id="pfd-result" aria-live="polite"></div>
+        <div class="ds-fdrawer-body">${FD_SECTIONS.map(fdSectionHTML).join('')}</div>
+        <div class="ds-fdrawer-foot">
+          <button type="button" class="mfd-btn mfd-btn--secondary" data-fd-act="reset-all">Reset</button>
+          <button type="button" class="mfd-btn mfd-btn--primary" data-fd-act="done">Done</button>
+        </div>
+      </div>`;
+    document.body.appendChild(el);
+    el.addEventListener('change', e => {
+      const cb = e.target.closest('input[data-fd-sec]'); if (!cb) return;
+      const s = FD_SECTIONS[+cb.dataset.fdSec];
+      if (cb.checked) state[s.key].add(cb.value); else state[s.key].delete(cb.value);
+      applyPropertyFilter(); fdSync();
+    });
+    el.addEventListener('click', e => {
+      const acc = e.target.closest('[data-fd-acc]');
+      if (acc) {
+        const i = +acc.dataset.fdAcc; state.fdOpenSection = state.fdOpenSection === i ? -1 : i;
+        el.querySelectorAll('[data-fd-section]').forEach(sec => {
+          const on = +sec.dataset.fdSection === state.fdOpenSection;
+          sec.classList.toggle('is-open', on); sec.querySelector('[data-fd-acc]').setAttribute('aria-expanded', String(on));
+        });
+        return;
+      }
+      const act = e.target.closest('[data-fd-act]'); if (!act) return;
+      const a = act.dataset.fdAct, s = FD_SECTIONS[+act.dataset.fdI];
+      if (a === 'done') { fdClose(); return; }
+      if (a === 'reset') state[s.key] = new Set(s.items.map(it => it.v));
+      if (a === 'none') state[s.key] = new Set();
+      if (a === 'reset-all') FD_SECTIONS.forEach(x => { state[x.key] = new Set(x.items.map(it => it.v)); });
+      applyPropertyFilter(); fdSync();
+    });
+    fdSync();
+    requestAnimationFrame(() => { el.classList.add('is-open'); el.setAttribute('aria-hidden', 'false'); });
+    filtersBtn && filtersBtn.setAttribute('aria-expanded', 'true');
+    const main = document.querySelector('main'); if (main) main.style.overflow = 'hidden';
+    document.addEventListener('keydown', fdKeys, true);
+    setTimeout(() => el.querySelector('.ds-fdrawer-close').focus(), 60);
+  }
+  if (filtersBtn) filtersBtn.onclick = (e) => { e.stopPropagation(); fdOpen(); };
+  applyPropertyFilter(); fdSync();
 
   // Close map popovers when clicking outside
   document.addEventListener('click', (e) => {
@@ -607,38 +819,8 @@ function Content() {
             </div>
           </div>
           <div class="relative">
-            <button id="map-filters-btn" class="map-btn" title="Filter properties">${Ico.filter}</button>
-            <div id="map-filters-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[240px] bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden flex flex-col" style="max-height:420px;">
-              <div class="px-3 py-2.5 border-b border-ink-200 flex items-center justify-between">
-                <div class="text-sm font-bold text-ink-800">Filter Properties</div>
-                <div class="flex items-center gap-1">
-                  <button id="pf-all"  class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">All</button>
-                  <button id="pf-none" class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">None</button>
-                </div>
-              </div>
-              <div class="px-3 py-2 bg-ink-50 border-b border-ink-200 text-[11px] font-semibold uppercase tracking-micro text-ink-600">Property Type</div>
-              <div class="overflow-y-auto scroll-thin py-1">
-                ${PROPERTY_CATEGORIES.map(c => `
-                  <div class="pf-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-pcat="${c.k}">
-                    <input type="checkbox" class="pf-cb h-4 w-4 rounded border-ink-300 accent-brand-600 pointer-events-none" checked />
-                    <span class="inline-flex items-center justify-center rounded-md" style="width:22px;height:22px;background:${c.color};color:#fff;flex-shrink:0">
-                      ${c.ico.replace('width="16" height="16"','width="13" height="13"')}
-                    </span>
-                    <span class="text-[13px] text-ink-700">${c.k}</span>
-                  </div>`).join('')}
-              </div>
-            </div>
+            <button id="map-filters-btn" class="map-btn" title="Filter properties" aria-label="Filter properties" aria-haspopup="dialog" aria-controls="map-fdrawer" aria-expanded="false">${Ico.filter}<span id="map-filters-count" class="map-filter-count" hidden></span></button>
           </div>
-          <div class="relative">
-            <button id="map-portfolio-btn" class="map-btn" title="Filter by portfolio"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></button>
-            <div id="map-portfolio-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[240px] bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden flex flex-col" style="max-height:420px;">
-              <div class="px-3 py-2.5 border-b border-ink-200 flex items-center justify-between">
-                <div class="text-sm font-bold text-ink-800">Filter Portfolios</div>
-                <div class="flex items-center gap-1">
-                  <button id="po-all"  class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">All</button>
-                  <button id="po-none" class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50 active:bg-ink-100">None</button>
-                </div>
-              </div>
               <div class="px-3 py-2 bg-ink-50 border-b border-ink-200 text-[11px] font-semibold uppercase tracking-micro text-ink-600">Portfolio</div>
               <div class="overflow-y-auto scroll-thin py-1">
                 ${PORTFOLIOS.map(p => `
