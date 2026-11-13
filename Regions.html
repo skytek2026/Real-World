@@ -115,6 +115,160 @@
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
+
+<style>
+/* ── Filter drawer: Skytek Design System .ds-fdrawer (07h · Filter drawer), copied from the org DS styles.css ── */
+.ds-fdrawer {
+  --z-drawer:1080; --fdrawer-width:360px; --fdrawer-max-width:92vw; --fdrawer-scrim:rgba(15,23,42,.38); --fdrawer-shadow:-10px 0 30px rgba(15,23,42,.16);
+  --fdrawer-pad-x:18px; --fdrawer-head-pad:16px 20px; --fdrawer-slide:300ms; --fdrawer-slide-ease:cubic-bezier(.4,0,.2,1); --fdrawer-scrim-motion:250ms;
+  --fdrawer-acc-motion:220ms; --fdrawer-list-max:210px; --motion-fast:140ms; --motion-base:200ms; --ease-out:cubic-bezier(.16,1,.3,1);
+  --radius-sm:4px; --radius-pill:9999px; --font-display:"Exo","Inter",system-ui,sans-serif; --danger-500:#DC2626;
+  --bg-surface:#FFFFFF; --bg-muted:#F3F4F6; --bg-sunken:#F9FAFB; --border-default:#E5E7EB; --border-subtle:#ECEEF2;
+  --text-primary:#111827; --text-secondary:#4B5563; --text-muted:#6B7280; --shadow-focus:0 0 0 3px rgba(46,134,192,.32);
+}
+html[data-theme="dark"] .ds-fdrawer {
+  --bg-surface:#121A2A; --bg-muted:#1B2536; --bg-sunken:#0B1220; --border-default:#2B3854; --border-subtle:#1F2A3C;
+  --text-primary:#F3F4F6; --text-secondary:#9CA3AF; --text-muted:#828C9C; --shadow-focus:0 0 0 3px rgba(142,197,253,.45);
+}
+@keyframes ds-fdrawer-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+/* ===== Filter drawer =====
+   Right-edge sheet holding the full filter set for a data view.
+   Distinct from the generic Drawer: narrower, single-open accordion
+   sections, and LIVE-APPLY, every change re-queries immediately and
+   the result is visible behind the scrim. There is no Apply button.
+
+   Visibility (not display) is toggled so the panel can transition. */
+.ds-fdrawer { position: fixed; inset: 0; z-index: var(--z-drawer); visibility: hidden; }
+.ds-fdrawer.is-open { visibility: visible; }
+.ds-fdrawer-scrim {
+  position: absolute; inset: 0;
+  background: var(--fdrawer-scrim);
+  opacity: 0;
+  transition: opacity var(--fdrawer-scrim-motion) var(--ease-out);
+}
+.ds-fdrawer.is-open .ds-fdrawer-scrim { opacity: 1; }
+.ds-fdrawer-panel {
+  position: absolute; top: 0; right: 0;
+  height: 100%;
+  width: var(--fdrawer-width);
+  max-width: var(--fdrawer-max-width);
+  background: var(--bg-surface);
+  box-shadow: var(--fdrawer-shadow);
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--fdrawer-slide) var(--fdrawer-slide-ease);
+}
+.ds-fdrawer.is-open .ds-fdrawer-panel { transform: translateX(0); }
+.ds-fdrawer-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--fdrawer-head-pad);
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 700; color: var(--text-primary);
+  flex: 0 0 auto;
+}
+.ds-fdrawer-close {
+  border: 0; background: none; cursor: pointer;
+  color: var(--text-muted); padding: 5px; border-radius: 7px;
+  display: inline-flex;
+  transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+.ds-fdrawer-close:hover { background: var(--bg-muted); color: var(--text-primary); }
+.ds-fdrawer-close:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
+/* Body is the accordion host. The OPEN section grows to fill it, so its
+   option list scrolls instead of the whole drawer. */
+.ds-fdrawer-body {
+  flex: 1 1 auto; min-height: 0;
+  overflow-y: auto;
+  padding: 4px var(--fdrawer-pad-x) 12px;
+  display: flex; flex-direction: column;
+}
+.ds-fdrawer-section {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  flex: 0 0 auto;
+  transition: padding var(--motion-base) var(--ease-out);
+}
+.ds-fdrawer-section:not(.is-open) { padding: 11px 0; }
+.ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.ds-fdrawer-section:last-child { border-bottom: 0; }
+.ds-fdrawer-acc-head {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  background: none; border: 0; padding: 0; cursor: pointer;
+}
+.ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); }
+.ds-fdrawer-sec-title {
+  font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text-muted); margin: 0;
+  display: flex; align-items: center; gap: 7px;
+}
+/* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
+.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
+.ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
+.ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); }
+/* Active-filter marker */
+.ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; }
+.ds-fdrawer-acc-body { display: none; padding-top: 12px; }
+.ds-fdrawer-section.is-open .ds-fdrawer-acc-body {
+  display: flex; flex-direction: column; flex: 1; min-height: 0;
+  animation: ds-fdrawer-acc-in var(--fdrawer-acc-motion) var(--ease-out);
+}
+/* Section toolbar (Reset / Unselect all) */
+.ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; }
+.ds-fdrawer-act {
+  flex: 1; padding: 5px 8px;
+  border: 1px solid var(--border-default); border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  font: inherit; font-size: 11.5px; font-weight: 600; color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
+}
+.ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); }
+.ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+/* Option list. Capped when collapsed-ish; the open section lets it fill. */
+.ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; }
+.ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; }
+.ds-fdrawer-item {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  text-align: left; padding: 7px 10px;
+  border: 0; border-radius: var(--radius-sm); background: transparent;
+  font-size: 12.5px; font-weight: 500; color: var(--text-secondary);
+  cursor: pointer; white-space: nowrap;
+}
+.ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); }
+.ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; }
+.ds-fdrawer-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 14px var(--fdrawer-pad-x);
+  border-top: 1px solid var(--border-subtle);
+  flex: 0 0 auto;
+}
+.ds-fdrawer-foot > * { justify-content: center; height: 40px; padding: 0 16px; }
+.ds-fdrawer-foot > *:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .ds-fdrawer-panel, .ds-fdrawer-scrim { transition-duration: 1ms; }
+  .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { animation-duration: 1ms; }
+}
+/* Dashboard additions: option marks + counts, result line, footer buttons (DS secondary / primary) */
+.ds-fdrawer-dot[hidden] { display:none; }   /* the DS dot sets display:inline-block, which would beat [hidden] */
+#rg-filter-btn { position:relative; }
+#rg-filter-btn.is-active { color:var(--brand-600,#2d7ffb); }
+.mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.mfd-n { font-size:11.5px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
+.mfd-result { padding:10px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
+.mfd-btn { display:inline-flex; align-items:center; border-radius:6px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid transparent; }
+.mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
+.mfd-btn--secondary:hover { background:var(--bg-sunken); }
+.mfd-btn--primary { background:var(--brand-600,#2d7ffb); color:#fff; }
+.mfd-btn--primary:hover { background:var(--brand-700,#1f5fc7); }
+.mfd-btn:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
+/* active-filter count on the map's Filter button */
+#map-filters-btn { position:relative; }
+#map-filters-btn.is-active { color:var(--brand-600,#2d7ffb); }
+.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#2d7ffb); color:#fff; font-size:10px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
+html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
+</style>
 </head>
 <body class="bg-white text-slate-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
@@ -408,7 +562,9 @@ let expandedRegions = new Set();
 let rMapType = 'satellite';
 let rLayersOpen = false;
 let regionsTab = 'My Monitored Regions';
-let regionFilter = 'All';
+// Map filter (Region Source): which sets of regions are drawn. Both = unfiltered.
+const REGION_SOURCES = ['My Monitored Regions', 'Skytek Regions'];
+const rfState = { regionSources: new Set(REGION_SOURCES), fdOpenSection: 0 };
 let rFilterOpen = false;
 const SKYTEK_REGION_LIST = [
   { name:'Red Sea',                  count:298, exposure:'$412M', color:'#dc2626', bounds:[[13,33],[28,43]],    risk:'High' },
@@ -466,6 +622,128 @@ const TAB_ICONS = {
 };
 
 /* ── Map ──────────────────────────────────────────────────────────────────── */
+/* ── Map filter drawer: one section (Region Source), same DS drawer as the other dashboards ── */
+function applyRegionFilter() { if (viewMode === 'Map') initMap(); }
+function rfActive() { return REGION_SOURCES.every(v => rfState.regionSources.has(v)) ? 0 : 1; }
+// ── Map filter drawer (Skytek DS "Filter drawer", .ds-fdrawer) — same pattern as the Marine, Property, Aviation and Offshore Dashboards ──
+// Live apply; one section open at a time; each section is a Set (all = unfiltered, subset, empty = none);
+// footer Reset (all sections) left, Done right.
+const fdEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+const fb = () => document.getElementById('rg-filter-btn');   // re-rendered by rc(), so look it up each time
+const FD_SECTIONS = [
+  { key:'regionSources', title:'Region Source', items: REGION_SOURCES.map(v => ({ v })) },
+];
+const fdCount = (_, v) => v === 'Skytek Regions' ? SKYTEK_REGION_LIST.length : (MAP_REGIONS_BY_TAB[activeTab] || MAP_REGIONS).length;
+const fdIsAll  = s => s.items.every(it => rfState[s.key].has(it.v));
+const fdIsNone = s => s.items.every(it => !rfState[s.key].has(it.v));
+const fdActive = () => FD_SECTIONS.filter(s => !fdIsAll(s)).length;
+if (rfState.fdOpenSection == null) rfState.fdOpenSection = 0;
+const chev = '<svg class="ds-fdrawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function fdSectionHTML(s, i) {
+  const open = rfState.fdOpenSection === i, items = s.items.map(it => {
+    const mark = '';
+    return `<label class="ds-fdrawer-item"><input type="checkbox" data-fd-sec="${i}" value="${fdEsc(it.v)}" ${rfState[s.key].has(it.v) ? 'checked' : ''}>${mark}<span class="mfd-label">${fdEsc(it.v)}</span><span class="mfd-n">${fdCount(s.key, it.v)}</span></label>`;
+  }).join('');
+  return `<div class="ds-fdrawer-section${open ? ' is-open' : ''}" data-fd-section="${i}">
+    <button type="button" class="ds-fdrawer-acc-head" data-fd-acc="${i}" aria-expanded="${open}" aria-controls="pfd-sec-${i}">
+      <span class="ds-fdrawer-sec-title">${s.title}<span class="ds-fdrawer-dot" data-fd-dot="${i}" ${fdIsAll(s) ? 'hidden' : ''} aria-label="Filtered"></span></span>${chev}
+    </button>
+    <div class="ds-fdrawer-acc-body" id="pfd-sec-${i}" role="group" aria-label="${s.title}">
+      <div class="ds-fdrawer-acts">
+        <button type="button" class="ds-fdrawer-act" data-fd-act="reset" data-fd-i="${i}" ${fdIsAll(s) ? 'disabled' : ''}>Reset</button>
+        <button type="button" class="ds-fdrawer-act" data-fd-act="none" data-fd-i="${i}" ${fdIsNone(s) ? 'disabled' : ''}>Unselect all</button>
+      </div>
+      <div class="ds-fdrawer-list scroll-thin">${items}</div>
+    </div>
+  </div>`;
+}
+function fdSync() {
+  const el = document.getElementById('map-fdrawer');
+  FD_SECTIONS.forEach((s, i) => {
+    if (!el) return;
+    el.querySelector(`[data-fd-dot="${i}"]`).hidden = fdIsAll(s);
+    el.querySelector(`[data-fd-act="reset"][data-fd-i="${i}"]`).disabled = fdIsAll(s);
+    el.querySelector(`[data-fd-act="none"][data-fd-i="${i}"]`).disabled = fdIsNone(s);
+    el.querySelectorAll(`input[data-fd-sec="${i}"]`).forEach(cb => { cb.checked = rfState[s.key].has(cb.value); });
+  });
+  const n = fdActive();
+  if (el) {
+    el.querySelector('[data-fd-act="reset-all"]').disabled = n === 0;
+    const shown = REGION_SOURCES.filter(v => rfState.regionSources.has(v)).reduce((n, v) => n + fdCount(null, v), 0), total = REGION_SOURCES.reduce((n, v) => n + fdCount(null, v), 0);
+    el.querySelector('#pfd-result').textContent = `Showing ${shown} of ${total} regions`;
+  }
+  const badge = document.getElementById('map-filters-count');
+  if (badge) { badge.hidden = n === 0; badge.textContent = n; }
+  const btn = fb(); if (btn) { btn.classList.toggle('is-active', n > 0); btn.setAttribute('aria-label', n ? `Filter regions (${n} active)` : 'Filter regions'); }
+}
+function fdClose() {
+  const el = document.getElementById('map-fdrawer'); if (!el || !el.classList.contains('is-open')) return;
+  el.classList.remove('is-open'); el.setAttribute('aria-hidden', 'true');
+  fb() && fb().setAttribute('aria-expanded', 'false');
+  const main = document.querySelector('main'); if (main) main.style.overflow = '';
+  document.removeEventListener('keydown', fdKeys, true);
+  fb() && fb().focus();
+}
+function fdKeys(e) {
+  const el = document.getElementById('map-fdrawer'); if (!el) return;
+  if (e.key === 'Escape') { e.preventDefault(); fdClose(); return; }
+  if (e.key !== 'Tab') return;
+  const f = [...el.querySelectorAll('.ds-fdrawer-panel button:not([disabled]), .ds-fdrawer-panel input')].filter(x => x.offsetParent);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+function fdOpen() {
+  document.getElementById('map-fdrawer')?.remove();
+  const el = document.createElement('div');
+  el.id = 'map-fdrawer'; el.className = 'ds-fdrawer'; el.setAttribute('aria-hidden', 'true');
+  el.innerHTML = `<div class="ds-fdrawer-scrim" data-fd-act="done"></div>
+    <div class="ds-fdrawer-panel" role="dialog" aria-modal="true" aria-labelledby="pfd-title">
+      <div class="ds-fdrawer-head"><span id="pfd-title">Filter regions</span>
+        <button type="button" class="ds-fdrawer-close" data-fd-act="done" aria-label="Close filters"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="mfd-result" id="pfd-result" aria-live="polite"></div>
+      <div class="ds-fdrawer-body">${FD_SECTIONS.map(fdSectionHTML).join('')}</div>
+      <div class="ds-fdrawer-foot">
+        <button type="button" class="mfd-btn mfd-btn--secondary" data-fd-act="reset-all">Reset</button>
+        <button type="button" class="mfd-btn mfd-btn--primary" data-fd-act="done">Done</button>
+      </div>
+    </div>`;
+  document.body.appendChild(el);
+  el.addEventListener('change', e => {
+    const cb = e.target.closest('input[data-fd-sec]'); if (!cb) return;
+    const s = FD_SECTIONS[+cb.dataset.fdSec];
+    if (cb.checked) rfState[s.key].add(cb.value); else rfState[s.key].delete(cb.value);
+    applyRegionFilter(); fdSync();
+  });
+  el.addEventListener('click', e => {
+    const acc = e.target.closest('[data-fd-acc]');
+    if (acc) {
+      const i = +acc.dataset.fdAcc; rfState.fdOpenSection = rfState.fdOpenSection === i ? -1 : i;
+      el.querySelectorAll('[data-fd-section]').forEach(sec => {
+        const on = +sec.dataset.fdSection === rfState.fdOpenSection;
+        sec.classList.toggle('is-open', on); sec.querySelector('[data-fd-acc]').setAttribute('aria-expanded', String(on));
+      });
+      return;
+    }
+    const act = e.target.closest('[data-fd-act]'); if (!act) return;
+    const a = act.dataset.fdAct, s = FD_SECTIONS[+act.dataset.fdI];
+    if (a === 'done') { fdClose(); return; }
+    if (a === 'reset') rfState[s.key] = new Set(s.items.map(it => it.v));
+    if (a === 'none') rfState[s.key] = new Set();
+    if (a === 'reset-all') FD_SECTIONS.forEach(x => { rfState[x.key] = new Set(x.items.map(it => it.v)); });
+    applyRegionFilter(); fdSync();
+  });
+  fdSync();
+  requestAnimationFrame(() => { el.classList.add('is-open'); el.setAttribute('aria-hidden', 'false'); });
+  fb() && fb().setAttribute('aria-expanded', 'true');
+  const main = document.querySelector('main'); if (main) main.style.overflow = 'hidden';
+  document.addEventListener('keydown', fdKeys, true);
+  setTimeout(() => el.querySelector('.ds-fdrawer-close').focus(), 60);
+}
+
+
 function initMap() {
   const el = document.getElementById('regions-map');
   if (!el) return;
@@ -476,9 +754,8 @@ function initMap() {
 
   const monitored = (MAP_REGIONS_BY_TAB[activeTab] || MAP_REGIONS).map(r => ({...r, src:'My Monitored Regions'}));
   const skytek = SKYTEK_REGION_LIST.map(r => ({...r, assets:r.count, src:'Skytek Regions'}));
-  const drawn = regionFilter === 'My Monitored Regions' ? monitored
-              : regionFilter === 'Skytek Regions' ? skytek
-              : monitored.concat(skytek);
+  const drawn = (rfState.regionSources.has('My Monitored Regions') ? monitored : [])
+    .concat(rfState.regionSources.has('Skytek Regions') ? skytek : []);
   drawn.forEach(r => {
     const riskColor = {Low:'#16a34a',Medium:'#f97316',High:'#dc2626',Critical:'#7c3aed'}[r.risk]||'#64748b';
     const popupHTML = `
@@ -689,10 +966,7 @@ function MapView() {
       </div>` : ''}
     </div>
     <div style="position:relative">
-      <button id="rg-filter-btn" class="rg-map-btn" title="Filter regions">${FILTER_ICO}</button>
-      ${rFilterOpen ? `<div style="position:absolute;top:0;right:calc(100% + 8px);width:200px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.12);overflow:hidden;padding:4px 0;z-index:9999">
-        ${['All','My Monitored Regions','Skytek Regions'].map(o => `<button data-region-filter="${o}" class="rg-map-type-opt" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;font-size:13px;font-weight:${regionFilter===o?'600':'400'};color:${regionFilter===o?'#0f172a':'#334155'};background:transparent;border:0;cursor:pointer;text-align:left;font-family:inherit"><span>${o}</span><span style="color:var(--brand-600,#2563eb);opacity:${regionFilter===o?'1':'0'};display:flex">${CHECK_ICO}</span></button>`).join('')}
-      </div>` : ''}
+      <button id="rg-filter-btn" class="rg-map-btn${rfActive() ? ' is-active' : ''}" title="Filter regions" aria-label="${rfActive() ? `Filter regions (${rfActive()} active)` : 'Filter regions'}" aria-haspopup="dialog" aria-controls="map-fdrawer" aria-expanded="false">${FILTER_ICO}<span id="map-filters-count" class="map-filter-count" ${rfActive() ? '' : 'hidden'}>${rfActive()}</span></button>
     </div>
   </div>`;
 }
@@ -916,19 +1190,7 @@ function wire() {
   });
 
   const filterBtn = document.getElementById('rg-filter-btn');
-  if (filterBtn) filterBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    rFilterOpen = !rFilterOpen;
-    rLayersOpen = false;
-    rc();
-  });
-  document.querySelectorAll('[data-region-filter]').forEach(b => b.addEventListener('click', e => {
-    e.stopPropagation();
-    regionFilter = b.dataset.regionFilter;
-    rFilterOpen = false;
-    rc();
-    if (viewMode === 'Map') setTimeout(initMap, 50);
-  }));
+  if (filterBtn) filterBtn.addEventListener('click', e => { e.stopPropagation(); rLayersOpen = false; fdOpen(); });
 
   /* Outside click closes layers dropdown */
   document.addEventListener('click', () => {
