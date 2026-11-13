@@ -562,6 +562,11 @@
   @media (max-width:1023px) { .vt2-picker { border-bottom:1px solid #e2e8f0; } .vt2-map { height:480px; } }
   /* the calendar drawn inline rather than as a pop-up */
   .trp.trp--inline { position:static; box-shadow:none; border:0; border-radius:0; max-height:none; width:auto; }
+  /* inline picker: quick ranges as a dropdown at every size (the preset column is hidden) */
+  .trp--inline .trp-presets { display:none; }
+  .trp--inline .trp-preset-sel-l { display:block; padding:14px 16px 2px; }
+  .trp--inline .trp-preset-sel { width:100%; height:40px; padding:0 36px 0 12px; border:1px solid #e2e8f0; border-radius:8px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance:none; appearance:none; font:inherit; font-size:14px; font-weight:600; color:#0f172a; }
+  .trp--inline .trp-preset-sel:focus-visible { outline:none; border-color:var(--brand-400,#8ec5fd); box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#2d7ffb) 25%,transparent); }
   html[data-theme="dark"] .vt2-picker { border-color:#2a374d; }
 
   #vt2-vessel-map { background:#0b1220; position:absolute; inset:0; }
