@@ -821,16 +821,6 @@ function Content() {
           <div class="relative">
             <button id="map-filters-btn" class="map-btn" title="Filter properties" aria-label="Filter properties" aria-haspopup="dialog" aria-controls="map-fdrawer" aria-expanded="false">${Ico.filter}<span id="map-filters-count" class="map-filter-count" hidden></span></button>
           </div>
-              <div class="px-3 py-2 bg-ink-50 border-b border-ink-200 text-[11px] font-semibold uppercase tracking-micro text-ink-600">Portfolio</div>
-              <div class="overflow-y-auto scroll-thin py-1">
-                ${PORTFOLIOS.map(p => `
-                  <div class="po-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-pfolio="${p.name}">
-                    <input type="checkbox" class="po-cb h-4 w-4 rounded border-ink-300 accent-brand-600 pointer-events-none" checked />
-                    <span class="text-[13px] text-ink-700 truncate">${p.name}</span>
-                  </div>`).join('')}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
