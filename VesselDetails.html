@@ -568,6 +568,20 @@
   .trp--inline .trp-nav--phone { display:inline-flex; }
   .trp--inline .trp-nav-sp--desk { display:none; }
   .trp--inline .trp-range { order:-1; width:100%; margin-left:0; }
+  /* inline picker fills its panel: days spread across the full width (and full height on desktop) */
+  .trp--inline .trp-body { min-width:0; }
+  .trp--inline .trp-months { flex:1; min-width:0; }
+  .trp--inline .trp-month:last-child { flex:1; min-width:0; display:flex; flex-direction:column; }
+  .trp--inline .trp-grid { grid-template-columns:repeat(7, minmax(0,1fr)); }
+  .trp--inline .trp-day { width:100%; height:auto; min-height:34px; }
+  @media (min-width:1024px) {
+    .vt2-picker .trp--inline { display:flex; flex-direction:column; height:100%; }
+    .vt2-picker .trp--inline .trp-body { flex:1; min-height:0; }
+    .vt2-picker .trp--inline .trp-months { display:flex; }
+    .vt2-picker .trp--inline .trp-grid { flex:1; grid-template-rows:auto; grid-auto-rows:minmax(34px, 1fr); }
+    .vt2-picker .trp--inline .trp-day { height:100%; font-size:13.5px; }
+    .vt2-picker .trp--inline .trp-mtitle { font-size:14px; }
+  }
   .trp--inline .trp-acts { margin-left:auto; }
   /* inline picker: quick ranges as a dropdown at every size (the preset column is hidden) */
   .trp--inline .trp-presets { display:none; }
