@@ -754,13 +754,29 @@ const INSPECTION_DEFECTS = {
   '2023-02-19': [0,1,3,6],
   '2021-05-28': [0,1,2,4,5,6,7],
   '2020-10-27': [2,5],
+  '2025-07-03': [1, 3, 6],
+  '2024-10-09': [4],
+  '2024-05-22': [0, 2, 3, 5, 7],
+  '2023-11-07': [0, 1, 2, 4, 6, 7],
+  '2022-08-14': [5, 6],
+  '2020-04-21': [1, 2, 3, 7],
 };
 const INSPECTIONS = [
+  { date:'2025-11-12', cc:'nl', country:'Netherlands', port:'Rotterdam', portFlag:'', psc:'Paris Mou', type:'Initial Inspection', defects:0, detained:'0 Days' },
+  { date:'2025-07-03', cc:'es', country:'Spain', port:'Algeciras', portFlag:'', psc:'Paris Mou', type:'More Detailed Inspection', defects:3, detained:'0 Days' },
+  { date:'2025-02-18', cc:'sg', country:'Singapore', port:'Singapore', portFlag:'', psc:'Tokyo Mou', type:'Initial Inspection', defects:0, detained:'0 Days' },
+  { date:'2024-10-09', cc:'gr', country:'Greece', port:'Piraeus', portFlag:'', psc:'Paris Mou', type:'Initial Inspection', defects:1, detained:'0 Days' },
+  { date:'2024-05-22', cc:'ae', country:'United Arab Emirates', port:'Fujairah', portFlag:'', psc:'Riyadh Mou', type:'Expanded Inspection', defects:5, detained:'0 Days' },
+  { date:'2024-01-15', cc:'eg', country:'Egypt', port:'Port Said', portFlag:'', psc:'Med Mou', type:'Follow-up Inspection', defects:0, detained:'0 Days' },
+  { date:'2023-11-07', cc:'ru', country:'Russia', port:'Novorossiysk', portFlag:'', psc:'Black Sea Mou', type:'More Detailed Inspection', defects:6, detained:'2 Days' },
   { date:'2023-06-30', cc:'ir', country:'Iran',     port:'Bandar Imam Khomeini', portFlag:'ir', psc:'',        type:'Initial Inspection', defects:0, detained:'0 Days' },
   { date:'2023-02-19', cc:'eg', country:'Egypt',    port:'Damietta',           portFlag:'',   psc:'Med Mou', type:'Initial Inspection', defects:4, detained:'0 Days' },
+  { date:'2022-08-14', cc:'ro', country:'Romania', port:'Constanta', portFlag:'', psc:'Paris Mou', type:'Initial Inspection', defects:2, detained:'0 Days' },
   { date:'2022-02-02', cc:'bg', country:'Bulgaria', port:'Varna',              portFlag:'',   psc:'Paris Mou',type:'Initial Inspection', defects:0, detained:'0 Days' },
+  { date:'2021-12-03', cc:'us', country:'United States', port:'Houston', portFlag:'', psc:'USCG', type:'Initial Inspection', defects:0, detained:'0 Days' },
   { date:'2021-05-28', cc:'ge', country:'Georgia',  port:'Poti',               portFlag:'',   psc:'',        type:'Initial Inspection', defects:7, detained:'0 Days' },
   { date:'2020-10-27', cc:'tr', country:'Turkey',   port:'Mersin',             portFlag:'',   psc:'',        type:'Initial Inspection', defects:2, detained:'0 Days' },
+  { date:'2020-04-21', cc:'in', country:'India', port:'Mumbai', portFlag:'', psc:'Indian Ocean Mou', type:'Initial Inspection', defects:4, detained:'0 Days' },
 ];
 
 const SUSPICIOUS_ACTIVITY = [
@@ -3707,9 +3723,13 @@ function InspectionTable() {
       </div>`}
     </div>
     ${state.sectionTab === 'Risk Associations' ? '' : '<div style="flex-shrink:0">' + (() => {
+      // each tab's real row count; 'rows per page' = the smallest option that shows them all
       const total = state.sectionTab === 'Ship-To-Ship' ? STS_DATA.length
-        : state.sectionTab === 'Sanction Compliance' ? SANCTION_COMPLIANCE.length : 6;
-      const per = Math.max(total, 5);
+        : state.sectionTab === 'Sanction Compliance' ? SANCTION_COMPLIANCE.length
+        : state.sectionTab === 'Casualty Data' ? CASUALTY_DATA.length
+        : state.sectionTab === 'Suspicious Activity' ? SUSPICIOUS_ACTIVITY.length
+        : INSPECTIONS.length;
+      const per = [5, 10, 25].find(n => n >= total) || total;
       return dsPagination({
       page: 1, totalPages: 1,
       totalItems: total, perPage: per,
