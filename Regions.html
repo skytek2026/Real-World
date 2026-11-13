@@ -251,6 +251,28 @@ html[data-theme="dark"] .ds-fdrawer {
 }
 /* Dashboard additions: option marks + counts, result line, footer buttons (DS secondary / primary) */
 .ds-fdrawer-dot[hidden] { display:none; }   /* the DS dot sets display:inline-block, which would beat [hidden] */
+/* Regions filter tree (extends the DS drawer: All / main regions / sub-regions, tri-state checkboxes) */
+.rf-sec-head { cursor:default; }
+.rf-tree { display:flex; flex-direction:column; gap:2px; padding-bottom:8px; }
+.rf-row { display:flex; align-items:center; gap:10px; min-height:34px; padding:4px 8px; border-radius:6px; font-size:13.5px; color:var(--text-primary); }
+.rf-row input { width:16px; height:16px; margin:0; accent-color:var(--brand-600,#2d7ffb); flex-shrink:0; cursor:pointer; }
+.rf-row--all, .rf-row--sub, .rf-check { cursor:pointer; }
+.rf-row--all:hover, .rf-row--sub:hover, .rf-row--group:hover { background:var(--bg-muted); }
+.rf-row--all { font-weight:600; }
+.rf-row--group { padding-right:2px; }
+.rf-check { display:flex; align-items:center; gap:10px; flex:1; min-width:0; font-weight:600; }
+.rf-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.rf-toggle { width:28px; height:28px; display:inline-grid; place-items:center; border:0; background:transparent; border-radius:6px; color:var(--text-muted); cursor:pointer; flex-shrink:0; }
+.rf-toggle:hover { background:var(--bg-surface); color:var(--text-primary); }
+.rf-toggle:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
+.rf-toggle svg { transition:transform var(--motion-fast) var(--ease-out); }
+.rf-group:not(.is-open) .rf-toggle svg { transform:rotate(-90deg); }
+.rf-sub { margin:2px 0 6px 0; padding:4px; background:var(--bg-muted); border-radius:8px; }
+.rf-sub[hidden] { display:none; }
+.rf-row--sub:hover { background:var(--bg-surface); }
+.rf-row--sub .rf-name { color:var(--brand-600,#2d7ffb); }
+html[data-theme="dark"] .rf-row--sub .rf-name { color:var(--brand-300,#93c5fd); }
+.rf-swatch { width:10px; height:10px; border-radius:50%; border:1.5px solid #fff; box-shadow:0 0 0 1px rgba(15,23,42,.15); flex-shrink:0; }
 #rg-filter-btn { position:relative; }
 #rg-filter-btn.is-active { color:var(--brand-600,#2d7ffb); }
 .mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
@@ -563,8 +585,9 @@ let rMapType = 'satellite';
 let rLayersOpen = false;
 let regionsTab = 'My Monitored Regions';
 // Map filter (Region Source): which sets of regions are drawn. Both = unfiltered.
-const REGION_SOURCES = ['My Monitored Regions', 'Skytek Regions'];
-const rfState = { regionSources: new Set(REGION_SOURCES), fdOpenSection: 0 };
+// Map filter: main regions (the two groups the map draws) with their sub-regions (each region on the map).
+// Stored as the regions that are UNticked, so switching tabs (each has its own monitored regions) stays correct.
+const rfState = { excluded: new Set(), collapsed: new Set() };
 let rFilterOpen = false;
 const SKYTEK_REGION_LIST = [
   { name:'Red Sea',                  count:298, exposure:'$412M', color:'#dc2626', bounds:[[13,33],[28,43]],    risk:'High' },
@@ -622,57 +645,51 @@ const TAB_ICONS = {
 };
 
 /* ── Map ──────────────────────────────────────────────────────────────────── */
-/* ── Map filter drawer: one section (Region Source), same DS drawer as the other dashboards ── */
+/* ── Map filter drawer: main regions with sub-regions, in the same DS drawer as the other dashboards ──
+   All / main-region checkboxes are tri-state (checked, partly = indeterminate, unchecked); each main region
+   collapses with its chevron. Live apply. Footer Reset (all) / Done. */
+const rfKey = (src, name) => `${src}::${name}`;
+function rfGroups() {
+  return [
+    { name:'My Monitored Regions', regions:(MAP_REGIONS_BY_TAB[activeTab] || MAP_REGIONS) },
+    { name:'Skytek Regions',       regions:SKYTEK_REGION_LIST },
+  ].map(g => ({ ...g, keys:g.regions.map(r => rfKey(g.name, r.name)) }));
+}
+const rfAllKeys = () => rfGroups().flatMap(g => g.keys);
+const rfOn = k => !rfState.excluded.has(k);
+function rfActive() { return rfAllKeys().some(k => !rfOn(k)) ? 1 : 0; }
 function applyRegionFilter() { if (viewMode === 'Map') initMap(); }
-function rfActive() { return REGION_SOURCES.every(v => rfState.regionSources.has(v)) ? 0 : 1; }
-// ── Map filter drawer (Skytek DS "Filter drawer", .ds-fdrawer) — same pattern as the Marine, Property, Aviation and Offshore Dashboards ──
-// Live apply; one section open at a time; each section is a Set (all = unfiltered, subset, empty = none);
-// footer Reset (all sections) left, Done right.
 const fdEsc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
 const fb = () => document.getElementById('rg-filter-btn');   // re-rendered by rc(), so look it up each time
-const FD_SECTIONS = [
-  { key:'regionSources', title:'Region Source', items: REGION_SOURCES.map(v => ({ v })) },
-];
-const fdCount = (_, v) => v === 'Skytek Regions' ? SKYTEK_REGION_LIST.length : (MAP_REGIONS_BY_TAB[activeTab] || MAP_REGIONS).length;
-const fdIsAll  = s => s.items.every(it => rfState[s.key].has(it.v));
-const fdIsNone = s => s.items.every(it => !rfState[s.key].has(it.v));
-const fdActive = () => FD_SECTIONS.filter(s => !fdIsAll(s)).length;
-if (rfState.fdOpenSection == null) rfState.fdOpenSection = 0;
-const chev = '<svg class="ds-fdrawer-acc-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
-function fdSectionHTML(s, i) {
-  const open = rfState.fdOpenSection === i, items = s.items.map(it => {
-    const mark = '';
-    return `<label class="ds-fdrawer-item"><input type="checkbox" data-fd-sec="${i}" value="${fdEsc(it.v)}" ${rfState[s.key].has(it.v) ? 'checked' : ''}>${mark}<span class="mfd-label">${fdEsc(it.v)}</span><span class="mfd-n">${fdCount(s.key, it.v)}</span></label>`;
-  }).join('');
-  return `<div class="ds-fdrawer-section${open ? ' is-open' : ''}" data-fd-section="${i}">
-    <button type="button" class="ds-fdrawer-acc-head" data-fd-acc="${i}" aria-expanded="${open}" aria-controls="pfd-sec-${i}">
-      <span class="ds-fdrawer-sec-title">${s.title}<span class="ds-fdrawer-dot" data-fd-dot="${i}" ${fdIsAll(s) ? 'hidden' : ''} aria-label="Filtered"></span></span>${chev}
-    </button>
-    <div class="ds-fdrawer-acc-body" id="pfd-sec-${i}" role="group" aria-label="${s.title}">
-      <div class="ds-fdrawer-acts">
-        <button type="button" class="ds-fdrawer-act" data-fd-act="reset" data-fd-i="${i}" ${fdIsAll(s) ? 'disabled' : ''}>Reset</button>
-        <button type="button" class="ds-fdrawer-act" data-fd-act="none" data-fd-i="${i}" ${fdIsNone(s) ? 'disabled' : ''}>Unselect all</button>
-      </div>
-      <div class="ds-fdrawer-list scroll-thin">${items}</div>
-    </div>
-  </div>`;
+const RF_CHEV = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+function rfTreeHTML() {
+  return `<label class="rf-row rf-row--all"><input type="checkbox" data-rf="all"><span class="rf-name">All</span></label>` +
+    rfGroups().map((g, gi) => {
+      const open = !rfState.collapsed.has(g.name);
+      return `<div class="rf-group${open ? ' is-open' : ''}">
+        <div class="rf-row rf-row--group">
+          <label class="rf-check"><input type="checkbox" data-rf="group" data-rf-g="${gi}"><span class="rf-name">${fdEsc(g.name)}</span><span class="mfd-n">${g.regions.length}</span></label>
+          <button type="button" class="rf-toggle" data-rf-toggle="${fdEsc(g.name)}" aria-expanded="${open}" aria-controls="rf-sub-${gi}" aria-label="${open ? 'Collapse' : 'Expand'} ${fdEsc(g.name)}">${RF_CHEV}</button>
+        </div>
+        <div class="rf-sub" id="rf-sub-${gi}" role="group" aria-label="${fdEsc(g.name)}" ${open ? '' : 'hidden'}>
+          ${g.regions.map((r, ri) => `<label class="rf-row rf-row--sub"><input type="checkbox" data-rf="region" value="${fdEsc(g.keys[ri])}"><span class="rf-swatch" style="background:${r.color}" aria-hidden="true"></span><span class="rf-name">${fdEsc(r.name)}</span></label>`).join('')}
+        </div>
+      </div>`;
+    }).join('');
 }
+// tri-state sync of every checkbox, plus dot / result / badge
 function fdSync() {
-  const el = document.getElementById('map-fdrawer');
-  FD_SECTIONS.forEach((s, i) => {
-    if (!el) return;
-    el.querySelector(`[data-fd-dot="${i}"]`).hidden = fdIsAll(s);
-    el.querySelector(`[data-fd-act="reset"][data-fd-i="${i}"]`).disabled = fdIsAll(s);
-    el.querySelector(`[data-fd-act="none"][data-fd-i="${i}"]`).disabled = fdIsNone(s);
-    el.querySelectorAll(`input[data-fd-sec="${i}"]`).forEach(cb => { cb.checked = rfState[s.key].has(cb.value); });
-  });
-  const n = fdActive();
+  const el = document.getElementById('map-fdrawer'), groups = rfGroups(), all = rfAllKeys();
+  const state3 = keys => { const on = keys.filter(rfOn).length; return { checked: on === keys.length, mixed: on > 0 && on < keys.length }; };
   if (el) {
-    el.querySelector('[data-fd-act="reset-all"]').disabled = n === 0;
-    const shown = REGION_SOURCES.filter(v => rfState.regionSources.has(v)).reduce((n, v) => n + fdCount(null, v), 0), total = REGION_SOURCES.reduce((n, v) => n + fdCount(null, v), 0);
-    el.querySelector('#pfd-result').textContent = `Showing ${shown} of ${total} regions`;
+    el.querySelectorAll('input[data-rf="region"]').forEach(cb => { cb.checked = rfOn(cb.value); });
+    el.querySelectorAll('input[data-rf="group"]').forEach(cb => { const s = state3(groups[+cb.dataset.rfG].keys); cb.checked = s.checked; cb.indeterminate = s.mixed; });
+    const sa = state3(all), allCb = el.querySelector('input[data-rf="all"]'); allCb.checked = sa.checked; allCb.indeterminate = sa.mixed;
+    el.querySelector('[data-fd-dot="0"]').hidden = !rfActive();
+    el.querySelector('[data-fd-act="reset-all"]').disabled = !rfActive();
+    el.querySelector('#pfd-result').textContent = `Showing ${all.filter(rfOn).length} of ${all.length} regions`;
   }
-  const badge = document.getElementById('map-filters-count');
+  const n = rfActive(), badge = document.getElementById('map-filters-count');
   if (badge) { badge.hidden = n === 0; badge.textContent = n; }
   const btn = fb(); if (btn) { btn.classList.toggle('is-active', n > 0); btn.setAttribute('aria-label', n ? `Filter regions (${n} active)` : 'Filter regions'); }
 }
@@ -704,7 +721,12 @@ function fdOpen() {
         <button type="button" class="ds-fdrawer-close" data-fd-act="done" aria-label="Close filters"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
       <div class="mfd-result" id="pfd-result" aria-live="polite"></div>
-      <div class="ds-fdrawer-body">${FD_SECTIONS.map(fdSectionHTML).join('')}</div>
+      <div class="ds-fdrawer-body">
+        <div class="ds-fdrawer-section is-open">
+          <div class="ds-fdrawer-acc-head rf-sec-head"><span class="ds-fdrawer-sec-title">Regions<span class="ds-fdrawer-dot" data-fd-dot="0" hidden aria-label="Filtered"></span></span></div>
+          <div class="ds-fdrawer-acc-body rf-tree">${rfTreeHTML()}</div>
+        </div>
+      </div>
       <div class="ds-fdrawer-foot">
         <button type="button" class="mfd-btn mfd-btn--secondary" data-fd-act="reset-all">Reset</button>
         <button type="button" class="mfd-btn mfd-btn--primary" data-fd-act="done">Done</button>
@@ -712,28 +734,24 @@ function fdOpen() {
     </div>`;
   document.body.appendChild(el);
   el.addEventListener('change', e => {
-    const cb = e.target.closest('input[data-fd-sec]'); if (!cb) return;
-    const s = FD_SECTIONS[+cb.dataset.fdSec];
-    if (cb.checked) rfState[s.key].add(cb.value); else rfState[s.key].delete(cb.value);
+    const cb = e.target.closest('input[data-rf]'); if (!cb) return;
+    const keys = cb.dataset.rf === 'all' ? rfAllKeys() : cb.dataset.rf === 'group' ? rfGroups()[+cb.dataset.rfG].keys : [cb.value];
+    keys.forEach(k => cb.checked ? rfState.excluded.delete(k) : rfState.excluded.add(k));
     applyRegionFilter(); fdSync();
   });
   el.addEventListener('click', e => {
-    const acc = e.target.closest('[data-fd-acc]');
-    if (acc) {
-      const i = +acc.dataset.fdAcc; rfState.fdOpenSection = rfState.fdOpenSection === i ? -1 : i;
-      el.querySelectorAll('[data-fd-section]').forEach(sec => {
-        const on = +sec.dataset.fdSection === rfState.fdOpenSection;
-        sec.classList.toggle('is-open', on); sec.querySelector('[data-fd-acc]').setAttribute('aria-expanded', String(on));
-      });
+    const t = e.target.closest('[data-rf-toggle]');
+    if (t) {
+      const g = t.dataset.rfToggle, open = rfState.collapsed.has(g);   // was collapsed -> now open
+      if (open) rfState.collapsed.delete(g); else rfState.collapsed.add(g);
+      const grp = t.closest('.rf-group'); grp.classList.toggle('is-open', open);
+      grp.querySelector('.rf-sub').hidden = !open;
+      t.setAttribute('aria-expanded', String(open)); t.setAttribute('aria-label', `${open ? 'Collapse' : 'Expand'} ${g}`);
       return;
     }
     const act = e.target.closest('[data-fd-act]'); if (!act) return;
-    const a = act.dataset.fdAct, s = FD_SECTIONS[+act.dataset.fdI];
-    if (a === 'done') { fdClose(); return; }
-    if (a === 'reset') rfState[s.key] = new Set(s.items.map(it => it.v));
-    if (a === 'none') rfState[s.key] = new Set();
-    if (a === 'reset-all') FD_SECTIONS.forEach(x => { rfState[x.key] = new Set(x.items.map(it => it.v)); });
-    applyRegionFilter(); fdSync();
+    if (act.dataset.fdAct === 'done') { fdClose(); return; }
+    if (act.dataset.fdAct === 'reset-all') { rfState.excluded.clear(); applyRegionFilter(); fdSync(); }
   });
   fdSync();
   requestAnimationFrame(() => { el.classList.add('is-open'); el.setAttribute('aria-hidden', 'false'); });
@@ -742,7 +760,6 @@ function fdOpen() {
   document.addEventListener('keydown', fdKeys, true);
   setTimeout(() => el.querySelector('.ds-fdrawer-close').focus(), 60);
 }
-
 
 function initMap() {
   const el = document.getElementById('regions-map');
@@ -754,8 +771,7 @@ function initMap() {
 
   const monitored = (MAP_REGIONS_BY_TAB[activeTab] || MAP_REGIONS).map(r => ({...r, src:'My Monitored Regions'}));
   const skytek = SKYTEK_REGION_LIST.map(r => ({...r, assets:r.count, src:'Skytek Regions'}));
-  const drawn = (rfState.regionSources.has('My Monitored Regions') ? monitored : [])
-    .concat(rfState.regionSources.has('Skytek Regions') ? skytek : []);
+  const drawn = monitored.concat(skytek).filter(r => !rfState.excluded.has(rfKey(r.src, r.name)));
   drawn.forEach(r => {
     const riskColor = {Low:'#16a34a',Medium:'#f97316',High:'#dc2626',Critical:'#7c3aed'}[r.risk]||'#64748b';
     const popupHTML = `
