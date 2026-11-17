@@ -183,15 +183,7 @@
 
   // ── Wire ────────────────────────────────────────────────────────────────
   function wire() {
-    // Category dropdown
-    const catBtn = document.getElementById('cat-btn');
-    if (catBtn) catBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      state.catOpen = !state.catOpen;
-      const wrap = document.getElementById('cat-wrap');
-      wrap.outerHTML = CategoryDropdown();
-      wireCat();
-    });
+    // Category dropdown (its button is handled by the delegated listener below)
     wireCat();
 
     // Search
@@ -213,11 +205,21 @@
     if (window.__newsDocClicks) return finishWire();
     window.__newsDocClicks = true;
 
-    // Source dropdown: delegated, because opening/closing re-renders #src-wrap (a new #src-btn each time);
-    // capture phase + stopPropagation so the click-outside handler below never sees the replaced button
+    // Category and source dropdowns: delegated, because opening/closing re-renders #cat-wrap / #src-wrap
+    // (a new button each time); capture phase + stopPropagation so the click-outside handler below never
+    // sees the replaced button
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#cat-btn')) return;
+      e.stopPropagation();
+      closeSources();   // the click-outside handler doesn't run (propagation stopped), so close the other one here
+      state.catOpen = !state.catOpen;
+      document.getElementById('cat-wrap').outerHTML = CategoryDropdown();
+      wireCat();
+    }, true);
     document.addEventListener('click', e => {
       if (!e.target.closest('#src-btn')) return;
       e.stopPropagation();
+      closeCat();
       state.sourcesOpen = !state.sourcesOpen;
       document.getElementById('src-wrap').outerHTML = SourcePicker();
       wireSources();
@@ -244,6 +246,8 @@
     });
     finishWire();
   }
+  function closeSources() { if (!state.sourcesOpen) return; state.sourcesOpen = false; document.getElementById('src-wrap').outerHTML = SourcePicker(); wireSources(); }
+  function closeCat() { if (!state.catOpen) return; state.catOpen = false; document.getElementById('cat-wrap').outerHTML = CategoryDropdown(); wireCat(); }
   function finishWire() {
     wireActiveChips();
     const bo = document.getElementById('bm-open');
