@@ -269,9 +269,10 @@
   #cnr-host .cnr-btn.primary:disabled{opacity:.5;cursor:not-allowed}
   @media (max-width:560px){#cnr-host .cnr-scrim{padding:0}#cnr-host .cnr-modal{max-width:none;max-height:100vh;height:100vh;border-radius:0}#cnr-host .cnr-dates{grid-template-columns:1fr}}
   .reports-tabs-row::-webkit-scrollbar{display:none}
-  @media (max-width: 980px){
-    .ds-tabs#reports-tabs{display:none !important;}
-    .reports-tabs-dd{display:block !important;}
+  /* My Reports / Create New Report / Competitor Analysis: a dropdown on phones */
+  @media (max-width: 767px){
+    #sample-tabs{display:none !important;}
+    .reports-tabs-dd#sample-tabs-dd{display:block !important;max-width:none;}
   }
   .chat-input{width:100%;height:46px;border:1px solid #e2e8f0;border-radius:12px;padding:0 52px 0 16px;font-size:14px;color:#0f172a;outline:none;font-family:inherit;background:#fff;transition:border-color .15s,box-shadow .15s}
   .chat-input:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
@@ -1259,9 +1260,13 @@ function wireSampleViewTabs() {
   };
   place(); requestAnimationFrame(() => { place(); pill.classList.remove('is-init'); });
   window.addEventListener('resize', place);
+  // phones: the dropdown drives the same tab buttons (one switching path)
+  const dd = document.getElementById('sample-tabs-dd');
+  if (dd) dd.onchange = () => grp.querySelector(`[data-sview="${dd.value}"]`)?.click();
   grp.querySelectorAll('[data-sview]').forEach(b => b.addEventListener('click', () => {
     if (sampleView === b.dataset.sview) return;
     sampleView = b.dataset.sview;
+    if (dd) dd.value = sampleView;
     { const lg = document.getElementById('rc-legend'); if (lg) lg.hidden = sampleView === 'comp'; }
     grp.querySelectorAll('[data-sview]').forEach(x => x.setAttribute('aria-selected', String(x.dataset.sview === sampleView)));
     place();
@@ -1557,6 +1562,9 @@ window.render = function() {
                 <button class="ds-tab" data-sview="create" aria-selected="${sampleView==='create'}"><span class="ds-tab-label">${PLUS_ICO} Create New Report</span></button>
                 <button class="ds-tab" data-sview="comp" aria-selected="${sampleView==='comp'}"><span class="ds-tab-label">${CHT_ICO} Competitor Analysis</span></button>
               </div>
+              <select class="reports-tabs-dd" id="sample-tabs-dd" aria-label="Reports view">
+                ${[['list','My Reports'],['create','Create New Report'],['comp','Competitor Analysis']].map(([k, t]) => `<option value="${k}" ${sampleView === k ? 'selected' : ''}>${t}</option>`).join('')}
+              </select>
               <span class="rc-legend" id="rc-legend"${sampleView === 'comp' ? ' hidden' : ''}>${STAR_ICO}Selected for development</span>
             ` : `
               <div class="rc-title" id="reports-cardtitle">${DOC_ICO}<span>${window.TAB_CRUMBS[activeTab] || 'My Reports'}</span></div>
