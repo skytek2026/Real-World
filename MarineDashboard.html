@@ -178,6 +178,11 @@
   .vp-pill[aria-selected="true"]::before { width:18px; background:var(--brand-600,#2d7ffb); }
   .vp-pill:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:-3px; border-radius:9999px; }
   @media (prefers-reduced-motion: reduce) { .vp-pill::before { transition:none; } }
+  /* more specific than the chrome's auto-generated dark colours (which turned #cbd5e1 into #1e293b) */
+  html[data-theme="dark"] .leaflet-popup .vp .vp-pill::before { background-color:#64748b !important; }
+  html[data-theme="dark"] .leaflet-popup .vp .vp-pill:hover::before { background-color:#94a3b8 !important; }
+  html[data-theme="dark"] .leaflet-popup .vp .vp-pill[aria-selected="true"]::before { background-color:var(--brand-400,#51a2fc) !important; }
+  html[data-theme="dark"] .vp-pill:focus-visible { outline-color:var(--brand-300,#93c5fd); }
   .vp-grid[hidden] { display:none; }
 </style>
 
