@@ -5627,7 +5627,7 @@ const MAP_MENUS = ['layers','regions','weather','events'];
 const mapMenuId = k => (k === 'layers' ? 'he-vt-map-layers' : 'he-map-' + k);   // this module's element ids are prefixed
 
 function closeMapMenus(except) {
-  MAP_MENUS.forEach(k => { if (k === except) return; document.getElementById(mapMenuId(k) + '-menu')?.classList.add('hidden'); const b = document.getElementById(mapMenuId(k) + '-btn'); if (b) { b.classList.remove('is-on'); b.setAttribute('aria-expanded', 'false'); } });
+  MAP_MENUS.forEach(k => { if (k === except) return; if (k === 'events') state.evMenuOpen = false; document.getElementById(mapMenuId(k) + '-menu')?.classList.add('hidden'); const b = document.getElementById(mapMenuId(k) + '-btn'); if (b) { b.classList.remove('is-on'); b.setAttribute('aria-expanded', 'false'); } });
 }
 
 function updateMapReset() {
@@ -5897,12 +5897,14 @@ function initMapEvents() {
   cbs.forEach(c => c.onchange = sync);
   const open = v => {
     if (v) { const mc = document.getElementById('he-vessel-map'); if (mc) { const room = mc.getBoundingClientRect().bottom - btn.getBoundingClientRect().top - 12; menu.style.setProperty('--ev-max', Math.max(160, room) + 'px'); } }
-    menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v); };
+    menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v); state.evMenuOpen = v; };
   btn.onclick = e => { e.stopPropagation(); closeMapMenus('events'); open(menu.classList.contains('hidden')); };
   menu.onclick = e => e.stopPropagation();
   document.addEventListener('click', () => open(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
   sync();
+  // open by default; stays closed once closed (state.evMenuOpen survives page re-renders)
+  if (state.evMenuOpen !== false) requestAnimationFrame(() => open(true));
 }
 
 let map = null;
