@@ -170,12 +170,14 @@
   .folder-btn { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; margin:-4px -3px -4px -5px; padding:0; border:0; border-radius:5px; background:transparent; cursor:pointer; }
   .folder-btn:hover { background:var(--brand-50,#eff6ff); }
   .folder-btn:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
-  /* vessel popup: Voyage / Position pills above the button */
-  .vp-pills { display:flex; gap:4px; margin:2px 14px 6px; padding:3px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:9999px; }
-  .vp-pill { flex:1; padding:5px 10px; border:0; border-radius:9999px; background:transparent; font:inherit; font-size:12px; font-weight:600; color:#475569; cursor:pointer; }
-  .vp-pill:hover { color:#0f172a; }
-  .vp-pill[aria-selected="true"] { background:var(--brand-600,#2d7ffb); color:#fff; box-shadow:0 1px 2px rgba(15,23,42,.15); }
-  .vp-pill:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
+  /* vessel popup: pagination dots above the button (active = wider brand pill) */
+  .vp-pills { display:flex; justify-content:center; align-items:center; gap:2px; margin:0 14px 2px; }
+  .vp-pill { position:relative; width:22px; height:22px; padding:0; border:0; background:transparent; cursor:pointer; }
+  .vp-pill::before { content:''; position:absolute; top:50%; left:50%; width:7px; height:7px; border-radius:9999px; background:#cbd5e1; transform:translate(-50%,-50%); transition:width .18s ease, background-color .18s ease; }
+  .vp-pill:hover::before { background:#94a3b8; }
+  .vp-pill[aria-selected="true"]::before { width:18px; background:var(--brand-600,#2d7ffb); }
+  .vp-pill:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:-3px; border-radius:9999px; }
+  @media (prefers-reduced-motion: reduce) { .vp-pill::before { transition:none; } }
   .vp-grid[hidden] { display:none; }
 </style>
 
@@ -1089,9 +1091,9 @@ function vesselPopupHTML(v) {
       <div><div class="vp-k">Heading (deg):</div><div class="vp-v">${Math.round(v.course)}</div></div>
       <div><div class="vp-k">Timestamp:</div><div class="vp-v">${v.ts}</div></div>
     </div>
-    <div class="vp-pills" role="tablist" aria-label="Vessel details view">
-      <button type="button" class="vp-pill" role="tab" aria-selected="true" data-vp-pill="voyage">Voyage</button>
-      <button type="button" class="vp-pill" role="tab" aria-selected="false" data-vp-pill="position">Position</button>
+    <div class="vp-pills" role="tablist" aria-label="Vessel details pages">
+      <button type="button" class="vp-pill" role="tab" aria-selected="true" aria-label="Voyage details" title="Voyage details" data-vp-pill="voyage"></button>
+      <button type="button" class="vp-pill" role="tab" aria-selected="false" aria-label="Position details" title="Position details" data-vp-pill="position"></button>
     </div>
     <a href="VesselDetails.html?compliance=${encodeURIComponent(v.compliance === 'Ok' ? 'Not sanctioned' : v.compliance)}&v=${encodeURIComponent(v.name)}" class="vp-cta" style="text-decoration:none; text-align:center;">View Full Vessel Details</a>
   </div>`;
