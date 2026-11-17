@@ -613,6 +613,15 @@
   #vt2-vessel-map .leaflet-tooltip-right::before { border-right-color:#0f172a !important; }
   #vt2-vessel-tracking-card.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; }
   #vt2-vessel-tracking-card.is-fullscreen #vt2-map-wrapper { min-height:0; flex:1; }
+  /* Vessel Details card: Vessel Details tab flows into two columns when the card body is wide enough.
+     Columns (not a grid) so each row keeps its own height; rows never split across columns. */
+  .vd-kv-host { container-type:inline-size; }
+  @container (min-width:340px) {   /* laptops/desktops (card ~350px+ inside); phones keep one column */
+    .vd-kv-2col { columns:2; column-gap:20px; }
+    .vd-kv-2col > * { break-inside:avoid; margin-top:0 !important; padding-top:5px !important; padding-bottom:5px !important; }
+    .vd-kv-2col > * > span:first-child { flex-shrink:1; min-width:0; }
+    .vd-kv-2col > * > span:last-child { text-align:right; }
+  }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -1159,7 +1168,7 @@ function VesselDetailsCard() {
   let footer = '';
   if (state.topTab === 'Vessel Details') {
     body = `
-      <div class="space-y-0.5">
+      <div class="space-y-0.5 vd-kv-2col">
         ${row('Name:', VESSEL.name, true)}
         ${row('Flag:', `${flag(VESSEL.flag.cc)} ${VESSEL.flag.name}`)}
         ${row('Type:', VESSEL.type)}
@@ -1215,7 +1224,7 @@ function VesselDetailsCard() {
     <div class="px-4 py-3 border-b border-ink-200 shrink-0">
       ${tabs(topTabs, state.topTab, 'data-top-tab', true)}
     </div>
-    <div class="p-4 flex-1 overflow-y-auto scroll-thin">
+    <div class="p-4 flex-1 overflow-y-auto scroll-thin vd-kv-host">
       ${body}
     </div>
     ${footer}
