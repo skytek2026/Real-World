@@ -605,6 +605,13 @@
   #he-vessel-map .leaflet-tooltip-right::before { border-right-color:#0f172a !important; }
   #he-vessel-tracking-card.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; }
   #he-vessel-tracking-card.is-fullscreen #he-map-wrapper { min-height:0; flex:1; }
+  /* Voyage Track: timestamp points as direction chevrons (rotated to course over ground) */
+  .trk-chev { display:grid; place-items:center; background:none; border:0; cursor:pointer; }
+  .trk-chev > span { display:grid; place-items:center; filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.45)); }
+  .trk-chev svg { transition:transform .12s ease; }
+  .trk-chev:hover svg { transform:scale(1.35); }
+  @media (prefers-reduced-motion: reduce) { .trk-chev svg { transition:none; } }
+  .leaflet-tooltip.trk-tip { font-size:11.5px; line-height:1.45; font-variant-numeric:tabular-nums; }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -5757,7 +5764,7 @@ function buildTrackPoints(route) {
   (window._trackPts__he || []).forEach(m => map.removeLayer(m));
   if (!map.getPane('trackPts')) { const p = map.createPane('trackPts'); p.style.zIndex = 650; }
   // 'Show detailed track' (date picker) = 4x the timestamped position points over the same period
-  const detailed = !!state.trackRange.detailed, N = detailed ? 72 : 18, R = detailed ? 3 : 4;
+  const detailed = !!state.trackRange.detailed, N = detailed ? 72 : 18;
   const t0 = new Date(state.trackRange.start + 'T00:00:00Z').getTime(), t1 = new Date(state.trackRange.end + 'T23:59:59Z').getTime();
   const at = t => { const p = t * (route.length - 1), i = Math.min(Math.floor(p), route.length - 2), f = p - i, a = route[i], b = route[i + 1]; return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, Math.atan2(b[1] - a[1], b[0] - a[0])]; };
   const dests = ['EG, Port Said', 'GR, Piraeus', 'DE, Hamburg'];
@@ -5766,13 +5773,19 @@ function buildTrackPoints(route) {
   const pinSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>';
   const xSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
   window._trackPts__he = Array.from({ length: N }, (_, k) => {
-    const t = k / (N - 1), [lat, lng, ang] = at(t);
-    const cog = Math.round(((90 - ang * 180 / Math.PI) + 360) % 360);
+    const t = k / (N - 1), [lat, lng] = at(t);
+    // course = direction of travel on the map: bearing toward the next point in time (last point: from the previous one)
+    const nb = k < N - 1 ? at((k + 1) / (N - 1)) : null, pv = k > 0 ? at((k - 1) / (N - 1)) : null;
+    const p0 = map.project(L.latLng(nb ? lat : pv[0], nb ? lng : pv[1]), 0), p1 = map.project(L.latLng(nb ? nb[0] : lat, nb ? nb[1] : lng), 0);
+    const cog = Math.round((Math.atan2(p1.x - p0.x, -(p1.y - p0.y)) * 180 / Math.PI + 360) % 360);
     const d = { lat, lng, dest: dests[Math.min(2, Math.floor(t * 3))], status: statuses[k % 4], cog, hdg: (cog + 4 + (k % 3) * 2) % 360,
       draught: (10.1 - (k % 4) * 0.05).toFixed(2), speed: (9.2 + ((k * 37) % 17) / 10).toFixed(2), freeboard: (3.5 + (k % 3) * 0.05).toFixed(2),
       ts: new Date(t0 + t * (t1 - t0)).toISOString().replace('T', ' ').slice(0, 19) + ' UTC' };
-    const m = L.circleMarker([lat, lng], { radius:R, color:'#fff', weight:detailed ? 1.25 : 1.5, fillColor:'#2d7ffb', fillOpacity:1, bubblingMouseEvents:false, pane:'trackPts' }).addTo(map);
-    m.on('mouseover', () => m.setStyle({ radius:R + 2 })); m.on('mouseout', () => m.setStyle({ radius:R }));
+    // chevron pointing along the vessel's course (COG, degrees from north); hover tooltip with time + lat/lng
+    const CH = detailed ? 12 : 14;
+    const m = L.marker([lat, lng], { pane:'trackPts', keyboard:false, icon: L.divIcon({ className:'trk-chev', iconSize:[CH, CH], iconAnchor:[CH / 2, CH / 2],
+      html:`<span style="transform:rotate(${cog}deg)"><svg width="${CH}" height="${CH}" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18 12 5l8 13-8-4z" fill="#2d7ffb" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/></svg></span>` }) }).addTo(map);
+    m.bindTooltip(`<b>${d.ts}</b><br>${fmt(d.lat,'N','S')} / ${fmt(d.lng,'E','W')}`, { direction:'top', offset:[0, -CH / 2], opacity:1, className:'trk-tip' });
     const row = (k2, v) => `<div class="trk-r"><span>${k2}</span><span>${v}</span></div>`;
     const html = `<div class="trk-pop" role="dialog" aria-label="${VESSEL.name} track point">
       <div class="trk-h">
