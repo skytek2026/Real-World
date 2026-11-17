@@ -5471,20 +5471,20 @@ function VesselTrackingCard() {
           </div>
         </div>
         <div style="position:relative;">
-          <button id="he-map-evtypes-btn" class="map-btn" type="button" title="Event types" aria-label="Filter event types" aria-haspopup="true" aria-expanded="false" style="position:relative;">
+          <button id="he-map-events-btn" class="map-btn" type="button" title="Event types" aria-label="Filter event types" aria-haspopup="true" aria-expanded="false" style="position:relative;">
             <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-calendar-cog" aria-hidden="true"><path d="m15.2 16.9-.9-.4"/><path d="m15.2 19.1-.9.4"/><path d="M16 2v4"/><path d="m16.9 15.2-.4-.9"/><path d="m16.9 20.8-.4.9"/><path d="m19.5 14.3-.4.9"/><path d="m19.5 21.7-.4-.9"/><path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m21.7 16.5-.9.4"/><path d="m21.7 19.5-.9-.4"/><path d="M3 10h18"/><path d="M8 2v4"/><circle cx="18" cy="18" r="3"/></svg>
-            <span id="he-map-evtypes-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:var(--brand-600,#2d7ffb);border:2px solid #fff;"></span>
+            <span id="he-map-events-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:var(--brand-600,#2d7ffb);border:2px solid #fff;"></span>
           </button>
-          <div id="he-map-evtypes-menu" class="hidden" role="menu" aria-label="Event types" style="position:absolute;top:0;right:calc(100% + 8px);width:248px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:var(--ev-max, 340px);">
+          <div id="he-map-events-menu" class="hidden" role="menu" style="position:absolute;top:0;right:calc(100% + 8px);z-index:60;width:248px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:var(--ev-max, 340px);">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
               <span style="font-size:13px;font-weight:600;color:#111827;">Event Types</span>
-              <span id="he-map-evtypes-count" style="font-size:11.5px;color:#6b7280;"></span>
+              <span id="he-map-events-count" style="font-size:11.5px;color:#6b7280;"></span>
             </div>
             <div class="scroll-thin" style="padding:4px 0;overflow-y:auto;min-height:0;">
-              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-ev-all-m checked><span>All</span></label>
+              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-ev-all checked><span>All</span></label>
               <div style="height:1px;background:#f1f5f9;margin:2px 0;"></div>
               ${MAP_EVENT_TYPES.map(t => `
-              <label class="ev-row"><input type="checkbox" class="ev-cb" data-ev-type-m="${t.id}" checked><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span><span>${t.label}</span></label>`).join('')}
+              <label class="ev-row"><input type="checkbox" class="ev-cb" data-ev-type="${t.id}" checked><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span><span>${t.label}</span></label>`).join('')}
             </div>
           </div>
         </div>
@@ -5585,24 +5585,6 @@ function HistoricalEventsCard() {
         <input type="search" placeholder="Search Historical events..." class="w-full px-3 py-2 pr-8 border border-ink-200 rounded-md text-xs" />
         <svg class="w-4 h-4 text-ink-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
       </div>
-        <div style="position:relative;">
-          <button id="he-map-events-btn" type="button" class="hist-cal-btn" title="Filter events" aria-label="Filter events" aria-haspopup="true" aria-expanded="false" style="width:auto;padding:0 10px;gap:6px;display:inline-flex;align-items:center;font-size:12.5px;font-weight:500;">
-            <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="lucide lucide-calendar-cog" width="16" height="16" aria-hidden="true"><path d="m15.2 16.9-.9-.4"/><path d="m15.2 19.1-.9.4"/><path d="M16 2v4"/><path d="m16.9 15.2-.4-.9"/><path d="m16.9 20.8-.4.9"/><path d="m19.5 14.3-.4.9"/><path d="m19.5 21.7-.4-.9"/><path d="M21 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/><path d="m21.7 16.5-.9.4"/><path d="m21.7 19.5-.9-.4"/><path d="M3 10h18"/><path d="M8 2v4"/><circle cx="18" cy="18" r="3"/></svg>
-            <span>Event types</span><span id="he-map-events-dot" class="hidden" style="position:absolute;top:-3px;right:-3px;width:9px;height:9px;border-radius:50%;background:var(--brand-600,#2d7ffb);border:2px solid #fff;"></span>
-          </button>
-          <div id="he-map-events-menu" class="hidden" role="menu" style="position:absolute;top:calc(100% + 6px);right:0;z-index:60;width:248px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;display:flex;flex-direction:column;max-height:var(--ev-max, 340px);">
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid #e5e7eb;">
-              <span style="font-size:13px;font-weight:600;color:#111827;">Event Types</span>
-              <span id="he-map-events-count" style="font-size:11.5px;color:#6b7280;"></span>
-            </div>
-            <div class="scroll-thin" style="padding:4px 0;overflow-y:auto;min-height:0;">
-              <label class="ev-row" style="font-weight:600;"><input type="checkbox" class="ev-cb" data-ev-all checked><span>All</span></label>
-              <div style="height:1px;background:#f1f5f9;margin:2px 0;"></div>
-              ${MAP_EVENT_TYPES.map(t => `
-              <label class="ev-row"><input type="checkbox" class="ev-cb" data-ev-type="${t.id}" checked><span class="ev-ic" style="background:${t.bg};color:${t.fg};">${t.icon}</span><span>${t.label}</span></label>`).join('')}
-            </div>
-          </div>
-        </div>
     </div>
     <div id="he-hist-list-wrap" class="flex-1 min-h-0 flex flex-col">${HistListHtml()}</div>
     <div class="px-4 py-3 border-t border-ink-200 flex justify-center">
@@ -5641,7 +5623,7 @@ var MAP_REGION_GROUPS = [
   { label:'War', items:['Black Sea War Zone','Red Sea Conflict Zone'] },
 ];
 
-const MAP_MENUS = ['layers','regions','weather','evtypes'];
+const MAP_MENUS = ['layers','regions','weather','events'];
 const mapMenuId = k => (k === 'layers' ? 'he-vt-map-layers' : 'he-map-' + k);   // this module's element ids are prefixed
 
 function closeMapMenus(except) {
@@ -5902,14 +5884,13 @@ function initMapEvents() {
   const btn = document.getElementById('he-map-events-btn'), menu = document.getElementById('he-map-events-menu');
   if (!btn || !menu) return;
   const all = menu.querySelector('[data-ev-all]'), cbs = [...menu.querySelectorAll('[data-ev-type]')];
-  let mirrorMap = () => {};   // keeps the map's Event types popover in step (set up below)
   const sync = () => {
     const n = cbs.filter(c => c.checked).length;
     all.checked = n === cbs.length; all.indeterminate = n > 0 && n < cbs.length;
     document.getElementById('he-map-events-count').textContent = n + ' of ' + cbs.length + ' shown';
     document.getElementById('he-map-events-dot').classList.toggle('hidden', n === cbs.length);
     window.__vesselEventFilter__he = cbs.filter(c => c.checked).map(c => c.dataset.evType);
-    applyEventFilter(); mirrorMap(); updateMapReset();
+    applyEventFilter(); updateMapReset();
     if (window.__evInit__he) { state.histPage = 1; if (state.histSel != null && !window.__vesselEventFilter__he.includes(EVENTS[state.histSel]?.type)) { state.histSel = null; map && map.closePopup(); } drawHistList(); }
   };
   all.onchange = () => { cbs.forEach(c => c.checked = all.checked); sync(); };
@@ -5917,33 +5898,10 @@ function initMapEvents() {
   const open = v => {
     if (v) { const mc = document.getElementById('he-vessel-map'); if (mc) { const room = mc.getBoundingClientRect().bottom - btn.getBoundingClientRect().top - 12; menu.style.setProperty('--ev-max', Math.max(160, room) + 'px'); } }
     menu.classList.toggle('hidden', !v); btn.setAttribute('aria-expanded', v); btn.classList.toggle('is-on', v); };
-  btn.onclick = e => { e.stopPropagation(); closeMapMenus(); open(menu.classList.contains('hidden')); };
+  btn.onclick = e => { e.stopPropagation(); closeMapMenus('events'); open(menu.classList.contains('hidden')); };
   menu.onclick = e => e.stopPropagation();
   document.addEventListener('click', () => open(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') open(false); });
-  // Map button: the same Event types filter in a popover beside the map's buttons (one shared selection)
-  const mbtn = document.getElementById('he-map-evtypes-btn'), mmenu = document.getElementById('he-map-evtypes-menu');
-  if (mbtn && mmenu) {
-    const mall = mmenu.querySelector('[data-ev-all-m]'), mcbs = [...mmenu.querySelectorAll('[data-ev-type-m]')];
-    const listCb = t => cbs.find(c => c.dataset.evType === t);
-    mirrorMap = () => {
-      mcbs.forEach(c => { c.checked = listCb(c.dataset.evTypeM).checked; });
-      mall.checked = all.checked; mall.indeterminate = all.indeterminate;
-      const n = cbs.filter(c => c.checked).length;
-      document.getElementById('he-map-evtypes-count').textContent = n + ' of ' + cbs.length + ' shown';
-      document.getElementById('he-map-evtypes-dot').classList.toggle('hidden', n === cbs.length);
-    };
-    mall.onchange = () => { all.checked = mall.checked; all.onchange(); };
-    mcbs.forEach(c => c.onchange = () => { listCb(c.dataset.evTypeM).checked = c.checked; sync(); });
-    const mopen = v => {
-      if (v) { const mc = document.getElementById('he-vessel-map'); if (mc) { const room = mc.getBoundingClientRect().bottom - mbtn.getBoundingClientRect().top - 12; mmenu.style.setProperty('--ev-max', Math.max(160, room) + 'px'); } }
-      mmenu.classList.toggle('hidden', !v); mbtn.setAttribute('aria-expanded', v); mbtn.classList.toggle('is-on', v);
-    };
-    mbtn.onclick = e => { e.stopPropagation(); open(false); closeMapMenus('evtypes'); mopen(mmenu.classList.contains('hidden')); };
-    mmenu.onclick = e => e.stopPropagation();
-    document.addEventListener('click', () => mopen(false));
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') mopen(false); });
-  }
   sync();
 }
 
