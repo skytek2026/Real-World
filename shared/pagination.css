@@ -23,6 +23,7 @@
 
 /* Individual buttons / numbers. */
 .ds-page-btn {
+  position: relative;   /* contains its screen-reader text (.sr-only is absolute): otherwise it positions against the page and can stretch it, adding a second scrollbar when the pagination is inside a scrolling panel */
   min-width:32px; height:32px;
   display:inline-flex; align-items:center; justify-content:center;
   padding:0 8px; gap:4px;
