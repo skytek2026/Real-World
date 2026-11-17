@@ -104,7 +104,7 @@
     const cur = CATS.find(c => c.id === state.cat) || CATS[0];
     return `
       <div class="cat-dd" id="cat-wrap">
-        <button class="cat-btn" id="cat-btn" aria-expanded="${state.catOpen}" aria-haspopup="listbox">
+        <button class="cat-btn${cur.id !== CATS[0].id ? ' is-filtered' : ''}" id="cat-btn" aria-expanded="${state.catOpen}" aria-haspopup="listbox" aria-label="Category: ${cur.label}" title="Category: ${cur.label}">
           <span class="cat-cur-ico">${CAT_TAB_ICO[cur.id]}</span>
           <span class="cat-cur-label">${cur.label}</span>
           <svg class="cat-chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -404,7 +404,7 @@
 
       <!-- Category dropdown row -->
       <div class="filter-row">
-        <span style="font-size:11.5px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0">Category</span>
+        <span class="filter-row-label" style="font-size:11.5px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0">Category</span>
         ${CategoryDropdown()}
       </div>
 
