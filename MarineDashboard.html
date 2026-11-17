@@ -170,6 +170,13 @@
   .folder-btn { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; margin:-4px -3px -4px -5px; padding:0; border:0; border-radius:5px; background:transparent; cursor:pointer; }
   .folder-btn:hover { background:var(--brand-50,#eff6ff); }
   .folder-btn:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
+  /* vessel popup: Voyage / Position pills above the button */
+  .vp-pills { display:flex; gap:4px; margin:2px 14px 6px; padding:3px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:9999px; }
+  .vp-pill { flex:1; padding:5px 10px; border:0; border-radius:9999px; background:transparent; font:inherit; font-size:12px; font-weight:600; color:#475569; cursor:pointer; }
+  .vp-pill:hover { color:#0f172a; }
+  .vp-pill[aria-selected="true"] { background:var(--brand-600,#2d7ffb); color:#fff; box-shadow:0 1px 2px rgba(15,23,42,.15); }
+  .vp-pill:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
+  .vp-grid[hidden] { display:none; }
 </style>
 
 <style>
@@ -1061,7 +1068,7 @@ function vesselPopupHTML(v) {
         <div class="vp-port-time">ETA (UTC): ${v.eta}</div>
       </div>
     </div>
-    <div class="vp-grid">
+    <div class="vp-grid" data-vp-panel="voyage" role="tabpanel" aria-label="Voyage">
       <div><div class="vp-k">Estimated Duration:</div><div class="vp-v">${v.durH}h ${v.durM}m</div></div>
       <div><div class="vp-k">Distance:</div><div class="vp-v">${v.distNm} nm</div></div>
       <div><div class="vp-k">Lat/Lng:</div><div class="vp-v vp-strong">${latStr} /<br>${lngStr}</div></div>
@@ -1073,6 +1080,18 @@ function vesselPopupHTML(v) {
       <div><div class="vp-k">Heading (deg):</div><div class="vp-v">${Math.round(v.course)}</div></div>
       <div class="vp-span"><div class="vp-k">Timestamp:</div><div class="vp-v">${v.ts}</div></div>
       <div class="vp-span"><div class="vp-k">Policy Type:</div><div class="vp-v vp-strong">${v.policy}</div></div>
+    </div>
+    <div class="vp-grid" data-vp-panel="position" role="tabpanel" aria-label="Position" hidden>
+      <div><div class="vp-k">Lat/Lng:</div><div class="vp-v vp-strong">${latStr} /<br>${lngStr}</div></div>
+      <div><div class="vp-k">Nav status:</div><div class="vp-v vp-nav">${v.nav}</div></div>
+      <div><div class="vp-k">Speed (Knots):</div><div class="vp-v"><span class="vp-strong">${v.speed}</span> Knots</div></div>
+      <div><div class="vp-k">Draught (m):</div><div class="vp-v"><span class="vp-strong">${v.draught.toFixed(2)}</span><br><span class="vp-muted">(max ${v.maxD.toFixed(2)})</span></div></div>
+      <div><div class="vp-k">Heading (deg):</div><div class="vp-v">${Math.round(v.course)}</div></div>
+      <div><div class="vp-k">Timestamp:</div><div class="vp-v">${v.ts}</div></div>
+    </div>
+    <div class="vp-pills" role="tablist" aria-label="Vessel details view">
+      <button type="button" class="vp-pill" role="tab" aria-selected="true" data-vp-pill="voyage">Voyage</button>
+      <button type="button" class="vp-pill" role="tab" aria-selected="false" data-vp-pill="position">Position</button>
     </div>
     <a href="VesselDetails.html?compliance=${encodeURIComponent(v.compliance === 'Ok' ? 'Not sanctioned' : v.compliance)}&v=${encodeURIComponent(v.name)}" class="vp-cta" style="text-decoration:none; text-align:center;">View Full Vessel Details</a>
   </div>`;
@@ -1174,6 +1193,18 @@ function initMap() {
   map.on('popupopen', e => {
     const m = e.popup && e.popup._source;
     if (m && m._icon) m._icon.classList.add('is-selected');
+    // Voyage / Position pills: swap the details panel (clicks inside a Leaflet popup don't reach document)
+    const root = e.popup.getElement && e.popup.getElement();
+    if (root) L.DomEvent.disableClickPropagation(root);   // clicks inside the popup must not reach the map (which closes it)
+    root && root.querySelectorAll('[data-vp-pill]').forEach(b => b.onclick = ev => {
+      L.DomEvent.stop(ev);
+      const vp = b.closest('.vp'), k = b.dataset.vpPill;
+      vp.querySelectorAll('[data-vp-pill]').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+      vp.querySelectorAll('[data-vp-panel]').forEach(pn => { pn.hidden = pn.dataset.vpPanel !== k; });
+      // re-measure without rebuilding the content (update() would reset it to the Voyage panel)
+      if (e.popup._updateLayout) e.popup._updateLayout();
+      if (e.popup._updatePosition) e.popup._updatePosition();
+    });
   });
   map.on('popupclose', e => {
     const m = e.popup && e.popup._source;
