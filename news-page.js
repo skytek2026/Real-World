@@ -73,7 +73,7 @@
       <a href="${a.url}" target="_blank" rel="noopener noreferrer" class="news-card cat-${a.cat} ${isFeatured ? 'featured' : ''}" data-cat="${a.cat}">
         <div class="news-thumb ${a.image ? 'has-photo' : ''}">
           ${PATTERN_BG}
-          ${a.image ? `<img class="news-photo" src="${a.image}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove();this.parentElement.classList.remove('has-photo')">` : ''}
+          ${a.image ? `<img class="news-photo" src="${a.image}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement&&this.parentElement.classList.remove('has-photo');this.remove()">` : ''}
           <div class="glyph">${CAT_GLYPH[a.cat] || ''}</div>
           <span class="news-cat">${catLabel(a.cat)}</span>
           <button type="button" class="bm-btn ${isBm(artId(a))?'is-on':''}" data-bm="${artId(a)}" aria-pressed="${isBm(artId(a))}" title="${isBm(artId(a))?'Remove bookmark':'Bookmark article'}" aria-label="${isBm(artId(a))?'Remove bookmark':'Bookmark article'}">${BM_ICO(isBm(artId(a)))}</button>
@@ -207,15 +207,21 @@
       });
     }
 
-    // Source dropdown
-    const srcBtn = document.getElementById('src-btn');
-    if (srcBtn) srcBtn.addEventListener('click', e => {
+    wireSources();
+
+    // Page-level click handlers, registered once (wire() runs after every re-render)
+    if (window.__newsDocClicks) return finishWire();
+    window.__newsDocClicks = true;
+
+    // Source dropdown: delegated, because opening/closing re-renders #src-wrap (a new #src-btn each time);
+    // capture phase + stopPropagation so the click-outside handler below never sees the replaced button
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#src-btn')) return;
       e.stopPropagation();
       state.sourcesOpen = !state.sourcesOpen;
       document.getElementById('src-wrap').outerHTML = SourcePicker();
       wireSources();
-    });
-    wireSources();
+    }, true);
 
     // Click outside to close popovers
     document.addEventListener('click', e => {
@@ -236,7 +242,9 @@
         }
       }
     });
-
+    finishWire();
+  }
+  function finishWire() {
     wireActiveChips();
     const bo = document.getElementById('bm-open');
     if (bo) bo.onclick = () => openBmDrawer(true);
