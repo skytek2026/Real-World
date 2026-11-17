@@ -622,6 +622,12 @@
     .vd-kv-2col > * > span:first-child { flex-shrink:1; min-width:0; }
     .vd-kv-2col > * > span:last-child { text-align:right; }
   }
+  /* Vessel Details card: three tabs fit the card's own width (tighter padding, then no icons) */
+  .vd-tabs-host { container-type:inline-size; }
+  @container (max-width:500px) { .vd-tabs-host .ds-tab { padding:7px 10px !important; } }
+  @container (max-width:400px) { .vd-tabs-host .ds-tab-label > span:first-child:not(:only-child) { display:none !important; } .vd-tabs-host .ds-tab { padding:7px 8px !important; font-size:12.5px !important; }
+    .vd-tabs-host .tab-full { display:none; } .vd-tabs-host .tab-short { display:inline !important; } }
+  .tab-short { display:none; }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -988,9 +994,9 @@ function tabs(tabs, active, attr, stretch = false) {
       const iBadge = t.badge ? `<span class="ml-1 inline-flex items-center justify-center text-[9px] font-bold bg-orange-500 text-white rounded-full" style="width:14px;height:14px;flex-shrink:0;">${t.badge}</span>` : '';
       const iconHtml = t.icon ? `<span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I[t.icon]}</span>` : '';
       return `
-      <button ${attr}="${t.k}" aria-selected="${t.k===active}" class="ds-tab" style="font-size:13px; padding:7px 16px;">
+      <button ${attr}="${t.k}" aria-selected="${t.k===active}"${t.short ? ` aria-label="${t.k}"` : ''} class="ds-tab" style="font-size:13px; padding:7px 16px;">
         <span class="ds-tab-label">
-          ${iconHtml}${t.k}${iBadge}${scoreBadge}
+          ${iconHtml}${t.short ? `<span class="tab-full">${t.k}</span><span class="tab-short" aria-hidden="true">${t.short}</span>` : t.k}${iBadge}${scoreBadge}
         </span>
       </button>`;
     }).join('')}
@@ -1154,8 +1160,9 @@ function VesselDetailsSplitCard() {
 
 function VesselDetailsCard() {
   const topTabs = [
-    { k:'Vessel Details',  icon:'ship'   },
-    { k:'Company Details', icon:'office', badge:'i' },
+    { k:'Vessel Details',  short:'Vessel',  icon:'ship'   },
+    { k:'Company Details', short:'Company', icon:'office', badge:'i' },
+    { k:'Policy Details',  short:'Policy',  icon:'fileText' },
   ];
   
   const row = (label, value, isBold) => `
@@ -1217,33 +1224,26 @@ function VesselDetailsCard() {
         ${row('DOC Company:', ent('Scorpio Marine Management (India) Private Limited', ['in']), true)}`;
         })()}
       </div>`;
+  } else if (state.topTab === 'Policy Details') {
+    body = PolicyDetailsTable();
   }
 
   return `
   <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
-    <div class="px-4 py-3 border-b border-ink-200 shrink-0">
+    <div class="px-4 py-3 border-b border-ink-200 shrink-0 vd-tabs-host">
       ${tabs(topTabs, state.topTab, 'data-top-tab', true)}
     </div>
-    <div class="p-4 flex-1 overflow-y-auto scroll-thin vd-kv-host">
+    <div class="${state.topTab === 'Policy Details' ? 'pd-scroll' : 'p-4'} flex-1 min-h-0 overflow-auto scroll-thin vd-kv-host">
       ${body}
     </div>
     ${footer}
   </div>`;
 }
 
-function PolicyDetailsCard() {
-  const row = (label, value, isBold) => `
-    <div class="flex justify-between text-xs py-1.5 border-b last:border-b-0" style="border-color:#f3f4f6;">
-      <span class="text-ink-500">${label}</span>
-      <span class="${isBold?'font-semibold text-ink-900':'text-ink-700'}">${value}</span>
-    </div>`;
-    
+/* Policy Details table (fields as rows, portfolios as columns; sticky first column). Shown in the
+   Vessel Details card's "Policy Details" tab; PolicyDetailsCard() is no longer placed on the page. */
+function PolicyDetailsTable() {
   return `
-  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
-    <div class="px-4 py-3 border-b border-ink-200 shrink-0">
-      <div class="text-sm font-semibold text-ink-900">Policy Details</div>
-    </div>
-    <div class="flex-1 min-h-0 overflow-auto scroll-thin pd-scroll">
       ${(() => {
         const PF = [
           { name:POLICY.portfolios, signedLine:POLICY.signedLine, exposure:POLICY.exposure, totalInsured:POLICY.totalInsured, warExp:POLICY.warExp, warTotal:POLICY.warTotal, premium:POLICY.premium, period:'2025-02-20 / 2027-02-20', assured:VESSEL.name, contractRef:'MH-25-00417', umr:'B0509MH2500417', policyType:'Hull & Machinery', placementType:'Open Market', insurer:'Lloyd\'s Syndicate 2987', broker:'Marsh Ltd', delegate:'-', underwriter:'J. Harrington' },
@@ -1261,7 +1261,23 @@ function PolicyDetailsCard() {
             ${PF.map(p => `<td class="${td} font-semibold text-ink-900 border-l border-ink-100">${p[k]}</td>`).join('')}
           </tr>`).join('')}</tbody>
         </table>`;
-      })()}
+      })()}`;
+}
+
+function PolicyDetailsCard() {
+  const row = (label, value, isBold) => `
+    <div class="flex justify-between text-xs py-1.5 border-b last:border-b-0" style="border-color:#f3f4f6;">
+      <span class="text-ink-500">${label}</span>
+      <span class="${isBold?'font-semibold text-ink-900':'text-ink-700'}">${value}</span>
+    </div>`;
+    
+  return `
+  <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
+    <div class="px-4 py-3 border-b border-ink-200 shrink-0">
+      <div class="text-sm font-semibold text-ink-900">Policy Details</div>
+    </div>
+    <div class="flex-1 min-h-0 overflow-auto scroll-thin pd-scroll">
+      ${PolicyDetailsTable()}
     </div>
   </div>`;
 }
@@ -5289,10 +5305,9 @@ function Content() {
   return `
   <div class="px-4 lg:px-6 py-4 space-y-3">
     <section class="grid grid-cols-1 md:grid-cols-12 gap-3 vessel-top-section">
-      <div class="md:col-span-4" style="height:400px;">${VesselDetailsCard()}</div>
-      <div class="md:col-span-2" style="height:400px;">${PolicyDetailsCard()}</div>
-      <div class="md:col-span-2" style="height:400px;">${PortCallsCard()}</div>
-      <div class="md:col-span-4" style="height:400px;">${CasualtyRiskCardCopy8()}</div>
+      <div class="md:col-span-12 xl:col-span-5" style="height:400px;">${VesselDetailsCard()}</div>
+      <div class="md:col-span-6 xl:col-span-3" style="height:400px;">${PortCallsCard()}</div>
+      <div class="md:col-span-6 xl:col-span-4" style="height:400px;">${CasualtyRiskCardCopy8()}</div>
     </section>
     <section>
       ${InspectionTable()}
