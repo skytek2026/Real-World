@@ -5756,7 +5756,9 @@ function buildTrackPoints(route) {
   if (!map) return;
   (window._trackPts__he || []).forEach(m => map.removeLayer(m));
   if (!map.getPane('trackPts')) { const p = map.createPane('trackPts'); p.style.zIndex = 650; }
-  const N = 18, t0 = new Date(state.trackRange.start + 'T00:00:00Z').getTime(), t1 = new Date(state.trackRange.end + 'T23:59:59Z').getTime();
+  // 'Show detailed track' (date picker) = 4x the timestamped position points over the same period
+  const detailed = !!state.trackRange.detailed, N = detailed ? 72 : 18, R = detailed ? 3 : 4;
+  const t0 = new Date(state.trackRange.start + 'T00:00:00Z').getTime(), t1 = new Date(state.trackRange.end + 'T23:59:59Z').getTime();
   const at = t => { const p = t * (route.length - 1), i = Math.min(Math.floor(p), route.length - 2), f = p - i, a = route[i], b = route[i + 1]; return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, Math.atan2(b[1] - a[1], b[0] - a[0])]; };
   const dests = ['EG, Port Said', 'GR, Piraeus', 'DE, Hamburg'];
   const statuses = ['Under way using engine', 'Under way using engine', 'Under way using engine', 'Restricted manoeuvrability'];
@@ -5769,8 +5771,8 @@ function buildTrackPoints(route) {
     const d = { lat, lng, dest: dests[Math.min(2, Math.floor(t * 3))], status: statuses[k % 4], cog, hdg: (cog + 4 + (k % 3) * 2) % 360,
       draught: (10.1 - (k % 4) * 0.05).toFixed(2), speed: (9.2 + ((k * 37) % 17) / 10).toFixed(2), freeboard: (3.5 + (k % 3) * 0.05).toFixed(2),
       ts: new Date(t0 + t * (t1 - t0)).toISOString().replace('T', ' ').slice(0, 19) + ' UTC' };
-    const m = L.circleMarker([lat, lng], { radius:4, color:'#fff', weight:1.5, fillColor:'#2d7ffb', fillOpacity:1, bubblingMouseEvents:false, pane:'trackPts' }).addTo(map);
-    m.on('mouseover', () => m.setStyle({ radius:6 })); m.on('mouseout', () => m.setStyle({ radius:4 }));
+    const m = L.circleMarker([lat, lng], { radius:R, color:'#fff', weight:detailed ? 1.25 : 1.5, fillColor:'#2d7ffb', fillOpacity:1, bubblingMouseEvents:false, pane:'trackPts' }).addTo(map);
+    m.on('mouseover', () => m.setStyle({ radius:R + 2 })); m.on('mouseout', () => m.setStyle({ radius:R }));
     const row = (k2, v) => `<div class="trk-r"><span>${k2}</span><span>${v}</span></div>`;
     const html = `<div class="trk-pop" role="dialog" aria-label="${VESSEL.name} track point">
       <div class="trk-h">
