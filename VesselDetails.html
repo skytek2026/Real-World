@@ -628,6 +628,7 @@
   @container (max-width:400px) { .vd-tabs-host .ds-tab-label > span:first-child:not(:only-child) { display:none !important; } .vd-tabs-host .ds-tab { padding:7px 8px !important; font-size:12.5px !important; }
     .vd-tabs-host .tab-full { display:none; } .vd-tabs-host .tab-short { display:inline !important; } }
   .tab-short { display:none; }
+  .vd-cmp-flag { width:16px; height:16px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; }   /* mini of the Compliance tab flag */
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -1158,6 +1159,12 @@ function VesselDetailsSplitCard() {
   </div>`;
 }
 
+/* Compliance status (same value and colours as the Risk Score card's Compliance tab), as a small flag + text */
+function complianceBadge() {
+  const st = state.complianceStatus || 'Not sanctioned', cs = COMPLIANCE_STATUS[st] || COMPLIANCE_STATUS['Not sanctioned'];
+  return `<span class="inline-flex items-center gap-1.5"><span class="vd-cmp-flag" style="background:${cs.fill};" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 15s1.2-1 4-1 4.6 2 7.4 2S20 15 20 15V4s-1.2 1-4 1-4.6-2-7.4-2S5 4 5 4z"></path><path d="M5 22V15" fill="none" stroke-linecap="round"></path></svg></span>${st}</span>`;
+}
+
 function VesselDetailsCard() {
   const topTabs = [
     { k:'Vessel Details',  short:'Vessel',  icon:'ship'   },
@@ -1177,6 +1184,7 @@ function VesselDetailsCard() {
     body = `
       <div class="space-y-0.5 vd-kv-2col">
         ${row('Name:', VESSEL.name, true)}
+        ${row('Compliance:', complianceBadge())}
         ${row('Flag:', `${flag(VESSEL.flag.cc)} ${VESSEL.flag.name}`)}
         ${row('Type:', VESSEL.type)}
         ${row('Year Built:', VESSEL.yearBuilt)}
