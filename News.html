@@ -22,6 +22,7 @@
   .cat-btn[aria-expanded="true"]{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .cat-btn .cat-cur-ico{color:#475569;flex-shrink:0;display:inline-flex}
   .cat-btn .cat-cur-label{flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cat-btn .cat-filter-ico{display:none}
   .cat-btn .cat-chev{color:#94a3b8;flex-shrink:0;transition:transform .15s}
   .cat-btn[aria-expanded="true"] .cat-chev{transform:rotate(180deg)}
   .cat-pop{position:absolute;top:calc(100% + 6px);left:0;min-width:200px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 8px 24px -4px rgba(15,23,42,.12);z-index:30;padding:6px}
@@ -194,13 +195,14 @@
     .filter-row{justify-content:flex-end}
     .filter-row-label{display:none}
     .filter-row .cat-btn{width:36px;min-width:0;padding:0;justify-content:center;gap:0}
-    .filter-row .cat-btn .cat-cur-label, .filter-row .cat-btn .cat-chev{display:none}
+    .filter-row .cat-btn .cat-cur-label, .filter-row .cat-btn .cat-chev, .filter-row .cat-btn .cat-cur-ico{display:none}
+    .filter-row .cat-btn .cat-filter-ico{display:inline-flex;color:#475569}   /* always the filter icon on phones */
     .filter-row .cat-btn.is-filtered{border-color:var(--brand-300,#93c5fd);background:var(--brand-50,#eff6ff)}
-    .filter-row .cat-btn.is-filtered .cat-cur-ico{color:var(--brand-600,#2d7ffb)}
+    .filter-row .cat-btn.is-filtered .cat-filter-ico{color:var(--brand-600,#2d7ffb)}
     .filter-row .cat-pop{left:auto;right:0}
     /* beat the chrome's auto-generated dark colours */
     html[data-theme="dark"] .news-main .filter-row .cat-btn.is-filtered, html[data-theme="dark"] .filter-row .cat-dd .cat-btn.is-filtered{border-color:var(--brand-400,#51a2fc) !important;background-color:rgba(81,162,252,.14) !important}
-    html[data-theme="dark"] .news-main .filter-row .cat-btn.is-filtered .cat-cur-ico, html[data-theme="dark"] .filter-row .cat-dd .cat-btn.is-filtered .cat-cur-ico{color:var(--brand-400,#51a2fc) !important}
+    html[data-theme="dark"] .news-main .filter-row .cat-btn.is-filtered .cat-filter-ico, html[data-theme="dark"] .filter-row .cat-dd .cat-btn.is-filtered .cat-filter-ico{color:var(--brand-400,#51a2fc) !important}
   }
 </style>
 </head>
@@ -219,6 +221,6 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="shared/chrome.js?v=13"></script>
 <script src="news-data.js"></script>
-<script src="news-page.js?v=6"></script>
+<script src="news-page.js?v=7"></script>
 </body>
 </html>
