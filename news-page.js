@@ -394,7 +394,7 @@
             <input id="news-search" class="search-input" placeholder="Search articles…" value="${state.search.replace(/"/g,'&quot;')}">
           </div>
           ${SourcePicker()}
-          <button type="button" class="bm-open" id="bm-open" title="View bookmarked articles">${BM_ICO(false,15)}<span>Bookmarks</span><span class="bm-count" id="bm-count" ${bookmarks.length?'':'hidden'}>${bookmarks.length}</span></button>
+          <button type="button" class="bm-open" id="bm-open" title="View bookmarked articles" aria-label="View bookmarked articles">${BM_ICO(false,15)}<span>Bookmarks</span><span class="bm-count" id="bm-count" ${bookmarks.length?'':'hidden'}>${bookmarks.length}</span></button>
         </div>
       </div>
 
