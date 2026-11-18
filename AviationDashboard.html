@@ -74,7 +74,7 @@
   .map-btn:hover { background:#f1f5f9; }
   .map-btn:active { background:#e2e8f0; }
   .plane-icon { width:28px; height:28px; display:flex; align-items:center; justify-content:center; }
-  .airport-icon { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:var(--brand-600,#2d7ffb); border:2px solid #fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.28); }
+  .airport-icon { width:32px; height:32px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; background:var(--brand-600,#2d7ffb); border:1px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.28); }
   /* Airport hover tooltip — name + code + country + flag (matches Marine vessel tooltip) */
   .airport-tip.leaflet-tooltip {
     background:rgba(15,23,42,.93); border:0; border-radius:7px;
@@ -267,7 +267,7 @@ html[data-theme="dark"] .ds-fdrawer {
 /* Dashboard additions: option marks + counts, result line, footer buttons (DS secondary / primary) */
 .ds-fdrawer-dot[hidden] { display:none; }   /* the DS dot sets display:inline-block, which would beat [hidden] */
 .afd-plane { display:inline-grid; place-items:center; color:#eab308; flex-shrink:0; transform:rotate(45deg); filter:drop-shadow(0 1px 1px rgba(0,0,0,.35)); }   /* the map's aircraft icon */
-.afd-airport { width:22px; height:22px; box-sizing:border-box; display:inline-grid; place-items:center; background:var(--brand-600,#2d7ffb); color:#fff; border:1.5px solid #fff; border-radius:5px; box-shadow:0 1px 4px rgba(0,0,0,.28); flex-shrink:0; }   /* the map's airport marker, scaled down (airports shown on the map) */
+.afd-airport { width:22px; height:22px; box-sizing:border-box; display:inline-grid; place-items:center; background:var(--brand-600,#2d7ffb); color:#fff; border:1px solid #fff; border-radius:50%; box-shadow:0 1px 4px rgba(0,0,0,.28); flex-shrink:0; }   /* the map's airport marker, scaled down (airports shown on the map) */
 .afd-airport svg { width:12px; height:12px; }
 .afd-route { width:22px; display:inline-grid; place-items:center; color:var(--text-muted); flex-shrink:0; }   /* airport only on a flight route (no marker on the map) */
 .afd-route svg { width:13px; height:13px; }
