@@ -1,3 +1,15 @@
+/* Every Leaflet map: focusing the map container (Leaflet's keyboard handler does this on mousedown) must
+   not scroll the page. When a map extends below the window, the browser scrolled the page up on mousedown,
+   the marker moved before mouseup, and the click (popup) was lost. */
+(function () {
+  if (!window.L || !L.Map || L.Map.__mapFocusNoScroll) return;
+  L.Map.__mapFocusNoScroll = true;
+  L.Map.addInitHook(function () {
+    const c = this._container, focus = c.focus;
+    c.focus = function (opts) { return focus.call(this, Object.assign({ preventScroll: true }, opts || {})); };
+  });
+})();
+
 /* Cache version: clears stale localStorage on first load of new version */
 try {
   if (localStorage.getItem('rw_cv') !== '3') {

@@ -129,6 +129,19 @@
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 5px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  /* aircraft hover / selected ring (same as the Marine Dashboard's vessel markers) */
+  .plane-marker { position:relative; cursor:pointer; }
+  .plane-marker::after {
+    content:''; position:absolute; left:50%; top:50%;
+    width:32px; height:32px; transform:translate(-50%,-50%);
+    border-radius:50%; border:2px solid #fff;
+    box-shadow:0 0 5px rgba(0,0,0,.45);
+    opacity:0; transition:opacity .14s ease;
+    pointer-events:none;
+  }
+  .leaflet-marker-icon:hover .plane-marker::after, .leaflet-marker-icon.is-selected .plane-marker::after { opacity:1; }
+  .leaflet-marker-icon:hover:has(.plane-marker), .leaflet-marker-icon.is-selected:has(.plane-marker) { z-index:1000 !important; }
+  @media (prefers-reduced-motion: reduce) { .plane-marker::after { transition:none; } }
 </style>
 
 <style>
@@ -303,7 +316,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=13"></script>
+<script src="shared/chrome.js?v=14"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -1021,7 +1034,7 @@ function initMap() {
       iconSize: [32, 32],
       iconAnchor: [16, 16],
     });
-    const am = L.marker([a.lat, a.lng], { icon })
+    const am = L.marker([a.lat, a.lng], { icon, autoPanOnFocus:false })
       .bindPopup(buildAirportPopupHTML(a), { className:'avia-popup', maxWidth:320, minWidth:300, closeButton:true, autoPanPadding:[30,30] })
       .bindTooltip(buildAirportTooltipHTML(a), { className:'airport-tip', direction:'top', offset:[0,-14], opacity:1 })
       .on('popupopen', () => { sessionStorage.setItem('selectedAirport', JSON.stringify(a)); })
@@ -1035,14 +1048,18 @@ function initMap() {
     const planeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>`;
     const icon = L.divIcon({
       className: '',
-      html: `<div style="transform:rotate(${p.rot}deg); color:#eab308; width:24px; height:24px; display:flex; align-items:center; justify-content:center; filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))">${planeSvg}</div>`,
+      html: `<div class="plane-marker" style="transform:rotate(${p.rot}deg); color:#eab308; width:24px; height:24px; display:flex; align-items:center; justify-content:center; filter:drop-shadow(0 1px 2px rgba(0,0,0,.4))">${planeSvg}</div>`,
       iconSize: [24, 24],
       iconAnchor: [12, 12],
     });
-    const marker = L.marker([p.lat, p.lng], { icon })
+    // autoPanOnFocus off: pressing the mouse focuses the marker, and Leaflet's default pan-on-focus moved
+    // aircraft near the map edge under the pointer, so the click (and its popup) never happened
+    const marker = L.marker([p.lat, p.lng], { icon, autoPanOnFocus:false })
       .bindPopup(buildFlightPopupHTML(p), { className:'avia-popup', maxWidth:320, minWidth:300, closeButton:true, autoPanPadding:[30,30] })
       .bindTooltip(buildFlightTooltipHTML(p), { className:'airport-tip', direction:'top', offset:[0,-12], opacity:1 })
       .on('popupopen', () => { try { sessionStorage.setItem('selectedAircraft', JSON.stringify(p)); } catch(e){} })
+      .on('popupopen', () => marker._icon && marker._icon.classList.add('is-selected'))     // ring stays while its popup is open
+      .on('popupclose', () => marker._icon && marker._icon.classList.remove('is-selected'))
       .addTo(map);
     marker._portfolio = PORTFOLIOS[i % PORTFOLIOS.length].name;
     marker._type = p.type; marker._from = p.from && p.from.code; marker._to = p.to && p.to.code;
