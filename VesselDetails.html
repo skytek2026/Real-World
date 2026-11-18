@@ -6277,6 +6277,8 @@ function trpViewFor(endIso) {
   const minV = TR_MIN_ISO.slice(0, 8) + '01', maxV = addMonths(TODAY_ISO.slice(0, 8) + '01', -1);
   return v < minV ? minV : v > maxV ? maxV : v;
 }
+// days in the picker's range (1 while only the start date is chosen); 'Show detailed track' is offered up to 30
+function trpSpanDays(t) { return t.pending ? 1 : Math.round((new Date(t.end) - new Date(t.start)) / 864e5) + 1; }
 function openTrackCalendar(anchor) {
   closeTrackCalendar();
   const r = state.trackRange;
@@ -6357,7 +6359,7 @@ function drawTrackCalendar() {
       <div class="trp-months">${trpMonth(t.view, t.view.slice(0, 7) > TR_MIN_ISO.slice(0, 7), false)}${trpMonth(second, t.view.slice(0, 7) >= TR_MIN_ISO.slice(0, 7) ? 'phone' : false, second.slice(0, 7) < TODAY_ISO.slice(0, 7))}</div>
     </div>
     <div class="trp-foot">
-      <label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${t.detailed}" data-trp-detailed></button><span class="trp-switch-v">${t.detailed ? 'On' : 'Off'}</span></label>
+      ${trpSpanDays(t) <= 30 ? `<label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${t.detailed}" data-trp-detailed></button><span class="trp-switch-v">${t.detailed ? 'On' : 'Off'}</span></label>` : ''}
       <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${histFmt(t.start)} – ${histFmt(t.end)}`}<span class="trp-limit">Limited to the last 12 months</span></div>
       <div class="trp-acts"><button type="button" class="trp-btn trp-btn--sec" data-trp-cancel>Cancel</button><button type="button" class="trp-btn trp-btn--pri" data-trp-apply ${t.pending ? 'disabled' : ''}>Apply</button></div>
     </div>`;
@@ -6377,10 +6379,11 @@ function drawTrackCalendar() {
     drawTrackCalendar();
     el.querySelector(`[data-day="${d}"]`)?.focus();
   });
-  el.querySelector('[data-trp-detailed]').onclick = () => { t.detailed = !t.detailed; drawTrackCalendar(); };
+  const dt = el.querySelector('[data-trp-detailed]');   // only shown for ranges of 30 days or fewer
+  if (dt) dt.onclick = () => { t.detailed = !t.detailed; drawTrackCalendar(); };
   el.querySelector('[data-trp-cancel]').onclick = () => closeTrackCalendar();
   el.querySelector('[data-trp-apply]').onclick = () => {
-    state.trackRange = { start:t.start, end:t.end, preset:t.preset === 'custom' ? null : t.preset, detailed:t.detailed };
+    state.trackRange = { start:t.start, end:t.end, preset:t.preset === 'custom' ? null : t.preset, detailed:t.detailed && trpSpanDays(t) <= 30 };
     state.timelinePos = 1;
     closeTrackCalendar();
     render();
