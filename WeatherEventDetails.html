@@ -204,6 +204,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=14"></script>
+<script src="shared/storm-track.js?v=2"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -249,11 +250,12 @@ const DEFAULT_STORM = {
   lat:-17.2, lng:57.4, wind:110, pressure:978, movement:'SE at 12 km/h',
   color:'#ef4444', glow:'rgba(239,68,68,.35)', radius:17,
   updated:'2025-07-04 18:00 UTC',
+  // past: 6-hourly; forecast: 12-hourly (t = UTC, wind = km/h)
   track:[
-    {lat:-12.5,lng:51.8,kind:'past'},{lat:-13.6,lng:52.9,kind:'past'},
-    {lat:-14.8,lng:54.2,kind:'past'},{lat:-16.1,lng:55.9,kind:'past'},
-    {lat:-18.6,lng:59.0,kind:'forecast'},{lat:-20.1,lng:61.0,kind:'forecast'},
-    {lat:-21.4,lng:62.8,kind:'forecast'},
+    {lat:-12.5,lng:51.8,kind:'past',t:'2025-07-03T18:00Z',wind:65},{lat:-13.6,lng:52.9,kind:'past',t:'2025-07-04T00:00Z',wind:75},
+    {lat:-14.8,lng:54.2,kind:'past',t:'2025-07-04T06:00Z',wind:90},{lat:-16.1,lng:55.9,kind:'past',t:'2025-07-04T12:00Z',wind:100},
+    {lat:-18.6,lng:59.0,kind:'forecast',t:'2025-07-05T06:00Z',wind:105},{lat:-20.1,lng:61.0,kind:'forecast',t:'2025-07-05T18:00Z',wind:95},
+    {lat:-21.4,lng:62.8,kind:'forecast',t:'2025-07-06T06:00Z',wind:80},
   ],
 };
 const STORM = (() => {
@@ -765,20 +767,9 @@ function initEvtMap() {
     if (zout) zout.innerHTML = `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></svg></span>`;
   }, 100);
 
-  /* Storm track */
-  const past = (STORM.track || []).filter(t => t.kind === 'past');
-  if (past.length) {
-    L.polyline([...past.map(t => [t.lat,t.lng]), [STORM.lat,STORM.lng]], { color:'#f8fafc', weight:2, dashArray:'4 5', opacity:.9 }).addTo(evtMap);
-    past.forEach(t => L.circleMarker([t.lat,t.lng], { radius:4, fillColor:'#f8fafc', fillOpacity:1, color:'#334155', weight:1.5 }).addTo(evtMap));
-  }
-  const fore = (STORM.track || []).filter(t => t.kind === 'forecast');
-  if (fore.length) {
-    L.polyline([[STORM.lat,STORM.lng], ...fore.map(t => [t.lat,t.lng])], { color:'#93c5fd', weight:2, dashArray:'4 5', opacity:.9 }).addTo(evtMap);
-    fore.forEach((t, i) => {
-      const blue = i >= fore.length - 2;
-      L.circleMarker([t.lat,t.lng], { radius: blue?6:4, fillColor: blue?'#3b82f6':'#93c5fd', fillOpacity:1, color:'#fff', weight:1.5 }).addTo(evtMap);
-    });
-  }
+  /* Storm track: past positions, forecast positions and forecast cone (shared/storm-track.js) */
+  drawStormTrack(evtMap, STORM);
+  if ((STORM.track || []).length) addStormTrackLegend(evtMap, 'bottomleft');
 
   /* Storm marker */
   const d = (STORM.radius || 17) * 2;

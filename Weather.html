@@ -104,6 +104,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="shared/chrome.js?v=14"></script>
+<script src="shared/storm-track.js?v=2"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -171,11 +172,13 @@ const SYSTEMS = [
     id:1, name:'TC Hidaya', type:'Tropical Cyclone', cat:'Category 2', status:'Active',
     lat:-17.2, lng:57.4, wind:110, pressure:978, movement:'SE at 12 km/h',
     color:'#ef4444', glow:'rgba(239,68,68,.35)', radius:17,
+    updated:'2025-07-04 18:00 UTC',
+    // past: 6-hourly; forecast: 12-hourly (t = UTC, wind = km/h)
     track:[
-      {lat:-12.5, lng:51.8, kind:'past'},{lat:-13.6, lng:52.9, kind:'past'},
-      {lat:-14.8, lng:54.2, kind:'past'},{lat:-16.1, lng:55.9, kind:'past'},
-      {lat:-18.6, lng:59.0, kind:'forecast'},{lat:-20.1, lng:61.0, kind:'forecast'},
-      {lat:-21.4, lng:62.8, kind:'forecast'},
+      {lat:-12.5, lng:51.8, kind:'past', t:'2025-07-03T18:00Z', wind:65},{lat:-13.6, lng:52.9, kind:'past', t:'2025-07-04T00:00Z', wind:75},
+      {lat:-14.8, lng:54.2, kind:'past', t:'2025-07-04T06:00Z', wind:90},{lat:-16.1, lng:55.9, kind:'past', t:'2025-07-04T12:00Z', wind:100},
+      {lat:-18.6, lng:59.0, kind:'forecast', t:'2025-07-05T06:00Z', wind:105},{lat:-20.1, lng:61.0, kind:'forecast', t:'2025-07-05T18:00Z', wind:95},
+      {lat:-21.4, lng:62.8, kind:'forecast', t:'2025-07-06T06:00Z', wind:80},
     ],
   },
   {
@@ -202,22 +205,24 @@ const SYSTEMS = [
     id:6, name:'Hurricane Milena', type:'Hurricane', cat:'Category 3', status:'Active',
     lat:27.4, lng:-82.3, wind:120, pressure:958, movement:'NNE at 15 km/h',
     color:'#ef4444', glow:'rgba(239,68,68,.35)', radius:18,
+    updated:'2025-07-04 18:00 UTC',
     track:[
-      {lat:23.4, lng:-84.6, kind:'past'},{lat:24.8, lng:-83.9, kind:'past'},
-      {lat:26.2, lng:-83.0, kind:'past'},
-      {lat:29.0, lng:-81.4, kind:'forecast'},{lat:30.7, lng:-80.3, kind:'forecast'},
-      {lat:32.4, lng:-78.9, kind:'forecast'},
+      {lat:23.4, lng:-84.6, kind:'past', t:'2025-07-04T00:00Z', wind:95},{lat:24.8, lng:-83.9, kind:'past', t:'2025-07-04T06:00Z', wind:105},
+      {lat:26.2, lng:-83.0, kind:'past', t:'2025-07-04T12:00Z', wind:115},
+      {lat:29.0, lng:-81.4, kind:'forecast', t:'2025-07-05T06:00Z', wind:110},{lat:30.7, lng:-80.3, kind:'forecast', t:'2025-07-05T18:00Z', wind:90},
+      {lat:32.4, lng:-78.9, kind:'forecast', t:'2025-07-06T06:00Z', wind:75},
     ],
   },
   {
     id:7, name:'Typhoon Renji', type:'Typhoon', cat:'Category 4', status:'Active',
     lat:33.9, lng:137.3, wind:140, pressure:944, movement:'NE at 22 km/h',
     color:'#dc2626', glow:'rgba(220,38,38,.4)', radius:19,
+    updated:'2025-07-04 18:00 UTC',
     track:[
-      {lat:29.4, lng:133.6, kind:'past'},{lat:31.0, lng:135.0, kind:'past'},
-      {lat:32.5, lng:136.2, kind:'past'},
-      {lat:35.6, lng:138.8, kind:'forecast'},{lat:37.4, lng:140.7, kind:'forecast'},
-      {lat:39.2, lng:142.8, kind:'forecast'},
+      {lat:29.4, lng:133.6, kind:'past', t:'2025-07-04T00:00Z', wind:120},{lat:31.0, lng:135.0, kind:'past', t:'2025-07-04T06:00Z', wind:130},
+      {lat:32.5, lng:136.2, kind:'past', t:'2025-07-04T12:00Z', wind:135},
+      {lat:35.6, lng:138.8, kind:'forecast', t:'2025-07-05T06:00Z', wind:130},{lat:37.4, lng:140.7, kind:'forecast', t:'2025-07-05T18:00Z', wind:110},
+      {lat:39.2, lng:142.8, kind:'forecast', t:'2025-07-06T06:00Z', wind:90},
     ],
   },
 ];
@@ -280,28 +285,8 @@ function initMap() {
   setMapType('satellite');
 
   SYSTEMS.forEach(s => {
-    // Past track
-    const past = s.track.filter(t => t.kind === 'past');
-    if (past.length) {
-      const pts = [...past.map(t => [t.lat, t.lng]), [s.lat, s.lng]];
-      L.polyline(pts, { color:'#94a3b8', weight:1.5, dashArray:'4 5', opacity:.6 }).addTo(wxMap);
-      past.forEach(t => L.circleMarker([t.lat, t.lng], { radius:4, fillColor:'#94a3b8', fillOpacity:1, color:'#fff', weight:1.5 }).addTo(wxMap));
-    }
-
-    // Forecast track
-    const fore = s.track.filter(t => t.kind === 'forecast');
-    if (fore.length) {
-      const pts = [[s.lat, s.lng], ...fore.map(t => [t.lat, t.lng])];
-      L.polyline(pts, { color:'#64748b', weight:1.5, dashArray:'4 5', opacity:.45 }).addTo(wxMap);
-      fore.forEach((t, i) => {
-        const isBlue = i >= fore.length - 2;
-        L.circleMarker([t.lat, t.lng], {
-          radius: isBlue ? 6 : 4,
-          fillColor: isBlue ? '#3b82f6' : '#64748b',
-          fillOpacity: 1, color:'#fff', weight:1.5,
-        }).addTo(wxMap);
-      });
-    }
+    // Track: past positions, forecast positions and forecast cone (shared/storm-track.js)
+    drawStormTrack(wxMap, s);
 
     // Main marker
     const d = s.radius * 2;
@@ -393,21 +378,8 @@ function MapView() {
       </div>
     </div>
 
-    <!-- Legend -->
-    <div style="position:absolute;bottom:24px;left:12px;z-index:400;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);border:1px solid #e2e8f0;border-radius:10px;padding:10px 14px;box-shadow:0 2px 8px rgba(15,23,42,.1)">
-      <div style="font-size:10px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">Track Legend</div>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#475569">
-          <span style="width:12px;height:12px;border-radius:50%;background:#ef4444;border:2px solid #fff;box-shadow:0 0 0 3px rgba(239,68,68,.3);flex-shrink:0;display:inline-block"></span>Current position
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#475569">
-          <span style="width:8px;height:8px;border-radius:50%;background:#94a3b8;border:1.5px solid #fff;flex-shrink:0;display:inline-block"></span>Past track
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#475569">
-          <span style="width:8px;height:8px;border-radius:50%;background:#3b82f6;border:1.5px solid #fff;flex-shrink:0;display:inline-block"></span>Forecast track
-        </div>
-      </div>
-    </div>
+    <!-- Legend (rows from shared/storm-track.js, same as the Weather Event map) -->
+    <div class="storm-legend" style="position:absolute;bottom:24px;left:12px;z-index:400;">${stormTrackLegendHTML(true)}</div>
   </div>`;
 }
 
