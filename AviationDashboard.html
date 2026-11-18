@@ -141,6 +141,19 @@
   }
   .leaflet-marker-icon:hover .plane-marker::after, .leaflet-marker-icon.is-selected .plane-marker::after { opacity:1; }
   .leaflet-marker-icon:hover:has(.plane-marker), .leaflet-marker-icon.is-selected:has(.plane-marker) { z-index:1000 !important; }
+  /* airports: the same ring, just outside the 32px round marker */
+  .airport-icon { position:relative; cursor:pointer; }
+  .airport-icon::after {
+    content:''; position:absolute; left:50%; top:50%;
+    width:42px; height:42px; transform:translate(-50%,-50%);
+    border-radius:50%; border:2px solid #fff;
+    box-shadow:0 0 5px rgba(0,0,0,.45);
+    opacity:0; transition:opacity .14s ease;
+    pointer-events:none;
+  }
+  .leaflet-marker-icon:hover .airport-icon::after, .leaflet-marker-icon.is-selected .airport-icon::after { opacity:1; }
+  .leaflet-marker-icon:hover:has(.airport-icon), .leaflet-marker-icon.is-selected:has(.airport-icon) { z-index:1000 !important; }
+  @media (prefers-reduced-motion: reduce) { .airport-icon::after { transition:none; } }
   @media (prefers-reduced-motion: reduce) { .plane-marker::after { transition:none; } }
 </style>
 
@@ -1038,6 +1051,8 @@ function initMap() {
       .bindPopup(buildAirportPopupHTML(a), { className:'avia-popup', maxWidth:320, minWidth:300, closeButton:true, autoPanPadding:[30,30] })
       .bindTooltip(buildAirportTooltipHTML(a), { className:'airport-tip', direction:'top', offset:[0,-14], opacity:1 })
       .on('popupopen', () => { sessionStorage.setItem('selectedAirport', JSON.stringify(a)); })
+      .on('popupopen', () => am._icon && am._icon.classList.add('is-selected'))      // ring stays while its popup is open
+      .on('popupclose', () => am._icon && am._icon.classList.remove('is-selected'))
       .addTo(map);
     am._code = a.code; airportMarkers.push(am);
   });
