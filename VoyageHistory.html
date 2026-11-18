@@ -111,6 +111,8 @@
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
   @media (max-width:720px){ .voy-overlay .voy-overlay-row { flex-direction:column !important; align-items:stretch !important; gap:10px !important; } }
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  /* canvas: same as the Dashboard (ink-100 #f1f5f9), light mode only */
+  html:not([data-theme="dark"]) body{background:#f1f5f9}
 </style>
 
 
@@ -556,7 +558,7 @@ function eventsCard() {
 /* ===================== CONTENT ===================== */
 function Content() {
   return `
-  <main class="flex-1 min-w-0 overflow-y-auto scroll-thin" style="background:#f3f4f6;">
+  <main class="flex-1 min-w-0 overflow-y-auto scroll-thin" style="background:#f1f5f9;">
     <div class="w-full" style="padding:20px 24px 40px;">
       <div class="flex items-center justify-between gap-3 mb-4">
         <div>

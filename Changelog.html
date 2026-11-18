@@ -150,7 +150,9 @@
       .cl-rail::before, .cl-node { display: none; }
       .cl-rail .date, .cl-rail .time { margin-top: 0; }
     }
-  </style>
+    /* canvas: same as the Dashboard (ink-100 #f1f5f9), light mode only */
+  html:not([data-theme="dark"]) body{background:#f1f5f9}
+</style>
 </head>
 <body>
   <div id="root"></div>
