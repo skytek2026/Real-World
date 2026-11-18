@@ -71,6 +71,32 @@
   @media (max-width: 1023px) {
   }
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  /* Property map marker: same as the Property Dashboard */
+  .marker-icon { position:relative; width:34px; height:34px; display:flex; align-items:center; justify-content:center; border:1px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.28); color:#fff; }
+  .marker-icon .marker-pulse{
+    position:absolute; top:-1px; right:-1px;   /* on the circle's edge at the top-right (45deg) */
+    width:11px; height:11px; border-radius:50%;
+    background:#dc2626; border:2px solid #fff;
+    box-shadow:0 0 0 0 rgba(220,38,38,.7);
+    animation: marker-pulse 1.6s cubic-bezier(.66,0,0,1) infinite;
+  }
+  @keyframes marker-pulse{
+    0%   { box-shadow:0 0 0 0    rgba(220,38,38,.55); }
+    70%  { box-shadow:0 0 0 11px rgba(220,38,38,0);   }
+    100% { box-shadow:0 0 0 0    rgba(220,38,38,0);   }
+  /* property markers: hover / selected ring (same as the Marine vessels and Aviation markers), just outside the 34px circle */
+  .marker-icon { cursor:pointer; }
+  .marker-icon::after {
+    content:''; position:absolute; left:50%; top:50%;
+    width:44px; height:44px; transform:translate(-50%,-50%);
+    border-radius:50%; border:2px solid #fff;
+    box-shadow:0 0 5px rgba(0,0,0,.45);
+    opacity:0; transition:opacity .14s ease;
+    pointer-events:none;
+  }
+  .leaflet-marker-icon:hover .marker-icon::after, .leaflet-marker-icon.is-selected .marker-icon::after { opacity:1; }
+  .leaflet-marker-icon:hover:has(.marker-icon), .leaflet-marker-icon.is-selected:has(.marker-icon) { z-index:1000 !important; }
+  @media (prefers-reduced-motion: reduce) { .marker-icon::after { transition:none; } }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -95,11 +121,25 @@ const Ico = SC.I;
 
 /* ---- Load property from sessionStorage ---- */
 const DEFAULT_PROP = {
-  name:'Empire State Building', cat:'Commercial', location:'New York, USA',
+  name:'Empire State Building', cat:'Corporate & Office', location:'New York, USA',
   value:'$2.1B', occupancy:'94%', size:'257,211 sq ft',
   risk:'Low', riskColor:'#16a34a', status:'Operational', statusColor:'#16a34a',
   inspection:'2024-10-14', lat:40.758, lng:-73.985, type:'blue',
 };
+/* Property categories and alert list: same as the Property Dashboard (its map markers) */
+const PROPERTY_CATEGORIES = [
+  { k:'Corporate & Office',       color:'#2563eb',
+    ico:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M12 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/></svg>` },
+  { k:'Industrial & Logistics',   color:'#ea580c',
+    ico:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>` },
+  { k:'Infrastructure & Energy',  color:'#16a34a',
+    ico:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>` },
+  { k:'Retail & Hospitality',     color:'#ec4899',
+    ico:`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22v-6.57"/><path d="M12 11h.01"/><path d="M12 7h.01"/><path d="M14 15.43V22"/><path d="M15 16a5 5 0 0 0-6 0"/><path d="M16 11h.01"/><path d="M16 7h.01"/><path d="M8 11h.01"/><path d="M8 7h.01"/><rect x="4" y="2" width="16" height="20" rx="2"/></svg>` },
+];
+const PROPERTY_CAT_BY_KEY = Object.fromEntries(PROPERTY_CATEGORIES.map(c => [c.k, c]));
+const ALERT_PROPERTIES = new Set(['Southeast Financial Ctr', '1670 Broadway']);
+
 const PROP = (() => {
   try { const r = sessionStorage.getItem('selectedProperty'); return r ? { ...DEFAULT_PROP, ...JSON.parse(r) } : DEFAULT_PROP; }
   catch { return DEFAULT_PROP; }
@@ -547,12 +587,13 @@ function initMap() {
   });
   setMapType('satellite');
 
-  /* Building marker */
-  const bldgSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`;
+  /* Property marker: same as the Property Dashboard (round, category colour + icon, alert dot) */
+  const pcat = PROPERTY_CAT_BY_KEY[PROP.cat] || PROPERTY_CATEGORIES[0];
+  const pulse = ALERT_PROPERTIES.has(PROP.name) ? `<span class="marker-pulse" title="Active risk alert"></span>` : '';
   const icon = L.divIcon({
     className:'',
-    html:`<div style="width:32px;height:32px;border-radius:6px;background:#2563eb;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;">${bldgSvg}</div>`,
-    iconSize:[32,32], iconAnchor:[16,16],
+    html:`<div class="marker-icon" style="background:${pcat.color}">${pcat.ico}${pulse}</div>`,
+    iconSize:[34,34], iconAnchor:[17,17],
   });
   /* Building marker popup */
   const popupHTML = `
@@ -572,8 +613,10 @@ function initMap() {
     </div>
   </div>`;
 
-  L.marker([PROP.lat || 40.758, PROP.lng || -73.985], { icon })
+  const propMarker = L.marker([PROP.lat || 40.758, PROP.lng || -73.985], { icon, autoPanOnFocus:false })
     .bindPopup(popupHTML, { className:'prop-popup', maxWidth:280, minWidth:280, closeButton:true, autoPanPadding:[30,30] })
+    .on('popupopen', () => propMarker._icon && propMarker._icon.classList.add('is-selected'))     // ring stays while the popup is open
+    .on('popupclose', () => propMarker._icon && propMarker._icon.classList.remove('is-selected'))
     .addTo(propMap);
 
   /* Fullscreen toggle — matching Marine Dashboard */
