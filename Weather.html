@@ -284,12 +284,12 @@ function initMap() {
   wxMap = L.map(el, { center:[-16, 65], zoom:4, zoomControl:true, scrollWheelZoom:true });
   setMapType('satellite');
 
-  const focusBounds = {};
+  const focusBounds = {}, focusCone = {};
   SYSTEMS.forEach(s => {
     // Track: past positions, forecast positions and forecast cone (shared/storm-track.js)
     const trackLayers = drawStormTrack(wxMap, s);
     const trackBounds = trackLayers.length ? L.featureGroup(trackLayers).getBounds().extend([s.lat, s.lng]) : null;
-    if (trackBounds) focusBounds[s.id] = trackBounds;
+    if (trackBounds) { focusBounds[s.id] = trackBounds; focusCone[s.id] = trackLayers.find(l => l instanceof L.Polygon); }
 
     // Main marker (= current position)
     const r = Math.max(7, Math.round(s.radius * 0.6)), d = r * 2;   // ~60% of the old size; min 14px
@@ -320,7 +320,12 @@ function initMap() {
   try {
     // Open on Hurricane Milena: its track and forecast cone
     const focus = SYSTEMS.find(s => s.name === 'Hurricane Milena');
-    if (focus && focusBounds[focus.id]) wxMap.fitBounds(focusBounds[focus.id], { padding:[60, 60], maxZoom:6 });
+    if (focus && focusBounds[focus.id]) {
+      // one level closer than the whole track, centred on the current position + forecast cone
+      const fb = focusBounds[focus.id], z = wxMap.getBoundsZoom(fb, false, L.point(120, 120)) + 1;
+      const cone = focusCone[focus.id];
+      wxMap.setView(cone ? cone.getBounds().extend([focus.lat, focus.lng]).getCenter() : fb.getCenter(), z);
+    }
     else wxMap.fitBounds(L.latLngBounds(SYSTEMS.map(s => [s.lat, s.lng])), { padding:[50,50], maxZoom:4 });
   } catch (e) {}
 
