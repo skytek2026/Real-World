@@ -38,7 +38,21 @@
   /* Airport row card */
   .airport-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s,box-shadow .15s;cursor:pointer}
   /* Map airport marker — matches Aviation Dashboard */
-  .airport-icon{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--brand-600,#2d7ffb);border:2px solid #fff;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.28)}
+  /* Airport map marker: same as the Aviation Dashboard */
+  .airport-icon { width:32px; height:32px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; background:var(--brand-600,#2d7ffb); border:1px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.28); }
+  /* airports: the same ring, just outside the 32px round marker */
+  .airport-icon { position:relative; cursor:pointer; }
+  .airport-icon::after {
+    content:''; position:absolute; left:50%; top:50%;
+    width:42px; height:42px; transform:translate(-50%,-50%);
+    border-radius:50%; border:2px solid #fff;
+    box-shadow:0 0 5px rgba(0,0,0,.45);
+    opacity:0; transition:opacity .14s ease;
+    pointer-events:none;
+  }
+  .leaflet-marker-icon:hover .airport-icon::after, .leaflet-marker-icon.is-selected .airport-icon::after { opacity:1; }
+  .leaflet-marker-icon:hover:has(.airport-icon), .leaflet-marker-icon.is-selected:has(.airport-icon) { z-index:1000 !important; }
+  @media (prefers-reduced-motion: reduce) { .airport-icon::after { transition:none; } }
   .ap-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
   .ap-stats > div{min-width:0}
   .ap-stats > div > span:first-child{min-width:0;overflow-wrap:anywhere}
@@ -275,8 +289,10 @@ function initMap() {
           <button class="ard-pp-cta" style="display:block;width:100%;margin-top:12px;height:32px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--brand-600,#2563eb);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Details</button>
         </div>
       </div>`;
-    L.marker(a.coord,{icon})
+    L.marker(a.coord,{icon, autoPanOnFocus:false})   // focus mustn't pan the map under the pointer
       .bindPopup(popupHTML, { maxWidth:260, minWidth:240, closeButton:true, className:'region-popup' })
+      .on('popupopen', e => e.target._icon && e.target._icon.classList.add('is-selected'))     // ring stays while its popup is open
+      .on('popupclose', e => e.target._icon && e.target._icon.classList.remove('is-selected'))
       .on('popupopen', (e) => {
         try { sessionStorage.setItem('selectedAirport', JSON.stringify(a)); } catch(err){}
         const node = e.popup.getElement();
