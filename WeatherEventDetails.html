@@ -180,12 +180,19 @@
   @media(max-width:900px){
     .evt-top-row{grid-template-columns:1fr;height:auto;min-height:0;gap:12px}
     .evt-portfolio-card{height:auto;min-height:0;max-height:300px}
-    .evt-map-card{height:300px;min-height:300px}
-    /* Let vertical swipes scroll the page; map still pans on horizontal/two-finger */
-    #evt-map .leaflet-container{touch-action:pan-x}
+    /* map twice as tall as before (was the 300px card minus its header: ~234px tablet, ~208px phone);
+       !important because the map area's inline style is flex:1 / min-height:0 */
+    .evt-map-card{height:auto;min-height:0}
+    .evt-map-card > div:has(#evt-map){flex:none!important;height:468px}
+    /* Let vertical swipes scroll the page; map still pans on horizontal/two-finger.
+       (#evt-map is itself the Leaflet container; pan-y = the browser handles vertical swipes) */
+    #evt-map.leaflet-container{touch-action:pan-y}
     /* iOS: vertical swipes over the wide assets table must scroll the page,
        not get captured by the horizontal scroller */
     .az-scroller{touch-action:pan-y;-webkit-overflow-scrolling:touch}
+  }
+  @media(max-width:480px){
+    .evt-map-card > div:has(#evt-map){height:416px}
   }
   /* aircraft, airports and properties: hover / selected ring (as on the Aviation and Property Dashboards) */
   .plane-marker { position:relative; cursor:pointer; }
