@@ -621,6 +621,15 @@
   }
   /* canvas: same as the Dashboard (ink-100 #f1f5f9), light mode only */
   html:not([data-theme="dark"]) body{background:#f1f5f9}
+  /* 'Show detailed track': disabled beyond 30 days, with a note */
+  .trp-switch-wrap { display:flex; flex-direction:column; gap:3px; }
+  .trp-switch:disabled { cursor:not-allowed; background:#e2e8f0; }
+  .trp-switch:disabled::after { box-shadow:none; }
+  .trp-switch-wrap.is-disabled .trp-switch-l, .trp-switch-wrap.is-disabled .trp-switch-v { color:#94a3b8; }
+  .trp-switch-note { font-size:11px; line-height:1.35; color:#64748b; }
+  html[data-theme="dark"] .trp-switch:disabled { background:#334155 !important; }
+  html[data-theme="dark"] .trp-switch-wrap.is-disabled .trp-switch-l, html[data-theme="dark"] .trp-switch-wrap.is-disabled .trp-switch-v { color:#64748b !important; }
+  html[data-theme="dark"] .trp-switch-note { color:#94a3b8 !important; }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=2"></script>
@@ -6359,7 +6368,14 @@ function drawTrackCalendar() {
       <div class="trp-months">${trpMonth(t.view, t.view.slice(0, 7) > TR_MIN_ISO.slice(0, 7), false)}${trpMonth(second, t.view.slice(0, 7) >= TR_MIN_ISO.slice(0, 7) ? 'phone' : false, second.slice(0, 7) < TODAY_ISO.slice(0, 7))}</div>
     </div>
     <div class="trp-foot">
-      ${trpSpanDays(t) <= 30 ? `<label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${t.detailed}" data-trp-detailed></button><span class="trp-switch-v">${t.detailed ? 'On' : 'Off'}</span></label>` : ''}
+      ${(() => {
+        // 'Show detailed track' is available up to 30 days; beyond that it shows disabled (Off) with a note
+        const off = trpSpanDays(t) > 30, on = t.detailed && !off;
+        return `<div class="trp-switch-wrap${off ? ' is-disabled' : ''}">
+          <label class="trp-switch-l"><span>Show detailed track</span><button type="button" class="trp-switch" role="switch" aria-checked="${on}" data-trp-detailed${off ? ' disabled aria-disabled="true" aria-describedby="he-trp-detail-note"' : ''}></button><span class="trp-switch-v">${on ? 'On' : 'Off'}</span></label>
+          ${off ? '<div class="trp-switch-note" id="he-trp-detail-note">Detailed track is only available for up to 30 days</div>' : ''}
+        </div>`;
+      })()}
       <div class="trp-range" aria-live="polite">${t.pending ? 'Select an end date' : `${histFmt(t.start)} – ${histFmt(t.end)}`}<span class="trp-limit">Limited to the last 12 months</span></div>
       <div class="trp-acts"><button type="button" class="trp-btn trp-btn--sec" data-trp-cancel>Cancel</button><button type="button" class="trp-btn trp-btn--pri" data-trp-apply ${t.pending ? 'disabled' : ''}>Apply</button></div>
     </div>`;
@@ -6379,8 +6395,8 @@ function drawTrackCalendar() {
     drawTrackCalendar();
     el.querySelector(`[data-day="${d}"]`)?.focus();
   });
-  const dt = el.querySelector('[data-trp-detailed]');   // only shown for ranges of 30 days or fewer
-  if (dt) dt.onclick = () => { t.detailed = !t.detailed; drawTrackCalendar(); };
+  const dt = el.querySelector('[data-trp-detailed]');   // disabled for ranges over 30 days
+  if (dt) dt.onclick = () => { if (dt.disabled) return; t.detailed = !t.detailed; drawTrackCalendar(); };
   el.querySelector('[data-trp-cancel]').onclick = () => closeTrackCalendar();
   el.querySelector('[data-trp-apply]').onclick = () => {
     state.trackRange = { start:t.start, end:t.end, preset:t.preset === 'custom' ? null : t.preset, detailed:t.detailed && trpSpanDays(t) <= 30 };
