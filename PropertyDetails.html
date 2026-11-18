@@ -20,7 +20,7 @@
   .bg-ink-100{background:#f1f5f9}.bg-ink-50{background:#f8fafc}
   .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
   .shadow-card{box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px rgba(15,23,42,.02)}
-  .text-brand-600{color:#2563eb}
+  .text-brand-600{color:var(--brand-600,#1485c5)}
   .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-track{background:transparent}
   .scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   .tracking-micro{letter-spacing:0.04em}
@@ -60,7 +60,9 @@
   /* Layers menu */
   .map-type-option:hover { background:#f8fafc; }
   /* Flag badge */
-  .flag-badge { white-space:nowrap; display:inline-flex; align-items:center; gap:5px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:999px; padding:2px 8px 2px 4px; }
+  .flag-badge { white-space:nowrap; display:inline-flex; align-items:center; gap:5px; background:var(--brand-50,#eff8fd); border:1px solid var(--brand-200,#b8ddf5); border-radius:999px; padding:2px 8px 2px 4px; }
+  html[data-theme="dark"] .flag-badge { background:rgba(67,168,223,.14) !important; border-color:rgba(67,168,223,.35) !important; }
+  html[data-theme="dark"] .flag-badge > span { color:#84c5ec !important; }
   /* Page grid — stack on mobile, side-by-side on desktop */
   .pd-grid { display:grid; grid-template-columns:1fr; align-items:start; }
   .pd-map-col { height:60vh; min-height:360px; }
@@ -178,9 +180,9 @@ const icoCity  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" st
 const icoHome  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>`;
 const icoMail  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>`;
 const icoFolder= `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-const icoCloud = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`;
-const icoBldg  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`;
-const icoMapPin= `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>`;
+const icoCloud = `<svg style="color:var(--brand-600,#1485c5)" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`;
+const icoBldg  = `<svg style="color:var(--brand-600,#1485c5)" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>`;
+const icoMapPin= `<svg style="color:var(--brand-600,#1485c5)" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>`;
 
 /* ---- Derived fields ---- */
 const cc   = countryCode(PROP.location);
@@ -193,7 +195,7 @@ const lngFmt = PROP.lng ? PROP.lng.toFixed(4) + '°' : 'N/A';
 /* ---- Cards ---- */
 function CardPropertyInfo() {
   const flagHtml = cc
-    ? `<span class="flag-badge"><img src="flags/${cc.toLowerCase()}.svg" width="16" height="11" style="border-radius:2px;object-fit:cover;" /><span style="font-size:12px;font-weight:700;color:#1d4ed8;">${ctry}</span></span>`
+    ? `<span class="flag-badge"><img src="flags/${cc.toLowerCase()}.svg" width="16" height="11" style="border-radius:2px;object-fit:cover;" /><span style="font-size:12px;font-weight:700;color:var(--brand-700,#0f6aa0);">${ctry}</span></span>`
     : `<span class="pi-value">${ctry}</span>`;
 
   return `
@@ -503,7 +505,7 @@ async function loadWeather() {
       const pts = temps.map((t, i) => (i / ((temps.length - 1) || 1) * 100).toFixed(1) + ',' + (22 - (t - lo) / span * 18).toFixed(1)).join(' ');
       strip = '<div style="margin-top:12px;padding-top:11px;border-top:1px solid ' + (day ? '#dbeafe' : '#dde3ec') + ';">'
         + '<div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#64748b;margin-bottom:6px;">Next 6 hours</div>'
-        + '<svg viewBox="0 0 100 26" preserveAspectRatio="none" style="width:100%;height:24px;display:block;color:#2563eb;overflow:visible;"><polyline points="' + pts + '" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>'
+        + '<svg viewBox="0 0 100 26" preserveAspectRatio="none" style="width:100%;height:24px;display:block;color:var(--brand-600,#1485c5);overflow:visible;"><polyline points="' + pts + '" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>'
         + '<div style="display:flex;justify-content:space-between;gap:4px;margin-top:4px;">'
         + temps.map((t, i) => {
             const hh = String(times[i + 1]).slice(11, 13);
