@@ -33,8 +33,8 @@
   .map-btn:hover { background:#f1f5f9; }
 
   /* Port marker */
-  .port-marker { width:30px; height:30px; border-radius:50%; background:var(--brand-600,#2563eb); border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; cursor:pointer; }
-  .port-marker-sanctioned { width:30px; height:30px; border-radius:50%; background:#dc2626; border:2px solid #fff; box-shadow:0 2px 8px rgba(220,38,38,.5); display:flex; align-items:center; justify-content:center; cursor:pointer; animation:pulse-red 2s infinite; }
+  .port-marker { position:relative; width:30px; height:30px; border-radius:50%; background:var(--brand-600,#2563eb); border:1px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .port-marker-sanctioned { position:relative; width:30px; height:30px; border-radius:50%; background:#dc2626; border:1px solid #fff; box-shadow:0 2px 8px rgba(220,38,38,.5); display:flex; align-items:center; justify-content:center; cursor:pointer; animation:pulse-red 2s infinite; }
   @keyframes pulse-red { 0%,100%{box-shadow:0 2px 8px rgba(220,38,38,.5)} 50%{box-shadow:0 0 0 6px rgba(220,38,38,.15),0 2px 8px rgba(220,38,38,.4)} }
   /* Port labels */
   .port-label { background:#0f172a !important; border:0 !important; border-radius:5px !important; color:#fff !important; font-size:11px !important; font-weight:600 !important; padding:3px 7px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
@@ -78,6 +78,16 @@
   .map-type-opt { padding:8px 12px; font-size:12px; font-weight:600; color:#0f172a; cursor:pointer; display:flex; align-items:center; gap:8px; }
   .map-type-opt:hover { background:#f8fafc; }
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  /* port markers: hover / selected ring (as on the Aviation Dashboard's airports), just outside the 30px circle */
+  .port-marker::after, .port-marker-sanctioned::after {
+    content:''; position:absolute; left:50%; top:50%; width:40px; height:40px; transform:translate(-50%,-50%);
+    border-radius:50%; border:2px solid #fff; box-shadow:0 0 5px rgba(0,0,0,.45);
+    opacity:0; transition:opacity .14s ease; pointer-events:none;
+  }
+  .leaflet-marker-icon:hover .port-marker::after, .leaflet-marker-icon.is-selected .port-marker::after,
+  .leaflet-marker-icon:hover .port-marker-sanctioned::after, .leaflet-marker-icon.is-selected .port-marker-sanctioned::after { opacity:1; }
+  .leaflet-marker-icon:hover:has(.port-marker, .port-marker-sanctioned), .leaflet-marker-icon.is-selected { z-index:1000 !important; }
+  @media (prefers-reduced-motion: reduce) { .port-marker::after, .port-marker-sanctioned::after { transition:none; } }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased">
@@ -238,7 +248,9 @@ function initMap() {
       iconSize: [30, 30],
       iconAnchor: [15, 15],
     });
-    const marker = L.marker([p.lat, p.lng], { icon });
+    const marker = L.marker([p.lat, p.lng], { icon, autoPanOnFocus:false });   // focus mustn't pan the map under the pointer
+    marker.on('popupopen', () => marker._icon && marker._icon.classList.add('is-selected'));    // ring stays while its popup is open
+    marker.on('popupclose', () => marker._icon && marker._icon.classList.remove('is-selected'));
     marker.bindTooltip(p.name, { permanent: showLabels, direction:'top', className:'port-label', offset:[0,-18] });
     marker.bindPopup(portPopupHTML(p, idx), { className:'port-popup', maxWidth:280, minWidth:280, closeButton:true, autoPanPadding:[30,30] });
     marker.addTo(portsMap);
