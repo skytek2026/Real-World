@@ -87,10 +87,6 @@
   .wx-kv-wide{grid-column:1 / -1}
   .wx-link{font-weight:600;color:var(--brand-600,#2d7ffb);text-decoration:none}.wx-link:hover{color:var(--brand-700,#1d6ae5);text-decoration:underline;text-underline-offset:2px}.wx-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;border-radius:2px}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
-  /* storm markers are smaller when zoomed out, so their tracks stay visible */
-  .storm-dot { transition:transform .2s ease; }
-  #weather-map.wx-zoomed-out .storm-dot { transform:scale(.55); }
-  @media (prefers-reduced-motion: reduce) { .storm-dot { transition:none; } }
 </style>
 </head>
 <body class="bg-slate-100 text-slate-900">
@@ -288,17 +284,19 @@ function initMap() {
   wxMap = L.map(el, { center:[-16, 65], zoom:4, zoomControl:true, scrollWheelZoom:true });
   setMapType('satellite');
 
+  const focusBounds = {};
   SYSTEMS.forEach(s => {
     // Track: past positions, forecast positions and forecast cone (shared/storm-track.js)
     const trackLayers = drawStormTrack(wxMap, s);
     const trackBounds = trackLayers.length ? L.featureGroup(trackLayers).getBounds().extend([s.lat, s.lng]) : null;
+    if (trackBounds) focusBounds[s.id] = trackBounds;
 
     // Main marker (= current position)
-    const d = s.radius * 2;
+    const r = Math.max(7, Math.round(s.radius * 0.6)), d = r * 2;   // ~60% of the old size; min 14px
     const icon = L.divIcon({
       className:'',
-      html:`<div class="storm-dot" style="width:${d}px;height:${d}px;border-radius:50%;background:${s.color};border:2.5px solid rgba(255,255,255,.85);box-shadow:0 0 0 ${Math.round(s.radius*.55)}px ${s.glow},0 3px 10px rgba(0,0,0,.25)"></div>`,
-      iconSize:[d,d], iconAnchor:[s.radius,s.radius],
+      html:`<div class="storm-dot" style="width:${d}px;height:${d}px;border-radius:50%;background:${s.color};border:2px solid rgba(255,255,255,.9);box-shadow:0 0 0 ${Math.round(r*.5)}px ${s.glow},0 3px 10px rgba(0,0,0,.25)"></div>`,
+      iconSize:[d,d], iconAnchor:[r,r],
     });
     const marker = L.marker([s.lat, s.lng], { icon, autoPanOnFocus:false })
       .bindPopup(stormPopup(s), { className:'storm-popup', maxWidth:230, minWidth:230, closeButton:true })
@@ -316,15 +314,15 @@ function initMap() {
       });
     }
   });
-  // Zoomed out, the storm markers are drawn smaller so their (short) tracks stay visible around them
-  const sizeMarkers = () => wxMap.getContainer().classList.toggle('wx-zoomed-out', wxMap.getZoom() <= 4);
-  wxMap.on('zoomend', sizeMarkers);
+
 
   // Frame all systems (now spanning Florida → Indian Ocean → Japan) so each is visible.
   try {
-    wxMap.fitBounds(L.latLngBounds(SYSTEMS.map(s => [s.lat, s.lng])), { padding:[50,50], maxZoom:4 });
+    // Open on Hurricane Milena: its track and forecast cone
+    const focus = SYSTEMS.find(s => s.name === 'Hurricane Milena');
+    if (focus && focusBounds[focus.id]) wxMap.fitBounds(focusBounds[focus.id], { padding:[60, 60], maxZoom:6 });
+    else wxMap.fitBounds(L.latLngBounds(SYSTEMS.map(s => [s.lat, s.lng])), { padding:[50,50], maxZoom:4 });
   } catch (e) {}
-  sizeMarkers();
 
   // Custom zoom icons (match Marine Dashboard — Lucide Plus/Minus, centered)
   setTimeout(() => {
