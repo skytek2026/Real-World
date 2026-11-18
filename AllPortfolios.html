@@ -48,17 +48,20 @@
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;}
 
   /* Table */
-  /* Portfolio cards: the Portfolios tab uses them at every width (grid, as many columns as fit);
-     the Portfolio Groups tab still uses them only on phones */
+  /* Portfolio cards: the Portfolios tab uses them on tablets and phones (table on desktop);
+     the Portfolio Groups tab uses them on phones only */
   .pf-cards { display:none; }
   @media (max-width:767px) {
     .pf-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
   }
-  .pf-cards.pf-cards--all { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:12px; padding:16px; align-content:start; }
+  @media (max-width:1023px) {
+    .pf-table { display:none; }
+    .pf-cards.pf-cards--all { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:12px; padding:16px; align-content:start; }
+    .pf-cards--all .pf-card { display:flex; flex-direction:column; }
+    .pf-cards--all .pf-kv--grid { grid-template-columns:repeat(auto-fit, minmax(104px, 1fr)); }
+    .pf-cards--all .pf-card-foot { margin-top:auto; padding-top:10px; }
+  }
   @media (max-width:767px) { .pf-cards.pf-cards--all { grid-template-columns:1fr; gap:10px; padding:12px; } }
-  .pf-cards--all .pf-card { display:flex; flex-direction:column; }
-  .pf-cards--all .pf-kv--grid { grid-template-columns:repeat(auto-fit, minmax(104px, 1fr)); }
-  .pf-cards--all .pf-card-foot { margin-top:auto; padding-top:10px; }
   .pf-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
   .pf-kv { margin:0; }
   .pf-kv dt, .pf-label { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
@@ -328,9 +331,43 @@ const PORTFOLIO_GROUPS = {
   ],
 };
 
-/* Portfolios tab: one card per portfolio at every width (responsive grid) */
+/* Portfolios tab: table on desktop; one card per portfolio on tablets and phones */
 function PortfoliosTable(rows) {
   return `
+    <table class="porto-table pf-table">
+      <thead>
+        <tr>
+          <th style="width:180px;">Name</th>
+          <th style="width:248px;">Description</th>
+          <th style="width:90px;">Policies</th>
+          <th style="width:120px;">Our Exposure</th>
+          <th style="width:100px;">Risk Score</th>
+          <th style="width:80px;">EEMI</th>
+          <th style="width:70px;">CII</th>
+          <th style="width:160px;">Sanctions/Compliance</th>
+          <th style="width:80px;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(p => `
+          <tr>
+            <td><span class="porto-name" data-pf-cat="${catTab}" data-pf-name="${encodeURIComponent(p.name)}">${PORTFOLIO_ICO} ${p.name}</span></td>
+            <td><span class="porto-desc">${p.desc}</span></td>
+            <td class="tabular-nums">${p.policies.toLocaleString()}</td>
+            <td class="tabular-nums font-semibold text-ink-900">${p.exposure}</td>
+            <td><span class="risk-score ${riskClass(p.risk)}">${p.risk}</span></td>
+            <td class="tabular-nums">${p.eemi}</td>
+            <td class="tabular-nums">${p.cii}</td>
+            <td>${statusBadge(p.status)}</td>
+            <td>
+              <div class="flex items-center gap-1">
+                <button class="action-btn is-edit" title="Edit" data-pf-edit data-pf-name="${escapeAttr(p.name)}" data-pf-desc="${escapeAttr(p.desc)}" data-pf-cat-key="${catTab}">${EDIT_ICO}</button>
+                <button class="action-btn is-delete" title="Delete" data-pf-delete data-pf-name="${escapeAttr(p.name)}">${DEL_ICO}</button>
+              </div>
+            </td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
     <div class="pf-cards pf-cards--all" role="list" aria-label="Portfolios">
       ${rows.map(p => `
       <article class="pf-card" role="listitem">
