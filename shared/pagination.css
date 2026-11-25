@@ -117,3 +117,10 @@
   }
   .ds-page-perpage { display:none; }
 }
+
+/* Dark mode (Skytek DS): the footer bar is a subtle tint of the dark card, not a light surface */
+html[data-theme="dark"] .ds-pagination-wrap { background:rgba(255,255,255,.03) !important; border-color:#2a374d !important; color:#9ca3af !important; }
+html[data-theme="dark"] .ds-page-btn { background:transparent !important; border-color:#2a374d !important; color:#d1d5db !important; }
+html[data-theme="dark"] .ds-page-btn:hover:not(:disabled):not(.is-active) { background:rgba(255,255,255,.06) !important; color:#f3f4f6 !important; }
+html[data-theme="dark"] .ds-page-btn.is-active { background:var(--brand-600,#2d7ffb) !important; border-color:var(--brand-600,#2d7ffb) !important; color:#fff !important; }
+html[data-theme="dark"] .ds-pagination-wrap strong { color:#f3f4f6 !important; }

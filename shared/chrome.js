@@ -195,7 +195,7 @@ function toneClasses(tone) {
     indigo:  { bg:'bg-indigo-50',  text:'text-indigo-600',  ring:'ring-indigo-100' },
     emerald: { bg:'bg-emerald-50', text:'text-emerald-600', ring:'ring-emerald-100' },
     amber:   { bg:'bg-amber-50',   text:'text-amber-600',   ring:'ring-amber-100' },
-    rose:    { bg:'bg-rose-50',    text:'text-rose-600',    ring:'ring-rose-100' },
+    rose:    { bg:'bg-red-50',    text:'text-red-700',    ring:'ring-red-100' },
     brand:   { bg:'bg-brand-50',   text:'text-brand-600',   ring:'ring-brand-100' },
     ink:     { bg:'bg-ink-100',    text:'text-ink-700',     ring:'ring-ink-200' },
   };
@@ -224,8 +224,8 @@ function Sidebar() {
         <${tag} ${hrefAttr} data-nav="${item.id}" class="nav-item group relative flex items-center gap-3 h-10 rounded-lg px-2 text-ink-500 hover:text-ink-800 hover:bg-ink-100 ring-focus no-underline ${active ? 'is-nav-active' : ''}">
           <span class="shrink-0 flex items-center justify-center w-7 h-7 nav-ico">${I[item.icon]}</span>
           <span class="nav-label truncate hidden text-sm font-medium">${item.label}</span>
-          ${item.badge?`<span class="absolute top-1.5 left-7 h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>`:''}
-          <span class="nav-tip pointer-events-none fixed whitespace-nowrap rounded-lg text-white text-[13px] font-semibold px-3.5 py-2 transition-opacity" style="background:#111827; box-shadow:0 4px 12px rgba(15,23,42,.25); z-index:99999; opacity:0; pointer-events:none;">
+          ${item.badge?`<span class="absolute top-1.5 left-7 h-1.5 w-1.5 rounded-full bg-red-600 dot-pulse"></span>`:''}
+          <span class="nav-tip pointer-events-none fixed whitespace-nowrap rounded-lg text-white text-[13px] font-semibold px-3.5 py-2 transition-opacity" style="background:#111827; box-shadow:0 6px 12px -2px rgb(15 23 42 / .12), 0 3px 6px -3px rgb(15 23 42 / .10); z-index:99999; opacity:0; pointer-events:none;">
             ${item.label}
             <span aria-hidden="true" class="absolute top-1/2 -translate-y-1/2" style="left:-5px; width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:6px solid #111827;"></span>
           </span>
@@ -262,7 +262,7 @@ function Topbar() {
       <a href="ContactSupport.html?from=${encodeURIComponent(((window.PAGE && window.PAGE.title) || document.title.split(' — ')[0]) + '|' + location.pathname.split('/').pop())}" id="report-issue-btn" class="h-9 px-2.5 rounded-lg text-ink-600 hover:text-ink-900 hover:bg-ink-100 flex items-center gap-1.5 ring-focus no-underline text-xs font-semibold" title="Report an issue" aria-label="Report an issue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><span class="hidden lg:inline">Report issue</span></a>
       <button id="theme-toggle-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Toggle dark mode"></button>
       <button id="notif-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Notifications">
-        ${I.bell}<span class="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>
+        ${I.bell}<span class="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-red-600 dot-pulse"></span>
       </button>
       <div class="w-px h-6 bg-ink-200 mx-2"></div>
       <button id="user-btn" class="flex items-center gap-2.5 h-9 pr-1.5 pl-2 rounded-lg hover:bg-ink-100 ring-focus">
@@ -311,7 +311,7 @@ function Topbar() {
         ${PROFILE_LINKS.map(l => `<a href="${l.href}" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${l.icon}</span>${l.label}</a>`).join('')}
       </div>
       <div class="py-1 border-t border-ink-100">
-        <a href="index.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-rose-600 text-sm no-underline"><span>${SVG_SIGNOUT}</span>Sign out</a>
+        <a href="index.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-red-700 text-sm no-underline"><span>${SVG_SIGNOUT}</span>Sign out</a>
       </div>
     </div>
   </header>`;
