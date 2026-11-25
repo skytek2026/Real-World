@@ -23,9 +23,12 @@
     const st = document.createElement('style'); st.id = 'rw-ds-tokens';
     st.textContent = `
       :root { --bg-canvas:#F5F7FA; --font-display:"Exo","Inter",system-ui,-apple-system,"Segoe UI",sans-serif; }
-      html:not([data-theme="dark"]) .rw-canvas { background-color:var(--bg-canvas) !important; }
-      h1, h2, h3, h4, .t-display, .t-h1, .t-h2, .t-h3, .t-h4, .card-title, .ds-rcard-title, .ds-popover-title,
-      .ds-fdrawer-head, .ds-vessel-label, .vp-title, .vp-port-code, .vp-cta, .asset-identity-name { font-family:var(--font-display); }
+      /* Sky (Future, Skytek DS) canvas; Light (Current Real World scheme) keeps its own canvas */
+      html:not([data-theme="dark"]):not([data-rw-scheme="light"]) .rw-canvas { background-color:var(--bg-canvas) !important; }
+      html[data-rw-scheme="light"]:not([data-theme="dark"]) .rw-canvas { background-color:#f1f5f9 !important; }
+      /* DS display font for headings in Sky and Dark; Light keeps each page's own heading fonts */
+      html:not([data-rw-scheme="light"]) :is(h1, h2, h3, h4, .t-display, .t-h1, .t-h2, .t-h3, .t-h4, .card-title, .ds-rcard-title, .ds-popover-title,
+      .ds-fdrawer-head, .ds-vessel-label, .vp-title, .vp-port-code, .vp-cta, .asset-identity-name) { font-family:var(--font-display); }
     `;
     document.head.appendChild(st);
   } catch (e) {}
@@ -91,6 +94,7 @@ try {
   try {
     const t = localStorage.getItem('rw_theme') || 'light';
     document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.setAttribute('data-rw-scheme', t);   // chosen scheme (data-theme is reduced to light/dark later)
   } catch {}
 })();
 
@@ -365,7 +369,7 @@ function TweaksPanel() {
 function getTheme() {
   try { return localStorage.getItem('rw_theme') || 'light'; } catch { return 'light'; }
 }
-const THEME_ACCENT = { sky:'sky', light:'sky', dark:'sky' };   // Skytek Design System brand ramp (#2d7ffb) in every theme
+const THEME_ACCENT = { sky:'sky', light:'azure', dark:'sky' };   // Light = current Real World scheme (#1485c5); Sky/Dark = Skytek Design System (#2d7ffb)
 function setTheme(id) {
   try { localStorage.setItem('rw_theme', id); } catch {}
   // Map theme to a distinct accent palette (light→dark blue ramp)
@@ -633,6 +637,7 @@ function applyTweaks() {
   // Apply global theme from localStorage before resolving accent
   const storedTheme = getTheme();
   if (storedTheme in THEME_ACCENT) TWEAKS.accent = THEME_ACCENT[storedTheme];
+  document.documentElement.setAttribute('data-rw-scheme', storedTheme);
 
   document.body.dataset.density = TWEAKS.density;
   document.body.dataset.sparklines = TWEAKS.showSparklines ? 'on' : 'off';
