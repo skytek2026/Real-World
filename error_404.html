@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Page not found — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -17,42 +17,42 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 
 /* Developer preview bar: visibly not part of the product UI */
 .e4-dev{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap}
-.e4-dev-box{display:inline-flex;align-items:center;gap:10px;padding:6px 6px 6px 12px;border:1px dashed #cbd5e1;border-radius:10px;background:#fff}
-.e4-dev-lbl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#475569;white-space:nowrap}
-.e4-dev-lbl svg{width:14px;height:14px;color:#64748b}
-.e4-select{height:32px;min-width:150px;border:1px solid #e2e8f0;border-radius:7px;padding:0 32px 0 10px;font:600 13px/1 'Inter',sans-serif;color:#0f172a;background:#f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer}
+.e4-dev-box{display:inline-flex;align-items:center;gap:10px;padding:6px 6px 6px 12px;border:1px dashed #d1d5db;border-radius:10px;background:#fff}
+.e4-dev-lbl{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#4b5563;white-space:nowrap}
+.e4-dev-lbl svg{width:14px;height:14px;color:#6b7280}
+.e4-select{height:32px;min-width:150px;border:1px solid #e5e7eb;border-radius:7px;padding:0 32px 0 10px;font:600 13px/1 'Inter',sans-serif;color:#111827;background:#f9fafb url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer}
 .e4-select:focus{outline:none;border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-500,#3b82f6) 16%,transparent);background-color:#fff}
 
 /* The ghost record: the row you expected, with nothing in it */
-.e4-ghost{position:relative;display:flex;align-items:center;gap:14px;width:100%;max-width:380px;padding:14px 16px;border:1.5px dashed #cbd5e1;border-radius:12px;background:#fff}
+.e4-ghost{position:relative;display:flex;align-items:center;gap:14px;width:100%;max-width:380px;padding:14px 16px;border:1.5px dashed #d1d5db;border-radius:12px;background:#fff}
 .e4-ghost-ico{flex-shrink:0;width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
 .e4-ghost-ico svg{width:22px;height:22px}
 .e4-ghost-body{flex:1;min-width:0}
-.e4-ghost-id{font-size:14px;font-weight:600;color:#0f172a;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.e4-ghost-kind{font-size:12px;color:#64748b;margin-top:1px}
+.e4-ghost-id{font-size:14px;font-weight:600;color:#111827;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.e4-ghost-kind{font-size:12px;color:#6b7280;margin-top:1px}
 .e4-ghost-bars{display:flex;gap:6px;margin-top:9px}
-.e4-ghost-bars span{height:6px;border-radius:3px;background:#e2e8f0}
-.e4-ghost-code{flex-shrink:0;align-self:flex-start;font:700 12px/1 'Exo',sans-serif;letter-spacing:.02em;color:#64748b;background:#f1f5f9;border-radius:6px;padding:5px 7px}
+.e4-ghost-bars span{height:6px;border-radius:3px;background:#e5e7eb}
+.e4-ghost-code{flex-shrink:0;align-self:flex-start;font:700 12px/1 'Exo',sans-serif;letter-spacing:.02em;color:#6b7280;background:#f3f4f6;border-radius:6px;padding:5px 7px}
 .e4-swap{animation:e4Swap .28s ease-out}
 @keyframes e4Swap{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion: reduce){.e4-swap{animation:none}}
 
-.e4-title{font-family:'Exo',sans-serif;font-weight:700;font-size:28px;line-height:1.15;letter-spacing:-.01em;color:#0f172a}
-.e4-lede{font-size:15px;line-height:1.6;color:#475569;max-width:52ch}
+.e4-title{font-family:'Exo',sans-serif;font-weight:700;font-size:28px;line-height:1.15;letter-spacing:-.01em;color:#111827}
+.e4-lede{font-size:15px;line-height:1.6;color:#4b5563;max-width:52ch}
 .e4-btn{height:40px;padding:0 18px;border-radius:9px;font:600 13.5px/1 'Inter',sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;text-decoration:none!important;transition:background .12s,border-color .12s}
 .e4-btn svg{width:16px;height:16px}
 .e4-btn--primary{background:var(--brand-600,#2563eb);color:#fff!important}
 .e4-btn--primary:hover{background:var(--brand-700,#1d4ed8)}
-.e4-btn--ghost{background:#fff;border:1px solid #e2e8f0;color:#334155!important}
-.e4-btn--ghost:hover{background:#f1f5f9;color:#0f172a!important}
+.e4-btn--ghost{background:#fff;border:1px solid #e5e7eb;color:#374151!important}
+.e4-btn--ghost:hover{background:#f3f4f6;color:#111827!important}
 .e4-btn:focus-visible,.e4-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px}
 .e4-body{display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(26px,5vw,44px) clamp(18px,4vw,40px) clamp(22px,4vw,32px)}
 .e4-body .e4-ghost{text-align:left}
 .e4-foot{padding:16px clamp(16px,4vw,24px)}
 .e4-tech{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12.5px}
 .e4-tech > div{display:flex;flex-wrap:wrap;justify-content:center;gap:0 8px}
-.e4-tech dt{color:#94a3b8}
-.e4-tech dd{color:#475569;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.e4-tech dt{color:#9ca3af}
+.e4-tech dd{color:#4b5563;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
 .e4-copy{border:0;background:none;color:var(--brand-600,#2563eb);font:600 12px/1 'Inter',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:4px 6px;margin:-4px -6px;border-radius:6px}
 .e4-copy:hover{background:var(--brand-50,#eff6ff)}
 .e4-copy svg{width:13px;height:13px}
@@ -65,20 +65,20 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 /* Dark theme (the shared chrome remaps Tailwind classes; these are this page's own colours) */
 html[data-theme="dark"] .e4-dev-box,html[data-theme="dark"] .e4-ghost{background:#161f2e;border-color:#34435c}
 html[data-theme="dark"] .e4-dev-lbl{color:#c0c9d8}
-html[data-theme="dark"] .e4-select{background-color:#1e293b;border-color:#2a374d;color:#e7ecf4}
+html[data-theme="dark"] .e4-select{background-color:#1f2937;border-color:#2a374d;color:#e7ecf4}
 html[data-theme="dark"] .e4-ghost-ico{background:color-mix(in srgb,var(--brand-500,#3b82f6) 18%,transparent);color:var(--brand-300,#93c5fd)}
 html[data-theme="dark"] .e4-ghost-id,html[data-theme="dark"] .e4-title{color:#e7ecf4}
 html[data-theme="dark"] .e4-ghost-kind,html[data-theme="dark"] .e4-lede,html[data-theme="dark"] .e4-tech dd{color:#c0c9d8}
 html[data-theme="dark"] .e4-ghost-bars span{background:#2a374d}
-html[data-theme="dark"] .e4-ghost-code{background:#1e293b;color:#93a0b4}
+html[data-theme="dark"] .e4-ghost-code{background:#1f2937;color:#93a0b4}
 html[data-theme="dark"] .e4-btn--ghost{background:#161f2e;border-color:#2a374d;color:#e7ecf4!important}
-html[data-theme="dark"] .e4-btn--ghost:hover{background:#1e293b}
+html[data-theme="dark"] .e4-btn--ghost:hover{background:#1f2937}
 html[data-theme="dark"] .e4-copy{color:var(--brand-300,#93c5fd)}
-html[data-theme="dark"] .e4-copy:hover{background:#1e293b}
+html[data-theme="dark"] .e4-copy:hover{background:#1f2937}
 html[data-theme="dark"] .e4-foot{background:#121a27;border-color:#212d40}
 </style>
 </head>
-<body class="bg-slate-100 text-slate-900">
+<body class="bg-gray-100 text-gray-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 <script>
 window.PAGE = { id:'dash', title:'Dashboard', crumb:'Page not found' };
@@ -90,7 +90,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <script>
 const SC = window.sharedChrome;
 const esc = v => String(v == null ? '' : v).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
@@ -264,7 +264,7 @@ window.render = function () {
     ${SC.Sidebar()}
     <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
       ${SC.Topbar()}
-      <main id="e4-main" class="flex-1 min-h-0 overflow-hidden flex flex-col bg-slate-100"></main>
+      <main id="e4-main" class="flex-1 min-h-0 overflow-hidden flex flex-col bg-gray-100"></main>
     </div>
     ${SC.TweaksPanel()}`;
   SC.wireChrome();

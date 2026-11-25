@@ -22,7 +22,7 @@
 
   /* ——— Surface ——— */
   --rw-modal-surface:      #ffffff;
-  --rw-modal-border:       #e2e8f0;
+  --rw-modal-border:       #e5e7eb;
 
   /* ——— Roundness ——— */
   --rw-modal-radius:       12px;
@@ -52,8 +52,8 @@
   --rw-modal-title-font:   'Exo', 'Inter', system-ui, sans-serif;
   --rw-modal-title-size:   15px;
   --rw-modal-title-weight: 700;
-  --rw-modal-text:         #0f172a;
-  --rw-modal-text-muted:   #64748b;
+  --rw-modal-text:         #111827;
+  --rw-modal-text-muted:   #6b7280;
 
   /* ——— Actions / brand ——— */
   --rw-modal-primary:        var(--brand-600, #2563eb);
@@ -65,8 +65,8 @@
   --rw-modal-focus-ring-danger: 0 0 0 3px rgba(220, 38, 38, 0.28);
 
   /* ——— Close button ——— */
-  --rw-modal-close-bg:       #1e293b;
-  --rw-modal-close-bg-hover: #0f172a;
+  --rw-modal-close-bg:       #1f2937;
+  --rw-modal-close-bg-hover: #111827;
   --rw-modal-close-fg:       #ffffff;
 
   /* ——— Motion ——— */
@@ -260,14 +260,14 @@
   border-color: var(--rw-modal-border);
   color: var(--rw-modal-text);
 }
-.rw-modal-btn--secondary:hover:not(:disabled) { background: #f1f5f9; border-color: #cbd5e1; }
+.rw-modal-btn--secondary:hover:not(:disabled) { background: #f3f4f6; border-color: #d1d5db; }
 
 .rw-modal-btn--ghost {
   background: transparent;
   border-color: transparent;
   color: var(--rw-modal-text-muted);
 }
-.rw-modal-btn--ghost:hover:not(:disabled) { background: #f1f5f9; color: var(--rw-modal-text); }
+.rw-modal-btn--ghost:hover:not(:disabled) { background: #f3f4f6; color: var(--rw-modal-text); }
 
 .rw-modal-btn--danger {
   background: var(--rw-modal-danger);

@@ -66,14 +66,14 @@ window.GMC = {
     { type:'Hull / structural',  n:39,  pct:9.3,  serious:11, avgLoss:'$3.8m', delta:'+2',  color:'#0e7490' },
     { type:'Cargo incident',     n:34,  pct:8.1,  serious:6,  avgLoss:'$2.1m', delta:'+1',  color:'#7c3aed' },
     { type:'Piracy / security',  n:22,  pct:5.3,  serious:4,  avgLoss:'$1.4m', delta:'+3',  color:'#be123c' },
-    { type:'Other',              n:18,  pct:4.3,  serious:1,  avgLoss:'$0.7m', delta:'-2',  color:'#64748b' },
+    { type:'Other',              n:18,  pct:4.3,  serious:1,  avgLoss:'$0.7m', delta:'-2',  color:'#6b7280' },
   ],
 
   /* 4 — Vessel type */
   byVesselType: [
     { type:'Bulk Carrier',      fleet:12840, n:96, rate:0.75, serious:24, color:'#d97706' },
     { type:'Container Ship',    fleet:6210,  n:64, rate:1.03, serious:19, color:'#1d4ed8' },
-    { type:'General Cargo',     fleet:14720, n:88, rate:0.60, serious:18, color:'#64748b' },
+    { type:'General Cargo',     fleet:14720, n:88, rate:0.60, serious:18, color:'#6b7280' },
     { type:'Crude Oil Tanker',  fleet:2380,  n:31, rate:1.30, serious:11, color:'#b91c1c' },
     { type:'Product Tanker',    fleet:6940,  n:54, rate:0.78, serious:13, color:'#ea580c' },
     { type:'Chemical Tanker',   fleet:5180,  n:38, rate:0.73, serious:7,  color:'#c2410c' },

@@ -75,7 +75,7 @@
                 <td class="r num">${r.age}</td>
                 <td>${r.type}</td>
                 <td>${sevPill(r.sev)}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${r.est}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${r.est}</td>
               </tr>`).join('')}
           </tbody>
         </table>`)}
@@ -106,7 +106,7 @@
                 <td class="r num">${t.count}</td>
                 <td class="r num">${(t.count / C.summary.total * 100).toFixed(1)}%</td>
                 <td class="r num">${t.serious}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${t.reserve}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${t.reserve}</td>
                 <td class="r num">${t.avgAge}</td>
               </tr>`).join('')}
           </tbody>
@@ -135,7 +135,7 @@
           </div>
           <div class="legend">
             ${C.ages.map(a => `<div class="legend-row"><span class="sw" style="background:${a.color}"></span>${a.band}<span class="lv num">${a.pct}%</span></div>`).join('')}
-            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f1f5f9">Over 15 years<span class="lv num">56.3%</span></div>
+            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f3f4f6">Over 15 years<span class="lv num">56.3%</span></div>
             <div class="legend-row">Reserve, 16+ yrs<span class="lv num">$59.9m</span></div>
           </div>
         </div>
@@ -147,8 +147,8 @@
                 <td class="vn">${a.band}</td>
                 <td class="r num">${a.count}</td>
                 <td class="r num">${a.pct}%</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${a.reserve}</td>
-                <td style="color:#64748b">${['Cargo damage','Collision / contact','Collision / contact','Machinery damage','Grounding'][i]}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${a.reserve}</td>
+                <td style="color:#6b7280">${['Cargo damage','Collision / contact','Collision / contact','Machinery damage','Grounding'][i]}</td>
               </tr>`).join('')}
           </tbody>
         </table>`)}
@@ -158,9 +158,9 @@
           <svg viewBox="0 0 700 180" class="linechart" role="img" aria-label="Casualty count by month over twelve months, bar chart">
             ${[0, 2, 4, 6, 8].map(g => {
               const y = 160 - g / 8 * 140;
-              return `<line x1="42" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="20" x2="42" y2="160" stroke="#d1d5db" stroke-width="1" />
             <line x1="42" y1="${(160 - 4.1 / 8 * 140).toFixed(1)}" x2="666" y2="${(160 - 4.1 / 8 * 140).toFixed(1)}" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6 5" />
             ${C.trend.map((x, i) => {
               const slot = 624 / C.trend.length, bw = Math.min(slot - 8, 30);
@@ -197,10 +197,10 @@
                 <td class="num">${r.imo}</td>
                 <td>${flag(r.cc)}</td>
                 <td class="r num">${r.age}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${r.events}</td>
-                <td style="color:#475569">${r.types}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${r.events}</td>
+                <td style="color:#4b5563">${r.types}</td>
                 <td class="num" style="white-space:nowrap">${r.last}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${r.reserve}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${r.reserve}</td>
                 <td class="r">${scoreChip(r.score)}</td>
               </tr>`).join('')}
           </tbody>
@@ -241,13 +241,13 @@
                 <td class="num" style="white-space:nowrap">${e.date}</td>
                 <td class="vn">${e.type}</td>
                 <td>${sevPill(e.sev)}</td>
-                <td style="color:#475569">${e.loc}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${e.est}</td>
+                <td style="color:#4b5563">${e.loc}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${e.est}</td>
               </tr>
-              <tr><td></td><td colspan="4" style="padding-top:0;color:#64748b;font-size:10.5px;border-bottom:1px solid #f1f5f9">${e.note}</td></tr>`).join('')}
+              <tr><td></td><td colspan="4" style="padding-top:0;color:#6b7280;font-size:10.5px;border-bottom:1px solid #f3f4f6">${e.note}</td></tr>`).join('')}
           </tbody>
         </table>`)}
-      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Reserves are indicative and subject to survey and adjustment. Real World Risk Scores are derived from vessel behaviour, compliance screening, casualty record and ownership data, and do not constitute underwriting advice.</p>
+      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f3f4f6;color:#9ca3af">Reserves are indicative and subject to survey and adjustment. Real World Risk Scores are derived from vessel behaviour, compliance screening, casualty record and ownership data, and do not constitute underwriting advice.</p>
       ${foot(8)}
     </article>`;
   }

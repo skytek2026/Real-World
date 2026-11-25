@@ -23,7 +23,7 @@
   const flagCn = cc => cc ? `<span class="flag-cn">${ccName(cc)}</span>` : '';
   const vStack = (name, imo, type) => `<div class="v-stack"><span class="v-name">${name}</span><span class="v-sub num">IMO ${imo}${type ? ' &middot; ' + type : ''}</span></div>`;
   const confPill = c => `<span class="pill ${c === 'Confirmed' ? 'pill-red' : 'pill-amber'}">${c}</span>`;
-  const statusTxt = s => `<span style="font-weight:600;color:${s === 'Escalated' ? '#b91c1c' : '#334155'}">${s}</span>`;
+  const statusTxt = s => `<span style="font-weight:600;color:${s === 'Escalated' ? '#b91c1c' : '#374151'}">${s}</span>`;
 
   const head = (title) => `
     <div class="page-head">
@@ -123,7 +123,7 @@
               <tr>
                 <td>${vStack(v.name, v.imo, v.type)}</td>
                 <td>${flag(v.flag)}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${v.basis}</span><span class="v-sub">${v.entity}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${v.basis}</span><span class="v-sub">${v.entity}</span></div></td>
                 <td>${v.list}</td>
                 <td class="r num">${v.designated}</td>
                 <td class="r num">${v.value}</td>
@@ -182,9 +182,9 @@
           <svg viewBox="0 0 700 160" class="linechart" role="img" aria-label="Confirmed and potential sanctions matches by month over six months">
             ${[0, 1, 2, 3, 4, 5].map(g => {
               const gy = y(g);
-              return `<line x1="60" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="52" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="60" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="52" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="60" y1="14" x2="60" y2="130" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="60" y1="14" x2="60" y2="130" stroke="#d1d5db" stroke-width="1" />
             ${t.months.map((m, i) => {
               const bw = 600 / n * 0.22, cx = x(i);
               const yc = y(t.confirmed[i]), yp = y(t.potential[i]);
@@ -214,7 +214,7 @@
             ${P.portCalls.map(v => `
               <tr>
                 <td>${vStack(v.name, v.imo)}</td>
-                <td style="white-space:nowrap">${flagImg(v.country)} <span style="font-weight:600;color:#0f172a">${v.port}</span> ${flagCn(v.country)}</td>
+                <td style="white-space:nowrap">${flagImg(v.country)} <span style="font-weight:600;color:#111827">${v.port}</span> ${flagCn(v.country)}</td>
                 <td class="r num">${v.arrived}</td>
                 <td class="r num">${v.dep}</td>
                 <td class="r num">${v.hours}</td>
@@ -236,7 +236,7 @@
             <div class="iv num" style="color:#b45309">4</div>
             <div class="id">AIS track inside the port limit without corroborating berth evidence</div>
           </div>
-          <div class="ind" style="background:#f8fafc">
+          <div class="ind" style="background:#f9fafb">
             <div class="ik">Evidence outstanding</div>
             <div class="iv num">3</div>
             <div class="id">Imagery tasked; port agent records requested from the assured</div>
@@ -302,7 +302,7 @@
               <tr>
                 <td class="r num">${v.date}</td>
                 <td>${vStack(v.name, v.imo)}</td>
-                <td>${v.cptyImo === '\u2014' ? `<span style="font-weight:600;color:#0f172a">${v.cpty}</span>` : vStack(v.cpty, v.cptyImo)}</td>
+                <td>${v.cptyImo === '\u2014' ? `<span style="font-weight:600;color:#111827">${v.cpty}</span>` : vStack(v.cpty, v.cptyImo)}</td>
                 <td><span class="pill ${v.cptyStatus.includes('designated') ? 'pill-red' : v.cptyStatus === 'Unknown' || v.cptyStatus.includes('watchlist') ? 'pill-amber' : 'pill-green'}">${v.cptyStatus}</span></td>
                 <td>${v.loc}</td>
                 <td class="r num">${v.dur}</td>

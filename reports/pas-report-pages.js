@@ -160,7 +160,7 @@
               <tr>
                 <td class="num">${c.date}</td>
                 <td>${vStack(c.name, c.imo)}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${c.type}</span><span class="v-sub">${c.detail}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${c.type}</span><span class="v-sub">${c.detail}</span></div></td>
                 <td>${sevPill(c.sev)}</td>
                 <td>${c.loc}</td>
                 <td><span class="pill ${c.sanctionsRel === 'Yes' ? 'pill-red' : 'pill-green'}">${c.sanctionsRel}</span></td>
@@ -175,11 +175,11 @@
             ${P.sanctions.map(v => `
               <tr>
                 <td>${vStack(v.name, v.imo)}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${v.ind}</span><span class="v-sub">${v.note}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${v.ind}</span><span class="v-sub">${v.note}</span></div></td>
                 <td>${v.list}</td>
                 <td class="num">${v.on}</td>
                 <td>${sevPill(v.sev)}</td>
-                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#334155'}">${v.status}</td>
+                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#374151'}">${v.status}</td>
               </tr>`).join('')}
           </tbody>
         </table>`)}
@@ -261,7 +261,7 @@
                 <td>${vStack(v.name, v.imo)}</td>
                 <td style="white-space:nowrap">${v.role}</td>
                 <td>${v.from}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${v.to}</span><span class="v-sub">${v.note}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${v.to}</span><span class="v-sub">${v.note}</span></div></td>
                 <td class="num">${v.on}</td>
                 <td>${sevPill(v.risk)}</td>
               </tr>`).join('')}
@@ -340,7 +340,7 @@
                 <td class="r num">${w.value}</td>
                 <td class="r num">${w.firstEntry}</td>
                 <td class="r num" style="font-weight:700;color:${w.breach ? '#b91c1c' : '#15803d'}">${w.breach}</td>
-                <td style="font-weight:600;color:${w.breach ? '#b91c1c' : '#334155'}">${w.ap}</td>
+                <td style="font-weight:600;color:${w.breach ? '#b91c1c' : '#374151'}">${w.ap}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, P.warNote)}

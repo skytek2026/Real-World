@@ -53,7 +53,7 @@ window.OTM = {
       { type:'Product Tanker',   n:11, gt:'318,400', pct:28.9, avg:58.4, color:'#ea580c' },
       { type:'Crude Oil Tanker', n:7,  gt:'402,180', pct:18.4, avg:71.2, color:'#b91c1c' },
       { type:'Bulk Carrier',     n:8,  gt:'284,660', pct:21.1, avg:51.6, color:'#d97706' },
-      { type:'General Cargo',    n:7,  gt:'86,240',  pct:18.4, avg:63.8, color:'#64748b' },
+      { type:'General Cargo',    n:7,  gt:'86,240',  pct:18.4, avg:63.8, color:'#6b7280' },
       { type:'Chemical Tanker',  n:5,  gt:'148,520', pct:13.2, avg:49.1, color:'#c2410c' },
     ],
     byAge: [

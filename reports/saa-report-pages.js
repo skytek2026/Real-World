@@ -116,7 +116,7 @@
       ${sec(ICO.shield, 'Counterparty particulars and confirmed designations', `
         <table class="rt compact">
           <tbody>
-            <tr><td class="vn" style="width:170px">Subject</td><td style="font-weight:600;color:#0f172a">${m.subject}</td><td class="vn" style="width:150px">Type</td><td>${m.subjectType}</td></tr>
+            <tr><td class="vn" style="width:170px">Subject</td><td style="font-weight:600;color:#111827">${m.subject}</td><td class="vn" style="width:150px">Type</td><td>${m.subjectType}</td></tr>
             <tr><td class="vn">Head office</td><td>${m.hq}</td><td class="vn">IMO company number</td><td class="num">${m.imoNo}</td></tr>
             <tr><td class="vn">Vessels in group</td><td class="num">${s.vessels} (${s.inPortfolio} on our books)</td><td class="vn">Assessment</td><td>${tonePill('red', s.verdict)}</td></tr>
           </tbody>
@@ -171,7 +171,7 @@
                 <td>${v.list}</td>
                 <td>${confPill(v.conf)}</td>
                 <td>${v.detail}</td>
-                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#334155'}">${v.status}</td>
+                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#374151'}">${v.status}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Two matches were confirmed in the period, both reaching vessels on our books. The Aurora Holdings review dates from June and remains open.')}
@@ -209,7 +209,7 @@
             ${P.portCalls.map(v => `
               <tr>
                 <td>${vStack(v.name, v.imo)}</td>
-                <td style="white-space:nowrap">${flagImg(v.country)} <span style="font-weight:600;color:#0f172a">${v.port}</span> ${flagCn(v.country)}</td>
+                <td style="white-space:nowrap">${flagImg(v.country)} <span style="font-weight:600;color:#111827">${v.port}</span> ${flagCn(v.country)}</td>
                 <td class="r num">${v.arrived}</td>
                 <td class="r num">${v.hours}</td>
                 <td>${v.basis}</td>
@@ -230,7 +230,7 @@
             <div class="iv num" style="color:#b45309">4</div>
             <div class="id">AIS track inside the port limit only</div>
           </div>
-          <div class="ind" style="background:#f8fafc">
+          <div class="ind" style="background:#f9fafb">
             <div class="ik">Most-used designated port</div>
             <div class="iv num">4</div>
             <div class="id">Kharg Island &middot; 3 different vessels</div>

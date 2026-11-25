@@ -141,7 +141,7 @@
                 <td>${sevPill(v.band === 'Severe' ? 'Critical' : 'High')}</td>
                 <td>${v.drivers}</td>
                 <td class="r num">${v.value}</td>
-                <td style="font-weight:600;color:#0f172a">${v.action}</td>
+                <td style="font-weight:600;color:#111827">${v.action}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, `${P.highScore.length} vessels scoring 61 or above, ordered by current Real World Risk Score.`)}
@@ -176,11 +176,11 @@
             ${P.sanctions.map(v => `
               <tr>
                 <td>${vStack(v.name, v.imo)}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${v.ind}</span><span class="v-sub">${v.note}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${v.ind}</span><span class="v-sub">${v.note}</span></div></td>
                 <td>${v.list}</td>
                 <td class="num">${v.on}</td>
                 <td>${sevPill(v.sev)}</td>
-                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#334155'}">${v.status}</td>
+                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#374151'}">${v.status}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Screening reflects list data as published at generation. Escalated items are with the compliance team.')}
@@ -201,7 +201,7 @@
               <tr>
                 <td class="num">${c.date}</td>
                 <td>${vStack(c.name, c.imo)}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${c.type}</span><span class="v-sub">${c.detail}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${c.type}</span><span class="v-sub">${c.detail}</span></div></td>
                 <td>${sevPill(c.sev)}</td>
                 <td>${c.loc}</td>
                 <td class="r num">${c.reserve}</td>
@@ -253,7 +253,7 @@
           ${P.aggregation.map(a => `
             <div class="bl-row">
               <span class="bl-name">${a.region}</span>
-              <span class="bl-track"><span class="bl-fill" style="width:${Math.round(a.limit / a.peak * 100)}%;background:#cbd5e1"></span><span class="bl-fill" style="width:${100 - Math.round(a.limit / a.peak * 100)}%;background:${a.tone};margin-top:-8px;margin-left:${Math.round(a.limit / a.peak * 100)}%"></span></span>
+              <span class="bl-track"><span class="bl-fill" style="width:${Math.round(a.limit / a.peak * 100)}%;background:#d1d5db"></span><span class="bl-fill" style="width:${100 - Math.round(a.limit / a.peak * 100)}%;background:${a.tone};margin-top:-8px;margin-left:${Math.round(a.limit / a.peak * 100)}%"></span></span>
               <span class="bl-val num">${a.peak} / ${a.limit}</span>
             </div>`).join('')}
         </div>`, 'Grey shows the accumulation limit, colour the excess above it. Breaches are measured on peak simultaneous presence within the region boundary.')}
@@ -265,7 +265,7 @@
               <tr>
                 <td><div class="v-stack"><span class="v-name">${w.event}</span><span class="v-sub">${w.cat}</span></div></td>
                 <td class="num">${w.window}</td>
-                <td><div class="v-stack"><span style="color:#0f172a">${w.area}</span><span class="v-sub">${w.note}</span></div></td>
+                <td><div class="v-stack"><span style="color:#111827">${w.area}</span><span class="v-sub">${w.note}</span></div></td>
                 <td class="r num">${w.vessels}</td>
                 <td class="r num">${w.value}</td>
                 <td class="r"><span class="score sc-high">${w.inPath}</span></td>
@@ -304,10 +304,10 @@
                 <td class="vn">${x.cat}</td>
                 <td class="r num" style="font-weight:700;color:#b91c1c">${x.nw}</td>
                 <td class="r num">${x.carried}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${open}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${open}</td>
                 <td style="min-width:120px">
-                  <span style="display:flex;height:8px;width:${w}%;min-width:34px;border-radius:999px;overflow:hidden;background:#f1f5f9">
-                    <i style="display:block;width:${np}%;background:#dc2626"></i><i style="display:block;width:${100 - np}%;background:#cbd5e1"></i>
+                  <span style="display:flex;height:8px;width:${w}%;min-width:34px;border-radius:999px;overflow:hidden;background:#f3f4f6">
+                    <i style="display:block;width:${np}%;background:#dc2626"></i><i style="display:block;width:${100 - np}%;background:#d1d5db"></i>
                   </span>
                 </td>
                 <td class="r num" style="color:#15803d;font-weight:600">${x.resolved || '\u2014'}</td>

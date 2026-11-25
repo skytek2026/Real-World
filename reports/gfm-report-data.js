@@ -43,7 +43,7 @@ window.GFM = {
 
   /* 2 — Vessel type */
   byType: [
-    { type:'General Cargo',     n:14720, gt:'188m',  pct:24.0, avgAge:19.4, avgScore:44.6, color:'#64748b' },
+    { type:'General Cargo',     n:14720, gt:'188m',  pct:24.0, avgAge:19.4, avgScore:44.6, color:'#6b7280' },
     { type:'Bulk Carrier',      n:12840, gt:'482m',  pct:20.9, avgAge:12.1, avgScore:38.2, color:'#d97706' },
     { type:'Other / specialist',n:10720, gt:'96m',   pct:17.5, avgAge:16.8, avgScore:33.4, color:'#84cc16' },
     { type:'Product Tanker',    n:6940,  gt:'218m',  pct:11.3, avgAge:13.6, avgScore:43.8, color:'#ea580c' },
@@ -147,7 +147,7 @@ window.GFM = {
     { region:'North America',     calls:68400,  pct:8.2,  vessels:7180,  casualties:29, tone:'#84cc16' },
     { region:'South America',     calls:54200,  pct:6.5,  vessels:5940,  casualties:24, tone:'#16a34a' },
     { region:'West Africa',       calls:42600,  pct:5.1,  vessels:4280,  casualties:34, tone:'#c2410c' },
-    { region:'Rest of world',     calls:37000,  pct:4.5,  vessels:3960,  casualties:19, tone:'#64748b' },
+    { region:'Rest of world',     calls:37000,  pct:4.5,  vessels:3960,  casualties:19, tone:'#6b7280' },
   ],
   geoNote: 'East Asia handles nearly a quarter of all port calls but South East Asia carries the highest casualty count relative to traffic, at 76 casualties per 100,000 calls against a global 50.',
 

@@ -111,7 +111,7 @@
           </div>
           <div class="legend">
             ${F.ages.map(a => `<div class="legend-row"><span class="sw" style="background:${a.color}"></span>${a.band}<span class="lv num">${a.pct}%</span></div>`).join('')}
-            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f1f5f9">Fleet average age<span class="lv num">${F.composition.avgAge} yrs</span></div>
+            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f3f4f6">Fleet average age<span class="lv num">${F.composition.avgAge} yrs</span></div>
             <div class="legend-row">Over 20 years<span class="lv num">${F.ages[4].count} vessels</span></div>
           </div>
         </div>`, 'Vessels over 20 years old carry an age exception requirement under fleet rules; 14 vessels currently qualify.')}
@@ -150,11 +150,11 @@
                   <div class="dist-bar" style="height:${Math.round(d.count / max * 150)}px;background:${d.color}"></div>
                 </div>`).join('')}
             </div>
-            <div class="dist-x">${F.distribution.map(d => `<span>${d.band}<br /><span style="color:#94a3b8;font-weight:500">${d.range}</span></span>`).join('')}</div>
+            <div class="dist-x">${F.distribution.map(d => `<span>${d.band}<br /><span style="color:#9ca3af;font-weight:500">${d.range}</span></span>`).join('')}</div>
           </div>
           <div class="legend">
             ${F.distribution.map(d => `<div class="legend-row"><span class="sw" style="background:${d.color}"></span>${d.band} (${d.range})<span class="lv num">${d.pct}%</span></div>`).join('')}
-            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f1f5f9">Fleet average<span class="lv num">${F.avgScore}</span></div>
+            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f3f4f6">Fleet average<span class="lv num">${F.avgScore}</span></div>
             <div class="legend-row">Move vs previous<span class="lv num delta-up">${F.avgScoreDelta}</span></div>
           </div>
         </div>`)}
@@ -178,12 +178,12 @@
           <tbody>
             ${F.highest.map((v, i) => `
               <tr>
-                <td class="num" style="color:#94a3b8">${i + 1}</td>
+                <td class="num" style="color:#9ca3af">${i + 1}</td>
                 <td class="vn"><span class="v-stack"><span class="v-name">${v.name}</span><span class="v-sub num">IMO ${v.imo} &middot; ${v.type}</span></span></td>
                 <td>${flag(v.cc)}</td>
                 <td class="r num">${v.age}</td>
                 <td class="r">${scoreChip(v.score)}</td>
-                <td class="r num" style="color:#64748b">${v.prev}</td>
+                <td class="r num" style="color:#6b7280">${v.prev}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Top eight of nine vessels scoring above 70. All appear in the exceptions list on page 6 unless already cleared.')}
@@ -204,7 +204,7 @@
                 <td>${flag(r.cc)}</td>
                 <td>${r.type}</td>
                 <td>${sevPill(r.sev)}</td>
-                <td style="color:#475569">${r.loc}</td>
+                <td style="color:#4b5563">${r.loc}</td>
               </tr>`).join('')}
           </tbody>
         </table>`)}
@@ -229,7 +229,7 @@
                 <td class="vn">${s.list}</td>
                 <td class="r num">${s.hits}</td>
                 <td><span class="pill pill-${s.tone}">${s.status}</span></td>
-                <td style="color:#64748b">${s.status === 'Escalated' ? 'Referred to compliance for confirmation' : s.status === 'Monitored' ? 'Flag standing reviewed monthly' : 'No action required this period'}</td>
+                <td style="color:#6b7280">${s.status === 'Escalated' ? 'Referred to compliance for confirmation' : s.status === 'Monitored' ? 'Flag standing reviewed monthly' : 'No action required this period'}</td>
               </tr>`).join('')}
           </tbody>
         </table>`)}
@@ -275,11 +275,11 @@
               </div>
               <div class="att-act">
                 <span class="pill pill-slate">${e.owner}</span>
-                <span style="font-size:10px;color:#94a3b8" class="num">Due ${e.due}</span>
+                <span style="font-size:10px;color:#9ca3af" class="num">Due ${e.due}</span>
               </div>
             </div>`).join('')}
         </div>`, 'Exceptions are vessels breaching a fleet rule at period end. Each carries an owning team and a due date; unresolved items roll forward.')}
-      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${F.meta.generatedOn}.</p>
+      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f3f4f6;color:#9ca3af">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${F.meta.generatedOn}.</p>
       ${foot(9)}
     </article>`;
   }

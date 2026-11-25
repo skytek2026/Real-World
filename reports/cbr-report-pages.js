@@ -47,13 +47,13 @@
     <div style="display:flex;flex-direction:column;gap:3px;min-width:120px">
       <span class="bl-track" title="Fleet"><span class="bl-fill" style="width:${Math.round(f / max * 100)}%;background:#b91c1c"></span></span>
       <span class="bl-track" title="Peer"><span class="bl-fill" style="width:${Math.round(p / max * 100)}%;background:#d97706"></span></span>
-      <span class="bl-track" title="Global"><span class="bl-fill" style="width:${Math.round(g / max * 100)}%;background:#cbd5e1"></span></span>
+      <span class="bl-track" title="Global"><span class="bl-fill" style="width:${Math.round(g / max * 100)}%;background:#d1d5db"></span></span>
     </div>`;
   const triLegend = `
     <div class="chart-legend" style="padding-bottom:2px">
       <span class="cl-item"><span class="cl-sw" style="background:#b91c1c"></span>Selected fleet</span>
       <span class="cl-item"><span class="cl-sw" style="background:#d97706"></span>Peer group</span>
-      <span class="cl-item"><span class="cl-sw" style="background:#cbd5e1"></span>Global fleet</span>
+      <span class="cl-item"><span class="cl-sw" style="background:#d1d5db"></span>Global fleet</span>
     </div>`;
 
   /* ── Front matter ── */
@@ -133,9 +133,9 @@
           <svg viewBox="0 0 700 170" class="linechart" role="img" aria-label="Fleet casualties by quarter against the size-adjusted peer average">
             ${[0, 1, 2, 3, 4].map(g => {
               const gy = y(g);
-              return `<line x1="42" y1="${gy.toFixed(1)}" x2="666" y2="${gy.toFixed(1)}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${gy.toFixed(1)}" x2="666" y2="${gy.toFixed(1)}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="34" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="42" y1="14" x2="42" y2="140" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="14" x2="42" y2="140" stroke="#d1d5db" stroke-width="1" />
             ${h.fleet.map((v, i) => {
               const bw = 624 / n * 0.5, bx = x(i) - bw / 2, by = y(v);
               return `<rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw.toFixed(1)}" height="${(140 - by).toFixed(1)}" rx="3" fill="#b91c1c" opacity="${i === n - 1 ? 1 : .8}" /><text x="${x(i).toFixed(1)}" y="${(by - 6).toFixed(1)}" text-anchor="middle" class="pt-lbl">${v}</text>`;
@@ -178,7 +178,7 @@
             ${p.peerCriteria.map(c => `
               <tr>
                 <td class="vn">${c.k}</td>
-                <td style="font-weight:600;color:#0f172a">${c.fleet}</td>
+                <td style="font-weight:600;color:#111827">${c.fleet}</td>
                 <td>${c.peer}</td>
               </tr>`).join('')}
           </tbody>
@@ -219,7 +219,7 @@
               return `
               <tr>
                 <td class="vn">${x.k}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${x.fleet}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${x.fleet}</td>
                 <td class="r num">${x.peer}</td>
                 <td class="r num">${x.global}</td>
                 <td><div style="display:flex;align-items:center;gap:8px">${triBar(nums[0], nums[1], nums[2], max)}${verdictPill(x.verdict)}</div></td>
@@ -277,7 +277,7 @@
             ${a.bySeverity.map(x => `
               <tr>
                 <td class="vn">${x.sev}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${x.fleet}%</td>
+                <td class="r num" style="font-weight:700;color:#111827">${x.fleet}%</td>
                 <td class="r num">${x.peer}%</td>
                 <td class="r num">${x.global}%</td>
                 <td>${triBar(x.fleet, x.peer, x.global, maxS)}</td>
@@ -351,8 +351,8 @@
           <thead><tr><th>Manager</th><th class="r">Vessels</th><th class="r">Rate</th><th class="r">Affected</th><th class="r">Serious</th><th class="r">Reserve / vsl</th></tr></thead>
           <tbody>
             ${p.map(x => `
-              <tr${x.self ? ' style="background:#fef2f2"' : x.median ? ' style="background:#f8fafc"' : ''}>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a;${x.self ? 'font-weight:700;color:#b91c1c' : x.median ? 'font-style:italic;color:#475569' : ''}">${x.name}</span><span class="v-sub num">Rank ${x.rank} of 17</span></div></td>
+              <tr${x.self ? ' style="background:#fef2f2"' : x.median ? ' style="background:#f9fafb"' : ''}>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827;${x.self ? 'font-weight:700;color:#b91c1c' : x.median ? 'font-style:italic;color:#4b5563' : ''}">${x.name}</span><span class="v-sub num">Rank ${x.rank} of 17</span></div></td>
                 <td class="r num">${x.vessels}</td>
                 <td class="r">${rateChip(x.rate)}</td>
                 <td class="r num">${x.affected}%</td>
@@ -365,7 +365,7 @@
           ${p.map(x => `
             <div class="bl-row">
               <span class="bl-name" style="${x.self ? 'font-weight:700;color:#b91c1c' : ''}">${x.name.split(' \u2014 ')[1] || x.name}</span>
-              <span class="bl-track"><span class="bl-fill" style="width:${Math.round(x.rate / maxR * 100)}%;background:${x.self ? '#b91c1c' : x.median ? '#d97706' : '#cbd5e1'}"></span></span>
+              <span class="bl-track"><span class="bl-fill" style="width:${Math.round(x.rate / maxR * 100)}%;background:${x.self ? '#b91c1c' : x.median ? '#d97706' : '#d1d5db'}"></span></span>
               <span class="bl-val num">${x.rate.toFixed(2)}</span>
             </div>`).join('')}
         </div>`, P.peerNote)}

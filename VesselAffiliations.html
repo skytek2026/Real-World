@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FRESH BREEZE — Affiliations — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -50,7 +50,7 @@
   .rs-node:hover{background:rgba(45,127,251,0.12);}
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
   .rs-node:hover .rs-tip{opacity:1;visibility:visible;}
-  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer;margin-top:1px;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#2d7ffb;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
@@ -62,7 +62,7 @@
   .rs-tip.r::after{right:14px;}
   .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
   .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
-  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f1f5f9;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
   .rs-tip-tbl th:first-child{text-align:left;}
   .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
@@ -133,8 +133,8 @@
   .bg-cyan-100{background-color:#f3f4f6!important}.text-cyan-700{color:#0891b2!important}
   .bg-pink-100{background-color:#f3f4f6!important}.text-pink-700{color:#db2777!important}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
-  /* canvas: same as the Dashboard (ink-100 #f1f5f9), light mode only */
-  html:not([data-theme="dark"]) body{background:#f1f5f9}
+  /* canvas: same as the Dashboard (ink-100 #f3f4f6), light mode only */
+  html:not([data-theme="dark"]) body{background:#f3f4f6}
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -148,7 +148,7 @@
   }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -281,7 +281,7 @@ function OwnershipCard() {
         ${(() => {
           const e = AFFIL_ENTITIES.find(x => x.k === state.affilTab) || AFFIL_ENTITIES[0];
           const ok = e.tone === 'ok';
-          const c = ok ? { fg:'#15803d', icon:'M9 12.5l2 2 4-4.5' } : e.tone === 'bad' ? { fg:'#b91c1c', icon:'M12 8v5M12 16.5h.01' } : e.tone === 'warn' ? { fg:'#c2410c', icon:'M12 8v5M12 16.5h.01' } : { fg:'#475569', icon:'M12 8v5M12 16.5h.01' };
+          const c = ok ? { fg:'#15803d', icon:'M9 12.5l2 2 4-4.5' } : e.tone === 'bad' ? { fg:'#b91c1c', icon:'M12 8v5M12 16.5h.01' } : e.tone === 'warn' ? { fg:'#c2410c', icon:'M12 8v5M12 16.5h.01' } : { fg:'#4b5563', icon:'M12 8v5M12 16.5h.01' };
           const panel = e.tone === 'warn' ? 'border-ink-200 bg-white border-l-[3px] border-l-orange-400' : e.tone === 'bad' ? 'border-ink-200 bg-white border-l-[3px] border-l-red-500' : 'border-ink-200 bg-white';
           const sanctionedCount = (e.fleet || []).filter(v => v.sanctioned).length;
           const hits = e.hits ? `

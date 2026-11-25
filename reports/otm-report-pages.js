@@ -115,7 +115,7 @@
       ${sec(ICO.users, 'Counterparty particulars', `
         <table class="rt compact">
           <tbody>
-            <tr><td class="vn" style="width:180px">Name</td><td style="font-weight:600;color:#0f172a">${m.subject}</td><td class="vn" style="width:150px">Role assessed</td><td>${m.role}</td></tr>
+            <tr><td class="vn" style="width:180px">Name</td><td style="font-weight:600;color:#111827">${m.subject}</td><td class="vn" style="width:150px">Role assessed</td><td>${m.role}</td></tr>
             <tr><td class="vn">Head office</td><td>${m.hq}</td><td class="vn">IMO company number</td><td class="num">${m.imoNo}</td></tr>
             <tr><td class="vn">Operating since</td><td class="num">${m.founded}</td><td class="vn">Assessment verdict</td><td>${tonePill('red', s.verdict)}</td></tr>
           </tbody>
@@ -138,7 +138,7 @@
                 <td class="r num">${v.gt}</td>
                 <td class="r">${scoreChip(v.score)}</td>
                 <td class="r num">${v.value}</td>
-                <td><div class="v-stack"><span style="color:#0f172a">${v.owner}</span><span class="v-sub num">since ${v.since}</span></div></td>
+                <td><div class="v-stack"><span style="color:#111827">${v.owner}</span><span class="v-sub num">since ${v.since}</span></div></td>
               </tr>`).join('')}
           </tbody>
         </table>`, P.vesselNote)}
@@ -189,7 +189,7 @@
           <tbody>
             ${c.byFlag.map(x => `
               <tr>
-                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#0f172a">${x.name}</span></td>
+                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#111827">${x.name}</span></td>
                 <td class="r num">${x.n}</td>
                 <td class="r">${scoreChip(x.avg)}</td>
                 <td><span class="pill ${x.standing === 'Watchlisted' ? 'pill-red' : x.standing.includes('grey') ? 'pill-amber' : 'pill-green'}">${x.standing}</span></td>
@@ -313,11 +313,11 @@
             ${c.events.map(v => `
               <tr>
                 <td>${vStack(v.name, v.imo)}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${v.ind}</span><span class="v-sub">${v.note}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${v.ind}</span><span class="v-sub">${v.note}</span></div></td>
                 <td>${v.list}</td>
                 <td class="num">${v.on}</td>
                 <td>${sevPill(v.sev)}</td>
-                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#334155'}">${v.status}</td>
+                <td style="font-weight:600;color:${v.status === 'Escalated' ? '#b91c1c' : '#374151'}">${v.status}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, c.note)}
@@ -384,7 +384,7 @@
           <tbody>
             ${g.ports.map(p => `
               <tr>
-                <td style="white-space:nowrap">${flagImg(p.country)} <span style="font-weight:600;color:#0f172a">${p.port}</span> ${flagCn(p.country)}</td>
+                <td style="white-space:nowrap">${flagImg(p.country)} <span style="font-weight:600;color:#111827">${p.port}</span> ${flagCn(p.country)}</td>
                 <td class="r num">${p.calls}</td>
                 <td class="r num">${p.vessels}</td>
                 <td>${p.note}</td>

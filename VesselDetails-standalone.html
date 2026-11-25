@@ -37,11 +37,11 @@
 <meta name="ext-resource-dependency" content="images/skytek-realworld-landscape-color.png" data-resource-id="logoLandscape" />
 <meta name="ext-resource-dependency" content="images/skytek-logo-stacked.png" data-resource-id="logoStacked" />
 <meta name="ext-resource-dependency" content="images/avatar-paul-kiernan.avif" data-resource-id="avatarPaul" />
-<template id="__bundler_thumbnail" data-bg-color="#f1f5f9">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#f1f5f9"/><rect x="120" y="150" width="960" height="500" rx="24" fill="#ffffff"/><rect x="120" y="150" width="960" height="70" rx="24" fill="#2563eb"/><path d="M300 520h600l-60 90H360z" fill="#0f172a"/><rect x="560" y="330" width="80" height="190" fill="#0f172a"/><rect x="440" y="430" width="320" height="26" rx="6" fill="#2563eb"/></svg>
+<template id="__bundler_thumbnail" data-bg-color="#f3f4f6">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="800" fill="#f3f4f6"/><rect x="120" y="150" width="960" height="500" rx="24" fill="#ffffff"/><rect x="120" y="150" width="960" height="70" rx="24" fill="#2563eb"/><path d="M300 520h600l-60 90H360z" fill="#111827"/><rect x="560" y="330" width="80" height="190" fill="#111827"/><rect x="440" y="430" width="320" height="26" rx="6" fill="#2563eb"/></svg>
 </template>
 <script src="https://unpkg.com/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -86,7 +86,7 @@
   .rs-node:hover{background:rgba(45,127,251,0.12);}
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
   .rs-node:hover .rs-tip{opacity:1;visibility:visible;}
-  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer;margin-top:1px;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#2d7ffb;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
@@ -98,7 +98,7 @@
   .rs-tip.r::after{right:14px;}
   .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
   .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
-  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f1f5f9;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
   .rs-tip-tbl th:first-child{text-align:left;}
   .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
@@ -183,7 +183,7 @@
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -1062,9 +1062,9 @@ function CasualtyRiskCardCopy7() {
     <div class="scroll-thin" style="padding:12px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
         <div style="font-size:12px;font-weight:700;color:#111827;">Risk Score</div>
-        <button data-sanctions-toggle-copy7 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+        <button data-sanctions-toggle-copy7 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
-          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy7?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy7?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${state.withSanctionsCopy7?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
@@ -1326,9 +1326,9 @@ function CasualtyRiskCardCopy8() {
     body = `
     <div style="padding:10px 12px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:8px;">
       <div style="display:flex;align-items:center;justify-content:flex-end;gap:8px;">
-        <button data-sanctions-toggle-copy8 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+        <button data-sanctions-toggle-copy8 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
-          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy8?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy8?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${state.withSanctionsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
@@ -1783,7 +1783,7 @@ function CasualtyRiskCardCopy4() {
             const align = i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
             return `
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:10px 4px;${i>0?'border-left:1px solid #eef2f6;':''}">
-              <span style="font-size:${p.label==='2026'?'17px':'13px'};font-weight:${p.label==='2026'?'700':'600'};color:${p.label==='2026'?'#334155':'#64748b'};">${p.label}</span>
+              <span style="font-size:${p.label==='2026'?'17px':'13px'};font-weight:${p.label==='2026'?'700':'600'};color:${p.label==='2026'?'#374151':'#6b7280'};">${p.label}</span>
               <div style="display:flex;align-items:center;gap:3px;">
                 <span style="font-size:${p.label==='2026'?'32px':'26px'};font-weight:800;line-height:1;color:${col(p.v)};font-variant-numeric:tabular-nums;">${p.v}</span>
                 ${arrow(p.v, p.prev)}
@@ -1960,9 +1960,9 @@ function CasualtyRiskCardCopy2() {
       <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px 10px;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
           <div style="font-size:12px;font-weight:700;color:#111827;">Risk Score Trend</div>
-          <button data-sanctions-toggle-copy2 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          <button data-sanctions-toggle-copy2 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
-            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy2?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy2?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
               <span style="position:absolute;top:2px;${state.withSanctionsCopy2?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
             </span>
           </button>
@@ -2204,9 +2204,9 @@ function CasualtyRiskCardCopy5() {
       <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px 16px 14px;flex:1;display:flex;flex-direction:column;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
           <div style="font-size:12px;font-weight:700;color:#111827;">Risk Score Trend</div>
-          <button data-sanctions-toggle-copy5 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          <button data-sanctions-toggle-copy5 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
-            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy5?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy5?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
               <span style="position:absolute;top:2px;${state.withSanctionsCopy5?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
             </span>
           </button>
@@ -2229,7 +2229,7 @@ function CasualtyRiskCardCopy5() {
             const align = i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
             return `
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:10px 4px;${i>0?'border-left:1px solid #eef2f6;':''}">
-              <span style="font-size:${p.label==='2026'?'17px':'13px'};font-weight:${p.label==='2026'?'700':'600'};color:${p.label==='2026'?'#334155':'#64748b'};">${p.label}</span>
+              <span style="font-size:${p.label==='2026'?'17px':'13px'};font-weight:${p.label==='2026'?'700':'600'};color:${p.label==='2026'?'#374151':'#6b7280'};">${p.label}</span>
               <div style="display:flex;align-items:center;gap:3px;min-height:26px;">
                 ${(p.label==='2026' && state.withSanctionsCopy5)
                   ? `<span style="display:inline-block;background:#dc2626;color:#fff;font-size:14px;font-weight:700;letter-spacing:.02em;padding:7px 13px;border-radius:999px;line-height:1;">Sanctioned</span>`
@@ -2407,9 +2407,9 @@ function CasualtyRiskCardCopy3() {
       <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px 10px;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
           <div style="font-size:12px;font-weight:700;color:#111827;">Risk Score Trend</div>
-          <button data-sanctions-toggle-copy3 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          <button data-sanctions-toggle-copy3 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
-            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy3?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy3?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
               <span style="position:absolute;top:2px;${state.withSanctionsCopy3?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
             </span>
           </button>
@@ -2635,9 +2635,9 @@ function CasualtyRiskCardCopy6() {
       <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:14px 14px 10px;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;">
           <div style="font-size:12px;font-weight:700;color:#111827;">Risk Score Trend</div>
-          <button data-sanctions-toggle-copy6 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+          <button data-sanctions-toggle-copy6 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
-            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy6?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+            <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy6?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
               <span style="position:absolute;top:2px;${state.withSanctionsCopy6?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
             </span>
           </button>
@@ -2660,7 +2660,7 @@ function CasualtyRiskCardCopy6() {
             const align = i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
             return `
             <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:10px 4px;${i>0?'border-left:1px solid #eef2f6;':''}">
-              <span style="font-size:${p.label==='2026'?'17px':'13px'};font-weight:${p.label==='2026'?'700':'600'};color:${p.label==='2026'?'#334155':'#64748b'};">${p.label}</span>
+              <span style="font-size:${p.label==='2026'?'17px':'13px'};font-weight:${p.label==='2026'?'700':'600'};color:${p.label==='2026'?'#374151':'#6b7280'};">${p.label}</span>
               <div style="display:flex;align-items:center;gap:3px;">
                 <span style="font-size:${p.label==='2026'?'32px':'26px'};font-weight:800;line-height:1;color:${col(p.v)};font-variant-numeric:tabular-nums;">${p.v}</span>
                 ${arrow(p.v, p.prev)}
@@ -2784,7 +2784,7 @@ function InspectionTable() {
         ${(() => {
           const e = AFFIL_ENTITIES.find(x => x.k === state.affilTab) || AFFIL_ENTITIES[0];
           const ok = e.tone === 'ok';
-          const c = ok ? { fg:'#15803d', icon:'M9 12.5l2 2 4-4.5' } : e.tone === 'bad' ? { fg:'#b91c1c', icon:'M12 8v5M12 16.5h.01' } : e.tone === 'warn' ? { fg:'#c2410c', icon:'M12 8v5M12 16.5h.01' } : { fg:'#475569', icon:'M12 8v5M12 16.5h.01' };
+          const c = ok ? { fg:'#15803d', icon:'M9 12.5l2 2 4-4.5' } : e.tone === 'bad' ? { fg:'#b91c1c', icon:'M12 8v5M12 16.5h.01' } : e.tone === 'warn' ? { fg:'#c2410c', icon:'M12 8v5M12 16.5h.01' } : { fg:'#4b5563', icon:'M12 8v5M12 16.5h.01' };
           const panel = e.tone === 'warn' ? 'border-ink-200 bg-white border-l-[3px] border-l-orange-400' : e.tone === 'bad' ? 'border-ink-200 bg-white border-l-[3px] border-l-red-500' : 'border-ink-200 bg-white';
           const sanctionedCount = (e.fleet || []).filter(v => v.sanctioned).length;
           const hits = e.hits ? `

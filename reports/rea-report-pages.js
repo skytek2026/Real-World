@@ -75,10 +75,10 @@
                 <td class="vn">${w.w}</td>
                 <td class="r num">${w.in}</td>
                 <td class="r num">${w.out}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${w.end}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${w.end}</td>
                 <td style="min-width:130px">
                   <span class="bl-track"><span class="bl-fill" style="width:${Math.round(w.in / maxW * 100)}%"></span></span>
-                  <span class="bl-track" style="margin-top:3px"><span class="bl-fill" style="width:${Math.round(w.out / maxW * 100)}%;background:#94a3b8"></span></span>
+                  <span class="bl-track" style="margin-top:3px"><span class="bl-fill" style="width:${Math.round(w.out / maxW * 100)}%;background:#9ca3af"></span></span>
                 </td>
               </tr>`).join('')}
           </tbody>
@@ -104,7 +104,7 @@
                 <td class="vn">${x.name}</td>
                 <td class="num">${x.imo}</td>
                 <td>${flag(x.cc)}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${x.value}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${x.value}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, `Six most recent of ${f.entered + f.left} crossings in the period.`)}
@@ -120,9 +120,9 @@
           <svg viewBox="0 0 700 190" class="linechart" role="img" aria-label="Simultaneous vessel count by day, bar chart">
             ${[0, 10, 20, 30, 40].map(g => {
               const y = 150 - g / 48 * 130;
-              return `<line x1="42" y1="${y.toFixed(1)}" x2="690" y2="${y.toFixed(1)}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${(y + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${y.toFixed(1)}" x2="690" y2="${y.toFixed(1)}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="34" y="${(y + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="42" y1="14" x2="42" y2="150" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="14" x2="42" y2="150" stroke="#d1d5db" stroke-width="1" />
             <line x1="42" y1="${(150 - p.threshold / 48 * 130).toFixed(1)}" x2="690" y2="${(150 - p.threshold / 48 * 130).toFixed(1)}" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="6 5" />
             ${p.daily.map((d, i) => {
               const slot = 648 / p.daily.length, bw = Math.min(slot - 6, 26);
@@ -140,8 +140,8 @@
             ${p.windows.map(x => `
               <tr>
                 <td class="num" style="white-space:nowrap">${x.start} → ${x.end}</td>
-                <td class="r num" style="font-weight:700;color:${x.peak > p.threshold ? '#b91c1c' : '#0f172a'}">${x.peak}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${x.value}</td>
+                <td class="r num" style="font-weight:700;color:${x.peak > p.threshold ? '#b91c1c' : '#111827'}">${x.peak}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${x.value}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Daily simultaneous vessel count at 14:00 UTC. Dashed line is the 40-vessel aggregation threshold; red bars exceed it.')}
@@ -171,7 +171,7 @@
               <tr>
                 <td class="vn">${t.type}</td>
                 <td class="r num">${t.vessels}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${t.value}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${t.value}</td>
                 <td class="r num">${(parseFloat(t.value.replace(/[^0-9.]/g, '')) / 1.42 * 100).toFixed(1)}%</td>
               </tr>`).join('')}
           </tbody>
@@ -181,9 +181,9 @@
           <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Exposed insured value by month over twelve months, bar chart">
             ${[0, 0.4, 0.8, 1.2, 1.6].map(g => {
               const y = 160 - g / 1.6 * 140;
-              return `<line x1="46" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="38" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g.toFixed(1)}</text>`;
+              return `<line x1="46" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="38" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g.toFixed(1)}</text>`;
             }).join('')}
-            <line x1="46" y1="20" x2="46" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="46" y1="20" x2="46" y2="160" stroke="#d1d5db" stroke-width="1" />
             ${hs.map((x, i) => {
               const slot = 620 / hs.length, bw = Math.min(slot - 8, 34);
               const cx = 46 + slot * i + slot / 2, bh = x.value / 1.6 * 140;
@@ -213,16 +213,16 @@
           <tbody>
             ${R.vessels.map((v, i) => `
               <tr>
-                <td class="num" style="color:#94a3b8">${i + 1}</td>
+                <td class="num" style="color:#9ca3af">${i + 1}</td>
                 <td class="vn">${v.name}</td>
                 <td class="num">${v.imo}</td>
                 <td>${flag(v.cc)}</td>
                 <td style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${v.type}</td>
                 <td class="r num">${v.age}</td>
                 <td class="r">${scoreChip(v.score)}</td>
-                <td class="num" style="white-space:nowrap">${v.entered.slice(0,10)}<br /><span style="color:#94a3b8">${v.entered.slice(11)}</span></td>
+                <td class="num" style="white-space:nowrap">${v.entered.slice(0,10)}<br /><span style="color:#9ca3af">${v.entered.slice(11)}</span></td>
                 <td class="r num">${v.dwell}</td>
-                <td class="r num" style="font-weight:600;color:${v.src === 'client' ? '#0f172a' : '#94a3b8'}">${v.value}${v.src === 'estimate' ? '<span style="font-weight:500"> est.</span>' : ''}</td>
+                <td class="r num" style="font-weight:600;color:${v.src === 'client' ? '#111827' : '#9ca3af'}">${v.value}${v.src === 'estimate' ? '<span style="font-weight:500"> est.</span>' : ''}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, `Twelve of ${R.current.vessels} vessels inside the region, ordered by declared value. Full list is available in the regional exposure view.`)}
@@ -253,7 +253,7 @@
           ${v.tiers.map(t => `
             <div class="bl-row">
               <span class="bl-name">${t.tier}</span>
-              <span class="bl-track"><span class="bl-fill" style="width:${t.pct}%;background:${t.tier === 'No declared value' ? '#94a3b8' : 'var(--brand-600,#2d7ffb)'}"></span></span>
+              <span class="bl-track"><span class="bl-fill" style="width:${t.pct}%;background:${t.tier === 'No declared value' ? '#9ca3af' : 'var(--brand-600,#2d7ffb)'}"></span></span>
               <span class="bl-val num">${t.vessels} &middot; ${t.value}</span>
             </div>`).join('')}
         </div>
@@ -264,12 +264,12 @@
               <tr>
                 <td class="vn">${t.tier}</td>
                 <td class="r num">${t.vessels}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${t.value}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${t.value}</td>
                 <td>${t.tier === 'No declared value' ? '<span class="pill pill-slate">Modelled estimate</span>' : '<span class="pill pill-green">Client declared</span>'}</td>
               </tr>`).join('')}
           </tbody>
         </table>`)}
-      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Aggregation figures are indicative and depend on the completeness of declared values. Region boundaries follow the Real World definition for ${R.meta.region} (${R.meta.bounds}) as at ${R.meta.generatedOn}.</p>
+      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f3f4f6;color:#9ca3af">Aggregation figures are indicative and depend on the completeness of declared values. Region boundaries follow the Real World definition for ${R.meta.region} (${R.meta.bounds}) as at ${R.meta.generatedOn}.</p>
       ${foot(8)}
     </article>`;
   }

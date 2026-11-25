@@ -217,7 +217,7 @@ function scopeSummary(d = S.draft) {
 const typeName = (id) => (REPORT_TYPES.find(t => t.id === id) || { name:'Custom' }).name;
 
 /* ── Shared bits ───────────────────────────────────────────────────────── */
-const STATUS_STYLE = { Generated:'background:#dcfce7;color:#15803d', Draft:'background:#f1f5f9;color:#475569', Scheduled:'background:#e0f2fe;color:#0369a1', Generating:'background:#fef3c7;color:#b45309' };
+const STATUS_STYLE = { Generated:'background:#dcfce7;color:#15803d', Draft:'background:#f3f4f6;color:#4b5563', Scheduled:'background:#e0f2fe;color:#0369a1', Generating:'background:#fef3c7;color:#b45309' };
 const GEN_STEPS = ['Resolving scope and filters', 'Aggregating exposure across assets', 'Building metrics and charts', 'Rendering sections', 'Finalising document'];
 let genTimer = null;
 function stopJob() { if (genTimer) { clearInterval(genTimer); genTimer = null; } }
@@ -256,10 +256,10 @@ function listView() {
     (S.fStatus === 'All' || r.status === S.fStatus));
   const th = (label, align = 'left') => `<th style="text-align:${align};padding:12px 16px;font-size:11px;font-weight:600;color:#6B7280;text-transform:uppercase;letter-spacing:.04em;background:#F9FAFB;white-space:nowrap">${label}</th>`;
   return `
-  <div class="rb-root scroll-thin" style="flex:1;min-height:0;overflow:auto;background:#f8fafc">
-    <div style="padding:16px 20px;background:#fff;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+  <div class="rb-root scroll-thin" style="flex:1;min-height:0;overflow:auto;background:#f9fafb">
+    <div style="padding:16px 20px;background:#fff;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <div style="position:relative;flex:1;min-width:220px;max-width:420px">
-        <span style="position:absolute;left:13px;top:50%;transform:translateY(-50%);display:flex;pointer-events:none">${ic('Search', 13, '#94a3b8')}</span>
+        <span style="position:absolute;left:13px;top:50%;transform:translateY(-50%);display:flex;pointer-events:none">${ic('Search', 13, '#9ca3af')}</span>
         <input id="rb-q" class="rb-search" type="text" placeholder="Search reports, scope or owner…" value="${S.q.replace(/"/g, '&quot;')}" />
       </div>
       <select id="rb-ftype" class="rb-select" style="width:158px" aria-label="Report type">
@@ -276,39 +276,39 @@ function listView() {
 
     <div style="padding:16px 20px 4px">
       <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:10px">
-        <div style="font-size:13px;font-weight:700;color:#0f172a">Start from a template</div>
-        <div style="font-size:12px;color:#94a3b8">Pre-configured for common insurance use cases</div>
+        <div style="font-size:13px;font-weight:700;color:#111827">Start from a template</div>
+        <div style="font-size:12px;color:#9ca3af">Pre-configured for common insurance use cases</div>
       </div>
       <div class="rb-tpl-grid">
         ${TEMPLATES.map(t => `
           <button class="rb-tpl" data-tpl="${t.id}">
-            <span style="display:flex;align-items:center;gap:8px;color:var(--brand-600,#2563eb)">${ic(t.icon, 15)}<span style="font-size:13px;font-weight:700;color:#0f172a">${t.name}</span></span>
-            <span style="font-size:11.5px;color:#64748b;line-height:1.45">${t.desc}</span>
-            <span style="font-size:11px;font-weight:600;color:#94a3b8">${t.sections.length} sections · ${t.metrics.length} metrics</span>
+            <span style="display:flex;align-items:center;gap:8px;color:var(--brand-600,#2563eb)">${ic(t.icon, 15)}<span style="font-size:13px;font-weight:700;color:#111827">${t.name}</span></span>
+            <span style="font-size:11.5px;color:#6b7280;line-height:1.45">${t.desc}</span>
+            <span style="font-size:11px;font-weight:600;color:#9ca3af">${t.sections.length} sections · ${t.metrics.length} metrics</span>
           </button>`).join('')}
       </div>
     </div>
 
     <div style="padding:16px 20px 20px">
-      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden">
-        <div style="padding:12px 16px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:8px">
-          <div style="font-size:13px;font-weight:700;color:#0f172a">Saved reports</div>
-          <div style="font-size:12px;color:#94a3b8">${rows.length} of ${S.reports.length}</div>
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden">
+        <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px">
+          <div style="font-size:13px;font-weight:700;color:#111827">Saved reports</div>
+          <div style="font-size:12px;color:#9ca3af">${rows.length} of ${S.reports.length}</div>
         </div>
         <div style="overflow:auto" class="scroll-thin">
           <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:940px">
-            <thead><tr style="border-bottom:1px solid #e2e8f0">
+            <thead><tr style="border-bottom:1px solid #e5e7eb">
               ${th('Report Name')}${th('Type')}${th('Scope')}${th('Owner')}${th('Last Modified')}${th('Last Generated')}${th('Status')}${th('Actions', 'right')}
             </tr></thead>
             <tbody>
-              ${rows.length === 0 ? `<tr><td colspan="8" style="padding:44px;text-align:center;color:#94a3b8">No reports match your filters.</td></tr>` : rows.map(r => `
-                <tr style="border-bottom:1px solid #f1f5f9">
+              ${rows.length === 0 ? `<tr><td colspan="8" style="padding:44px;text-align:center;color:#9ca3af">No reports match your filters.</td></tr>` : rows.map(r => `
+                <tr style="border-bottom:1px solid #f3f4f6">
                   <td style="padding:13px 16px"><button class="rb-link" data-open="${r.id}">${ic('FileText', 14, 'var(--brand-600,#2563eb)')}<span>${r.name}</span></button></td>
-                  <td style="padding:13px 16px;color:#475569;white-space:nowrap">${typeName(r.type)}</td>
-                  <td style="padding:13px 16px;color:#475569">${r.scope}</td>
-                  <td style="padding:13px 16px;color:#475569;white-space:nowrap">${r.owner}</td>
-                  <td style="padding:13px 16px;color:#475569;white-space:nowrap">${r.modified}</td>
-                  <td style="padding:13px 16px;color:#475569;white-space:nowrap">${r.generated}</td>
+                  <td style="padding:13px 16px;color:#4b5563;white-space:nowrap">${typeName(r.type)}</td>
+                  <td style="padding:13px 16px;color:#4b5563">${r.scope}</td>
+                  <td style="padding:13px 16px;color:#4b5563;white-space:nowrap">${r.owner}</td>
+                  <td style="padding:13px 16px;color:#4b5563;white-space:nowrap">${r.modified}</td>
+                  <td style="padding:13px 16px;color:#4b5563;white-space:nowrap">${r.generated}</td>
                   <td style="padding:13px 16px"><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap;${STATUS_STYLE[r.status] || STATUS_STYLE.Draft}">${r.status}</span></td>
                   <td style="padding:13px 16px;text-align:right;white-space:nowrap">
                     <span style="display:inline-flex;gap:6px">
@@ -330,19 +330,19 @@ function listView() {
 /* ── View: type picker ─────────────────────────────────────────────────── */
 function typeView() {
   return `
-  <div class="rb-root scroll-thin" style="flex:1;min-height:0;overflow:auto;background:#f8fafc">
-    <div style="padding:14px 20px;background:#fff;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:12px">
+  <div class="rb-root scroll-thin" style="flex:1;min-height:0;overflow:auto;background:#f9fafb">
+    <div style="padding:14px 20px;background:#fff;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:12px">
       ${btn('Back', 'ArrowLeft', 'back')}
-      <div><div style="font-size:14px;font-weight:700;color:#0f172a">Create report</div>
-      <div style="font-size:12px;color:#64748b">Step 1 of 2 — choose what the report is about</div></div>
+      <div><div style="font-size:14px;font-weight:700;color:#111827">Create report</div>
+      <div style="font-size:12px;color:#6b7280">Step 1 of 2 — choose what the report is about</div></div>
     </div>
     <div style="padding:20px;max-width:1080px">
       <div class="rb-type-grid">
         ${REPORT_TYPES.map(t => `
           <button class="rb-type" data-type="${t.id}">
             <span class="rb-type-ico">${ic(t.icon, 17, 'var(--brand-600,#2563eb)')}</span>
-            <span style="font-size:13.5px;font-weight:700;color:#0f172a">${t.name}</span>
-            <span style="font-size:12px;color:#64748b;line-height:1.45">${t.desc}</span>
+            <span style="font-size:13.5px;font-weight:700;color:#111827">${t.name}</span>
+            <span style="font-size:12px;color:#6b7280;line-height:1.45">${t.desc}</span>
           </button>`).join('')}
       </div>
     </div>
@@ -385,7 +385,7 @@ function filtersPanel() {
   const d = S.draft;
   return `
     <div class="rb-field"><div class="rb-field-label">Geography</div>
-      <div style="font-size:12px;color:#64748b">${d.scope.region.length || d.scope.country.length ? scopeSummary() : 'Worldwide — narrow it in Scope'}</div></div>
+      <div style="font-size:12px;color:#6b7280">${d.scope.region.length || d.scope.country.length ? scopeSummary() : 'Worldwide — narrow it in Scope'}</div></div>
     ${FILTER_DEFS.map(f => `<div class="rb-field"><div class="rb-field-label">${f.label}</div>${segmented(f.k, f.values, d.filters[f.k], `data-filter="${f.k}"`)}</div>`).join('')}`;
 }
 function metricsPanel() {
@@ -396,8 +396,8 @@ function metricsPanel() {
       <div class="rb-order">
         ${d.metrics.length === 0 ? `<div class="rb-empty">No metrics selected yet.</div>` : d.metrics.map((m, i) => `
           <div class="rb-order-row">
-            <span style="color:#cbd5e1">${ic('GripVertical', 14)}</span>
-            <span style="flex:1;font-size:12.5px;font-weight:600;color:#0f172a">${(METRICS.find(x => x.id === m) || {}).name}</span>
+            <span style="color:#d1d5db">${ic('GripVertical', 14)}</span>
+            <span style="flex:1;font-size:12.5px;font-weight:600;color:#111827">${(METRICS.find(x => x.id === m) || {}).name}</span>
             <span style="font-size:12px;font-weight:700;color:var(--brand-600,#2563eb);font-variant-numeric:tabular-nums">${metricValue(m, t)}</span>
             <button class="rb-mini" data-mup="${i}" ${i === 0 ? 'disabled' : ''} title="Move up">${ic('ChevronUp', 13)}</button>
             <button class="rb-mini" data-mdn="${i}" ${i === d.metrics.length - 1 ? 'disabled' : ''} title="Move down">${ic('ChevronDown', 13)}</button>
@@ -423,9 +423,9 @@ function sectionsPanel() {
           return `
           <div class="rb-sec${open ? ' open' : ''}">
             <div class="rb-order-row">
-              <span style="color:#cbd5e1">${ic('GripVertical', 14)}</span>
+              <span style="color:#d1d5db">${ic('GripVertical', 14)}</span>
               <span style="color:var(--brand-600,#2563eb);display:flex">${ic(def.icon, 14)}</span>
-              <span style="flex:1;font-size:12.5px;font-weight:600;color:#0f172a">${def.name}</span>
+              <span style="flex:1;font-size:12.5px;font-weight:600;color:#111827">${def.name}</span>
               <button class="rb-mini" data-sup="${i}" ${i === 0 ? 'disabled' : ''} title="Move up">${ic('ChevronUp', 13)}</button>
               <button class="rb-mini" data-sdn="${i}" ${i === d.sections.length - 1 ? 'disabled' : ''} title="Move down">${ic('ChevronDown', 13)}</button>
               <button class="rb-mini${open ? ' on' : ''}" data-scfg="${s.uid}" title="Configure">${ic('Settings2', 13)}</button>
@@ -501,12 +501,12 @@ function builderView() {
   const d = S.draft, t = tallies();
   const panel = (key, label, icon, body) => `
     <div class="rb-panel${S.panel[key] ? ' open' : ''}">
-      <button class="rb-panel-h" data-panel="${key}">${ic(icon, 14, 'var(--brand-600,#2563eb)')}<span>${label}</span>${ic(S.panel[key] ? 'ChevronUp' : 'ChevronDown', 14, '#94a3b8')}</button>
+      <button class="rb-panel-h" data-panel="${key}">${ic(icon, 14, 'var(--brand-600,#2563eb)')}<span>${label}</span>${ic(S.panel[key] ? 'ChevronUp' : 'ChevronDown', 14, '#9ca3af')}</button>
       ${S.panel[key] ? `<div class="rb-panel-b">${body}</div>` : ''}
     </div>`;
   return `
-  <div class="rb-root" style="flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:#f8fafc">
-    <div style="padding:11px 20px;background:#fff;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:12px;flex-wrap:wrap;flex-shrink:0">
+  <div class="rb-root" style="flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:#f9fafb">
+    <div style="padding:11px 20px;background:#fff;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:12px;flex-wrap:wrap;flex-shrink:0">
       ${btn('Back', 'ArrowLeft', 'back')}
       <input id="rb-name" class="rb-title-input" value="${d.name.replace(/"/g, '&quot;')}" aria-label="Report name" />
       <span class="rb-type-pill">${ic((REPORT_TYPES.find(x => x.id === d.type) || {}).icon || 'SlidersHorizontal', 13)}${typeName(d.type)}</span>
@@ -526,17 +526,17 @@ function builderView() {
         <div class="rb-livebar">
           ${[['Matching assets', fmtN(t.assets)], ['Total exposure', fmtM(t.exp)], ['Portfolios', fmtN(t.pfCnt)], ['Sections', String(d.sections.length)]].map(([l, v]) => `
             <div class="rb-live"><span>${l}</span><strong>${v}</strong></div>`).join('')}
-          <span style="margin-left:auto;font-size:11.5px;color:#94a3b8">${t.source} · matching this configuration</span>
+          <span style="margin-left:auto;font-size:11.5px;color:#9ca3af">${t.source} · matching this configuration</span>
         </div>
         <div class="rb-page">
           <div class="rb-page-head">
             <div>
-              <div style="font-size:17px;font-weight:800;color:#0f172a;letter-spacing:-.01em">${d.name}</div>
-              <div style="font-size:11.5px;color:#64748b;margin-top:3px">${typeName(d.type)} report · ${scopeSummary()} · ${d.scope.from} → ${d.scope.to}</div>
+              <div style="font-size:17px;font-weight:800;color:#111827;letter-spacing:-.01em">${d.name}</div>
+              <div style="font-size:11.5px;color:#6b7280;margin-top:3px">${typeName(d.type)} report · ${scopeSummary()} · ${d.scope.from} → ${d.scope.to}</div>
             </div>
-            <div style="font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em">Skytek RealWorld</div>
+            <div style="font-size:10.5px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em">Skytek RealWorld</div>
           </div>
-          <div class="rb-note">${ic('Info', 14, '#64748b')}<span><strong>Structure only.</strong> Charts, tables and maps are populated when the report is generated — aggregation across ${fmtN(t.assets)} assets runs as a background job.</span></div>
+          <div class="rb-note">${ic('Info', 14, '#6b7280')}<span><strong>Structure only.</strong> Charts, tables and maps are populated when the report is generated — aggregation across ${fmtN(t.assets)} assets runs as a background job.</span></div>
           ${d.sections.length === 0
             ? `<div class="rb-empty" style="padding:34px;text-align:center">Add sections in the left rail to build the report structure.</div>`
             : d.sections.map((s, i) => sectionOutline(s, i)).join('')}
@@ -562,7 +562,7 @@ function genOverlay() {
   const body = g.stage === 'summary' ? `
     <div class="rb-modal-b">
       <table style="width:100%;border-collapse:collapse;font-size:12.5px">
-        ${rowsSummary.map(([k, v]) => `<tr><td style="padding:9px 0;width:150px;color:#64748b;vertical-align:top">${k}</td><td style="padding:9px 0;color:#0f172a;font-weight:600">${v}</td></tr>`).join('')}
+        ${rowsSummary.map(([k, v]) => `<tr><td style="padding:9px 0;width:150px;color:#6b7280;vertical-align:top">${k}</td><td style="padding:9px 0;color:#111827;font-weight:600">${v}</td></tr>`).join('')}
       </table>
     </div>
     <div class="rb-modal-f">${btn('Cancel', '', 'genclose')}${btn('Generate', 'Play', 'genrun', 'primary')}</div>`
@@ -570,14 +570,14 @@ function genOverlay() {
     <div class="rb-modal-b">
       <div style="display:flex;align-items:center;gap:11px">
         <div class="rb-spin"></div>
-        <div><div style="font-size:13px;font-weight:700;color:#0f172a">Generating ${d.name}</div>
-        <div style="font-size:12px;color:#64748b">Aggregating ${fmtN(t.assets)} assets across ${d.sections.length} sections — this can take a few minutes.</div></div>
+        <div><div style="font-size:13px;font-weight:700;color:#111827">Generating ${d.name}</div>
+        <div style="font-size:12px;color:#6b7280">Aggregating ${fmtN(t.assets)} assets across ${d.sections.length} sections — this can take a few minutes.</div></div>
       </div>
       <div class="rb-prog"><span style="width:${Math.round((g.step + 1) / GEN_STEPS.length * 100)}%"></span></div>
       <div class="rb-steps">
-        ${GEN_STEPS.map((s, i) => `<div class="rb-step${i < g.step ? ' done' : i === g.step ? ' now' : ''}">${i < g.step ? ic('Check', 12, '#16a34a', 3) : i === g.step ? ic('Loader', 12, 'var(--brand-600,#2563eb)') : ic('Circle', 12, '#cbd5e1')}<span>${s}</span></div>`).join('')}
+        ${GEN_STEPS.map((s, i) => `<div class="rb-step${i < g.step ? ' done' : i === g.step ? ' now' : ''}">${i < g.step ? ic('Check', 12, '#16a34a', 3) : i === g.step ? ic('Loader', 12, 'var(--brand-600,#2563eb)') : ic('Circle', 12, '#d1d5db')}<span>${s}</span></div>`).join('')}
       </div>
-      <div style="margin-top:12px;font-size:11.5px;color:#94a3b8">You can leave this running — the report appears in Saved reports when it completes.</div>
+      <div style="margin-top:12px;font-size:11.5px;color:#9ca3af">You can leave this running — the report appears in Saved reports when it completes.</div>
     </div>
     <div class="rb-modal-f">${btn('Run in background', 'Minimize2', 'genbg')}${btn('Cancel job', '', 'gencancel')}</div>` : `
     <div class="rb-modal-b">
@@ -589,14 +589,14 @@ function genOverlay() {
       <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:14px">
         ${[['View Report', 'Eye', 'view'], ['Download PDF', 'Download', 'pdf'], ['Export Excel', 'Sheet', 'xls'], ['Share', 'Share2', 'share']].map(([l, i, a]) => `<button class="rb-btn rb-btn-ghost" data-act="post-${a}" style="justify-content:center">${ic(i, 14)}${l}</button>`).join('')}
       </div>
-      ${g.toast ? `<div style="margin-top:10px;font-size:12px;color:#64748b">${g.toast}</div>` : ''}
+      ${g.toast ? `<div style="margin-top:10px;font-size:12px;color:#6b7280">${g.toast}</div>` : ''}
     </div>
     <div class="rb-modal-f">${btn('Close', '', 'genclose')}${btn('Save Report', 'Save', 'savedone', 'primary')}</div>`;
   return `
   <div class="rb-overlay" data-act="overlay">
     <div class="rb-modal" data-stop="1">
       <div class="rb-modal-h">
-        <span style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#0f172a">${ic('FileText', 15, 'var(--brand-600,#2563eb)')}${g.stage === 'done' ? 'Report ready' : 'Generate report'}</span>
+        <span style="display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#111827">${ic('FileText', 15, 'var(--brand-600,#2563eb)')}${g.stage === 'done' ? 'Report ready' : 'Generate report'}</span>
         <button class="rb-icon-btn" data-act="genclose" title="Close">${ic('X', 14)}</button>
       </div>
       ${body}
@@ -606,54 +606,54 @@ function genOverlay() {
 
 /* ── Styles ────────────────────────────────────────────────────────────── */
 const CSS = `
-.rb-root{font-size:13px;color:#0f172a}
+.rb-root{font-size:13px;color:#111827}
 .rb-btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:8px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;transition:background .15s,border-color .15s,opacity .15s;white-space:nowrap}
-.rb-btn-ghost{background:#fff;border:1px solid #e2e8f0;color:#334155}
-.rb-btn-ghost:hover{background:#f8fafc;border-color:#cbd5e1}
+.rb-btn-ghost{background:#fff;border:1px solid #e5e7eb;color:#374151}
+.rb-btn-ghost:hover{background:#f9fafb;border-color:#d1d5db}
 .rb-btn-primary{background:var(--brand-600,#2563eb);border:1px solid var(--brand-600,#2563eb);color:#fff}
 .rb-btn-primary:hover{background:var(--brand-700,#1d4ed8)}
-.rb-icon-btn{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#475569;cursor:pointer}
-.rb-icon-btn:hover{background:#f8fafc;border-color:#cbd5e1}
+.rb-icon-btn{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#4b5563;cursor:pointer}
+.rb-icon-btn:hover{background:#f9fafb;border-color:#d1d5db}
 .rb-icon-btn.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626}
 .rb-link{display:inline-flex;align-items:center;gap:8px;background:0;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:var(--brand-600,#2563eb);cursor:pointer}
 .rb-link:hover span{text-decoration:underline}
-.rb-search{width:100%;height:34px;padding:0 12px 0 34px;border:1px solid #e2e8f0;border-radius:9999px;font-family:inherit;font-size:13px;color:#334155;background:#f8fafc;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
+.rb-search{width:100%;height:34px;padding:0 12px 0 34px;border:1px solid #e5e7eb;border-radius:9999px;font-family:inherit;font-size:13px;color:#374151;background:#f9fafb;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
 .rb-search:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12);background:#fff}
-.rb-select{height:34px;border:1px solid #e2e8f0;border-radius:8px;padding:0 28px 0 10px;font-family:inherit;font-size:12.5px;font-weight:600;color:#334155;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none}
+.rb-select{height:34px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 10px;font-family:inherit;font-size:12.5px;font-weight:600;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none}
 .rb-tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:10px}
-.rb-tpl{display:flex;flex-direction:column;gap:6px;align-items:flex-start;text-align:left;padding:13px 14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s}
+.rb-tpl{display:flex;flex-direction:column;gap:6px;align-items:flex-start;text-align:left;padding:13px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s}
 .rb-tpl:hover{border-color:var(--brand-300,#93c5fd);box-shadow:0 2px 10px rgba(37,99,235,.1)}
 .rb-type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.rb-type{display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;padding:16px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s,transform .15s}
+.rb-type{display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;padding:16px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s,transform .15s}
 .rb-type:hover{border-color:var(--brand-300,#93c5fd);box-shadow:0 4px 14px rgba(37,99,235,.1)}
 .rb-type-ico{width:34px;height:34px;border-radius:10px;background:var(--brand-50,#eff6ff);display:flex;align-items:center;justify-content:center}
 .rb-body{flex:1;min-height:0;display:grid;grid-template-columns:352px minmax(0,1fr)}
-@supports (-moz-appearance:none){.rb-body,.rb-rail,.rb-canvas-wrap,.rb-list{scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}}
-.rb-rail{border-right:1px solid #e2e8f0;background:#fff;overflow:auto;min-height:0}
-.rb-panel{border-bottom:1px solid #f1f5f9}
-.rb-panel-h{width:100%;display:flex;align-items:center;gap:8px;padding:12px 16px;background:0;border:0;font-family:inherit;font-size:12.5px;font-weight:700;color:#0f172a;cursor:pointer;text-align:left}
+@supports (-moz-appearance:none){.rb-body,.rb-rail,.rb-canvas-wrap,.rb-list{scrollbar-width:thin;scrollbar-color:#d1d5db transparent}}
+.rb-rail{border-right:1px solid #e5e7eb;background:#fff;overflow:auto;min-height:0}
+.rb-panel{border-bottom:1px solid #f3f4f6}
+.rb-panel-h{width:100%;display:flex;align-items:center;gap:8px;padding:12px 16px;background:0;border:0;font-family:inherit;font-size:12.5px;font-weight:700;color:#111827;cursor:pointer;text-align:left}
 .rb-panel-h span{flex:1}
-.rb-panel-h:hover{background:#f8fafc}
+.rb-panel-h:hover{background:#f9fafb}
 .rb-panel-b{padding:2px 16px 14px;display:flex;flex-direction:column;gap:12px}
-.rb-field-label{font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.rb-list{max-height:172px;overflow:auto;border:1px solid #e2e8f0;border-radius:10px}
-.rb-opt{width:100%;display:flex;align-items:center;gap:9px;padding:8px 10px;background:0;border:0;border-bottom:1px solid #f1f5f9;font-family:inherit;font-size:12.5px;color:#334155;cursor:pointer;text-align:left}
+.rb-field-label{font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.rb-list{max-height:172px;overflow:auto;border:1px solid #e5e7eb;border-radius:10px}
+.rb-opt{width:100%;display:flex;align-items:center;gap:9px;padding:8px 10px;background:0;border:0;border-bottom:1px solid #f3f4f6;font-family:inherit;font-size:12.5px;color:#374151;cursor:pointer;text-align:left}
 .rb-opt:last-child{border-bottom:0}
-.rb-opt:hover{background:#f8fafc}
+.rb-opt:hover{background:#f9fafb}
 .rb-opt span:nth-child(2){flex:1}
-.rb-opt-meta{font-size:11px;font-weight:600;color:#94a3b8;font-variant-numeric:tabular-nums}
-.rb-cb{width:16px;height:16px;border-radius:4px;border:1.5px solid #cbd5e1;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rb-opt-meta{font-size:11px;font-weight:600;color:#9ca3af;font-variant-numeric:tabular-nums}
+.rb-cb{width:16px;height:16px;border-radius:4px;border:1.5px solid #d1d5db;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .rb-cb.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
-.rb-input{flex:1;min-width:0;height:32px;border:1px solid #e2e8f0;border-radius:8px;padding:0 8px;font-family:inherit;font-size:12.5px;color:#334155;background:#f8fafc;outline:none}
+.rb-input{flex:1;min-width:0;height:32px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-family:inherit;font-size:12.5px;color:#374151;background:#f9fafb;outline:none}
 .rb-input:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 2px rgba(37,99,235,.1);background:#fff}
-.rb-seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:3px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px}
-.rb-seg-b{height:24px;padding:0 10px;border:0;border-radius:9999px;background:0;font-family:inherit;font-size:11.5px;font-weight:600;color:#64748b;cursor:pointer;transition:background .15s,color .15s}
-.rb-seg-b:hover{color:#0f172a}
+.rb-seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:3px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
+.rb-seg-b{height:24px;padding:0 10px;border:0;border-radius:9999px;background:0;font-family:inherit;font-size:11.5px;font-weight:600;color:#6b7280;cursor:pointer;transition:background .15s,color .15s}
+.rb-seg-b:hover{color:#111827}
 .rb-seg-b.on{background:var(--brand-600,#2563eb);color:#fff}
 .rb-order{display:flex;flex-direction:column;gap:6px}
-.rb-order-row{display:flex;align-items:center;gap:7px;padding:7px 9px;background:#fff;border:1px solid #e2e8f0;border-radius:9px}
-.rb-mini{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#475569;cursor:pointer;flex-shrink:0}
-.rb-mini:hover{background:#f1f5f9}
+.rb-order-row{display:flex;align-items:center;gap:7px;padding:7px 9px;background:#fff;border:1px solid #e5e7eb;border-radius:9px}
+.rb-mini{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;border-radius:6px;background:#fff;color:#4b5563;cursor:pointer;flex-shrink:0}
+.rb-mini:hover{background:#f3f4f6}
 .rb-mini.on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:var(--brand-600,#2563eb)}
 .rb-mini:disabled{opacity:.35;cursor:not-allowed}
 .rb-mini.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626}
@@ -662,42 +662,42 @@ const CSS = `
 .rb-sec.open .rb-order-row{border-color:transparent;background:transparent}
 .rb-sec-cfg{padding:0 10px 10px;display:flex;flex-direction:column;gap:8px}
 .rb-cfg-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.rb-cfg-label{font-size:11.5px;font-weight:600;color:#475569;min-width:88px}
-.rb-chip-add{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border:1px dashed #cbd5e1;border-radius:9999px;background:#fff;font-family:inherit;font-size:11.5px;font-weight:600;color:#475569;cursor:pointer}
+.rb-cfg-label{font-size:11.5px;font-weight:600;color:#4b5563;min-width:88px}
+.rb-chip-add{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border:1px dashed #d1d5db;border-radius:9999px;background:#fff;font-family:inherit;font-size:11.5px;font-weight:600;color:#4b5563;cursor:pointer}
 .rb-chip-add:hover{border-color:var(--brand-400,#60a5fa);color:var(--brand-700,#1d4ed8);background:var(--brand-50,#eff6ff)}
-.rb-empty{font-size:12px;color:#94a3b8}
-.rb-title-input{height:32px;min-width:200px;max-width:340px;border:1px solid transparent;border-radius:8px;padding:0 8px;font-family:inherit;font-size:14px;font-weight:700;color:#0f172a;background:0;outline:none}
-.rb-title-input:hover{background:#f8fafc}
+.rb-empty{font-size:12px;color:#9ca3af}
+.rb-title-input{height:32px;min-width:200px;max-width:340px;border:1px solid transparent;border-radius:8px;padding:0 8px;font-family:inherit;font-size:14px;font-weight:700;color:#111827;background:0;outline:none}
+.rb-title-input:hover{background:#f9fafb}
 .rb-title-input:focus{background:#fff;border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
 .rb-type-pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:9999px;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11.5px;font-weight:700}
 .rb-canvas-wrap{overflow:auto;min-height:0;padding:14px 18px 24px}
-.rb-livebar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:10px 14px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:14px}
+.rb-livebar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:10px 14px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:14px}
 .rb-live{display:flex;flex-direction:column;gap:1px}
-.rb-live span{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em}
-.rb-live strong{font-size:15px;font-weight:800;color:#0f172a;font-variant-numeric:tabular-nums}
-.rb-page{max-width:820px;margin:0 auto;background:#fff;border:1px solid #e2e8f0;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);padding:22px 26px 26px}
-.rb-page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:2px solid #0f172a;margin-bottom:6px}
-.rb-pv-sec{padding:16px 0;border-bottom:1px solid #f1f5f9}
+.rb-live span{font-size:10.5px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em}
+.rb-live strong{font-size:15px;font-weight:800;color:#111827;font-variant-numeric:tabular-nums}
+.rb-page{max-width:820px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);padding:22px 26px 26px}
+.rb-page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:2px solid #111827;margin-bottom:6px}
+.rb-pv-sec{padding:16px 0;border-bottom:1px solid #f3f4f6}
 .rb-pv-sec:last-child{border-bottom:0;padding-bottom:0}
-.rb-pv-h{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
-.rb-pv-p{font-size:12.5px;line-height:1.6;color:#334155;margin-bottom:8px;text-wrap:pretty}
-.rb-pv-p strong{color:#0f172a;font-weight:700}
-.rb-pv-hl{display:flex;flex-direction:column;gap:3px;padding:10px 12px;background:#f8fafc;border-radius:9px}
-.rb-pv-hl span{display:flex;align-items:center;gap:2px;font-size:12px;color:#475569}
-.rb-pv-tile{display:flex;flex-direction:column;gap:3px;padding:11px 12px;background:#f8fafc;border:1px solid #eef2f6;border-radius:10px}
-.rb-pv-tile span{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.04em}
-.rb-pv-tile strong{font-size:16px;font-weight:800;color:#0f172a;font-variant-numeric:tabular-nums}
-.rb-note{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;margin:12px 0 4px;background:#f8fafc;border:1px solid #eef2f6;border-radius:10px;font-size:11.5px;line-height:1.5;color:#64748b}
-.rb-note strong{color:#334155;font-weight:700}
-.rb-ol{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid #f1f5f9}
+.rb-pv-h{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.rb-pv-p{font-size:12.5px;line-height:1.6;color:#374151;margin-bottom:8px;text-wrap:pretty}
+.rb-pv-p strong{color:#111827;font-weight:700}
+.rb-pv-hl{display:flex;flex-direction:column;gap:3px;padding:10px 12px;background:#f9fafb;border-radius:9px}
+.rb-pv-hl span{display:flex;align-items:center;gap:2px;font-size:12px;color:#4b5563}
+.rb-pv-tile{display:flex;flex-direction:column;gap:3px;padding:11px 12px;background:#f9fafb;border:1px solid #eef2f6;border-radius:10px}
+.rb-pv-tile span{font-size:10.5px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em}
+.rb-pv-tile strong{font-size:16px;font-weight:800;color:#111827;font-variant-numeric:tabular-nums}
+.rb-note{display:flex;align-items:flex-start;gap:8px;padding:10px 12px;margin:12px 0 4px;background:#f9fafb;border:1px solid #eef2f6;border-radius:10px;font-size:11.5px;line-height:1.5;color:#6b7280}
+.rb-note strong{color:#374151;font-weight:700}
+.rb-ol{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid #f3f4f6}
 .rb-ol:last-child{border-bottom:0;padding-bottom:2px}
-.rb-ol-num{width:22px;height:22px;flex-shrink:0;border-radius:6px;background:#f1f5f9;color:#64748b;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.rb-ol-num{width:22px;height:22px;flex-shrink:0;border-radius:6px;background:#f3f4f6;color:#6b7280;font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
 .rb-ol-main{flex:1;min-width:0}
-.rb-ol-t{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#0f172a}
-.rb-ol-d{font-size:11.5px;color:#64748b;margin-top:3px;line-height:1.45;text-wrap:pretty}
+.rb-ol-t{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#111827}
+.rb-ol-d{font-size:11.5px;color:#6b7280;margin-top:3px;line-height:1.45;text-wrap:pretty}
 .rb-ol-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
-.rb-ol-chip{font-size:10.5px;color:#64748b;background:#f8fafc;border:1px solid #eef2f6;border-radius:999px;padding:2px 8px}
-.rb-ol-chip strong{color:#334155;font-weight:700}
+.rb-ol-chip{font-size:10.5px;color:#6b7280;background:#f9fafb;border:1px solid #eef2f6;border-radius:999px;padding:2px 8px}
+.rb-ol-chip strong{color:#374151;font-weight:700}
 .rb-ol-skel{width:172px;flex-shrink:0;display:flex;flex-direction:column;gap:6px}
 .rb-sk{display:flex;flex-direction:column;gap:5px}
 .rb-sk span{display:block;height:7px;border-radius:999px;background:#eef2f6}
@@ -705,26 +705,26 @@ const CSS = `
 .rb-sk-tiles span{flex:1;height:34px;border-radius:8px;background:#eef2f6}
 .rb-sk-chart{display:flex;align-items:flex-end;gap:5px;height:44px}
 .rb-sk-chart span{flex:1;border-radius:3px 3px 0 0;background:#eef2f6}
-.rb-sk-map{height:52px;border-radius:8px;background:#f8fafc;background-image:linear-gradient(rgba(15,23,42,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.05) 1px,transparent 1px);background-size:14px 14px;border:1px solid #eef2f6}
-.rb-prog{height:6px;border-radius:999px;background:#f1f5f9;overflow:hidden;margin:14px 0 12px}
+.rb-sk-map{height:52px;border-radius:8px;background:#f9fafb;background-image:linear-gradient(rgba(15,23,42,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(15,23,42,.05) 1px,transparent 1px);background-size:14px 14px;border:1px solid #eef2f6}
+.rb-prog{height:6px;border-radius:999px;background:#f3f4f6;overflow:hidden;margin:14px 0 12px}
 .rb-prog span{display:block;height:100%;border-radius:999px;background:var(--brand-600,#2563eb);transition:width .5s ease}
 .rb-steps{display:flex;flex-direction:column;gap:7px}
-.rb-step{display:flex;align-items:center;gap:8px;font-size:12px;color:#94a3b8}
-.rb-step.done{color:#475569}
-.rb-step.now{color:#0f172a;font-weight:600}
+.rb-step{display:flex;align-items:center;gap:8px;font-size:12px;color:#9ca3af}
+.rb-step.done{color:#4b5563}
+.rb-step.now{color:#111827;font-weight:600}
 .rb-job{display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 10px;border-radius:999px;background:#fef3c7;border:1px solid #fde68a;color:#b45309;font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit}
 .rb-overlay{position:fixed;inset:0;background:rgba(15,23,42,.42);display:flex;align-items:center;justify-content:center;padding:20px;z-index:900}
 .rb-modal{width:100%;max-width:520px;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(15,23,42,.25);overflow:hidden}
-.rb-modal-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #f1f5f9}
+.rb-modal-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #f3f4f6}
 .rb-modal-b{padding:16px}
-.rb-modal-f{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;background:#f8fafc;border-top:1px solid #f1f5f9}
-.rb-spin{width:30px;height:30px;margin:0 auto;border-radius:50%;border:3px solid #e2e8f0;border-top-color:var(--brand-600,#2563eb);animation:rb-rot .8s linear infinite}
+.rb-modal-f{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;background:#f9fafb;border-top:1px solid #f3f4f6}
+.rb-spin{width:30px;height:30px;margin:0 auto;border-radius:50%;border:3px solid #e5e7eb;border-top-color:var(--brand-600,#2563eb);animation:rb-rot .8s linear infinite}
 @keyframes rb-rot{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.rb-spin{animation-duration:2.4s}}
 @media (max-width:1080px){
 .rb-body{display:block;overflow:auto}
 .rb-rail,.rb-canvas-wrap{overflow:visible;height:auto;min-height:auto;max-height:none}
-.rb-rail{border-right:0;border-bottom:1px solid #e2e8f0}
+.rb-rail{border-right:0;border-bottom:1px solid #e5e7eb}
 .rb-list{max-height:none}
 }
 `;

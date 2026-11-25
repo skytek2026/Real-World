@@ -156,7 +156,7 @@
                 <td class="r"><span class="delta-up num">+${x.over} (${x.overPct})</span></td>
                 <td class="r num">${x.hours}</td>
                 <td class="r num">${x.excessValue}</td>
-                <td style="font-weight:600;color:#0f172a">${x.action}</td>
+                <td style="font-weight:600;color:#111827">${x.action}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, P.breachNote)}
@@ -168,7 +168,7 @@
             <div class="bl-row">
               <span class="bl-name">${x.region}</span>
               <span class="bl-track" style="position:relative">
-                <span class="bl-fill" style="width:${w}%;background:#cbd5e1"></span>
+                <span class="bl-fill" style="width:${w}%;background:#d1d5db"></span>
                 <span class="bl-fill" style="position:absolute;top:0;left:${w}%;width:${100 - w}%;background:${x.tone}"></span>
               </span>
               <span class="bl-val num">${x.overPct} over</span>
@@ -240,7 +240,7 @@
                 <td class="r num" style="font-weight:700;color:var(--brand-600,#2d7ffb)">${i + 1}</td>
                 <td class="vn">${x.region}</td>
                 <td class="r num">${x.vessels} / ${x.limit}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${x.value}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${x.value}</td>
                 <td class="r num">${x.share}%</td>
                 <td class="r">${scoreChip(x.avgRisk)}</td>
                 <td><span class="pill ${x.status === 'Over limit' ? 'pill-red' : 'pill-green'}">${x.status}</span></td>
@@ -281,14 +281,14 @@
                 <td>${vStack(v.name, v.imo, v.type)}</td>
                 <td>${flag(v.flag)}</td>
                 <td class="r">${scoreChip(v.score)}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${v.value}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${v.value}</td>
                 <td><span class="pill ${v.basis === 'Declared' ? 'pill-green' : 'pill-amber'}">${v.basis}</span></td>
                 <td class="r num">${v.dwell}</td>
               </tr>`).join('')}
             <tr>
-              <td class="vn" style="color:#64748b">${c.othersCount} further vessels</td>
+              <td class="vn" style="color:#6b7280">${c.othersCount} further vessels</td>
               <td></td><td class="r"></td>
-              <td class="r num" style="color:#64748b">${c.othersValue}</td>
+              <td class="r num" style="color:#6b7280">${c.othersValue}</td>
               <td></td><td class="r"></td>
             </tr>
           </tbody>

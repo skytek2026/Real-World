@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FRESH BREEZE — Voyage History — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
   html, body { height:100%; }
   body { font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
   .text-ink-900 { color:#111827; } .text-ink-800 { color:#1f2937; } .text-ink-700 { color:#374151; }
-  .text-ink-600 { color:#475569; } .text-ink-500 { color:#6b7280; } .text-ink-400 { color:#9ca3af; }
+  .text-ink-600 { color:#4b5563; } .text-ink-500 { color:#6b7280; } .text-ink-400 { color:#9ca3af; }
   .text-ink-300 { color:#d1d5db; }
   .bg-ink-100 { background:#f3f4f6; } .bg-ink-50 { background:#f9fafb; }
   .border-ink-100 { border-color:#f3f4f6; } .border-ink-200 { border-color:#e5e7eb; }
@@ -44,7 +44,7 @@
   /* DS primary button */
   .btn-primary { display:inline-flex; align-items:center; gap:7px; height:36px; padding:0 16px; background:var(--brand-600,#2d7ffb); color:#fff; border:0; border-radius:8px; font-size:13px; font-weight:600; font-family:inherit; cursor:pointer; transition:background .14s ease; }
   .btn-primary:hover { background:var(--brand-500,#51a2fc); }
-  .icon-btn { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; color:#475569; cursor:pointer; transition:background .14s,color .14s,border-color .14s; }
+  .icon-btn { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; color:#4b5563; cursor:pointer; transition:background .14s,color .14s,border-color .14s; }
   .icon-btn:hover { background:#f9fafb; color:#111827; }
   .icon-btn.is-on { background:var(--brand-050,#eff6ff); border-color:var(--brand-300,#bfdbfe); color:var(--brand-600,#2d7ffb); }
   /* Tables */
@@ -111,8 +111,8 @@
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
   @media (max-width:720px){ .voy-overlay .voy-overlay-row { flex-direction:column !important; align-items:stretch !important; gap:10px !important; } }
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
-  /* canvas: same as the Dashboard (ink-100 #f1f5f9), light mode only */
-  html:not([data-theme="dark"]) body{background:#f1f5f9}
+  /* canvas: same as the Dashboard (ink-100 #f3f4f6), light mode only */
+  html:not([data-theme="dark"]) body{background:#f3f4f6}
 </style>
 
 
@@ -132,7 +132,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -141,8 +141,8 @@ let state = { tab:'Voyage Stats', chartType:'donut', showDetails:false, perPage:
 
 /* ===================== DS CHART COLORS (categorical palette) =====================
    Per Skytek DS categorical palette — select by role, never arbitrary hex:
-   cat-8 slate (#475569), cat-1 blue (#2d7ffb), cat-5 pink (#DB2777). */
-const CAT = { portVisit:'#475569', loitering:'#2d7ffb', traveling:'#DB2777' };
+   cat-8 slate (#4b5563), cat-1 blue (#2d7ffb), cat-5 pink (#DB2777). */
+const CAT = { portVisit:'#4b5563', loitering:'#2d7ffb', traveling:'#DB2777' };
 
 /* ===================== DATA ===================== */
 const TOP_TABS = [
@@ -558,7 +558,7 @@ function eventsCard() {
 /* ===================== CONTENT ===================== */
 function Content() {
   return `
-  <main class="flex-1 min-w-0 overflow-y-auto scroll-thin" style="background:#f1f5f9;">
+  <main class="flex-1 min-w-0 overflow-y-auto scroll-thin" style="background:#f3f4f6;">
     <div class="w-full" style="padding:20px 24px 40px;">
       <div class="flex items-center justify-between gap-3 mb-4">
         <div>
@@ -610,7 +610,7 @@ function initMap() {
   // Remaining (dashed) current → Rotterdam
   L.polyline([current, [12.0, 60.0], [12.5, 43.0], [30.0, 32.5], [37.0, 11.0], rotterdam], { color:'#2d7ffb', weight:2.5, opacity:0.7, dashArray:'7 6' }).addTo(map);
   const pin = (color) => L.divIcon({ className:'', html:`<div style="width:11px;height:11px;background:${color};border:2px solid #fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.3)"></div>`, iconSize:[11,11], iconAnchor:[5,5] });
-  L.marker(singapore, { icon:pin('#475569') }).addTo(map).bindPopup('Singapore (departure)');
+  L.marker(singapore, { icon:pin('#4b5563') }).addTo(map).bindPopup('Singapore (departure)');
   L.marker(rotterdam, { icon:pin('#111827') }).addTo(map).bindPopup('Rotterdam (destination)');
   const vesselIcon = L.divIcon({ className:'', html:`<div style="width:15px;height:15px;background:var(--brand-600,#2d7ffb);border:3px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(45,127,251,.6)"></div>`, iconSize:[15,15], iconAnchor:[7,7] });
   const popHtml = `

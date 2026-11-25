@@ -26,27 +26,27 @@
     s.textContent = `
       .rw-grp-search {
         width:100%; border:1px solid #d1d5db; border-radius:4px; padding:7px 10px;
-        font:inherit; font-size:13px; color:#0f172a; background:#fff;
+        font:inherit; font-size:13px; color:#111827; background:#fff;
         transition:border-color 120ms, box-shadow 120ms;
       }
       .rw-grp-search:focus { outline:none; border-color:var(--brand-400,#60a5fa); box-shadow:0 0 0 3px rgba(37,99,235,.10); }
       .rw-grp-list {
         margin-top:10px; max-height:280px; overflow-y:auto;
-        border:1px solid #e2e8f0; border-radius:4px; background:#fff;
+        border:1px solid #e5e7eb; border-radius:4px; background:#fff;
       }
       .rw-grp-list::-webkit-scrollbar { width:8px; }
       .rw-grp-list::-webkit-scrollbar-thumb { background:var(--brand-300,#93c5fd); border-radius:4px; }
       .rw-grp-row {
         display:flex; align-items:center; gap:10px;
-        padding:10px 12px; border-bottom:1px solid #f1f5f9;
+        padding:10px 12px; border-bottom:1px solid #f3f4f6;
         cursor:pointer; transition:background 100ms;
       }
       .rw-grp-row:last-child { border-bottom:0; }
-      .rw-grp-row:nth-child(even) { background:#f8fafc; }
+      .rw-grp-row:nth-child(even) { background:#f9fafb; }
       .rw-grp-row:hover { background:#eff6ff; }
       .rw-grp-row input[type="checkbox"] {
         appearance:none; -webkit-appearance:none;
-        width:18px; height:18px; border:1px solid #cbd5e1; border-radius:3px; background:#fff;
+        width:18px; height:18px; border:1px solid #d1d5db; border-radius:3px; background:#fff;
         cursor:pointer; position:relative; flex-shrink:0;
         transition:background 120ms, border-color 120ms;
       }
@@ -56,7 +56,7 @@
         border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);
       }
       .rw-grp-row label { font-size:13px; color:var(--brand-600,#2563eb); cursor:pointer; flex:1; }
-      .rw-grp-empty   { padding:18px; text-align:center; font-size:13px; color:#94a3b8; }
+      .rw-grp-empty   { padding:18px; text-align:center; font-size:13px; color:#9ca3af; }
     `;
     document.head.appendChild(s);
   }
@@ -92,7 +92,7 @@
               <label class="rw-modal-label" for="epg-title"><strong>Group</strong> Title:</label>
               <input id="epg-title" type="text" class="rw-modal-input" value="${escapeHtml(title)}" />
             </div>
-            <div style="font-size:13px;color:#475569;margin:14px 0 6px;">Select Portfolios to add to group:</div>
+            <div style="font-size:13px;color:#4b5563;margin:14px 0 6px;">Select Portfolios to add to group:</div>
             <input id="epg-search" type="text" class="rw-grp-search" placeholder="Search" />
             <div class="rw-grp-list" id="epg-list"></div>
           </div>

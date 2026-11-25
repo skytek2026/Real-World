@@ -10,6 +10,37 @@
   });
 })();
 
+/* Skytek Design System tokens, app-wide: canvas (#F5F7FA, light mode) and the Exo display font for headings.
+   The brand ramp comes from the accent palette ('sky' = the DS ramp); greys are the DS slate scale. */
+(function () {
+  if (window.__rwDsTokens) return; window.__rwDsTokens = true;
+  try {
+    if (!document.querySelector('link[href*="family=Exo"]')) {
+      const l = document.createElement('link'); l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Exo:wght@500;600;700&display=swap';
+      document.head.appendChild(l);
+    }
+    const st = document.createElement('style'); st.id = 'rw-ds-tokens';
+    st.textContent = `
+      :root { --bg-canvas:#F5F7FA; --font-display:"Exo","Inter",system-ui,-apple-system,"Segoe UI",sans-serif; }
+      html:not([data-theme="dark"]) .rw-canvas { background-color:var(--bg-canvas) !important; }
+      h1, h2, h3, h4, .t-display, .t-h1, .t-h2, .t-h3, .t-h4, .card-title, .ds-rcard-title, .ds-popover-title,
+      .ds-fdrawer-head, .ds-vessel-label, .vp-title, .vp-port-code, .vp-cta, .asset-identity-name { font-family:var(--font-display); }
+    `;
+    document.head.appendChild(st);
+  } catch (e) {}
+  // canvas: the element painting the page background in the DS muted grey (#F3F4F6) is the canvas
+  const CANVAS_GREY = 'rgb(243, 244, 246)';
+  function markCanvas() {
+    const main = document.querySelector('main');
+    [document.body, document.getElementById('app'), main && main.parentElement, main].forEach(el => {
+      if (el && !el.classList.contains('rw-canvas') && getComputedStyle(el).backgroundColor === CANVAS_GREY) el.classList.add('rw-canvas');
+    });
+  }
+  const run = () => { markCanvas(); setTimeout(markCanvas, 400); setTimeout(markCanvas, 1500); };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+
 /* Cache version: clears stale localStorage on first load of new version */
 try {
   if (localStorage.getItem('rw_cv') !== '3') {
@@ -194,14 +225,14 @@ function Sidebar() {
           <span class="shrink-0 flex items-center justify-center w-7 h-7 nav-ico">${I[item.icon]}</span>
           <span class="nav-label truncate hidden text-sm font-medium">${item.label}</span>
           ${item.badge?`<span class="absolute top-1.5 left-7 h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>`:''}
-          <span class="nav-tip pointer-events-none fixed whitespace-nowrap rounded-lg text-white text-[13px] font-semibold px-3.5 py-2 transition-opacity" style="background:#0f172a; box-shadow:0 4px 12px rgba(15,23,42,.25); z-index:99999; opacity:0; pointer-events:none;">
+          <span class="nav-tip pointer-events-none fixed whitespace-nowrap rounded-lg text-white text-[13px] font-semibold px-3.5 py-2 transition-opacity" style="background:#111827; box-shadow:0 4px 12px rgba(15,23,42,.25); z-index:99999; opacity:0; pointer-events:none;">
             ${item.label}
-            <span aria-hidden="true" class="absolute top-1/2 -translate-y-1/2" style="left:-5px; width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:6px solid #0f172a;"></span>
+            <span aria-hidden="true" class="absolute top-1/2 -translate-y-1/2" style="left:-5px; width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:6px solid #111827;"></span>
           </span>
         </${tag}>`;
       }).join('')}
     </nav>
-    <div class="sidebar-logo sidebar-footer" style="border-top:1px solid var(--slate-200,#e2e8f0);padding:14px 16px;opacity:0;pointer-events:none;transition:opacity 150ms;display:flex;flex-direction:column;align-items:center;gap:8px">
+    <div class="sidebar-logo sidebar-footer" style="border-top:1px solid var(--slate-200,#e5e7eb);padding:14px 16px;opacity:0;pointer-events:none;transition:opacity 150ms;display:flex;flex-direction:column;align-items:center;gap:8px">
       <a href="https://www.skytek.com" target="_blank" rel="noopener" title="skytek.com" style="display:block">
         <img src="${(window.__resources&&window.__resources.logoStacked)||'images/skytek-logo-stacked.png'}" alt="Skytek" style="width:76px;height:auto;display:block" />
       </a>
@@ -334,7 +365,7 @@ function TweaksPanel() {
 function getTheme() {
   try { return localStorage.getItem('rw_theme') || 'light'; } catch { return 'light'; }
 }
-const THEME_ACCENT = { sky:'sky', light:'azure', dark:'sky' };
+const THEME_ACCENT = { sky:'sky', light:'sky', dark:'sky' };   // Skytek Design System brand ramp (#2d7ffb) in every theme
 function setTheme(id) {
   try { localStorage.setItem('rw_theme', id); } catch {}
   // Map theme to a distinct accent palette (light→dark blue ramp)
@@ -348,7 +379,7 @@ function setTheme(id) {
 function buildDarkCss() {
   const bg      = '#0d1420';  // app background
   const surf    = '#161f2e';  // cards / bg-white
-  const surf2   = '#1e293b';  // raised: bg-ink-50/100, table headers
+  const surf2   = '#1f2937';  // raised: bg-ink-50/100, table headers
   const surf3   = '#243044';  // hover raised
   const bd      = '#2a374d';  // borders
   const bdSoft  = '#212d40';  // subtle borders
@@ -401,23 +432,23 @@ function buildDarkCss() {
   ${D} [style*="border:1px solid #dbeafe"], ${D} [style*="border-color:#dbeafe"], ${D} [style*="solid #e0eaff"],
   ${D} [style*="border-color:#e0f2fe"] { border-color:${bd} !important; }
 
-  ${D} body, ${D} .bg-ink-100, ${D} .bg-slate-100, ${D} .bg-slate-50 { background-color:${bg} !important; color:${tx}; }
+  ${D} body, ${D} .bg-ink-100, ${D} .bg-gray-100, ${D} .bg-gray-50 { background-color:${bg} !important; color:${tx}; }
   ${D} .bg-white { background-color:${surf} !important; }
   ${D} .bg-ink-50, ${D} .bg-ink-50\\/60, ${D} .bg-ink-50\\/40 { background-color:${surf2} !important; }
   ${D} .bg-ink-100 { background-color:${surf2} !important; }
 
-  ${D} .text-ink-900, ${D} .text-ink-800, ${D} .text-slate-900, ${D} .text-slate-800 { color:${tx} !important; }
-  ${D} .text-ink-700, ${D} .text-ink-600, ${D} .text-slate-700, ${D} .text-slate-600 { color:${tx2} !important; }
-  ${D} .text-ink-500, ${D} .text-ink-400, ${D} .text-slate-500, ${D} .text-slate-400 { color:${tx3} !important; }
-  ${D} .text-ink-300, ${D} .text-slate-300 { color:${tx4} !important; }
+  ${D} .text-ink-900, ${D} .text-ink-800, ${D} .text-gray-900, ${D} .text-gray-800 { color:${tx} !important; }
+  ${D} .text-ink-700, ${D} .text-ink-600, ${D} .text-gray-700, ${D} .text-gray-600 { color:${tx2} !important; }
+  ${D} .text-ink-500, ${D} .text-ink-400, ${D} .text-gray-500, ${D} .text-gray-400 { color:${tx3} !important; }
+  ${D} .text-ink-300, ${D} .text-gray-300 { color:${tx4} !important; }
 
-  ${D} .border-ink-100, ${D} .border-ink-200, ${D} .border-slate-100, ${D} .border-slate-200,
+  ${D} .border-ink-100, ${D} .border-ink-200, ${D} .border-gray-100, ${D} .border-gray-200,
   ${D} .border, ${D} .border-b, ${D} .border-t, ${D} .border-l, ${D} .border-r,
   ${D} .divide-ink-100 > * + *, ${D} .divide-ink-200 > * + * { border-color:${bd} !important; }
 
   ${D} .shadow-card, ${D} .shadow-card-hover, ${D} .shadow-sm, ${D} .shadow { box-shadow:0 1px 3px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.4) !important; }
 
-  ${D} .hover\\:bg-ink-100:hover, ${D} .hover\\:bg-ink-50:hover, ${D} .hover\\:bg-slate-100:hover, ${D} .hover\\:bg-slate-50:hover { background-color:${surf3} !important; }
+  ${D} .hover\\:bg-ink-100:hover, ${D} .hover\\:bg-ink-50:hover, ${D} .hover\\:bg-gray-100:hover, ${D} .hover\\:bg-gray-50:hover { background-color:${surf3} !important; }
   ${D} .hover\\:text-ink-800:hover, ${D} .hover\\:text-ink-900:hover { color:${tx} !important; }
   ${D} .ring-white { --tw-ring-color:${surf2} !important; }
   ${D} .divide-ink-100 { border-color:${bd}; }
@@ -437,11 +468,11 @@ function buildDarkCss() {
      popup body reads correctly. Coloured headers use inline var(--brand) → kept. */
   ${D} .leaflet-popup-content-wrapper { background-color:${surf} !important; color:${tx} !important; }
   ${D} .leaflet-popup-tip { background-color:${surf} !important; }
-  ${D} .leaflet-popup-content [style*="border-bottom:1px solid #f8fafc"],
-  ${D} .leaflet-popup-content [style*="border-bottom:1px solid #e2e8f0"],
-  ${D} .leaflet-popup-content [style*="border-top:1px solid #e2e8f0"] { border-color:${bd} !important; }
-  ${D} .leaflet-popup-content [style*="border-top:1.5px dashed #cbd5e1"],
-  ${D} .leaflet-popup-content [style*="dashed #cbd5e1"] { border-color:#3a4a66 !important; }
+  ${D} .leaflet-popup-content [style*="border-bottom:1px solid #f9fafb"],
+  ${D} .leaflet-popup-content [style*="border-bottom:1px solid #e5e7eb"],
+  ${D} .leaflet-popup-content [style*="border-top:1px solid #e5e7eb"] { border-color:${bd} !important; }
+  ${D} .leaflet-popup-content [style*="border-top:1.5px dashed #d1d5db"],
+  ${D} .leaflet-popup-content [style*="dashed #d1d5db"] { border-color:#3a4a66 !important; }
   ${D} .leaflet-tooltip { background-color:${surf} !important; color:${tx} !important; border-color:${bd} !important; }
   ${D} .leaflet-tooltip-top:before, ${D} .leaflet-tooltip-bottom:before,
   ${D} .leaflet-tooltip-left:before, ${D} .leaflet-tooltip-right:before { border-top-color:${surf} !important; border-bottom-color:${surf} !important; }
@@ -470,24 +501,24 @@ function buildDarkCss() {
   ${D} [style*="background:#fff "], ${D} [style*="background:#FFFFFF"],
   ${D} [style*="background:#fff url"], ${D} [style*="background:white"] { background-color:${surf} !important; }
 
-  ${D} [style*="background:#f9fafb"], ${D} [style*="background:#f8fafc"], ${D} [style*="background:#f1f5f9"],
+  ${D} [style*="background:#f9fafb"], ${D} [style*="background:#f9fafb"], ${D} [style*="background:#f3f4f6"],
   ${D} [style*="background:#f3f4f6"], ${D} [style*="background:#fafafa"], ${D} [style*="background:#f5f5f5"],
   ${D} [style*="background:#eef2f6"], ${D} [style*="background:#F9FAFB"], ${D} [style*="background:#eceef2"],
-  ${D} [style*="background-color:#f9fafb"], ${D} [style*="background-color:#f1f5f9"] { background-color:${surf2} !important; }
+  ${D} [style*="background-color:#f9fafb"], ${D} [style*="background-color:#f3f4f6"] { background-color:${surf2} !important; }
 
   /* Inline-hex text (dark → light) */
-  ${D} [style*="color:#0f172a"], ${D} [style*="color:#111827"], ${D} [style*="color:#1e293b"],
+  ${D} [style*="color:#111827"], ${D} [style*="color:#111827"], ${D} [style*="color:#1f2937"],
   ${D} [style*="color:#0b1e2e"], ${D} [style*="color:#1f2937"], ${D} [style*="color:#0f1623"],
-  ${D} [style*="color: #0f172a"], ${D} [style*="color:#111"] { color:${tx} !important; }
-  ${D} [style*="color:#334155"], ${D} [style*="color:#374151"], ${D} [style*="color:#475569"],
-  ${D} [style*="color:#4b5563"], ${D} [style*="color: #334155"] { color:${tx2} !important; }
-  ${D} [style*="color:#64748b"], ${D} [style*="color:#6b7280"], ${D} [style*="color:#94a3b8"],
-  ${D} [style*="color:#9ca3af"], ${D} [style*="color:#cbd5e1"] { color:${tx3} !important; }
+  ${D} [style*="color: #111827"], ${D} [style*="color:#111"] { color:${tx} !important; }
+  ${D} [style*="color:#374151"], ${D} [style*="color:#374151"], ${D} [style*="color:#4b5563"],
+  ${D} [style*="color:#4b5563"], ${D} [style*="color: #374151"] { color:${tx2} !important; }
+  ${D} [style*="color:#6b7280"], ${D} [style*="color:#6b7280"], ${D} [style*="color:#9ca3af"],
+  ${D} [style*="color:#9ca3af"], ${D} [style*="color:#d1d5db"] { color:${tx3} !important; }
 
   /* Inline-hex borders */
-  ${D} [style*="border-color:#e2e8f0"], ${D} [style*="border-color:#e5e7eb"], ${D} [style*="border-color:#f1f5f9"],
+  ${D} [style*="border-color:#e5e7eb"], ${D} [style*="border-color:#e5e7eb"], ${D} [style*="border-color:#f3f4f6"],
   ${D} [style*="border-color:#f3f4f6"], ${D} [style*="border-color:#eceef2"], ${D} [style*="border-color:#eef2f6"],
-  ${D} [style*="solid #e2e8f0"], ${D} [style*="solid #e5e7eb"], ${D} [style*="solid #f1f5f9"],
+  ${D} [style*="solid #e5e7eb"], ${D} [style*="solid #e5e7eb"], ${D} [style*="solid #f3f4f6"],
   ${D} [style*="solid #ECEEF2"], ${D} [style*="solid #eceef2"] { border-color:${bd} !important; }
   `;
 }
@@ -523,7 +554,7 @@ function _dtParseColor(str) {
 }
 function _dtLum(c) { return 0.299*c.r + 0.587*c.g + 0.114*c.b; }
 // "Neutral" = pure grey OR a cool slate tint (the slate ramp spans a spread of
-// up to ~40 between channels, e.g. #334155). We accept low-spread colours, and
+// up to ~40 between channels, e.g. #374151). We accept low-spread colours, and
 // slightly-higher-spread ones only when they lean cool (blue >= red), which
 // keeps warm accents (amber/red) and saturated blues out.
 function _dtGray(c) {
@@ -534,7 +565,7 @@ function _dtGray(c) {
 }
 
 function buildDarkAutogen() {
-  const surf   = '#161f2e', surf2 = '#1e293b';
+  const surf   = '#161f2e', surf2 = '#1f2937';
   const tx = '#e7ecf4', tx2 = '#c0c9d8', tx3 = '#93a0b4';
   const bd = '#2a374d';
   const DP = 'html[data-theme="dark"] ';

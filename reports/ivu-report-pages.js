@@ -68,7 +68,7 @@
           <tbody>
             ${V.ownership.map(o => `
               <tr>
-                <td style="color:#64748b;white-space:nowrap">${o.role}</td>
+                <td style="color:#6b7280;white-space:nowrap">${o.role}</td>
                 <td class="vn">${o.name}</td>
                 <td style="white-space:nowrap">${flagImg(o.cc)} ${o.country}</td>
                 <td class="num">${o.since}</td>
@@ -112,9 +112,9 @@
           <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Risk score history over twelve months">
             ${[0, 20, 40, 60, 80, 100].map(g => {
               const y = 160 - g / 100 * 140;
-              return `<line x1="42" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${y}" x2="666" y2="${y}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="34" y="${y + 3.5}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="20" x2="42" y2="160" stroke="#d1d5db" stroke-width="1" />
             <polyline points="${s.history.map((p, i) => `${(42 + i / (s.history.length - 1) * 624).toFixed(1)},${(160 - p.v / 100 * 140).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
             ${s.history.map((p, i) => {
               const x = 42 + i / (s.history.length - 1) * 624, y = 160 - p.v / 100 * 140;
@@ -182,10 +182,10 @@
                 <td class="num" style="white-space:nowrap">${x.date}</td>
                 <td class="vn">${x.type}</td>
                 <td>${sevPill(x.sev)}</td>
-                <td style="color:#475569">${x.loc}</td>
-                <td class="r num" style="font-weight:600;color:#0f172a">${x.est}</td>
+                <td style="color:#4b5563">${x.loc}</td>
+                <td class="r num" style="font-weight:600;color:#111827">${x.est}</td>
               </tr>
-              <tr><td></td><td colspan="4" style="padding-top:0;color:#64748b;font-size:10.5px;border-bottom:1px solid #f1f5f9">${x.note}</td></tr>`).join('')}
+              <tr><td></td><td colspan="4" style="padding-top:0;color:#6b7280;font-size:10.5px;border-bottom:1px solid #f3f4f6">${x.note}</td></tr>`).join('')}
           </tbody>
         </table>`, 'Five-year record. One claim remains open with a $2.2m reserve.')}
       ${foot(6)}
@@ -213,7 +213,7 @@
               <tr>
                 <td class="vn">${c.list}</td>
                 <td><span class="pill pill-${c.tone}">${c.result}</span></td>
-                <td style="color:#64748b">Vessel, owner, manager, charterer</td>
+                <td style="color:#6b7280">Vessel, owner, manager, charterer</td>
                 <td class="num">${V.meta.generatedOn.slice(0, 11)}</td>
               </tr>`).join('')}
           </tbody>
@@ -224,7 +224,7 @@
             <div class="chg-row">
               <span class="chg-ico" style="background:${a.tone === 'red' ? '#fef2f2' : a.tone === 'amber' ? '#fffbeb' : '#f0fdf4'};color:${a.tone === 'red' ? '#b91c1c' : a.tone === 'amber' ? '#b45309' : '#15803d'}">${ic(ICO.alert, 12)}</span>
               <div><div class="chg-t">${a.event}</div><div class="chg-d">${a.detail}</div></div>
-              <div class="chg-m num" style="color:#64748b">${a.date}</div>
+              <div class="chg-m num" style="color:#6b7280">${a.date}</div>
             </div>`).join('')}
         </div>`)}
       ${sec(ICO.swap, 'Ship-to-ship activity', `
@@ -236,7 +236,7 @@
                 <td class="num" style="white-space:nowrap">${t.date}</td>
                 <td class="vn">${flagImg(t.cc)} ${t.counterparty} ${flagCn(t.cc)}</td>
                 <td><span class="pill ${t.status === 'Ok' ? 'pill-green' : 'pill-amber'}">${t.status}</span></td>
-                <td style="color:#475569;white-space:nowrap">${t.region}</td>
+                <td style="color:#4b5563;white-space:nowrap">${t.region}</td>
                 <td class="r num">${t.duration}</td>
               </tr>`).join('')}
           </tbody>
@@ -284,7 +284,7 @@
           <div class="pos-main">
             <div class="pos-coords num">${p.lat} &nbsp; ${p.lon}</div>
             <div class="pos-area">${p.area}</div>
-            <div class="pos-status"><span class="pill pill-blue">${p.status}</span><span class="num" style="font-size:10.5px;color:#94a3b8">Last signal ${p.lastSignal}</span></div>
+            <div class="pos-status"><span class="pill pill-blue">${p.status}</span><span class="num" style="font-size:10.5px;color:#9ca3af">Last signal ${p.lastSignal}</span></div>
           </div>
           <div class="spec" style="flex:1">
             <div class="spec-row"><span class="spec-k">Speed</span><span class="spec-v num">${p.speed}</span></div>
@@ -294,7 +294,7 @@
             <div class="spec-row"><span class="spec-k">ETA</span><span class="spec-v num">${p.eta}</span></div>
           </div>
         </div>`, 'Position derived from the latest terrestrial and satellite AIS fix at the generation timestamp.')}
-      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${V.meta.generatedOn}.</p>
+      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f3f4f6;color:#9ca3af">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${V.meta.generatedOn}.</p>
       ${foot(8)}
     </article>`;
   }

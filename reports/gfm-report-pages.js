@@ -124,9 +124,9 @@
           <svg viewBox="0 0 700 160" class="linechart" role="img" aria-label="Vessels tracked at month end over twelve months">
             ${[59000, 59700, 60400, 61100, 61800].map(gv => {
               const gy = y(gv);
-              return `<line x1="60" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${gv === 59000 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="52" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${(gv / 1000).toFixed(1)}k</text>`;
+              return `<line x1="60" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${gv === 59000 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="52" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${(gv / 1000).toFixed(1)}k</text>`;
             }).join('')}
-            <line x1="60" y1="14" x2="60" y2="132" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="60" y1="14" x2="60" y2="132" stroke="#d1d5db" stroke-width="1" />
             <polyline points="${g.vessels.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" />
             ${g.vessels.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="3.2" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" /><text x="${x(i).toFixed(1)}" y="${(y(v) - 9).toFixed(1)}" text-anchor="middle" class="pt-lbl">${(v / 1000).toFixed(1)}k</text>`).join('')}
             ${g.months.map((m, i) => `<text x="${x(i).toFixed(1)}" y="148" text-anchor="middle" class="ax-lbl">${m}</text>`).join('')}
@@ -191,7 +191,7 @@
           <tbody>
             ${f.map(x => `
               <tr>
-                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#0f172a">${x.name}</span></td>
+                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#111827">${x.name}</span></td>
                 <td class="r num">${x.n.toLocaleString()}</td>
                 <td class="r num">${x.pct}%</td>
                 <td class="r num">${x.avgAge}</td>
@@ -325,9 +325,9 @@
           <svg viewBox="0 0 300 124" class="linechart" role="img" aria-label="Casualties by month over six months" style="width:100%">
             ${[340, 380, 420].map(g => {
               const gy = y(g);
-              return `<line x1="34" y1="${gy.toFixed(1)}" x2="292" y2="${gy.toFixed(1)}" stroke="${g === 340 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="30" y="${(gy + 3).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="34" y1="${gy.toFixed(1)}" x2="292" y2="${gy.toFixed(1)}" stroke="${g === 340 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="30" y="${(gy + 3).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="34" y1="14" x2="34" y2="104" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="34" y1="14" x2="34" y2="104" stroke="#d1d5db" stroke-width="1" />
             <polyline points="${t.n.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linejoin="round" />
             ${t.n.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="2.6" fill="#fff" stroke="#b91c1c" stroke-width="1.8" />${i % 2 === 1 ? `<text x="${x(i).toFixed(1)}" y="${(y(v) - 7).toFixed(1)}" text-anchor="middle" class="pt-lbl">${v}</text>` : ''}`).join('')}
             ${t.months.map((m, i) => `<text x="${x(i).toFixed(1)}" y="118" text-anchor="middle" class="ax-lbl">${m.replace(' ', '')}</text>`).join('')}
@@ -370,7 +370,7 @@
                 <td class="r num">${x.pct}%</td>
                 <td class="r num">${x.vessels.toLocaleString()}</td>
                 <td class="r num">${x.casualties}</td>
-                <td class="r num" style="font-weight:700;color:${(x.casualties / x.calls * 100000) > 60 ? '#b91c1c' : '#334155'}">${(x.casualties / x.calls * 100000).toFixed(0)}</td>
+                <td class="r num" style="font-weight:700;color:${(x.casualties / x.calls * 100000) > 60 ? '#b91c1c' : '#374151'}">${(x.casualties / x.calls * 100000).toFixed(0)}</td>
                 <td style="min-width:90px"><span class="bl-track"><span class="bl-fill" style="width:${Math.round(x.calls / maxC * 100)}%;background:${x.tone}"></span></span></td>
               </tr>`).join('')}
           </tbody>

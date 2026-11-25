@@ -54,7 +54,7 @@ window.ACE = {
     { type:'Product Tanker',    vessels:71,  pct:13.9, value:'$1.24bn', valueNum:1.24, worst:'Strait of Hormuz',  color:'#ea580c' },
     { type:'Chemical Tanker',   vessels:38,  pct:7.4,  value:'$0.71bn', valueNum:0.71, worst:'Singapore Strait',  color:'#c2410c' },
     { type:'LNG / LPG Carrier', vessels:27,  pct:5.3,  value:'$0.74bn', valueNum:0.74, worst:'Suez / Gulf of Suez',color:'#0e7490' },
-    { type:'General Cargo',     vessels:18,  pct:3.5,  value:'$0.14bn', valueNum:0.14, worst:'Malacca Strait',    color:'#64748b' },
+    { type:'General Cargo',     vessels:18,  pct:3.5,  value:'$0.14bn', valueNum:0.14, worst:'Malacca Strait',    color:'#6b7280' },
   ],
   typeNote: 'Container tonnage carries the largest share of accumulated value, but crude tankers show the highest value per vessel at $23.8m against $21.1m for containers.',
 

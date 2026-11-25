@@ -16,7 +16,7 @@
       fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'], display: ['Exo','Inter','sans-serif'] },
       colors: {
         brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#bfdbfe',400:'#8ec5fd',500:'#51a2fc',600:'#2d7ffb',700:'#1d4ed8',800:'#1f5fc7'},
-        ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#475569',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
+        ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
       },
       boxShadow: {
         'card':'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)',
@@ -47,7 +47,7 @@
   .dot-pulse::after { content:''; position:absolute; inset:-3px; border-radius:999px; box-shadow:0 0 0 0 rgba(239,68,68,.5); animation:pulse 1.8s infinite; }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(239,68,68,.55);} 70%{box-shadow:0 0 0 10px rgba(239,68,68,0);} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0);} }
   .tile-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:10.5px; padding:1px 5px; border:1px solid #e5e7eb; border-bottom-width:2px; border-radius:4px; background:#f9fafb; color:#475569; }
+  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:10.5px; padding:1px 5px; border:1px solid #e5e7eb; border-bottom-width:2px; border-radius:4px; background:#f9fafb; color:#4b5563; }
   .ring-focus:focus-visible { outline:2px solid #51a2fc; outline-offset:2px; border-radius:8px; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
@@ -173,14 +173,14 @@
   /* vessel popup: pagination dots above the button (active = wider brand pill) */
   .vp-pills { display:flex; justify-content:center; align-items:center; gap:2px; margin:0 14px 2px; }
   .vp-pill { position:relative; width:22px; height:22px; padding:0; border:0; background:transparent; cursor:pointer; }
-  .vp-pill::before { content:''; position:absolute; top:50%; left:50%; width:7px; height:7px; border-radius:9999px; background:#cbd5e1; transform:translate(-50%,-50%); transition:width .18s ease, background-color .18s ease; }
-  .vp-pill:hover::before { background:#94a3b8; }
+  .vp-pill::before { content:''; position:absolute; top:50%; left:50%; width:7px; height:7px; border-radius:9999px; background:#d1d5db; transform:translate(-50%,-50%); transition:width .18s ease, background-color .18s ease; }
+  .vp-pill:hover::before { background:#9ca3af; }
   .vp-pill[aria-selected="true"]::before { width:18px; background:var(--brand-600,#2d7ffb); }
   .vp-pill:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:-3px; border-radius:9999px; }
   @media (prefers-reduced-motion: reduce) { .vp-pill::before { transition:none; } }
-  /* more specific than the chrome's auto-generated dark colours (which turned #cbd5e1 into #1e293b) */
-  html[data-theme="dark"] .leaflet-popup .vp .vp-pill::before { background-color:#64748b !important; }
-  html[data-theme="dark"] .leaflet-popup .vp .vp-pill:hover::before { background-color:#94a3b8 !important; }
+  /* more specific than the chrome's auto-generated dark colours (which turned #d1d5db into #1f2937) */
+  html[data-theme="dark"] .leaflet-popup .vp .vp-pill::before { background-color:#6b7280 !important; }
+  html[data-theme="dark"] .leaflet-popup .vp .vp-pill:hover::before { background-color:#9ca3af !important; }
   html[data-theme="dark"] .leaflet-popup .vp .vp-pill[aria-selected="true"]::before { background-color:var(--brand-400,#51a2fc) !important; }
   html[data-theme="dark"] .vp-pill:focus-visible { outline-color:var(--brand-300,#93c5fd); }
   .vp-grid[hidden] { display:none; }
@@ -354,7 +354,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;

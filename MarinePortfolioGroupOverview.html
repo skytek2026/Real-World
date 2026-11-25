@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Portfolio Group Overview — Marine — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}},boxShadow:{card:'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)','card-hover':'0 4px 10px -2px rgb(15 23 42 / 0.08), 0 8px 24px -4px rgb(15 23 42 / 0.08)'}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}},boxShadow:{card:'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)','card-hover':'0 4px 10px -2px rgb(15 23 42 / 0.08), 0 8px 24px -4px rgb(15 23 42 / 0.08)'}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -24,21 +24,21 @@ a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;bo
   .pgo-card--clip{height:0;min-height:100%}
   .pgo-card--clip .pgo-fields{flex:1 1 0;min-height:0;overflow-y:auto}
 }
-.pgo-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;box-shadow:0 2px 4px 0 rgb(15 23 42/.08),0 1px 2px 0 rgb(15 23 42/.06);display:flex;flex-direction:column}
-.pgo-card-h{padding:12px 14px;border-bottom:1px solid #f1f5f9}
-.pgo-card-h h2{font-size:14px;font-weight:700;color:#0f172a}
+.pgo-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 2px 4px 0 rgb(15 23 42/.08),0 1px 2px 0 rgb(15 23 42/.06);display:flex;flex-direction:column}
+.pgo-card-h{padding:12px 14px;border-bottom:1px solid #f3f4f6}
+.pgo-card-h h2{font-size:14px;font-weight:700;color:#111827}
 .pgo-fields{padding:2px 14px 6px;margin:0}
-.pgo-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #f1f5f9}
+.pgo-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #f3f4f6}
 .pgo-row:last-child{border-bottom:0}
-.pgo-row dt{display:flex;align-items:center;gap:7px;font-size:12px;color:#64748b;flex-shrink:0}
+.pgo-row dt{display:flex;align-items:center;gap:7px;font-size:12px;color:#6b7280;flex-shrink:0}
 .pgo-row dt svg{width:15px;height:15px;flex-shrink:0;color:var(--brand-600,#2d7ffb)}
-.pgo-row dd{margin:0;font-size:13px;font-weight:600;color:#0f172a;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
+.pgo-row dd{margin:0;font-size:13px;font-weight:600;color:#111827;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
 .pgo-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
 .pgo-badge i{width:6px;height:6px;border-radius:50%;background:currentColor}
 .pgo-badge--ok{background:#dcfce7;color:#15803d}.pgo-badge--warn{background:#fef3c7;color:#b45309}.pgo-badge--bad{background:#fee2e2;color:#dc2626}
 .pgo-flags{display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
 .pgo-flags img{width:20px;height:14px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
-.pgo-more{font-size:11px;font-weight:600;color:#64748b}
+.pgo-more{font-size:11px;font-weight:600;color:#6b7280}
 .pgo-foot{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid #eceef2;background:#f9fafb;margin-top:auto}
 .pgo-ghost{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font:600 11px/1 'Inter',sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2d7ffb)}
 .pgo-ghost:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8)}
@@ -62,16 +62,16 @@ html[data-theme="dark"] .pgo-card-h h2,html[data-theme="dark"] .pgo-row dd{color
 html[data-theme="dark"] .pgo-row dt,html[data-theme="dark"] .pgo-more{color:#93a0b4}
 html[data-theme="dark"] .pgo-row dt svg,html[data-theme="dark"] .pgo-ghost{color:var(--brand-300,#93c5fd)}
 html[data-theme="dark"] .pgo-foot{background:#121a27;border-color:#212d40}
-html[data-theme="dark"] .pgo-ghost:hover{background:#1e293b}
+html[data-theme="dark"] .pgo-ghost:hover{background:#1f2937}
 html[data-theme="dark"] .pgo-badge--ok{background:rgba(34,197,94,.16);color:#86efac}
 html[data-theme="dark"] .pgo-badge--warn{background:rgba(245,158,11,.16);color:#fcd34d}
 html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fca5a5}
   /* ── Policy Details / Asset Details / Map card (copied from Marine Portfolio Details) ── */
   .tracking-micro { letter-spacing:.08em; }
   /* Pill tabs */
-  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:9999px; }
-  .ds-tab  { position:relative; font:inherit; font-size:12px; font-weight:600; padding:6px 14px; background:transparent; border:0; border-radius:9999px; color:#64748b; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
-  .ds-tab:hover { color:#0f172a; }
+  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
+  .ds-tab  { position:relative; font:inherit; font-size:12px; font-weight:600; padding:6px 14px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+  .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"] { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:var(--brand-600,#2563eb); border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transition:transform 300ms cubic-bezier(.34,1.2,.64,1), width 300ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
@@ -79,14 +79,14 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   /* Policy table */
   .pol-table { width:100%; border-collapse:collapse; font-size:12px; }
   .pol-table th { padding:9px 12px; text-align:left; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); border-bottom:1px solid var(--border-default,#E5E7EB); white-space:nowrap; background:var(--slate-50,#F9FAFB); ;text-transform:uppercase;letter-spacing:.04em}
-  .pol-table td { padding:10px 12px; border-bottom:1px solid #f1f5f9; color:#334155; white-space:nowrap; vertical-align:middle; }
+  .pol-table td { padding:10px 12px; border-bottom:1px solid #f3f4f6; color:#374151; white-space:nowrap; vertical-align:middle; }
   .pol-table tr:last-child td { border-bottom:0; }
-  .pol-table tr:hover td { background:#f8fafc; }
+  .pol-table tr:hover td { background:#f9fafb; }
   .pol-table th:nth-child(-n+2), .pol-table td:nth-child(-n+2) { position:sticky; z-index:1; background:#fff; }
   .pol-table thead th:nth-child(-n+2) { z-index:2; background:var(--slate-50,#F9FAFB); }
   .pol-table th:first-child, .pol-table td:first-child { left:0; width:38px; min-width:38px; max-width:38px; }
-  .pol-table th:nth-child(2), .pol-table td:nth-child(2) { left:38px; box-shadow:inset -1px 0 0 #e2e8f0; }
-  .pol-table tr:hover td:nth-child(-n+2) { background:#f8fafc; }
+  .pol-table th:nth-child(2), .pol-table td:nth-child(2) { left:38px; box-shadow:inset -1px 0 0 #e5e7eb; }
+  .pol-table tr:hover td:nth-child(-n+2) { background:#f9fafb; }
   .pol-table td.lnk { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; }
   .pol-table td.lnk:hover { color:var(--brand-700,#1d4ed8); }
   .pol-table td.lnk a, .pcard-sub a.lnk { color:inherit; text-decoration:none; }
@@ -99,15 +99,15 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
   .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
   .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-600,#2563eb); word-break:break-word; }
-  .pcard-sub { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#64748b; }
+  .pcard-sub { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#6b7280; }
   .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
-  .pcard-k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#94a3b8; }
-  .pcard-v { font-size:13.5px; font-weight:500; color:#334155; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
-  .pcard-v.is-strong { font-size:15px; font-weight:700; color:#0f172a; }
+  .pcard-k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
+  .pcard-v { font-size:13.5px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .pcard-v.is-strong { font-size:15px; font-weight:700; color:#111827; }
   .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
   .pcard-more { display:none; }
-  .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e2e8f0; animation:pcardIn .22s ease; }
+  .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e5e7eb; animation:pcardIn .22s ease; }
   @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
   .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:12.5px; font-weight:600; color:var(--brand-600,#2563eb); }
   .pcard-chev { transition:transform .2s ease; }
@@ -118,7 +118,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .stat-badge.green  { background:#dcfce7; color:#15803d; }
   .stat-badge.purple { background:#ede9fe; color:#6d28d9; }
   /* Select chrome */
-  .sel { border:1px solid #e2e8f0; border-radius:6px; padding:4px 24px 4px 8px; font-size:12px; color:#334155; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
+  .sel { border:1px solid #e5e7eb; border-radius:6px; padding:4px 24px 4px 8px; font-size:12px; color:#374151; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
   @media(max-width:767px){
     .ds-tabs.mobile-stretch { display:flex; width:100%; }
     .ds-tabs.mobile-stretch .ds-tab { flex:1 1 0; min-width:0; justify-content:center; padding-left:6px; padding-right:6px; }
@@ -134,11 +134,11 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   }
   /* Mobile dropdown for analysis tabs (hidden by default) */
   .analysis-tabs-mobile { display:none; }
-  .analysis-tabs-mobile select { width:100%; border:1px solid #e2e8f0; border-radius:9999px; padding:8px 32px 8px 14px; font-size:13px; font-weight:600; color:#0f172a; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
+  .analysis-tabs-mobile select { width:100%; border:1px solid #e5e7eb; border-radius:9999px; padding:8px 32px 8px 14px; font-size:13px; font-weight:600; color:#111827; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
   /* ── Risk Score card (copied from Marine Portfolio Details) ── */
   /* Risk Score info popups (ported from Vessel Details) */
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
-  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#94a3b8;cursor:pointer;margin-top:1px;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#2d7ffb;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
@@ -150,7 +150,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .rs-tip.r::after{right:14px;}
   .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
   .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
-  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f1f5f9;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
   .rs-tip-tbl th:first-child{text-align:left;}
   .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
@@ -164,15 +164,15 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .env-cols > * { min-width:0; padding:0 24px; }
   .env-cols > *:first-child { padding-left:0; }
   .env-cols > *:last-child { padding-right:0; }
-  .env-cols > * + * { border-left:1px solid #e2e8f0; }
+  .env-cols > * + * { border-left:1px solid #e5e7eb; }
   @media (max-width:767px) {
     .env-cols > * { padding:20px 0 0; }
     .env-cols > *:first-child { padding-top:0; }
-    .env-cols > * + * { border-left:0; border-top:1px solid #e2e8f0; margin-top:20px; }
+    .env-cols > * + * { border-left:0; border-top:1px solid #e5e7eb; margin-top:20px; }
   }
 </style>
 </head>
-<body class="bg-slate-100 text-slate-900">
+<body class="bg-gray-100 text-gray-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 <script>
 window.PAGE = { id:'marine', title:'Marine', crumb:'Portfolio Group Overview' };
@@ -184,7 +184,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/marine-asset-details.js"></script>
@@ -314,18 +314,18 @@ function PanelRiskBreakdown() {
     let body = `
     <div class="co-rs-body" style="padding:8px 12px 14px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:6px;">
       <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:6px 8px;flex-wrap:wrap;">
-        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
-          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#2d7ffb)':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#2d7ffb)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
       </div>
       <div class="co-rs-grid" style="display:grid;grid-template-columns:${mpWithTrends ? 'repeat(auto-fit,minmax(180px,1fr))' : '1fr'};gap:8px;">
         <div class="co-rs-gauge${mpWithSanctions ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
-        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#475569;font-family:inherit;padding:0;">
+        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
-          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#cbd5e1'};transition:background .15s;display:inline-block;flex-shrink:0;">
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
@@ -343,8 +343,8 @@ function PanelRiskBreakdown() {
           </div>`).join('')}
         </div>` : ''}
       </div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:11.5px;color:#334155;padding-top:0;">
-        ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#64748b;">[${b.range}]</span></span>`).join('')}
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:11.5px;color:#374151;padding-top:0;">
+        ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#6b7280;">[${b.range}]</span></span>`).join('')}
       </div>
     </div>`;
   return `
@@ -475,15 +475,15 @@ function PolicySection() {
               <td class="lnk"><a href="VesselDetails.html">${p.vessel}</a></td>
               <td style="font-weight:600;">${p.exp}</td>
               <td>${p.tiv}</td>
-              <td style="color:#64748b;font-size:11.5px;">${p.period}</td>
+              <td style="color:#6b7280;font-size:11.5px;">${p.period}</td>
               <td>${p.type}</td>
-              <td style="color:#64748b;">${p.placement}</td>
-              <td style="color:#64748b;">${p.insurer}</td>
-              <td style="color:#64748b;">${p.broker}</td>
-              <td style="color:#64748b;">${p.assured}</td>
-              <td style="font-size:11px;color:#64748b;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
-              <td style="color:#64748b;">${p.delegate}</td>
-              <td style="color:#64748b;">${p.uw}</td>
+              <td style="color:#6b7280;">${p.placement}</td>
+              <td style="color:#6b7280;">${p.insurer}</td>
+              <td style="color:#6b7280;">${p.broker}</td>
+              <td style="color:#6b7280;">${p.assured}</td>
+              <td style="font-size:11px;color:#6b7280;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
+              <td style="color:#6b7280;">${p.delegate}</td>
+              <td style="color:#6b7280;">${p.uw}</td>
             </tr>`).join('')}
         </tbody>
       </table>
@@ -793,7 +793,7 @@ window.render = function () {
     ${SC.Sidebar()}
     <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
       ${SC.Topbar()}
-      <main class="flex-1 min-h-0 overflow-hidden flex flex-col bg-slate-100">${Main()}</main>
+      <main class="flex-1 min-h-0 overflow-hidden flex flex-col bg-gray-100">${Main()}</main>
     </div>
     ${SC.TweaksPanel()}`;
   SC.wireChrome();

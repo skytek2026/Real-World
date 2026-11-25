@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aviation Region Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -15,28 +15,28 @@
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
   #region-map{position:absolute;inset:0}
-  .leaflet-control-zoom,.leaflet-bar{border:1px solid #e2e8f0!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
-  .leaflet-bar a{background:#fff!important;color:#334155!important;line-height:30px!important}
-  .leaflet-bar a:hover{background:#f1f5f9!important}
+  .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
+  .leaflet-bar a{background:#fff!important;color:#374151!important;line-height:30px!important}
+  .leaflet-bar a:hover{background:#f3f4f6!important}
   /* Pill tabs */
-  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-  .ds-tab:hover{color:#0f172a}
+  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
+  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px}
   /* Totals rows */
-  .tot-row{display:flex;align-items:center;padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:13px}
+  .tot-row{display:flex;align-items:center;padding:9px 0;border-bottom:1px solid #f3f4f6;font-size:13px}
   .tot-row:last-child{border-bottom:0}
   /* Portfolio table */
   .pf-tbl{width:100%;border-collapse:collapse}
-  .pf-tbl th{padding:9px 10px;font-size:11.5px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f1f5f9;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
-  .pf-tbl td{padding:9px 10px;font-size:13px;color:#334155;border-bottom:1px solid #f8fafc;vertical-align:middle;white-space:nowrap}
+  .pf-tbl th{padding:9px 10px;font-size:11.5px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+  .pf-tbl td{padding:9px 10px;font-size:13px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle;white-space:nowrap}
   .pf-tbl tr:last-child td{border-bottom:0}
   .pf-tbl tbody tr:hover td{background:#fafafa}
   /* Airport row card */
-  .airport-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s,box-shadow .15s;cursor:pointer}
+  .airport-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;margin-bottom:10px;transition:border-color .15s,box-shadow .15s;cursor:pointer}
   /* Map airport marker — matches Aviation Dashboard */
   /* Airport map marker: same as the Aviation Dashboard */
   .airport-icon { width:32px; height:32px; box-sizing:border-box; display:flex; align-items:center; justify-content:center; background:var(--brand-600,#2d7ffb); border:1px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.28); }
@@ -62,28 +62,28 @@
   .airport-card{min-width:0}
   .airport-card .pf-tbl{min-width:420px}
   .airport-card div:has(> .pf-tbl){overflow-x:auto!important}
-  .airport-card:hover{border-color:#cbd5e1;box-shadow:0 2px 8px rgba(15,23,42,.05)}
+  .airport-card:hover{border-color:#d1d5db;box-shadow:0 2px 8px rgba(15,23,42,.05)}
   /* Stat pills */
   .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb);font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:7px;font-variant-numeric:tabular-nums}
-  .spill-gray{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;background:#f1f5f9;color:#334155;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:7px;font-variant-numeric:tabular-nums}   /* icon beside the number (svg is display:block) */
+  .spill-gray{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;background:#f3f4f6;color:#374151;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:7px;font-variant-numeric:tabular-nums}   /* icon beside the number (svg is display:block) */
   /* Coverage tabs */
-  .cov-tab{flex:1;padding:7px 8px;font-size:13px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#64748b;white-space:nowrap}
+  .cov-tab{flex:1;padding:7px 8px;font-size:13px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280;white-space:nowrap}
   .cov-tab.active{background:var(--brand-600,#2563eb);color:#fff}
-  .cov-tab:not(.active):hover{color:#334155}
+  .cov-tab:not(.active):hover{color:#374151}
   /* Layout */
   .ard-top-row{display:grid;grid-template-columns:260px minmax(0,1.4fr) minmax(0,1.2fr);gap:12px;margin-bottom:12px;height:440px}
   .ard-top-row>div{height:440px;overflow-y:auto!important}
   .ard-bottom-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:12px;height:460px}
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
-  .map-btn:hover{background:#f1f5f9}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
+  .map-btn:hover{background:#f3f4f6}
   .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
   .leaflet-control-zoom a svg{width:16px;height:16px}
   #region-map .leaflet-top.leaflet-left{top:56px;left:2px}
   #region-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px!important}
   #ard-map-wrap.is-fullscreen{position:fixed!important;inset:0!important;z-index:9999!important;border-radius:0!important}
-  #ard-layers-menu button:hover{background:#f1f5f9}
+  #ard-layers-menu button:hover{background:#f3f4f6}
   /* Mobile */
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none}
+  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none}
   @media(max-width:1199px){.ard-top-row{grid-template-columns:1fr;height:auto}.ard-top-row>div{height:auto;max-height:none;min-width:0}.ard-top-row>div:has(.leaflet-container){height:360px}.ard-bottom-row{grid-template-columns:1fr;height:auto}.ard-bottom-row>div{min-height:420px;min-width:0}}
   @media(max-width:767px){.mobile-tab-select{display:block!important}.tabs-desktop-wrap{display:none!important}}
   /* Region popup */
@@ -92,7 +92,7 @@
   .region-popup .leaflet-popup-close-button{color:#fff !important;opacity:.85;font:700 20px/1 'Inter',sans-serif !important;width:26px;height:26px;padding:2px 0 0 0 !important;top:6px !important;right:6px !important;border-radius:6px;text-align:center;text-decoration:none !important;transition:opacity .12s,background .12s}
   .region-popup .leaflet-popup-close-button:hover{opacity:1;background:rgba(255,255,255,.18)}
   /* Coverage map title overlay */
-  .ard-map-title{position:absolute;left:12px;top:12px;z-index:400;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:6px 12px;box-shadow:0 1px 3px rgba(15,23,42,.08);display:flex;align-items:center;gap:8px}
+  .ard-map-title{position:absolute;left:12px;top:12px;z-index:400;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:6px 12px;box-shadow:0 1px 3px rgba(15,23,42,.08);display:flex;align-items:center;gap:8px}
   .ard-map-legend{position:absolute;left:12px;bottom:16px;z-index:400;background:rgba(125,211,252,.92);border-radius:8px;padding:8px 14px;box-shadow:0 2px 6px rgba(15,23,42,.1)}
   /* DS card footer + Tertiary/Ghost button (ALL CAPS) — per Skytek DS */
   .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
@@ -107,12 +107,12 @@
     .ard-tbl { display:none; }
     .ard-mcards { display:flex; flex-direction:column; gap:10px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
   }
-  .ard-mcard { background:#fff; border:1px solid #e2e8f0; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .ard-mcard { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
   .ard-mkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
-  .ard-mkv .ard-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f1f5f9; }
-  .ard-mkv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
-  .ard-mkv dd { margin:3px 0 0; font-size:13px; color:#334155; font-variant-numeric:tabular-nums; }
-  .ard-mkv dd strong { font-weight:700; color:#0f172a; }
+  .ard-mkv .ard-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
+  .ard-mkv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .ard-mkv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; }
+  .ard-mkv dd strong { font-weight:700; color:#111827; }
   .ard-name { display:inline-flex; align-items:center; gap:6px; color:var(--brand-600,#2563eb); font-weight:600; }
   html[data-theme="dark"] .ard-mcard { background:#161f2e; border-color:#2a374d; }
   html[data-theme="dark"] .ard-mkv .ard-wide { border-color:#1f2a3d; }
@@ -121,7 +121,7 @@
   html[data-theme="dark"] .ard-name { color:var(--brand-300,#93c5fd); }
 </style>
 </head>
-<body class="bg-slate-100 text-slate-900">
+<body class="bg-gray-100 text-gray-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 
 <script>
@@ -136,7 +136,7 @@ window.PAGE = { id:'regions', title:'Aviation Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -245,10 +245,10 @@ const AIRPORTS = (()=>{
 })();
 
 /* ── SVGs ──────────────────────────────────────────────────────────────── */
-const SORT_ICO   = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 4 18 9"/><polyline points="6 15 12 20 18 15"/></svg>`;
-const INFO_ICO   = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
-const LINK_ICO   = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
-const CAL_ICO    = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
+const SORT_ICO   = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 4 18 9"/><polyline points="6 15 12 20 18 15"/></svg>`;
+const INFO_ICO   = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+const LINK_ICO   = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+const CAL_ICO    = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 const PLANE_ICO  = (color) => `<svg class="lucide lucide-plane" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>`;   // Lucide "plane"
 const BRIEF_ICO  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`;
 const CHEV_ICO   = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
@@ -283,9 +283,9 @@ function initMap() {
       <div style="font-family:'Inter',sans-serif;width:240px;border-radius:12px;overflow:hidden">
         <div style="background:var(--brand-600,#2563eb);color:#fff;padding:11px 14px"><span style="font-size:14px;font-weight:700">${a.name} (${a.code})</span></div>
         <div style="background:#fff;padding:14px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#64748b;font-size:13px">Aircraft on Ground:</span><span style="font-weight:700;color:#0f172a;font-size:13px">${a.aog}</span></div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#64748b;font-size:13px">Total Hull:</span><span style="font-weight:700;color:#0f172a;font-size:13px">${a.hull}</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:#64748b;font-size:13px">CHW:</span><span style="font-weight:700;color:#0f172a;font-size:13px">${a.chw}</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#6b7280;font-size:13px">Aircraft on Ground:</span><span style="font-weight:700;color:#111827;font-size:13px">${a.aog}</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:7px"><span style="color:#6b7280;font-size:13px">Total Hull:</span><span style="font-weight:700;color:#111827;font-size:13px">${a.hull}</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#6b7280;font-size:13px">CHW:</span><span style="font-weight:700;color:#111827;font-size:13px">${a.chw}</span></div>
           <button class="ard-pp-cta" style="display:block;width:100%;margin-top:12px;height:32px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--brand-600,#2563eb);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Details</button>
         </div>
       </div>`;
@@ -333,7 +333,7 @@ function initMap() {
     rTile.bringToBack();
     document.querySelectorAll('#ard-layers-menu [data-map-type]').forEach(b => {
       const on=b.dataset.mapType===type, lbl=b.querySelector('[data-label]'), chk=b.querySelector('[data-check]');
-      if (lbl){ lbl.style.color = on?'var(--brand-600,#2563eb)':'#334155'; lbl.style.fontWeight = on?'600':'500'; }
+      if (lbl){ lbl.style.color = on?'var(--brand-600,#2563eb)':'#374151'; lbl.style.fontWeight = on?'600':'500'; }
       if (chk) chk.style.opacity = on?'1':'0';
     });
   };
@@ -366,20 +366,20 @@ function alertCard(al) {
   const inTransit = al.status !== 'Landed';
   const statusStyle = inTransit
     ? 'color:#c2410c;border-color:#fed7aa;background:#fff7ed'
-    : 'color:#0f172a;border-color:#e2e8f0;background:#fff';
+    : 'color:#111827;border-color:#e5e7eb;background:#fff';
   return `
   <div class="airport-card" style="cursor:default;margin-bottom:10px">
     <div style="display:flex;align-items:center;gap:10px">
       <span style="display:inline-flex;align-items:center;background:#dc2626;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;flex-shrink:0">Entry Alert</span>
-      <span style="font-size:13.5px;color:#0f172a"><strong style="font-weight:700">${al.flight}</strong> <span style="color:#94a3b8">•</span> <span style="color:#64748b">${al.airline}</span></span>
+      <span style="font-size:13.5px;color:#111827"><strong style="font-weight:700">${al.flight}</strong> <span style="color:#9ca3af">•</span> <span style="color:#6b7280">${al.airline}</span></span>
       <span style="margin-left:auto;font-size:11px;font-weight:600;padding:3px 10px;border:1px solid;border-radius:6px;${statusStyle};flex-shrink:0">${al.status}</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-top:14px">
-      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Aircraft:</div><div style="font-size:14px;font-weight:600;color:var(--brand-600,#2563eb)">${al.aircraft}</div></div>
-      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Call Sign:</div><div style="font-size:13px;font-weight:600;color:#0f172a;letter-spacing:.02em">${al.callsign}</div></div>
-      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Entry Date/Time:</div><div style="font-size:13px;font-weight:600;color:#0f172a">${al.entry}</div></div>
-      <div><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Exit Date/Time:</div><div style="font-size:13px;font-weight:600;color:#0f172a">${al.exit}</div></div>
-      <div style="grid-column:1 / -1"><div style="font-size:11.5px;color:#64748b;margin-bottom:2px">Airport Name:</div><div style="font-size:13px;font-weight:700;color:#0f172a">${al.airport}</div></div>
+      <div><div style="font-size:11.5px;color:#6b7280;margin-bottom:2px">Aircraft:</div><div style="font-size:14px;font-weight:600;color:var(--brand-600,#2563eb)">${al.aircraft}</div></div>
+      <div><div style="font-size:11.5px;color:#6b7280;margin-bottom:2px">Call Sign:</div><div style="font-size:13px;font-weight:600;color:#111827;letter-spacing:.02em">${al.callsign}</div></div>
+      <div><div style="font-size:11.5px;color:#6b7280;margin-bottom:2px">Entry Date/Time:</div><div style="font-size:13px;font-weight:600;color:#111827">${al.entry}</div></div>
+      <div><div style="font-size:11.5px;color:#6b7280;margin-bottom:2px">Exit Date/Time:</div><div style="font-size:13px;font-weight:600;color:#111827">${al.exit}</div></div>
+      <div style="grid-column:1 / -1"><div style="font-size:11.5px;color:#6b7280;margin-bottom:2px">Airport Name:</div><div style="font-size:13px;font-weight:700;color:#111827">${al.airport}</div></div>
     </div>
   </div>`;
 }
@@ -398,24 +398,24 @@ function airportRow(a) {
     <div style="display:flex;align-items:center;gap:12px">
       <div style="width:38px;height:38px;border-radius:50%;background:var(--brand-50,#eff6ff);display:flex;align-items:center;justify-content:center;flex-shrink:0">${PLANE_ICO('var(--brand-600,#2563eb)')}</div>
       <div style="flex:1;min-width:0">
-        <div style="font-size:14px;font-weight:700;color:#0f172a">${a.name}</div>
-        <div style="font-size:11.5px;color:#64748b;font-weight:600;letter-spacing:.04em">${a.code}</div>
+        <div style="font-size:14px;font-weight:700;color:#111827">${a.name}</div>
+        <div style="font-size:11.5px;color:#6b7280;font-weight:600;letter-spacing:.04em">${a.code}</div>
       </div>
     </div>
-    <div class="ap-stats" style="display:grid;gap:10px 16px;font-size:12px;color:#64748b;margin-top:12px">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Aircraft on Ground:</span><span class="spill-gray">${PLANE_ICO('#334155')}${a.aog}</span></div>
+    <div class="ap-stats" style="display:grid;gap:10px 16px;font-size:12px;color:#6b7280;margin-top:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Aircraft on Ground:</span><span class="spill-gray">${PLANE_ICO('#374151')}${a.aog}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total Portfolios:</span><span class="spill-gray">${BRIEF_ICO}${a.portfolios}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total Hull:</span><span class="spill-blue">${a.hull}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total CHW:</span><span class="spill-blue">${a.chw}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total HULLW:</span><span class="spill-blue">${a.hullw}</span></div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total TLOHW:</span><span class="spill-blue">${a.tlohw}</span></div>
     </div>
-    <div style="margin-top:12px;border-top:1px solid #f1f5f9;padding-top:10px">
+    <div style="margin-top:12px;border-top:1px solid #f3f4f6;padding-top:10px">
       <button type="button" data-airport-toggle="${a.code}" aria-expanded="${open}" style="display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;padding:4px 0;cursor:pointer;color:var(--brand-600,#2563eb);font:inherit;font-size:12.5px;font-weight:600">Portfolios<span style="display:inline-flex;transform:${open?'rotate(180deg)':'rotate(0)'};transition:transform .15s">${CHEV_ICO}</span></button>
     </div>
     ${open ? `
     <div style="margin-top:8px">
-      <div style="border:1px solid #e2e8f0;border-radius:10px;overflow:hidden">
+      <div style="border:1px solid #e5e7eb;border-radius:10px;overflow:hidden">
         <table class="pf-tbl ard-tbl">
           <thead><tr>
             <th>Name</th>
@@ -445,14 +445,14 @@ function airportRow(a) {
 function Content() {
   const s = STATS_BY_COV[covTab] || STATS_BY_COV.CHW;
   return `
-  <div class="flex-1 min-h-0 overflow-y-auto scroll-thin" style="padding:12px 16px;background:#f1f5f9">
+  <div class="flex-1 min-h-0 overflow-y-auto scroll-thin" style="padding:12px 16px;background:#f3f4f6">
 
     <!-- Top row: 3 cards -->
     <div class="ard-top-row">
 
       <!-- LEFT: Totals / Region Details -->
-      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-        <div style="padding:10px 12px;border-bottom:1px solid #f1f5f9">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6">
           <div class="ds-tabs" id="ltab-tabs" style="width:100%">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
             <button class="ds-tab" style="flex:1;justify-content:center" aria-selected="${leftTab==='totals'}"  data-ltab="totals"><span class="ds-tab-label">Totals</span></button>
@@ -461,28 +461,28 @@ function Content() {
         </div>
         <div style="padding:12px 16px">
           ${leftTab === 'totals' ? `
-          <div style="display:flex;justify-content:flex-end;gap:24px;font-size:11.5px;font-weight:600;color:#94a3b8;margin-bottom:6px;padding-right:4px"><span>Above Threshold</span><span>Total</span></div>
+          <div style="display:flex;justify-content:flex-end;gap:24px;font-size:11.5px;font-weight:600;color:#9ca3af;margin-bottom:6px;padding-right:4px"><span>Above Threshold</span><span>Total</span></div>
           ${TOTALS_ROWS.map(r => `
           <div class="tot-row">
-            <span style="flex:1;font-size:13px;color:#334155">${r.label}${r.label!=='All Risk'?':':''}</span>
+            <span style="flex:1;font-size:13px;color:#374151">${r.label}${r.label!=='All Risk'?':':''}</span>
             <span style="color:#f97316;font-weight:600;font-size:13px;min-width:64px;text-align:right">${r.thr}</span>
-            <span style="color:#0f172a;font-weight:600;font-size:13px;min-width:56px;text-align:right;margin-left:18px">${r.tot}</span>
+            <span style="color:#111827;font-weight:600;font-size:13px;min-width:56px;text-align:right;margin-left:18px">${r.tot}</span>
           </div>`).join('')}` : `
-          <div style="font-size:13px;color:#64748b;padding:6px 0;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Region Type:</span><span style="color:#0f172a;font-weight:600">${REGION_INFO.type}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Created at:</span><span style="color:#0f172a;font-weight:600">${REGION_INFO.created}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Airports:</span><span style="color:#0f172a;font-weight:600">${REGION_INFO.airports}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Active Policies:</span><span style="color:#0f172a;font-weight:600">${REGION_INFO.policies}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Countries:</span><span style="color:#0f172a;font-weight:600">${REGION_INFO.countries}</span></div>
+          <div style="font-size:13px;color:#6b7280;padding:6px 0;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Region Type:</span><span style="color:#111827;font-weight:600">${REGION_INFO.type}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Created at:</span><span style="color:#111827;font-weight:600">${REGION_INFO.created}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Airports:</span><span style="color:#111827;font-weight:600">${REGION_INFO.airports}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Active Policies:</span><span style="color:#111827;font-weight:600">${REGION_INFO.policies}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Countries:</span><span style="color:#111827;font-weight:600">${REGION_INFO.countries}</span></div>
           </div>`}
         </div>
       </div>
 
       <!-- MIDDLE: Region Exposure by Portfolio -->
-      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-        <div style="padding:12px 14px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between">
-          <span style="font-size:14px;font-weight:700;color:#0f172a">Region Exposure by Portfolio</span>
-          <span style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:#64748b">${LINK_ICO} ${PORTFOLIOS.length}</span>
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:14px;font-weight:700;color:#111827">Region Exposure by Portfolio</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:#6b7280">${LINK_ICO} ${PORTFOLIOS.length}</span>
         </div>
         <div style="flex:1;overflow-y:auto" class="scroll-thin">
           <table class="pf-tbl ard-tbl">
@@ -513,8 +513,8 @@ function Content() {
       </div>
 
       <!-- RIGHT: Region Summary Statistics -->
-      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-        <div style="padding:10px 12px;border-bottom:1px solid #f1f5f9">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6">
           <div class="tabs-desktop-wrap">
             <div class="ds-tabs" id="rtab-tabs" style="width:100%">
               <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -529,67 +529,67 @@ function Content() {
         </div>
         ${rightTab === 'stats' ? `
         <div style="flex:1;overflow-y:auto;padding:12px 14px" class="scroll-thin">
-          <div style="font-size:11.5px;color:#64748b;margin-bottom:5px">Date Range:</div>
+          <div style="font-size:11.5px;color:#6b7280;margin-bottom:5px">Date Range:</div>
           <div style="display:grid;grid-template-columns:1fr 14px 1fr;align-items:center;gap:8px;margin-bottom:14px">
             <div style="position:relative">
-              <input type="text" value="Dec 1st 2024" readonly style="width:100%;height:30px;border:1px solid #e2e8f0;border-radius:7px;padding:0 26px 0 8px;font-size:12.5px;color:#334155;background:#f8fafc;outline:none;font-family:inherit" />
+              <input type="text" value="Dec 1st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:7px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_ICO}</span>
             </div>
-            <span style="font-size:12px;color:#94a3b8;text-align:center">to</span>
+            <span style="font-size:12px;color:#9ca3af;text-align:center">to</span>
             <div style="position:relative">
-              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e2e8f0;border-radius:7px;padding:0 26px 0 8px;font-size:12.5px;color:#334155;background:#f8fafc;outline:none;font-family:inherit" />
+              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:7px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_ICO}</span>
             </div>
           </div>
           <!-- Coverage sub-tabs -->
-          <div style="display:flex;align-items:center;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px;padding:4px;gap:4px;margin-bottom:14px">
+          <div style="display:flex;align-items:center;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;padding:4px;gap:4px;margin-bottom:14px">
             ${['CHW','HULLW','TLOHW'].map(t => `<button class="cov-tab ${t===covTab?'active':''}" data-cov="${t}">${t}</button>`).join('')}
           </div>
           <!-- Stats list -->
           <div style="display:flex;flex-direction:column;gap:14px">
             <div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
               <div style="flex:1">
-                <div style="font-size:12.5px;font-weight:600;color:#0f172a">Average Daily Exposure Value:</div>
+                <div style="font-size:12.5px;font-weight:600;color:#111827">Average Daily Exposure Value:</div>
               </div>
               <span class="spill-blue">${s.avgExp}</span>
-              <div style="flex:1;display:flex;align-items:center;gap:5px;color:#64748b;font-size:12px">${INFO_ICO}Average Daily Asset Count:</div>
-              <span style="font-size:13px;font-weight:700;color:#0f172a;min-width:30px;text-align:right">${s.avgA}</span>
+              <div style="flex:1;display:flex;align-items:center;gap:5px;color:#6b7280;font-size:12px">${INFO_ICO}Average Daily Asset Count:</div>
+              <span style="font-size:13px;font-weight:700;color:#111827;min-width:30px;text-align:right">${s.avgA}</span>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
               <div style="flex:1">
-                <div style="font-size:12.5px;font-weight:600;color:#0f172a">Highest Daily Exposure Value:</div>
+                <div style="font-size:12.5px;font-weight:600;color:#111827">Highest Daily Exposure Value:</div>
                 <div style="font-size:11px;color:#f97316;font-weight:600;margin-top:2px">${s.hiExpDate}</div>
               </div>
               <span class="spill-blue">${s.hiExp}</span>
               <div style="flex:1">
-                <div style="display:flex;align-items:center;gap:5px;color:#64748b;font-size:12px">${INFO_ICO}Highest Daily Asset Count:</div>
+                <div style="display:flex;align-items:center;gap:5px;color:#6b7280;font-size:12px">${INFO_ICO}Highest Daily Asset Count:</div>
                 <div style="font-size:11px;color:#f97316;font-weight:600;margin-top:2px">${s.hiADate}</div>
               </div>
-              <span style="font-size:13px;font-weight:700;color:#0f172a;min-width:30px;text-align:right">${s.hiA}</span>
+              <span style="font-size:13px;font-weight:700;color:#111827;min-width:30px;text-align:right">${s.hiA}</span>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
               <div style="flex:1">
-                <div style="font-size:12.5px;font-weight:600;color:#0f172a">Lowest Daily Exposure Value:</div>
+                <div style="font-size:12.5px;font-weight:600;color:#111827">Lowest Daily Exposure Value:</div>
                 <div style="font-size:11px;color:#f97316;font-weight:600;margin-top:2px">${s.loExpDate}</div>
               </div>
               <span class="spill-blue">${s.loExp}</span>
               <div style="flex:1">
-                <div style="display:flex;align-items:center;gap:5px;color:#64748b;font-size:12px">${INFO_ICO}Lowest Daily Asset Count:</div>
+                <div style="display:flex;align-items:center;gap:5px;color:#6b7280;font-size:12px">${INFO_ICO}Lowest Daily Asset Count:</div>
                 <div style="font-size:11px;color:#f97316;font-weight:600;margin-top:2px">${s.loADate}</div>
               </div>
-              <span style="font-size:13px;font-weight:700;color:#0f172a;min-width:30px;text-align:right">${s.loA}</span>
+              <span style="font-size:13px;font-weight:700;color:#111827;min-width:30px;text-align:right">${s.loA}</span>
             </div>
           </div>
         </div>` : `
-        <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px"><div style="text-align:center;color:#94a3b8;font-size:13px">Report builder coming soon</div></div>`}
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px"><div style="text-align:center;color:#9ca3af;font-size:13px">Report builder coming soon</div></div>`}
       </div>
     </div>
 
     <!-- Bottom row: Airports list + Coverage map -->
     <div class="ard-bottom-row">
       <!-- Airports list -->
-      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-        <div style="padding:10px 12px;border-bottom:1px solid #f1f5f9">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6">
           <div class="ds-tabs" id="btab-tabs">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
             <button class="ds-tab" aria-selected="${bottomLTab==='airports'}" data-btab="airports"><span class="ds-tab-label">Airports <span style="background:rgba(255,255,255,.25);padding:1px 7px;border-radius:9999px;font-size:11px;margin-left:2px">${AIRPORTS.length}</span></span></button>
@@ -600,10 +600,10 @@ function Content() {
       </div>
 
       <!-- Coverage map -->
-      <div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-        <div style="padding:12px 14px;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;gap:6px">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:6px">
           ${MAP_PIN}
-          <span style="font-size:14px;font-weight:700;color:#0f172a">Aviation Coverage Map</span>
+          <span style="font-size:14px;font-weight:700;color:#111827">Aviation Coverage Map</span>
         </div>
         <div id="ard-map-wrap" style="position:relative;flex:1">
           <div id="region-map"></div>
@@ -611,14 +611,14 @@ function Content() {
           <div style="position:absolute;top:12px;right:12px;z-index:400">
             <div style="position:relative">
               <button id="ard-layers-btn" class="map-btn" title="Map type">${SC.I.layers}</button>
-              <div id="ard-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
-                ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`<button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;color:#334155;text-align:left"><span data-label>${l}</span><span data-check style="display:flex;color:var(--brand-600,#2563eb);opacity:0">${SC.I.check}</span></button>`).join('')}
+              <div id="ard-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
+                ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`<button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;color:#374151;text-align:left"><span data-label>${l}</span><span data-check style="display:flex;color:var(--brand-600,#2563eb);opacity:0">${SC.I.check}</span></button>`).join('')}
               </div>
             </div>
           </div>
           <div class="ard-map-legend">
-            <div style="font-size:13px;font-weight:700;color:#0f172a">Aviation Region</div>
-            <div style="font-size:11.5px;color:#475569;margin-top:2px">${AIRPORTS.length} Major Airports</div>
+            <div style="font-size:13px;font-weight:700;color:#111827">Aviation Region</div>
+            <div style="font-size:11.5px;color:#4b5563;margin-top:2px">${AIRPORTS.length} Major Airports</div>
           </div>
         </div>
       </div>
@@ -630,8 +630,8 @@ function Content() {
 let _main = null;
 function bottomPanel() {
   return bottomLTab === 'airports'
-    ? `<div style="flex:1;overflow-y:auto;padding:12px 14px;background:#f8fafc" class="scroll-thin">${AIRPORTS.map(a => airportRow(a)).join('')}</div>`
-    : `<div style="flex:1;overflow-y:auto;padding:12px 14px;background:#f8fafc" class="scroll-thin">${ALERTS.map(al => alertCard(al)).join('')}</div>`;
+    ? `<div style="flex:1;overflow-y:auto;padding:12px 14px;background:#f9fafb" class="scroll-thin">${AIRPORTS.map(a => airportRow(a)).join('')}</div>`
+    : `<div style="flex:1;overflow-y:auto;padding:12px 14px;background:#f9fafb" class="scroll-thin">${ALERTS.map(al => alertCard(al)).join('')}</div>`;
 }
 function wireBottomToggles() {
   document.querySelectorAll('[data-airport-toggle]').forEach(b => b.addEventListener('click', (e) => {

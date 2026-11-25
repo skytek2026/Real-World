@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rule Sets — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -15,32 +15,32 @@
   .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
   /* Table */
   .rs-tbl{width:100%;border-collapse:collapse}
-  .rs-tbl th{padding:10px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f1f5f9;white-space:nowrap;background:var(--slate-50,#F9FAFB);user-select:none;text-transform:uppercase;letter-spacing:.04em}
-  .rs-tbl th.sortable{cursor:pointer}.rs-tbl th.sortable:hover{color:#64748b}.rs-tbl th.sorted{color:var(--brand-600)}
-  .rs-tbl td{padding:13px 16px;font-size:13px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle}
+  .rs-tbl th{padding:10px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);user-select:none;text-transform:uppercase;letter-spacing:.04em}
+  .rs-tbl th.sortable{cursor:pointer}.rs-tbl th.sortable:hover{color:#6b7280}.rs-tbl th.sorted{color:var(--brand-600)}
+  .rs-tbl td{padding:13px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle}
   .rs-tbl tr:last-child td{border-bottom:0}
   .rs-tbl tbody tr:hover td{background:#fafafa}
   /* Action buttons */
-  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;border:0;background:transparent;cursor:pointer;color:#94a3b8;transition:background .1s,color .1s}
-  .actbtn:hover{background:#f1f5f9;color:#334155}
+  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
+  .actbtn:hover{background:#f3f4f6;color:#374151}
   .actbtn.danger:hover{background:#fef2f2;color:#e11d48}
   /* Pagination */
-  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#334155;cursor:pointer;transition:background .1s}
-  .pgbtn:hover:not([disabled]){background:#f1f5f9}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
+  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
+  .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
   /* Modal */
   .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.3);z-index:500;display:flex;justify-content:flex-end;animation:fadein 150ms ease}
   @keyframes fadein{from{opacity:0}to{opacity:1}}
   .modal-panel{width:460px;max-width:100vw;background:#fff;height:100%;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(15,23,42,.14);animation:slidein 200ms cubic-bezier(.22,.1,.36,1)}
   @keyframes slidein{from{transform:translateX(100%)}to{transform:translateX(0)}}
-  .form-label{font-size:11px;font-weight:700;color:#64748b;margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.04em}
-  .form-input{width:100%;height:36px;padding:0 10px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#0f172a;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;background:#fff}
+  .form-label{font-size:11px;font-weight:700;color:#6b7280;margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.04em}
+  .form-input{width:100%;height:36px;padding:0 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;background:#fff}
   .form-input:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
-  .form-select{width:100%;height:36px;padding:0 28px 0 10px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#0f172a;outline:none;font-family:inherit;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer}
+  .form-select{width:100%;height:36px;padding:0 28px 0 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer}
   .form-select:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
-<body class="bg-slate-100 text-slate-900">
+<body class="bg-gray-100 text-gray-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 
 <script>
@@ -53,7 +53,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -137,16 +137,16 @@ function renderModal() {
     {val:'shield', label:'Security Zone'},
     {val:'clock',  label:'Time-based (Loitering)'},
   ];
-  const COLORS = ['#7c3aed','#0891b2','#dc2626','#16a34a','#ea580c','#2563eb','#d97706','#475569'];
+  const COLORS = ['#7c3aed','#0891b2','#dc2626','#16a34a','#ea580c','#2563eb','#d97706','#4b5563'];
 
   return `<div class="modal-bg" id="modal-bg">
     <div class="modal-panel" id="modal-panel">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 shrink-0">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
         <div>
-          <div class="text-base font-bold text-slate-900">Create New Rule Set</div>
-          <div class="text-xs text-slate-400 mt-0.5">Define monitoring rules and target regions</div>
+          <div class="text-base font-bold text-gray-900">Create New Rule Set</div>
+          <div class="text-xs text-gray-400 mt-0.5">Define monitoring rules and target regions</div>
         </div>
-        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#94a3b8" onmouseover="this.style.background='#f1f5f9';this.style.color='#334155'" onmouseout="this.style.background='transparent';this.style.color='#94a3b8'">${SVG.x}</button>
+        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${SVG.x}</button>
       </div>
       <div class="flex-1 overflow-y-auto scroll-thin px-6 py-5" style="display:flex;flex-direction:column;gap:16px">
 
@@ -161,34 +161,34 @@ function renderModal() {
             <select class="form-select" id="form-type">
               ${TYPES.map(t => `<option value="${t.val}"${f.type===t.val?' selected':''}>${t.label}</option>`).join('')}
             </select>
-            <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:#64748b;display:flex">${SVG.chevDown}</span>
+            <span style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:#6b7280;display:flex">${SVG.chevDown}</span>
           </div>
         </div>
 
         <div>
           <label class="form-label">Icon Colour</label>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-            ${COLORS.map(c => `<button data-pick-color="${c}" style="width:26px;height:26px;border-radius:50%;background:${c};border:${f.color===c?'2.5px solid #0f172a':'2px solid transparent'};cursor:pointer;outline:2px solid ${f.color===c?'rgba(15,23,42,.15)':'transparent'};outline-offset:1px;transition:transform .1s" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"></button>`).join('')}
+            ${COLORS.map(c => `<button data-pick-color="${c}" style="width:26px;height:26px;border-radius:50%;background:${c};border:${f.color===c?'2.5px solid #111827':'2px solid transparent'};cursor:pointer;outline:2px solid ${f.color===c?'rgba(15,23,42,.15)':'transparent'};outline-offset:1px;transition:transform .1s" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'"></button>`).join('')}
           </div>
         </div>
 
         <div>
           <label class="form-label">Regions</label>
           <input class="form-input" id="form-regions" type="text" placeholder="e.g. Strait of Hormuz, Gulf of Oman, Red Sea" value="${f.regions.replace(/"/g,'&quot;')}" />
-          <div style="font-size:11px;color:#94a3b8;margin-top:4px">Enter comma-separated region names.</div>
+          <div style="font-size:11px;color:#9ca3af;margin-top:4px">Enter comma-separated region names.</div>
         </div>
 
         <!-- Preview -->
-        <div style="padding:12px;background:#f8fafc;border-radius:10px;border:1px solid #f1f5f9">
-          <div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Preview</div>
+        <div style="padding:12px;background:#f9fafb;border-radius:10px;border:1px solid #f3f4f6">
+          <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Preview</div>
           <div style="display:flex;align-items:center;gap:10px">
             ${rowIcon(f.type, f.color)}
-            <span style="font-size:13px;font-weight:600;color:#0f172a">${f.name || 'Rule Set Name'}</span>
+            <span style="font-size:13px;font-weight:600;color:#111827">${f.name || 'Rule Set Name'}</span>
           </div>
         </div>
       </div>
-      <div class="shrink-0 px-6 py-4 border-t border-slate-100 flex items-center gap-3">
-        <button id="modal-cancel" style="flex:1;height:36px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;font-size:13px;font-weight:500;color:#475569;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#fff'">Cancel</button>
+      <div class="shrink-0 px-6 py-4 border-t border-gray-100 flex items-center gap-3">
+        <button id="modal-cancel" style="flex:1;height:36px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">Cancel</button>
         <button id="modal-create" style="flex:1;height:36px;border-radius:8px;border:0;background:var(--brand-600);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">Create Rule Set</button>
       </div>
     </div>
@@ -214,17 +214,17 @@ function renderPage() {
 
   <!-- Main card -->
   <div class="flex-1 min-h-0 px-4 pb-4 flex flex-col">
-    <div class="bg-white rounded-xl border border-slate-200 flex flex-col overflow-hidden flex-1 min-h-0" style="box-shadow:0 1px 3px rgba(15,23,42,.06)">
+    <div class="bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden flex-1 min-h-0" style="box-shadow:0 1px 3px rgba(15,23,42,.06)">
 
       <!-- Card header -->
-      <div class="shrink-0 px-5 py-3 border-b border-slate-100 flex items-center gap-3">
-        <div class="text-sm font-semibold text-slate-900">Rule Sets</div>
+      <div class="shrink-0 px-5 py-3 border-b border-gray-100 flex items-center gap-3">
+        <div class="text-sm font-semibold text-gray-900">Rule Sets</div>
         <div style="flex:1"></div>
         <div style="position:relative">
-          <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#94a3b8;pointer-events:none;display:flex">${SVG.search}</span>
+          <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none;display:flex">${SVG.search}</span>
           <input id="rs-search" type="text" placeholder="Filter records"
             value="${ST.query.replace(/"/g,'&quot;')}"
-            style="height:32px;width:200px;padding:0 10px 0 30px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;color:#0f172a;outline:none;font-family:inherit;background:#f8fafc;transition:border-color .15s,box-shadow .15s,background .15s" />
+            style="height:32px;width:200px;padding:0 10px 0 30px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s,background .15s" />
         </div>
       </div>
 
@@ -240,16 +240,16 @@ function renderPage() {
           </thead>
           <tbody>
             ${pageRows.length === 0 ? `
-              <tr><td colspan="3" style="text-align:center;padding:64px 0;color:#94a3b8;font-size:13px">No rule sets match your filter.</td></tr>
+              <tr><td colspan="3" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:13px">No rule sets match your filter.</td></tr>
             ` : pageRows.map(rs => `
             <tr>
               <td>
                 <div style="display:flex;align-items:center;gap:10px">
                   ${rowIcon(rs.icon, rs.color)}
-                  <span style="font-size:13px;font-weight:600;color:#0f172a">${rs.name}</span>
+                  <span style="font-size:13px;font-weight:600;color:#111827">${rs.name}</span>
                 </div>
               </td>
-              <td style="color:#64748b;font-size:13px">${rs.regions.join(', ')}</td>
+              <td style="color:#6b7280;font-size:13px">${rs.regions.join(', ')}</td>
               <td style="text-align:right">
                 <div style="display:inline-flex;align-items:center;gap:1px">
                   <button class="actbtn" title="View">${SVG.eye}</button>
@@ -300,7 +300,7 @@ function wireRS() {
   if (si) {
     si.addEventListener('input', e => { ST.query = e.target.value; ST.page = 1; rc(); });
     si.addEventListener('focus', e => { e.target.style.borderColor='var(--brand-300)'; e.target.style.boxShadow='0 0 0 3px var(--brand-100)'; e.target.style.background='#fff'; });
-    si.addEventListener('blur',  e => { e.target.style.borderColor='#e2e8f0'; e.target.style.boxShadow=''; e.target.style.background='#f8fafc'; });
+    si.addEventListener('blur',  e => { e.target.style.borderColor='#e5e7eb'; e.target.style.boxShadow=''; e.target.style.background='#f9fafb'; });
   }
 
   /* Sort */
@@ -390,7 +390,7 @@ window.render = function() {
     ${SC.Sidebar()}
     <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
       ${SC.Topbar()}
-      <main id="rs-main" class="flex-1 min-h-0 overflow-hidden flex flex-col bg-slate-100"></main>
+      <main id="rs-main" class="flex-1 min-h-0 overflow-hidden flex flex-col bg-gray-100"></main>
     </div>
     ${SC.TweaksPanel()}
   `;

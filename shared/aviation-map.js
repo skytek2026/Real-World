@@ -48,11 +48,11 @@ const PLANES = [
 ];
 
 function buildFlightPopupHTML(p) {
-  const statusColor = p.status==='Cruising' ? '#2563eb' : p.status==='Climbing' ? '#10b981' : p.status==='Descending' ? '#f59e0b' : '#64748b';
+  const statusColor = p.status==='Cruising' ? '#2563eb' : p.status==='Climbing' ? '#10b981' : p.status==='Descending' ? '#f59e0b' : '#6b7280';
   const row = (lbl, val, extra) => `
-    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f8fafc;">
-      <span style="font-size:12px;color:#64748b;">${lbl}:</span>
-      <span style="font-size:13px;font-weight:700;color:#0f172a;${extra||''}">${val}</span>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f9fafb;">
+      <span style="font-size:12px;color:#6b7280;">${lbl}:</span>
+      <span style="font-size:13px;font-weight:700;color:#111827;${extra||''}">${val}</span>
     </div>`;
   return `
     <div style="background:var(--brand-600,#2563eb);padding:11px 36px 11px 14px;">
@@ -61,25 +61,25 @@ function buildFlightPopupHTML(p) {
         <span style="font-weight:400;opacity:.85;font-size:12px;"> &middot; ${p.reg} &middot; ${p.type}</span>
       </div>
     </div>
-    <div style="padding:14px 16px 12px;border-bottom:1px solid #e2e8f0;">
+    <div style="padding:14px 16px 12px;border-bottom:1px solid #e5e7eb;">
       <div style="display:flex;align-items:flex-start;gap:4px;">
         <div style="flex:0 0 82px;">
-          <div style="font-size:10px;color:#94a3b8;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
-          <div style="font-size:24px;font-weight:800;color:#0f172a;line-height:1.1;">${p.from.code}</div>
-          <div style="font-size:10px;color:#94a3b8;margin-top:2px;">${p.date}, ${p.dep}</div>
+          <div style="font-size:10px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
+          <div style="font-size:24px;font-weight:800;color:#111827;line-height:1.1;">${p.from.code}</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.dep}</div>
         </div>
         <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:11px;">
           <div style="display:flex;align-items:center;width:100%;gap:3px;">
-            <div style="flex:1;border-top:1.5px dashed #cbd5e1;"></div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="#94a3b8" stroke="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-            <div style="flex:1;border-top:1.5px dashed #cbd5e1;"></div>
+            <div style="flex:1;border-top:1.5px dashed #d1d5db;"></div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#9ca3af" stroke="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
+            <div style="flex:1;border-top:1.5px dashed #d1d5db;"></div>
           </div>
-          <div style="font-size:10px;color:#64748b;white-space:nowrap;">${p.duration}</div>
+          <div style="font-size:10px;color:#6b7280;white-space:nowrap;">${p.duration}</div>
         </div>
         <div style="flex:0 0 82px;text-align:right;">
-          <div style="font-size:10px;color:#94a3b8;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
-          <div style="font-size:24px;font-weight:800;color:#0f172a;line-height:1.1;">${p.to.code}</div>
-          <div style="font-size:10px;color:#94a3b8;margin-top:2px;">${p.date}, ${p.arr}</div>
+          <div style="font-size:10px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
+          <div style="font-size:24px;font-weight:800;color:#111827;line-height:1.1;">${p.to.code}</div>
+          <div style="font-size:10px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.arr}</div>
         </div>
       </div>
     </div>
@@ -98,9 +98,9 @@ function buildAirportPopupHTML(a) {
   const lat = a.lat.toFixed(4) + '\u00b0';
   const lng = a.lng.toFixed(4) + '\u00b0';
   const row = (lbl, val) => `
-    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #f8fafc;">
-      <span style="font-size:12px;color:#64748b;">${lbl}:</span>
-      <span style="font-size:13px;font-weight:700;color:#0f172a;">${val}</span>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #f9fafb;">
+      <span style="font-size:12px;color:#6b7280;">${lbl}:</span>
+      <span style="font-size:13px;font-weight:700;color:#111827;">${val}</span>
     </div>`;
   return `
     <div style="background:var(--brand-600,#2563eb);padding:11px 36px 11px 14px;">
@@ -126,7 +126,7 @@ let tileLayer = null;
 
 const MAP_TYPES = {
   satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f8fafc' },
+  street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f9fafb' },
   dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
   light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
 };

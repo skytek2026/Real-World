@@ -68,12 +68,12 @@
                   <div class="dist-bar" style="height:${Math.round(d.count / max * 150)}px;background:${d.color}"></div>
                 </div>`).join('')}
             </div>
-            <div class="dist-x">${P.distribution.map(d => `<span>${d.band}<br /><span style="color:#94a3b8;font-weight:500">${d.range}</span></span>`).join('')}</div>
+            <div class="dist-x">${P.distribution.map(d => `<span>${d.band}<br /><span style="color:#9ca3af;font-weight:500">${d.range}</span></span>`).join('')}</div>
           </div>
           <div class="legend">
             ${P.distribution.map(d => `
               <div class="legend-row"><span class="sw" style="background:${d.color}"></span>${d.band} (${d.range})<span class="lv num">${d.pct}%</span></div>`).join('')}
-            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f1f5f9">Portfolio average<span class="lv num">${k.avgRisk}</span></div>
+            <div class="legend-row" style="margin-top:5px;padding-top:8px;border-top:1px solid #f3f4f6">Portfolio average<span class="lv num">${k.avgRisk}</span></div>
             <div class="legend-row">Below average (50+)<span class="lv num">${P.distribution[2].count} vessels</span></div>
           </div>
         </div>`, 'Score bands follow the Real World scale: good 0–25, average 25+–50, below average 50+–100. Counts are vessels holding cover at period end.')}
@@ -103,11 +103,11 @@
           <tbody>
             ${P.highest.map((v, i) => `
               <tr>
-                <td class="num" style="color:#94a3b8">${i + 1}</td>
+                <td class="num" style="color:#9ca3af">${i + 1}</td>
                 <td class="vn"><span class="v-stack"><span class="v-name">${v.name}</span><span class="v-sub"><span class="num">IMO ${v.imo}</span> &middot; ${v.type}</span></span></td>
                 <td>${flag(v.cc)}</td>
                 <td class="r">${scoreChip(v.score)}</td>
-                <td class="r num" style="color:#64748b">${v.prev}</td>
+                <td class="r num" style="color:#6b7280">${v.prev}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Ranked by score at period end. Prev is the score carried in the previous report.')}
@@ -159,7 +159,7 @@
                 <td>${flag(c.cc)}</td>
                 <td>${c.type}</td>
                 <td>${sevPill(c.sev)}</td>
-                <td style="color:#475569">${c.loc}</td>
+                <td style="color:#4b5563">${c.loc}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Five casualties reported in the period against a trailing twelve-month average of 3.4 per month.')}
@@ -191,7 +191,7 @@
                 <td class="r num">${r.vessels}</td>
                 <td class="r num">${r.value}</td>
                 <td class="r num">${(r.vessels / P.kpi.vessels * 100).toFixed(1)}%</td>
-                <td style="color:#64748b">${r.name === 'Singapore Strait' ? '18 Jul, 41 vessels simultaneously' : r.name === 'Gulf of Aden / BAM' ? '09 Jul, 27 vessels simultaneously' : '—'}</td>
+                <td style="color:#6b7280">${r.name === 'Singapore Strait' ? '18 Jul, 41 vessels simultaneously' : r.name === 'Gulf of Aden / BAM' ? '09 Jul, 27 vessels simultaneously' : '—'}</td>
               </tr>`).join('')}
           </tbody>
         </table>`, 'Vessels counted where they entered the region at least once during the period; a vessel may appear in more than one region.')}
@@ -254,7 +254,7 @@
               </div>
             </div>`).join('')}
         </div>`, 'Ordered by score. Each item carries an owner action and a committee due date; unresolved items roll forward into the next report.')}
-      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f1f5f9;color:#94a3b8">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${P.meta.generatedOn}.</p>
+      <p class="sec-note" style="margin-top:16px;padding-top:10px;border-top:1px solid #f3f4f6;color:#9ca3af">Real World Risk Scores are indicative and derived from vessel behaviour, compliance screening, casualty record and ownership data. They do not constitute underwriting advice. Sanctions screening reflects list data as published at ${P.meta.generatedOn}.</p>
       ${foot(9)}
     </article>`;
   }

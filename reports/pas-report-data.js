@@ -50,7 +50,7 @@ window.PAS = {
   scoreBands: [
     { band:'Improved 10+',  count:3, color:'#15803d' },
     { band:'Improved 1–9',  count:2, color:'#4ade80' },
-    { band:'No change',     count:1233, color:'#cbd5e1' },
+    { band:'No change',     count:1233, color:'#d1d5db' },
     { band:'Worsened 1–9',  count:41, color:'#f59e0b' },
     { band:'Worsened 10+',  count:5, color:'#b91c1c' },
   ],

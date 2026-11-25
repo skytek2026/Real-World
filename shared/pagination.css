@@ -9,8 +9,8 @@
 .ds-pagination-wrap {
   display:flex; align-items:center; justify-content:space-between;
   gap:12px; padding:12px 16px;
-  border-top:1px solid #e2e8f0; background:#f8fafc;
-  font-size:13px; color:#64748b;
+  border-top:1px solid #e5e7eb; background:#f9fafb;
+  font-size:13px; color:#6b7280;
   flex-wrap:wrap;
 }
 
@@ -27,12 +27,12 @@
   min-width:32px; height:32px;
   display:inline-flex; align-items:center; justify-content:center;
   padding:0 8px; gap:4px;
-  background:#fff; color:#334155;
-  border:1px solid #e2e8f0; border-radius:6px;
+  background:#fff; color:#374151;
+  border:1px solid #e5e7eb; border-radius:6px;
   font:inherit; font-size:13px; font-weight:500; line-height:1;
   cursor:pointer; transition:background 120ms, border-color 120ms, color 120ms;
 }
-.ds-page-btn:hover:not(:disabled):not(.is-active) { background:#f1f5f9; color:#0f172a; }
+.ds-page-btn:hover:not(:disabled):not(.is-active) { background:#f3f4f6; color:#111827; }
 .ds-page-btn:disabled { opacity:.4; cursor:not-allowed; }
 .ds-page-btn.is-active {
   background:var(--brand-600, #2563eb);
@@ -44,27 +44,27 @@
 .ds-page-ellipsis {
   min-width:24px; height:32px;
   display:inline-flex; align-items:center; justify-content:center;
-  color:#94a3b8; font-size:13px; user-select:none;
+  color:#9ca3af; font-size:13px; user-select:none;
 }
 
 /* Compact label between prev/next. */
 .ds-pagination--compact .page-label,
 .ds-pagination .page-label {
-  font-size:13px; color:#64748b;
+  font-size:13px; color:#6b7280;
   padding:0 10px; white-space:nowrap;
 }
 .ds-pagination .page-label strong,
-.ds-pagination--compact .page-label strong { color:#0f172a; font-weight:600; }
+.ds-pagination--compact .page-label strong { color:#111827; font-weight:600; }
 
 /* "Rows per page" select used in the table-footer pattern. */
 .ds-page-perpage {
   display:inline-flex; align-items:center; gap:6px;
-  font-size:13px; color:#64748b;
+  font-size:13px; color:#6b7280;
 }
 .ds-page-perpage select {
   height:28px; padding:0 28px 0 8px;
-  border:1px solid #e2e8f0; border-radius:6px; background:#fff;
-  font:inherit; font-size:13px; color:#334155; cursor:pointer;
+  border:1px solid #e5e7eb; border-radius:6px; background:#fff;
+  font:inherit; font-size:13px; color:#374151; cursor:pointer;
   appearance:none; -webkit-appearance:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat:no-repeat; background-position:right 8px center;
@@ -88,7 +88,7 @@
   /* Top row: count + jump link */
   .ds-pagination-summary {
     display:flex; align-items:center; justify-content:space-between;
-    font-size:12px; color:#64748b;
+    font-size:12px; color:#6b7280;
   }
   /* Hide numbered list + per-page; show prev / pill / next */
   .ds-pagination {
@@ -111,7 +111,7 @@
   .ds-pagination .page-label {
     display:inline-flex; align-items:center; justify-content:center;
     min-width:86px; padding:0 14px; height:44px;
-    background:#fff; border:1px solid #e2e8f0; border-radius:6px;
+    background:#fff; border:1px solid #e5e7eb; border-radius:6px;
     font-size:13px; font-weight:600; font-variant-numeric:tabular-nums;
     white-space:nowrap;
   }

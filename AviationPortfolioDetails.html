@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aviation Portfolio Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,28 +18,28 @@
   #avia-detail-map { position:absolute; inset:0; background:#0b1e2e; }
   #avia-detail-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #avia-detail-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
-  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e2e8f0 !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
-  .leaflet-bar a { background:#fff !important; color:#334155 !important; }
-  .leaflet-bar a:hover { background:#f1f5f9 !important; }
-  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e2e8f0; border-radius:8px; color:#334155; box-shadow:0 1px 2px rgba(15,23,42,.08); cursor:pointer; }
-  .map-btn:hover { background:#f1f5f9; }
+  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
+  .leaflet-bar a { background:#fff !important; color:#374151 !important; }
+  .leaflet-bar a:hover { background:#f3f4f6 !important; }
+  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgba(15,23,42,.08); cursor:pointer; }
+  .map-btn:hover { background:#f3f4f6; }
   .airport-icon { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#06b6d4; border:2px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.25); }
   .avia-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .avia-popup .leaflet-popup-content { margin:0; width:320px !important; font-family:'Inter',sans-serif; }
   .avia-popup .leaflet-popup-tip { background:#fff; }
   .avia-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:6px !important; }
   .avia-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; }
-  .text-ink-900{color:#0f172a}.text-ink-700{color:#334155}.text-ink-600{color:#475569}.text-ink-500{color:#64748b}.text-ink-400{color:#94a3b8}
-  .bg-ink-100{background:#f1f5f9}.bg-ink-50{background:#f8fafc}
-  .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
+  .text-ink-900{color:#111827}.text-ink-700{color:#374151}.text-ink-600{color:#4b5563}.text-ink-500{color:#6b7280}.text-ink-400{color:#9ca3af}
+  .bg-ink-100{background:#f3f4f6}.bg-ink-50{background:#f9fafb}
+  .border-ink-100{border-color:#f3f4f6}.border-ink-200{border-color:#e5e7eb}
   .scroll-thin::-webkit-scrollbar{width:5px;height:5px}
   .scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   .dot-pulse::after{content:'';position:absolute;inset:-3px;border-radius:999px;box-shadow:0 0 0 0 rgba(239,68,68,.5);animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
   /* Pill tabs */
-  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:12.5px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-  .ds-tab:hover{color:#0f172a}
+  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
+  .ds-tab{position:relative;font:inherit;font-size:12.5px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
@@ -49,9 +49,9 @@
   .pol-table th{padding:9px 12px;text-align:left;font-size:11.5px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:default;text-transform:uppercase;letter-spacing:.04em}
   .pol-table th.sortable{cursor:pointer}
   .pol-table th.sortable:hover{color:var(--brand-600,#2563eb)}
-  .pol-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;color:#334155;white-space:nowrap;vertical-align:middle}
+  .pol-table td{padding:10px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
-  .pol-table tbody tr:hover td{background:#f8fafc}
+  .pol-table tbody tr:hover td{background:#f9fafb}
   .pol-table td.id-cell{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
   .pol-table td.id-cell:hover{color:var(--brand-700,#1d4ed8)}
   /* Mobile policy cards */
@@ -61,15 +61,15 @@
   .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
   .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
   .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-600,#2563eb);text-decoration:none;word-break:break-word}
-  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#64748b}
+  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#6b7280}
   .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
-  .pcard-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8}
-  .pcard-v{font-size:13.5px;font-weight:500;color:#334155;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-  .pcard-v.is-strong{font-size:15px;font-weight:700;color:#0f172a}
+  .pcard-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
+  .pcard-v{font-size:13.5px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .pcard-v.is-strong{font-size:15px;font-weight:700;color:#111827}
   .pcard-v.is-mono{font-family:monospace;font-size:12px}
   .pcard-more{display:none}
-  .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e2e8f0;animation:pcardIn .22s ease}
+  .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e5e7eb;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
   .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--brand-600,#2563eb)}
   .pcard-chev{transition:transform .2s ease}
@@ -77,12 +77,12 @@
   .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:3px;vertical-align:middle;opacity:.55}
   .sort-ico svg{width:7px;height:7px}
   /* Select */
-  .sel{border:1px solid #e2e8f0;border-radius:6px;padding:4px 22px 4px 8px;font-size:12px;color:#334155;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
+  .sel{border:1px solid #e5e7eb;border-radius:6px;padding:4px 22px 4px 8px;font-size:12px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
   /* Stat cards */
   .stat-card{flex:1;padding:12px 10px;text-align:center;border-right:1px solid var(--brand-100,#dbeafe);}
   .stat-card:last-child{border-right:0;}
   /* Mobile responsive */
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){
     .avi-top-panels{grid-template-columns:1fr!important;}
     .mobile-tab-select{display:block!important;}
@@ -120,7 +120,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/aviation-map.js"></script>
@@ -347,20 +347,20 @@ function PanelSummaryContent() {
     <div class="px-3 pt-3 pb-3 border-b border-ink-100">
       <div class="stat-cards-row" style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;overflow:hidden;display:flex;">
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Total Aircraft</div>
-          <div style="font-size:22px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">529</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Aircraft</div>
+          <div style="font-size:22px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">529</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Avg. Cost Of Aircraft</div>
-          <div style="font-size:22px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$156.8M</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Avg. Cost Of Aircraft</div>
+          <div style="font-size:22px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$156.8M</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Highest Value Aircraft</div>
-          <div style="font-size:22px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$284.3M</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Highest Value Aircraft</div>
+          <div style="font-size:22px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$284.3M</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Total Departures 2025</div>
-          <div style="font-size:22px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">142,856</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Departures 2025</div>
+          <div style="font-size:22px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">142,856</div>
         </div>
       </div>
     </div>
@@ -400,21 +400,21 @@ function PanelDestinationsContent() {
       <table class="w-full" style="border-collapse:collapse;">
         <thead>
           <tr>
-            <th style="text-align:left;padding:8px 16px;font-size:12px;font-weight:600;color:#334155;border-bottom:1px solid #e2e8f0;border-top:1px solid #f1f5f9;">Country</th>
-            <th style="text-align:left;padding:8px 16px;font-size:12px;font-weight:600;color:#334155;border-bottom:1px solid #e2e8f0;border-top:1px solid #f1f5f9;">Airport</th>
-            <th style="text-align:right;padding:8px 16px;font-size:12px;font-weight:600;color:#334155;border-bottom:1px solid #e2e8f0;border-top:1px solid #f1f5f9;">No.</th>
+            <th style="text-align:left;padding:8px 16px;font-size:12px;font-weight:600;color:#374151;border-bottom:1px solid #e5e7eb;border-top:1px solid #f3f4f6;">Country</th>
+            <th style="text-align:left;padding:8px 16px;font-size:12px;font-weight:600;color:#374151;border-bottom:1px solid #e5e7eb;border-top:1px solid #f3f4f6;">Airport</th>
+            <th style="text-align:right;padding:8px 16px;font-size:12px;font-weight:600;color:#374151;border-bottom:1px solid #e5e7eb;border-top:1px solid #f3f4f6;">No.</th>
           </tr>
         </thead>
         <tbody>
           ${dests.map((d,i) => `
             <tr>
-              <td style="padding:10px 16px;font-size:13px;color:#0f172a;border-bottom:${i===dests.length-1?'0':'1px solid #f1f5f9'};">
+              <td style="padding:10px 16px;font-size:13px;color:#111827;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">
                 <span style="display:inline-flex;align-items:center;gap:8px;">${flag(d.cc, 20, 14)} ${d.country}</span>
               </td>
-              <td style="padding:10px 16px;font-size:13px;color:#334155;border-bottom:${i===dests.length-1?'0':'1px solid #f1f5f9'};">
-                <span style="color:var(--brand-600,#2563eb);font-weight:600;">${d.code}</span> <span style="color:#64748b;">- ${d.name}</span>
+              <td style="padding:10px 16px;font-size:13px;color:#374151;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">
+                <span style="color:var(--brand-600,#2563eb);font-weight:600;">${d.code}</span> <span style="color:#6b7280;">- ${d.name}</span>
               </td>
-              <td style="padding:10px 16px;font-size:13px;color:#0f172a;text-align:right;font-variant-numeric:tabular-nums;border-bottom:${i===dests.length-1?'0':'1px solid #f1f5f9'};">${d.no}</td>
+              <td style="padding:10px 16px;font-size:13px;color:#111827;text-align:right;font-variant-numeric:tabular-nums;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">${d.no}</td>
             </tr>`).join('')}
         </tbody>
       </table>
@@ -598,7 +598,7 @@ function PolicySection() {
         </thead>
         <tbody>
           ${LIST_POLICIES.slice((policyPage-1)*policyPerPage, policyPage*policyPerPage).map(p => {
-            const seatChip = (color, n, ico) => n ? `<span style="display:inline-flex;align-items:center;gap:3px;color:${color};font-size:12px;">${ico}<span style="color:#475569">${n}</span></span>` : '';
+            const seatChip = (color, n, ico) => n ? `<span style="display:inline-flex;align-items:center;gap:3px;color:${color};font-size:12px;">${ico}<span style="color:#4b5563">${n}</span></span>` : '';
             const armchair = lico('Armchair', 12);
             const ico = { first: armchair, business: armchair, economy: armchair };
             const flagImg = `<img src="flags/${p.cc}.svg" width="16" height="12" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px;" alt="${p.cc.toUpperCase()}" />`;
@@ -611,7 +611,7 @@ function PolicySection() {
                   <div style="display:flex;align-items:center;gap:8px;white-space:nowrap;">
                     ${seatChip('#a855f7', p.seating.first,    ico.first)}
                     ${seatChip('#3b82f6', p.seating.business, ico.business)}
-                    ${seatChip('#64748b', p.seating.economy,  ico.economy)}
+                    ${seatChip('#6b7280', p.seating.economy,  ico.economy)}
                   </div>
                 </td>
                 <td>${p.ref}</td>
@@ -711,7 +711,7 @@ function PolicySection() {
             <tr>
               <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-blue-600" /></td>
               <td class="id-cell">${p.id}</td>
-              <td style="color:#475569;">${p.ref}</td>
+              <td style="color:#4b5563;">${p.ref}</td>
               <td class="tabular-nums">${p.tiv}</td>
               <td class="tabular-nums">${p.hull}</td>
               <td class="tabular-nums">${p.chw}</td>

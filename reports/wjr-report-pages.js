@@ -150,8 +150,8 @@
             ${row('Policy number', `<span class="num">${p.policyNo}</span>`)}
             ${row('Period of cover', `<span class="num">${p.inception} \u2013 ${p.expiry}</span>`)}
             ${row('Clause basis', p.basis)}
-            ${row('Limit any one vessel', `<span class="num" style="font-weight:600;color:#0f172a">${p.limit}</span>`)}
-            ${row('Aggregate any one event', `<span class="num" style="font-weight:600;color:#0f172a">${p.aggregate}</span>`)}
+            ${row('Limit any one vessel', `<span class="num" style="font-weight:600;color:#111827">${p.limit}</span>`)}
+            ${row('Aggregate any one event', `<span class="num" style="font-weight:600;color:#111827">${p.aggregate}</span>`)}
             ${row('Deductible', `<span class="num">${p.deductible}</span>`)}
           </tbody>
         </table>`, 'Extract from the war exposure page of the facility slip; the full wording governs in the event of a discrepancy.')}
@@ -234,7 +234,7 @@
                 <td>${v.area}</td>
                 <td class="r num">${v.speed}</td>
                 <td class="r num">${v.course}</td>
-                <td><div class="v-stack"><span style="color:#0f172a">${v.dest}</span><span class="v-sub num">ETA ${v.eta}</span></div></td>
+                <td><div class="v-stack"><span style="color:#111827">${v.dest}</span><span class="v-sub num">ETA ${v.eta}</span></div></td>
                 <td><span class="pill ${v.ais === 'Live' ? 'pill-green' : 'pill-amber'}">${v.ais}</span></td>
               </tr>`).join('')}
           </tbody>
@@ -281,7 +281,7 @@
               <tr>
                 <td class="num">${e.date}</td>
                 <td>${e.area}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${e.type}</span><span class="v-sub">${e.note}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${e.type}</span><span class="v-sub">${e.note}</span></div></td>
                 <td class="r num">${e.ourVessels}</td>
                 <td class="r num">${e.dist}</td>
                 <td>${sevPill(e.sev)}</td>
@@ -309,9 +309,9 @@
           <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Vessels inside listed areas and exposed insured value by month over twelve months">
             ${[0, 20, 40, 60].map(g => {
               const gy = yV(g);
-              return `<line x1="42" y1="${gy.toFixed(1)}" x2="666" y2="${gy.toFixed(1)}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${gy.toFixed(1)}" x2="666" y2="${gy.toFixed(1)}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="34" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="20" x2="42" y2="160" stroke="#d1d5db" stroke-width="1" />
             ${c.vessels.map((v, i) => {
               const bw = 624 / n * 0.52, bx = x(i) - bw / 2, by = yV(v);
               return `<rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw.toFixed(1)}" height="${(160 - by).toFixed(1)}" rx="3" fill="var(--brand-600,#2d7ffb)" opacity="${i === n - 1 ? 1 : 0.72}" /><text x="${x(i).toFixed(1)}" y="${(by - 6).toFixed(1)}" text-anchor="middle" class="pt-lbl">${v}</text>`;
@@ -329,7 +329,7 @@
             ${P.changeRows.map(r => `
               <tr>
                 <td class="vn">${r.k}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${r.now}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${r.now}</td>
                 <td class="r num">${r.prev}</td>
                 <td class="r"><span class="${r.tone === 'green' ? 'delta-down' : 'delta-up'} num">${r.d}</span></td>
                 <td>${sevPill(r.tone === 'red' ? 'Serious' : r.tone === 'amber' ? 'Moderate' : 'Within')}</td>
@@ -352,12 +352,12 @@
             ${P.benchmark.map(b => `
               <tr>
                 <td class="vn">${b.k}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${b.ours}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${b.ours}</td>
                 <td class="r num">${b.global}</td>
                 <td style="min-width:150px">
                   <div style="display:flex;flex-direction:column;gap:3px">
                     <span class="bl-track"><span class="bl-fill" style="width:${b.oursPct}%;background:${b.verdict === 'worse' ? '#b91c1c' : '#16a34a'}"></span></span>
-                    <span class="bl-track"><span class="bl-fill" style="width:${b.globalPct}%;background:#cbd5e1"></span></span>
+                    <span class="bl-track"><span class="bl-fill" style="width:${b.globalPct}%;background:#d1d5db"></span></span>
                   </div>
                 </td>
                 <td><span class="pill ${b.verdict === 'worse' ? 'pill-red' : 'pill-green'}">${b.verdict === 'worse' ? 'Above global' : 'Better than global'}</span></td>

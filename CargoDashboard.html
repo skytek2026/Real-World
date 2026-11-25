@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cargo Dashboard — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,9 +13,9 @@
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
   html,body { height:100%; font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
-  .text-ink-900{color:#0f172a}.text-ink-700{color:#334155}.text-ink-600{color:#475569}.text-ink-500{color:#64748b}.text-ink-400{color:#94a3b8}
-  .bg-ink-100{background:#f1f5f9}.bg-ink-50{background:#f8fafc}
-  .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
+  .text-ink-900{color:#111827}.text-ink-700{color:#374151}.text-ink-600{color:#4b5563}.text-ink-500{color:#6b7280}.text-ink-400{color:#9ca3af}
+  .bg-ink-100{background:#f3f4f6}.bg-ink-50{background:#f9fafb}
+  .border-ink-100{border-color:#f3f4f6}.border-ink-200{border-color:#e5e7eb}
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
   html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
@@ -30,9 +30,9 @@
   .dot-pulse::after{content:'';position:absolute;inset:-3px;border-radius:999px;box-shadow:0 0 0 0 rgba(220,38,38,.5);animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(220,38,38,.55)}70%{box-shadow:0 0 0 10px rgba(220,38,38,0)}100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}}
   /* ds-tabs */
-  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-  .ds-tab:hover{color:#0f172a}
+  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
+  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2d7ffb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
@@ -41,8 +41,8 @@
   .voy-table{width:100%;border-collapse:collapse;font-size:12px}
   .voy-table th{padding:8px 12px;text-align:left;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;user-select:none}
   .voy-table th.ds-th--sortable{padding:0}
-  .voy-table th:hover{color:var(--text-primary,#0f172a)}
-  .voy-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;color:#334155;white-space:nowrap;vertical-align:middle;font-size:12px}
+  .voy-table th:hover{color:var(--text-primary,#111827)}
+  .voy-table td{padding:10px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle;font-size:12px}
   .voy-table tbody tr:hover td{background:#eff6ff;cursor:pointer}
   .voy-table tbody tr.is-expanded td{background:#eff6ff}
   .voy-table tbody tr.expanded-detail td{background:#eff6ff;border-bottom:1px solid #bfdbfe}
@@ -52,7 +52,7 @@
     background:#fff;border:1px solid #bfdbfe;border-radius:9px;box-shadow:0 10px 24px -8px rgba(45,127,251,.45),0 2px 6px rgba(15,23,42,.12);
     will-change:transform,opacity;}
   .fly-chip .fly-ico{width:24px;height:24px;flex-shrink:0;border-radius:6px;background:#dbeafe;display:flex;align-items:center;justify-content:center;}
-  .fly-chip .fly-name{font-size:12px;font-weight:600;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .fly-chip .fly-name{font-size:12px;font-weight:600;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .cargo-wb-item.is-launching{transition:opacity .35s ease,transform .35s ease;opacity:.25;transform:scale(.97);}
   @keyframes voy-table-receive{0%{box-shadow:0 0 0 0 rgba(45,127,251,0);}28%{box-shadow:0 0 0 5px rgba(45,127,251,.28);}100%{box-shadow:0 0 0 0 rgba(45,127,251,0);}}
   .cargo-receiving{animation:voy-table-receive 1.1s ease-out;}
@@ -70,7 +70,7 @@
   .ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}
   .ds-th-sort .ds-sort-ind{display:inline-flex;flex-shrink:0;color:var(--text-muted,#6B7280);opacity:.4;transition:opacity .12s ease}
   .ds-th-sort:hover .ds-sort-ind{opacity:.7}
-  .ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#0f172a)}
+  .ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#111827)}
   .ds-th--active .ds-sort-ind{opacity:1;color:var(--brand-600,#2d7ffb)}
   /* Status badges */
   .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
@@ -81,10 +81,10 @@
   /* Portfolio stat cards — Skytek DS "Individual stat cards" pattern */
   .stat-card{background:var(--bg-surface,#fff);border:1px solid var(--border-subtle,#ECEEF2);border-radius:var(--radius-lg,8px);display:flex;flex-direction:column;min-width:0}
   .stat-card .ds-card-head{padding:11px 16px;border-bottom:1px solid var(--border-subtle,#ECEEF2);display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px}
-  .stat-card .ds-card-title{font-family:'Exo',var(--font-display,sans-serif);font-size:13px;font-weight:600;line-height:1.25;margin:0;color:var(--text-primary,#0f172a)}
+  .stat-card .ds-card-title{font-family:'Exo',var(--font-display,sans-serif);font-size:13px;font-weight:600;line-height:1.25;margin:0;color:var(--text-primary,#111827)}
   .stat-card .ds-card-body{padding:16px;display:flex;flex-direction:column;gap:7px}
   .stat-card .ds-metric-value{font-family:'Exo',var(--font-display,sans-serif);font-size:32px;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--brand-600,#2d7ffb)}
-  .stat-card .ds-metric-value--neutral{color:var(--text-primary,#0f172a)}
+  .stat-card .ds-metric-value--neutral{color:var(--text-primary,#111827)}
   .stat-card .ds-metric-value--success{color:var(--success-700,#15803D)}
   .stat-card .ds-metric-value--warning{color:var(--warning-500,#D97706)}
   .stat-card .ds-metric-value--danger{color:var(--danger-500,#dc2626)}
@@ -99,7 +99,7 @@
      to match the other dark controls (e.g. the date pickers). */
   html[data-theme="dark"] #download-template,html[data-theme="dark"] #export-excel-btn,html[data-theme="dark"] #wb-cancel,html[data-theme="dark"] #upload-card-toggle{background:#161f2e!important;border-color:#2a374d!important;color:#e7ecf4!important}
   html[data-theme="dark"] #upload-card-toggle{color:#c0c9d8!important}
-  html[data-theme="dark"] #download-template:hover,html[data-theme="dark"] #export-excel-btn:hover,html[data-theme="dark"] #wb-cancel:hover{background:#1e293b!important;border-color:#34435c!important}
+  html[data-theme="dark"] #download-template:hover,html[data-theme="dark"] #export-excel-btn:hover,html[data-theme="dark"] #wb-cancel:hover{background:#1f2937!important;border-color:#34435c!important}
   html[data-theme="dark"] #download-template:active,html[data-theme="dark"] #export-excel-btn:active,html[data-theme="dark"] #wb-cancel:active{background:#243048!important}
   html[data-theme="dark"] #upload-card-toggle:hover{background:color-mix(in srgb,var(--brand-500,#3b82f6) 18%,transparent)!important;border-color:color-mix(in srgb,var(--brand-500,#3b82f6) 45%,transparent)!important;color:var(--brand-300,#93c5fd)!important}
   /* Skytek primary buttons — hover / active / focus (DS: brand-600 → brand-500 → #1f5fc7) */
@@ -151,21 +151,21 @@
     .portfolio-sum-head{flex-direction:column;align-items:flex-start !important;gap:3px;text-align:left;}
   }
   /* Filter input */
-  .filter-input{height:32px;border:1px solid #e2e8f0;border-radius:8px;padding:0 10px;font-size:12px;color:#334155;background:#fff;font-family:inherit;outline:none;width:220px;transition:border-color .15s}
+  .filter-input{height:32px;border:1px solid #e5e7eb;border-radius:8px;padding:0 10px;font-size:12px;color:#374151;background:#fff;font-family:inherit;outline:none;width:220px;transition:border-color .15s}
   .filter-input:focus{border-color:#8ec5fd;box-shadow:0 0 0 2px rgba(14,165,233,.1)}
   /* Status filter button + menu */
-  .cargo-filter-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;color:#64748b;cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
-  .cargo-filter-btn:hover{background:#f8fafc;color:#334155;border-color:#cbd5e1;}
+  .cargo-filter-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#6b7280;cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+  .cargo-filter-btn:hover{background:#f9fafb;color:#374151;border-color:#d1d5db;}
   .cargo-filter-btn.is-active{border-color:#8ec5fd;color:var(--brand-600,#2d7ffb);background:#eff6ff;}
   .cargo-filter-dot{position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--brand-600,#2d7ffb);border:2px solid #fff;}
-  .cargo-filter-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:60;min-width:184px;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 12px 32px rgba(15,23,42,.14);padding:6px;}
+  .cargo-filter-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:60;min-width:184px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 12px 32px rgba(15,23,42,.14);padding:6px;}
   .cargo-filter-menu[hidden]{display:none;}
-  .cargo-filter-menu-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#94a3b8;padding:6px 8px 4px;}
-  .cargo-filter-opt{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;height:32px;padding:0 8px;border:0;border-radius:7px;background:transparent;color:#334155;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;text-align:left;}
-  .cargo-filter-opt:hover{background:#f1f5f9;}
+  .cargo-filter-menu-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;padding:6px 8px 4px;}
+  .cargo-filter-opt{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;height:32px;padding:0 8px;border:0;border-radius:7px;background:transparent;color:#374151;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;text-align:left;}
+  .cargo-filter-opt:hover{background:#f3f4f6;}
   .cargo-filter-opt.is-active{color:var(--brand-600,#2d7ffb);font-weight:600;}
   /* Card */
-  .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
   /* ── Cargo map controls (ported from Marine Dashboard) ───────────────── */
   /* Declarations + Clash Alerts: tables on wider screens, one card per row on phones */
   .decl-cards, .clash-cards { display:none; }
@@ -173,16 +173,16 @@
     .decl-table, .clash-table { display:none; }
     .decl-cards, .clash-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
   }
-  .decl-card { background:#fff; border:1px solid #e2e8f0; border-radius:10px; box-shadow:0 1px 2px rgb(15 23 42/.04); padding:12px 14px; }
+  .decl-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; box-shadow:0 1px 2px rgb(15 23 42/.04); padding:12px 14px; }
   .decl-cards .decl-card { padding:0; overflow:hidden; }
   .decl-card.is-expanded { border-color:#bfdbfe; }
   .decl-card--new { animation:voy-row-land 1.9s ease-out; }
   .decl-card-main { padding:12px 14px; cursor:pointer; }
-  .decl-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f1f5f9; }
+  .decl-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
   .decl-kv--top { grid-template-columns:minmax(0,1fr) auto; margin:0; padding:0; border:0; }
   .decl-kv--top > div:last-child { text-align:right; }
-  .decl-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#94a3b8; }
-  .decl-kv dd { margin:3px 0 0; font-size:13px; color:#334155; overflow-wrap:anywhere; }
+  .decl-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .decl-kv dd { margin:3px 0 0; font-size:13px; color:#374151; overflow-wrap:anywhere; }
   .decl-kv-wide { grid-column:1 / -1; }
   .clash-vessels { line-height:1.75; }
   .decl-toggle { all:unset; display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:12.5px; font-weight:600; color:var(--brand-600,#2d7ffb); cursor:pointer; border-radius:4px; }
@@ -192,23 +192,23 @@
   .decl-card-detail .cargo-map-wrap { flex:none !important; height:300px !important; }
   @media (prefers-reduced-motion: reduce) { .decl-card--new { animation:none; } }
   .cargo-map-wrap{position:relative;}
-  .cargo-map-wrap .leaflet-control-zoom,.cargo-map-wrap .leaflet-bar{border:1px solid #e2e8f0 !important;box-shadow:0 1px 2px rgb(15 23 42 / .08) !important;border-radius:8px !important;overflow:hidden;}
-  .cargo-map-wrap .leaflet-bar a{background:#fff !important;color:#334155 !important;}
-  .cargo-map-wrap .leaflet-bar a:hover{background:#f1f5f9 !important;}
+  .cargo-map-wrap .leaflet-control-zoom,.cargo-map-wrap .leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgb(15 23 42 / .08) !important;border-radius:8px !important;overflow:hidden;}
+  .cargo-map-wrap .leaflet-bar a{background:#fff !important;color:#374151 !important;}
+  .cargo-map-wrap .leaflet-bar a:hover{background:#f3f4f6 !important;}
   .cargo-map-wrap .leaflet-control-zoom a{display:flex !important;align-items:center;justify-content:center;padding:0 !important;}
   .cargo-map-wrap .leaflet-control-zoom a svg{width:16px;height:16px;}
   .cargo-map-wrap .leaflet-top.leaflet-left{top:56px;left:2px;}
   .cargo-map-wrap .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px !important;}
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;transition:background .15s;}
-  .map-btn:hover{background:#f1f5f9;}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;transition:background .15s;}
+  .map-btn:hover{background:#f3f4f6;}
   .map-btn svg{width:16px;height:16px;}
   .map-btn-fs{width:32px;height:32px;border-radius:8px !important;}
   .cargo-map-wrap.is-fullscreen{position:fixed;inset:0;z-index:9999;height:100vh !important;width:100vw !important;border-radius:0;border:0;}
-  .map-type-opt{width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:13px;color:#334155;background:#fff;border:0;cursor:pointer;transition:background .15s;}
-  .map-type-opt:hover{background:#f1f5f9;}
-  .map-type-menu{position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.16);overflow:hidden;padding:4px 0;}
+  .map-type-opt{width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:13px;color:#374151;background:#fff;border:0;cursor:pointer;transition:background .15s;}
+  .map-type-opt:hover{background:#f3f4f6;}
+  .map-type-menu{position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.16);overflow:hidden;padding:4px 0;}
   /* ── Upload progress bar (animated stripes) ──────────────────────────── */
-  .up-track{height:14px;border-radius:999px;background:#e2e8f0;overflow:hidden;box-shadow:inset 0 1px 2px rgba(15,23,42,.12);}
+  .up-track{height:14px;border-radius:999px;background:#e5e7eb;overflow:hidden;box-shadow:inset 0 1px 2px rgba(15,23,42,.12);}
   .up-fill{height:100%;width:1%;border-radius:999px;background-color:var(--brand-600,#2d7ffb);
     background-image:linear-gradient(45deg,rgba(255,255,255,.28) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.28) 50%,rgba(255,255,255,.28) 75%,transparent 75%,transparent);
     background-size:18px 18px;animation:up-stripes 0.7s linear infinite;transition:width .12s linear;}
@@ -240,7 +240,7 @@
     --success-500:#16A34A;--success-700:#15803D;
     --warning-500:#D97706;--warning-700:#B45309;
     --danger-500:#DC2626;--danger-700:#B91C1C;
-    --text-primary:#0f172a;--text-secondary:#4B5563;--text-muted:#6B7280;
+    --text-primary:#111827;--text-secondary:#4B5563;--text-muted:#6B7280;
     --radius-lg:8px;
     --card-shadow-raised:0 20px 32px -8px rgb(15 23 42 / 0.20), 0 10px 16px -6px rgb(15 23 42 / 0.12);
     --shadow-focus:0 0 0 3px rgba(46,134,192,0.32);
@@ -297,14 +297,14 @@
   .pp-title{font-size:14px;font-weight:700;}
   .pp-sub{font-size:11px;font-weight:500;opacity:.8;margin-left:5px;}
   .pp-body{background:#fff;}
-  .pp-row{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px solid #f1f5f9;font-size:13px;}
+  .pp-row{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px solid #f3f4f6;font-size:13px;}
   .pp-row:last-child{border-bottom:0;}
-  .pp-k{color:#64748b;font-weight:500;}
-  .pp-v{font-weight:700;color:#0f172a;}
+  .pp-k{color:#6b7280;font-weight:500;}
+  .pp-v{font-weight:700;color:#111827;}
   .pp-cta{display:block;width:calc(100% - 28px);margin:4px 14px 14px;background:transparent;color:var(--brand-600,#2d7ffb)!important;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;line-height:32px;font-weight:500;font-size:13px;cursor:pointer;text-align:center;transition:background .15s;}
   .pp-cta:hover{background:var(--brand-50,#eff6ff);}
   /* Mobile responsive */
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e2e8f0;border-radius:9999px;font-size:13px;font-weight:600;color:#334155;background:#f1f5f9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   /* Tablet portrait: four counts in a row, Highest Single-Day Exposure full width below */
   @media(min-width:768px) and (max-width:1023px){
     .cargo-summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
@@ -343,7 +343,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -512,7 +512,7 @@ function renderHeader() {
   const metricCell = (val, label, color, first) => `
     <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px 12px;flex:1;min-width:62px;${first ? '' : 'border-left:1px solid #e6ebf1;'}">
       <span style="font-size:15px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:${color};">${val}</span>
-      <span style="font-size:9.5px;font-weight:600;line-height:1.2;color:#94a3b8;text-transform:uppercase;letter-spacing:.04em;text-align:center;">${label}</span>
+      <span style="font-size:9.5px;font-weight:600;line-height:1.2;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;text-align:center;">${label}</span>
     </div>`;
   const metricsStrip = (wb, i) => {
     const m = wb.metrics || { completed:0, started:0, pending:0, breaches:0, exposure:'$0' };
@@ -529,12 +529,12 @@ function renderHeader() {
   <!-- Declarations workbook card -->
   ${st.uploadMode ? `
   <div class="card" style="margin-bottom:10px;padding:0;overflow:hidden;">
-    <div id="upload-card-header" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:${st.uploadCardCollapsed ? 'none' : '1px solid #e2e8f0'};">
+    <div id="upload-card-header" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:${st.uploadCardCollapsed ? 'none' : '1px solid #e5e7eb'};">
       <div style="display:flex;align-items:center;gap:10px;">
-        <button id="upload-card-toggle" aria-expanded="${!st.uploadCardCollapsed}" title="${st.uploadCardCollapsed ? 'Expand' : 'Collapse'}" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:#64748b;cursor:pointer;flex-shrink:0;padding:0;transition:background .14s ease,border-color .14s ease,color .14s ease;" onmouseover="this.style.background='#eff6ff';this.style.borderColor='#bfdbfe';this.style.color='var(--brand-600,#2d7ffb)';" onmouseout="this.style.background='var(--white,#fff)';this.style.borderColor='var(--border-default,#E5E7EB)';this.style.color='#64748b';">
+        <button id="upload-card-toggle" aria-expanded="${!st.uploadCardCollapsed}" title="${st.uploadCardCollapsed ? 'Expand' : 'Collapse'}" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:#6b7280;cursor:pointer;flex-shrink:0;padding:0;transition:background .14s ease,border-color .14s ease,color .14s ease;" onmouseover="this.style.background='#eff6ff';this.style.borderColor='#bfdbfe';this.style.color='var(--brand-600,#2d7ffb)';" onmouseout="this.style.background='var(--white,#fff)';this.style.borderColor='var(--border-default,#E5E7EB)';this.style.color='#6b7280';">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/>${st.uploadCardCollapsed ? '<line x1="12" y1="5" x2="12" y2="19"/>' : ''}</svg>
         </button>
-        <div style="font-size:13px;font-weight:700;color:#0f172a;">Upload declarations workbook</div>
+        <div style="font-size:13px;font-weight:700;color:#111827;">Upload declarations workbook</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         <button id="download-template" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;height:28px;padding:0 10px;border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:var(--slate-800,#1F2937);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
@@ -551,8 +551,8 @@ function renderHeader() {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2d7ffb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
         </div>
         <div style="flex:1;min-width:0;">
-          <div style="font-size:13px;font-weight:700;color:#0f172a;">${st.uploadedFile || 'declarations.xlsx'}</div>
-          <div style="font-size:12px;color:#64748b;margin-top:1px;">Uploading voyages…</div>
+          <div style="font-size:13px;font-weight:700;color:#111827;">${st.uploadedFile || 'declarations.xlsx'}</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:1px;">Uploading voyages…</div>
         </div>
       </div>
       <div class="up-progress">
@@ -565,7 +565,7 @@ function renderHeader() {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:13px;font-weight:700;color:#0f172a;">${st.uploadedFile}</div>
+        <div style="font-size:13px;font-weight:700;color:#111827;">${st.uploadedFile}</div>
         <div style="font-size:12px;color:#16a34a;margin-top:1px;">Ready to upload</div>
       </div>
       <button id="confirm-upload" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 16px;background:var(--brand-600,#2d7ffb);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
@@ -578,24 +578,24 @@ function renderHeader() {
         ${SC.I.upload}
       </div>
       <div style="text-align:center;">
-        <p style="font-size:13px;color:#64748b;max-width:460px;margin:0 auto 8px;">Upload an underwriting declarations workbook — every vessel is screened against AIS for voyage progress and breach of the stated region.</p>
-        <div style="font-size:14px;font-weight:600;color:#0f172a;margin-bottom:3px;">Drag &amp; drop your .xlsx file here</div>
-        <div style="font-size:12px;color:#64748b;">or</div>
+        <p style="font-size:13px;color:#6b7280;max-width:460px;margin:0 auto 8px;">Upload an underwriting declarations workbook — every vessel is screened against AIS for voyage progress and breach of the stated region.</p>
+        <div style="font-size:14px;font-weight:600;color:#111827;margin-bottom:3px;">Drag &amp; drop your .xlsx file here</div>
+        <div style="font-size:12px;color:#6b7280;">or</div>
       </div>
       <label id="browse-files-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:0 12px;background:var(--brand-600,#2d7ffb);border:1px solid var(--brand-600,#2d7ffb);color:var(--white,#fff);border-radius:var(--radius-md,6px);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         Browse files
         <input id="file-input" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="display:none;" />
       </label>
-      <div style="font-size:11px;color:#94a3b8;">Supports .xlsx files only</div>
+      <div style="font-size:11px;color:#9ca3af;">Supports .xlsx files only</div>
     </div>`}
     </div>
   </div>` : `
   <div class="card cargo-workbook-card" style="display:flex;flex-direction:column;gap:12px;padding:14px 18px;margin-bottom:10px;align-items:stretch;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
-      <div style="font-size:13px;font-weight:700;color:#0f172a;">Declarations workbook${wbs.length > 1 ? 's' : ''} <span style="color:#94a3b8;font-weight:600;">(${wbs.length})</span></div>
+      <div style="font-size:13px;font-weight:700;color:#111827;">Declarations workbook${wbs.length > 1 ? 's' : ''} <span style="color:#9ca3af;font-weight:600;">(${wbs.length})</span></div>
       <div class="cargo-workbook-btns" style="display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;">
-        <button id="upload-another-btn" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;background:#fff;border:1px solid #e2e8f0;color:#334155;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
+        <button id="upload-another-btn" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;background:#fff;border:1px solid #e5e7eb;color:#374151;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           Upload Another
         </button>
@@ -603,30 +603,30 @@ function renderHeader() {
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;">
       ${wbs.map((wb, i) => `
-      <div class="cargo-wb-item" data-wb-item="${i}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #eef2f6;border-radius:8px;background:#f8fafc;flex-wrap:wrap;">
+      <div class="cargo-wb-item" data-wb-item="${i}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #eef2f6;border-radius:8px;background:#f9fafb;flex-wrap:wrap;">
         <div class="cargo-wb-icon" style="width:34px;height:34px;background:#dbeafe;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${boxIcon}</div>
         <div style="width:160px;flex-shrink:0;min-width:0;">
-          <div style="font-size:13px;font-weight:600;color:#0f172a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${wb.name}</div>
-          <div style="font-size:12px;color:#64748b;margin-top:1px;">${wb.size || '—'}</div>
+          <div style="font-size:13px;font-weight:600;color:#111827;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${wb.name}</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:1px;">${wb.size || '—'}</div>
         </div>
         ${metricsStrip(wb, i)}
         <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:#16a34a;white-space:nowrap;flex-shrink:0;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Analysed
         </span>
-        <button data-wb-reanalyse="${i}" title="Re-analyse" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:7px;background:#fff;color:#94a3b8;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#eff6ff';this.style.borderColor='#bfdbfe';this.style.color='var(--brand-600,#2d7ffb)';" onmouseout="this.style.background='#fff';this.style.borderColor='#e2e8f0';this.style.color='#94a3b8';">
+        <button data-wb-reanalyse="${i}" title="Re-analyse" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:7px;background:#fff;color:#9ca3af;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#eff6ff';this.style.borderColor='#bfdbfe';this.style.color='var(--brand-600,#2d7ffb)';" onmouseout="this.style.background='#fff';this.style.borderColor='#e5e7eb';this.style.color='#9ca3af';">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         </button>
-        <button data-wb-remove="${i}" title="Remove workbook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e2e8f0;border-radius:7px;background:#fff;color:#94a3b8;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#fef2f2';this.style.borderColor='#fca5a5';this.style.color='#dc2626';" onmouseout="this.style.background='#fff';this.style.borderColor='#e2e8f0';this.style.color='#94a3b8';">
+        <button data-wb-remove="${i}" title="Remove workbook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:7px;background:#fff;color:#9ca3af;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#fef2f2';this.style.borderColor='#fca5a5';this.style.color='#dc2626';" onmouseout="this.style.background='#fff';this.style.borderColor='#e5e7eb';this.style.color='#9ca3af';">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>`).join('')}
     </div>
-    <div class="cargo-info-bar" style="display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid #f1f5f9;flex-wrap:wrap;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <p style="font-size:13px;color:#334155;flex:1;">Showing <strong>${VOYAGES.length}</strong> voyages from ${wbs.length > 1 ? `<strong>${wbs.length}</strong> uploaded workbooks` : 'the latest upload'} — every row is also saved server-side. Upload another xlsx to merge in more rows before saving to declarations.</p>
+    <div class="cargo-info-bar" style="display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid #f3f4f6;flex-wrap:wrap;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <p style="font-size:13px;color:#374151;flex:1;">Showing <strong>${VOYAGES.length}</strong> voyages from ${wbs.length > 1 ? `<strong>${wbs.length}</strong> uploaded workbooks` : 'the latest upload'} — every row is also saved server-side. Upload another xlsx to merge in more rows before saving to declarations.</p>
     </div>
-    <div class="cargo-wb-footer" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-top:12px;border-top:1px solid #f1f5f9;">
+    <div class="cargo-wb-footer" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-top:12px;border-top:1px solid #f3f4f6;">
       <button id="wb-cancel" style="height:36px;padding:0 18px;border:1px solid var(--border-default,#E5E7EB);border-radius:8px;background:var(--white,#fff);color:var(--slate-800,#1F2937);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">Cancel</button>
       <button id="wb-save" style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 18px;background:var(--brand-600,#2d7ffb);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -641,7 +641,7 @@ function renderActionsRow() {
   <!-- Date range + Export to Excel -->
   <div class="cargo-actions-row" style="display:flex;align-items:flex-end;justify-content:flex-end;gap:16px;margin-top:12px;margin-bottom:20px;flex-wrap:wrap;">
     <div>
-      <div style="font-size:12px;font-weight:600;color:#334155;margin-bottom:5px;">Date Range:</div>
+      <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:5px;">Date Range:</div>
       <div class="date-fields-row" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
         <button id="date-from-field" class="date-field" type="button">
           <span id="date-from-label">${fmtRangeDate(st.dateFrom)}</span>
@@ -668,7 +668,7 @@ function renderPortfolioSummary() {
 
   const card = (label, value, mod, desc, icon) => `
     <div class="stat-card">
-      <div class="ds-card-head"><h3 class="ds-card-title">${label}</h3>${icon ? `<span style="display:inline-flex;color:var(--text-muted,#94a3b8);flex-shrink:0;">${icon}</span>` : ''}</div>
+      <div class="ds-card-head"><h3 class="ds-card-title">${label}</h3>${icon ? `<span style="display:inline-flex;color:var(--text-muted,#9ca3af);flex-shrink:0;">${icon}</span>` : ''}</div>
       <div class="ds-card-body">
         <span class="ds-metric-value ${mod}">${value}</span>
         <div class="stat-desc">${desc}</div>
@@ -677,9 +677,9 @@ function renderPortfolioSummary() {
 
   return `
   <div class="card" style="margin-bottom:12px;overflow:hidden;">
-    <div class="portfolio-sum-head" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px 16px;border-bottom:1px solid #e2e8f0;">
-      <div style="font-family:'Exo',sans-serif;font-size:13px;font-weight:700;color:#0f172a;letter-spacing:.01em;">Portfolio summary</div>
-      <div style="font-size:11px;color:var(--text-muted,#6B7280);"><span style="font-weight:700;color:#0f172a;">Total:</span> <span style="background:#fef3c7;color:#92400e;font-weight:600;padding:2px 7px;border-radius:4px;">${VOYAGES.length} Declarations</span></div>
+    <div class="portfolio-sum-head" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px 16px;border-bottom:1px solid #e5e7eb;">
+      <div style="font-family:'Exo',sans-serif;font-size:13px;font-weight:700;color:#111827;letter-spacing:.01em;">Portfolio summary</div>
+      <div style="font-size:11px;color:var(--text-muted,#6B7280);"><span style="font-weight:700;color:#111827;">Total:</span> <span style="background:#fef3c7;color:#92400e;font-weight:600;padding:2px 7px;border-radius:4px;">${VOYAGES.length} Declarations</span></div>
     </div>
     <div class="cargo-summary-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:16px;">
       ${card('Completed', completed, 'ds-metric-value--success', 'voyages reached discharge port', `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>`)}
@@ -687,7 +687,7 @@ function renderPortfolioSummary() {
       ${card('Pending',   pending,   'ds-metric-value--warning', 'no load departure detected', `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 14v2.2l1.6 1"/><path d="M16 4h2a2 2 0 0 1 2 2v.832"/><path d="M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4.062"/><rect x="8" y="2" width="8" height="4" rx="1"/><circle cx="16" cy="16" r="6"/></svg>`)}
       ${card('Breaches',  breaches,  'ds-metric-value--danger', 'vessels transited stated region', `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`)}
       <div class="stat-card">
-        <div class="ds-card-head"><h3 class="ds-card-title">Highest Single-Day Exposure</h3><span style="display:inline-flex;color:var(--text-muted,#94a3b8);flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span></div>
+        <div class="ds-card-head"><h3 class="ds-card-title">Highest Single-Day Exposure</h3><span style="display:inline-flex;color:var(--text-muted,#9ca3af);flex-shrink:0;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span></div>
         <div class="ds-card-body">
           <span class="ds-metric-value ds-metric-value--warning">${st.peakExposure}</span>
           <div class="stat-desc" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;">
@@ -695,9 +695,9 @@ function renderPortfolioSummary() {
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
               Fujairah
             </a>
-            <span style="color:#cbd5e1;">·</span>
+            <span style="color:#d1d5db;">·</span>
             <span>2026-04-06</span>
-            <span style="color:#cbd5e1;">·</span>
+            <span style="color:#d1d5db;">·</span>
             <span style="display:inline-flex;align-items:center;gap:4px;">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M12 10v4"/><path d="M12 2v3"/></svg>
               3 vessels
@@ -782,17 +782,17 @@ function renderDeclarationsTable() {
             </td>
             <td>${statusBadge(v)}</td>
             <td style="font-weight:600;"><a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation();" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.name}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
-            <td style="color:#475569;font-variant-numeric:tabular-nums;">${v.imo}</td>
+            <td style="color:#4b5563;font-variant-numeric:tabular-nums;">${v.imo}</td>
             <td style="font-variant-numeric:tabular-nums;">${v.estLoad}</td>
-            <td style="color:${v.actLoad ? '#d97706' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</td>
+            <td style="color:${v.actLoad ? '#d97706' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</td>
             <td><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
-            <td style="color:#64748b;">${v.dischDate || '—'}</td>
+            <td style="color:#6b7280;">${v.dischDate || '—'}</td>
             <td><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
-            <td style="color:${v.actDisch ? '#1d4ed8' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</td>
-            <td>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#94a3b8;">—</span>'}</td>
-            <td style="color:${v.breachStart ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</td>
-            <td style="color:${v.breachEnd ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</td>
-            <td style="text-align:center;">${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#94a3b8;">—</span>'}</td>
+            <td style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</td>
+            <td>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
+            <td style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</td>
+            <td style="color:${v.breachEnd ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</td>
+            <td style="text-align:center;">${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
           </tr>
           ${expanded && !declIsPhone() ? `
           <tr class="expanded-detail">
@@ -815,17 +815,17 @@ function renderDeclarationsTable() {
           <div><dt>Status</dt><dd>${statusBadge(v)}</dd></div>
         </dl>
         <dl class="decl-kv">
-              <div><dt>Vessel IMO</dt><dd style="color:#475569;font-variant-numeric:tabular-nums;">${v.imo}</dd></div>
+              <div><dt>Vessel IMO</dt><dd style="color:#4b5563;font-variant-numeric:tabular-nums;">${v.imo}</dd></div>
               <div><dt>Est. Load Date</dt><dd style="font-variant-numeric:tabular-nums;">${v.estLoad}</dd></div>
-              <div><dt>Actual Loading Date</dt><dd style="color:${v.actLoad ? '#d97706' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</dd></div>
+              <div><dt>Actual Loading Date</dt><dd style="color:${v.actLoad ? '#d97706' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</dd></div>
               <div><dt>Load Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
-              <div><dt>Discharge Date</dt><dd style="color:#64748b;">${v.dischDate || '—'}</dd></div>
+              <div><dt>Discharge Date</dt><dd style="color:#6b7280;">${v.dischDate || '—'}</dd></div>
               <div><dt>Discharge Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
-              <div><dt>Actual Discharge Date</dt><dd style="color:${v.actDisch ? '#1d4ed8' : '#94a3b8'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</dd></div>
-              <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#94a3b8;">—</span>'}</dd></div>
-              <div><dt>Breach Start Date</dt><dd style="color:${v.breachStart ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</dd></div>
-              <div><dt>Breach End Date</dt><dd style="color:${v.breachEnd ? '#dc2626' : '#94a3b8'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</dd></div>
-              <div><dt>Days</dt><dd>${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#94a3b8;">—</span>'}</dd></div>
+              <div><dt>Actual Discharge Date</dt><dd style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</dd></div>
+              <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
+              <div><dt>Breach Start Date</dt><dd style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</dd></div>
+              <div><dt>Breach End Date</dt><dd style="color:${v.breachEnd ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</dd></div>
+              <div><dt>Days</dt><dd>${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
         </dl>
         <button type="button" class="decl-toggle" aria-expanded="${expanded}">
           <span>${expanded ? 'Hide route map' : 'Show route map'}</span>
@@ -855,7 +855,7 @@ function renderClashAlertsTable() {
         <tr>
           <td style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
           <td style="font-variant-numeric:tabular-nums;">${a.date}</td>
-          <td style="color:#64748b;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</td>
+          <td style="color:#6b7280;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</td>
           <td style="font-weight:700;color:#dc2626;">${a.exposure}</td>
         </tr>`).join('')}
       </tbody>
@@ -870,7 +870,7 @@ function renderClashAlertsTable() {
       </dl>
       <dl class="decl-kv">
         <div><dt>Date</dt><dd style="font-variant-numeric:tabular-nums;">${a.date}</dd></div>
-        <div class="decl-kv-wide"><dt>Vessels</dt><dd class="clash-vessels" style="color:#64748b;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</dd></div>
+        <div class="decl-kv-wide"><dt>Vessels</dt><dd class="clash-vessels" style="color:#6b7280;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#2d7ffb);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</dd></div>
       </dl>
     </article>`).join('')}
   </div>`;
@@ -892,7 +892,7 @@ function renderTabSection() {
   return `
   <div class="card" style="overflow:hidden;">
     <!-- Tab bar -->
-    <div class="cargo-tab-bar" style="padding:12px 16px;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div class="cargo-tab-bar" style="padding:12px 16px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
       <div class="ds-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         <button data-tab="declarations" aria-selected="${st.tab==='declarations'}" class="ds-tab">
@@ -934,9 +934,9 @@ function renderArchiveCard() {
   const archiveIcon = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8"/><path d="M10 12h4"/></svg>`;
   return `
   <div class="card" style="overflow:hidden;margin-top:12px;">
-    <div class="cargo-archive-head" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px 16px;border-bottom:1px solid #e2e8f0;">
-      <div style="font-family:'Exo',sans-serif;font-size:13px;font-weight:700;color:#0f172a;letter-spacing:.01em;display:inline-flex;align-items:center;gap:8px;">
-        <span style="display:inline-flex;color:var(--text-muted,#94a3b8);">${archiveIcon}</span>
+    <div class="cargo-archive-head" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px 16px;border-bottom:1px solid #e5e7eb;">
+      <div style="font-family:'Exo',sans-serif;font-size:13px;font-weight:700;color:#111827;letter-spacing:.01em;display:inline-flex;align-items:center;gap:8px;">
+        <span style="display:inline-flex;color:var(--text-muted,#9ca3af);">${archiveIcon}</span>
         Archive <span style="font-size:11px;font-weight:700;opacity:.6;">(0)</span>
       </div>
     </div>
@@ -947,10 +947,10 @@ function renderArchiveCard() {
 function renderArchiveEmpty() {
   return `
   <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:56px 24px;text-align:center;">
-    <div style="width:48px;height:48px;background:#f1f5f9;border-radius:12px;display:flex;align-items:center;justify-content:center;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8"/><path d="M10 12h4"/></svg>
+    <div style="width:48px;height:48px;background:#f3f4f6;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8"/><path d="M10 12h4"/></svg>
     </div>
-    <div style="font-size:14px;font-weight:600;color:#334155;">You currently do not have any voyages in archive</div>
+    <div style="font-size:14px;font-weight:600;color:#374151;">You currently do not have any voyages in archive</div>
   </div>`;
 }
 
@@ -1737,7 +1737,7 @@ function wireContent() {
     const body = document.getElementById('upload-card-body');
     if (body) body.style.display = st.uploadCardCollapsed ? 'none' : '';
     const hdr = document.getElementById('upload-card-header');
-    if (hdr) hdr.style.borderBottom = st.uploadCardCollapsed ? 'none' : '1px solid #e2e8f0';
+    if (hdr) hdr.style.borderBottom = st.uploadCardCollapsed ? 'none' : '1px solid #e5e7eb';
     upToggle.setAttribute('aria-expanded', String(!st.uploadCardCollapsed));
     upToggle.title = st.uploadCardCollapsed ? 'Expand' : 'Collapse';
     const svg = upToggle.querySelector('svg');

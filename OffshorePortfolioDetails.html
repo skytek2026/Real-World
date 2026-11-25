@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Offshore Portfolio Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,16 +14,16 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   .tracking-micro{letter-spacing:.08em;font-family:'Exo','Inter',sans-serif;}
-  .bg-ink-100{background:#f1f5f9}.bg-ink-50{background:#f8fafc}
-  .border-ink-100{border-color:#f1f5f9}.border-ink-200{border-color:#e2e8f0}
+  .bg-ink-100{background:#f3f4f6}.bg-ink-50{background:#f9fafb}
+  .border-ink-100{border-color:#f3f4f6}.border-ink-200{border-color:#e5e7eb}
   .scroll-thin::-webkit-scrollbar{width:5px;height:5px}
   .scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
   .dot-pulse::after{content:'';position:absolute;inset:-3px;border-radius:999px;animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
   /* Pill tabs */
-  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f1f5f9;border:1px solid #e2e8f0;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:9999px;color:#64748b;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-  .ds-tab:hover{color:#0f172a}
+  .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
+  .ds-tab{position:relative;font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
@@ -32,11 +32,11 @@
   #asset-map{position:absolute;inset:0;background:#0b2a3a}
   #asset-map .leaflet-top.leaflet-left{top:56px;left:2px;}
   #asset-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px !important;}
-  .leaflet-control-zoom,.leaflet-bar{border:1px solid #e2e8f0 !important;box-shadow:0 1px 2px rgba(15,23,42,.08) !important;border-radius:8px !important;overflow:hidden}
-  .leaflet-bar a{background:#fff !important;color:#334155 !important}
-  .leaflet-bar a:hover{background:#f1f5f9 !important}
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8f0;border-radius:8px;color:#334155;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
-  .map-btn:hover{background:#f1f5f9}
+  .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgba(15,23,42,.08) !important;border-radius:8px !important;overflow:hidden}
+  .leaflet-bar a{background:#fff !important;color:#374151 !important}
+  .leaflet-bar a:hover{background:#f3f4f6 !important}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
+  .map-btn:hover{background:#f3f4f6}
   .asset-marker-dot{width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.4)}
   /* Phones and tablet portrait: stack the Portfolio Details card above the map */
   @media (max-width: 1023px) {
@@ -53,7 +53,7 @@
     .pol-edit-cols { display: none !important; }
   }
   #asset-map.no-labels .asset-label{display:none;}
-  .asset-label{background:#1e293b;color:#fff;padding:2px 7px;border-radius:4px;font-size:10.5px;font-weight:600;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,.35);font-family:'Inter',sans-serif}
+  .asset-label{background:#1f2937;color:#fff;padding:2px 7px;border-radius:4px;font-size:10.5px;font-weight:600;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,.35);font-family:'Inter',sans-serif}
   .asset-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .asset-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',sans-serif; }
   .asset-popup .leaflet-popup-tip { background:#fff; }
@@ -70,30 +70,30 @@
   .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
   .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
   .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-600,#2563eb);text-decoration:none;word-break:break-word;cursor:pointer}
-  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#64748b}
+  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#6b7280}
   .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
-  .pcard-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#94a3b8}
-  .pcard-v{font-size:13.5px;font-weight:500;color:#334155;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-  .pcard-v.is-strong{font-size:15px;font-weight:700;color:#0f172a}
-  .pcard-v.is-muted{color:#94a3b8}
+  .pcard-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
+  .pcard-v{font-size:13.5px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .pcard-v.is-strong{font-size:15px;font-weight:700;color:#111827}
+  .pcard-v.is-muted{color:#9ca3af}
   .pcard-more{display:none}
-  .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e2e8f0;animation:pcardIn .22s ease}
+  .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e5e7eb;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
   .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--brand-600,#2563eb)}
   .pcard-chev{transition:transform .2s ease}
   .pcard.open .pcard-chev{transform:rotate(180deg)}
-  .pol-table td{padding:10px 12px;border-bottom:1px solid #f1f5f9;color:#334155;white-space:nowrap;vertical-align:middle}
+  .pol-table td{padding:10px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
-  .pol-table tbody tr:hover td{background:#f8fafc}
+  .pol-table tbody tr:hover td{background:#f9fafb}
   .pol-table td.lnk{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
   .pol-table td.lnk:hover{color:var(--brand-700,#1d4ed8)}
   .pol-table td.type-cell{color:var(--brand-600,#2563eb);font-size:12px}
-  .pol-table td.muted{color:#94a3b8}
+  .pol-table td.muted{color:#9ca3af}
   .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:3px;vertical-align:middle;opacity:.5}
   .sort-ico svg{width:7px;height:7px}
   /* Select */
-  .sel{border:1px solid #e2e8f0;border-radius:6px;padding:4px 22px 4px 8px;font-size:12px;color:#334155;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
+  .sel{border:1px solid #e5e7eb;border-radius:6px;padding:4px 22px 4px 8px;font-size:12px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
   .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
@@ -117,7 +117,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -130,7 +130,7 @@ const PF = (() => { try { const r = sessionStorage.getItem('selectedOffshorePF')
 const ASSETS = [
   { id:'Policy 1', name:'Perla Field Platform',    type:'Fixed Platform',         lat:11.52, lng:-70.08, color:'#a855f7', exposure:'$385.0M',
     fullName:'Perla Field Platform',    operator:'Eni / Repsol',  country:'Venezuela', coords:'11.52N / 70.08W', waterDepth:'60m',  status:'Operational',       production:'1,200 MMcf/d', commissioned:'2015', policyType:'Energy Package',   field:'Perla Field' },
-  { id:'Policy 2', name:'Cardón IV Platform',      type:'Fixed Platform',         lat:11.35, lng:-70.32, color:'#94a3b8', exposure:'$290.0M',
+  { id:'Policy 2', name:'Cardón IV Platform',      type:'Fixed Platform',         lat:11.35, lng:-70.32, color:'#9ca3af', exposure:'$290.0M',
     fullName:'Cardón IV Platform',      operator:'Eni',           country:'Venezuela', coords:'11.35N / 70.32W', waterDepth:'45m',  status:'Operational',       production:'850 MMcf/d',   commissioned:'2014', policyType:'Hull & Machinery', field:'Cardón IV Field' },
   { id:'Policy 3', name:'Corocoro Platform',       type:'Fixed Platform',         lat:10.28, lng:-70.68, color:'#a855f7', exposure:'$245.0M',
     fullName:'Corocoro Platform',       operator:'PDVSA / ConocoPhillips', country:'Venezuela', coords:'10.28N / 70.68W', waterDepth:'52m',  status:'Operational',       production:'95 kbpd',      commissioned:'2009', policyType:'Energy Package',   field:'Corocoro Field' },
@@ -159,7 +159,7 @@ const ASSET_TYPES = [
   { k:'Single Point Mooring (SPM)',  color:'#0ea5e9' },
   { k:'Subsea',                      color:'#14b8a6' },
   { k:'Well',                        color:'#a855f7' },
-  { k:'Other',                       color:'#64748b' },
+  { k:'Other',                       color:'#6b7280' },
 ];
 
 function mapAssetType(t) {
@@ -185,8 +185,8 @@ function mapAssetType(t) {
 const MAP_TYPES = {
   satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg:'#0b1d2a' },
   street:    { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',                                              bg:'var(--brand-100,#dbeafe)' },
-  dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                  bg:'#0f172a' },
-  light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                 bg:'#f8fafc' },
+  dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                  bg:'#111827' },
+  light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',                                 bg:'#f9fafb' },
 };
 
 const mapState = {
@@ -230,8 +230,8 @@ function PanelDetailsContent() {
     <!-- Exposure banner -->
     <div style="display:flex;justify-content:center;padding:14px 16px 6px;">
       <div style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:10px;padding:10px 32px;text-align:center;min-width:180px;">
-        <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Our Aggregated Exposure</div>
-        <div style="font-size:20px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PF.exposure || '$148.5B'}</div>
+        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
+        <div style="font-size:20px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PF.exposure || '$148.5B'}</div>
       </div>
     </div>
     <!-- Key-value rows -->
@@ -277,7 +277,7 @@ function PanelGroupsContent() {
                 </span>
                 <span class="text-[13px] font-semibold text-ink-800 truncate">${g}</span>
               </span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><polyline points="9 18 15 12 9 6"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
           </li>`).join('')}
       </ul>
@@ -422,7 +422,7 @@ function PolicyTable() {
               <td class="muted">-</td>
               <td class="muted">-</td>
               <td class="muted">-</td>
-              <td style="font-weight:600;color:#0f172a;">${a.exposure}</td>
+              <td style="font-weight:600;color:#111827;">${a.exposure}</td>
               <td class="muted">-</td>
               <td class="muted">-</td>
               <td class="muted">-</td>
@@ -468,9 +468,9 @@ function PolicyTable() {
 /* ── Asset popup ── */
 function buildPopupHTML(m) {
   const statusColor = m.status === 'Operational' ? '#10b981' :
-                      m.status === 'Under Maintenance' ? '#f59e0b' : '#94a3b8';
+                      m.status === 'Under Maintenance' ? '#f59e0b' : '#9ca3af';
   const row = (label, val, color) =>
-    `<div><div style="font-size:11px;color:#64748b;margin-bottom:2px;">${label}:</div><div style="font-size:13px;font-weight:600;color:${color||'#0f172a'};">${val ?? '—'}</div></div>`;
+    `<div><div style="font-size:11px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:13px;font-weight:600;color:${color||'#111827'};">${val ?? '—'}</div></div>`;
   return `
     <div style="background:var(--brand-600,#2563eb);padding:12px 36px 12px 16px;">
       <div style="color:#fff;font-weight:700;font-size:13px;line-height:1.35;">${m.fullName || m.name}</div>
@@ -626,7 +626,7 @@ function initMap() {
     if (!labelsSw) return;
     const on = !!mapState.showLabels;
     labelsSw.setAttribute('aria-checked', on ? 'true' : 'false');
-    labelsSw.style.backgroundColor = on ? 'var(--brand-600,#2563eb)' : '#cbd5e1';
+    labelsSw.style.backgroundColor = on ? 'var(--brand-600,#2563eb)' : '#d1d5db';
     const knob = labelsSw.querySelector('span');
     if (knob) knob.style.transform = on ? 'translateX(22px)' : 'translateX(2px)';
   }

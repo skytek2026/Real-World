@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Property — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -15,20 +15,20 @@
   * { box-sizing:border-box; margin:0; padding:0; }
   html, body { height:100%; }
   body { font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
-  .text-ink-900 { color:#0f172a; }
-  .text-ink-800 { color:#1e293b; }
-  .text-ink-700 { color:#334155; }
-  .text-ink-600 { color:#475569; }
-  .text-ink-500 { color:#64748b; }
-  .text-ink-400 { color:#94a3b8; }
-  .text-ink-300 { color:#cbd5e1; }
-  .text-ink-200 { color:#e2e8f0; }
-  .text-ink-100 { color:#f1f5f9; }
-  .bg-ink-100 { background:#f1f5f9; }
-  .bg-ink-50 { background:#f8fafc; }
-  .bg-ink-900 { background:#0f172a; }
-  .border-ink-100 { border-color:#f1f5f9; }
-  .border-ink-200 { border-color:#e2e8f0; }
+  .text-ink-900 { color:#111827; }
+  .text-ink-800 { color:#1f2937; }
+  .text-ink-700 { color:#374151; }
+  .text-ink-600 { color:#4b5563; }
+  .text-ink-500 { color:#6b7280; }
+  .text-ink-400 { color:#9ca3af; }
+  .text-ink-300 { color:#d1d5db; }
+  .text-ink-200 { color:#e5e7eb; }
+  .text-ink-100 { color:#f3f4f6; }
+  .bg-ink-100 { background:#f3f4f6; }
+  .bg-ink-50 { background:#f9fafb; }
+  .bg-ink-900 { background:#111827; }
+  .border-ink-100 { border-color:#f3f4f6; }
+  .border-ink-200 { border-color:#e5e7eb; }
   .shadow-card { box-shadow:0 1px 2px rgba(15,23,42,.08), 0 0 0 1px rgba(15,23,42,.02); }
   .text-brand-600 { color:#2563eb; }
   .bg-brand-600 { background:#2563eb; }
@@ -51,11 +51,11 @@
   [data-density="compact"] .gap-density { gap:.75rem; }
   [data-density="comfortable"] .gap-density { gap:1rem; }
   /* Pill tabs (Skytek DS — animated pill via shared layout) */
-  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:9999px; }
+  .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#64748b; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
-  .ds-tab:hover { color:#0f172a; }
+  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
+  .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2563eb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
@@ -65,14 +65,14 @@
   #prop-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #prop-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
-  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e2e8f0 !important; box-shadow: 0 1px 2px rgb(15 23 42 / .08) !important; border-radius: 8px !important; overflow:hidden; }
-  .leaflet-bar a { background:#fff !important; color:#334155 !important; }
-  .leaflet-bar a:hover { background:#f1f5f9 !important; }
+  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow: 0 1px 2px rgb(15 23 42 / .08) !important; border-radius: 8px !important; overflow:hidden; }
+  .leaflet-bar a { background:#fff !important; color:#374151 !important; }
+  .leaflet-bar a:hover { background:#f3f4f6 !important; }
   .leaflet-control-zoom a { display:flex !important; align-items:center; justify-content:center; padding:0 !important; }
   .leaflet-control-zoom a svg { width:16px; height:16px; }
-  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e2e8f0; border-radius:8px; color:#334155; box-shadow: 0 1px 2px rgb(15 23 42 / .08); }
-  .map-btn:hover { background:#f1f5f9; }
-  .map-btn:active { background:#e2e8f0; }
+  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow: 0 1px 2px rgb(15 23 42 / .08); }
+  .map-btn:hover { background:#f3f4f6; }
+  .map-btn:active { background:#e5e7eb; }
   .marker-icon { position:relative; width:34px; height:34px; display:flex; align-items:center; justify-content:center; border:1px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.28); color:#fff; }
   /* Property hover tooltip — name + category + location (matches Marine/Aviation dashboards) */
   .prop-tip.leaflet-tooltip {
@@ -85,7 +85,7 @@
   .prop-tip .ptip-row { display:flex; align-items:center; gap:6px; }
   .prop-tip .ptip-dot { width:9px; height:9px; border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
   .prop-tip .ptip-name { font-weight:700; font-size:12px; letter-spacing:.01em; }
-  .prop-tip .ptip-sub { display:block; font-size:11px; color:#cbd5e1; margin-top:2px; }
+  .prop-tip .ptip-sub { display:block; font-size:11px; color:#d1d5db; margin-top:2px; }
   .prop-tip .ptip-risk { font-weight:700; }
   /* Risk pulse — small red dot on top-right corner of the marker for properties
      flagged with an active weather/risk alert (see Southeast Financial Ctr). */
@@ -107,15 +107,15 @@
   .prop-popup .leaflet-popup-tip { background:#fff; }
   .prop-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
   .prop-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; opacity:1; }
-  .pp { background:#fff; color:#0f172a; }
+  .pp { background:#fff; color:#111827; }
   .pp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 14px 10px; display:flex; align-items:flex-start; justify-content:space-between; }
   .pp-title { font-size:14px; font-weight:700; line-height:1.2; }
   .pp-cat { font-size:11px; font-weight:500; opacity:.75; margin-left:6px; }
   .pp-body { padding:4px 0; }
-  .pp-row { display:flex; align-items:center; justify-content:space-between; padding:7px 14px; border-bottom:1px solid #f1f5f9; font-size:12.5px; }
+  .pp-row { display:flex; align-items:center; justify-content:space-between; padding:7px 14px; border-bottom:1px solid #f3f4f6; font-size:12.5px; }
   .pp-row:last-child { border-bottom:0; }
-  .pp-k { color:#64748b; font-weight:500; }
-  .pp-v { font-weight:600; color:#0f172a; text-align:right; }
+  .pp-k { color:#6b7280; font-weight:500; }
+  .pp-v { font-weight:600; color:#111827; text-align:right; }
   .pp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
   .pp-cta:hover { background:var(--brand-50,#eff6ff); }
 
@@ -312,7 +312,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -369,7 +369,7 @@ const WEATHER_RISKS = [
   { area:'Hurricane Track - Florida', updated:'2025-07-01 13:45 UTC', status:'Active',     risk:'Hurricane Category 2',color:'#ef4444' },
   { area:'Texas Tornado Alley',       updated:'2025-07-01 12:15 UTC', status:'Active',     risk:'Severe Weather',      color:'#ef4444' },
   { area:'New Madrid Seismic Zone',   updated:'2025-07-01 11:20 UTC', status:'Monitoring', risk:'Earthquake Risk',     color:'#f59e0b' },
-  { area:'Pacific Northwest Storm',   updated:'2025-06-30 22:10 UTC', status:'Past',       risk:'Storm Damage',        color:'#64748b' },
+  { area:'Pacific Northwest Storm',   updated:'2025-06-30 22:10 UTC', status:'Past',       risk:'Storm Damage',        color:'#6b7280' },
 ];
 
 const MAP_MARKERS = [
@@ -430,12 +430,12 @@ function PortfolioCard() {
     <div style="padding:10px 12px 0;">
       <div style="display:flex;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;">
         <div style="flex:1;padding:12px 16px;text-align:center;border-right:1px solid #dbeafe;background:#eff6ff">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Total Exposure</div>
-          <div style="font-size:26px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$96.4B</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
+          <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$96.4B</div>
         </div>
         <div style="flex:1;padding:12px 16px;text-align:center;background:#eff6ff">
-          <div style="font-size:11px;font-weight:500;color:#64748b;margin-bottom:4px;">Properties</div>
-          <div style="font-size:26px;font-weight:700;color:#0f172a;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">1,093</div>
+          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Properties</div>
+          <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">1,093</div>
         </div>
       </div>
     </div>
@@ -556,7 +556,7 @@ let tileLayer = null;
 
 const MAP_TYPES = {
   satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f8fafc' },
+  street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f9fafb' },
   dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
   light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
 };

@@ -125,9 +125,9 @@
           <svg viewBox="0 0 700 170" class="linechart" role="img" aria-label="Casualties reported by week during the period">
             ${[0, 30, 60, 90, 120].map(g => {
               const y = 140 - g / 120 * 118;
-              return `<line x1="42" y1="${y.toFixed(1)}" x2="666" y2="${y.toFixed(1)}" stroke="${g === 0 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${(y + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${y.toFixed(1)}" x2="666" y2="${y.toFixed(1)}" stroke="${g === 0 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="34" y="${(y + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="42" y1="14" x2="42" y2="140" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="14" x2="42" y2="140" stroke="#d1d5db" stroke-width="1" />
             ${n.byWeek.map((w, i) => {
               const bw = 624 / n.byWeek.length * 0.56;
               const x = 42 + (i + 0.5) / n.byWeek.length * 624;
@@ -153,7 +153,7 @@
           <div class="legend">
             ${n.status.map(x => `
               <div class="legend-row">
-                <span class="sw" style="background:#cbd5e1"></span>
+                <span class="sw" style="background:#d1d5db"></span>
                 <span>${x.k}</span>
                 <span class="lv num">${x.v}</span>
               </div>`).join('')}
@@ -177,10 +177,10 @@
                 <td class="num">${v.date}</td>
                 <td>${vStack(v.name, v.imo, v.type)}</td>
                 <td>${flag(v.flag)}</td>
-                <td><div class="v-stack"><span style="font-weight:600;color:#0f172a">${v.event}</span><span class="v-sub">${v.note}</span></div></td>
+                <td><div class="v-stack"><span style="font-weight:600;color:#111827">${v.event}</span><span class="v-sub">${v.note}</span></div></td>
                 <td>${v.region}</td>
                 <td>${sevPill(v.sev)}</td>
-                <td class="r num" style="font-weight:700;color:${v.fatal ? '#b91c1c' : '#64748b'}">${v.fatal || '\u2014'}</td>
+                <td class="r num" style="font-weight:700;color:${v.fatal ? '#b91c1c' : '#6b7280'}">${v.fatal || '\u2014'}</td>
                 <td class="r num">${v.loss}</td>
               </tr>`).join('')}
           </tbody>
@@ -208,7 +208,7 @@
             ${t.map(x => `
               <tr>
                 <td class="vn">${x.type}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${x.n}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${x.n}</td>
                 <td class="r num">${x.pct}%</td>
                 <td class="r num">${x.serious}</td>
                 <td class="r num">${x.avgLoss}</td>
@@ -282,7 +282,7 @@
           <tbody>
             ${f.map(x => `
               <tr>
-                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#0f172a">${x.name}</span></td>
+                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#111827">${x.name}</span></td>
                 <td class="r num">${x.fleet.toLocaleString()}</td>
                 <td class="r num">${x.n}</td>
                 <td class="r">${rateChip(x.rate)}</td>
@@ -325,7 +325,7 @@
               <tr>
                 <td><div class="v-stack"><span class="v-name">${x.name}</span><span class="v-sub">${x.role}</span></div></td>
                 <td class="r num">${x.fleet}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${x.n}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${x.n}</td>
                 <td class="r">${rateChip(x.rate)}</td>
                 <td class="r num">${x.serious}</td>
                 <td>${x.worst}</td>
@@ -365,7 +365,7 @@
               <div><div class="chg-t">${x.t}</div><div class="chg-d">${x.d}</div></div>
               <div class="chg-m">
                 <div style="font-weight:700;color:${tone(x.tone)}">${x.m}</div>
-                <div style="font-size:9.5px;color:#94a3b8;margin-top:1px">${x.trend}</div>
+                <div style="font-size:9.5px;color:#9ca3af;margin-top:1px">${x.trend}</div>
               </div>
             </div>`).join('')}
         </div>`, 'Patterns are identified where a cluster exceeds two standard deviations of its trailing twelve-month distribution, or where a new cause category appears.')}

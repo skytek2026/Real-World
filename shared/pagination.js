@@ -85,7 +85,7 @@
           <span>${summaryShort || summary}</span>
           ${totalPages > 10 ? `<button class="ds-page-jump-link" data-jump style="background:none;border:0;padding:0;color:var(--brand-600,#2563eb);font-size:12px;font-weight:600;cursor:pointer;">Jump to page…</button>` : ''}
         </div>
-        <span class="ds-pagination-desktop-summary" style="font-size:13px;color:#64748b;">${summary}</span>
+        <span class="ds-pagination-desktop-summary" style="font-size:13px;color:#6b7280;">${summary}</span>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
           ${perPageSel}
           ${nav}

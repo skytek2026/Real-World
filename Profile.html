@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>My Profile — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#0f172a',800:'#1e293b',700:'#334155',600:'#475569',500:'#64748b',400:'#94a3b8',300:'#cbd5e1',200:'#e2e8f0',100:'#f1f5f9',50:'#f8fafc'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,29 +14,29 @@
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
   /* Cards */
-  .pcard{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(15,23,42,.06);margin-bottom:16px}
+  .pcard{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px;box-shadow:0 1px 3px rgba(15,23,42,.06);margin-bottom:16px}
   .pcard:last-child{margin-bottom:0}
   /* Form inputs */
-  .pfield{width:100%;height:38px;border:1px solid #e2e8f0;border-radius:8px;padding:0 12px;font-size:13.5px;color:#334155;background:#f8fafc;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+  .pfield{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:13.5px;color:#374151;background:#f9fafb;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
   .pfield:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12);background:#fff}
-  .pfield:disabled{color:#64748b;cursor:default}
+  .pfield:disabled{color:#6b7280;cursor:default}
   /* Radio rows */
-  .radio-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1.5px solid #e2e8f0;border-radius:10px;cursor:pointer;transition:border-color .1s,background .1s;margin-bottom:8px}
+  .radio-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1.5px solid #e5e7eb;border-radius:10px;cursor:pointer;transition:border-color .1s,background .1s;margin-bottom:8px}
   .radio-row:last-child{margin-bottom:0}
   .radio-row.selected{border-color:#2563eb;background:#f8fbff}
-  .radio-row:hover:not(.selected){border-color:#cbd5e1;background:#fafafa}
-  .radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid #cbd5e1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .15s}
+  .radio-row:hover:not(.selected){border-color:#d1d5db;background:#fafafa}
+  .radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid #d1d5db;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .15s}
   .radio-dot.on{border-color:#2563eb;background:#2563eb}
   .radio-dot.on::after{content:'';width:7px;height:7px;border-radius:50%;background:#fff}
   /* Setting rows */
-  .setting-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f1f5f9}
+  .setting-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f3f4f6}
   .setting-row:last-child{border-bottom:0}
-  .setting-btn{height:30px;padding:0 14px;border:1px solid #e2e8f0;border-radius:7px;background:#fff;font-size:12.5px;font-weight:600;color:#334155;cursor:pointer;font-family:inherit;transition:background .1s,border-color .1s}
-  .setting-btn:hover{background:#f1f5f9;border-color:#cbd5e1}
+  .setting-btn{height:30px;padding:0 14px;border:1px solid #e5e7eb;border-radius:7px;background:#fff;font-size:12.5px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;transition:background .1s,border-color .1s}
+  .setting-btn:hover{background:#f3f4f6;border-color:#d1d5db}
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
 </style>
 </head>
-<body class="bg-slate-100 text-slate-900">
+<body class="bg-gray-100 text-gray-900">
 <div id="app" class="h-screen w-full flex overflow-hidden"></div>
 
 <script>
@@ -49,7 +49,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=14"></script>
+<script src="shared/chrome.js?v=16"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -75,8 +75,8 @@ const THEMES = [
 ];
 
 /* ── SVGs ─────────────────────────────────────────────────────────────────── */
-const PIN_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
-const CAL_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
+const PIN_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
+const CAL_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 const SET_ICO = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 1 0-14.14 14.14"/></svg>`;
 const CAM_ICO = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>`;
 const AV_DEFAULT = 'images/avatar-paul-kiernan.avif';
@@ -85,7 +85,7 @@ function avatarHTML(src) {
   return src ? `<img src="${src}" alt="Paul Kiernan" style="width:100%;height:100%;object-fit:cover" />`
     : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8);font-size:26px;font-weight:700">PK</div>`;
 }
-const BLD_ICO = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`;
+const BLD_ICO = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`;
 
 /* ── Content ──────────────────────────────────────────────────────────────── */
 function Content() {
@@ -97,19 +97,19 @@ function Content() {
     <div class="pcard" style="text-align:center;padding:32px 24px">
       ${(() => { const src = ST.editMode ? ST.pendingAvatar : ST.avatar; return `
       <div style="position:relative;width:80px;height:80px;margin:0 auto ${ST.editMode ? '8px' : '14px'}">
-        <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #e2e8f0;box-shadow:0 2px 8px rgba(15,23,42,.12)">${avatarHTML(src)}</div>
+        <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #e5e7eb;box-shadow:0 2px 8px rgba(15,23,42,.12)">${avatarHTML(src)}</div>
         ${ST.editMode ? `<button id="av-change-btn" type="button" title="Change photo" aria-label="Change profile photo" style="position:absolute;right:-4px;bottom:-4px;width:32px;height:32px;border-radius:50%;border:2px solid #fff;background:var(--brand-600,#2563eb);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 4px rgba(15,23,42,.2)">${CAM_ICO}</button>` : ''}
       </div>
       ${ST.editMode ? `
       <input id="av-file" type="file" accept="image/jpeg,image/png,image/webp" style="display:none" />
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px">
         <button id="av-upload-link" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:var(--brand-600,#2563eb);cursor:pointer">${src ? 'Change photo' : 'Upload photo'}</button>
-        ${src ? `<span style="color:#cbd5e1">|</span><button id="av-remove" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:#dc2626;cursor:pointer">Remove</button>` : ''}
+        ${src ? `<span style="color:#d1d5db">|</span><button id="av-remove" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:#dc2626;cursor:pointer">Remove</button>` : ''}
       </div>
-      <div style="font-size:12px;color:${ST.avError ? '#dc2626' : '#64748b'};margin-bottom:14px">${ST.avError || 'JPG, PNG or WebP · max 5 MB'}</div>` : ''}`; })()}
-      <h2 style="font-size:20px;font-weight:700;color:#0f172a;margin-bottom:4px">Paul Kiernan</h2>
-      <div style="font-size:14px;color:#64748b;margin-bottom:8px">Chief Technology Officer</div>
-      <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:13px;color:#64748b;margin-bottom:16px">
+      <div style="font-size:12px;color:${ST.avError ? '#dc2626' : '#6b7280'};margin-bottom:14px">${ST.avError || 'JPG, PNG or WebP · max 5 MB'}</div>` : ''}`; })()}
+      <h2 style="font-size:20px;font-weight:700;color:#111827;margin-bottom:4px">Paul Kiernan</h2>
+      <div style="font-size:14px;color:#6b7280;margin-bottom:8px">Chief Technology Officer</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:13px;color:#6b7280;margin-bottom:16px">
         <span style="display:flex;align-items:center;gap:5px">${PIN_ICO} London, UK</span>
         <span style="display:flex;align-items:center;gap:5px">${CAL_ICO} Joined March 2022</span>
       </div>
@@ -120,52 +120,52 @@ function Content() {
 
     <!-- Personal Information -->
     <div class="pcard">
-      <h3 style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:4px">Personal Information</h3>
-      <p style="font-size:13px;color:#64748b;margin-bottom:18px">Update your personal details and contact information.</p>
+      <h3 style="font-size:15px;font-weight:700;color:#111827;margin-bottom:4px">Personal Information</h3>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:18px">Update your personal details and contact information.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:5px">First Name</label>
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">First Name</label>
           <input class="pfield" type="text" value="Paul" ${!ST.editMode?'disabled':''} id="fn-input" />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:5px">Last Name</label>
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Last Name</label>
           <input class="pfield" type="text" value="Kiernan" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:5px">Email</label>
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Email</label>
           <input class="pfield" type="email" value="paul.kiernan@realworld.com" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:5px">Phone</label>
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Phone</label>
           <input class="pfield" type="tel" value="+44 20 7946 0958" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:5px">Location</label>
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Location</label>
           <input class="pfield" type="text" value="London, UK" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#334155;margin-bottom:5px">Department</label>
+          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Department</label>
           <input class="pfield" type="text" value="Maritime Risk Analysis" ${!ST.editMode?'disabled':''} />
         </div>
       </div>
       ${ST.editMode ? `
       <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end">
-        <button id="cancel-edit" style="height:34px;padding:0 14px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;font-size:13px;font-weight:600;color:#475569;cursor:pointer;font-family:inherit">Cancel</button>
+        <button id="cancel-edit" style="height:34px;padding:0 14px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;font-weight:600;color:#4b5563;cursor:pointer;font-family:inherit">Cancel</button>
         <button id="save-edit" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:var(--brand-600,#2563eb);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Save Changes</button>
       </div>` : ''}
     </div>
 
     <!-- Organisations -->
     <div class="pcard">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">${BLD_ICO}<h3 style="font-size:15px;font-weight:700;color:#0f172a">Organisations</h3></div>
-      <p style="font-size:13px;color:#64748b;margin-bottom:16px">Select which organisation to view data for.</p>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">${BLD_ICO}<h3 style="font-size:15px;font-weight:700;color:#111827">Organisations</h3></div>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:16px">Select which organisation to view data for.</p>
       ${ORGS.map(o => {
         const sel = ST.selectedOrg === o.id;
         return `<div class="radio-row ${sel?'selected':''}" data-org="${o.id}">
           <div class="radio-dot ${sel?'on':''}"></div>
           <div>
-            <div style="font-size:14px;font-weight:600;color:#0f172a">${o.name}</div>
-            <div style="font-size:12.5px;color:#64748b">${o.desc}</div>
+            <div style="font-size:14px;font-weight:600;color:#111827">${o.name}</div>
+            <div style="font-size:12.5px;color:#6b7280">${o.desc}</div>
           </div>
         </div>`;
       }).join('')}
@@ -173,39 +173,39 @@ function Content() {
 
     <!-- Theme -->
     <div class="pcard">
-      <h3 style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:4px">Theme</h3>
-      <p style="font-size:13px;color:#64748b;margin-bottom:16px">Select your preferred theme for the application.</p>
+      <h3 style="font-size:15px;font-weight:700;color:#111827;margin-bottom:4px">Theme</h3>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:16px">Select your preferred theme for the application.</p>
       ${THEMES.map(t => {
         const sel = ST.selectedTheme === t.id;
         return `<div class="radio-row ${sel?'selected':''}" data-theme="${t.id}">
           <div class="radio-dot ${sel?'on':''}"></div>
-          <div style="font-size:14px;font-weight:600;color:#0f172a">${t.label}</div>
+          <div style="font-size:14px;font-weight:600;color:#111827">${t.label}</div>
         </div>`;
       }).join('')}
     </div>
 
     <!-- Account Settings -->
     <div class="pcard">
-      <h3 style="font-size:15px;font-weight:700;color:#0f172a;margin-bottom:4px">Account Settings</h3>
-      <p style="font-size:13px;color:#64748b;margin-bottom:4px">Manage your account preferences and security settings.</p>
+      <h3 style="font-size:15px;font-weight:700;color:#111827;margin-bottom:4px">Account Settings</h3>
+      <p style="font-size:13px;color:#6b7280;margin-bottom:4px">Manage your account preferences and security settings.</p>
       <div class="setting-row">
         <div>
-          <div style="font-size:14px;font-weight:600;color:#0f172a">Change Password</div>
-          <div style="font-size:12.5px;color:#64748b;margin-top:2px">Update your account password</div>
+          <div style="font-size:14px;font-weight:600;color:#111827">Change Password</div>
+          <div style="font-size:12.5px;color:#6b7280;margin-top:2px">Update your account password</div>
         </div>
         <button class="setting-btn">Change</button>
       </div>
       <div class="setting-row">
         <div>
-          <div style="font-size:14px;font-weight:600;color:#0f172a">Two-Factor Authentication</div>
-          <div style="font-size:12.5px;color:#64748b;margin-top:2px">Add an extra layer of security</div>
+          <div style="font-size:14px;font-weight:600;color:#111827">Two-Factor Authentication</div>
+          <div style="font-size:12.5px;color:#6b7280;margin-top:2px">Add an extra layer of security</div>
         </div>
         <button class="setting-btn">Enable</button>
       </div>
       <div class="setting-row">
         <div>
-          <div style="font-size:14px;font-weight:600;color:#0f172a">Email Notifications</div>
-          <div style="font-size:12.5px;color:#64748b;margin-top:2px">Manage your notification preferences</div>
+          <div style="font-size:14px;font-weight:600;color:#111827">Email Notifications</div>
+          <div style="font-size:12.5px;color:#6b7280;margin-top:2px">Manage your notification preferences</div>
         </div>
         <button class="setting-btn">Configure</button>
       </div>
@@ -269,7 +269,7 @@ window.render = function() {
     ${SC.Sidebar()}
     <div class="flex-1 min-w-0 flex flex-col overflow-hidden">
       ${SC.Topbar()}
-      <main id="profile-main" class="flex-1 min-h-0 overflow-hidden flex flex-col bg-slate-100"></main>
+      <main id="profile-main" class="flex-1 min-h-0 overflow-hidden flex flex-col bg-gray-100"></main>
     </div>
     ${SC.TweaksPanel()}
   `;

@@ -32,12 +32,12 @@
   const duoBar = (a, b, max) => `
     <div style="display:flex;flex-direction:column;gap:3px;min-width:100px">
       <span class="bl-track"><span class="bl-fill" style="width:${Math.round(a / max * 100)}%;background:var(--brand-600,#2d7ffb)"></span></span>
-      <span class="bl-track"><span class="bl-fill" style="width:${Math.round(b / max * 100)}%;background:#cbd5e1"></span></span>
+      <span class="bl-track"><span class="bl-fill" style="width:${Math.round(b / max * 100)}%;background:#d1d5db"></span></span>
     </div>`;
   const duoLegend = `
     <div class="chart-legend" style="padding-bottom:2px">
       <span class="cl-item"><span class="cl-sw"></span>${P.meta.subject}</span>
-      <span class="cl-item"><span class="cl-sw" style="background:#cbd5e1"></span>Peer group median</span>
+      <span class="cl-item"><span class="cl-sw" style="background:#d1d5db"></span>Peer group median</span>
     </div>`;
 
   const head = (title) => `
@@ -163,15 +163,15 @@
         <div class="chart-wrap">
           <div class="chart-legend">
             <span class="cl-item"><span class="cl-line"></span>${P.meta.subject}</span>
-            <span class="cl-item"><span class="cl-line dash" style="border-top-color:#64748b"></span>Peer group median</span>
+            <span class="cl-item"><span class="cl-line dash" style="border-top-color:#6b7280"></span>Peer group median</span>
           </div>
           <svg viewBox="0 0 700 150" class="linechart" role="img" aria-label="Risk score by quarter against the peer group median">
             ${[38, 42, 46, 50].map(g => {
               const gy = y(g);
-              return `<line x1="56" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${g === 38 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="48" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="56" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${g === 38 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="48" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="56" y1="14" x2="56" y2="124" stroke="#cbd5e1" stroke-width="1" />
-            <polyline points="${t.peer.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="#64748b" stroke-width="2.5" stroke-dasharray="6 4" stroke-linejoin="round" />
+            <line x1="56" y1="14" x2="56" y2="124" stroke="#d1d5db" stroke-width="1" />
+            <polyline points="${t.peer.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="#6b7280" stroke-width="2.5" stroke-dasharray="6 4" stroke-linejoin="round" />
             <polyline points="${t.subject.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ')}" fill="none" stroke="var(--brand-600,#2d7ffb)" stroke-width="2.5" stroke-linejoin="round" />
             ${t.subject.map((v, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="3" fill="#fff" stroke="var(--brand-600,#2d7ffb)" stroke-width="2" />${i % 2 === 1 ? `<text x="${x(i).toFixed(1)}" y="${(y(v) - 8).toFixed(1)}" text-anchor="middle" class="pt-lbl">${v}</text>` : ''}`).join('')}
             ${t.quarters.map((q, i) => `<text x="${x(i).toFixed(1)}" y="140" text-anchor="middle" class="ax-lbl">${q}</text>`).join('')}
@@ -198,7 +198,7 @@
             ${f.rows.map(r => `
               <tr>
                 <td class="vn">${r.k}</td>
-                <td class="r num" style="font-weight:700;color:#0f172a">${r.subject}</td>
+                <td class="r num" style="font-weight:700;color:#111827">${r.subject}</td>
                 <td class="r num">${r.peer}</td>
                 <td class="r num">${r.global}</td>
               </tr>`).join('')}
@@ -210,9 +210,9 @@
           <svg viewBox="0 0 700 150" class="linechart" role="img" aria-label="Vessels owned or operated by quarter over two years">
             ${[30, 35, 40, 45].map(gv => {
               const gy = y(gv);
-              return `<line x1="56" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${gv === 30 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="48" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${gv}</text>`;
+              return `<line x1="56" y1="${gy.toFixed(1)}" x2="660" y2="${gy.toFixed(1)}" stroke="${gv === 30 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="48" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${gv}</text>`;
             }).join('')}
-            <line x1="56" y1="14" x2="56" y2="124" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="56" y1="14" x2="56" y2="124" stroke="#d1d5db" stroke-width="1" />
             ${g.n.map((v, i) => {
               const bw = 604 / n * 0.5, bx = x(i) - bw / 2, by = y(v);
               return `<rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw.toFixed(1)}" height="${(124 - by).toFixed(1)}" rx="3" fill="var(--brand-600,#2d7ffb)" opacity="${i === n - 1 ? 1 : .78}" /><text x="${x(i).toFixed(1)}" y="${(by - 6).toFixed(1)}" text-anchor="middle" class="pt-lbl">${v}</text>`;
@@ -297,7 +297,7 @@
           <tbody>
             ${g.ports.map(p => `
               <tr>
-                <td style="white-space:nowrap">${flagImg(p.country)} <span style="font-weight:600;color:#0f172a">${p.port}</span> ${flagCn(p.country)}</td>
+                <td style="white-space:nowrap">${flagImg(p.country)} <span style="font-weight:600;color:#111827">${p.port}</span> ${flagCn(p.country)}</td>
                 <td class="r num">${p.calls}</td>
                 <td>${p.note}</td>
               </tr>`).join('')}

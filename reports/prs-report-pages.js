@@ -277,7 +277,7 @@
           <tbody>
             ${P.byFlag.map(x => `
               <tr>
-                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#0f172a">${x.name}</span></td>
+                <td style="white-space:nowrap">${flagImg(x.flag)} <span style="font-weight:600;color:#111827">${x.name}</span></td>
                 <td class="r num">${x.vessels}</td>
                 <td class="r">${scoreChip(x.avg)}</td>
                 <td class="r">${dChip(x.delta)}</td>
@@ -326,9 +326,9 @@
           <svg viewBox="0 0 700 200" class="linechart" role="img" aria-label="Average risk score by month over twelve months for the portfolio, tanker and dry cargo segments">
             ${[20, 30, 40, 50, 60].map(g => {
               const gy = y(g);
-              return `<line x1="42" y1="${gy.toFixed(1)}" x2="666" y2="${gy.toFixed(1)}" stroke="${g === 20 ? '#cbd5e1' : '#f1f5f9'}" stroke-width="1" /><text x="34" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
+              return `<line x1="42" y1="${gy.toFixed(1)}" x2="666" y2="${gy.toFixed(1)}" stroke="${g === 20 ? '#d1d5db' : '#f3f4f6'}" stroke-width="1" /><text x="34" y="${(gy + 3.5).toFixed(1)}" text-anchor="end" class="ax-lbl">${g}</text>`;
             }).join('')}
-            <line x1="42" y1="20" x2="42" y2="160" stroke="#cbd5e1" stroke-width="1" />
+            <line x1="42" y1="20" x2="42" y2="160" stroke="#d1d5db" stroke-width="1" />
             ${series(t.dry, '#16a34a', '5 4')}
             ${series(t.tankers, '#b91c1c')}
             ${series(t.portfolio, 'var(--brand-600,#2d7ffb)')}

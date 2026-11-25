@@ -38,8 +38,8 @@
             </button>
           </div>
           <div class="rw-modal-body" style="min-height:140px;">
-            <div style="font-size:13px;color:#334155;">
-              Are you sure you want to delete portfolio: <strong style="color:#0f172a;">${escapeHtml(name)}</strong>?
+            <div style="font-size:13px;color:#374151;">
+              Are you sure you want to delete portfolio: <strong style="color:#111827;">${escapeHtml(name)}</strong>?
             </div>
           </div>
           <div class="rw-modal-footer">
