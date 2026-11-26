@@ -48,21 +48,21 @@
   /* Risk Score Trend node tooltips */
   .rs-node{position:absolute;width:20px;height:20px;transform:translate(-50%,-50%);cursor:pointer;z-index:3;border-radius:50%;}
   .rs-node:hover{background:rgba(45,127,251,0.12);}
-  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 20px 32px -8px rgb(15 23 42 / .20), 0 10px 16px -6px rgb(15 23 42 / .12);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
   .rs-tip{display:none;}   /* hidden tooltips take no space, so they can never widen the page */
   .rs-node:hover .rs-tip, .rs-info:hover .rs-tip{display:block;}
   .rs-node:hover .rs-tip{opacity:1;visibility:visible;}
-  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#6b7280;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#2d7ffb;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
   .sts-dash-l{border-left-style:dashed;}
   .sts-top-red,.sts-top-orange{border-bottom-color:transparent !important;}
   tr:has(+ .sts-top-red),tr:has(+ .sts-top-orange){border-bottom-color:transparent !important;}
-  .sts-top-red>td{box-shadow:inset 0 1px 0 #f87171,inset 0 -1px 0 #f87171;}
-  .sts-top-red:has(+ .sts-top-red)>td,.sts-top-red:has(+ .sts-top-orange)>td{box-shadow:inset 0 1px 0 #f87171;}
+  .sts-top-red>td{box-shadow:inset 0 1px 0 #DC2626,inset 0 -1px 0 #DC2626;}
+  .sts-top-red:has(+ .sts-top-red)>td,.sts-top-red:has(+ .sts-top-orange)>td{box-shadow:inset 0 1px 0 #DC2626;}
   .sts-top-orange:has(+ .sts-top-red)>td,.sts-top-orange:has(+ .sts-top-orange)>td{background-position:left 0;}
-  .sts-top-orange>td{background-image:linear-gradient(to right,#fb923c 0,#fb923c 4px,transparent 4px,transparent 8px),linear-gradient(to right,#fb923c 0,#fb923c 4px,transparent 4px,transparent 8px);background-size:8px 1px,8px 1px;background-repeat:repeat-x,repeat-x;background-position:left 0,left 100%;}
+  .sts-top-orange>td{background-image:linear-gradient(to right,#D97706 0,#D97706 4px,transparent 4px,transparent 8px),linear-gradient(to right,#D97706 0,#D97706 4px,transparent 4px,transparent 8px);background-size:8px 1px,8px 1px;background-repeat:repeat-x,repeat-x;background-position:left 0,left 100%;}
   .sts-tipwrap{position:relative;display:inline-flex;align-items:center;cursor:default;}
   .sts-tip{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#111827;color:#fff;font-size:11px;font-weight:600;padding:5px 9px;border-radius:6px;box-shadow:0 8px 20px rgba(15,23,42,.22);opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:60;}
   .sts-tipwrap:hover .sts-tip{opacity:1;visibility:visible;}
@@ -97,7 +97,7 @@
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
+  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#4b5563; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2d7ffb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
@@ -114,10 +114,10 @@
   #vessel-map .leaflet-control-scale { margin-left:10px !important; margin-bottom:6px !important; }
   #vessel-map .leaflet-control-scale-line { background:rgba(255,255,255,.85); border:1px solid #d1d5db !important; border-radius:4px; box-shadow:inset 0 -2px 0 #374151; color:#111827; font-size:11px; line-height:1.3; padding:1px 6px 2px; font-variant-numeric:tabular-nums; box-sizing:content-box; }
   #vessel-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
-  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42/.08) !important; border-radius:8px !important; overflow:hidden; }
+  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
-  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgb(15 23 42/.08); cursor:pointer; flex-shrink:0; }
+  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06); cursor:pointer; flex-shrink:0; }
   .map-btn:hover { background:#f3f4f6; }
   .map-btn svg { width:16px; height:16px; }
   .map-btn { position:relative; }
@@ -137,14 +137,14 @@
   .env-sw[aria-checked="true"]::after { transform:translateX(14px); }
   .env-sw:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#2d7ffb) 25%, transparent); }
   .env-msg { display:none; }
-  .env-off .env-msg { display:flex; align-items:center; justify-content:center; min-height:180px; font-size:13.5px; color:#4b5563; text-align:center; }
+  .env-off .env-msg { display:flex; align-items:center; justify-content:center; min-height:180px; font-size:13px; color:#4b5563; text-align:center; }
   .env-msg-in { display:flex; flex-direction:column; align-items:center; gap:10px; }
   .env-msg-ic { width:44px; height:44px; border-radius:50%; background:var(--brand-50,#eff6ff); color:var(--brand-600,#2d7ffb); display:inline-flex; align-items:center; justify-content:center; }
   .env-off > :not(.env-head):not(.env-msg) { display:none !important; }
-  .env-period-sel { appearance:none; -webkit-appearance:none; height:32px; padding:0 30px 0 12px; font-size:13px; font-weight:500; color:#1f2937; background:#fff; border:1px solid #e5e7eb; border-radius:8px; cursor:pointer; box-shadow:0 1px 2px rgb(15 23 42/.05); }
+  .env-period-sel { appearance:none; -webkit-appearance:none; height:32px; padding:0 30px 0 12px; font-size:13px; font-weight:500; color:#1f2937; background:#fff; border:1px solid #e5e7eb; border-radius:8px; cursor:pointer; box-shadow:none; }
   .env-period-sel:hover { border-color:#d1d5db; }
   .env-period-sel:focus { outline:none; border-color:#2d7ffb; box-shadow:0 0 0 3px rgb(45 127 251/.18); }
-  .trp { position:fixed; z-index:10000; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 12px 32px rgb(15 23 42/.18); overflow:hidden; max-width:calc(100vw - 16px); font-size:12.5px; color:#111827; }
+  .trp { position:fixed; z-index:10000; background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 20px 32px -8px rgb(15 23 42 / .20), 0 10px 16px -6px rgb(15 23 42 / .12); overflow:hidden; max-width:calc(100vw - 16px); font-size:12.5px; color:#111827; }
   .trp-body { display:flex; }
   .trp-presets { display:flex; flex-direction:column; gap:2px; padding:10px 6px; border-right:1px solid #f3f4f6; min-width:136px; background:#f9fafb; }
   .trp-preset { text-align:left; background:transparent; border:0; border-radius:6px; padding:7px 10px; font:inherit; font-size:12.5px; color:#4b5563; cursor:pointer; white-space:nowrap; }
@@ -163,7 +163,7 @@
   .trp-nav { display:inline-grid; place-items:center; border:0; background:transparent; border-radius:4px; color:#4b5563; cursor:pointer; }
   .trp-nav:hover { background:#f3f4f6; color:#111827; }
   .trp-grid { display:grid; grid-template-columns:repeat(7,32px); row-gap:2px; }
-  .trp-dow { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#9ca3af; text-align:center; padding:4px 0; }
+  .trp-dow { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:#6b7280; text-align:center; padding:4px 0; }
   .trp-day { position:relative; width:32px; height:32px; display:inline-grid; place-items:center; font:inherit; font-size:12.5px; background:transparent; border:0; border-radius:4px; color:#111827; cursor:pointer; font-variant-numeric:tabular-nums; }
   .trp-day:hover:not(:disabled) { background:#f3f4f6; }
   .trp-day:disabled { color:#d1d5db; cursor:not-allowed; }
@@ -185,7 +185,7 @@
   .trp-range { margin-left:auto; font-size:12px; color:#6b7280; font-variant-numeric:tabular-nums; }
   .trp-acts { display:flex; gap:8px; }
   .trp-btn { height:32px; padding:0 14px; font:inherit; font-size:13px; font-weight:600; border-radius:8px; cursor:pointer; border:1px solid transparent; }
-  .trp-btn--sec { background:#fff; color:#1f2937; border-color:#e5e7eb; box-shadow:0 1px 2px rgb(15 23 42/.05); }
+  .trp-btn--sec { background:#fff; color:#1f2937; border-color:#e5e7eb; box-shadow:none; }
   .trp-btn--sec:hover { background:#f9fafb; border-color:#d1d5db; }
   .trp-btn--pri { background:var(--brand-600,#2d7ffb); color:#fff; border-color:var(--brand-600,#2d7ffb); }
   .trp-btn--pri:hover:not(:disabled) { background:var(--brand-700,#1d6ae5); }
@@ -216,7 +216,7 @@
   .hd-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
   .hd-kv { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
   .hd-kv--top { margin:0; padding:0; border:0; }
-  .hd-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .hd-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .hd-kv dd { margin:2px 0 0; font-size:13px; color:#374151; overflow-wrap:anywhere; }
   .hd-kv dd.hd-date { font-weight:600; color:#111827; font-variant-numeric:tabular-nums; }
   .hd-kv dd.hd-changed { color:#ea580c; font-weight:600; }
@@ -228,7 +228,7 @@
   }
   .ad-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
   .ad-kv { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; margin:0; }
-  .ad-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .ad-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .ad-kv dd { margin:2px 0 0; font-size:13px; color:#374151; }
   /* Ship-To-Ship: table on wider screens, one card per transfer on phones */
   .sts-cards { display:none; }
@@ -237,13 +237,13 @@
     .sts-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
   }
   .sts-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
-  .sts-card--red { background:#fef2f2; border-color:#fca5a5; border-left:4px solid #f87171; }
-  .sts-card--orange { background:#fff7ed; border-color:#fdba74; border-left:4px dashed #fb923c; }
-  .sts-sec-label { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .sts-card--red { background:#fef2f2; border-color:#FEE2E2; border-left:4px solid #DC2626; }
+  .sts-card--orange { background:#FFFBEB; border-color:#FEF3C7; border-left:4px dashed #D97706; }
+  .sts-sec-label { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .sts-vessel { margin-top:6px; }
   .sts-vessel-name { display:flex; align-items:center; gap:6px; font-size:14px; font-weight:600; color:var(--brand-600,#2d7ffb); }
   .sts-kv { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:8px 0 0; }
-  .sts-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .sts-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .sts-kv dd { margin:2px 0 0; font-size:12.5px; color:#374151; font-variant-numeric:tabular-nums; min-height:18px; display:flex; align-items:center; }
   .sts-hop { display:flex; gap:10px; margin:10px 0; padding:10px 12px; background:rgb(255 255 255/.7); border:1px solid #e5e7eb; border-radius:8px; }
   .sts-card:not(.sts-card--red):not(.sts-card--orange) .sts-hop { background:#f9fafb; }
@@ -327,7 +327,7 @@
   #vessel-map .leaflet-popup-pane { z-index:700; }
   .trk-pop { font-size:12.5px; color:#111827; }
   .trk-h { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; padding:8px 8px 8px 14px; border-bottom:1px solid #e5e7eb; }
-  .trk-n { display:flex; align-items:center; gap:6px; font-weight:700; font-size:13.5px; }
+  .trk-n { display:flex; align-items:center; gap:6px; font-weight:700; font-size:13px; }
   .trk-t { font-size:12px; color:#6b7280; margin-top:1px; font-variant-numeric:tabular-nums; }
   .trk-acts { display:flex; gap:2px; }
   .trk-ib { width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; border-radius:6px; color:#6b7280; cursor:pointer; }
@@ -382,16 +382,16 @@
   .tl-step:disabled { opacity:.35; cursor:not-allowed; }
   #timeline-slider:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:4px; border-radius:4px; }
   .sts-bar { position:sticky; left:0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px; padding:10px 14px; border-bottom:1px solid #e5e7eb; background:#fff; }
-  .track-legend { clear:both; flex-wrap:nowrap !important; margin-left:10px !important; display:flex; flex-wrap:wrap; gap:4px 14px; padding:6px 10px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:8px; box-shadow:0 1px 2px rgb(15 23 42/.08); font-size:12px; color:var(--text-secondary,#4b5563); margin-bottom:6px !important; }
+  .track-legend { clear:both; flex-wrap:nowrap !important; margin-left:10px !important; display:flex; flex-wrap:wrap; gap:4px 14px; padding:6px 10px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:8px; box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06); font-size:12px; color:var(--text-secondary,#4b5563); margin-bottom:6px !important; }
   .track-legend-i { display:inline-flex; align-items:center; gap:7px; white-space:nowrap; }
   .track-legend-sw { width:18px; height:3px; border-radius:2px; flex-shrink:0; }
   .sts-legend { display:flex; flex-wrap:wrap; align-items:center; gap:6px 16px; margin:0; padding:0; list-style:none; font-size:12px; color:#4b5563; }
   .sts-legend li { display:inline-flex; align-items:center; gap:8px; }
   .sts-sw { width:18px; height:0; flex-shrink:0; }
-  .sts-sw--red { border-top:2px solid #f87171; }
-  .sts-sw--orange { border-top:2px dashed #fb923c; }
+  .sts-sw--red { border-top:2px solid #DC2626; }
+  .sts-sw--orange { border-top:2px dashed #D97706; }
   .sts-ctrls { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-left:auto; }
-  .sts-btn { position:relative; display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; font:inherit; font-size:13px; font-weight:500; color:#1f2937; background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:0 1px 2px rgb(15 23 42/.05); cursor:pointer; white-space:nowrap; }
+  .sts-btn { position:relative; display:inline-flex; align-items:center; gap:6px; height:32px; padding:0 12px; font:inherit; font-size:13px; font-weight:500; color:#1f2937; background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:none; cursor:pointer; white-space:nowrap; }
   .sts-btn:hover:not(:disabled) { background:#f9fafb; border-color:#d1d5db; }
   .sts-btn:focus-visible { outline:none; border-color:#60a5fa; box-shadow:0 0 0 3px rgb(45 127 251/.18); }
   .sts-btn:disabled { color:#9ca3af; background:#fff; box-shadow:none; cursor:not-allowed; }
@@ -468,7 +468,7 @@
   .br-tbd-ico svg { width:20px; height:20px; }
   .nc-hint { font-weight:500; color:var(--text-muted,#6b7280); }
   .nc-hint:empty { display:none; }
-  .hist-range { width:100%; display:flex; align-items:center; gap:12px; padding:10px 12px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:8px; cursor:pointer; text-align:left; font:inherit; box-shadow:0 1px 2px rgb(15 23 42/.05); transition:border-color 140ms cubic-bezier(.16,1,.3,1), box-shadow 140ms cubic-bezier(.16,1,.3,1), background 140ms; }
+  .hist-range { width:100%; display:flex; align-items:center; gap:12px; padding:10px 12px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:8px; cursor:pointer; text-align:left; font:inherit; box-shadow:none; transition:border-color 140ms cubic-bezier(.16,1,.3,1), box-shadow 140ms cubic-bezier(.16,1,.3,1), background 140ms; }
   .hist-range:hover { border-color:var(--border-strong,#d1d5db); background:var(--slate-50,#f9fafb); }
   .hist-range:focus-visible, .hist-range[aria-expanded="true"] { outline:none; border-color:var(--brand-400,#8ec5fd); box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32)); }
   .hist-range-ico { width:36px; height:36px; border-radius:8px; background:var(--brand-050,#eff6ff); color:var(--brand-600,#2d7ffb); display:grid; place-items:center; flex-shrink:0; }
@@ -481,7 +481,7 @@
   .hist-range-arrow { color:var(--text-muted,#9ca3af); flex-shrink:0; }
   .hist-range-chev { color:var(--text-muted,#6b7280); flex-shrink:0; transition:transform 200ms cubic-bezier(.16,1,.3,1); }
   .hist-range[aria-expanded="true"] .hist-range-chev { transform:rotate(180deg); }
-  .hist-cal-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; color:var(--brand-600,#2d7ffb); cursor:pointer; box-shadow:0 1px 2px rgb(15 23 42/.05); flex-shrink:0; position:relative; }
+  .hist-cal-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; color:var(--brand-600,#2d7ffb); cursor:pointer; box-shadow:none; flex-shrink:0; position:relative; }
   .hist-cal-btn:hover { background:#f9fafb; border-color:#d1d5db; color:var(--brand-700,#1d6ae5); }
   .hist-cal-btn:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#2d7ffb) 25%, transparent); }
   .hist-cal-btn[aria-expanded="true"] { background:var(--brand-50,#eff6ff); border-color:var(--brand-300,#93c5fd); }
@@ -502,7 +502,7 @@
   .timeline-overlay { position:absolute; bottom:16px; left:12px; right:12px; z-index:400; background:rgba(15,23,42,.82); border-radius:12px; padding:10px 14px; backdrop-filter:blur(4px); }
   .timeline-track { position:relative; height:6px; background:rgba(255,255,255,.25); border-radius:999px; cursor:pointer; flex:1; }
   .timeline-fill  { position:absolute; left:0; top:0; bottom:0; background:var(--brand-500,#2d7ffb); border-radius:999px; pointer-events:none; }
-  .timeline-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; background:#fff; border:2px solid var(--brand-500,#2d7ffb); border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,.4); pointer-events:none; cursor:grab; }
+  .timeline-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; background:#fff; border:2px solid var(--brand-500,#2d7ffb); border-radius:999px; box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06); pointer-events:none; cursor:grab; }
   /* Mobile responsive */
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){
@@ -537,7 +537,7 @@
   html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
   /* Track date range floating at the top centre of the map */
   .map-range { scroll-margin-top:76px; position:absolute; top:12px; left:50%; transform:translateX(-50%); z-index:450; width:min(340px, calc(100% - 128px)); }
-  .map-range .hist-range { padding:6px 10px; gap:10px; box-shadow:0 4px 14px rgb(15 23 42/.18); }
+  .map-range .hist-range { padding:6px 10px; gap:10px; box-shadow:0 20px 32px -8px rgb(15 23 42 / .20), 0 10px 16px -6px rgb(15 23 42 / .12); }
   .map-range .hist-range-ico { width:30px; height:30px; }
   @media (max-width:767px) { .map-range .hist-range-ico { display:none; } .map-range .hist-range-days { display:none; } }
   /* Date picker on phones: presets as a dropdown instead of a sideways-scrolling row */
@@ -637,6 +637,22 @@
   html[data-theme="dark"] .hist-range-tag { color:#8ec5fd !important; }
   .grade-ink { color:#111827 !important; }   /* dark text on light rating colours, in light and dark mode */
   html[data-theme="dark"] body .grade-ink.grade-ink { color:#111827 !important; }   /* out-specifies the chrome's dark text remap */
+  /* Leaflet defaults -> Skytek DS type (Inter, on-scale sizes, text-primary) */
+  .leaflet-container, .leaflet-container .leaflet-popup-content-wrapper, .leaflet-control-scale-line, .leaflet-tooltip { font-family:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .leaflet-container .leaflet-popup-content { font-size:13px; line-height:1.45; color:#111827; }
+  .leaflet-container .leaflet-popup-content-wrapper, .leaflet-container .leaflet-popup-tip { color:#111827; }
+  .leaflet-container .leaflet-control-scale-line { font-size:11px; }
+  .leaflet-bar a.leaflet-control-zoom-in, .leaflet-bar a.leaflet-control-zoom-out { font:600 20px/30px 'Inter', system-ui, sans-serif; }
+  /* Sortable table headers: Skytek DS .ds-th-sort hover (whole cell: bg slate-100, text secondary; sort icon muted .4 -> .7) */
+  table th:has(> button) { cursor:pointer; transition:background-color .12s ease; }   /* ds-th-hover */
+  table th:has(> button) > button { transition:color .12s ease; }
+  table th:has(> button) > button svg { color:#6b7280; opacity:.4; transition:opacity .12s ease; }
+  table th:has(> button):hover { background-color:#F3F4F6 !important; }
+  table th:has(> button):hover > button { color:#4B5563 !important; }
+  table th:has(> button):hover > button svg { opacity:.7; }
+  table th:has(> button):focus-within { box-shadow:inset 0 0 0 2px rgba(46,134,192,.32); }
+  html[data-theme="dark"] table th:has(> button):hover { background-color:rgba(255,255,255,.06) !important; }
+  html[data-theme="dark"] table th:has(> button):hover > button { color:#d1d5db !important; }
 </style>
 <link rel="stylesheet" href="modals/modal-base.css">
 <script src="modals/InspectionDefectsModal.js?v=3"></script>
@@ -656,7 +672,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=18"></script>
+<script src="shared/chrome.js?v=19"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -868,11 +884,11 @@ const INSPECTIONS = [
 ];
 
 const SUSPICIOUS_ACTIVITY = [
-  { start:'2024-11-04 14:23 UTC', end:'2024-11-04 18:45 UTC', duration:'4h 22m',  alertType:'AIS Silence',              alertColor:'bg-blue-100 text-blue-700',   region:'Sea of Azov and Black Sea', regionFlag:true,  desc:'Vessel AIS signal lost in severe weather zone with 12m waves and 65 knot winds' },
-  { start:'2024-11-03 18:42 UTC', end:'2024-11-04 02:15 UTC', duration:'7h 33m',  alertType:'Unusual Movement Patterns', alertColor:'bg-amber-100 text-amber-700', region:'Suez Canal',               regionFlag:false, desc:'Vessel deviating from planned route with erratic course changes' },
-  { start:'2024-11-03 12:30 UTC', end:'2024-11-03 14:18 UTC', duration:'1h 48m',  alertType:'AIS Spoofing',              alertColor:'bg-purple-100 text-purple-700',region:'Cannes, Nice',             regionFlag:false, desc:'AIS position data inconsistent with satellite tracking information' },
-  { start:'2024-11-02 21:05 UTC', end:'2024-11-03 05:20 UTC', duration:'8h 15m',  alertType:'Drifting',                  alertColor:'bg-cyan-100 text-cyan-700',   region:'Gulf of Guinea',           regionFlag:true,  desc:'Vessel stationary for extended period with engines showing minimal power' },
-  { start:'2024-11-01 16:30 UTC', end:'2024-11-01 16:30 UTC', duration:'Ongoing', alertType:'Name/Flag Change',           alertColor:'bg-pink-100 text-pink-700',   region:'Miami',                    regionFlag:false, desc:'Vessel identity changed multiple times in short period' },
+  { start:'2024-11-04 14:23 UTC', end:'2024-11-04 18:45 UTC', duration:'4h 22m',  alertType:'AIS Silence',              alertColor:'bg-[#DBEAFE] text-[#1D4ED8]',   region:'Sea of Azov and Black Sea', regionFlag:true,  desc:'Vessel AIS signal lost in severe weather zone with 12m waves and 65 knot winds' },
+  { start:'2024-11-03 18:42 UTC', end:'2024-11-04 02:15 UTC', duration:'7h 33m',  alertType:'Unusual Movement Patterns', alertColor:'bg-[#FEF3C7] text-[#B45309]', region:'Suez Canal',               regionFlag:false, desc:'Vessel deviating from planned route with erratic course changes' },
+  { start:'2024-11-03 12:30 UTC', end:'2024-11-03 14:18 UTC', duration:'1h 48m',  alertType:'AIS Spoofing',              alertColor:'bg-[#f0e2fc] text-[#1F2937]',region:'Cannes, Nice',             regionFlag:false, desc:'AIS position data inconsistent with satellite tracking information' },
+  { start:'2024-11-02 21:05 UTC', end:'2024-11-03 05:20 UTC', duration:'8h 15m',  alertType:'Drifting',                  alertColor:'bg-[#dcf0f4] text-[#1F2937]',   region:'Gulf of Guinea',           regionFlag:true,  desc:'Vessel stationary for extended period with engines showing minimal power' },
+  { start:'2024-11-01 16:30 UTC', end:'2024-11-01 16:30 UTC', duration:'Ongoing', alertType:'Name/Flag Change',           alertColor:'bg-[#fae1ec] text-[#1F2937]',   region:'Miami',                    regionFlag:false, desc:'Vessel identity changed multiple times in short period' },
 ];
 
 const STS_DATA = [
@@ -1000,7 +1016,7 @@ function tabs(tabs, active, attr, stretch = false) {
       const upArrow = `<svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5M5 12l7-7 7 7"/></svg>`;
       const downArrow = `<svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12l7 7 7-7"/></svg>`;
       const scoreBadge = t.scoreBadge ? `<span class="ml-1.5 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[11px] font-bold ${t.scoreBadge.tone.bg} ${t.scoreBadge.tone.text}">${t.scoreBadge.value}${t.scoreBadge.up ? upArrow : downArrow}</span>` : '';
-      const iBadge = t.badge ? `<span class="ml-1 inline-flex items-center justify-center text-[11px] font-bold bg-orange-500 text-white rounded-full" style="width:14px;height:14px;flex-shrink:0;">${t.badge}</span>` : '';
+      const iBadge = t.badge ? `<span class="ml-1 inline-flex items-center justify-center text-[11px] font-bold text-white rounded-full" style="width:14px;height:14px;flex-shrink:0;background:#B45309;">${t.badge}</span>` : '';
       const iconHtml = t.icon ? `<span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I[t.icon]}</span>` : '';
       return `
       <button ${attr}="${t.k}" aria-selected="${t.k===active}"${t.short ? ` aria-label="${t.k}"` : ''} class="ds-tab" style="font-size:13px; padding:7px 16px;">
@@ -1149,7 +1165,7 @@ function VesselDetailsSplitCard() {
           const ent = (name, ccs) => `<span class="inline-flex items-center gap-1.5 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-600 hover:underline text-right">${name}</a></span>`;
           return `
         ${row('Flag:', `<span class="inline-flex items-center gap-1.5">${flag('mh')} Marshall Islands</span>`)}
-        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1.5 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-[11px] font-bold" style="background:#d97706">i</span>View company details</a>`)}
+        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1.5 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-[11px] font-bold" style="background:#B45309">i</span>View company details</a>`)}
         ${row('Classification Society:', 'American Bureau of Shipping')}
         ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-600 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
         ${row('Group Owner:', ent('Scorpio Group', ['mc','it','mc']))}
@@ -1235,7 +1251,7 @@ function VesselDetailsCard() {
           const ent = (name, ccs) => `<span class="inline-flex items-center gap-1.5 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-600 hover:underline text-right">${name}</a></span>`;
           return `
         ${row('Flag:', `<span class="inline-flex items-center gap-1.5">${flag('mh')} Marshall Islands</span>`)}
-        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1.5 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-[11px] font-bold" style="background:#d97706">i</span>View company details</a>`)}
+        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1.5 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-[11px] font-bold" style="background:#B45309">i</span>View company details</a>`)}
         ${row('Classification Society:', 'American Bureau of Shipping')}
         ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-600 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
         ${row('Group Owner:', ent('Scorpio Group', ['mc','it','mc']))}
@@ -1327,9 +1343,9 @@ function PortCallsCard() {
       <div class="px-3 pt-2.5 pb-2 text-[11px] text-ink-500 border-b border-ink-200 sticky top-0 bg-white">Top 10 ports visited &middot; last 24 months</div>
       ${TOP_PORTS.map((p,i) => `
       <div class="px-3 py-2 border-b border-ink-100 last:border-0 grid grid-cols-[16px_1fr_auto] gap-2.5 items-center">
-        <span class="text-[11px] font-semibold text-ink-400 text-right" style="font-variant-numeric:tabular-nums;">${i+1}</span>
+        <span class="text-[11px] font-semibold text-ink-500 text-right" style="font-variant-numeric:tabular-nums;">${i+1}</span>
         <div class="flex flex-col gap-1 min-w-0">
-          <div class="flex items-center gap-1.5 min-w-0">${flag(p.cc)}<span class="text-xs font-semibold text-ink-900 truncate">${p.port}</span><span class="text-[11px] text-ink-400 truncate">${p.country}</span></div>
+          <div class="flex items-center gap-1.5 min-w-0">${flag(p.cc)}<span class="text-xs font-semibold text-ink-900 truncate">${p.port}</span><span class="text-[11px] text-ink-500 truncate">${p.country}</span></div>
           <div class="h-1 rounded-full bg-ink-100 overflow-hidden"><div class="h-full rounded-full bg-brand-600" style="width:${Math.round(p.calls/TOP_PORT_MAX*100)}%;"></div></div>
           <span class="text-[11px] text-ink-500">${p.days} days in port &middot; last ${p.last}</span>
         </div>
@@ -1343,7 +1359,7 @@ function PortCallsCard() {
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6b7280;margin-bottom:4px;">Departure Port</div>
           <div class="flex items-center justify-center gap-1.5 min-w-0">
             ${flag('sg')}
-            <span class="text-xs text-ink-500 truncate">Singapore</span>
+            <span class="text-xs text-ink-600 truncate">Singapore</span>
           </div>
           <div class="flex items-center justify-center gap-1.5 mb-1 min-w-0">
             <svg class="w-3.5 h-3.5 text-ink-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></svg>
@@ -1367,7 +1383,7 @@ function PortCallsCard() {
 
         <div class="border-l-2 border-dashed border-ink-300 h-3"></div>
         <div class="text-xs text-ink-500 font-medium">3,031 nm</div>
-        <div class="text-xs text-ink-400">Underway using engine</div>
+        <div class="text-xs text-ink-500">Underway using engine</div>
         <div class="border-l-2 border-dashed border-ink-300 h-3"></div>
 
         <!-- Destination port outlined -->
@@ -1375,7 +1391,7 @@ function PortCallsCard() {
           <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-600,#2d7ffb);margin-bottom:4px;">Destination Port</div>
           <div class="flex items-center justify-center gap-1.5 min-w-0">
             ${flag('de')}
-            <span class="text-xs text-ink-500 truncate">Germany</span>
+            <span class="text-xs text-ink-600 truncate">Germany</span>
           </div>
           <div class="flex items-center justify-center gap-1.5 min-w-0">
             <svg class="w-3.5 h-3.5 text-ink-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></svg>
@@ -1772,7 +1788,7 @@ function CasualtyRiskCardCopy7() {
         <button data-sanctions-toggle-copy7 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy7?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${state.withSanctionsCopy7?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${state.withSanctionsCopy7?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06);transition:left .15s;"></span>
           </span>
         </button>
       </div>
@@ -1958,7 +1974,7 @@ function CasualtyRiskCardCopy8() {
             <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 15s1.2-1 4-1 4.6 2 7.4 2S20 15 20 15V4s-1.2 1-4 1-4.6-2-7.4-2S5 4 5 4z"></path><path d="M5 22V15" fill="none" stroke-linecap="round"></path></svg>
           </div>
         </div>
-        <div style="font-size:18px;font-weight:700;color:#0f2a44;">${state.complianceStatus}</div>
+        <div style="font-size:16px;font-weight:700;color:#111827;">${state.complianceStatus}</div>
       </div>
       <div style="font-size:12px;line-height:1.5;color:#6b7280;">Status last changed: ${cs.changed}<br>Unknown Affiliations not screened.</div>
     </div>`;
@@ -2051,7 +2067,7 @@ function CasualtyRiskCardCopy8() {
         <button data-trends-toggle-copy8 class="co-rs-trend" role="switch" aria-checked="${state.withTrendsCopy8}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withTrendsCopy8?'var(--brand-600,#2d7ffb)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${state.withTrendsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${state.withTrendsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06);transition:left .15s;"></span>
           </span>
         </button>
       </div>
@@ -2061,7 +2077,7 @@ function CasualtyRiskCardCopy8() {
         ${state.complianceStatus === 'Sanctioned' ? `<button data-sanctions-toggle-copy8 class="co-rs-sanc" style="align-self:flex-end;max-width:100%;margin-bottom:4px;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy8?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${state.withSanctionsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${state.withSanctionsCopy8?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06);transition:left .15s;"></span>
           </span>
         </button>` : ''}
           <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
@@ -2650,7 +2666,7 @@ function CasualtyRiskCardCopy2() {
           <button data-sanctions-toggle-copy2 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
             <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy2?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-              <span style="position:absolute;top:2px;${state.withSanctionsCopy2?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+              <span style="position:absolute;top:2px;${state.withSanctionsCopy2?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06);transition:left .15s;"></span>
             </span>
           </button>
         </div>
@@ -2894,7 +2910,7 @@ function CasualtyRiskCardCopy5() {
           <button data-sanctions-toggle-copy5 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
             <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy5?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-              <span style="position:absolute;top:2px;${state.withSanctionsCopy5?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+              <span style="position:absolute;top:2px;${state.withSanctionsCopy5?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06);transition:left .15s;"></span>
             </span>
           </button>
         </div>
@@ -3097,7 +3113,7 @@ function CasualtyRiskCardCopy3() {
           <button data-sanctions-toggle-copy3 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
             <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy3?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-              <span style="position:absolute;top:2px;${state.withSanctionsCopy3?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+              <span style="position:absolute;top:2px;${state.withSanctionsCopy3?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06);transition:left .15s;"></span>
             </span>
           </button>
         </div>
@@ -3325,7 +3341,7 @@ function CasualtyRiskCardCopy6() {
           <button data-sanctions-toggle-copy6 style="display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
             With Sanctions
             <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${state.withSanctionsCopy6?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-              <span style="position:absolute;top:2px;${state.withSanctionsCopy6?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+              <span style="position:absolute;top:2px;${state.withSanctionsCopy6?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 2px 4px 0 rgb(15 23 42 / .08), 0 1px 2px 0 rgb(15 23 42 / .06);transition:left .15s;"></span>
             </span>
           </button>
         </div>
@@ -3418,7 +3434,7 @@ const ASSOC_ARROW = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none"
 
 const ASSOC_ROLE_OPTS = ['Owner','Registered Owner','Technical Manager','Commercial Manager','Operator','Charterer','Flag State','Classification Society','Associated Vessel','STS Partner','Corporate Relationship'];
 
-const ASSOC_STS = '<span class="inline-flex items-center gap-1 shrink-0 text-ink-400"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg><span class="text-[11px] font-semibold tracking-wide uppercase">STS</span></span>';
+const ASSOC_STS = '<span class="inline-flex items-center gap-1 shrink-0 text-ink-500"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg><span class="text-[11px] font-semibold tracking-wide uppercase">STS</span></span>';
 
 const ASSOC_ROWS = [
   { role:'Registered Owner', entity:'Orion Maritime Holdings SA', type:'Company', risk:'Critical', evidence:'OFAC SDN match on registered owner',
@@ -3963,7 +3979,7 @@ function EnvironmentalRatingCard() {
   
   const gradeBox = `
   <div class="flex items-center justify-center w-20 h-20 rounded-lg mb-3" style="background:#6fa84a;">
-    <span class="text-[32px] font-bold text-white">${ENV_RATING.grade}</span>
+    <span class="text-[32px] font-bold ${gradeText('#6fa84a') === '#111827' ? 'grade-ink' : 'text-white'}">${ENV_RATING.grade}</span>
   </div>`;
 
   const aspectBadge = (item) => {
@@ -4181,7 +4197,7 @@ function AdditionalDetailsBody() {
         <tbody>
           ${ROWS.map((r, i) => `
             <tr class="${i % 2 === 0 ? 'bg-white' : 'bg-ink-50/60'} border-b border-ink-100 last:border-0 hover:bg-brand-50/40">
-              <td class="px-3 py-2.5 text-ink-400">${r.name}</td>
+              <td class="px-3 py-2.5 text-ink-500">${r.name}</td>
               <td class="px-3 py-2.5 text-ink-700 tabular-nums">${r.mmsi}</td>
               <td class="px-3 py-2.5 text-ink-700 whitespace-nowrap"><span class="inline-flex items-center gap-2">${flag(r.flag)}<span>Russia</span></span></td>
               <td class="px-3 py-2.5 text-ink-700 whitespace-nowrap">${r.call}</td>
@@ -4194,7 +4210,7 @@ function AdditionalDetailsBody() {
       ${ROWS.map(r => `
       <article class="ad-card" role="listitem">
         <dl class="ad-kv">
-          <div><dt>Name</dt><dd class="${r.name === '—' ? 'text-ink-400' : ''}">${r.name}</dd></div>
+          <div><dt>Name</dt><dd class="${r.name === '—' ? 'text-ink-500' : ''}">${r.name}</dd></div>
           <div><dt>MMSI</dt><dd class="tabular-nums">${r.mmsi}</dd></div>
           <div><dt>Flag</dt><dd><span class="inline-flex items-center gap-2">${flag(r.flag)}<span>Russia</span></span></dd></div>
           <div><dt>Call Sign</dt><dd>${r.call}</dd></div>
@@ -4330,7 +4346,7 @@ function VesselTrackingCard() {
         <span class="hist-range-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
         <span class="hist-range-body">
           <span class="hist-range-top"><span class="hist-range-tag">${histRangeLabel()}</span><span class="hist-range-days">${histRangeDays()}</span></span>
-          <span class="hist-range-dates"><span class="hist-range-v">${histFmt(state.trackRange.start)}</span><svg class="hist-range-arrow" width="16" height="12" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h23"></path><path d="m18 3 7 7-7 7"></path></svg><span class="hist-range-v">${histFmt(state.trackRange.end)}</span></span>
+          <span class="hist-range-dates"><span class="hist-range-v">${histFmt(state.trackRange.start)}</span><svg class="hist-range-arrow lucide lucide-arrow-right" width="16" height="12" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span class="hist-range-v">${histFmt(state.trackRange.end)}</span></span>
         </span>
         <span class="hist-range-chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
       </button>
@@ -4430,7 +4446,7 @@ function HistListHtml() {
           <div class="flex items-start gap-2 mb-1">
             ${(() => { const t = MAP_EVENT_TYPES.find(x => x.id === e.type) || MAP_EVENT_TYPES.find(x => x.id === 'ais'); return `<span class="ev-ic" style="background:${t.bg};color:${t.fg};" title="${t.label}" aria-label="${t.label}" role="img">${t.icon}</span>`; })()}
             <div class="flex-1 min-w-0">
-              <div class="text-xs text-ink-500 mb-1">${e.ts}</div>
+              <div class="text-xs text-ink-600 mb-1">${e.ts}</div>
               <div class="text-xs font-semibold text-ink-900 mb-1">${e.title}</div>
               <div class="text-xs text-ink-700 leading-relaxed"><span class="font-semibold">Details:</span> ${e.detail}</div>
             </div>
@@ -5569,7 +5585,7 @@ function HistListHtml() {
           <div class="flex items-start gap-2 mb-1">
             ${(() => { const t = MAP_EVENT_TYPES.find(x => x.id === e.type) || MAP_EVENT_TYPES.find(x => x.id === 'ais'); return `<span class="ev-ic" style="background:${t.bg};color:${t.fg};" title="${t.label}" aria-label="${t.label}" role="img">${t.icon}</span>`; })()}
             <div class="flex-1 min-w-0">
-              <div class="text-xs text-ink-500 mb-1">${e.ts}</div>
+              <div class="text-xs text-ink-600 mb-1">${e.ts}</div>
               <div class="text-xs font-semibold text-ink-900 mb-1">${e.title}</div>
               <div class="text-xs text-ink-700 leading-relaxed"><span class="font-semibold">Details:</span> ${e.detail}</div>
             </div>
@@ -5615,7 +5631,7 @@ function HistoricalEventsCard() {
         <span class="hist-range-ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></span>
         <span class="hist-range-body">
           <span class="hist-range-top"><span class="hist-range-tag">${histRangeLabel()}</span><span class="hist-range-days">${histRangeDays()}</span></span>
-          <span class="hist-range-dates"><span class="hist-range-v">${histFmt(state.trackRange.start)}</span><svg class="hist-range-arrow" width="16" height="12" viewBox="0 0 28 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h23"></path><path d="m18 3 7 7-7 7"></path></svg><span class="hist-range-v">${histFmt(state.trackRange.end)}</span></span>
+          <span class="hist-range-dates"><span class="hist-range-v">${histFmt(state.trackRange.start)}</span><svg class="hist-range-arrow lucide lucide-arrow-right" width="16" height="12" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg><span class="hist-range-v">${histFmt(state.trackRange.end)}</span></span>
         </span>
         <span class="hist-range-chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
       </button>
@@ -6756,5 +6772,14 @@ window.render();
   [data-top-right-tab="Casualty Data"] > .ds-tab-label { font-size: 12px !important; }
   [data-top-right-tab="Risk Score"] > .ds-tab-label { font-size: 12px !important; }
 </style>
+<script>
+/* Sortable table headers: a click anywhere in the header cell sorts (as the DS full-width .ds-th-sort button) */
+document.addEventListener('click', e => {
+  const th = e.target.closest && e.target.closest('table th');
+  if (!th || e.target.closest('button, a, input, select, label')) return;
+  const btn = th.querySelector(':scope > button');
+  if (btn) btn.click();
+});
+</script>
 </body>
 </html>

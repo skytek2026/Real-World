@@ -258,7 +258,7 @@ function Topbar() {
     <button id="mobile-menu-btn" class="md:hidden h-9 w-9 rounded-lg text-ink-700 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Menu">${I.menu}</button>
     <div class="flex items-center gap-3 min-w-0 flex-1">
       ${titleEl}
-      <div class="flex items-center gap-1 text-xs text-ink-400 min-w-0">
+      <div class="flex items-center gap-1 text-xs text-ink-500 min-w-0">
         <span class="shrink-0">/</span><span class="truncate">${crumb}</span>
       </div>
     </div>
