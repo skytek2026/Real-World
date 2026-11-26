@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
@@ -28,38 +28,38 @@
   html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,.scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#1485c5}
   /* Card */
   .card { background:#fff; border-radius:12px; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(15,23,42,.08); overflow:hidden; }
-  .card-hdr { padding:10px 16px; border-bottom:1px solid #f3f4f6; display:flex; align-items:center; justify-content:space-between; }
-  .card-title { font-size:13px; font-weight:700; color:#111827; }
+  .card-hdr { padding:12px 16px; border-bottom:1px solid #f3f4f6; display:flex; align-items:center; justify-content:space-between; }
+  .card-title { font-size:14px; font-weight:700; color:#111827; }
   /* Sub tabs */
-  .stab { display:inline-flex; background:var(--brand-50,#eff6ff); border-radius:999px; padding:3px; gap:2px; }
-  .stab-btn { font-size:11px; font-weight:700; padding:4px 12px; border-radius:999px; border:0; cursor:pointer; transition:background 120ms,color 120ms; }
+  .stab { display:inline-flex; background:var(--brand-50,#eff6ff); border-radius:999px; padding:4px; gap:2px; }
+  .stab-btn { font-size:12px; font-weight:700; padding:4px 12px; border-radius:999px; border:0; cursor:pointer; transition:background 120ms,color 120ms; }
   .stab-btn.active { background:var(--brand-600,#2563eb); color:#fff; }
   .stab-btn:not(.active) { background:transparent; color:var(--brand-600,#2563eb); }
   /* Tables */
   .dt { width:100%; border-collapse:collapse; }
-  .dt th { font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; padding:8px 14px; text-align:left; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); white-space:nowrap; }
-  .dt td { font-size:12.5px; color:#374151; padding:9px 14px; border-bottom:1px solid #f3f4f6; vertical-align:middle; }
+  .dt th { font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; padding:8px 16px; text-align:left; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); white-space:nowrap; }
+  .dt td { font-size:14px; color:#374151; padding:8px 16px; border-bottom:1px solid #f3f4f6; vertical-align:middle; }
   .dt tr:last-child td { border-bottom:0; }
   .dt tr:hover td { background:#f9fafb; }
   .lnk { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; }
   .lnk:hover { color:var(--brand-700,#1d4ed8); }
   /* Stat grid */
   .stat-grid { display:grid; grid-template-columns:repeat(3,1fr); }
-  .stat-col-hdr { font-size:11px; font-weight:700; color:#6b7280; padding:8px 14px; border-bottom:1px solid #f3f4f6; }
+  .stat-col-hdr { font-size:12px; font-weight:700; color:#6b7280; padding:8px 16px; border-bottom:1px solid #f3f4f6; }
   .stat-row { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; border-bottom:1px solid #f3f4f6; }
   .stat-row:last-child { border-bottom:0; }
-  .stat-cell { padding:10px 14px; font-size:12px; }
+  .stat-cell { padding:12px 16px; font-size:12px; }
   .stat-cell.name { font-weight:600; }
   .stat-cell.val { color:#374151; font-size:12px; }
-  .stat-cell .unit { font-size:11px; color:#9ca3af; display:block; }
+  .stat-cell .unit { font-size:12px; color:#9ca3af; display:block; }
   /* Trends table */
   .trend-table { width:100%; border-collapse:collapse; font-size:12px; table-layout:fixed; }
-  .trend-table th { padding:8px 10px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); text-align:right; white-space:nowrap; }
+  .trend-table th { padding:8px 12px; font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); text-align:right; white-space:nowrap; }
   .trend-table th:first-child { text-align:left; width:150px; }
-  .trend-table td { padding:9px 10px; border-bottom:1px solid #f3f4f6; text-align:right; color:#374151; tabular-nums; white-space:nowrap; }
+  .trend-table td { padding:8px 12px; border-bottom:1px solid #f3f4f6; text-align:right; color:#374151; tabular-nums; white-space:nowrap; }
   .trend-table td:first-child { text-align:left; font-weight:600; width:150px; }
   .trend-table tr.expandable td:first-child { cursor:pointer; }
-  .trend-table tr.expandable td.trend-label-cell { padding:10px; }
+  .trend-table tr.expandable td.trend-label-cell { padding:12px; }
   .trend-table tr.expandable:hover .trend-label { color:var(--brand-600,#2563eb); }
   .trend-table tr.expandable.open .trend-label { color:var(--brand-600,#2563eb); }
   .trend-table tr.expandable .tr-chev { color:#9ca3af; margin-top:1px; }
@@ -69,25 +69,25 @@
   .trend-table tr.trend-detail td { border-bottom:1px solid #f3f4f6; background:#fcfcfd; }
   .trend-detail-inner { padding:8px 0 12px; }
   /* Grid bar chart — column template MATCHES the table (150px label + 12 equal month cols) */
-  .tr-chart-title { font-size:11px; font-weight:700; color:#111827; padding:2px 10px 8px 10px; }
+  .tr-chart-title { font-size:12px; font-weight:700; color:#111827; padding:2px 12px 8px 12px; }
   .tr-grid { display:grid; grid-template-columns:150px repeat(12, 1fr); grid-template-rows:150px auto; }
   .tr-yaxis { position:relative; height:150px; }
-  .tr-ytick { position:absolute; right:8px; transform:translateY(-50%); font-size:11px; color:#9ca3af; white-space:nowrap; }
-  .tr-mcell { height:150px; display:flex; align-items:flex-end; justify-content:center; gap:3px;
+  .tr-ytick { position:absolute; right:8px; transform:translateY(-50%); font-size:12px; color:#9ca3af; white-space:nowrap; }
+  .tr-mcell { height:150px; display:flex; align-items:flex-end; justify-content:center; gap:4px;
     border-bottom:1px solid #e5e7eb;
     background-image:repeating-linear-gradient(to top, #f3f4f6 0, #f3f4f6 1px, transparent 1px, transparent 25%); }
   .tr-bar { width:22%; max-width:13px; border-radius:2px 2px 0 0; }
-  .tr-mlabel { text-align:center; font-size:11px; color:#9ca3af; padding-top:5px; }
-  .tr-legend { display:flex; justify-content:center; gap:22px; padding:10px 0 2px; }
-  .tr-leg { display:inline-flex; align-items:center; gap:6px; font-size:11px; color:#4b5563; }
-  .tr-leg span { width:11px; height:11px; border-radius:2px; }
+  .tr-mlabel { text-align:center; font-size:12px; color:#9ca3af; padding-top:4px; }
+  .tr-legend { display:flex; justify-content:center; gap:20px; padding:12px 0 2px; }
+  .tr-leg { display:inline-flex; align-items:center; gap:4px; font-size:12px; color:#4b5563; }
+  .tr-leg span { width:11px; height:11px; border-radius:4px; }
   /* Risk table */
   .risk-table { width:100%; border-collapse:collapse; }
-  .risk-table th { font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; padding:8px 14px; border-bottom:1px solid var(--border-default,#E5E7EB); text-align:left; }
-  .risk-table td { font-size:12.5px; color:#374151; padding:10px 14px; border-bottom:1px solid #f3f4f6; }
+  .risk-table th { font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; padding:8px 16px; border-bottom:1px solid var(--border-default,#E5E7EB); text-align:left; }
+  .risk-table td { font-size:14px; color:#374151; padding:12px 16px; border-bottom:1px solid #f3f4f6; }
   .risk-table tr:last-child td { border-bottom:0; }
   .risk-table tr:hover td { background:#f9fafb; }
-  .type-dot { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+  .type-dot { width:10px; height:10px; border-radius:4px; flex-shrink:0; }
   /* Map */
   #port-map { position:absolute; inset:0; background:#0b2a3a; }
   .leaflet-control-zoom,.leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
@@ -121,8 +121,8 @@
     .exposure-inner { grid-template-columns: 1fr; }
     .exposure-inner > div:first-child { border-right: 0 !important; border-bottom: 1px solid #f3f4f6; flex-direction: row !important; flex-wrap: wrap; gap: 12px !important; }
     .exposure-inner > div:first-child > div { flex: 1 1 calc(50% - 6px); min-width: 120px; }
-    .card-hdr { flex-wrap: wrap; gap: 8px; row-gap: 6px; }
-    .stab-btn { font-size: 11px; padding: 4px 9px; }
+    .card-hdr { flex-wrap: wrap; gap: 8px; row-gap: 4px; }
+    .stab-btn { font-size: 12px; padding: 4px 8px; }
     /* Prevent horizontal page overflow */
     html, body { overflow-x: hidden; }
   }
@@ -131,24 +131,24 @@
   html[data-theme="dark"] .donut-seg { stroke:#161f2e; }
   /* Vessels & Cargo: totals strip, table (phones: cards) */
   .pcc-strip { display:flex; margin:12px 12px 8px; background:var(--brand-050,#eff6ff); border:1px solid var(--brand-100,#dbeafe); border-radius:8px; overflow:hidden; }
-  .pcc-metric { flex:1; min-width:0; padding:10px 8px; text-align:center; }
+  .pcc-metric { flex:1; min-width:0; padding:12px 8px; text-align:center; }
   .pcc-metric + .pcc-metric { border-left:1px solid var(--brand-100,#dbeafe); }
-  .pcc-metric-l { font-size:11px; font-weight:500; color:#6b7280; margin-bottom:4px; }
+  .pcc-metric-l { font-size:12px; font-weight:500; color:#6b7280; margin-bottom:4px; }
   .pcc-metric-v { font-size:24px; font-weight:700; color:var(--brand-600,#2563eb); line-height:1.1; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
   .pcc-vcards { display:none; }
-  .pcc-vtbl th, .pcc-vtbl td { padding-left:10px; padding-right:10px; }
+  .pcc-vtbl th, .pcc-vtbl td { padding-left:12px; padding-right:12px; }
   .pcc-vtbl th { white-space:normal; line-height:1.25; vertical-align:bottom; }
-  .pcc-vcard { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; }
-  .pcc-vkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
-  .pcc-vkv .pcc-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
-  .pcc-vkv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
-  .pcc-vkv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; }
+  .pcc-vcard { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px; }
+  .pcc-vkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px 16px; margin:0; }
+  .pcc-vkv .pcc-wide { grid-column:1 / -1; padding-bottom:12px; border-bottom:1px solid #f3f4f6; }
+  .pcc-vkv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .pcc-vkv dd { margin:4px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; }
   .pcc-vkv dd strong { font-weight:700; color:#111827; }
   /* switch to cards whenever the card itself is narrow (phones, and the 3-column row at ~1024px) */
   #pcc-body { container-type:inline-size; }
   @container (max-width:420px) {
     .pcc-vtbl { display:none; }
-    .pcc-vcards { display:flex; flex-direction:column; gap:10px; padding:4px 12px 12px; }
+    .pcc-vcards { display:flex; flex-direction:column; gap:8px; padding:4px 12px 12px; }
     .pcc-metric-v { font-size:20px; }
   }
   html[data-theme="dark"] .pcc-strip { background:#15233c; border-color:#2a374d; }
@@ -160,9 +160,9 @@
   html[data-theme="dark"] .pcc-vkv dd { color:#c0c9d8; }
   html[data-theme="dark"] .pcc-vkv dd strong { color:#e7ecf4; }
   /* Card footer ghost button (DS tertiary, ALL CAPS) */
-  .ds-card-foot { padding:10px 16px; border-top:1px solid #ECEEF2; background:#F9FAFB; display:flex; justify-content:flex-end; align-items:center; gap:8px; flex-shrink:0; border-bottom-left-radius:inherit; border-bottom-right-radius:inherit; }
+  .ds-card-foot { padding:12px 16px; border-top:1px solid #ECEEF2; background:#F9FAFB; display:flex; justify-content:flex-end; align-items:center; gap:8px; flex-shrink:0; border-bottom-left-radius:inherit; border-bottom-right-radius:inherit; }
   .ds-card-foot--start { justify-content:flex-start; }
-  .pd-foot-btn { display:inline-flex; align-items:center; gap:5px; height:28px; padding:0 8px; border-radius:6px; background:transparent; border:0; cursor:pointer; font-family:inherit; font-size:11px; font-weight:600; line-height:1; letter-spacing:.05em; text-transform:uppercase; color:var(--brand-600,#2563eb); }
+  .pd-foot-btn { display:inline-flex; align-items:center; gap:4px; height:28px; padding:0 8px; border-radius:8px; background:transparent; border:0; cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; line-height:1; letter-spacing:.05em; text-transform:uppercase; color:var(--brand-600,#2563eb); }
   .pd-foot-btn:hover { background:#f3f4f6; color:var(--brand-700,#1d4ed8); }
   .pd-foot-btn:focus-visible { outline:2px solid #60a5fa; outline-offset:1px; }
   html[data-theme="dark"] .ds-card-foot { background:#121a27; border-color:#212d40; }
@@ -183,7 +183,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 /* Read brand color at render time so JS-driven colors (SVG fills, Leaflet styles) follow the theme. */
@@ -360,22 +360,22 @@ function DonutChart(slices) {
 
 /* ---- Sections ---- */
 function CardExposureSummary() {
-  const pill = v => `<div style="display:inline-block;background:var(--brand-050,#eff6ff);color:var(--brand-600,#2563eb);font-weight:700;font-size:14px;padding:7px 18px;border-radius:8px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">${v}</div>`;
+  const pill = v => `<div style="display:inline-block;background:var(--brand-050,#eff6ff);color:var(--brand-600,#2563eb);font-weight:700;font-size:14px;padding:8px 20px;border-radius:8px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">${v}</div>`;
   return `
   <div class="card">
     <div class="card-hdr"><span class="card-title">Exposure</span></div>
-    <div style="padding:20px 16px;display:flex;flex-direction:column;gap:18px;">
+    <div style="padding:20px 16px;display:flex;flex-direction:column;gap:16px;">
       <div style="text-align:center;">
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:7px;">Skytek Exposure</div>
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:8px;">Skytek Exposure</div>
         ${pill('$6.31M')}
       </div>
       <div style="text-align:center;">
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:7px;">Total Exposure</div>
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:8px;">Total Exposure</div>
         ${pill('$7.89B')}
       </div>
       <div>
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:5px;">Select past exposure</div>
-        <select style="width:100%;border:1px solid #e5e7eb;border-radius:6px;padding:6px 8px;font-size:12px;color:#374151;background:#f9fafb;">
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Select past exposure</div>
+        <select style="width:100%;border:1px solid #e5e7eb;border-radius:8px;padding:8px 8px;font-size:12px;color:#374151;background:#f9fafb;">
           <option>08/08/2024</option><option>07/08/2024</option><option>06/08/2024</option>
         </select>
       </div>
@@ -434,7 +434,7 @@ function pccBody() {
     </div>`;
   return `
     <div style="display:flex;justify-content:center;padding:12px 0 4px;">
-      <span style="display:inline-block;background:var(--brand-050,#eff6ff);color:var(--brand-600,#2563eb);font-weight:700;font-size:14px;padding:6px 18px;border-radius:8px;">$3.34B</span>
+      <span style="display:inline-block;background:var(--brand-050,#eff6ff);color:var(--brand-600,#2563eb);font-weight:700;font-size:14px;padding:8px 20px;border-radius:8px;">$3.34B</span>
     </div>
     <div style="flex:1;overflow:auto;" class="scroll-thin">
       <table class="dt">
@@ -454,7 +454,7 @@ function CardExposureCargo() {
   return `
   <div class="card" style="display:flex;flex-direction:column;">
     <div class="card-hdr">
-      <div style="display:flex;align-items:center;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;">
         <div class="stab" role="group" aria-label="Cargo view">
           <button type="button" class="stab-btn${pccTab === 'port' ? ' active' : ''}" data-pcc-tab="port" aria-pressed="${pccTab === 'port'}">Port Side Cargo</button>
           <button type="button" class="stab-btn${pccTab === 'vessels' ? ' active' : ''}" data-pcc-tab="vessels" aria-pressed="${pccTab === 'vessels'}">Vessels &amp; Cargo</button>
@@ -487,17 +487,17 @@ function CardTrendsSummary() {
     <div class="card-hdr"><span class="card-title">Trends &amp; Statistics</span></div>
     <div style="padding:0;" class="trends-summary-scroll">
       <div class="trends-summary-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid #f3f4f6;">
-        <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;"></div>
-        <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#6b7280;text-align:center;">2023</div>
-        <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#111827;text-align:center;border-bottom:2px solid var(--brand-600,#2563eb);">2024</div>
-        <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#6b7280;text-align:center;">YTD</div>
+        <div style="padding:8px 16px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;"></div>
+        <div style="padding:8px 16px;font-size:12px;font-weight:700;color:#6b7280;text-align:center;">2023</div>
+        <div style="padding:8px 16px;font-size:12px;font-weight:700;color:#111827;text-align:center;border-bottom:2px solid var(--brand-600,#2563eb);">2024</div>
+        <div style="padding:8px 16px;font-size:12px;font-weight:700;color:#6b7280;text-align:center;">YTD</div>
       </div>
       ${rows.map(r => `
         <div class="trends-summary-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid #f3f4f6;">
-          <div style="padding:10px 14px;"><span class="lnk" style="font-size:12px;">${r.label}</span></div>
-          <div style="padding:10px 14px;text-align:center;font-size:12px;color:#6b7280;">${r.y2023}</div>
-          <div style="padding:10px 14px;text-align:center;font-size:12px;font-weight:600;color:#111827;">${r.y2024}</div>
-          <div style="padding:10px 14px;text-align:center;font-size:12px;color:#6b7280;">${r.ytd}</div>
+          <div style="padding:12px 16px;"><span class="lnk" style="font-size:12px;">${r.label}</span></div>
+          <div style="padding:12px 16px;text-align:center;font-size:12px;color:#6b7280;">${r.y2023}</div>
+          <div style="padding:12px 16px;text-align:center;font-size:12px;font-weight:600;color:#111827;">${r.y2024}</div>
+          <div style="padding:12px 16px;text-align:center;font-size:12px;color:#6b7280;">${r.ytd}</div>
         </div>`).join('')}
     </div>
     <div class="ds-card-foot ds-card-foot--start" style="margin-top:auto;">
@@ -531,7 +531,7 @@ function CardVessels() {
           ${VESSELS.map(v => `
             <tr>
               <td><span class="lnk">${v.name}</span></td>
-              <td style="font-size:12px;"><img src="flags/${v.flag.toLowerCase()}.svg" width="14" style="vertical-align:middle;border-radius:2px;margin-right:4px;" />United States</td>
+              <td style="font-size:12px;"><img src="flags/${v.flag.toLowerCase()}.svg" width="14" style="vertical-align:middle;border-radius:4px;margin-right:4px;" />United States</td>
               <td><span class="lnk">${v.mmsi}</span></td>
               <td style="font-size:12px;color:#6b7280;">${v.type}</td>
               <td style="tabular-nums;">${v.len}</td>
@@ -567,7 +567,7 @@ function CardTrendsDetail() {
   <div class="card">
     <div class="card-hdr">
       <span class="card-title">Trends &amp; Statistics</span>
-      <select style="border:1px solid #e5e7eb;border-radius:6px;padding:3px 8px;font-size:12px;font-weight:600;color:#374151;background:#fff;">
+      <select style="border:1px solid #e5e7eb;border-radius:8px;padding:4px 8px;font-size:12px;font-weight:600;color:#374151;background:#fff;">
         <option>2024</option><option>2023</option><option>2022</option>
       </select>
     </div>
@@ -583,11 +583,11 @@ function CardTrendsDetail() {
           ${TREND_ROWS.map((r, ri) => `
             <tr class="expandable${ri===0?' open':''}" data-trend-row="${ri}">
               <td class="trend-label-cell">
-                <div style="display:flex;align-items:flex-start;gap:7px;">
+                <div style="display:flex;align-items:flex-start;gap:8px;">
                   ${chevron}
                   <div>
                     <div class="trend-label" style="font-weight:600;font-size:12px;">${r.label}</div>
-                    <div style="font-size:11px;color:#9ca3af;">${r.unit}</div>
+                    <div style="font-size:12px;color:#9ca3af;">${r.unit}</div>
                   </div>
                 </div>
               </td>
@@ -619,7 +619,7 @@ function CardRiskExposure() {
         ${RISK_ZONES.map(z => `
           <tr>
             <td style="font-weight:600;">${z.zone}</td>
-            <td><div style="display:flex;align-items:center;gap:6px;"><div class="type-dot" style="background:${z.color};"></div><span style="font-size:12px;">${z.assetType}</span></div></td>
+            <td><div style="display:flex;align-items:center;gap:4px;"><div class="type-dot" style="background:${z.color};"></div><span style="font-size:12px;">${z.assetType}</span></div></td>
             <td style="tabular-nums;">${z.count}</td>
             <td style="tabular-nums;">${z.unit}</td>
             <td style="tabular-nums;font-weight:600;">${z.total}</td>
@@ -653,10 +653,10 @@ function CardBerthPurpose() {
     <div class="card-hdr"><span class="card-title">Berth Purpose</span></div>
     <div style="padding:16px;display:flex;flex-direction:column;align-items:center;gap:16px;">
       ${DonutChart(BERTH_PURPOSE)}
-      <div style="display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;">
+      <div style="display:flex;flex-wrap:wrap;gap:8px 12px;justify-content:center;">
         ${BERTH_PURPOSE.map(s => `
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:#4b5563;">
-            <div style="width:10px;height:10px;border-radius:2px;background:${s.color};flex-shrink:0;"></div>
+          <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#4b5563;">
+            <div style="width:10px;height:10px;border-radius:4px;background:${s.color};flex-shrink:0;"></div>
             ${s.label}
           </div>`).join('')}
       </div>
@@ -687,7 +687,7 @@ function initMap() {
   L.marker([PORT.lat, PORT.lng], { icon }).bindPopup(`<b>${PORT.name}</b><br>${PORT.country}`).addTo(portMap);
 
   /* Label */
-  const labelIcon = L.divIcon({ className:'', html:`<div style="background:rgba(15,23,42,.65);color:#fff;font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap;backdrop-filter:blur(2px);">${PORT.name}</div>`, iconSize:[0,0], iconAnchor:[-14,28] });
+  const labelIcon = L.divIcon({ className:'', html:`<div style="background:rgba(15,23,42,.65);color:#fff;font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;white-space:nowrap;backdrop-filter:blur(2px);">${PORT.name}</div>`, iconSize:[0,0], iconAnchor:[-14,28] });
   L.marker([PORT.lat, PORT.lng], { icon:labelIcon }).addTo(portMap);
 
   const zin=el.querySelector('.leaflet-control-zoom-in'), zout=el.querySelector('.leaflet-control-zoom-out');

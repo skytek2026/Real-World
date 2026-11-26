@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
@@ -31,26 +31,26 @@
   .scroll-thin::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#1485c5); }
   /* Pill tabs (Skytek DS) */
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 16px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:7px; white-space:nowrap; }
+  .ds-tab { position:relative; font:inherit; font-size:14px; font-weight:600; padding:8px 16px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:var(--brand-600,#1485c5); border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
-  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:7px; }
+  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:8px; }
   /* Cards */
   .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 1px 3px rgb(15 23 42 / .06); }
   .card-head { display:flex; align-items:center; gap:8px; padding:16px 20px; }
   .card-title { font-family:'Exo','Inter',sans-serif; font-size:14px; font-weight:600; color:#111827; }
   /* DS primary button */
-  .btn-primary { display:inline-flex; align-items:center; gap:7px; height:36px; padding:0 16px; background:var(--brand-600,#1485c5); color:#fff; border:0; border-radius:8px; font-size:13px; font-weight:600; font-family:inherit; cursor:pointer; transition:background .14s ease; }
+  .btn-primary { display:inline-flex; align-items:center; gap:8px; height:36px; padding:0 16px; background:var(--brand-600,#1485c5); color:#fff; border:0; border-radius:8px; font-size:14px; font-weight:600; font-family:inherit; cursor:pointer; transition:background .14s ease; }
   .btn-primary:hover { background:var(--brand-500,#1a92d1); }
   .icon-btn { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; color:#4b5563; cursor:pointer; transition:background .14s,color .14s,border-color .14s; }
   .icon-btn:hover { background:#f9fafb; color:#111827; }
   .icon-btn.is-on { background:var(--brand-050,#eff6ff); border-color:var(--brand-300,#b8ddf5); color:var(--brand-600,#1485c5); }
   /* Tables */
-  .vh-table { width:100%; border-collapse:collapse; font-size:13px; }
-  .vh-table th { text-align:left; padding:11px 16px; font-size:11px; font-weight:600; color:#6b7280; letter-spacing:.04em; text-transform:uppercase; border-bottom:1px solid #e5e7eb; white-space:nowrap; }
-  .vh-table th .th-in { display:inline-flex; align-items:center; gap:6px; cursor:pointer; }
+  .vh-table { width:100%; border-collapse:collapse; font-size:14px; }
+  .vh-table th { text-align:left; padding:12px 16px; font-size:12px; font-weight:600; color:#6b7280; letter-spacing:.04em; text-transform:uppercase; border-bottom:1px solid #e5e7eb; white-space:nowrap; }
+  .vh-table th .th-in { display:inline-flex; align-items:center; gap:4px; cursor:pointer; }
   .vh-table th .th-in:hover { color:#374151; }
   .vh-table td { padding:12px 16px; border-bottom:1px solid #f3f4f6; color:#374151; vertical-align:middle; }
   .vh-table tbody tr:last-child td { border-bottom:0; }
@@ -59,7 +59,7 @@
   .num { font-variant-numeric:tabular-nums; }
   .sort-ico { color:#1485c5; opacity:.7; }
   /* Status badge */
-  .badge-status { display:inline-flex; align-items:center; gap:6px; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:600; background:#f0fdf4; color:#15803d; border:1px solid #dcfce7; }
+  .badge-status { display:inline-flex; align-items:center; gap:4px; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:600; background:#f0fdf4; color:#15803d; border:1px solid #dcfce7; }
   .badge-status .dot { width:6px; height:6px; border-radius:50%; background:#16a34a; }
   /* Progress line */
   .voy-line { position:relative; height:2px; background:#e5e7eb; border-radius:999px; }
@@ -67,14 +67,14 @@
   .voy-line .dashed { position:absolute; top:0; height:2px; background-image:linear-gradient(90deg,#b8ddf5 0 6px,transparent 6px 12px); background-size:12px 2px; }
   .voy-dot { position:absolute; top:50%; transform:translate(-50%,-50%); width:11px; height:11px; border-radius:50%; }
   /* Search */
-  .vh-search { display:flex; align-items:center; gap:10px; height:42px; padding:0 14px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; }
-  .vh-search input { flex:1; border:0; background:transparent; font:inherit; font-size:13px; color:#111827; outline:none; }
+  .vh-search { display:flex; align-items:center; gap:8px; height:42px; padding:0 16px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; }
+  .vh-search input { flex:1; border:0; background:transparent; font:inherit; font-size:14px; color:#111827; outline:none; }
   .vh-search input::placeholder { color:#9ca3af; }
   /* Map */
   #voyage-map { background:#dbeafe; position:absolute; inset:0; }
   .vh-map-col.is-fullscreen { position:fixed !important; inset:0 !important; z-index:9999 !important; min-height:0 !important; border-radius:0 !important; }
   #voyage-map .leaflet-top.leaflet-left { top:56px; left:2px; }
-  #voyage-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  #voyage-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   .leaflet-control-zoom a { width:34px !important; height:34px !important; line-height:34px !important; display:flex !important; align-items:center; justify-content:center; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42/.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
@@ -82,34 +82,34 @@
   .map-btn { width:34px; height:34px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgb(15 23 42/.10); cursor:pointer; }
   .map-btn:hover { background:#f3f4f6; }
   .map-btn svg { width:17px; height:17px; }
-  .map-chip { display:inline-flex; align-items:center; padding:7px 12px; background:#fff; border:1px solid #e5e7eb; border-radius:8px; font-size:12px; font-weight:600; color:#374151; box-shadow:0 1px 3px rgb(15 23 42/.10); }
+  .map-chip { display:inline-flex; align-items:center; padding:8px 12px; background:#fff; border:1px solid #e5e7eb; border-radius:8px; font-size:12px; font-weight:600; color:#374151; box-shadow:0 1px 3px rgb(15 23 42/.10); }
   /* Per-page select */
-  .vh-select { height:32px; padding:0 28px 0 10px; border:1px solid #e5e7eb; border-radius:8px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 9px center; font:inherit; font-size:13px; color:#374151; -webkit-appearance:none; appearance:none; cursor:pointer; }
+  .vh-select { height:32px; padding:0 28px 0 12px; border:1px solid #e5e7eb; border-radius:8px; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 9px center; font:inherit; font-size:14px; color:#374151; -webkit-appearance:none; appearance:none; cursor:pointer; }
   @media (max-width:880px){ .vh-donuts { flex-direction:column !important; } }
   /* Donut segment tooltip + hover */
   .voy-seg { transition:opacity .12s ease; cursor:default; }
   .voy-seg:hover { opacity:.82; }
-  .voy-tip { position:fixed; z-index:9999; pointer-events:none; background:#111827; color:#fff; font-size:12px; font-weight:600; padding:6px 9px; border-radius:8px; box-shadow:0 6px 18px rgba(15,23,42,.28); white-space:nowrap; opacity:0; transition:opacity .12s ease; transform:translate(-50%,-100%); }
+  .voy-tip { position:fixed; z-index:9999; pointer-events:none; background:#111827; color:#fff; font-size:12px; font-weight:600; padding:8px 8px; border-radius:8px; box-shadow:0 6px 18px rgba(15,23,42,.28); white-space:nowrap; opacity:0; transition:opacity .12s ease; transform:translate(-50%,-100%); }
   /* Current Voyage map overlays */
-  .voy-overlay { position:absolute; left:16px; right:16px; bottom:16px; z-index:500; background:rgba(255,255,255,.96); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 8px 28px rgb(15 23 42/.16); padding:14px 20px; }
+  .voy-overlay { position:absolute; left:16px; right:16px; bottom:16px; z-index:500; background:rgba(255,255,255,.96); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 8px 28px rgb(15 23 42/.16); padding:16px 20px; }
   /* Vessel popup — matches Marine dashboard popup card */
   .vessel-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .vessel-popup .leaflet-popup-content { margin:0; width:290px !important; font-family:'Inter',system-ui,sans-serif; }
   .vessel-popup .leaflet-popup-tip { background:#fff; }
   .vp { background:#fff; color:#111827; }
-  .vp-header { background:var(--brand-600,#1485c5); color:#fff; padding:12px 14px 10px; display:flex; align-items:flex-start; justify-content:space-between; }
+  .vp-header { background:var(--brand-600,#1485c5); color:#fff; padding:12px 16px 12px; display:flex; align-items:flex-start; justify-content:space-between; }
   .vp-header-main { min-width:0; }
-  .vp-title { font-family:'Exo','Inter',sans-serif; font-weight:800; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; gap:6px; }
+  .vp-title { font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; gap:4px; }
   .vp-subtitle { font-size:12px; color:rgba(255,255,255,.85); margin-top:2px; }
-  .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; padding:12px 14px; }
+  .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; padding:12px 16px; }
   .vp-grid > div { min-width:0; }
   .vp-span { grid-column:1 / -1; }
-  .vp-k { font-size:11px; color:#6b7280; }
-  .vp-v { font-size:12.5px; color:#111827; margin-top:1px; font-weight:600; }
+  .vp-k { font-size:12px; color:#6b7280; }
+  .vp-v { font-size:14px; color:#111827; margin-top:1px; font-weight:600; }
   .vp-strong { font-weight:700; color:#111827; }
-  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:6px; opacity:.9; }
+  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:8px; opacity:.9; }
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
-  @media (max-width:720px){ .voy-overlay .voy-overlay-row { flex-direction:column !important; align-items:stretch !important; gap:10px !important; } }
+  @media (max-width:720px){ .voy-overlay .voy-overlay-row { flex-direction:column !important; align-items:stretch !important; gap:8px !important; } }
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* canvas: same as the Dashboard (ink-100 #f3f4f6), light mode only */
   html:not([data-theme="dark"]) body{background:#f3f4f6}
@@ -132,7 +132,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -256,7 +256,7 @@ function sortHead(label, key, grp, opts = {}) {
   const s = state.sort[grp], active = s.key === key;
   const upPath = '<path d="M8 14l4-4 4 4"/>', downPath = '<path d="M8 10l4 4 4-4"/>';
   const ico = active ? svg(s.dir > 0 ? upPath : downPath, 13, 2.4) : svg(IC.sort, 13, 2);
-  return `<th><button class="th-in" data-sort-grp="${grp}" data-sort-key="${key}" style="background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0;text-transform:uppercase;letter-spacing:.04em;font-size:11px;font-weight:600;color:${active ? '#374151' : '#6b7280'};">${label} <span class="sort-ico inline-flex items-center" style="opacity:${active ? '1' : '.7'}">${ico}</span></button></th>`;
+  return `<th><button class="th-in" data-sort-grp="${grp}" data-sort-key="${key}" style="background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0;text-transform:uppercase;letter-spacing:.04em;font-size:12px;font-weight:600;color:${active ? '#374151' : '#6b7280'};">${label} <span class="sort-ico inline-flex items-center" style="opacity:${active ? '1' : '.7'}">${ico}</span></button></th>`;
 }
 function vhSort(rows, grp, numKeys = [], durKeys = []) {
   const s = state.sort[grp];
@@ -332,7 +332,7 @@ function voyTipEl() {
 }
 function voySeg(e, label, pct, color) {
   const t = voyTipEl();
-  t.innerHTML = `<span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${color};margin-right:7px;vertical-align:middle;"></span><span style="vertical-align:middle;">${label} · <strong>${pct}%</strong></span>`;
+  t.innerHTML = `<span style="display:inline-block;width:8px;height:8px;border-radius:4px;background:${color};margin-right:8px;vertical-align:middle;"></span><span style="vertical-align:middle;">${label} · <strong>${pct}%</strong></span>`;
   t.style.opacity = '1';
   voyMove(e);
 }
@@ -358,7 +358,7 @@ function bar(d) {
     const hh = Math.max(4, s.v / total * H);
     return `
       <div class="flex flex-col items-center justify-end" style="height:${H}px;">
-        <span style="font-size:11px;font-weight:700;color:#374151;margin-bottom:3px;">${pct}%</span>
+        <span style="font-size:12px;font-weight:700;color:#374151;margin-bottom:4px;">${pct}%</span>
         <div class="voy-seg" style="width:22px;height:${hh.toFixed(1)}px;background:${s.c};border-radius:4px 4px 0 0;"
           onmouseenter="voySeg(event,'${s.l}',${pct},'${s.c}')" onmousemove="voyMove(event)" onmouseleave="voyHide()"></div>
       </div>`;
@@ -382,7 +382,7 @@ function voyageStatsBody() {
   </div>
   ${legend()}
   <div class="flex justify-center py-3 border-t border-ink-100 mt-3">
-    <button id="details-toggle" class="inline-flex items-center gap-1 text-[11px] font-semibold tracking-micro uppercase text-brand-600 hover:text-brand-700" style="cursor:pointer;">
+    <button id="details-toggle" class="inline-flex items-center gap-1 text-xs font-semibold tracking-micro uppercase text-brand-600 hover:text-brand-700" style="cursor:pointer;">
       ${state.showDetails ? '– Hide Details' : '+ Show Details'}
     </button>
   </div>
@@ -399,7 +399,7 @@ function voyageStatsBody() {
         ${ACTIVITY.map(r => `
           <tr>
             <td>
-              <span class="inline-flex items-center gap-2.5">
+              <span class="inline-flex items-center gap-2">
                 <span class="text-brand-600 inline-flex items-center">${svg(IC[r.icon],15)}</span>
                 <span class="text-ink-700">${r.label}</span>
               </span>
@@ -416,8 +416,8 @@ function portCallsBody() {
   return `
   <div class="border-t border-ink-100 px-4 py-3">
     <div class="flex items-baseline justify-between mb-2">
-      <div class="text-[13px] font-semibold text-ink-900">Top 10 ports visited</div>
-      <div class="text-[11px] text-ink-500">Last 24 months</div>
+      <div class="text-sm font-semibold text-ink-900">Top 10 ports visited</div>
+      <div class="text-xs text-ink-500">Last 24 months</div>
     </div>
     <div class="overflow-x-auto scroll-thin">
       <table class="vh-table">
@@ -434,10 +434,10 @@ function portCallsBody() {
           ${TOP_PORTS.map((p,i) => `
             <tr>
               <td class="num text-ink-400">${i+1}</td>
-              <td><span class="inline-flex items-center gap-2.5"><span class="text-brand-600 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
+              <td><span class="inline-flex items-center gap-2"><span class="text-brand-600 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
               <td><span class="inline-flex items-center gap-2 whitespace-nowrap">${flag(p.cc)}<span class="text-ink-700">${p.country}</span></span></td>
               <td class="num font-semibold text-ink-900">${p.calls}</td>
-              <td><span class="inline-flex items-center gap-2" style="min-width:120px;"><span class="h-1.5 rounded-full bg-ink-100 overflow-hidden" style="width:80px;display:inline-block;"><span class="block h-full rounded-full" style="width:${Math.round(p.calls/TOP_PORT_MAX*100)}%;background:var(--brand-600,#1485c5);"></span></span><span class="num text-[11px] text-ink-500">${Math.round(p.calls/TOP_PORT_MAX*100)}%</span></span></td>
+              <td><span class="inline-flex items-center gap-2" style="min-width:120px;"><span class="h-1.5 rounded-full bg-ink-100 overflow-hidden" style="width:80px;display:inline-block;"><span class="block h-full rounded-full" style="width:${Math.round(p.calls/TOP_PORT_MAX*100)}%;background:var(--brand-600,#1485c5);"></span></span><span class="num text-xs text-ink-500">${Math.round(p.calls/TOP_PORT_MAX*100)}%</span></span></td>
               <td class="num text-ink-700 whitespace-nowrap">${p.days}</td>
               <td class="num text-ink-700 whitespace-nowrap">${p.last}</td>
             </tr>`).join('')}
@@ -445,7 +445,7 @@ function portCallsBody() {
       </table>
     </div>
   </div>
-  <div class="px-4 pt-1 pb-2 text-[13px] font-semibold text-ink-900 border-t border-ink-100 pt-3">Port call log</div>
+  <div class="px-4 pt-1 pb-2 text-sm font-semibold text-ink-900 border-t border-ink-100 pt-3">Port call log</div>
   <div class="overflow-x-auto scroll-thin">
     <table class="vh-table">
       <thead><tr>
@@ -459,7 +459,7 @@ function portCallsBody() {
       <tbody>
         ${vhSort(PORT_CALLS,'pc',['arrD','depD']).map(p => `
           <tr>
-            <td><span class="inline-flex items-center gap-2.5"><span class="text-brand-600 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
+            <td><span class="inline-flex items-center gap-2"><span class="text-brand-600 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
             <td><span class="inline-flex items-center gap-2">${flag(p.cc)}<span class="text-ink-700">${p.country}</span></span></td>
             <td class="num text-ink-700">${p.arr}</td>
             <td class="num text-ink-700">${p.arrD}</td>
@@ -484,7 +484,7 @@ function regionsBody() {
       <tbody>
         ${vhSort(REGIONS,'rg',[],['dur']).map(r => `
           <tr>
-            <td><span class="inline-flex items-center gap-2.5"><span class="text-brand-600 inline-flex items-center">${svg(IC.navigation,15)}</span><span class="font-medium text-ink-900">${r.region}</span></span></td>
+            <td><span class="inline-flex items-center gap-2"><span class="text-brand-600 inline-flex items-center">${svg(IC.navigation,15)}</span><span class="font-medium text-ink-900">${r.region}</span></span></td>
             <td class="text-ink-700">${r.type}</td>
             <td class="num text-ink-700">${r.entry}</td>
             <td class="num text-ink-700">${r.exit}</td>

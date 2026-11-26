@@ -8,52 +8,52 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
   /* Table */
   .org-tbl{width:100%;border-collapse:collapse;min-width:900px}
-  .org-tbl th{padding:10px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);text-transform:uppercase;letter-spacing:.04em}
-  .org-tbl td{padding:13px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle}
+  .org-tbl th{padding:12px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);text-transform:uppercase;letter-spacing:.04em}
+  .org-tbl td{padding:12px 16px;font-size:14px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle}
   .org-tbl tr:last-child td{border-bottom:0}
   .org-tbl tbody tr:hover td{background:#fafafa}
   /* Status badges */
-  .sbadge{font-size:12px;font-weight:500;padding:3px 10px;border-radius:6px;display:inline-block;white-space:nowrap}
+  .sbadge{font-size:12px;font-weight:500;padding:4px 12px;border-radius:8px;display:inline-block;white-space:nowrap}
   .sb-active  {background:#f0fdf4;color:#16a34a}
   .sb-pending {background:#fefce8;color:#ca8a04}
   .sb-inactive{background:#fef2f2;color:#e11d48}
   /* Access chips */
-  .chip{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;margin:1px 2px 1px 0;white-space:nowrap}
+  .chip{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;margin:1px 2px 1px 0;white-space:nowrap}
   .chip-ports  {background:#eff6ff;color:#2563eb;border:1px solid #b8ddf5}
   .chip-weather{background:#f0fdf4;color:#059669;border:1px solid #86efac}
   .chip-risk   {background:#fff7ed;color:#c2410c;border:1px solid #fdba74}
   /* Header controls */
-  .hbtn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:13px;font-weight:500;color:#374151;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .1s,border-color .1s}
+  .hbtn{display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#374151;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .1s,border-color .1s}
   .hbtn:hover{background:#f9fafb;border-color:#d1d5db}
   .hbtn.hactive{background:var(--brand-50);border-color:var(--brand-200);color:var(--brand-600)}
   /* Dropdowns */
   .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:170px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
-  .fdrop-item{padding:8px 12px;font-size:13px;color:#374151;cursor:pointer}.fdrop-item:hover{background:#f9fafb}.fdrop-item.fsel{color:var(--brand-600);font-weight:600;background:var(--brand-50)}
+  .fdrop-item{padding:8px 12px;font-size:14px;color:#374151;cursor:pointer}.fdrop-item:hover{background:#f9fafb}.fdrop-item.fsel{color:var(--brand-600);font-weight:600;background:var(--brand-50)}
   /* Action buttons */
-  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
+  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
   .actbtn:hover{background:#f3f4f6;color:#374151}
   .actbtn.danger:hover{background:#fef2f2;color:#e11d48}
   /* Pagination */
-  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
+  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
   /* Modal */
   .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.3);z-index:500;display:flex;justify-content:flex-end;animation:fadein 150ms ease}
   @keyframes fadein{from{opacity:0}to{opacity:1}}
   .modal-panel{width:460px;max-width:100vw;background:#fff;height:100%;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(15,23,42,.14);animation:slidein 200ms cubic-bezier(.22,.1,.36,1)}
   @keyframes slidein{from{transform:translateX(100%)}to{transform:translateX(0)}}
-  .form-label{font-size:11px;font-weight:700;color:#6b7280;margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.04em}
-  .form-input{width:100%;height:36px;padding:0 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;background:#fff}
+  .form-label{font-size:12px;font-weight:700;color:#6b7280;margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.04em}
+  .form-input{width:100%;height:36px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;background:#fff}
   .form-input:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
-  .form-select{width:100%;height:36px;padding:0 28px 0 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer}
+  .form-select{width:100%;height:36px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer}
   .form-select:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
-  .access-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:background .1s,border-color .1s;margin-bottom:6px}
+  .access-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:background .1s,border-color .1s;margin-bottom:4px}
   .access-row:last-child{margin-bottom:0}
   .access-row:hover{background:#f9fafb}
   .access-row.checked-ports   {background:#eff6ff;border-color:#b8ddf5}
@@ -75,7 +75,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -190,7 +190,7 @@ function renderModal() {
         <div>
           <label class="form-label">Slug</label>
           <input class="form-input" id="form-slug" type="text" placeholder="auto-generated from name" value="${f.slug.replace(/"/g, '&quot;')}" style="color:#6b7280" />
-          <div style="font-size:11px;color:#9ca3af;margin-top:4px">Used in URLs and API references.</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:4px">Used in URLs and API references.</div>
         </div>
 
         <!-- Currency + Locale -->
@@ -227,9 +227,9 @@ function renderModal() {
           <div style="display:flex;gap:8px">
             ${['Active','Pending'].map(s => {
               const sel = f.status === s;
-              return `<label style="display:flex;align-items:center;gap:7px;cursor:pointer;padding:7px 14px;border:1.5px solid ${sel ? 'var(--brand-600)' : '#e5e7eb'};border-radius:8px;background:${sel ? 'var(--brand-50)' : '#fff'};flex:1;justify-content:center;transition:all .1s">
+              return `<label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 16px;border:1.5px solid ${sel ? 'var(--brand-600)' : '#e5e7eb'};border-radius:8px;background:${sel ? 'var(--brand-50)' : '#fff'};flex:1;justify-content:center;transition:all .1s">
                 <input type="radio" name="form-status" value="${s}" ${sel ? 'checked' : ''} style="accent-color:var(--brand-600);width:14px;height:14px;flex-shrink:0" />
-                <span style="font-size:13px;font-weight:600;color:${sel ? 'var(--brand-600)' : '#4b5563'}">${s}</span>
+                <span style="font-size:14px;font-weight:600;color:${sel ? 'var(--brand-600)' : '#4b5563'}">${s}</span>
               </label>`;
             }).join('')}
           </div>
@@ -241,7 +241,7 @@ function renderModal() {
           ${['Ports','Weather','Risk'].map(a => {
             const checked = f.access.includes(a);
             return `<div class="access-row ${checked ? ROW_CLS[a] : ''}" data-access-row="${a}">
-              <div style="width:18px;height:18px;border-radius:6px;border:${checked ? '0' : '1.5px solid #d1d5db'};background:${checked ? 'var(--brand-600)' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .1s">
+              <div style="width:18px;height:18px;border-radius:8px;border:${checked ? '0' : '1.5px solid #d1d5db'};background:${checked ? 'var(--brand-600)' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .1s">
                 ${checked ? `<span style="color:#fff;display:flex">${SVG.check}</span>` : ''}
               </div>
               <span class="chip ${ACCESS_CLS[a]}">${a}</span>
@@ -253,8 +253,8 @@ function renderModal() {
 
       <!-- Footer -->
       <div class="shrink-0 px-6 py-4 border-t border-gray-100 flex items-center gap-3">
-        <button id="modal-cancel" style="flex:1;height:36px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">Cancel</button>
-        <button id="modal-create" style="flex:1;height:36px;border-radius:8px;border:0;background:var(--brand-600);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">Create Organisation</button>
+        <button id="modal-cancel" style="flex:1;height:36px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:14px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">Cancel</button>
+        <button id="modal-create" style="flex:1;height:36px;border-radius:8px;border:0;background:var(--brand-600);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">Create Organisation</button>
       </div>
     </div>
   </div>`;
@@ -286,7 +286,7 @@ function renderPage() {
         <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none;display:flex">${SVG.search}</span>
         <input id="org-search" type="text" placeholder="Search organisations..."
           value="${ST.query.replace(/"/g, '&quot;')}"
-          style="height:34px;width:210px;padding:0 10px 0 30px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s" />
+          style="height:34px;width:210px;padding:0 12px 0 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s" />
       </div>
 
       <!-- Status filter -->
@@ -314,7 +314,7 @@ function renderPage() {
       </div>
 
       <!-- Create -->
-      <button id="create-org-btn" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:8px;background:var(--brand-600);color:#fff;font-size:13px;font-weight:600;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">
+      <button id="create-org-btn" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;border-radius:8px;background:var(--brand-600);color:#fff;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">
         ${SVG.plus} Create New Organisation
       </button>
     </div>
@@ -336,12 +336,12 @@ function renderPage() {
         </thead>
         <tbody>
           ${pageRows.length === 0 ? `
-            <tr><td colspan="8" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:13px">No organisations match your search.</td></tr>
+            <tr><td colspan="8" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:14px">No organisations match your search.</td></tr>
           ` : pageRows.map(o => `
           <tr>
             <td>
-              <div style="font-size:13px;font-weight:600;color:#111827">${o.name}</div>
-              <div style="font-size:11px;color:#9ca3af;margin-top:2px">${o.slug} · ${o.currency} · ${o.locale}</div>
+              <div style="font-size:14px;font-weight:600;color:#111827">${o.name}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-top:2px">${o.slug} · ${o.currency} · ${o.locale}</div>
             </td>
             <td style="color:#6b7280">${o.email}</td>
             <td>${statusBadge(o.status)}</td>

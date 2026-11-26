@@ -14,18 +14,18 @@
     const st = document.createElement('style');
     st.id = STYLE_ID;
     st.textContent = `
-      .leaflet-tooltip.storm-tip { background:#111827; color:#f9fafb; border:0; border-radius:8px; padding:7px 10px; box-shadow:0 4px 14px rgba(0,0,0,.35); font:12px/1.45 Inter,system-ui,sans-serif; }
+      .leaflet-tooltip.storm-tip { background:#111827; color:#f9fafb; border:0; border-radius:8px; padding:8px 12px; box-shadow:0 4px 14px rgba(0,0,0,.35); font:12px/1.45 Inter,system-ui,sans-serif; }
       .leaflet-tooltip.storm-tip::before { border-top-color:#111827; }
-      .storm-tip .st-k { font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#93c5fd; margin-bottom:2px; }
+      .storm-tip .st-k { font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#93c5fd; margin-bottom:2px; }
       .storm-tip .st-k.is-past { color:#d1d5db; }
-      .storm-tip .st-r { display:flex; justify-content:space-between; gap:14px; font-variant-numeric:tabular-nums; }
+      .storm-tip .st-r { display:flex; justify-content:space-between; gap:12px; font-variant-numeric:tabular-nums; }
       .storm-tip .st-r span:first-child { color:#9ca3af; }
-      .storm-legend { background:rgba(255,255,255,.92); backdrop-filter:blur(4px); border:1px solid #e5e7eb; border-radius:8px; padding:10px 14px; box-shadow:0 2px 8px rgba(15,23,42,.1); font-family:Inter,system-ui,sans-serif; }
-      .storm-legend .sl-h { font-size:11px; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
-      .storm-legend .sl-rows { display:flex; flex-direction:column; gap:6px; }
+      .storm-legend { background:rgba(255,255,255,.92); backdrop-filter:blur(4px); border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px; box-shadow:0 2px 8px rgba(15,23,42,.1); font-family:Inter,system-ui,sans-serif; }
+      .storm-legend .sl-h { font-size:12px; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+      .storm-legend .sl-rows { display:flex; flex-direction:column; gap:4px; }
       .storm-legend .sl-r { display:flex; align-items:center; gap:8px; font-size:12px; color:#4b5563; white-space:nowrap; }
       .storm-legend .sl-r svg, .storm-legend .sl-cur { flex-shrink:0; }
-      .storm-legend .sl-cur { width:12px; height:12px; margin:0 5px; border-radius:50%; background:#ef4444; border:2px solid #fff; box-shadow:0 0 0 3px rgba(239,68,68,.3); display:inline-block; }
+      .storm-legend .sl-cur { width:12px; height:12px; margin:0 4px; border-radius:50%; background:#ef4444; border:2px solid #fff; box-shadow:0 0 0 3px rgba(239,68,68,.3); display:inline-block; }
       html[data-theme="dark"] .storm-legend { background:rgba(15,23,42,.9); border-color:#374151; }
       html[data-theme="dark"] .storm-legend .sl-r { color:#d1d5db; }
     `;

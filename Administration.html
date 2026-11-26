@@ -8,39 +8,39 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
   /* Tables */
   .adm-tbl{width:100%;border-collapse:collapse}
-  .adm-tbl th{padding:10px 14px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);text-transform:uppercase;letter-spacing:.04em}
-  .adm-tbl td{padding:11px 14px;font-size:13px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
+  .adm-tbl th{padding:12px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);text-transform:uppercase;letter-spacing:.04em}
+  .adm-tbl td{padding:12px 16px;font-size:14px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
   .adm-tbl tr:last-child td{border-bottom:0}
   .adm-tbl tbody tr:hover td{background:#fafafa}
   /* Badges */
-  .badge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:6px;display:inline-block}
+  .badge{font-size:12px;font-weight:700;padding:4px 12px;border-radius:8px;display:inline-block}
   .badge-yes     {background:#dcfce7;color:#16a34a}
   .badge-active  {background:#dcfce7;color:#16a34a}
   .badge-inactive{background:#f3f4f6;color:#6b7280}
   .badge-pending {background:#fff7ed;color:#ea580c}
   /* Tabs */
-  .utab{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s}
+  .utab{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s}
   .utab.active{background:#2563eb;color:#fff}
   .utab:not(.active){background:transparent;color:#6b7280;border:1px solid #e5e7eb}
   .utab:not(.active):hover{background:#f9fafb}
   /* Pagination */
-  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;color:#374151;cursor:pointer;font-size:13px;font-weight:600;transition:background .1s}
+  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;color:#374151;cursor:pointer;font-size:14px;font-weight:600;transition:background .1s}
   .pgbtn:hover:not([disabled]):not(.pactive){background:#f3f4f6}
   .pgbtn[disabled]{opacity:.4;cursor:not-allowed}
   .pgbtn.pactive{background:#2563eb;color:#fff;border-color:#2563eb}
   /* Search */
   .srch-wrap{position:relative}
-  .srch-wrap input{height:34px;padding:0 10px 0 30px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#374151;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s}
+  .srch-wrap input{height:34px;padding:0 12px 0 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#374151;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s}
   .srch-wrap input:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12);background:#fff}
   /* Action dots */
-  .dots-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;border:0;background:transparent;color:#9ca3af;cursor:pointer;font-size:20px;font-weight:700;line-height:1}
+  .dots-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:0;background:transparent;color:#9ca3af;cursor:pointer;font-size:20px;font-weight:700;line-height:1}
   .dots-btn:hover{background:#f3f4f6;color:#374151}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -58,7 +58,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -154,10 +154,10 @@ function userSection() {
     </tr></thead>
     <tbody>
       ${rows.map(u => `<tr>
-        <td><div style="display:flex;align-items:center;gap:7px;color:#111827;font-weight:500">${USER_ICO} ${u.name}</div></td>
-        <td><div style="display:flex;align-items:center;gap:6px;color:#2563eb">${EMAIL_ICO} ${u.email}</div></td>
-        <td><div style="display:flex;align-items:center;gap:6px;color:#6b7280">${CLOCK_ICO} ${u.lastLogin}</div></td>
-        <td>${u.admin ? `<span class="badge badge-yes">Yes</span>` : `<span style="font-size:13px;color:#6b7280">No</span>`}</td>
+        <td><div style="display:flex;align-items:center;gap:8px;color:#111827;font-weight:500">${USER_ICO} ${u.name}</div></td>
+        <td><div style="display:flex;align-items:center;gap:4px;color:#2563eb">${EMAIL_ICO} ${u.email}</div></td>
+        <td><div style="display:flex;align-items:center;gap:4px;color:#6b7280">${CLOCK_ICO} ${u.lastLogin}</div></td>
+        <td>${u.admin ? `<span class="badge badge-yes">Yes</span>` : `<span style="font-size:14px;color:#6b7280">No</span>`}</td>
         <td><button class="dots-btn">···</button></td>
       </tr>`).join('')}
     </tbody>
@@ -179,21 +179,21 @@ function userSection() {
       </tr>`).join('')}
     </tbody>
   </table>
-  <div style="padding:10px 14px;border-top:1px solid #f3f4f6;font-size:12px;color:#6b7280">${PENDING.length} pending invitation${PENDING.length!==1?'s':''}</div>`;
+  <div style="padding:12px 16px;border-top:1px solid #f3f4f6;font-size:12px;color:#6b7280">${PENDING.length} pending invitation${PENDING.length!==1?'s':''}</div>`;
 
   return `
   <!-- User Management -->
   <div style="margin-bottom:20px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <h2 style="font-size:16px;font-weight:700;color:#111827">User Management</h2>
-      <button style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:8px;background:#2563eb;color:#fff;font-size:13px;font-weight:600;border:0;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+      <button style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;border-radius:8px;background:#2563eb;color:#fff;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
         ${USER_ICO} Add Users
       </button>
     </div>
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden">
       <!-- Tabs + search -->
-      <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <div style="display:flex;gap:6px;flex:1">
+      <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;gap:4px;flex:1">
           <button class="utab ${ST.userTab==='registered'?'active':''}" data-utab="registered">${USER_ICO} Registered Users</button>
           <button class="utab ${ST.userTab==='pending'?'active':''}"     data-utab="pending">${EMAIL_ICO} Pending Invitations</button>
         </div>
@@ -222,14 +222,14 @@ function orgSection() {
   <div>
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
       <h2 style="font-size:16px;font-weight:700;color:#111827">Organisation Management</h2>
-      <button style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:8px;background:#2563eb;color:#fff;font-size:13px;font-weight:600;border:0;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+      <button style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;border-radius:8px;background:#2563eb;color:#fff;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
         + Create New Organisation
       </button>
     </div>
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden">
       <!-- Header + search -->
-      <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:13px;font-weight:600;color:#374151">All Organisations</span>
+      <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:14px;font-weight:600;color:#374151">All Organisations</span>
         <div class="srch-wrap">
           <span style="position:absolute;left:8px;top:50%;transform:translateY(-50%);display:flex">${SRCH_ICO}</span>
           <input id="org-search" type="text" placeholder="Search organisations..." value="${ST.orgSearch.replace(/"/g,'&quot;')}" style="width:200px" />
@@ -248,10 +248,10 @@ function orgSection() {
           ${rows.map(o => {
             const badgeCls = o.status==='Active'?'badge-active':o.status==='Inactive'?'badge-inactive':'badge-pending';
             return `<tr>
-              <td><div style="display:flex;align-items:center;gap:7px;font-weight:500;color:#111827">${DOC_ICO} ${o.name}</div></td>
+              <td><div style="display:flex;align-items:center;gap:8px;font-weight:500;color:#111827">${DOC_ICO} ${o.name}</div></td>
               <td><span class="badge ${badgeCls}">${o.status}</span></td>
-              <td><div style="display:flex;align-items:center;gap:6px;color:#374151">${USERS_ICO} ${o.members}</div></td>
-              <td><div style="display:flex;align-items:center;gap:6px;color:#6b7280">${CAL_ICO} ${o.created}</div></td>
+              <td><div style="display:flex;align-items:center;gap:4px;color:#374151">${USERS_ICO} ${o.members}</div></td>
+              <td><div style="display:flex;align-items:center;gap:4px;color:#6b7280">${CAL_ICO} ${o.created}</div></td>
               <td><button class="dots-btn">···</button></td>
             </tr>`;
           }).join('')}

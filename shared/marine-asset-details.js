@@ -3,26 +3,26 @@
    the search field keeps focus. Relies on dsPagination / dsWirePagination / dsSortInd / dsToast. */
 (function () {
   const css = `
-  .ad-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid var(--border-subtle,#f3f4f6)}
+  .ad-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 12px;border-bottom:1px solid var(--border-subtle,#f3f4f6)}
   .ad-search{position:relative;flex:1 1 260px;min-width:0}
   .ad-search svg{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--text-muted,#9ca3af);pointer-events:none}
-  .ad-search input{width:100%;height:32px;padding:0 10px 0 28px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;font:inherit;font-size:12.5px;color:var(--text-primary,#111827);background:#fff;outline:0;transition:border-color 140ms,box-shadow 140ms}
+  .ad-search input{width:100%;height:32px;padding:0 12px 0 28px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;font:inherit;font-size:14px;color:var(--text-primary,#111827);background:#fff;outline:0;transition:border-color 140ms,box-shadow 140ms}
   .ad-search input:focus{border-color:var(--brand-400,#43a8df);box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
   .ad-ctrls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .ad-btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;background:#fff;color:var(--slate-800,#1f2937);font:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background 140ms,border-color 140ms,color 140ms}
+  .ad-btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;background:#fff;color:var(--slate-800,#1f2937);font:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background 140ms,border-color 140ms,color 140ms}
   .ad-btn:hover:not(:disabled){background:var(--slate-50,#f9fafb);border-color:var(--border-strong,#d1d5db)}
   .ad-btn:disabled{color:var(--text-disabled,#9ca3af);cursor:not-allowed}
   .ad-btn:focus-visible,.ad-sel:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
   .ad-sel-wrap{position:relative}
-  .ad-sel{appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 10px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;background:#fff;font:inherit;font-size:12px;font-weight:600;color:var(--slate-800,#1f2937);cursor:pointer;outline:0}
+  .ad-sel{appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 12px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;background:#fff;font:inherit;font-size:12px;font-weight:600;color:var(--slate-800,#1f2937);cursor:pointer;outline:0}
   .ad-sel-wrap svg{position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--text-muted,#6b7280)}
-  .ad-selbar{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--border-subtle,#f3f4f6);background:var(--brand-050,#eff6ff);font-size:12px;color:var(--text-secondary,#4b5563)}
+  .ad-selbar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border-subtle,#f3f4f6);background:var(--brand-050,#eff6ff);font-size:12px;color:var(--text-secondary,#4b5563)}
   .ad-selbar b{color:var(--text-primary,#111827);font-weight:600}
   .ad-link{border:0;background:none;padding:0;font:inherit;color:var(--brand-600,#1485c5);font-weight:600;cursor:pointer}
   .ad-link:hover{text-decoration:underline}
   .ad-tbl th{white-space:normal;vertical-align:bottom;background:var(--slate-50,#f9fafb)}
   .ad-tbl .ds-th--sortable{padding:0}
-  .ad-tbl .ds-th-sort{width:100%;min-width:84px;display:flex;align-items:center;justify-content:space-between;gap:6px;font:inherit;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);padding:9px 12px;background:transparent;border:0;cursor:pointer;text-align:left;line-height:1.25;transition:color .12s ease,background .12s ease}
+  .ad-tbl .ds-th-sort{width:100%;min-width:84px;display:flex;align-items:center;justify-content:space-between;gap:4px;font:inherit;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);padding:8px 12px;background:transparent;border:0;cursor:pointer;text-align:left;line-height:1.25;transition:color .12s ease,background .12s ease}
   .ad-tbl .ds-th-sort span{max-width:120px}
   .ad-tbl .ds-th-sort:hover{color:var(--text-secondary,#4B5563);background:var(--slate-100,#F3F4F6)}
   .ad-tbl .ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}
@@ -32,23 +32,23 @@
   .ad-tbl td.ad-na{color:var(--text-disabled,#9ca3af)}
   .ad-tbl tr.is-sel td{background:var(--brand-050,#eff6ff)}
   .ad-tbl input[type=checkbox],.ad-card input[type=checkbox]{width:14px;height:14px;accent-color:var(--brand-600,#1485c5);cursor:pointer;margin:0}
-  .ad-empty{padding:40px 16px;text-align:center;font-size:13px;color:var(--text-muted,#6b7280)}
+  .ad-empty{padding:40px 16px;text-align:center;font-size:14px;color:var(--text-muted,#6b7280)}
   .ad-empty b{display:block;color:var(--text-primary,#111827);font-weight:600;margin-bottom:2px}
-  .ad-cols{position:fixed;z-index:1050;width:240px;max-height:360px;overflow:auto;background:var(--bg-raised,#fff);border:1px solid var(--border-default,#e5e7eb);border-radius:8px;box-shadow:var(--card-shadow-raised,0 20px 32px -8px rgb(15 23 42/.2));padding:6px}
-  .ad-cols label{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;font-size:12.5px;color:var(--text-primary,#111827);cursor:pointer}
+  .ad-cols{position:fixed;z-index:1050;width:240px;max-height:360px;overflow:auto;background:var(--bg-raised,#fff);border:1px solid var(--border-default,#e5e7eb);border-radius:8px;box-shadow:var(--card-shadow-raised,0 20px 32px -8px rgb(15 23 42/.2));padding:8px}
+  .ad-cols label{display:flex;align-items:center;gap:8px;padding:8px 8px;border-radius:8px;font-size:14px;color:var(--text-primary,#111827);cursor:pointer}
   .ad-cols label:hover{background:var(--slate-100,#f3f4f6)}
   .ad-cols input{accent-color:var(--brand-600,#1485c5)}
-  .ad-cols-foot{display:flex;justify-content:space-between;padding:6px 8px 2px;border-top:1px solid var(--border-subtle,#f3f4f6);margin-top:4px}
+  .ad-cols-foot{display:flex;justify-content:space-between;padding:8px 8px 2px;border-top:1px solid var(--border-subtle,#f3f4f6);margin-top:4px}
   .ad-cards{display:none}
-  .ad-card{padding:14px 16px;border-bottom:1px solid #eef2f7;display:grid;gap:10px}
-  .ad-card-top{display:flex;align-items:flex-start;gap:10px}
+  .ad-card{padding:16px 16px;border-bottom:1px solid #eef2f7;display:grid;gap:8px}
+  .ad-card-top{display:flex;align-items:flex-start;gap:8px}
   .ad-card-id{flex:1;min-width:0}
-  .ad-card-id a{display:block;color:var(--brand-600,#1485c5);font-weight:600;font-size:13px;text-decoration:none;overflow-wrap:anywhere}
+  .ad-card-id a{display:block;color:var(--brand-600,#1485c5);font-weight:600;font-size:14px;text-decoration:none;overflow-wrap:anywhere}
   .ad-card-id span{font-size:12px;color:var(--text-secondary,#4b5563)}
   .ad-card-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}
   .ad-card-kv div{display:grid;gap:2px}
-  .ad-card-kv small{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted,#6b7280)}
-  .ad-card-kv span{font-size:12.5px;color:var(--text-primary,#111827);font-variant-numeric:tabular-nums}
+  .ad-card-kv small{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted,#6b7280)}
+  .ad-card-kv span{font-size:14px;color:var(--text-primary,#111827);font-variant-numeric:tabular-nums}
   .pol-fixed{display:flex;flex-direction:column}
   .pol-fixed > *{flex-shrink:0}
   #ad-card.pol-fixed #ad-body{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
@@ -124,7 +124,7 @@
     S.sel.forEach(id => { if (!rows.some(r => r.id === id)) S.sel.delete(id); });
     const pageAll = pr.length && pr.every(r => S.sel.has(r.id)), pageSome = pr.some(r => S.sel.has(r.id));
     const n = S.sel.size;
-    const selbar = `<div class="ad-selbar"><button type="button" class="ad-btn" data-ad-del ${n ? '' : 'disabled'} style="height:28px;padding:0 10px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>Delete</button>
+    const selbar = `<div class="ad-selbar"><button type="button" class="ad-btn" data-ad-del ${n ? '' : 'disabled'} style="height:28px;padding:0 12px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path></svg>Delete</button>
       <span><b>${n} of ${total}</b> selected${total && n < total ? ` or <button type="button" class="ad-link" data-ad-selall>Select all ${total} policies</button>` : n ? ` · <button type="button" class="ad-link" data-ad-clear>Clear selection</button>` : ''}</span></div>`;
     const empty = `<div class="ad-empty"><b>No policies match</b>Try a different search, or reset the filters.</div>`;
     return `${selbar}
@@ -136,7 +136,7 @@
         ${pr.length ? '' : empty}
       </div>
       <div class="ad-cards">${pr.length ? pr.map(r => `<article class="ad-card">
-        <div class="ad-card-top"><input type="checkbox" data-ad-row="${r.id}" aria-label="Select ${esc(r.num)}" ${S.sel.has(r.id) ? 'checked' : ''} style="margin-top:3px"><div class="ad-card-id"><a href="VesselDetails.html">${esc(r.asset)}</a><span>${esc(r.num)} · ${esc(r.type)}</span></div></div>
+        <div class="ad-card-top"><input type="checkbox" data-ad-row="${r.id}" aria-label="Select ${esc(r.num)}" ${S.sel.has(r.id) ? 'checked' : ''} style="margin-top:4px"><div class="ad-card-id"><a href="VesselDetails.html">${esc(r.asset)}</a><span>${esc(r.num)} · ${esc(r.type)}</span></div></div>
         <div class="ad-card-kv"><div><small>Exposure</small><span>${m(r.exp)}</span></div><div><small>Total Insured Value</small><span>${m(r.tiv)}</span></div><div><small>War Exposure</small><span>${m(r.warExp)}</span></div><div><small>Premium</small><span>${m(r.prem)}</span></div><div style="grid-column:1/-1"><small>Coverage Period</small><span>${r.period || '-'}</span></div></div>
       </article>`).join('') : empty}</div>
       <div id="ad-pg">${dsPagination({ page:S.page, totalPages:pages, totalItems:total, perPage:S.per, perPageOptions:[10, 25, 50], label:'results' })}</div>`;
@@ -147,7 +147,7 @@
 
   window.AssetDetailsSection = function (tabsHtml) {
     return `<div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="ad-card">
-      <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">${tabsHtml}<div class="flex-1"></div></div>
+      <div class="pol-toolbar flex items-center gap-2 px-3 py-3 border-b border-ink-100 flex-wrap">${tabsHtml}<div class="flex-1"></div></div>
       <div class="ad-toolbar">
         <div class="ad-search"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="text" id="ad-q" placeholder="Search by policy, asset, reference, insurer or broker" aria-label="Search policies" value="${esc(S.q)}"></div>
         <div class="ad-ctrls">
@@ -213,7 +213,7 @@
   .pm-wrap{position:relative;height:620px}
   #pm-map{position:absolute;inset:0;background:#0b1220}
   #pm-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #pm-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px!important}
+  #pm-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important}
   .pm-wrap .leaflet-control-zoom,.pm-wrap .leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgb(15 23 42/.08)!important;border-radius:8px!important;overflow:hidden}
   .pm-wrap .leaflet-bar a{background:#fff!important;color:#374151!important}
   .pm-wrap .leaflet-bar a:hover{background:#f3f4f6!important}
@@ -227,14 +227,14 @@
   .pm-right{position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
   .pm-menu{position:absolute;top:0;right:calc(100% + 8px);background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 6px 12px -2px rgb(15 23 42/.12),0 3px 6px -3px rgb(15 23 42/.10);overflow:hidden;display:flex;flex-direction:column;max-height:420px}
   .pm-menu[hidden]{display:none}
-  .pm-mh{padding:10px 12px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between}
+  .pm-mh{padding:12px 12px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between}
   .pm-mh b{font-size:14px;font-weight:700;color:#1f2937}
   .pm-mh span{display:flex;gap:4px}
-  .pm-mh button{height:24px;padding:0 8px;border-radius:6px;border:1px solid #e5e7eb;background:#fff;font:inherit;font-size:11px;font-weight:600;color:#374151;cursor:pointer}
+  .pm-mh button{height:24px;padding:0 8px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font:inherit;font-size:12px;font-weight:600;color:#374151;cursor:pointer}
   .pm-mh button:hover{background:#f9fafb}
-  .pm-msub{padding:8px 12px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#4b5563}
+  .pm-msub{padding:8px 12px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#4b5563}
   .pm-mlist{overflow-y:auto;padding:4px 0}
-  .pm-row{display:flex;align-items:center;gap:10px;padding:6px 12px;cursor:pointer;font-size:13px;color:#374151}
+  .pm-row{display:flex;align-items:center;gap:8px;padding:8px 12px;cursor:pointer;font-size:14px;color:#374151}
   .pm-row:hover{background:#f9fafb}
   .pm-row input{width:16px;height:16px;accent-color:var(--brand-600,#1485c5);margin:0}
   .pm-row .pm-n{margin-left:auto;font-size:12px;color:#9ca3af;font-variant-numeric:tabular-nums}
@@ -245,43 +245,43 @@
   .pm-sw{position:relative;display:inline-flex;height:24px;width:44px;align-items:center;border-radius:999px;background:#d1d5db;border:0;cursor:pointer;transition:background-color .15s}
   .pm-sw span{display:inline-block;height:20px;width:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgb(0 0 0/.2);transform:translateX(2px);transition:transform .15s}
   .pm-sw[aria-checked="true"]{background:#1485c5}.pm-sw[aria-checked="true"] span{transform:translateX(22px)}
-  .pm-count{position:absolute;left:12px;bottom:12px;z-index:400;background:rgba(15,23,42,.82);color:#fff;font-size:12px;font-weight:600;padding:4px 9px;border-radius:6px}
+  .pm-count{position:absolute;left:12px;bottom:12px;z-index:400;background:rgba(15,23,42,.82);color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:8px}
   .pm-wrap.is-fs{position:fixed;inset:0;z-index:9999;height:100vh!important}
   .pm-wrap .vessel-label-wrap{background:transparent!important;border:0!important}
-  .pm-wrap .vessel-label{display:inline-block;white-space:nowrap;background:rgba(15,23,42,.88);color:#fff;font-family:'Exo','Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.01em;padding:3px 7px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.25);text-shadow:0 1px 1px rgba(0,0,0,.5);pointer-events:none}
+  .pm-wrap .vessel-label{display:inline-block;white-space:nowrap;background:rgba(15,23,42,.88);color:#fff;font-family:'Exo','Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.01em;padding:4px 8px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.25);text-shadow:0 1px 1px rgba(0,0,0,.5);pointer-events:none}
   .pm-wrap .vessel-marker{position:relative;cursor:pointer}
   .pm-wrap .vessel-marker svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.5))}
   .pm-wrap .vessel-marker::after{content:'';position:absolute;left:50%;top:50%;width:24px;height:24px;transform:translate(-50%,-50%);border-radius:50%;border:2px solid #fff;box-shadow:0 0 5px rgba(0,0,0,.45);opacity:0;transition:opacity .14s ease;pointer-events:none}
   .pm-wrap .leaflet-marker-icon:hover .vessel-marker::after,.pm-wrap .leaflet-marker-icon.is-selected .vessel-marker::after{opacity:1}
   .pm-wrap .leaflet-marker-icon:hover,.pm-wrap .leaflet-marker-icon.is-selected{z-index:1000!important}
-  .vessel-tip.leaflet-tooltip{background:rgba(15,23,42,.93);border:0;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,.4);padding:6px 9px;color:#fff;font-family:'Inter',system-ui,sans-serif}
+  .vessel-tip.leaflet-tooltip{background:rgba(15,23,42,.93);border:0;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,.4);padding:8px 8px;color:#fff;font-family:'Inter',system-ui,sans-serif}
   .vessel-tip.leaflet-tooltip-top::before{border-top-color:rgba(15,23,42,.93)}
-  .vessel-tip .vtip-row{display:flex;align-items:center;gap:6px}
-  .vessel-tip .vtip-flag{border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.25);flex-shrink:0}
+  .vessel-tip .vtip-row{display:flex;align-items:center;gap:4px}
+  .vessel-tip .vtip-flag{border-radius:4px;box-shadow:0 0 0 1px rgba(255,255,255,.25);flex-shrink:0}
   .vessel-tip .vtip-name{font-family:'Exo','Inter',sans-serif;font-weight:700;font-size:12px}
-  .vessel-tip .vtip-type{display:block;font-size:11px;color:#d1d5db;margin-top:2px}
+  .vessel-tip .vtip-type{display:block;font-size:12px;color:#d1d5db;margin-top:2px}
   .vessel-popup .leaflet-popup-content-wrapper{padding:0;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,.25)}
   .vessel-popup .leaflet-popup-content{margin:0;width:300px!important;font-family:'Inter',system-ui,sans-serif}
   .vessel-popup .leaflet-popup-tip{background:#fff}
   .vp{background:#fff;color:#111827}
-  .vp-header{background:var(--brand-600,#1485c5);color:#fff;padding:12px 14px 10px}
-  .vp-title{font-family:'Exo','Inter',sans-serif;font-weight:800;font-size:14px;letter-spacing:.02em;display:flex;align-items:center;padding-right:24px}
+  .vp-header{background:var(--brand-600,#1485c5);color:#fff;padding:12px 16px 12px}
+  .vp-title{font-family:'Exo','Inter',sans-serif;font-weight:700;font-size:14px;letter-spacing:.02em;display:flex;align-items:center;padding-right:24px}
   .vp-subtitle{font-size:12px;color:rgba(255,255,255,.85);margin-top:2px}
-  .vp-route{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid #e5e7eb}
+  .vp-route{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;padding:12px 16px;border-bottom:1px solid #e5e7eb}
   .vp-port{text-align:center}
-  .vp-port-code{font-family:'Exo','Inter',sans-serif;font-weight:800;font-size:14px;color:#111827}
+  .vp-port-code{font-family:'Exo','Inter',sans-serif;font-weight:700;font-size:14px;color:#111827}
   .vp-port-name{font-size:12px;color:#374151;margin-top:1px}
-  .vp-port-time{font-size:11px;color:#6b7280;margin-top:3px;letter-spacing:.02em}
+  .vp-port-time{font-size:12px;color:#6b7280;margin-top:4px;letter-spacing:.02em}
   .vp-arrow{color:#6b7280;font-size:16px}
-  .vp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;padding:12px 14px}
+  .vp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;padding:12px 16px}
   .vp-grid>div{min-width:0}.vp-span{grid-column:1/-1}
-  .vp-k{font-size:11px;color:#6b7280}
-  .vp-v{font-size:12.5px;color:#111827;margin-top:1px;font-weight:600}
-  .vp-strong{font-weight:700;color:#111827}.vp-muted{color:#6b7280;font-weight:500;font-size:11px}
+  .vp-k{font-size:12px;color:#6b7280}
+  .vp-v{font-size:14px;color:#111827;margin-top:1px;font-weight:600}
+  .vp-strong{font-weight:700;color:#111827}.vp-muted{color:#6b7280;font-weight:500;font-size:12px}
   .vp-nav{color:#16a34a;font-weight:700}
-  .vp-cta{display:block;width:calc(100% - 28px);margin:4px 14px 14px;color:var(--brand-600,#1485c5)!important;border-radius:8px;height:32px;line-height:32px;font-weight:500;font-size:13px;text-align:center;text-decoration:none;transition:background .15s}
+  .vp-cta{display:block;width:calc(100% - 28px);margin:4px 12px 12px;color:var(--brand-600,#1485c5)!important;border-radius:8px;height:32px;line-height:32px;font-weight:500;font-size:14px;text-align:center;text-decoration:none;transition:background .15s}
   .vp-cta:hover{background:var(--brand-50,#eff6ff)}
-  .vessel-popup .leaflet-popup-close-button{color:#fff!important;top:8px!important;right:10px!important;font-size:24px!important;font-weight:400!important;width:24px!important;height:24px!important;line-height:22px!important;padding:0!important;border-radius:6px;opacity:.9}
+  .vessel-popup .leaflet-popup-close-button{color:#fff!important;top:8px!important;right:10px!important;font-size:24px!important;font-weight:400!important;width:24px!important;height:24px!important;line-height:22px!important;padding:0!important;border-radius:8px;opacity:.9}
   .vessel-popup .leaflet-popup-close-button:hover{background:rgba(255,255,255,.18);opacity:1}
   @media (max-width:640px){.pm-wrap{height:440px}}`; document.head.appendChild(mcss);
 
@@ -292,7 +292,7 @@
       : `<svg viewBox="0 0 24 24" width="16" height="16" style="color:${c}" fill="currentColor" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"></path></svg>`;
     return L.divIcon({ html:`<div class="vessel-marker" style="${stat ? '' : `transform:rotate(${v.hdg + 45}deg);transform-origin:center;`}">${shape}</div>`, className:'', iconSize:[16, 16], iconAnchor:[8, 8] });
   }
-  const flagImg = (cc, n, w = 18, h = 13) => `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="${w}" height="${h}" alt="${n}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:4px;">`;
+  const flagImg = (cc, n, w = 18, h = 13) => `<img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="${w}" height="${h}" alt="${n}" style="display:inline-block;border-radius:4px;vertical-align:middle;margin-right:4px;">`;
   const tipHTML = v => `<span class="vtip-row"><img class="vtip-flag" src="flags/${v.flag.cc}.svg" width="18" height="13" alt="${v.flag.name}"><span class="vtip-name">${esc(v.r.asset)}</span></span><span class="vtip-type">${v.type} · ${v.flag.name}</span>`;
   function popupHTML(v) {
     const lat = `${Math.abs(v.lat).toFixed(2)}${v.lat >= 0 ? 'N' : 'S'}`, lng = `${Math.abs(v.lng).toFixed(2)}${v.lng >= 0 ? 'E' : 'W'}`;
@@ -327,7 +327,7 @@
   window.PortfolioMapSection = function (tabsHtml) {
     const vs = window.__AD_ROWS().map(vessel), cnt = (k, v) => vs.filter(x => x[k] === v).length, ic = I();
     return `<div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="pm-card">
-      <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">${tabsHtml}<div class="flex-1"></div></div>
+      <div class="pol-toolbar flex items-center gap-2 px-3 py-3 border-b border-ink-100 flex-wrap">${tabsHtml}<div class="flex-1"></div></div>
       <div class="pm-wrap" id="pm-wrap">
         <div id="pm-map" role="region" aria-label="Map of portfolio vessels"></div>
         <button type="button" class="map-btn pm-fs" id="pm-fs" title="Toggle fullscreen" aria-label="Toggle fullscreen">${ic.maximize || svgI('<path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"></path>')}</button>
@@ -336,7 +336,7 @@
           ${btn('vt', 'Filter vessels', ic.filter || svgI('<path d="M22 3H2l8 9.46V19l4 2v-8.54z"></path>'), `<div class="pm-menu" data-pm-menu="vt" hidden style="width:240px">${menuHead('Filter Vessels', 'vt')}<div class="pm-msub">Vessel Type</div><div class="pm-mlist scroll-thin">${VTYPES.map(t => `<label class="pm-row"><input type="checkbox" data-pm-f="vt" value="${t.k}" ${MS.vt.has(t.k) ? 'checked' : ''}>${tear(t.color)}<span>${t.k}</span><span class="pm-n">${cnt('type', t.k)}</span></label>`).join('')}</div></div>`)}
           ${btn('co', 'Filter by compliance status', svgI('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path>'), `<div class="pm-menu" data-pm-menu="co" hidden style="width:220px">${menuHead('Compliance Status', 'co')}<div class="pm-mlist">${COMPL.map(c => `<label class="pm-row"><input type="checkbox" data-pm-f="co" value="${c.k}" ${MS.co.has(c.k) ? 'checked' : ''}><span style="width:10px;height:10px;border-radius:50%;background:${c.color}"></span><span>${c.k}</span><span class="pm-n">${cnt('compliance', c.k)}</span></label>`).join('')}</div></div>`)}
           ${btn('pt', 'Filter by policy type', svgI('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6"></path><path d="M9 17h4"></path>'), `<div class="pm-menu" data-pm-menu="pt" hidden style="width:220px">${menuHead('Policy Type', 'pt')}<div class="pm-mlist">${PTYPES.map(p => `<label class="pm-row"><input type="checkbox" data-pm-f="pt" value="${p}" ${MS.pt.has(p) ? 'checked' : ''}><span>${p}</span><span class="pm-n">${vs.filter(x => x.r.type === p).length}</span></label>`).join('')}</div></div>`)}
-          ${btn('lb', 'Vessel labels', ic.tag || svgI('<path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"></path><circle cx="7.5" cy="7.5" r=".5"></circle>'), `<div class="pm-menu" data-pm-menu="lb" hidden style="width:260px;padding:12px"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><b style="font-size:14px;color:#111827">Show Labels</b><button type="button" class="pm-sw" id="pm-labels" role="switch" aria-checked="${MS.labels}" aria-label="Show vessel labels"><span></span></button></div><p style="margin:6px 0 0;font-size:12px;line-height:1.4;color:#6b7280">Display vessel names directly on the map next to icons. Labels appear when zoomed in.</p></div>`)}
+          ${btn('lb', 'Vessel labels', ic.tag || svgI('<path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"></path><circle cx="7.5" cy="7.5" r=".5"></circle>'), `<div class="pm-menu" data-pm-menu="lb" hidden style="width:260px;padding:12px"><div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><b style="font-size:14px;color:#111827">Show Labels</b><button type="button" class="pm-sw" id="pm-labels" role="switch" aria-checked="${MS.labels}" aria-label="Show vessel labels"><span></span></button></div><p style="margin:4px 0 0;font-size:12px;line-height:1.4;color:#6b7280">Display vessel names directly on the map next to icons. Labels appear when zoomed in.</p></div>`)}
         </div>
         <div class="pm-count" id="pm-count" aria-live="polite"></div>
       </div>

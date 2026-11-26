@@ -25,7 +25,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -47,14 +47,14 @@
   .region-popup .leaflet-popup-tip-container{margin-top:-1px}
   /* Category tabs — matches Portfolios style */
   .cat-tabs{display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;position:relative}
-  .cat-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:8px 20px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+  .cat-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 20px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
   .cat-tab:hover{color:#111827}
   .cat-tab[aria-selected="true"]{color:#fff}
   .cat-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .cat-pill.is-init{transition:none}
-  .cat-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px}
+  .cat-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px}
   .rtabs{position:relative;display:flex;width:100%;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
-  .rtab{position:relative;flex:1 1 0;min-width:0;font:inherit;font-size:11px;font-weight:600;padding:7px 5px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25;transition:color 180ms}
+  .rtab{position:relative;flex:1 1 0;min-width:0;font:inherit;font-size:12px;font-weight:600;padding:8px 4px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25;transition:color 180ms}
   .rtab:hover{color:#111827}
   .rtab[aria-selected="true"]{color:#fff}
   .rtab-label{position:relative;z-index:1;white-space:nowrap}
@@ -62,12 +62,12 @@
   .rtabs{align-items:stretch}
   .rtab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .rtab-pill.is-init{transition:none}
-  .rtabs--cov .rtab{font-size:12.5px;padding:7px 8px}
+  .rtabs--cov .rtab{font-size:14px;padding:8px 8px}
   .rtabs--cov .rtab[aria-selected="true"],.rtabs--view .rtab[aria-selected="true"]{background:transparent}
   .rtabs--view{display:inline-flex;width:auto}
-  .rtabs--view .rtab{flex:none;font-size:12.5px;padding:6px 14px}
-  .rtabs--view .rtab-label{display:inline-flex;align-items:center;gap:6px}
-  .rg-filter-btn{width:100%;height:32px;display:flex;align-items:center;gap:8px;padding:0 10px;background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-md,8px);font-family:inherit;font-size:12.5px;font-weight:500;color:#374151;cursor:pointer;transition:background .15s,border-color .15s}
+  .rtabs--view .rtab{flex:none;font-size:14px;padding:8px 16px}
+  .rtabs--view .rtab-label{display:inline-flex;align-items:center;gap:4px}
+  .rg-filter-btn{width:100%;height:32px;display:flex;align-items:center;gap:8px;padding:0 12px;background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-md,8px);font-family:inherit;font-size:14px;font-weight:500;color:#374151;cursor:pointer;transition:background .15s,border-color .15s}
   .rg-filter-btn:hover{background:#f9fafb;border-color:#d1d5db}
   .rg-map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;transition:background .15s}
   .rg-map-btn:hover{background:#f3f4f6}
@@ -75,29 +75,29 @@
   .rg-map-type-opt:hover{background:#f9fafb}
   /* View toggle */
   .view-toggle{display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
-  .view-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;font-size:13px;font-weight:600;border:0;cursor:pointer;font-family:inherit;transition:background 150ms,color 150ms;border-radius:9999px}
+  .view-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit;transition:background 150ms,color 150ms;border-radius:9999px}
   .view-btn.active{background:var(--brand-600,#2563eb);color:#fff}
   .view-btn:not(.active){background:transparent;color:#6b7280}
   .view-btn:not(.active):hover{color:#111827}
   /* Panel */
   .info-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(15,23,42,.06)}
   /* Region rows */
-  .r-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f9fafb;font-size:13px}
+  .r-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f9fafb;font-size:14px}
   .r-row:last-child{border-bottom:0}
   /* Coverage tabs */
-  .cov-tab{flex:1;padding:7px 8px;font-size:12.5px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
+  .cov-tab{flex:1;padding:8px 8px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
   .cov-tab.active{background:var(--brand-600,#2563eb);color:#fff}
   .cov-tab:not(.active):hover{color:#374151}
   /* Stats table */
   .rg-tbl{width:100%;border-collapse:collapse}
-  .rg-tbl th{padding:10px 14px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap}
+  .rg-tbl th{padding:12px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap}
   .rg-map-fs{position:fixed!important;inset:0!important;z-index:9999!important;}
   #regions-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #regions-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px!important}
-  .rg-tbl td{padding:11px 14px;font-size:13px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle}
+  #regions-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important}
+  .rg-tbl td{padding:12px 16px;font-size:14px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle}
   .rg-tbl tr:hover td{background:#f9fafb}
   /* Mobile responsive */
-  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){
     .mobile-tab-select{display:block!important;}
     .rg-cat-tabs-desktop{display:none!important;}
@@ -108,10 +108,10 @@
     .rg-panels-row>div{flex:none!important;min-height:250px;}
   }
   /* DS card footer + Tertiary/Ghost button (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -169,7 +169,7 @@ html[data-theme="dark"] .ds-fdrawer {
 }
 .ds-fdrawer-close {
   border: 0; background: none; cursor: pointer;
-  color: var(--text-muted); padding: 5px; border-radius: 8px;
+  color: var(--text-muted); padding: 4px; border-radius: 8px;
   display: inline-flex;
   transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
 }
@@ -189,7 +189,7 @@ html[data-theme="dark"] .ds-fdrawer {
   flex: 0 0 auto;
   transition: padding var(--motion-base) var(--ease-out);
 }
-.ds-fdrawer-section:not(.is-open) { padding: 11px 0; }
+.ds-fdrawer-section:not(.is-open) { padding: 12px 0; }
 .ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .ds-fdrawer-section:last-child { border-bottom: 0; }
 .ds-fdrawer-acc-head {
@@ -200,7 +200,7 @@ html[data-theme="dark"] .ds-fdrawer {
 .ds-fdrawer-sec-title {
   font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
   color: var(--text-muted); margin: 0;
-  display: flex; align-items: center; gap: 7px;
+  display: flex; align-items: center; gap: 8px;
 }
 /* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
 .ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
@@ -216,7 +216,7 @@ html[data-theme="dark"] .ds-fdrawer {
 /* Section toolbar (Reset / Unselect all) */
 .ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; }
 .ds-fdrawer-act {
-  flex: 1; padding: 5px 8px;
+  flex: 1; padding: 4px 8px;
   border: 1px solid var(--border-default); border-radius: var(--radius-sm);
   background: var(--bg-surface);
   font: inherit; font-size: 12px; font-weight: 600; color: var(--text-secondary);
@@ -230,16 +230,16 @@ html[data-theme="dark"] .ds-fdrawer {
 .ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; }
 .ds-fdrawer-item {
   display: flex; align-items: center; gap: 8px; width: 100%;
-  text-align: left; padding: 7px 10px;
+  text-align: left; padding: 8px 12px;
   border: 0; border-radius: var(--radius-sm); background: transparent;
-  font-size: 12.5px; font-weight: 500; color: var(--text-secondary);
+  font-size: 14px; font-weight: 500; color: var(--text-secondary);
   cursor: pointer; white-space: nowrap;
 }
 .ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); }
 .ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; }
 .ds-fdrawer-foot {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 14px var(--fdrawer-pad-x);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 16px var(--fdrawer-pad-x);
   border-top: 1px solid var(--border-subtle);
   flex: 0 0 auto;
 }
@@ -254,20 +254,20 @@ html[data-theme="dark"] .ds-fdrawer {
 /* Regions filter tree (extends the DS drawer: All / main regions / sub-regions, tri-state checkboxes) */
 .rf-sec-head { cursor:default; }
 .rf-tree { display:flex; flex-direction:column; gap:2px; padding-bottom:8px; }
-.rf-row { display:flex; align-items:center; gap:10px; min-height:34px; padding:4px 8px; border-radius:6px; font-size:13px; color:var(--text-primary); }
+.rf-row { display:flex; align-items:center; gap:8px; min-height:34px; padding:4px 8px; border-radius:8px; font-size:14px; color:var(--text-primary); }
 .rf-row input { width:16px; height:16px; margin:0; accent-color:var(--brand-600,#1485c5); flex-shrink:0; cursor:pointer; }
 .rf-row--all, .rf-row--sub, .rf-check { cursor:pointer; }
 .rf-row--all:hover, .rf-row--sub:hover, .rf-row--group:hover { background:var(--bg-muted); }
 .rf-row--all { font-weight:600; }
 .rf-row--group { padding-right:2px; }
-.rf-check { display:flex; align-items:center; gap:10px; flex:1; min-width:0; font-weight:600; }
+.rf-check { display:flex; align-items:center; gap:8px; flex:1; min-width:0; font-weight:600; }
 .rf-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
-.rf-toggle { width:28px; height:28px; display:inline-grid; place-items:center; border:0; background:transparent; border-radius:6px; color:var(--text-muted); cursor:pointer; flex-shrink:0; }
+.rf-toggle { width:28px; height:28px; display:inline-grid; place-items:center; border:0; background:transparent; border-radius:8px; color:var(--text-muted); cursor:pointer; flex-shrink:0; }
 .rf-toggle:hover { background:var(--bg-surface); color:var(--text-primary); }
 .rf-toggle:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
 .rf-toggle svg { transition:transform var(--motion-fast) var(--ease-out); }
 .rf-group:not(.is-open) .rf-toggle svg { transform:rotate(-90deg); }
-.rf-sub { margin:2px 0 6px 0; padding:4px; background:var(--bg-muted); border-radius:8px; }
+.rf-sub { margin:2px 0 4px 0; padding:4px; background:var(--bg-muted); border-radius:8px; }
 .rf-sub[hidden] { display:none; }
 .rf-row--sub:hover { background:var(--bg-surface); }
 .rf-row--sub .rf-name { color:var(--brand-600,#1485c5); }
@@ -278,8 +278,8 @@ html[data-theme="dark"] .rf-row--sub .rf-name { color:var(--brand-300,#93c5fd); 
 .mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
 .mfd-n { font-size:12px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
-.mfd-result { padding:10px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
-.mfd-btn { display:inline-flex; align-items:center; border-radius:6px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid transparent; }
+.mfd-result { padding:12px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
+.mfd-btn { display:inline-flex; align-items:center; border-radius:8px; font:inherit; font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; }
 .mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
 .mfd-btn--secondary:hover { background:var(--bg-sunken); }
 .mfd-btn--primary { background:var(--brand-600,#1485c5); color:#fff; }
@@ -288,7 +288,7 @@ html[data-theme="dark"] .rf-row--sub .rf-name { color:var(--brand-300,#93c5fd); 
 /* active-filter count on the map's Filter button */
 #map-filters-btn { position:relative; }
 #map-filters-btn.is-active { color:var(--brand-600,#1485c5); }
-.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:11px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
+.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:12px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
 html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 </style>
 </head>
@@ -306,7 +306,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -776,24 +776,24 @@ function initMap() {
     const riskColor = {Low:'#16a34a',Medium:'#f97316',High:'#dc2626',Critical:'#7c3aed'}[r.risk]||'#6b7280';
     const popupHTML = `
     <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
-      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:11px 14px;display:flex;align-items:center;gap:8px">
+      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
         <span style="width:11px;height:11px;border-radius:50%;background:${r.color};flex-shrink:0;border:1.5px solid rgba(255,255,255,.5)"></span>
         <span style="font-size:14px;font-weight:700;flex:1">${r.name}</span>
       </div>
-      <div style="background:#fff;padding:14px">
-        <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-          <span style="color:#6b7280;font-size:13px">Our Exposure:</span>
-          <span style="font-weight:700;color:#111827;font-size:13px">${r.exposure}</span>
+      <div style="background:#fff;padding:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#6b7280;font-size:14px">Our Exposure:</span>
+          <span style="font-weight:700;color:#111827;font-size:14px">${r.exposure}</span>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-          <span style="color:#6b7280;font-size:13px">Assets:</span>
-          <span style="font-weight:700;color:#111827;font-size:13px">${r.assets.toLocaleString()}</span>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#6b7280;font-size:14px">Assets:</span>
+          <span style="font-weight:700;color:#111827;font-size:14px">${r.assets.toLocaleString()}</span>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:14px">
-          <span style="color:#6b7280;font-size:13px">Risk Level:</span>
-          <span style="font-weight:700;font-size:13px;color:${riskColor}">${r.risk}</span>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+          <span style="color:#6b7280;font-size:14px">Risk Level:</span>
+          <span style="font-weight:700;font-size:14px;color:${riskColor}">${r.risk}</span>
         </div>
-        <button onclick="window.__regionGo('${r.name.replace(/'/g,"\\'")}')" style="width:100%;padding:0 12px;height:32px;border:1px solid transparent;border-radius:var(--radius-md,8px);background:transparent;color:var(--brand-600,#2563eb);font-weight:500;font-size:13px;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Regional Details</button>
+        <button onclick="window.__regionGo('${r.name.replace(/'/g,"\\'")}')" style="width:100%;padding:0 12px;height:32px;border:1px solid transparent;border-radius:var(--radius-md,8px);background:transparent;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Regional Details</button>
       </div>
     </div>`;
 
@@ -823,23 +823,23 @@ function PanelMyRegions(d) {
   const CHEV = (open) => `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .15s;transform:${open?'rotate(90deg)':'rotate(0)'};flex-shrink:0"><polyline points="9 18 15 12 9 6"/></svg>`;
   return `
   <div class="info-panel" style="flex:1;min-width:0;padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div style="padding:10px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <div class="rtabs" id="rg-mytabs">
         <span class="rtab-pill is-init" id="rg-mytabs-pill"></span>
         ${[['My Monitored Regions','My Regions'],['Skytek Regions','Skytek Regions']].map(([t,short]) => `<button class="rtab" aria-selected="${regionsTab===t}" data-regions-tab="${t}"><span class="rtab-label">${short}</span></button>`).join('')}
       </div>
     </div>
     ${regionsTab === 'Skytek Regions' ? `
-    <div style="padding:6px 16px;display:flex;justify-content:space-between;font-size:11px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <span>Name</span><span>Our Exposure</span>
     </div>
     <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px;max-height:392px" class="scroll-thin">
       ${SKYTEK_REGION_LIST.map(r => `<div class="r-row" style="cursor:default">
-        <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:13px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" data-region-link="${r.name}">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
+        <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" data-region-link="${r.name}">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
         <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
       </div>`).join('')}
     </div>` : `
-    <div style="padding:6px 16px;display:flex;justify-content:space-between;font-size:11px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <span>Name</span><span style="text-align:right;margin-left:12px">Threshold / Exposure</span>
     </div>
     <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px;max-height:392px" class="scroll-thin">
@@ -850,10 +850,10 @@ function PanelMyRegions(d) {
           <span style="display:flex;align-items:center;gap:4px;flex-shrink:0">
             ${open && hasSub ? FOLDER_OPEN_SVG : FOLDER_SVG}
           </span>
-          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:13px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
+          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
           <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
         </div>
-        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:5px 0 5px 12px;border-bottom:1px solid #f9fafb;font-size:12.5px">
+        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 12px;border-bottom:1px solid #f9fafb;font-size:14px">
           <span style="width:12px;height:1px;background:#e5e7eb;flex-shrink:0"></span>
           <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
           <span style="color:#6b7280;font-variant-numeric:tabular-nums;font-size:12px">${s.exposure}</span>
@@ -872,10 +872,10 @@ function PanelRealWorldRegions(d) {
   const CHEV = (open) => `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .15s;transform:${open?'rotate(90deg)':'rotate(0)'};flex-shrink:0"><polyline points="9 18 15 12 9 6"/></svg>`;
   return `
   <div class="info-panel" style="flex:1;min-width:0;padding:0;display:flex;flex-direction:column">
-    <div style="padding:14px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:16px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <div style="font-size:14px;font-weight:700;color:#111827">Real World Regions</div>
     </div>
-    <div style="padding:6px 16px;display:flex;justify-content:space-between;font-size:11px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <span>Name</span><span>Our Exposure</span>
     </div>
     <div style="flex:1;overflow-y:auto;padding:0 16px" class="scroll-thin">
@@ -886,10 +886,10 @@ function PanelRealWorldRegions(d) {
           <span style="display:flex;align-items:center;gap:4px;flex-shrink:0">
             ${open && hasSub ? FOLDER_OPEN_SVG : FOLDER_SVG}
           </span>
-          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis">${r.name}</span>
+          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis">${r.name}</span>
           <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
         </div>
-        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:5px 0 5px 12px;border-bottom:1px solid #f9fafb;font-size:12.5px">
+        ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 12px;border-bottom:1px solid #f9fafb;font-size:14px">
           <span style="width:12px;height:1px;background:#e5e7eb;flex-shrink:0"></span>
           <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
           <span style="color:#6b7280;font-variant-numeric:tabular-nums;font-size:12px">${s.exposure}</span>
@@ -903,14 +903,14 @@ function PanelStats(d) {
   const s = d.stats[activeCovTab] || Object.values(d.stats)[0];
   return `
   <div class="info-panel" style="flex:2;min-width:0;min-height:0;padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div style="font-size:14px;font-weight:700;color:#111827;padding:14px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">${d.statsTitle}</div>
-    <div style="padding:14px 16px 0;flex-shrink:0">
-    <div style="font-size:12px;color:#6b7280;margin-bottom:5px">Date Range:</div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-      <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit;min-width:0" />
+    <div style="font-size:14px;font-weight:700;color:#111827;padding:16px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">${d.statsTitle}</div>
+    <div style="padding:16px 16px 0;flex-shrink:0">
+    <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Date Range:</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+      <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit;min-width:0" />
       <span style="font-size:12px;color:#9ca3af;flex-shrink:0">to</span>
       <div style="position:relative;flex:1;min-width:0">
-        <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+        <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
         <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
       </div>
     </div>
@@ -924,35 +924,35 @@ function PanelStats(d) {
     <!-- Stats grid -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #f3f4f6;border-radius:8px;overflow:hidden;flex-shrink:0">
       <!-- Avg row -->
-      <div style="padding:10px 12px;border-right:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:5px">Average Daily Exposure Value:</div>
-        <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px">${s.avgExp}</div>
+      <div style="padding:12px 12px;border-right:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6">
+        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Exposure Value:</div>
+        <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px">${s.avgExp}</div>
       </div>
-      <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:5px;display:flex;align-items:center;gap:3px">${INFO_SVG}Average Daily Asset Count:</div>
-        <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px">${s.avgA}</div>
+      <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6">
+        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Average Daily Asset Count:</div>
+        <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px">${s.avgA}</div>
       </div>
       <!-- High row -->
-      <div style="padding:10px 12px;border-right:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:5px">Highest Daily Exposure Value:</div>
-        <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:3px">${s.hiExp}</div>
-        <div style="font-size:11px;color:#9ca3af">${s.hiDate}</div>
+      <div style="padding:12px 12px;border-right:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6">
+        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Exposure Value:</div>
+        <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.hiExp}</div>
+        <div style="font-size:12px;color:#9ca3af">${s.hiDate}</div>
       </div>
-      <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:5px;display:flex;align-items:center;gap:3px">${INFO_SVG}Highest Daily Asset Count:</div>
-        <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:3px">${s.hiA}</div>
-        <div style="font-size:11px;color:#9ca3af">${s.hiDate}</div>
+      <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6">
+        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Highest Daily Asset Count:</div>
+        <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.hiA}</div>
+        <div style="font-size:12px;color:#9ca3af">${s.hiDate}</div>
       </div>
       <!-- Low row -->
-      <div style="padding:10px 12px;border-right:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:5px">Lowest Daily Exposure Value:</div>
-        <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:3px">${s.loExp}</div>
-        <div style="font-size:11px;color:#9ca3af">${s.loDate}</div>
+      <div style="padding:12px 12px;border-right:1px solid #f3f4f6">
+        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Exposure Value:</div>
+        <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.loExp}</div>
+        <div style="font-size:12px;color:#9ca3af">${s.loDate}</div>
       </div>
-      <div style="padding:10px 12px">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:5px;display:flex;align-items:center;gap:3px">${INFO_SVG}Lowest Daily Asset Count:</div>
-        <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:3px">${s.loA}</div>
-        <div style="font-size:11px;color:#9ca3af">${s.loDate}</div>
+      <div style="padding:12px 12px">
+        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Lowest Daily Asset Count:</div>
+        <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.loA}</div>
+        <div style="font-size:12px;color:#9ca3af">${s.loDate}</div>
       </div>
     </div>
     </div>
@@ -974,11 +974,11 @@ function MapView() {
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
   </button>
   <!-- Top-right controls -->
-  <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px;align-items:flex-end">
+  <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:4px;align-items:flex-end">
     <div style="position:relative">
       <button id="rg-layers-btn" class="rg-map-btn" title="Layers">${LAYERS_ICO}</button>
       ${rLayersOpen ? `<div style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.12);overflow:hidden;padding:4px 0;z-index:9999">
-        ${LAYER_OPTS.map(([k,l]) => `<button data-map-type="${k}" class="rg-map-type-opt" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;font-size:13px;font-weight:${rMapType===k?'600':'400'};color:${rMapType===k?'#111827':'#374151'};background:transparent;border:0;cursor:pointer;text-align:left;font-family:inherit"><span>${l}</span><span style="color:var(--brand-600,#2563eb);opacity:${rMapType===k?'1':'0'};display:flex">${CHECK_ICO}</span></button>`).join('')}
+        ${LAYER_OPTS.map(([k,l]) => `<button data-map-type="${k}" class="rg-map-type-opt" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;font-size:14px;font-weight:${rMapType===k?'600':'400'};color:${rMapType===k?'#111827':'#374151'};background:transparent;border:0;cursor:pointer;text-align:left;font-family:inherit"><span>${l}</span><span style="color:var(--brand-600,#2563eb);opacity:${rMapType===k?'1':'0'};display:flex">${CHECK_ICO}</span></button>`).join('')}
       </div>` : ''}
     </div>
     <div style="position:relative">
@@ -1040,7 +1040,7 @@ function Content() {
     <div style="padding:0 16px 16px;flex-shrink:0">
       <div style="height:500px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
         <!-- Card header with Map/List toggle -->
-        <div style="padding:10px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:10px;flex-shrink:0;background:#fff;">
+        <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px;flex-shrink:0;background:#fff;">
           <div class="rtabs rtabs--view" id="rg-viewtabs" role="tablist">
             <span class="rtab-pill is-init" id="rg-viewtabs-pill"></span>
             <button class="rtab" role="tab" aria-selected="${viewMode==='Map'}" data-view="Map"><span class="rtab-label">${MAP_ICO} Map</span></button>

@@ -8,34 +8,34 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
   /* Table */
   .rs-tbl{width:100%;border-collapse:collapse}
-  .rs-tbl th{padding:10px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);user-select:none;text-transform:uppercase;letter-spacing:.04em}
+  .rs-tbl th{padding:12px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);user-select:none;text-transform:uppercase;letter-spacing:.04em}
   .rs-tbl th.sortable{cursor:pointer}.rs-tbl th.sortable:hover{color:#6b7280}.rs-tbl th.sorted{color:var(--brand-600)}
-  .rs-tbl td{padding:13px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle}
+  .rs-tbl td{padding:12px 16px;font-size:14px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle}
   .rs-tbl tr:last-child td{border-bottom:0}
   .rs-tbl tbody tr:hover td{background:#fafafa}
   /* Action buttons */
-  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
+  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
   .actbtn:hover{background:#f3f4f6;color:#374151}
   .actbtn.danger:hover{background:#fef2f2;color:#e11d48}
   /* Pagination */
-  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:6px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
+  .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
   /* Modal */
   .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.3);z-index:500;display:flex;justify-content:flex-end;animation:fadein 150ms ease}
   @keyframes fadein{from{opacity:0}to{opacity:1}}
   .modal-panel{width:460px;max-width:100vw;background:#fff;height:100%;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(15,23,42,.14);animation:slidein 200ms cubic-bezier(.22,.1,.36,1)}
   @keyframes slidein{from{transform:translateX(100%)}to{transform:translateX(0)}}
-  .form-label{font-size:11px;font-weight:700;color:#6b7280;margin-bottom:5px;display:block;text-transform:uppercase;letter-spacing:.04em}
-  .form-input{width:100%;height:36px;padding:0 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;background:#fff}
+  .form-label{font-size:12px;font-weight:700;color:#6b7280;margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.04em}
+  .form-input{width:100%;height:36px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;background:#fff}
   .form-input:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
-  .form-select{width:100%;height:36px;padding:0 28px 0 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer}
+  .form-select{width:100%;height:36px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer}
   .form-select:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -53,7 +53,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -175,21 +175,21 @@ function renderModal() {
         <div>
           <label class="form-label">Regions</label>
           <input class="form-input" id="form-regions" type="text" placeholder="e.g. Strait of Hormuz, Gulf of Oman, Red Sea" value="${f.regions.replace(/"/g,'&quot;')}" />
-          <div style="font-size:11px;color:#9ca3af;margin-top:4px">Enter comma-separated region names.</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:4px">Enter comma-separated region names.</div>
         </div>
 
         <!-- Preview -->
         <div style="padding:12px;background:#f9fafb;border-radius:8px;border:1px solid #f3f4f6">
-          <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Preview</div>
-          <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Preview</div>
+          <div style="display:flex;align-items:center;gap:8px">
             ${rowIcon(f.type, f.color)}
-            <span style="font-size:13px;font-weight:600;color:#111827">${f.name || 'Rule Set Name'}</span>
+            <span style="font-size:14px;font-weight:600;color:#111827">${f.name || 'Rule Set Name'}</span>
           </div>
         </div>
       </div>
       <div class="shrink-0 px-6 py-4 border-t border-gray-100 flex items-center gap-3">
-        <button id="modal-cancel" style="flex:1;height:36px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">Cancel</button>
-        <button id="modal-create" style="flex:1;height:36px;border-radius:8px;border:0;background:var(--brand-600);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">Create Rule Set</button>
+        <button id="modal-cancel" style="flex:1;height:36px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:14px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">Cancel</button>
+        <button id="modal-create" style="flex:1;height:36px;border-radius:8px;border:0;background:var(--brand-600);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">Create Rule Set</button>
       </div>
     </div>
   </div>`;
@@ -207,7 +207,7 @@ function renderPage() {
   return `
   <!-- Create button row -->
   <div class="shrink-0 px-4 pt-4 pb-3 flex justify-end">
-    <button id="create-rs-btn" style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 16px;border-radius:8px;background:var(--brand-600);color:#fff;font-size:13px;font-weight:600;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">
+    <button id="create-rs-btn" style="display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 16px;border-radius:8px;background:var(--brand-600);color:#fff;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">
       ${SVG.plus} Create New Rule Set
     </button>
   </div>
@@ -224,7 +224,7 @@ function renderPage() {
           <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none;display:flex">${SVG.search}</span>
           <input id="rs-search" type="text" placeholder="Filter records"
             value="${ST.query.replace(/"/g,'&quot;')}"
-            style="height:32px;width:200px;padding:0 10px 0 30px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#111827;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s,background .15s" />
+            style="height:32px;width:200px;padding:0 12px 0 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s,background .15s" />
         </div>
       </div>
 
@@ -240,16 +240,16 @@ function renderPage() {
           </thead>
           <tbody>
             ${pageRows.length === 0 ? `
-              <tr><td colspan="3" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:13px">No rule sets match your filter.</td></tr>
+              <tr><td colspan="3" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:14px">No rule sets match your filter.</td></tr>
             ` : pageRows.map(rs => `
             <tr>
               <td>
-                <div style="display:flex;align-items:center;gap:10px">
+                <div style="display:flex;align-items:center;gap:8px">
                   ${rowIcon(rs.icon, rs.color)}
-                  <span style="font-size:13px;font-weight:600;color:#111827">${rs.name}</span>
+                  <span style="font-size:14px;font-weight:600;color:#111827">${rs.name}</span>
                 </div>
               </td>
-              <td style="color:#6b7280;font-size:13px">${rs.regions.join(', ')}</td>
+              <td style="color:#6b7280;font-size:14px">${rs.regions.join(', ')}</td>
               <td style="text-align:right">
                 <div style="display:inline-flex;align-items:center;gap:1px">
                   <button class="actbtn" title="View">${SVG.eye}</button>

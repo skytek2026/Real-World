@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
@@ -44,16 +44,16 @@
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; }
+  .ds-tab { position:relative; font:inherit; font-size:14px; font-weight:600; padding:8px 20px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"] { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2563eb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
-  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:6px; }
+  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:4px; }
   /* Detail table */
   .dt-row { display:grid; grid-template-columns:1fr 1fr 1fr; }
   .dt-row:not(:last-child) { border-bottom:1px solid #f3f4f6; }
-  .dt-cell { padding:9px 14px; }
+  .dt-cell { padding:8px 16px; }
   /* Mobile: stack cards in both top rows + collapse detail table to single column */
   @media (max-width: 767px) {
     .row1-cards, .row2-cards { grid-template-columns: 1fr !important; }
@@ -62,16 +62,16 @@
     .dt-cell { border-bottom: 1px solid #f3f4f6; }
   }
   .dt-cell:not(:last-child) { border-right:1px solid #f3f4f6; }
-  .dt-label { font-size:11px; color:#6b7280; margin-bottom:2px; }
-  .dt-value { font-size:13px; font-weight:600; color:#111827; line-height:1.3; }
+  .dt-label { font-size:12px; color:#6b7280; margin-bottom:2px; }
+  .dt-value { font-size:14px; font-weight:600; color:#111827; line-height:1.3; }
   /* Map */
   #asset-detail-map { position:absolute; inset:0; background:#0b1e2e; }
   #asset-detail-map .leaflet-top.leaflet-left { top:48px; left:2px; }
-  #asset-detail-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  #asset-detail-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   .asset-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .asset-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',sans-serif; }
   .asset-popup .leaflet-popup-tip { background:#fff; }
-  .asset-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:6px !important; }
+  .asset-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:8px !important; }
   .asset-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; line-height:30px !important; }
@@ -84,7 +84,7 @@
   #lightbox { position:fixed; inset:0; z-index:9999; background:rgba(15,23,42,.92); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s ease; }
   #lightbox.is-open { opacity:1; pointer-events:all; }
   #lightbox-img { max-width:88vw; max-height:82vh; border-radius:8px; object-fit:contain; box-shadow:0 24px 64px rgba(0,0,0,.6); display:block; transition:opacity .15s ease; }
-  #lightbox-caption { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); color:#fff; font-size:13px; font-weight:600; letter-spacing:.03em; text-shadow:0 1px 4px rgba(0,0,0,.6); white-space:nowrap; }
+  #lightbox-caption { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); color:#fff; font-size:14px; font-weight:600; letter-spacing:.03em; text-shadow:0 1px 4px rgba(0,0,0,.6); white-space:nowrap; }
   #lightbox-counter { position:absolute; top:20px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.6); font-size:12px; font-weight:600; letter-spacing:.05em; }
   .lb-btn { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .15s; }
   .lb-btn:hover { background:rgba(255,255,255,.25); }
@@ -93,10 +93,10 @@
   #lb-close { position:absolute; top:16px; right:20px; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .15s; }
   #lb-close:hover { background:rgba(255,255,255,.25); }adding:8px; }
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -116,7 +116,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -160,7 +160,7 @@ const COUNTRY_CC = {
 function flagImg(country) {
   const cc = COUNTRY_CC[country];
   if (!cc) return '';
-  return `<img src="flags/${cc}.svg" width="16" height="12" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px;flex-shrink:0;" alt="${country}" />`;
+  return `<img src="flags/${cc}.svg" width="16" height="12" style="display:inline-block;border-radius:4px;vertical-align:middle;margin-right:4px;flex-shrink:0;" alt="${country}" />`;
 }
 
 const DETAIL_ROWS = [
@@ -222,9 +222,9 @@ function wireDonutTooltips() {
       'background:#111827',
       'color:#fff',
       'font-family:Inter,sans-serif',
-      'font-size:13px',
+      'font-size:14px',
       'font-weight:600',
-      'padding:8px 14px',
+      'padding:8px 16px',
       'border-radius:8px',
       'box-shadow:0 4px 14px rgba(15,23,42,.35)',
       'white-space:nowrap',
@@ -274,10 +274,10 @@ function Content() {
         </div>
         <div class="p-4 flex flex-col gap-4">
           <div class="rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-center">
-            <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Insured Value</div>
+            <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Insured Value</div>
             <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$3.5B</div>
           </div>
-          <div class="flex flex-col gap-2.5 text-[12px]">
+          <div class="flex flex-col gap-2 text-[12px]">
             <div class="flex items-baseline justify-between gap-2">
               <span class="text-ink-500 shrink-0">Coverage Period:</span>
               <span class="font-semibold text-brand-600 text-right tabular-nums">2024-03-01 / 2026-03-01</span>
@@ -288,13 +288,13 @@ function Content() {
             </div>
           </div>
           <div>
-            <div class="text-[11px] text-ink-500 mb-2 font-medium">Portfolios:</div>
+            <div class="text-xs text-ink-500 mb-2 font-medium">Portfolios:</div>
             <div class="flex flex-col gap-2">
-              <a href="#" class="text-[12px] text-brand-600 font-medium flex items-center gap-1.5 hover:underline">
+              <a href="#" class="text-[12px] text-brand-600 font-medium flex items-center gap-1 hover:underline">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
                 Offshore Energy Assets
               </a>
-              <a href="#" class="text-[12px] text-brand-600 font-medium flex items-center gap-1.5 hover:underline">
+              <a href="#" class="text-[12px] text-brand-600 font-medium flex items-center gap-1 hover:underline">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
                 Clarkson Portfolio
               </a>
@@ -335,9 +335,9 @@ function Content() {
           <!-- Donut (SVG with per-segment tooltips) -->
           ${donutSVG(140)}
           <!-- Inline centered legend -->
-          <div class="flex flex-wrap justify-center gap-x-3 gap-y-1.5 text-[11px] text-ink-700">
+          <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-xs text-ink-700">
             ${OWNERSHIP.map(o => `
-              <span class="inline-flex items-center gap-1.5 whitespace-nowrap" title="${o.label} (${o.pct}%)">
+              <span class="inline-flex items-center gap-1 whitespace-nowrap" title="${o.label} (${o.pct}%)">
                 <span style="width:8px;height:8px;border-radius:50%;background:${o.color};flex-shrink:0;"></span>
                 <span>${o.label} <span class="text-ink-500 tabular-nums">(${o.pct}%)</span></span>
               </span>`).join('')}
@@ -394,7 +394,7 @@ function Content() {
             ].map(([src, lbl], i) => `
               <div data-lightbox-idx="${i}" style="border-radius:8px;overflow:hidden;position:relative;height:130px;cursor:pointer;" class="ref-thumb">
                 <img src="${src}" alt="${lbl}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s ease;" />
-                <div style="position:absolute;bottom:0;left:0;right:0;padding:4px 7px;background:linear-gradient(transparent,rgba(15,23,42,.55));font-size:11px;font-weight:600;color:#fff;letter-spacing:.03em;">${lbl}</div>
+                <div style="position:absolute;bottom:0;left:0;right:0;padding:4px 8px;background:linear-gradient(transparent,rgba(15,23,42,.55));font-size:12px;font-weight:600;color:#fff;letter-spacing:.03em;">${lbl}</div>
               </div>`).join('')}
           </div>
         </div>
@@ -432,14 +432,14 @@ function buildAssetPopupHTML(m) {
   const statusColor = m.status === 'Operational' ? '#10b981' :
                       m.status === 'Under Maintenance' ? '#f59e0b' : '#9ca3af';
   const row = (label, val, color) =>
-    `<div><div style="font-size:11px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:13px;font-weight:600;color:${color||'#111827'};">${val ?? '—'}</div></div>`;
+    `<div><div style="font-size:12px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:14px;font-weight:600;color:${color||'#111827'};">${val ?? '—'}</div></div>`;
   const subtitle = m.assetType || m.type || '';
   return `
     <div style="background:var(--brand-600,#2563eb);padding:12px 36px 12px 16px;">
-      <div style="color:#fff;font-weight:700;font-size:13px;line-height:1.35;">${m.fullName || m.name || ''}</div>
-      <div style="color:rgba(255,255,255,.75);font-size:11px;font-weight:500;margin-top:2px;">${subtitle}</div>
+      <div style="color:#fff;font-weight:700;font-size:14px;line-height:1.35;">${m.fullName || m.name || ''}</div>
+      <div style="color:rgba(255,255,255,.75);font-size:12px;font-weight:500;margin-top:2px;">${subtitle}</div>
     </div>
-    <div style="padding:14px 16px 6px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;">
+    <div style="padding:16px 16px 8px;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;">
       ${row('Operator', m.operator)}
       ${row('Country', m.country)}
       ${row('Coordinates', m.coords)}
@@ -447,7 +447,7 @@ function buildAssetPopupHTML(m) {
       ${row('Status', m.status, statusColor)}
       ${row('Production', m.production)}
     </div>
-    <div style="padding:4px 16px 14px;display:flex;flex-direction:column;gap:8px;">
+    <div style="padding:4px 16px 16px;display:flex;flex-direction:column;gap:8px;">
       ${row('Commissioned', m.commissioned)}
       ${row('Policy Type', m.policyType)}
       ${row('Field', m.field)}

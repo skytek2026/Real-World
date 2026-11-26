@@ -20,7 +20,7 @@
 .s-cell {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   font-size: 12px;
   font-weight: 500;
   white-space: nowrap;
@@ -49,8 +49,8 @@
   background: var(--white);
   border: 1.5px solid var(--unverif-500);
   color: var(--unverif-700);
-  font-size: 11px;
-  font-weight: 800;
+  font-size: 12px;
+  font-weight: 700;
   line-height: 1;
   width: 12px; height: 12px;
 }
@@ -68,13 +68,13 @@
     );
   border: 1px solid var(--unverif-300);
   border-radius: 9999px;
-  padding: 2px 8px 2px 6px;
+  padding: 2px 8px 2px 8px;
 }
 .s-cell--unverif-stripe .s-dot {
   background: var(--white);
   border: 1.5px solid var(--unverif-500);
   color: var(--unverif-700);
-  font-size: 11px; font-weight: 800; line-height: 1;
+  font-size: 12px; font-weight: 700; line-height: 1;
   width: 12px; height: 12px;
 }
 .s-cell--unverif-stripe .s-dot::after { content: "?"; }
@@ -105,15 +105,15 @@
   width: 14px; height: 14px;
   border-radius: 4px;
   color: var(--slate-600);
-  font-size: 11px; font-weight: 700;
+  font-size: 12px; font-weight: 700;
   line-height: 1;
 }
-.s-cell--unverif-na .s-dot::after { content: "N/A"; font-size: 7.5px; letter-spacing: -0.02em; }
+.s-cell--unverif-na .s-dot::after { content: "N/A"; font-size: 12px; letter-spacing: -0.02em; }
 .s-cell--unverif-na { color: var(--slate-600); }
 .s-cell--unverif-na .warn-tag {
   display: inline-flex; align-items: center; gap: 2px;
   color: var(--unverif-700);
-  font-size: 11px; font-weight: 600;
+  font-size: 12px; font-weight: 600;
 }
 
 /* ——— Row-level affordance for unverifiable subjects ——— */
@@ -161,7 +161,7 @@ tr.row--unverif > td:first-child::before {
   width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--unverif-500);
-  margin-left: 6px;
+  margin-left: 4px;
   vertical-align: middle;
   box-shadow: 0 0 0 2px var(--white);
 }
@@ -171,10 +171,10 @@ tr.row--unverif > td:first-child::before {
   background: var(--unverif-050);
   border: 1px dashed var(--unverif-300);
   color: var(--unverif-700);
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: var(--radius-md);
   font-size: 12px;
-  display: flex; gap: 6px; align-items: flex-start;
+  display: flex; gap: 4px; align-items: flex-start;
   line-height: 1.4;
 }
 
@@ -183,11 +183,11 @@ tr.row--unverif > td:first-child::before {
   position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 6px;
+  margin-top: 4px;
   width: 280px;
   background: var(--slate-900);
   color: var(--white);
-  padding: 10px 12px;
+  padding: 12px 12px;
   border-radius: var(--radius-md);
   font-size: 12px;
   line-height: 1.45;
@@ -217,7 +217,7 @@ tr.row--unverif > td:first-child::before {
   font-weight: 600;
   color: var(--white);
   margin-bottom: 4px;
-  display: flex; align-items: center; gap: 6px;
+  display: flex; align-items: center; gap: 4px;
 }
 
 /* Compact reuse */
@@ -234,7 +234,7 @@ tr.row--unverif > td:first-child::before {
 }
 .mock-frame__chrome {
   display: flex; align-items: center; gap: 8px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   background: #2d6cdf;
   color: var(--white);
   font-size: 12px;
@@ -243,7 +243,7 @@ tr.row--unverif > td:first-child::before {
   flex: 1;
   background: rgba(255,255,255,0.18);
   border-radius: var(--radius-sm);
-  padding: 4px 10px;
+  padding: 4px 12px;
   font-family: var(--font-mono);
   font-size: 12px;
   color: rgba(255,255,255,0.92);
@@ -252,13 +252,13 @@ tr.row--unverif > td:first-child::before {
   display: flex;
   background: var(--white);
   border-bottom: 1px solid var(--border-default);
-  padding: 0 14px;
+  padding: 0 16px;
   gap: 0;
 }
 .mock-tab {
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 500;
-  padding: 10px 14px;
+  padding: 12px 16px;
   background: transparent;
   border: 0;
   border-bottom: 2px solid transparent;
@@ -276,7 +276,7 @@ tr.row--unverif > td:first-child::before {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 13px;
+  font-size: 14px;
 }
 .compliance-table th {
   text-align: left;
@@ -285,13 +285,13 @@ tr.row--unverif > td:first-child::before {
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border-default);
   background: var(--slate-50);
 }
 .compliance-table th.center { text-align: center; }
 .compliance-table td {
-  padding: 12px 14px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border-subtle);
   vertical-align: middle;
 }
@@ -300,7 +300,7 @@ tr.row--unverif > td:first-child::before {
 .compliance-table .rel {
   font-weight: 500;
   color: var(--text-primary);
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 4px;
 }
 .compliance-table .rel .ico {
   color: var(--text-muted);
@@ -327,7 +327,7 @@ tr.row--unverif > td:first-child::before {
   overflow: hidden;
 }
 .audit-pane__head {
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--border-subtle);
   display: flex; align-items: center; gap: 8px;
   font-size: 12px;
@@ -344,10 +344,10 @@ tr.row--unverif > td:first-child::before {
   border-bottom-color: var(--success-100);
 }
 .audit-pane__pill {
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 2px 6px;
+  padding: 2px 8px;
   border-radius: var(--radius-pill);
   background: rgba(255,255,255,0.6);
 }
@@ -366,7 +366,7 @@ tr.row--unverif > td:first-child::before {
   color: var(--brand-500);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .page-head h1 {
   font-family: var(--font-display);
@@ -392,17 +392,17 @@ tr.row--unverif > td:first-child::before {
   letter-spacing: -0.01em;
 }
 .section-block .lead {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-secondary);
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   max-width: 720px;
 }
 
 /* Diff list */
-.diff-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 6px; }
+.diff-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 4px; }
 .diff-list li {
-  font-size: 13px;
-  padding: 6px 10px;
+  font-size: 14px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
   background: var(--slate-50);
   display: flex; gap: 8px;
@@ -416,7 +416,7 @@ tr.row--unverif > td:first-child::before {
 /* small group gauge / overall card mini-display */
 .mini-gauge {
   display: flex; flex-direction: column; gap: 8px;
-  padding: 14px;
+  padding: 16px;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   background: var(--white);

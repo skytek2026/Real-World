@@ -9,21 +9,21 @@
 .rw-modal { background:#fff; border-radius:8px; box-shadow:0 20px 50px rgba(15,23,42,.25); width:100%; max-width:980px; max-height:calc(100vh - 48px); display:flex; flex-direction:column; overflow:hidden; transform:translateY(8px) scale(.99); animation:rw-modal-rise .14s cubic-bezier(.2,.8,.2,1) forwards; }
 @keyframes rw-modal-rise { to { transform:translateY(0) scale(1); } }
 
-.rw-modal-header        { padding:14px 18px; border-bottom:1px solid #e5e7eb; }
+.rw-modal-header        { padding:16px 20px; border-bottom:1px solid #e5e7eb; }
 .rw-modal-header.has-close { display:flex; align-items:center; justify-content:space-between; gap:12px; }
 .rw-modal-title         { font-size:14px; font-weight:700; color:#111827; font-family:'Exo','Inter',sans-serif; letter-spacing:.01em; }
 .rw-modal-body          { padding:20px 24px; overflow-y:auto; flex:1; }
-.rw-modal-section-title { font-size:13px; font-weight:700; color:#111827; padding-top:14px; margin-top:14px; border-top:1px solid #e5e7eb; }
-.rw-modal-footer        { padding:12px 18px; border-top:1px solid #e5e7eb; background:#fff; display:flex; justify-content:flex-end; gap:8px; }
+.rw-modal-section-title { font-size:14px; font-weight:700; color:#111827; padding-top:16px; margin-top:12px; border-top:1px solid #e5e7eb; }
+.rw-modal-footer        { padding:12px 20px; border-top:1px solid #e5e7eb; background:#fff; display:flex; justify-content:flex-end; gap:8px; }
 
-.rw-modal-row    { display:grid; grid-template-columns:160px 1fr; gap:24px; align-items:start; padding:10px 0; }
-.rw-modal-label  { font-size:13px; color:#4b5563; padding-top:8px; }
+.rw-modal-row    { display:grid; grid-template-columns:160px 1fr; gap:24px; align-items:start; padding:12px 0; }
+.rw-modal-label  { font-size:14px; color:#4b5563; padding-top:8px; }
 
 .rw-modal-input,
 .rw-modal-select,
 .rw-modal-textarea {
-  width:100%; border:1px solid #d1d5db; border-radius:4px; padding:7px 10px;
-  font:inherit; font-size:13px; color:#111827; background:#fff;
+  width:100%; border:1px solid #d1d5db; border-radius:4px; padding:8px 12px;
+  font:inherit; font-size:14px; color:#111827; background:#fff;
   transition:border-color 120ms, box-shadow 120ms;
 }
 .rw-modal-input:focus,
@@ -42,7 +42,7 @@
 .rw-modal-select.is-token { color:var(--brand-600,#2563eb); border-color:#dbeafe; background-color:#f5fbff; }
 .rw-modal-textarea { resize:vertical; min-height:160px; font-family:'Inter',system-ui,sans-serif; }
 
-.rw-modal-check-row { display:flex; align-items:center; gap:10px; padding:6px 0; }
+.rw-modal-check-row { display:flex; align-items:center; gap:8px; padding:8px 0; }
 .rw-modal-check-row input[type="checkbox"] {
   appearance:none; -webkit-appearance:none;
   width:18px; height:18px; border:1px solid #d1d5db; border-radius:4px; background:#fff;
@@ -54,9 +54,9 @@
   content:''; position:absolute; left:5px; top:1px; width:5px; height:10px;
   border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);
 }
-.rw-modal-check-row label { font-size:13px; color:var(--brand-600,#2563eb); cursor:pointer; }
+.rw-modal-check-row label { font-size:14px; color:var(--brand-600,#2563eb); cursor:pointer; }
 
-.rw-modal-btn          { font:inherit; font-size:13px; font-weight:500; padding:7px 18px; border-radius:4px; cursor:pointer; transition:background 120ms, border-color 120ms, color 120ms; }
+.rw-modal-btn          { font:inherit; font-size:14px; font-weight:500; padding:8px 20px; border-radius:4px; cursor:pointer; transition:background 120ms, border-color 120ms, color 120ms; }
 .rw-modal-btn-cancel   { background:#fff; color:var(--brand-600,#2563eb); border:1px solid var(--brand-300,#93c5fd); }
 .rw-modal-btn-cancel:hover { background:#f0f7ff; }
 .rw-modal-btn-cancel:active { background:var(--brand-100,#dbeafe); border-color:var(--brand-400,#60a5fa); }
@@ -75,7 +75,7 @@
 .rw-modal-close-btn svg   { width:11px; height:11px; }
 
 @media (max-width: 640px) {
-  .rw-modal-row   { grid-template-columns:1fr; gap:6px; }
+  .rw-modal-row   { grid-template-columns:1fr; gap:4px; }
   .rw-modal-label { padding-top:0; }
   .rw-modal-body  { padding:16px; }
 }

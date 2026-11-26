@@ -17,7 +17,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -27,22 +27,22 @@
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#374151!important;line-height:30px!important}
   .leaflet-bar a:hover{background:#f3f4f6!important}
-  .cnr-label{font-size:13px;font-weight:500;color:#374151}
-  .cnr-input{width:100%;height:34px;border:1px solid #e5e7eb;border-radius:8px;padding:0 10px;font-size:13px;color:#111827;background:#fff;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s}
+  .cnr-label{font-size:14px;font-weight:500;color:#374151}
+  .cnr-input{width:100%;height:34px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:14px;color:#111827;background:#fff;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s}
   .cnr-input:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
   .cnr-input::placeholder{color:#9ca3af}
-  select.cnr-input{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:30px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center}
-  .cnr-tab{height:30px;padding:0 14px;border-radius:9999px;border:0;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;color:#6b7280;background:transparent;transition:background .15s,color .15s}
+  select.cnr-input{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:32px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center}
+  .cnr-tab{height:30px;padding:0 16px;border-radius:9999px;border:0;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;color:#6b7280;background:transparent;transition:background .15s,color .15s}
   .cnr-tab:hover:not(.active){color:#111827}
   .cnr-tab.active{background:var(--brand-600,#2563eb);color:#fff}
-  .cnr-check{display:flex;align-items:center;gap:9px;font-size:13px;color:#374151;cursor:pointer;padding:5px 0}
+  .cnr-check{display:flex;align-items:center;gap:8px;font-size:14px;color:#374151;cursor:pointer;padding:4px 0}
   .cnr-check input{width:15px;height:15px;accent-color:#2563eb;cursor:pointer;flex-shrink:0}
-  .cnr-btn{height:34px;padding:0 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s;display:inline-flex;align-items:center;gap:6px}
+  .cnr-btn{height:34px;padding:0 16px;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s,color .15s,border-color .15s;display:inline-flex;align-items:center;gap:4px}
   .cnr-btn-primary{background:var(--brand-600,#2563eb);color:#fff;border:1px solid var(--brand-600,#2563eb)}
   .cnr-btn-primary:hover{background:var(--brand-700,#1d4ed8)}
   .cnr-btn-ghost{background:#fff;color:#374151;border:1px solid #e5e7eb}
   .cnr-btn-ghost:hover{background:#f9fafb}
-  .cnr-chip{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 6px 0 10px;border-radius:9999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:600}
+  .cnr-chip{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px 0 12px;border-radius:9999px;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:600}
   .cnr-chip button{border:0;background:transparent;cursor:pointer;color:#60a5fa;display:flex;padding:2px;border-radius:9999px}
   .cnr-chip button:hover{color:#1d4ed8;background:#dbeafe}
   .cnr-map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer}
@@ -69,7 +69,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script type="text/babel">
 /* CreateNewRegion screen (previously CreateNewRegion.tsx; inlined so the page also works when opened from disk) */
 /* Add Region — create a monitored region by drawing on the map or adding HRA / Port / Country / Sea coverage. */
@@ -114,7 +114,7 @@ function icon(name, size) {
 function Field({ label, children, hint }) {
   return (
     <div className="grid items-center gap-3" style={{gridTemplateColumns:'190px minmax(0,1fr)'}}>
-      <label className="cnr-label">{label}{hint ? <span className="block text-[11px] font-normal text-ink-400 mt-0.5">{hint}</span> : null}</label>
+      <label className="cnr-label">{label}{hint ? <span className="block text-xs font-normal text-ink-400 mt-0.5">{hint}</span> : null}</label>
       <div className="min-w-0">{children}</div>
     </div>
   );
@@ -187,7 +187,7 @@ function AddRegion() {
         <div className="cnr-cols grid" style={{gridTemplateColumns:'minmax(0,1fr) minmax(0,1fr)'}}>
           {/* Form column */}
           <div className="p-4 flex flex-col gap-3 border-r border-ink-100">
-          <div className="flex items-center gap-3 px-3 py-2.5 flex-wrap rounded-lg" style={{background:quotaTone.bg,border:'1px solid '+quotaTone.bd}}>
+          <div className="flex items-center gap-3 px-3 py-3 flex-wrap rounded-lg" style={{background:quotaTone.bg,border:'1px solid '+quotaTone.bd}}>
             <span style={{width:'30px',height:'30px',borderRadius:'8px',background:'#fff',border:'1px solid '+quotaTone.bd,color:quotaTone.dot,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
               {icon(atLimit ? 'CircleAlert' : nearLimit ? 'TriangleAlert' : 'Map', 16)}
             </span>
@@ -202,13 +202,13 @@ function AddRegion() {
                   : 'You can create ' + (remaining === 1 ? '1 more region' : remaining + ' more regions') + ' on this plan. This one will be number ' + (used + 1) + '.'}
               </div>
             </div>
-            <div className="ml-auto flex items-center gap-2.5">
+            <div className="ml-auto flex items-center gap-2">
               <div className="flex items-center gap-[3px]" title={used + ' of ' + REGION_LIMIT + ' custom regions used'}>
                 {Array.from({length:REGION_LIMIT}).map((_,i) => (
                   <span key={i} style={{width:'9px',height:'18px',borderRadius:'2px',background:i < used ? quotaTone.dot : '#fff',border:'1px solid '+(i < used ? quotaTone.dot : quotaTone.bd)}}></span>
                 ))}
               </div>
-              <span className="text-lg font-extrabold whitespace-nowrap" style={{color:quotaTone.fg,fontVariantNumeric:'tabular-nums'}}>{used}<span className="text-sm font-bold" style={{opacity:.6}}>/{REGION_LIMIT}</span></span>
+              <span className="text-lg font-bold whitespace-nowrap" style={{color:quotaTone.fg,fontVariantNumeric:'tabular-nums'}}>{used}<span className="text-sm font-bold" style={{opacity:.6}}>/{REGION_LIMIT}</span></span>
             </div>
           </div>
             <Field label="Name:">
@@ -233,7 +233,7 @@ function AddRegion() {
 
             {/* Coverage builder */}
             <div className="mt-1 rounded-lg border border-ink-200 overflow-hidden">
-              <div className="px-3 py-2.5 border-b border-ink-200 bg-ink-50 flex items-center gap-2 flex-wrap">
+              <div className="px-3 py-3 border-b border-ink-200 bg-ink-50 flex items-center gap-2 flex-wrap">
                 <div className="inline-flex gap-1 p-1 rounded-full bg-white border border-ink-200">
                   {COVERAGE_TABS.map(t => (
                     <button key={t} className={'cnr-tab' + (tab===t?' active':'')} onClick={()=>setTab(t)}>{t}</button>
@@ -269,10 +269,10 @@ function AddRegion() {
                   {added.length ? <span className="text-xs text-ink-500">{added.length} area{added.length>1?'s':''} added</span> : null}
                 </div>
                 {added.length ? (
-                  <div className="flex flex-wrap gap-1.5 pt-1 border-t border-ink-100">
+                  <div className="flex flex-wrap gap-1 pt-1 border-t border-ink-100">
                     {added.map((a,i) => (
                       <span key={i} className="cnr-chip" title={a.detail || a.kind}>
-                        <span className="text-[11px] font-bold uppercase tracking-wide text-brand-400">{a.kind}</span>{a.value}
+                        <span className="text-xs font-bold uppercase tracking-wide text-brand-400">{a.kind}</span>{a.value}
                         <button onClick={()=>setAdded(list=>list.filter((_,j)=>j!==i))} aria-label={'Remove '+a.value}>{icon('X',12)}</button>
                       </span>
                     ))}
@@ -312,7 +312,7 @@ function AddRegion() {
               </div>
             </div>
             {tool ? (
-              <div className="absolute left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-ink-900/85 text-white text-[12px] font-medium" style={{bottom:'14px',zIndex:400}}>
+              <div className="absolute left-1/2 -translate-x-1/2 px-3 py-2 rounded-full bg-ink-900/85 text-white text-[12px] font-medium" style={{bottom:'14px',zIndex:400}}>
                 {tool === 'erase' ? 'Click a shape to remove it' : 'Click the map to place points'}
               </div>
             ) : null}

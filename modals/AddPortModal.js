@@ -21,11 +21,11 @@
     s.id = 'rw-modal-addport-style';
     s.textContent = `
       .rw-ap-grid { display:grid; grid-template-columns:140px 1fr; gap:8px 16px; align-items:center; padding:4px 0; }
-      .rw-ap-label { font-size:13px; color:#374151; }
+      .rw-ap-label { font-size:14px; color:#374151; }
       .rw-ap-input,
       .rw-ap-select {
-        width:100%; border:1px solid #d1d5db; border-radius:4px; padding:6px 10px;
-        font:inherit; font-size:13px; color:#111827; background:#fff;
+        width:100%; border:1px solid #d1d5db; border-radius:4px; padding:8px 12px;
+        font:inherit; font-size:14px; color:#111827; background:#fff;
         transition:border-color 120ms, box-shadow 120ms;
       }
       .rw-ap-input:focus,
@@ -50,7 +50,7 @@
       .rw-ap-multi-trigger {
         width:100%; display:flex; align-items:center; justify-content:space-between; gap:8px;
         border:1px solid #d1d5db; border-radius:9999px; background:#fff;
-        padding:6px 12px 6px 14px; font:inherit; font-size:13px; color:#111827; cursor:pointer;
+        padding:8px 12px 8px 16px; font:inherit; font-size:14px; color:#111827; cursor:pointer;
         transition:border-color 120ms, box-shadow 120ms; min-height:34px;
       }
       .rw-ap-multi-trigger:focus { outline:none; border-color:var(--brand-400,#60a5fa); box-shadow:0 0 0 3px rgba(37,99,235,.10); }
@@ -62,22 +62,22 @@
         box-shadow:0 8px 24px rgba(15,23,42,.12); padding:4px 0; max-height:260px; overflow-y:auto;
       }
       .rw-ap-multi-row {
-        display:flex; align-items:center; gap:10px;
-        padding:8px 12px; cursor:pointer; font-size:13px; color:#374151;
+        display:flex; align-items:center; gap:8px;
+        padding:8px 12px; cursor:pointer; font-size:14px; color:#374151;
       }
       .rw-ap-multi-row:hover { background:#f3f4f6; }
       .rw-ap-twocol { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap:20px; }
       .rw-ap-map { width:100%; min-height:420px; height:100%; border:1px solid #e5e7eb; border-radius:8px; background:#e0ebe9; overflow:hidden; }
       .rw-ap-map .leaflet-top.leaflet-left { top:6px !important; left:6px !important; }
       .rw-ap-map-wrap { position:relative; width:100%; height:100%; min-height:420px; }
-      .rw-ap-layers-btn { position:absolute; top:6px; right:6px; z-index:500; width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:6px; color:#374151; box-shadow:0 1px 2px rgba(15,23,42,.08); cursor:pointer; }
+      .rw-ap-layers-btn { position:absolute; top:6px; right:6px; z-index:500; width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgba(15,23,42,.08); cursor:pointer; }
       .rw-ap-layers-btn:hover { background:#f3f4f6; }
       .rw-ap-layers-menu { position:absolute; top:6px; right:44px; z-index:500; width:160px; background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:0 8px 24px rgba(15,23,42,.12); padding:4px 0; }
       .rw-ap-layers-menu.hidden { display:none; }
-      .rw-ap-layer-opt { width:100%; display:flex; align-items:center; justify-content:space-between; padding:8px 12px; font-size:13px; color:#374151; background:transparent; border:0; cursor:pointer; text-align:left; }
+      .rw-ap-layer-opt { width:100%; display:flex; align-items:center; justify-content:space-between; padding:8px 12px; font-size:14px; color:#374151; background:transparent; border:0; cursor:pointer; text-align:left; }
       .rw-ap-layer-opt:hover { background:#f3f4f6; }
       .rw-ap-layer-opt[aria-selected="true"] { color:var(--brand-600,#2563eb); font-weight:600; }
-      .rw-ap-map .leaflet-bar { margin:0 !important; border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:6px !important; overflow:hidden; }
+      .rw-ap-map .leaflet-bar { margin:0 !important; border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
       @media (max-width: 768px) {
         .rw-ap-twocol { grid-template-columns: 1fr; }
         .rw-ap-map { min-height:280px; }

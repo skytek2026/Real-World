@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script>
   tailwind.config = {
     theme: { extend: {
@@ -44,7 +44,7 @@
   .pf-pane.is-on { visibility:visible; }
   .pg-scroll { flex:1 1 0; height:0; min-height:0; overflow:auto; }
   .pg-summary { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; text-align:center; background:var(--brand-50,#eff6ff); border:1px solid var(--brand-100,#dbeafe); border-radius:8px; padding:12px 16px; }
-  .pg-sum-l { font-size:11px; font-weight:500; color:#6b7280; margin-bottom:4px; }
+  .pg-sum-l { font-size:12px; font-weight:500; color:#6b7280; margin-bottom:4px; }
   .pg-sum-v { font-size:20px; font-weight:700; color:#111827; font-variant-numeric:tabular-nums; letter-spacing:-.02em; line-height:1; }
   .pg-sum-div { width:1px; height:28px; background:var(--brand-100,#dbeafe); }
   /* Dark theme: same tint/border the shared chrome gives the other metric strips */
@@ -52,17 +52,17 @@
   html[data-theme="dark"] .pg-sum-div { background:#2a374d; }
   .pg-table { width:100%; border-collapse:collapse; font-size:12px; }
   .pg-table thead th { position:sticky; top:0; z-index:1; background:#fff; border-bottom:1px solid #e5e7eb; text-align:left; padding:0; }
-  .pg-table td { padding:9px 12px; border-bottom:1px solid #f3f4f6; color:#374151; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .pg-table td { padding:8px 12px; border-bottom:1px solid #f3f4f6; color:#374151; white-space:nowrap; font-variant-numeric:tabular-nums; }
   .pg-table tbody tr:hover td { background:#f9fafb; }
-  .pg-table tr.pg-child td:first-child { padding-left:34px; }
+  .pg-table tr.pg-child td:first-child { padding-left:36px; }
   .pg-table tr.pg-child td { background:#fbfcfe; }
-  .pg-name { display:inline-flex; align-items:center; gap:6px; min-width:0; background:none; border:0; padding:0; font:inherit; color:var(--brand-600,#1485c5); cursor:pointer; text-decoration:none; text-align:left; }
+  .pg-name { display:inline-flex; align-items:center; gap:4px; min-width:0; background:none; border:0; padding:0; font:inherit; color:var(--brand-600,#1485c5); cursor:pointer; text-decoration:none; text-align:left; }
   .pg-name:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
   .pg-name:focus-visible, .ds-th-sort:focus-visible { outline:0; border-radius:4px; box-shadow:0 0 0 3px rgba(46,134,192,.32); }
   .pg-name svg { flex-shrink:0; }
   .pg-foot-btn { color:var(--brand-600,#1485c5); background:none; border:0; padding:0; cursor:pointer; }
   .pg-foot-btn[disabled] { color:#9ca3af; cursor:not-allowed; }
-  .pg-table .ds-th-sort { width:100%; display:inline-flex; align-items:center; gap:6px; padding:9px 12px; background:none; border:0; font:inherit; font-size:11px; font-weight:600; letter-spacing:.02em; color:#6b7280; cursor:pointer; white-space:nowrap; transition:color 120ms ease, background 120ms ease; }
+  .pg-table .ds-th-sort { width:100%; display:inline-flex; align-items:center; gap:4px; padding:8px 12px; background:none; border:0; font:inherit; font-size:12px; font-weight:600; letter-spacing:.02em; color:#6b7280; cursor:pointer; white-space:nowrap; transition:color 120ms ease, background 120ms ease; }
   .pg-table .ds-th-sort:hover { color:#4b5563; background:#f3f4f6; }
   .pg-table .ds-th-sort .ds-sort-ind, .pg-table .ds-th-sort > svg { display:inline-flex; flex-shrink:0; }
   .pg-table .ds-th--active .ds-th-sort { color:#111827; }
@@ -72,7 +72,7 @@
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(239,68,68,.55);} 70%{box-shadow:0 0 0 10px rgba(239,68,68,0);} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0);} }
   /* Pill tabs */
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
-  .ds-tab  { position:relative; font:inherit; font-size:12px; font-weight:600; padding:6px 14px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+  .ds-tab  { position:relative; font:inherit; font-size:12px; font-weight:600; padding:8px 16px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"] { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:var(--brand-600,#2563eb); border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transition:transform 300ms cubic-bezier(.34,1.2,.64,1), width 300ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
@@ -80,24 +80,24 @@
   .ds-tab-label { position:relative; z-index:1; }
   /* Analysis tabs (flat row style) */
   .atab-row { display:flex; gap:0; border-bottom:2px solid #e5e7eb; }
-  .atab { padding:9px 16px; font-size:12.5px; font-weight:600; color:#6b7280; cursor:pointer; border:0; background:transparent; display:inline-flex; align-items:center; gap:6px; position:relative; white-space:nowrap; }
+  .atab { padding:8px 16px; font-size:14px; font-weight:600; color:#6b7280; cursor:pointer; border:0; background:transparent; display:inline-flex; align-items:center; gap:4px; position:relative; white-space:nowrap; }
   .atab.active { color:var(--brand-600,#2563eb); }
   .atab.active::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:2px; background:var(--brand-600,#2563eb); border-radius:2px 2px 0 0; }
   .atab:hover:not(.active) { color:#374151; }
   /* PSC stat boxes */
   .psc-box { background:#fff; border:1px solid #e5e7eb; border-radius:8px; overflow:hidden; }
-  .psc-head { background:var(--brand-600,#2563eb); color:#fff; text-align:center; font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:13px; padding:9px 12px; letter-spacing:.03em; }
+  .psc-head { background:var(--brand-600,#2563eb); color:#fff; text-align:center; font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; padding:8px 12px; letter-spacing:.03em; }
   .psc-subhead { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); }
-  .psc-subhead span { padding:6px 10px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-align:center; text-transform:uppercase; letter-spacing:.04em; }
+  .psc-subhead span { padding:8px 12px; font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); text-align:center; text-transform:uppercase; letter-spacing:.04em; }
   .psc-subhead span:first-child { text-align:left; color:#6b7280; }
   .psc-row { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid #f3f4f6; }
   .psc-row:last-child { border-bottom:0; }
-  .psc-cell { padding:8px 10px; font-size:12px; color:#374151; text-align:center; tabular-nums; }
+  .psc-cell { padding:8px 12px; font-size:12px; color:#374151; text-align:center; tabular-nums; }
   .psc-cell:first-child { text-align:left; font-weight:600; color:#4b5563; }
   /* Policy table */
   .pol-table { width:100%; border-collapse:collapse; font-size:12px; }
-  .pol-table th { padding:9px 12px; text-align:left; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); border-bottom:1px solid var(--border-default,#E5E7EB); white-space:nowrap; background:var(--slate-50,#F9FAFB); ;text-transform:uppercase;letter-spacing:.04em}
-  .pol-table td { padding:10px 12px; border-bottom:1px solid #f3f4f6; color:#374151; white-space:nowrap; vertical-align:middle; }
+  .pol-table th { padding:8px 12px; text-align:left; font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); border-bottom:1px solid var(--border-default,#E5E7EB); white-space:nowrap; background:var(--slate-50,#F9FAFB); ;text-transform:uppercase;letter-spacing:.04em}
+  .pol-table td { padding:12px 12px; border-bottom:1px solid #f3f4f6; color:#374151; white-space:nowrap; vertical-align:middle; }
   .pol-table tr:last-child td { border-bottom:0; }
   .pol-table tr:hover td { background:#f9fafb; }
   .pol-table th:nth-child(-n+2), .pol-table td:nth-child(-n+2) { position:sticky; z-index:1; background:#fff; }
@@ -112,22 +112,22 @@
   .pcard-sub a.lnk { color:var(--brand-600,#2563eb); font-weight:600; }
   /* Mobile policy cards */
   .pol-cards { display:none; }
-  .pcard { padding:14px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
+  .pcard { padding:16px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
   .pcard:last-child { border-bottom:0; }
-  .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
   .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-600,#2563eb); word-break:break-word; }
-  .pcard-sub { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#6b7280; }
-  .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; }
+  .pcard-sub { display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-size:14px; color:#6b7280; }
+  .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
-  .pcard-k { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
-  .pcard-v { font-size:13px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .pcard-k { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
+  .pcard-v { font-size:14px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
   .pcard-v.is-strong { font-size:14px; font-weight:700; color:#111827; }
   .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
   .pcard-more { display:none; }
   .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e5e7eb; animation:pcardIn .22s ease; }
   @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
-  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:12.5px; font-weight:600; color:var(--brand-600,#2563eb); }
+  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:4px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; color:var(--brand-600,#2563eb); }
   .pcard-chev { transition:transform .2s ease; }
   .pcard.open .pcard-chev { transform:rotate(180deg); }
   /* Stat badge */
@@ -136,12 +136,12 @@
   .stat-badge.green  { background:#dcfce7; color:#15803d; }
   .stat-badge.purple { background:#ede9fe; color:#6d28d9; }
   /* Stat pill (full width) */
-  .stat-pill { display:block; width:100%; padding:5px 10px; border-radius:6px; background:var(--brand-100,#dbeafe); color:var(--brand-700,#1d4ed8); font-size:12px; font-weight:700; text-align:center; margin-top:4px; }
+  .stat-pill { display:block; width:100%; padding:4px 12px; border-radius:8px; background:var(--brand-100,#dbeafe); color:var(--brand-700,#1d4ed8); font-size:12px; font-weight:700; text-align:center; margin-top:4px; }
   /* Dark theme: Portfolio Activity metric badges match the Our Aggregated Exposure box
      (same background and border colour); inset outline so badge sizes don't change */
   html[data-theme="dark"] .stat-badge.blue, html[data-theme="dark"] .stat-pill, html[data-theme="dark"] .pf-ok-badge { background:#15233c !important; color:#e7ecf4 !important; box-shadow:inset 0 0 0 1px #2a374d; }
   /* Select chrome */
-  .sel { border:1px solid #e5e7eb; border-radius:6px; padding:4px 24px 4px 8px; font-size:12px; color:#374151; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
+  .sel { border:1px solid #e5e7eb; border-radius:8px; padding:4px 24px 4px 8px; font-size:12px; color:#374151; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
   /* Compliance circle */
   .compliance-circle { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,#22c55e,#16a34a); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(22,163,74,.3); }
   /* Mobile responsive */
@@ -155,7 +155,7 @@
     .analysis-tabs-scroll .ds-tabs { display:flex; flex-wrap:nowrap; }
     /* Mobile: stretch tabs that opt-in via .mobile-stretch */
     .ds-tabs.mobile-stretch { display:flex; width:100%; }
-    .ds-tabs.mobile-stretch .ds-tab { flex:1 1 0; min-width:0; justify-content:center; padding-left:6px; padding-right:6px; }
+    .ds-tabs.mobile-stretch .ds-tab { flex:1 1 0; min-width:0; justify-content:center; padding-left:8px; padding-right:8px; }
     .ds-tabs.mobile-stretch .ds-tab-label { justify-content:center; }
     /* Mobile: replace analysis tabs with a dropdown */
     .analysis-tabs-desktop, .pvw-desktop { display:none !important; }
@@ -169,15 +169,15 @@
   }
   /* Mobile dropdown for analysis tabs (hidden by default) */
   .analysis-tabs-mobile { display:none; }
-  .analysis-tabs-mobile select { width:100%; border:1px solid #e5e7eb; border-radius:9999px; padding:8px 32px 8px 14px; font-size:13px; font-weight:600; color:#111827; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
+  .analysis-tabs-mobile select { width:100%; border:1px solid #e5e7eb; border-radius:9999px; padding:8px 32px 8px 16px; font-size:14px; font-weight:600; color:#111827; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   /* Risk Score info popups (ported from Vessel Details) */
-  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#1485c5;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
@@ -185,14 +185,14 @@
   .rs-tip.l{left:-6px;}
   .rs-tip.r{right:-6px;}
   .rs-tip::after{content:'';position:absolute;bottom:100%;width:9px;height:9px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:translateY(50%) rotate(45deg);}
-  .rs-tip.c::after{left:50%;margin-left:-4.5px;}
+  .rs-tip.c::after{left:50%;margin-left:-4px;}
   .rs-tip.l::after{left:14px;}
   .rs-tip.r::after{right:14px;}
-  .rs-tip-h{font-size:11px;font-weight:800;color:#111827;margin-bottom:6px;}
-  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:11px;}
-  .rs-tip-tbl th{padding:2px 3px;font-size:11px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
+  .rs-tip-h{font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:12px;}
+  .rs-tip-tbl th{padding:2px 4px;font-size:12px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
   .rs-tip-tbl th:first-child{text-align:left;}
-  .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
+  .rs-tip-tbl td{padding:4px 4px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
   .env-cols > * { min-width:0; padding:0 24px; }
   .env-cols > *:first-child { padding-left:0; }
@@ -205,13 +205,13 @@
   }
   .rs-seg{cursor:pointer;transition:stroke-width .15s,opacity .15s}
   svg:hover > .rs-seg{opacity:.55}svg > .rs-seg:hover{opacity:1;stroke-width:19}
-  .rs-dtip{position:fixed;z-index:1200;pointer-events:none;display:none;align-items:center;gap:6px;padding:5px 9px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 4px 12px rgba(15,23,42,.12);font-size:12px;color:#111827;white-space:nowrap}
-  .rs-dtip i{width:10px;height:10px;border-radius:2px;display:inline-block}
-  .pol-empty { padding:24px 12px !important; text-align:center; font-size:13px; color:#6b7280; }
+  .rs-dtip{position:fixed;z-index:1200;pointer-events:none;display:none;align-items:center;gap:4px;padding:4px 8px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.12);font-size:12px;color:#111827;white-space:nowrap}
+  .rs-dtip i{width:10px;height:10px;border-radius:4px;display:inline-block}
+  .pol-empty { padding:24px 12px !important; text-align:center; font-size:14px; color:#6b7280; }
   html[data-theme="dark"] .pol-empty { color:#93a0b4; }
 </style>
 <style>.pol-table.cas-table th,.pol-table.cas-table td{position:static !important;left:auto !important;width:auto !important;min-width:0 !important;max-width:none !important;box-shadow:none !important;white-space:normal}.pol-table.cas-table{width:100%;min-width:0 !important;table-layout:auto}.pol-table.cas-table th{text-transform:none;letter-spacing:0;white-space:nowrap}.pol-table.cas-table th svg{display:inline-block}.cas-wrap{overflow-y:hidden}.pol-table.cas-table td:nth-child(1),.pol-table.cas-table td:nth-child(5){white-space:nowrap !important}</style>
-<style>.voy-sel{appearance:none;-webkit-appearance:none;height:30px;padding:0 28px 0 10px;border:1px solid #e5e7eb;border-radius:8px;font:inherit;font-size:12px;font-weight:600;color:#374151;background:#fff;cursor:pointer;outline:none}.voy-sel:focus{border-color:var(--brand-500,#3b82f6);box-shadow:0 0 0 3px rgb(59 130 246/.15)}.voy-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 4px 14px rgb(15 23 42/.14);padding:7px 10px;font-size:12px;color:#111827;white-space:nowrap;z-index:5}.voy-tip-d{font-weight:600;margin-bottom:3px}.voy-tip-r{display:flex;align-items:center;gap:6px}.voy-tip-r b{font-weight:600}.voy-tip-r span:last-child{margin-left:8px}.voy-tip-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-500,#3b82f6)}.voy-radio{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#374151;cursor:pointer}.voy-radio input{width:15px;height:15px;accent-color:var(--brand-600,#2563eb);margin:0;cursor:pointer}</style>
+<style>.voy-sel{appearance:none;-webkit-appearance:none;height:30px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font:inherit;font-size:12px;font-weight:600;color:#374151;background:#fff;cursor:pointer;outline:none}.voy-sel:focus{border-color:var(--brand-500,#3b82f6);box-shadow:0 0 0 3px rgb(59 130 246/.15)}.voy-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 14px rgb(15 23 42/.14);padding:8px 12px;font-size:12px;color:#111827;white-space:nowrap;z-index:5}.voy-tip-d{font-weight:600;margin-bottom:4px}.voy-tip-r{display:flex;align-items:center;gap:4px}.voy-tip-r b{font-weight:600}.voy-tip-r span:last-child{margin-left:8px}.voy-tip-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-500,#3b82f6)}.voy-radio{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#374151;cursor:pointer}.voy-radio input{width:15px;height:15px;accent-color:var(--brand-600,#2563eb);margin:0;cursor:pointer}</style>
 <style>@media(max-width:639px){.co-rs-toggles,.co-rs-grid{display:contents !important}.co-rs-sanc{order:1;align-self:flex-end;flex-direction:row-reverse}.co-rs-gauge{order:2}.co-rs-trend{order:3;align-self:flex-end;margin-top:4px}.co-rs-years{order:4}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:5}}</style>
 <style>.rs-tip{display:none}.rs-info:hover .rs-tip,.rs-info:focus-within .rs-tip{display:block}</style>
 </head>
@@ -228,7 +228,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="shared/pagination.css" />
@@ -423,9 +423,9 @@ function DonutSVG(score = 100) {
         <text x="100" y="122" text-anchor="middle" font-size="52" font-weight="800" fill="#111827" font-family="Exo,Inter,sans-serif">${rsScore}</text>
       </svg>
     </div>
-    <div style="display:flex;align-items:center;gap:4px;margin-top:-10px;">
+    <div style="display:flex;align-items:center;gap:4px;margin-top:-8px;">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${risk.c}" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.8" fill="${risk.c}"/></svg>
-      <span style="font-size:11px;font-weight:700;color:${risk.c};letter-spacing:0.06em;">${risk.label}</span>
+      <span style="font-size:12px;font-weight:700;color:${risk.c};letter-spacing:0.06em;">${risk.label}</span>
     </div>`;
 }
 
@@ -433,8 +433,8 @@ function DonutSVG(score = 100) {
 function PanelPortfolioDetails() {
   const compStatus = PORTFOLIO.sanctioned ? 'SANCTIONED' : 'OK';
   const compBadge = compStatus === 'OK'
-    ? `<span class="pf-ok-badge" style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)">OK</span>`
-    : `<span style="font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:#fee2e2;color:#dc2626">SANCTIONED</span>`;
+    ? `<span class="pf-ok-badge" style="font-size:12px;font-weight:700;padding:2px 12px;border-radius:999px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)">OK</span>`
+    : `<span style="font-size:12px;font-weight:700;padding:2px 12px;border-radius:999px;background:#fee2e2;color:#dc2626">SANCTIONED</span>`;
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0 overflow-hidden">
     <div class="p-3 border-b border-ink-100">
@@ -446,7 +446,7 @@ function PanelPortfolioDetails() {
     </div>
     <div class="pf-stack">${PortfolioGroupsBody()}<div class="pf-pane${pfTab === 'details' ? ' is-on' + (pfAnim ? ' pf-tab-in' : '') : ''}" ${pfTab === 'details' ? '' : 'aria-hidden="true" inert'}>
     <div class="mx-3 mt-3" style="width:fit-content;align-self:center;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:12px 16px;text-align:center;">
-      <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
+      <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
       <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
     </div>
     <div class="flex-1 px-3 py-2 space-y-0">
@@ -493,7 +493,7 @@ function PortCallsContent() {
   return `
   <div class="flex-1 p-3">
     <div class="text-sm font-semibold text-ink-900 mb-3">Top ten ports visited in 2025</div>
-    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
       <thead>
         <tr style="border-bottom:1px solid #e5e7eb;">
           <th style="text-align:left;padding:8px 8px;font-size:12px;font-weight:600;color:#7f1d1d;">Port</th>
@@ -505,17 +505,17 @@ function PortCallsContent() {
       <tbody>
         ${PORT_CALLS_2025.map(p => `
         <tr style="border-bottom:1px solid #f3f4f6;">
-          <td style="padding:9px 8px;color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer;">${p.port}</td>
-          <td style="padding:9px 8px;color:#374151;"><span style="display:inline-flex;align-items:center;gap:8px;"><img src="flags/${p.cc}.svg" width="18" style="border-radius:2px;vertical-align:middle;flex-shrink:0;" alt="">${p.country}</span></td>
-          <td style="padding:9px 8px;color:#374151;">
-            <span style="display:inline-flex;align-items:center;gap:10px;">
+          <td style="padding:8px 8px;color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer;">${p.port}</td>
+          <td style="padding:8px 8px;color:#374151;"><span style="display:inline-flex;align-items:center;gap:8px;"><img src="flags/${p.cc}.svg" width="18" style="border-radius:4px;vertical-align:middle;flex-shrink:0;" alt="">${p.country}</span></td>
+          <td style="padding:8px 8px;color:#374151;">
+            <span style="display:inline-flex;align-items:center;gap:8px;">
               <span style="display:inline-block;width:56px;height:6px;border-radius:999px;background:#eef2f7;position:relative;overflow:hidden;">
                 <span style="position:absolute;inset:0 auto 0 0;width:${(p.pct/max*100).toFixed(1)}%;background:var(--brand-600,#2563eb);border-radius:999px;"></span>
               </span>
               <span style="font-variant-numeric:tabular-nums;color:#1e3a8a;font-weight:500;">${p.pct.toFixed(1)}%</span>
             </span>
           </td>
-          <td style="padding:9px 8px;text-align:right;font-variant-numeric:tabular-nums;color:#1e3a8a;font-weight:600;">${p.no}</td>
+          <td style="padding:8px 8px;text-align:right;font-variant-numeric:tabular-nums;color:#1e3a8a;font-weight:600;">${p.no}</td>
         </tr>`).join('')}
       </tbody>
     </table>
@@ -527,45 +527,45 @@ function ActivityGrid() {
     <div class="flex-1 p-3 grid grid-cols-2 gap-x-4 gap-y-3 content-start">
       <!-- Row 1 -->
       <div>
-        <div class="text-[11px] text-ink-500 mb-1">Avg. No. of Ships in Region:</div>
+        <div class="text-xs text-ink-500 mb-1">Avg. No. of Ships in Region:</div>
         <span class="stat-badge blue">18</span>
       </div>
       <div>
-        <div class="text-[11px] text-ink-500 mb-1">Max. No. of Ships in Region:</div>
+        <div class="text-xs text-ink-500 mb-1">Max. No. of Ships in Region:</div>
         <span class="stat-badge blue">34</span>
       </div>
       <!-- Row 2 -->
       <div>
-        <div class="text-[11px] text-ink-500 mb-1">Day with Max. No. of Ships in Region:</div>
+        <div class="text-xs text-ink-500 mb-1">Day with Max. No. of Ships in Region:</div>
         <span class="stat-badge blue">34</span>
-        <div class="text-[11px] text-ink-400 mt-1">Dec 15th 2024</div>
+        <div class="text-xs text-ink-400 mt-1">Dec 15th 2024</div>
       </div>
       <div>
-        <div class="text-[11px] text-ink-500 mb-1">Day with Min. No. of Ships in Region:</div>
+        <div class="text-xs text-ink-500 mb-1">Day with Min. No. of Ships in Region:</div>
         <span class="stat-badge blue">7</span>
-        <div class="text-[11px] text-ink-400 mt-1">Dec 25th 2024</div>
+        <div class="text-xs text-ink-400 mt-1">Dec 25th 2024</div>
       </div>
       <!-- Row 3 -->
       <div>
-        <div class="text-[11px] text-ink-500 mb-1">Max. Exposure:</div>
+        <div class="text-xs text-ink-500 mb-1">Max. Exposure:</div>
         <span class="stat-badge blue">$1.8B</span>
-        <div class="text-[11px] text-ink-400 mt-1">Dec 18th 2024</div>
+        <div class="text-xs text-ink-400 mt-1">Dec 18th 2024</div>
       </div>
       <div>
-        <div class="text-[11px] text-ink-500 mb-1">Min Exposure:</div>
+        <div class="text-xs text-ink-500 mb-1">Min Exposure:</div>
         <span class="stat-badge blue">$198.3M</span>
-        <div class="text-[11px] text-ink-400 mt-1">Dec 25th 2024</div>
+        <div class="text-xs text-ink-400 mt-1">Dec 25th 2024</div>
       </div>
       <!-- Row 4 -->
       <div>
-        <div class="text-[11px] text-ink-500">Max. length Spent in Region:</div>
+        <div class="text-xs text-ink-500">Max. length Spent in Region:</div>
         <span class="stat-pill">45 Days 12 Hrs 34 Mins</span>
-        <div class="text-[11px] text-brand-600 font-semibold mt-1.5 cursor-pointer hover:underline">MV Horizon Explorer</div>
+        <div class="text-xs text-brand-600 font-semibold mt-1 cursor-pointer hover:underline">MV Horizon Explorer</div>
       </div>
       <div>
-        <div class="text-[11px] text-ink-500">Max. No. of entries in region:</div>
-        <span class="stat-pill" style="width:auto;display:inline-block;padding:5px 14px;">127</span>
-        <div class="text-[11px] text-brand-600 font-semibold mt-1.5 cursor-pointer hover:underline">MV Pacific Trader</div>
+        <div class="text-xs text-ink-500">Max. No. of entries in region:</div>
+        <span class="stat-pill" style="width:auto;display:inline-block;padding:4px 16px;">127</span>
+        <div class="text-xs text-brand-600 font-semibold mt-1 cursor-pointer hover:underline">MV Pacific Trader</div>
       </div>
     </div>`;
 }
@@ -595,18 +595,18 @@ let raPage = 1, raPer = 10;
 function RiskAssocContent() {
   const pages = Math.max(1, Math.ceil(RA_ROWS.length / raPer)); raPage = Math.min(raPage, pages);
   const from = (raPage - 1) * raPer, slice = RA_ROWS.slice(from, from + raPer);
-  const arrow = '<span class="text-ink-400 mx-1.5" aria-hidden="true">⟶</span>';
-  const th = t => `<th class="px-3 py-2 text-left text-[11px] font-semibold tracking-wider uppercase text-ink-500">${t}</th>`;
+  const arrow = '<span class="text-ink-400 mx-1" aria-hidden="true">⟶</span>';
+  const th = t => `<th class="px-3 py-2 text-left text-xs font-semibold tracking-wider uppercase text-ink-500">${t}</th>`;
   return `<div style="margin:-12px;">
   <div class="scroll-thin" style="overflow-x:auto;">
   <table class="w-full text-xs min-w-[900px]">
     <thead class="bg-ink-50 border-b border-ink-200"><tr>${th('Vessel')}${th('Relationship')}${th('Connected Entity')}${th('Entity Type')}${th('Evidence')}</tr></thead>
     <tbody>${slice.map((r, i) => `<tr class="border-b border-ink-100 ${i%2?'bg-ink-50':'bg-white'} hover:bg-brand-50">
-      <td class="px-3 py-2.5 whitespace-nowrap"><a href="VesselDetails.html" class="text-brand-600 hover:underline">${r[0]}</a></td>
-      <td class="px-3 py-2.5 text-ink-700" style="max-width:420px;">${r[1].join(arrow)}</td>
-      <td class="px-3 py-2.5" style="max-width:240px;"><a href="CompanyDetails.html" class="text-brand-600 hover:underline block truncate" title="${r[2].replace(/"/g,'&quot;')}">${r[2]}</a></td>
-      <td class="px-3 py-2.5 text-ink-700">Company</td>
-      <td class="px-3 py-2.5 text-ink-700">${r[3]}</td>
+      <td class="px-3 py-3 whitespace-nowrap"><a href="VesselDetails.html" class="text-brand-600 hover:underline">${r[0]}</a></td>
+      <td class="px-3 py-3 text-ink-700" style="max-width:420px;">${r[1].join(arrow)}</td>
+      <td class="px-3 py-3" style="max-width:240px;"><a href="CompanyDetails.html" class="text-brand-600 hover:underline block truncate" title="${r[2].replace(/"/g,'&quot;')}">${r[2]}</a></td>
+      <td class="px-3 py-3 text-ink-700">Company</td>
+      <td class="px-3 py-3 text-ink-700">${r[3]}</td>
     </tr>`).join('')}</tbody>
   </table>
   </div>
@@ -630,10 +630,10 @@ function PanelPortfolioActivity() {
         ${acts.map(t => `<button class="ds-tab" aria-selected="${t===activityTab}" data-acttab="${t}"><span class="ds-tab-label">${t}</span></button>`).join('')}
       </div>
       <div class="flex items-center gap-2 shrink-0" ${activityTab!=='Portfolio Activity' ? 'style="display:none"' : ''}>
-        <label class="flex items-center gap-1.5 text-xs text-ink-600 font-medium">Year: <select class="sel">
+        <label class="flex items-center gap-1 text-xs text-ink-600 font-medium">Year: <select class="sel">
           <option>2025</option><option>2024</option><option>2023</option>
         </select></label>
-        <label class="flex items-center gap-1.5 text-xs text-ink-600 font-medium">Region: <select class="sel">
+        <label class="flex items-center gap-1 text-xs text-ink-600 font-medium">Region: <select class="sel">
           <option>HRA's</option><option>North Atlantic</option><option>Pacific</option><option>Indian Ocean</option>
         </select></label>
       </div>
@@ -725,7 +725,7 @@ function PanelRiskBreakdown() {
       2024: { good:18, avg:2, bad:1 },
     };
     const deltaPill = (d, extra='') => { const up = d >= 0, p = yearPill(up ? 60 : 10);
-      return `<div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
+      return `<div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
     const donut = (year, score, max, sw, numPx) => {
       const dist = RS_DIST[year], total = RS_BANDS.reduce((t, b) => t + dist[b.k], 0);
       const r = 50 - sw / 2, C = 2 * Math.PI * r, live = RS_BANDS.filter(b => dist[b.k] > 0), gap = live.length > 1 ? 0.9 : 0;
@@ -736,16 +736,16 @@ function PanelRiskBreakdown() {
       return `<div class="${year === 2026 ? 'mp-rs-2026' : ''}" style="position:relative;width:100%;max-width:${max}px;aspect-ratio:1;">
         <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="${year} average risk score ${score}; ${RS_BANDS.map(b => b.label + ' ' + dist[b.k]).join(', ')} assets">${segs}</svg>
         <div class="mp-rs-center" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
-          ${year === 2026 && mpWithSanctions ? `<span style="font-size:${Math.round(numPx * 0.38)}px;font-weight:800;color:#111827;line-height:1;">Sanctioned</span>` : `<span style="font-size:${numPx}px;font-weight:800;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${score}</span>
+          ${year === 2026 && mpWithSanctions ? `<span style="font-size:${Math.round(numPx * 0.38)}px;font-weight:700;color:#111827;line-height:1;">Sanctioned</span>` : `<span style="font-size:${numPx}px;font-weight:700;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${score}</span>
           ${year === 2026 ? '' : `<span style="font-size:${Math.max(10, Math.round(numPx / 3.4))}px;color:#6b7280;margin-top:2px;">Avg Score</span>`}`}
         </div>
       </div>`;
     };
-    const yearPillTag = y => `<span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;">${y}</span>`;
+    const yearPillTag = y => `<span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;">${y}</span>`;
     let body = `
-    <div class="co-rs-body" style="padding:8px 12px 14px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:6px;">
-      <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:6px 8px;flex-wrap:wrap;">
-        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
+    <div class="co-rs-body" style="padding:8px 12px 16px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:4px;">
+      <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:4px 8px;flex-wrap:wrap;">
+        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#1485c5)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
@@ -753,29 +753,29 @@ function PanelRiskBreakdown() {
         </button>
       </div>
       <div class="co-rs-grid" style="display:grid;grid-template-columns:${mpWithTrends ? 'repeat(auto-fit,minmax(180px,1fr))' : '1fr'};gap:8px;">
-        <div class="co-rs-gauge${mpWithSanctions ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
-        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
+        <div class="co-rs-gauge${mpWithSanctions ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
           ${donut(2026, rsScore, 170, 8, 44)}
           ${deltaPill(rsDelta25)}
         </div>
         ${mpWithTrends ? `
-        <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
+        <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
           ${[[2025, rs2025, rsDelta2025, 'c'], [2024, rs2024, rsDelta24, 'r']].map(([y, v, d, al]) => `
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(y)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st ' + y + ': ' + v, al)}</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(y)}<div style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st ' + y + ': ' + v, al)}</div></div>
             ${donut(y, v, 104, 9, 24)}
             ${deltaPill(d)}
           </div>`).join('')}
         </div>` : ''}
       </div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:12px;color:#374151;padding-top:0;">
-        ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#6b7280;">[${b.range}]</span></span>`).join('')}
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 16px;font-size:12px;color:#374151;padding-top:0;">
+        ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:4px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#6b7280;">[${b.range}]</span></span>`).join('')}
       </div>
     </div>`;
   return `
@@ -797,7 +797,7 @@ function PanelCompliance() {
       </div>
       <div>
         <div class="text-2xl font-bold text-green-600 font-display text-center">OK</div>
-        <div class="text-[11px] text-ink-400 text-center mt-0.5">Updated at: 2025-07-22</div>
+        <div class="text-xs text-ink-400 text-center mt-0.5">Updated at: 2025-07-22</div>
       </div>
     </div>
     <div class="ds-card-foot ds-card-foot--start mt-auto">
@@ -847,7 +847,7 @@ function EnvironmentalRatingContent() {
     </div>`;
 
   const aspectBadge = (item) => `
-    <div class="flex items-center justify-between py-1.5">
+    <div class="flex items-center justify-between py-2">
       <span class="text-xs text-ink-700">${item.label}</span>
       <div class="flex items-center gap-2">
         ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
@@ -891,8 +891,8 @@ function EnvironmentalRatingContent() {
                     <span class="text-ink-700">${item.label}</span>
                     <span class="${item.label.includes('Attained') ? 'text-red-600 font-semibold' : 'text-ink-900 font-medium'}">${item.value}</span>
                   </div>
-                  ${item.sub ? `<div class="text-[11px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
-                  ${item.sub && item.sub.includes('\n') ? `<div class="text-[11px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
+                  ${item.sub ? `<div class="text-xs text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
+                  ${item.sub && item.sub.includes('\n') ? `<div class="text-xs text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
                 </div>
               </div>
             `).join('')}
@@ -926,21 +926,21 @@ function UtilisationContent() {
   <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;padding:4px 2px;">
     ${cards.map(c => `
       <div style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.04)">
-        <div style="background:${c.accent};color:#fff;text-align:center;padding:8px 10px;font-size:13px;font-weight:700">${c.title}</div>
-        <table style="width:100%;border-collapse:collapse;font-size:12.5px">
+        <div style="background:${c.accent};color:#fff;text-align:center;padding:8px 12px;font-size:14px;font-weight:700">${c.title}</div>
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
           <thead>
             <tr style="background:var(--slate-50,#F9FAFB)">
-              <th style="padding:7px 10px;text-align:center;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Period</th>
-              <th style="padding:7px 10px;text-align:center;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Company</th>
-              <th style="padding:7px 10px;text-align:center;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Global</th>
+              <th style="padding:8px 12px;text-align:center;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Period</th>
+              <th style="padding:8px 12px;text-align:center;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Company</th>
+              <th style="padding:8px 12px;text-align:center;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border-default,#E5E7EB)">Global</th>
             </tr>
           </thead>
           <tbody>
             ${c.rows.map(r => `
               <tr>
-                <td style="padding:9px 10px;text-align:center;color:#374151;border-bottom:1px solid #f3f4f6">${r[0]}</td>
-                <td style="padding:9px 10px;text-align:center;color:#111827;font-weight:600;font-variant-numeric:tabular-nums;border-bottom:1px solid #f3f4f6">${r[1]}</td>
-                <td style="padding:9px 10px;text-align:center;color:#111827;font-weight:600;font-variant-numeric:tabular-nums;border-bottom:1px solid #f3f4f6">${r[2]}</td>
+                <td style="padding:8px 12px;text-align:center;color:#374151;border-bottom:1px solid #f3f4f6">${r[0]}</td>
+                <td style="padding:8px 12px;text-align:center;color:#111827;font-weight:600;font-variant-numeric:tabular-nums;border-bottom:1px solid #f3f4f6">${r[1]}</td>
+                <td style="padding:8px 12px;text-align:center;color:#111827;font-weight:600;font-variant-numeric:tabular-nums;border-bottom:1px solid #f3f4f6">${r[2]}</td>
               </tr>`).join('')}
           </tbody>
         </table>
@@ -1005,7 +1005,7 @@ function VoyChart() {
   const dots = pts.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.val).toFixed(1)}" r="2.2" fill="var(--brand-500,#3b82f6)"></circle>`).join('');
   window.__voy = { pts, W, H, pl, pr, pt, pb, x, y };
   return `<div style="display:flex;align-items:stretch;gap:4px">
-      <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;color:#6b7280;text-align:center;white-space:nowrap">${label}</div>
+      <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;color:#6b7280;text-align:center;white-space:nowrap">${label}</div>
       <div id="voy-plot" style="position:relative;flex:1;min-width:0">
       <svg id="voy-svg" viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="${label} over time">
         ${grid}<line x1="${pl}" x2="${W - pr}" y1="${H - pb}" y2="${H - pb}" stroke="#9ca3af"></line>${xt}
@@ -1017,7 +1017,7 @@ function VoyChart() {
       <div id="voy-tip" class="voy-tip" hidden></div>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:6px;font-size:12px;color:#374151;margin-top:4px"><span style="display:inline-flex;align-items:center"><span style="width:14px;height:2px;background:var(--brand-500,#3b82f6)"></span><span style="width:5px;height:5px;border-radius:50%;background:var(--brand-500,#3b82f6);margin-left:-9.5px"></span></span><span style="margin-left:6px">${voyRegion}</span></div>`;
+    <div style="display:flex;justify-content:center;align-items:center;gap:4px;font-size:12px;color:#374151;margin-top:4px"><span style="display:inline-flex;align-items:center"><span style="width:14px;height:2px;background:var(--brand-500,#3b82f6)"></span><span style="width:5px;height:5px;border-radius:50%;background:var(--brand-500,#3b82f6);margin-left:-8px"></span></span><span style="margin-left:4px">${voyRegion}</span></div>`;
 }
 function VoyagesContent() {
   const sel = (id, opts, cur, w) => `<div style="position:relative"><select id="${id}" class="voy-sel" style="width:${w}">${opts.map(o => `<option ${o === cur ? 'selected' : ''}>${o}</option>`).join('')}</select><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg></div>`;
@@ -1026,7 +1026,7 @@ function VoyagesContent() {
     <div style="display:flex;gap:8px;flex-wrap:wrap">${sel('voy-year', ['2024','2025','2026'], voyYear, '84px')}<div style="position:relative"><select id="voy-region" class="voy-sel" style="width:300px;max-width:100%">${VOY_REGION_GROUPS.map(([g, items]) => `<option value="${g}" ${g === voyRegion ? 'selected' : ''} style="font-weight:600">${g}</option>` + items.map(i => `<option value="${i}" ${i === voyRegion ? 'selected' : ''}>\u00A0\u00A0\u00A0\u00A0${i}</option>`).join('')).join('')}</select><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg></div></div>
   </div>
   <div id="voy-chart">${VoyChart()}</div>
-  <div role="radiogroup" aria-label="Chart metric" style="display:flex;justify-content:center;flex-wrap:wrap;gap:6px 18px;margin-top:12px">
+  <div role="radiogroup" aria-label="Chart metric" style="display:flex;justify-content:center;flex-wrap:wrap;gap:4px 16px;margin-top:12px">
     ${VOY_METRICS.map(([k, l]) => `<label class="voy-radio"><input type="radio" name="voy-metric" value="${k}" ${k === voyMetric ? 'checked' : ''}><span>${l}</span></label>`).join('')}
   </div>`;
 }
@@ -1062,7 +1062,7 @@ function CasualtiesContent() {
   const rows = [...CASUALTIES].sort((a,b) => a[casSort.key] < b[casSort.key] ? -casSort.dir : a[casSort.key] > b[casSort.key] ? casSort.dir : 0);
   const sortIco = k => {
     const on = casSort.key === k, c = on ? 'var(--brand-600, #2563eb)' : '#9ca3af';
-    return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:6px;vertical-align:-1px;">${on ? (casSort.dir < 0 ? '<path d="M12 5v14M6 13l6 6 6-6"/>' : '<path d="M12 19V5M6 11l6-6 6 6"/>') : '<path d="M8 4v16M4 16l4 4 4-4M16 20V4M12 8l4-4 4 4"/>'}</svg>`;
+    return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px;vertical-align:-1px;">${on ? (casSort.dir < 0 ? '<path d="M12 5v14M6 13l6 6 6-6"/>' : '<path d="M12 19V5M6 11l6-6 6 6"/>') : '<path d="M8 4v16M4 16l4 4 4-4M16 20V4M12 8l4-4 4 4"/>'}</svg>`;
   };
   const th = (k, label) => `<th style="cursor:pointer;user-select:none;" data-cas-sort="${k}">${label}${sortIco(k)}</th>`;
   return `
@@ -1104,7 +1104,7 @@ function AnalysisTabBar() {
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         ${ANALYSIS_TABS.map(t => `
           <button class="ds-tab" aria-selected="${t===analysisTab}" data-atab="${t}">
-            <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">${icons[t]||''}${t}</span>
+            <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:4px;">${icons[t]||''}${t}</span>
           </button>`).join('')}
       </div>
     </div>
@@ -1206,7 +1206,7 @@ function PolicyResults() {
               <td style="color:#6b7280;">${p.insurer}</td>
               <td style="color:#6b7280;">${p.broker}</td>
               <td style="color:#6b7280;">${p.assured}</td>
-              <td style="font-size:11px;color:#6b7280;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
+              <td style="font-size:12px;color:#6b7280;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
               <td style="color:#6b7280;">${p.delegate}</td>
               <td style="color:#6b7280;">${p.uw}</td>
             </tr>`).join('')}
@@ -1222,7 +1222,7 @@ function PolicyResults() {
               <span class="pcard-title">#${p.num}</span>
               <div class="pcard-sub"><a href="VesselDetails.html" class="lnk">${p.vessel}</a></div>
             </div>
-            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;">${p.type}</span>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:12px;">${p.type}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv" style="grid-column:1/-1;"><span class="pcard-k">Policy Ref</span><span class="pcard-v">${p.ref}</span></div>
@@ -1261,19 +1261,19 @@ function PolicySection() {
       <div class="ds-tabs shrink-0 mobile-stretch pvw-desktop" id="policy-view-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         <button class="ds-tab" aria-selected="${policyView==='details'}" data-pvw="details">
-          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:4px;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             Policy Details
           </span>
         </button>
         <button class="ds-tab" aria-selected="${policyView==='list'}" data-pvw="list">
-          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:4px;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             Asset Details
           </span>
         </button>
         <button class="ds-tab" aria-selected="${policyView==='map'}" data-pvw="map">
-          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:4px;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
             Map
           </span>
@@ -1286,31 +1286,31 @@ function PolicySection() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="pol-card">
     <!-- Toolbar -->
-    <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">
+    <div class="pol-toolbar flex items-center gap-2 px-3 py-3 border-b border-ink-100 flex-wrap">
       ${tabsHtml}
       <div class="flex-1"></div>
       <!-- Search -->
       <div class="relative">
         <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="search" id="pol-search" value="${esc(policyQuery)}" placeholder="Search" aria-label="Search policies by Asset ID, Asset Name or Policy Ref" aria-controls="pol-results" autocomplete="off" class="pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
+        <input type="search" id="pol-search" value="${esc(policyQuery)}" placeholder="Search" aria-label="Search policies by Asset ID, Asset Name or Policy Ref" aria-controls="pol-results" autocomplete="off" class="pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
       </div>
       <button type="button" id="pol-reset" class="flex items-center justify-center shrink-0 border border-ink-200 rounded-lg text-ink-600 hover:bg-ink-50 hover:text-ink-900" style="width:32px;height:32px;" title="Reset filters" aria-label="Reset filters">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
       </button>
-      <select class="sel text-xs py-1.5">
+      <select class="sel text-xs py-2">
         <option>All</option><option>Active</option><option>Expired</option>
       </select>
-      <select class="sel text-xs py-1.5">
+      <select class="sel text-xs py-2">
         <option>All Types</option><option>Hull &amp; Machinery</option><option>P&amp;I</option><option>War Risks</option>
       </select>
-      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-2 text-ink-700 font-semibold hover:bg-ink-50">
         Edit Columns
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
     </div>
     <!-- Delete bar -->
     <div class="flex items-center gap-3 px-3 py-2 border-b border-ink-100 bg-ink-50/50">
-      <button class="flex items-center gap-1.5 text-xs border border-ink-200 rounded-md px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
+      <button class="flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>

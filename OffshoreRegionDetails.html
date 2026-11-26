@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -21,7 +21,7 @@
   .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
   .leaflet-control-zoom a svg{width:16px;height:16px}
   #region-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #region-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px!important}
+  #region-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important}
   #mrd-map-wrap.is-fullscreen{position:fixed!important;inset:0!important;z-index:9999!important;border-radius:0!important}
   #mrd-layers-menu button:hover{background:#f3f4f6}
   /* Region popup — matches Regions page */
@@ -36,7 +36,7 @@
     width:26px;height:26px;
     padding:2px 0 0 0 !important;
     top:6px !important;right:6px !important;
-    border-radius:6px;
+    border-radius:8px;
     text-align:center;
     text-decoration:none !important;
     transition:opacity .12s, background .12s;
@@ -44,20 +44,20 @@
   .region-popup .leaflet-popup-close-button:hover{opacity:1;background:rgba(255,255,255,.18)}
   /* Pill tabs (Skytek DS — animated sliding pill) */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+  .ds-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
   .ds-tab:hover{color:#111827;}
   .ds-tab[aria-selected="true"]{color:#fff;}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none;}
   .ds-tab-pill.is-init{transition:none;}
-  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;}
+  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px;}
   /* Legacy pill tabs (kept for any leftover usage) */
   .ptabs{display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;position:relative}
-  .ptab{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:9999px;font-size:13px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;white-space:nowrap}
+  .ptab{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:9999px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;white-space:nowrap}
   .ptab.active{background:var(--brand-600,#2563eb);color:#fff}
   .ptab:not(.active){background:transparent;color:#6b7280}
   .ptab:not(.active):hover{color:#111827}
   /* Segment tabs (equal width, no pill container) */
-  .seg-tab{flex:1;padding:7px 4px;font-size:13px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
+  .seg-tab{flex:1;padding:8px 4px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
   .seg-tab.active{background:var(--brand-600,#2563eb);color:#fff}
   .seg-tab:not(.active):hover{color:#374151}
   /* Stat pills */
@@ -65,12 +65,12 @@
   .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px}
   .spill-red {display:inline-block;background:#fef2f2;color:#dc2626;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px}
   /* Totals table */
-  .tot-row{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:13px}
+  .tot-row{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px}
   .tot-row:last-child{border-bottom:0}
   /* Portfolio table */
   .pf-tbl{width:100%;border-collapse:collapse}
-  .pf-tbl th{padding:8px 10px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
-  .pf-tbl td{padding:9px 10px;font-size:13px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
+  .pf-tbl th{padding:8px 12px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+  .pf-tbl td{padding:8px 12px;font-size:14px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
   .pf-tbl tr:last-child td{border-bottom:0}
   .pf-tbl tbody tr:hover td{background:#fafafa}
   /* Map btn */
@@ -85,10 +85,10 @@
   .mrd-top-row>div{height:440px;overflow-y:auto!important}
   .mrd-left-panel{width:260px;flex-shrink:0;}
   /* Card tab dropdown — used in place of pill tabs */
-  .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;}
+  .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 16px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;}
   .tab-dd:hover{border-color:#d1d5db;}
   .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   /* Phones and tablet portrait: stack the three top-row cards full width (same as Marine Region Details) */
   @media(max-width:1023px){
     .mrd-top-row{flex-direction:column;height:auto!important;}
@@ -101,10 +101,10 @@
     .tabs-desktop-wrap{display:none!important;}
   }
   /* DS card footer + Tertiary/Ghost button (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Phones: Totals / Region Details tabs fill the card; exposure rows as cards (all headings kept) */
@@ -114,13 +114,13 @@
     .mrd-ltabs .ds-tab { flex:1 1 0; justify-content:center; }
     .mrd-ltabs .ds-tab-label { justify-content:center; }
     .mrd-pf-tbl { display:none; }
-    .mrd-pf-cards { display:flex; flex-direction:column; gap:10px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
+    .mrd-pf-cards { display:flex; flex-direction:column; gap:8px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
   }
-  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
-  .mrd-pf-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
-  .mrd-pf-kv .mrd-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
-  .mrd-pf-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
-  .mrd-pf-kv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; }
+  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .mrd-pf-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px 16px; margin:0; }
+  .mrd-pf-kv .mrd-wide { grid-column:1 / -1; padding-bottom:12px; border-bottom:1px solid #f3f4f6; }
+  .mrd-pf-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .mrd-pf-kv dd { margin:4px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; }
   .mrd-pf-kv dd strong { font-weight:700; color:#111827; }
   .mrd-pf-name { color:var(--brand-600,#2563eb) !important; font-weight:600; }
   html[data-theme="dark"] .mrd-pf-card { background:#161f2e; border-color:#2a374d; }
@@ -142,7 +142,7 @@ window.PAGE = { id:'regions', title:'Offshore Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -234,22 +234,22 @@ function initMap() {
   const regionAssets    = 1247;
   const regionPopupHTML = `
     <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
-      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:11px 14px;display:flex;align-items:center;gap:8px">
+      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
         <span style="width:11px;height:11px;border-radius:50%;background:${regionDotColor};flex-shrink:0;border:1.5px solid rgba(255,255,255,.5)"></span>
         <span style="font-size:14px;font-weight:700;flex:1">${regionName}</span>
       </div>
-      <div style="background:#fff;padding:14px">
-        <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-          <span style="color:#6b7280;font-size:13px">Our Exposure:</span>
-          <span style="font-weight:700;color:#111827;font-size:13px">${regionExposure}</span>
+      <div style="background:#fff;padding:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#6b7280;font-size:14px">Our Exposure:</span>
+          <span style="font-weight:700;color:#111827;font-size:14px">${regionExposure}</span>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-          <span style="color:#6b7280;font-size:13px">Assets:</span>
-          <span style="font-weight:700;color:#111827;font-size:13px">${regionAssets.toLocaleString()}</span>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#6b7280;font-size:14px">Assets:</span>
+          <span style="font-weight:700;color:#111827;font-size:14px">${regionAssets.toLocaleString()}</span>
         </div>
         <div style="display:flex;justify-content:space-between">
-          <span style="color:#6b7280;font-size:13px">Risk Level:</span>
-          <span style="font-weight:700;font-size:13px;color:${regionRiskColor}">${regionRisk}</span>
+          <span style="color:#6b7280;font-size:14px">Risk Level:</span>
+          <span style="font-weight:700;font-size:14px;color:${regionRiskColor}">${regionRisk}</span>
         </div>
       </div>
     </div>`;
@@ -279,26 +279,26 @@ function initMap() {
     const portRiskColor = {Low:'#16a34a',Medium:'#f97316',High:'#dc2626',Critical:'#7c3aed'}[p.risk] || '#6b7280';
     const portPopupHTML = `
       <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
-        <div style="background:var(--brand-600,#2563eb);color:#fff;padding:11px 14px;display:flex;align-items:center;gap:8px">
+        <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
           <span style="width:11px;height:11px;border-radius:50%;background:#fff;flex-shrink:0;border:1.5px solid rgba(255,255,255,.5);display:inline-flex;align-items:center;justify-content:center">
             <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </span>
           <span style="font-size:14px;font-weight:700;flex:1">${p.name}</span>
         </div>
-        <div style="background:#fff;padding:14px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-            <span style="color:#6b7280;font-size:13px">Our Exposure:</span>
-            <span style="font-weight:700;color:#111827;font-size:13px">${p.exposure}</span>
+        <div style="background:#fff;padding:16px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+            <span style="color:#6b7280;font-size:14px">Our Exposure:</span>
+            <span style="font-weight:700;color:#111827;font-size:14px">${p.exposure}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-            <span style="color:#6b7280;font-size:13px">Assets:</span>
-            <span style="font-weight:700;color:#111827;font-size:13px">${p.assets.toLocaleString()}</span>
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+            <span style="color:#6b7280;font-size:14px">Assets:</span>
+            <span style="font-weight:700;color:#111827;font-size:14px">${p.assets.toLocaleString()}</span>
           </div>
           <div style="display:flex;justify-content:space-between;margin-bottom:12px">
-            <span style="color:#6b7280;font-size:13px">Risk Level:</span>
-            <span style="font-weight:700;font-size:13px;color:${portRiskColor}">${p.risk}</span>
+            <span style="color:#6b7280;font-size:14px">Risk Level:</span>
+            <span style="font-weight:700;font-size:14px;color:${portRiskColor}">${p.risk}</span>
           </div>
-          <button data-port="${p.name.replace(/"/g,'&quot;')}" style="width:100%;padding:0 12px;height:32px;border:1px solid transparent;border-radius:var(--radius-md,8px);background:transparent;color:var(--brand-600,#2563eb);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Details</button>
+          <button data-port="${p.name.replace(/"/g,'&quot;')}" style="width:100%;padding:0 12px;height:32px;border:1px solid transparent;border-radius:var(--radius-md,8px);background:transparent;color:var(--brand-600,#2563eb);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Details</button>
         </div>
       </div>`;
     L.marker(p.coord,{icon})
@@ -386,7 +386,7 @@ function Content() {
 
       <!-- LEFT: Totals / Region Details -->
       <div class="mrd-left-panel" style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
-        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6;">
+        <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6;">
           <div class="ds-tabs mrd-ltabs" data-tab-group="data-ltab">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
             <button class="ds-tab" aria-selected="${leftTab==='totals'}"  data-ltab="totals"><span class="ds-tab-label">Totals</span></button>
@@ -395,16 +395,16 @@ function Content() {
         </div>
         <div style="padding:12px 16px">
           ${leftTab === 'totals' ? `
-          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;padding-right:4px">
+          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:12px;font-weight:600;color:#6b7280;margin-bottom:4px;padding-right:4px">
             <span>Above Threshold</span><span>Total</span>
           </div>
           ${[['All Risk','$850M','$5.5B'],['Hull','$520M','$3.7B'],['Cargo','$230M','$1.2B'],['Liability','$100M','$550M']].map(([lbl,thr,tot]) => `
           <div class="tot-row">
-            <span style="flex:1;font-size:13px;color:#374151">${lbl}${lbl!=='All Risk'?':':''}</span>
-            <span style="color:#f97316;font-weight:600;font-size:13px;min-width:64px;text-align:right">${thr}</span>
-            <span style="color:#111827;font-weight:600;font-size:13px;min-width:56px;text-align:right">${tot}</span>
+            <span style="flex:1;font-size:14px;color:#374151">${lbl}${lbl!=='All Risk'?':':''}</span>
+            <span style="color:#f97316;font-weight:600;font-size:14px;min-width:64px;text-align:right">${thr}</span>
+            <span style="color:#111827;font-weight:600;font-size:14px;min-width:56px;text-align:right">${tot}</span>
           </div>`).join('')}` : `
-          <div style="font-size:13px;color:#6b7280;padding:8px 0">
+          <div style="font-size:14px;color:#6b7280;padding:8px 0">
             <div style="margin-bottom:8px"><span style="font-weight:600;color:#374151">Region:</span> ${regionName}</div>
             <div style="margin-bottom:8px"><span style="font-weight:600;color:#374151">Type:</span> Marine</div>
             <div style="margin-bottom:8px"><span style="font-weight:600;color:#374151">Portfolios:</span> 7</div>
@@ -416,17 +416,17 @@ function Content() {
 
       <!-- MIDDLE: Region Exposure by Portfolio -->
       <div style="flex:1.8;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
-        <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+        <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
           <span style="font-size:14px;font-weight:700;color:#111827">Region Exposure by Portfolio</span>
-          <span style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:#6b7280">${LINK_SVG} ${PORTFOLIOS.length}</span>
+          <span style="display:flex;align-items:center;gap:4px;font-size:14px;color:#6b7280">${LINK_SVG} ${PORTFOLIOS.length}</span>
         </div>
         <div style="flex:1;overflow-y:auto" class="scroll-thin">
           <table class="pf-tbl mrd-pf-tbl">
             <thead><tr>
               <th>Name</th><th>Total</th>
-              <th><div style="display:flex;align-items:center;gap:3px">${INFO_SVG}Hull</div></th>
-              <th><div style="display:flex;align-items:center;gap:3px">${INFO_SVG}Cargo</div></th>
-              <th><div style="display:flex;align-items:center;gap:3px">${INFO_SVG}Liability</div></th>
+              <th><div style="display:flex;align-items:center;gap:4px">${INFO_SVG}Hull</div></th>
+              <th><div style="display:flex;align-items:center;gap:4px">${INFO_SVG}Cargo</div></th>
+              <th><div style="display:flex;align-items:center;gap:4px">${INFO_SVG}Liability</div></th>
             </tr></thead>
             <tbody>
               ${PORTFOLIOS.map(p => `<tr>
@@ -456,7 +456,7 @@ function Content() {
 
       <!-- RIGHT: Region Summary Statistics -->
       <div style="flex:2;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
-        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+        <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
           <div class="tabs-desktop-wrap">
             <div class="ds-tabs" id="rtab-tabs">
               <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -472,81 +472,81 @@ function Content() {
         ${rightTab === 'stats' ? `
         <div style="flex:1;overflow-y:auto;padding:12px 16px" class="scroll-thin">
           <!-- Date range -->
-          <div style="font-size:12px;color:#6b7280;margin-bottom:6px">Date Range:</div>
+          <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Date Range:</div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
             <span style="font-size:12px;color:#9ca3af">to</span>
             <div style="position:relative;flex:1">
-              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
           </div>
           <!-- Sub-tabs -->
-          <div style="display:flex;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;padding:4px;gap:4px;margin-bottom:14px">
+          <div style="display:flex;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;padding:4px;gap:4px;margin-bottom:12px">
             ${['hull','cargo','liability'].map(t => `<button class="seg-tab ${statSub===t?'active':''}" data-stab="${t}">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('')}
           </div>
           <!-- Stats grid 4 rows x 3 cols -->
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Asset Count</div>
               <span class="spill-gray">${s.avgCount}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Exposure Value</div>
               <span class="spill-blue">${s.avgExp}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Market Value</div>
               <span class="spill-blue">${s.avgMkt}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Asset Count</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiCountDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Asset Count</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiCountDate}</div>
               <span class="spill-blue">${s.hiCount}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Exposure Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiExpDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiExpDate}</div>
               <span class="spill-blue">${s.hiExp}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Market Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiMktDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Market Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiMktDate}</div>
               <span class="spill-blue">${s.hiMkt}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily War Exposure</div>
               <span class="spill-red">${s.warAvg}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily War Exposure</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warHiDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily War Exposure</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.warHiDate}</div>
               <span class="spill-red">${s.warHi}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily War Exposure</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warLoDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily War Exposure</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.warLoDate}</div>
               <span class="spill-red">${s.warLo}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Asset Count</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loCountDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Asset Count</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loCountDate}</div>
               <span class="spill-gray">${s.loCount}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Exposure Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loExpDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loExpDate}</div>
               <span class="spill-gray">${s.loExp}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Market Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loMktDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Market Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loMktDate}</div>
               <span class="spill-gray">${s.loMkt}</span>
             </div>
           </div>
         </div>` : `
         <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px">
-          <div style="text-align:center;color:#9ca3af;font-size:13px">Report builder coming soon</div>
+          <div style="text-align:center;color:#9ca3af;font-size:14px">Report builder coming soon</div>
         </div>`}
       </div>
     </div>
@@ -554,7 +554,7 @@ function Content() {
     <!-- Bottom: tab bar + map -->
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;min-height:420px">
       <!-- Tab selector -->
-      <div style="padding:10px 14px;border-bottom:1px solid #f3f4f6;flex-shrink:0;">
+      <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0;">
         <div class="tabs-desktop-wrap">
           <div class="ds-tabs" id="map-view-tabs" style="display:inline-flex;flex-wrap:wrap;max-width:100%">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -578,12 +578,12 @@ function Content() {
       <div id="mrd-map-wrap" style="position:relative;flex:1">
         <div id="region-map"></div>
         <button id="mrd-fs" class="map-btn" style="position:absolute;top:12px;left:12px;z-index:400">${SC.I.maximize}</button>
-        <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px">
+        <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:4px">
           <div style="position:relative">
             <button id="mrd-layers-btn" class="map-btn" title="Map type">${SC.I.layers}</button>
             <div id="mrd-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
               ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`
-                <button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;color:#374151;text-align:left">
+                <button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:14px;color:#374151;text-align:left">
                   <span data-label>${l}</span>
                   <span data-check style="display:flex;color:#2563eb;opacity:0">${SC.I.check}</span>
                 </button>`).join('')}
@@ -592,11 +592,11 @@ function Content() {
         </div>
         <!-- Legend -->
         <div style="position:absolute;bottom:16px;left:12px;z-index:400;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;box-shadow:0 2px 6px rgba(15,23,42,.1)">
-          <div style="font-size:13px;font-weight:700;color:#111827">Offshore Region</div>
+          <div style="font-size:14px;font-weight:700;color:#111827">Offshore Region</div>
           <div style="font-size:12px;color:#6b7280;margin-top:2px">5 Installations · 5 Active Rigs</div>
         </div>
       </div>` : `
-      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;padding:48px">
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:14px;padding:48px">
         <div style="text-align:center"><div style="font-size:32px;margin-bottom:12px">📋</div>${mapTab.replace(/([A-Z])/g,' $1').replace(/^./,s=>s.toUpperCase())} data coming soon</div>
       </div>`}
     </div>

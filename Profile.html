@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
@@ -17,11 +17,11 @@
   .pcard{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(15,23,42,.06);margin-bottom:16px}
   .pcard:last-child{margin-bottom:0}
   /* Form inputs */
-  .pfield{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:13px;color:#374151;background:#f9fafb;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+  .pfield{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:14px;color:#374151;background:#f9fafb;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
   .pfield:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12);background:#fff}
   .pfield:disabled{color:#6b7280;cursor:default}
   /* Radio rows */
-  .radio-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:border-color .1s,background .1s;margin-bottom:8px}
+  .radio-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border:1.5px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:border-color .1s,background .1s;margin-bottom:8px}
   .radio-row:last-child{margin-bottom:0}
   .radio-row.selected{border-color:#2563eb;background:#f8fbff}
   .radio-row:hover:not(.selected){border-color:#d1d5db;background:#fafafa}
@@ -31,7 +31,7 @@
   /* Setting rows */
   .setting-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f3f4f6}
   .setting-row:last-child{border-bottom:0}
-  .setting-btn{height:30px;padding:0 14px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:12.5px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;transition:background .1s,border-color .1s}
+  .setting-btn{height:30px;padding:0 16px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;transition:background .1s,border-color .1s}
   .setting-btn:hover{background:#f3f4f6;border-color:#d1d5db}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -49,7 +49,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -89,24 +89,24 @@ function Content() {
     <!-- Profile Header -->
     <div class="pcard" style="text-align:center;padding:32px 24px">
       ${(() => { const src = ST.editMode ? ST.pendingAvatar : ST.avatar; return `
-      <div style="position:relative;width:80px;height:80px;margin:0 auto ${ST.editMode ? '8px' : '14px'}">
+      <div style="position:relative;width:80px;height:80px;margin:0 auto ${ST.editMode ? '8px' : '12px'}">
         <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #e5e7eb;box-shadow:0 2px 8px rgba(15,23,42,.12)">${avatarHTML(src)}</div>
         ${ST.editMode ? `<button id="av-change-btn" type="button" title="Change photo" aria-label="Change profile photo" style="position:absolute;right:-4px;bottom:-4px;width:32px;height:32px;border-radius:50%;border:2px solid #fff;background:var(--brand-600,#2563eb);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 1px 4px rgba(15,23,42,.2)">${CAM_ICO}</button>` : ''}
       </div>
       ${ST.editMode ? `
       <input id="av-file" type="file" accept="image/jpeg,image/png,image/webp" style="display:none" />
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px">
-        <button id="av-upload-link" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:var(--brand-600,#2563eb);cursor:pointer">${src ? 'Change photo' : 'Upload photo'}</button>
-        ${src ? `<span style="color:#d1d5db">|</span><button id="av-remove" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;color:#dc2626;cursor:pointer">Remove</button>` : ''}
+        <button id="av-upload-link" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--brand-600,#2563eb);cursor:pointer">${src ? 'Change photo' : 'Upload photo'}</button>
+        ${src ? `<span style="color:#d1d5db">|</span><button id="av-remove" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:#dc2626;cursor:pointer">Remove</button>` : ''}
       </div>
-      <div style="font-size:12px;color:${ST.avError ? '#dc2626' : '#6b7280'};margin-bottom:14px">${ST.avError || 'JPG, PNG or WebP · max 5 MB'}</div>` : ''}`; })()}
+      <div style="font-size:12px;color:${ST.avError ? '#dc2626' : '#6b7280'};margin-bottom:12px">${ST.avError || 'JPG, PNG or WebP · max 5 MB'}</div>` : ''}`; })()}
       <h2 style="font-size:20px;font-weight:700;color:#111827;margin-bottom:4px">Paul Kiernan</h2>
       <div style="font-size:14px;color:#6b7280;margin-bottom:8px">Chief Technology Officer</div>
-      <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:13px;color:#6b7280;margin-bottom:16px">
-        <span style="display:flex;align-items:center;gap:5px">${PIN_ICO} London, UK</span>
-        <span style="display:flex;align-items:center;gap:5px">${CAL_ICO} Joined March 2022</span>
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;font-size:14px;color:#6b7280;margin-bottom:16px">
+        <span style="display:flex;align-items:center;gap:4px">${PIN_ICO} London, UK</span>
+        <span style="display:flex;align-items:center;gap:4px">${CAL_ICO} Joined March 2022</span>
       </div>
-      <button id="edit-profile-btn" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 18px;border-radius:8px;background:#2563eb;color:#fff;font-size:13px;font-weight:600;border:0;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
+      <button id="edit-profile-btn" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 20px;border-radius:8px;background:#2563eb;color:#fff;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#2563eb'">
         ${SET_ICO} Edit Profile
       </button>
     </div>
@@ -114,51 +114,51 @@ function Content() {
     <!-- Personal Information -->
     <div class="pcard">
       <h3 style="font-size:14px;font-weight:700;color:#111827;margin-bottom:4px">Personal Information</h3>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:18px">Update your personal details and contact information.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <p style="font-size:14px;color:#6b7280;margin-bottom:16px">Update your personal details and contact information.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">First Name</label>
+          <label style="display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:4px">First Name</label>
           <input class="pfield" type="text" value="Paul" ${!ST.editMode?'disabled':''} id="fn-input" />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Last Name</label>
+          <label style="display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:4px">Last Name</label>
           <input class="pfield" type="text" value="Kiernan" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Email</label>
+          <label style="display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:4px">Email</label>
           <input class="pfield" type="email" value="paul.kiernan@realworld.com" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Phone</label>
+          <label style="display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:4px">Phone</label>
           <input class="pfield" type="tel" value="+44 20 7946 0958" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Location</label>
+          <label style="display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:4px">Location</label>
           <input class="pfield" type="text" value="London, UK" ${!ST.editMode?'disabled':''} />
         </div>
         <div>
-          <label style="display:block;font-size:12.5px;font-weight:600;color:#374151;margin-bottom:5px">Department</label>
+          <label style="display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:4px">Department</label>
           <input class="pfield" type="text" value="Maritime Risk Analysis" ${!ST.editMode?'disabled':''} />
         </div>
       </div>
       ${ST.editMode ? `
       <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end">
-        <button id="cancel-edit" style="height:34px;padding:0 14px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:13px;font-weight:600;color:#4b5563;cursor:pointer;font-family:inherit">Cancel</button>
-        <button id="save-edit" style="height:34px;padding:0 14px;border-radius:8px;border:0;background:var(--brand-600,#2563eb);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Save Changes</button>
+        <button id="cancel-edit" style="height:34px;padding:0 16px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:14px;font-weight:600;color:#4b5563;cursor:pointer;font-family:inherit">Cancel</button>
+        <button id="save-edit" style="height:34px;padding:0 16px;border-radius:8px;border:0;background:var(--brand-600,#2563eb);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit">Save Changes</button>
       </div>` : ''}
     </div>
 
     <!-- Organisations -->
     <div class="pcard">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">${BLD_ICO}<h3 style="font-size:14px;font-weight:700;color:#111827">Organisations</h3></div>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:16px">Select which organisation to view data for.</p>
+      <p style="font-size:14px;color:#6b7280;margin-bottom:16px">Select which organisation to view data for.</p>
       ${ORGS.map(o => {
         const sel = ST.selectedOrg === o.id;
         return `<div class="radio-row ${sel?'selected':''}" data-org="${o.id}">
           <div class="radio-dot ${sel?'on':''}"></div>
           <div>
             <div style="font-size:14px;font-weight:600;color:#111827">${o.name}</div>
-            <div style="font-size:12.5px;color:#6b7280">${o.desc}</div>
+            <div style="font-size:14px;color:#6b7280">${o.desc}</div>
           </div>
         </div>`;
       }).join('')}
@@ -167,25 +167,25 @@ function Content() {
     <!-- Account Settings -->
     <div class="pcard">
       <h3 style="font-size:14px;font-weight:700;color:#111827;margin-bottom:4px">Account Settings</h3>
-      <p style="font-size:13px;color:#6b7280;margin-bottom:4px">Manage your account preferences and security settings.</p>
+      <p style="font-size:14px;color:#6b7280;margin-bottom:4px">Manage your account preferences and security settings.</p>
       <div class="setting-row">
         <div>
           <div style="font-size:14px;font-weight:600;color:#111827">Change Password</div>
-          <div style="font-size:12.5px;color:#6b7280;margin-top:2px">Update your account password</div>
+          <div style="font-size:14px;color:#6b7280;margin-top:2px">Update your account password</div>
         </div>
         <button class="setting-btn">Change</button>
       </div>
       <div class="setting-row">
         <div>
           <div style="font-size:14px;font-weight:600;color:#111827">Two-Factor Authentication</div>
-          <div style="font-size:12.5px;color:#6b7280;margin-top:2px">Add an extra layer of security</div>
+          <div style="font-size:14px;color:#6b7280;margin-top:2px">Add an extra layer of security</div>
         </div>
         <button class="setting-btn">Enable</button>
       </div>
       <div class="setting-row">
         <div>
           <div style="font-size:14px;font-weight:600;color:#111827">Email Notifications</div>
-          <div style="font-size:12.5px;color:#6b7280;margin-top:2px">Manage your notification preferences</div>
+          <div style="font-size:14px;color:#6b7280;margin-top:2px">Manage your notification preferences</div>
         </div>
         <button class="setting-btn">Configure</button>
       </div>

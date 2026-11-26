@@ -17,7 +17,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
@@ -86,7 +86,7 @@ function LoginScreen() {
 
       {/* Top bar — brand */}
       <header className="relative z-10 flex items-center justify-between px-8 py-6">
-        <div className="flex items-center gap-2.5 text-white">
+        <div className="flex items-center gap-2 text-white">
           <img src="images/skytek-realworld-landscape-white.png" alt="Real World" style={{ height: '34px', width: 'auto', display: 'block' }} />
         </div>
         <div className="hidden sm:flex items-center gap-2 text-white/80 text-xs">
@@ -99,13 +99,13 @@ function LoginScreen() {
       <main className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 px-8 lg:px-16 pt-8 pb-20">
         {/* Left — copy + slide indicator */}
         <div className="text-white max-w-xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/20 text-[11px] font-semibold uppercase tracking-[0.2em]">
+          <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/20 text-xs font-semibold uppercase tracking-[0.2em]">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-400" style={{ background: '#60a5fa' }} />
             <span key={idx} className="kb-fadein">{SLIDES[idx].tag}</span>
           </div>
           <h1
             key={idx}
-            className="mt-6 text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight kb-fadein"
+            className="mt-6 text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight kb-fadein"
             style={{ fontFamily: 'Exo, sans-serif', lineHeight: "1.2" }}>
             
             {SLIDES[idx].title}
@@ -131,32 +131,32 @@ function LoginScreen() {
             onSubmit={onSignIn}
             className="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl ring-1 ring-white/40 p-8">
             
-            <div className="flex items-center gap-2 text-ink-500 text-[11px] font-bold uppercase tracking-[0.18em]">
+            <div className="flex items-center gap-2 text-ink-500 text-xs font-bold uppercase tracking-[0.18em]">
               <span className="h-px w-6 bg-ink-300" /> Sign in
             </div>
-            <h2 className="mt-2 text-2xl font-extrabold text-ink-900" style={{ fontFamily: 'Exo, sans-serif' }}>
+            <h2 className="mt-2 text-2xl font-bold text-ink-900" style={{ fontFamily: 'Exo, sans-serif' }}>
               Welcome back
             </h2>
             <p className="mt-1 text-sm text-ink-500">Continue to your risk dashboard.</p>
 
-            <div className="mt-6 space-y-3.5">
+            <div className="mt-6 space-y-3">
               <label className="block">
-                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink-600">Email</span>
+                <span className="text-xs font-bold uppercase tracking-[0.16em] text-ink-600">Email</span>
                 <input
                   type="email"
                   defaultValue="paul.kiernan@realworld.com"
-                  className="mt-1.5 w-full h-11 rounded-lg border border-ink-200 bg-white px-3.5 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
+                  className="mt-1 w-full h-11 rounded-lg border border-ink-200 bg-white px-4 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
                 
               </label>
               <label className="block">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-ink-600">Password</span>
-                  <a className="text-[11px] font-semibold text-brand-600 hover:text-brand-700">Forgot?</a>
+                  <span className="text-xs font-bold uppercase tracking-[0.16em] text-ink-600">Password</span>
+                  <a className="text-xs font-semibold text-brand-600 hover:text-brand-700">Forgot?</a>
                 </div>
                 <input
                   type="password"
                   defaultValue="••••••••••"
-                  className="mt-1.5 w-full h-11 rounded-lg border border-ink-200 bg-white px-3.5 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
+                  className="mt-1 w-full h-11 rounded-lg border border-ink-200 bg-white px-4 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
                 
               </label>
 
@@ -184,13 +184,13 @@ function LoginScreen() {
               }
             </button>
 
-            <div className="mt-5 flex items-center gap-3 text-[11px] text-ink-400">
+            <div className="mt-5 flex items-center gap-3 text-xs text-ink-400">
               <div className="flex-1 h-px bg-ink-200" />
               <span>OR</span>
               <div className="flex-1 h-px bg-ink-200" />
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-2.5">
+            <div className="mt-4 grid grid-cols-2 gap-2">
               <button type="button" className="h-10 rounded-lg border border-ink-200 bg-white hover:bg-ink-50 text-xs font-semibold text-ink-700 flex items-center justify-center gap-2">
                 <svg width="14" height="14" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 8 3l5.7-5.7C34.6 6.5 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" /><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3 0 5.8 1.1 8 3l5.7-5.7C34.6 6.5 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" /><path fill="#4CAF50" d="M24 44c5.5 0 10.5-2.1 14.3-5.6l-6.6-5.6C29.6 34.6 27 35.5 24 35.5c-5.3 0-9.7-3.4-11.3-8L6 32.4C9.4 39.5 16.1 44 24 44z" /><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.7l6.6 5.6c-.5.4 7-5.2 7-15.3 0-1.3-.1-2.4-.4-3.5z" /></svg>
                 SSO
@@ -201,14 +201,14 @@ function LoginScreen() {
               </button>
             </div>
 
-            <p className="mt-6 text-[11px] text-ink-400 text-center">
+            <p className="mt-6 text-xs text-ink-400 text-center">
               By continuing, you agree to our <a className="font-semibold text-ink-600 hover:text-ink-800">Terms</a> and <a className="font-semibold text-ink-600 hover:text-ink-800">Privacy Policy</a>.
             </p>
           </form>
         </div>
       </main>
 
-      <footer className="relative z-10 px-8 pb-6 flex items-center justify-between text-[11px] text-white/60">
+      <footer className="relative z-10 px-8 pb-6 flex items-center justify-between text-xs text-white/60">
         <span>© 2026 Real World Risk Intelligence — Powered by <a href="https://www.skytek.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-white/80 hover:text-white transition-colors">Skytek</a></span>
       </footer>
     </div>);

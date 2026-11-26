@@ -47,7 +47,7 @@
   .dot-pulse::after { content:''; position:absolute; inset:-3px; border-radius:999px; box-shadow:0 0 0 0 rgba(239,68,68,.5); animation:pulse 1.8s infinite; }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(239,68,68,.55);} 70%{box-shadow:0 0 0 10px rgba(239,68,68,0);} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0);} }
   .tile-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:11px; padding:1px 5px; border:1px solid #e5e7eb; border-bottom-width:2px; border-radius:4px; background:#f9fafb; color:#4b5563; }
+  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:12px; padding:1px 4px; border:1px solid #e5e7eb; border-bottom-width:2px; border-radius:4px; background:#f9fafb; color:#4b5563; }
   .ring-focus:focus-visible { outline:2px solid #1a92d1; outline-offset:2px; border-radius:8px; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
@@ -56,7 +56,7 @@
   /* Leaflet custom */
   #marine-map { background:#0b1220; }
   #marine-map .leaflet-top.leaflet-left { top:56px; left:2px; }
-  #marine-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  #marine-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   /* Fullscreen button: standalone card, same width as Leaflet zoom bar, left-aligned with it */
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow: 0 1px 2px rgb(15 23 42 / .08) !important; border-radius: 8px !important; overflow:hidden; }
@@ -73,8 +73,8 @@
     display:inline-block; white-space:nowrap;
     background:rgba(15,23,42,.88); color:#fff;
     font-family:'Exo','Inter',sans-serif;
-    font-size:11px; font-weight:700; letter-spacing:.01em;
-    padding:3px 7px; border-radius:6px;
+    font-size:12px; font-weight:700; letter-spacing:.01em;
+    padding:4px 8px; border-radius:8px;
     box-shadow:0 1px 3px rgba(0,0,0,.25);
     text-shadow:0 1px 1px rgba(0,0,0,.5);
     pointer-events:none;
@@ -84,14 +84,14 @@
   .vessel-tip.leaflet-tooltip {
     background:rgba(15,23,42,.93); border:0; border-radius:8px;
     box-shadow:0 3px 10px rgba(0,0,0,.4);
-    padding:6px 9px; color:#fff;
+    padding:8px 8px; color:#fff;
     font-family:'Inter',system-ui,sans-serif;
   }
   .vessel-tip.leaflet-tooltip-top::before { border-top-color:rgba(15,23,42,.93); }
-  .vessel-tip .vtip-row { display:flex; align-items:center; gap:6px; }
-  .vessel-tip .vtip-flag { border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
+  .vessel-tip .vtip-row { display:flex; align-items:center; gap:4px; }
+  .vessel-tip .vtip-flag { border-radius:4px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
   .vessel-tip .vtip-name { font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:12px; letter-spacing:.01em; }
-  .vessel-tip .vtip-type { display:block; font-size:11px; color:#d1d5db; margin-top:2px; }
+  .vessel-tip .vtip-type { display:block; font-size:12px; color:#d1d5db; margin-top:2px; }
   /* Hover state — white selection ring around the vessel icon (matches the focus reference) */
   .vessel-marker { position: relative; cursor: pointer; }
   .vessel-marker::after {
@@ -110,27 +110,27 @@
   .vessel-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',system-ui,sans-serif; }
   .vessel-popup .leaflet-popup-tip { background:#fff; }
   .vp { background:#fff; color:#111827; }
-  .vp-header { background:var(--brand-600,#1485c5); color:#fff; padding:12px 14px 10px; display:flex; align-items:flex-start; justify-content:space-between; }
+  .vp-header { background:var(--brand-600,#1485c5); color:#fff; padding:12px 16px 12px; display:flex; align-items:flex-start; justify-content:space-between; }
   .vp-header-main { min-width:0; }
-  .vp-title { font-family:'Exo','Inter',sans-serif; font-weight:800; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; }
+  .vp-title { font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; }
   .vp-subtitle { font-size:12px; color:rgba(255,255,255,.85); margin-top:2px; }
-  .vp-route { display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; padding:12px 14px; border-bottom:1px solid #e5e7eb; }
+  .vp-route { display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; padding:12px 16px; border-bottom:1px solid #e5e7eb; }
   .vp-port { text-align:center; }
-  .vp-port-code { font-family:'Exo','Inter',sans-serif; font-weight:800; font-size:14px; color:#111827; }
+  .vp-port-code { font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; color:#111827; }
   .vp-port-name { font-size:12px; color:#374151; margin-top:1px; }
-  .vp-port-time { font-size:11px; color:#6b7280; margin-top:3px; letter-spacing:.02em; }
+  .vp-port-time { font-size:12px; color:#6b7280; margin-top:4px; letter-spacing:.02em; }
   .vp-arrow { color:#6b7280; font-size:16px; }
-  .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; padding:12px 14px; }
+  .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; padding:12px 16px; }
   .vp-grid > div { min-width:0; }
   .vp-span { grid-column:1 / -1; }
-  .vp-k { font-size:11px; color:#6b7280; }
-  .vp-v { font-size:12.5px; color:#111827; margin-top:1px; font-weight:600; }
+  .vp-k { font-size:12px; color:#6b7280; }
+  .vp-v { font-size:14px; color:#111827; margin-top:1px; font-weight:600; }
   .vp-strong { font-weight:700; color:#111827; }
-  .vp-muted { color:#6b7280; font-weight:500; font-size:11px; }
+  .vp-muted { color:#6b7280; font-weight:500; font-size:12px; }
   .vp-nav { color:#16a34a; font-weight:700; }
-  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#1485c5)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
+  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 12px 12px; background:transparent; color:var(--brand-600,#1485c5)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:14px; cursor:pointer; text-align:center; transition:background .15s; }
   .vp-cta:hover { background:var(--brand-50,#eff6ff); }
-  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:6px; opacity:.9; }
+  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:8px; opacity:.9; }
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
   /* Fullscreen map mode */
   /* Trap the map card's own controls (z-400) so they can't rise above the sticky topbar (z-30) */
@@ -141,37 +141,37 @@
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
+  .ds-tab { position:relative; font:inherit; font-size:14px; font-weight:600; padding:8px 20px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; text-align:center; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#1485c5; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
-  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:6px; }
+  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:4px; }
   .ds-tab, .mobile-tab-select { font-family:var(--font-sans,"Inter",system-ui,sans-serif) !important; }
   .ds-tab .tab-ico { display:inline-flex; }
 
   /* DS table-header treatment for list-card column headers */
   .tracking-micro.uppercase.text-ink-500{background:var(--slate-50,#F9FAFB);color:var(--text-muted,#6B7280)}
     /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 5px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
 
   /* ── DS color conformance overrides ── */
   .text-rose-500{color:#dc2626!important}.text-rose-600{color:#dc2626!important}.text-rose-700{color:#b91c1c!important}.bg-rose-100{background-color:#fee2e2!important}
   .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}
   .bg-emerald-100{background-color:#dcfce7!important}.text-emerald-700{color:#15803d!important}
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){.mobile-tab-select{display:block!important}.tabs-desktop-wrap{display:none!important}}
   /* Folder toggle on expandable rows: only the folder opens/closes the row */
-  .folder-btn { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; margin:-4px -3px -4px -5px; padding:0; border:0; border-radius:6px; background:transparent; cursor:pointer; }
+  .folder-btn { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; margin:-4px -4px -4px -4px; padding:0; border:0; border-radius:8px; background:transparent; cursor:pointer; }
   .folder-btn:hover { background:var(--brand-50,#eff6ff); }
   .folder-btn:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
   /* vessel popup: pagination dots above the button (active = wider brand pill) */
-  .vp-pills { display:flex; justify-content:center; align-items:center; gap:2px; margin:0 14px 2px; }
+  .vp-pills { display:flex; justify-content:center; align-items:center; gap:2px; margin:0 12px 2px; }
   .vp-pill { position:relative; width:22px; height:22px; padding:0; border:0; background:transparent; cursor:pointer; }
   .vp-pill::before { content:''; position:absolute; top:50%; left:50%; width:7px; height:7px; border-radius:9999px; background:#d1d5db; transform:translate(-50%,-50%); transition:width .18s ease, background-color .18s ease; }
   .vp-pill:hover::before { background:#9ca3af; }
@@ -239,7 +239,7 @@ html[data-theme="dark"] .ds-fdrawer {
 }
 .ds-fdrawer-close {
   border: 0; background: none; cursor: pointer;
-  color: var(--text-muted); padding: 5px; border-radius: 8px;
+  color: var(--text-muted); padding: 4px; border-radius: 8px;
   display: inline-flex;
   transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
 }
@@ -259,7 +259,7 @@ html[data-theme="dark"] .ds-fdrawer {
   flex: 0 0 auto;
   transition: padding var(--motion-base) var(--ease-out);
 }
-.ds-fdrawer-section:not(.is-open) { padding: 11px 0; }
+.ds-fdrawer-section:not(.is-open) { padding: 12px 0; }
 .ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .ds-fdrawer-section:last-child { border-bottom: 0; }
 .ds-fdrawer-acc-head {
@@ -270,7 +270,7 @@ html[data-theme="dark"] .ds-fdrawer {
 .ds-fdrawer-sec-title {
   font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
   color: var(--text-muted); margin: 0;
-  display: flex; align-items: center; gap: 7px;
+  display: flex; align-items: center; gap: 8px;
 }
 /* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
 .ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
@@ -286,7 +286,7 @@ html[data-theme="dark"] .ds-fdrawer {
 /* Section toolbar (Reset / Unselect all) */
 .ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; }
 .ds-fdrawer-act {
-  flex: 1; padding: 5px 8px;
+  flex: 1; padding: 4px 8px;
   border: 1px solid var(--border-default); border-radius: var(--radius-sm);
   background: var(--bg-surface);
   font: inherit; font-size: 12px; font-weight: 600; color: var(--text-secondary);
@@ -300,16 +300,16 @@ html[data-theme="dark"] .ds-fdrawer {
 .ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; }
 .ds-fdrawer-item {
   display: flex; align-items: center; gap: 8px; width: 100%;
-  text-align: left; padding: 7px 10px;
+  text-align: left; padding: 8px 12px;
   border: 0; border-radius: var(--radius-sm); background: transparent;
-  font-size: 12.5px; font-weight: 500; color: var(--text-secondary);
+  font-size: 14px; font-weight: 500; color: var(--text-secondary);
   cursor: pointer; white-space: nowrap;
 }
 .ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); }
 .ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; }
 .ds-fdrawer-foot {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 14px var(--fdrawer-pad-x);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 16px var(--fdrawer-pad-x);
   border-top: 1px solid var(--border-subtle);
   flex: 0 0 auto;
 }
@@ -325,8 +325,8 @@ html[data-theme="dark"] .ds-fdrawer {
 .mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
 .mfd-n { font-size:12px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
-.mfd-result { padding:10px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
-.mfd-btn { display:inline-flex; align-items:center; border-radius:6px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid transparent; }
+.mfd-result { padding:12px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
+.mfd-btn { display:inline-flex; align-items:center; border-radius:8px; font:inherit; font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; }
 .mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
 .mfd-btn--secondary:hover { background:var(--bg-sunken); }
 .mfd-btn--primary { background:var(--brand-600,#1485c5); color:#fff; }
@@ -335,7 +335,7 @@ html[data-theme="dark"] .ds-fdrawer {
 /* active-filter count on the map's Filter button */
 #map-filters-btn { position:relative; }
 #map-filters-btn.is-active { color:var(--brand-600,#1485c5); }
-.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:11px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
+.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:12px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
 html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 </style>
 </head>
@@ -354,7 +354,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -587,7 +587,7 @@ function tabs(tabs, active, groupAttr) {
   <div class="ds-tabs is-stretch" data-tab-group="${groupAttr}">
     <span class="ds-tab-pill is-init" data-tab-pill></span>
     ${tabs.map(t => `
-      <button ${groupAttr}="${t}" aria-selected="${t===active}" class="ds-tab" style="font-size:12px; padding:6px 12px;">
+      <button ${groupAttr}="${t}" aria-selected="${t===active}" class="ds-tab" style="font-size:12px; padding:8px 12px;">
         <span class="ds-tab-label">${t}</span>
       </button>
     `).join('')}
@@ -612,17 +612,17 @@ function positionTabPills() {
 function PortfolioCard() {
   const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
   const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
-  const sortIco = `<span style="font-size:11px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
+  const sortIco = `<span style="font-size:12px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   const statsRow = `
-    <div style="padding:10px 12px 0;">
+    <div style="padding:12px 12px 0;">
       <div style="display:flex;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;">
         <div style="flex:1;padding:12px 16px;text-align:center;border-right:1px solid #dbeafe;">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Policies</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Policies</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">4,932</div>
         </div>
         <div style="flex:1;padding:12px 16px;text-align:center;">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$605.2B</div>
         </div>
       </div>
@@ -637,7 +637,7 @@ function PortfolioCard() {
       const groupRow = `
         <div class="border-b border-ink-100 last:border-0">
           <div class="w-full text-left px-3 py-2 flex items-center justify-between gap-2 text-xs" style="gap:8px">
-            <span class="inline-flex items-center gap-1.5 min-w-0 flex-1">
+            <span class="inline-flex items-center gap-1 min-w-0 flex-1">
               <button type="button" data-group-idx="${gi}" aria-expanded="${isExpanded}" aria-label="${isExpanded ? 'Collapse' : 'Expand'} ${g.name}" class="folder-btn">${isExpanded ? folderOpenIco : folderIco}</button>
               <a href="MarinePortfolioGroupOverview.html?group=${encodeURIComponent(g.name)}" data-group-link="${gi}" class="text-brand-600 font-semibold truncate hover:underline">${g.name}</a>
             </span>
@@ -650,7 +650,7 @@ function PortfolioCard() {
             const pf = PORTFOLIOS.find(p => p.name === pName) || { name: pName, policies: '—', exposure: '—' };
             const pfIdx = PORTFOLIOS.indexOf(pf);
             return `
-          <button data-pf-idx="${pfIdx}" class="w-full text-left pl-5 pr-3 py-1.5 hover:bg-ink-50 flex items-center justify-between gap-2 text-xs bg-ink-50/60">
+          <button data-pf-idx="${pfIdx}" class="w-full text-left pl-5 pr-3 py-2 hover:bg-ink-50 flex items-center justify-between gap-2 text-xs bg-ink-50/60">
             <span class="text-brand-500 font-medium truncate">${pf.name}</span>
             <span class="flex items-center shrink-0" style="gap:20px">
               <span class="tabular-nums text-ink-500 text-right" style="min-width:80px">${typeof pf.policies === 'number' ? pf.policies : pf.policies}</span>
@@ -666,7 +666,7 @@ function PortfolioCard() {
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="max-height:360px">
     <div class="p-3 border-b border-ink-100 shrink-0"><div class="tabs-desktop-wrap">${tabs(['Portfolios','Portfolio Groups'], state.portfolioTab, 'data-portfolio-tab')}</div><select class="mobile-tab-select" data-portfolio-tab-sel aria-label="Portfolio view">${['Portfolios','Portfolio Groups'].map(t => `<option value="${t}" ${state.portfolioTab === t ? 'selected' : ''}>${t}</option>`).join('')}</select></div>
     ${statsRow}
-    <div class="px-3 py-1.5 flex items-center justify-between text-[11px] font-semibold tracking-micro uppercase text-ink-500 border-b border-ink-100">
+    <div class="px-3 py-2 flex items-center justify-between text-xs font-semibold tracking-micro uppercase text-ink-500 border-b border-ink-100">
       <span>Name</span>
       <span class="flex items-center shrink-0" style="gap:20px">
         <span style="min-width:80px;text-align:right">Policies${sortIco}</span>
@@ -692,7 +692,7 @@ function PortfolioCard() {
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="max-height:360px">
     <div class="p-3 border-b border-ink-100 shrink-0"><div class="tabs-desktop-wrap">${tabs(['Portfolios','Portfolio Groups'], state.portfolioTab, 'data-portfolio-tab')}</div><select class="mobile-tab-select" data-portfolio-tab-sel aria-label="Portfolio view">${['Portfolios','Portfolio Groups'].map(t => `<option value="${t}" ${state.portfolioTab === t ? 'selected' : ''}>${t}</option>`).join('')}</select></div>
     ${statsRow}
-    <div class="px-3 pt-2 pb-1 flex items-center justify-between text-[11px] font-semibold tracking-micro uppercase text-ink-500">
+    <div class="px-3 pt-2 pb-1 flex items-center justify-between text-xs font-semibold tracking-micro uppercase text-ink-500">
       <span>Name</span>
       <span class="flex gap-6"><span>Policies</span><span>Exposure</span></span>
     </div>
@@ -716,7 +716,7 @@ function PortfolioCard() {
 
 function RegionsCard() {
   const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-  const sortIco = `<span style="font-size:11px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
+  const sortIco = `<span style="font-size:12px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   if (state.regionTab === 'Benchmark') {
     const marker = (color) => `<svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" style="transform:rotate(45deg); color:${color};" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg>`;
@@ -725,14 +725,14 @@ function RegionsCard() {
     <div class="p-3 border-b border-ink-100 shrink-0"><div class="tabs-desktop-wrap">${tabs(['Regions Aggregation','Exposure Aggregation','Benchmark'], state.regionTab, 'data-region-tab')}</div><select class="mobile-tab-select" data-region-tab-sel aria-label="Select view">${['Regions Aggregation','Exposure Aggregation','Benchmark'].map(t => `<option value="${t}" ${t === state.regionTab ? 'selected' : ''}>${t}</option>`).join('')}</select></div>
     <div class="px-4 pt-3 pb-1 text-center text-xs font-semibold text-ink-700">Benchmark against Global Fleet</div>
     <div class="px-4 pt-2 flex justify-center">
-      <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:10px 32px;text-align:center;min-width:180px">
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">All Vessels</div>
+      <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 32px;text-align:center;min-width:180px">
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">All Vessels</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">1.5%</div>
       </div>
     </div>
-    <div class="flex-1 px-4 py-2 space-y-1.5 overflow-y-auto scroll-thin">
+    <div class="flex-1 px-4 py-2 space-y-1 overflow-y-auto scroll-thin">
       ${BENCHMARK.map(b => `
-        <div class="grid grid-cols-[16px_1fr_auto_56px_auto] items-center gap-2 text-xs py-1.5 border-b border-ink-100 last:border-0">
+        <div class="grid grid-cols-[16px_1fr_auto_56px_auto] items-center gap-2 text-xs py-2 border-b border-ink-100 last:border-0">
           ${marker(b.color)}
           <span class="text-ink-700 truncate">${b.kind}</span>
           <span class="tabular-nums text-ink-500 text-right">${b.count}</span>
@@ -749,12 +749,12 @@ function RegionsCard() {
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="max-height:360px">
     <div class="p-3 border-b border-ink-100 shrink-0"><div class="tabs-desktop-wrap">${tabs(['Regions Aggregation','Exposure Aggregation','Benchmark'], state.regionTab, 'data-region-tab')}</div><select class="mobile-tab-select" data-region-tab-sel aria-label="Select view">${['Regions Aggregation','Exposure Aggregation','Benchmark'].map(t => `<option value="${t}" ${t === state.regionTab ? 'selected' : ''}>${t}</option>`).join('')}</select></div>
     <div class="px-4 py-3 flex justify-center border-b border-ink-100">
-      <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:12px;padding:10px 32px;text-align:center;min-width:180px">
-        <div class="text-[11px] font-semibold tracking-micro uppercase text-ink-500">Total Exposure</div>
+      <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:12px;padding:12px 32px;text-align:center;min-width:180px">
+        <div class="text-xs font-semibold tracking-micro uppercase text-ink-500">Total Exposure</div>
         <div class="mt-1 text-xl font-bold text-ink-900 tabular-nums">$605.2B</div>
       </div>
     </div>
-    <div class="px-3 py-1.5 flex items-center justify-between text-[11px] font-semibold tracking-micro uppercase text-ink-500 border-b border-ink-100">
+    <div class="px-3 py-2 flex items-center justify-between text-xs font-semibold tracking-micro uppercase text-ink-500 border-b border-ink-100">
       <span>Aggregation</span>
       <span>Risk Value${sortIco}</span>
     </div>
@@ -765,7 +765,7 @@ function RegionsCard() {
         return `
         <div>
           <div class="w-full text-left px-3 py-2 flex items-center justify-between gap-4 text-xs">
-            <span class="inline-flex items-center gap-1.5 min-w-0">
+            <span class="inline-flex items-center gap-1 min-w-0">
               <button type="button" data-agg-idx="${ai}" aria-expanded="${open}" aria-label="${open ? 'Collapse' : 'Expand'} ${a.name}" class="folder-btn">${open ? folderOpenIco : folderIco}</button>
               <span class="text-ink-900 font-semibold truncate">${a.name}</span>
               <span class="text-ink-400 shrink-0">(${a.count.toLocaleString()})</span>
@@ -774,8 +774,8 @@ function RegionsCard() {
           </div>
           ${open ? `<div class="bg-ink-50/60 border-t border-ink-100 divide-y divide-ink-100">
             ${a.subs.map(s => `
-            <button data-subagg="${s.name}" data-subagg-count="${s.count}" data-subagg-value="${s.riskValue}" class="w-full text-left pl-9 pr-3 py-1.5 flex items-center justify-between gap-4 text-xs hover:bg-ink-100/60">
-              <span class="inline-flex items-center gap-1.5 min-w-0">
+            <button data-subagg="${s.name}" data-subagg-count="${s.count}" data-subagg-value="${s.riskValue}" class="w-full text-left pl-9 pr-3 py-2 flex items-center justify-between gap-4 text-xs hover:bg-ink-100/60">
+              <span class="inline-flex items-center gap-1 min-w-0">
                 <span class="truncate text-brand-600 font-medium hover:underline">${s.name}</span>
                 <span class="text-ink-400 shrink-0">(${s.count.toLocaleString()})</span>
               </span>
@@ -791,7 +791,7 @@ function RegionsCard() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="max-height:360px">
     <div class="p-3 border-b border-ink-100 shrink-0"><div class="tabs-desktop-wrap">${tabs(['Regions Aggregation','Exposure Aggregation','Benchmark'], state.regionTab, 'data-region-tab')}</div><select class="mobile-tab-select" data-region-tab-sel aria-label="Select view">${['Regions Aggregation','Exposure Aggregation','Benchmark'].map(t => `<option value="${t}" ${t === state.regionTab ? 'selected' : ''}>${t}</option>`).join('')}</select></div>
-    <div class="px-3 pt-2 pb-1 grid grid-cols-[1fr_96px_88px] gap-4 text-[11px] font-semibold tracking-micro uppercase text-ink-500">
+    <div class="px-3 pt-2 pb-1 grid grid-cols-[1fr_96px_88px] gap-4 text-xs font-semibold tracking-micro uppercase text-ink-500">
       <span>Name</span>
       <span class="text-rose-500 text-right">Above Threshold</span>
       <span class="text-right">Our Exposure</span>
@@ -813,7 +813,7 @@ function RegionsCard() {
           </div>
           ${open ? `<div class="bg-ink-50/60 border-t border-ink-100 divide-y divide-ink-100">
             ${r.subs.map(s => `
-            <button data-subregion="${s.name}" class="w-full text-left pl-9 pr-3 py-1.5 grid grid-cols-[1fr_96px_88px] gap-4 items-center text-xs hover:bg-ink-100/60">
+            <button data-subregion="${s.name}" class="w-full text-left pl-9 pr-3 py-2 grid grid-cols-[1fr_96px_88px] gap-4 items-center text-xs hover:bg-ink-100/60">
               <span class="inline-flex items-center gap-2 min-w-0">
                 <span class="shrink-0">${flag(s.cc,'sm')}</span>
                 <span class="truncate text-brand-600 font-medium hover:underline">${s.name}</span>
@@ -841,13 +841,13 @@ function BenchmarkCard() {
     </div>
     <div class="px-4 pt-3 flex justify-center">
       <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 32px;text-align:center;min-width:180px">
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">All Vessels</div>
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">All Vessels</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">1.5%</div>
       </div>
     </div>
-    <div class="flex-1 px-4 py-2 space-y-1.5 overflow-y-auto scroll-thin">
+    <div class="flex-1 px-4 py-2 space-y-1 overflow-y-auto scroll-thin">
       ${BENCHMARK.map(b => `
-        <div class="grid grid-cols-[16px_1fr_auto_56px_auto] items-center gap-2 text-xs py-1.5 border-b border-ink-100 last:border-0">
+        <div class="grid grid-cols-[16px_1fr_auto_56px_auto] items-center gap-2 text-xs py-2 border-b border-ink-100 last:border-0">
           ${marker(b.color)}
           <span class="text-ink-700 truncate">${b.kind}</span>
           <span class="tabular-nums text-ink-500 text-right">${b.count}</span>
@@ -871,18 +871,18 @@ function AlertsCard() {
       <div class="flex items-start justify-between gap-2">
         <div class="flex items-start gap-2 min-w-0">
           <div class="min-w-0">
-            <a href="VesselDetails.html" class="text-sm font-semibold text-brand-600 hover:underline flex items-center gap-1.5 min-w-0"><span class="shrink-0 inline-flex">${flag(a.cc,'sm')}</span><span class="truncate">${a.name}</span></a>
-            <div class="text-[11px] text-ink-500">${a.kind}</div>
+            <a href="VesselDetails.html" class="text-sm font-semibold text-brand-600 hover:underline flex items-center gap-1 min-w-0"><span class="shrink-0 inline-flex">${flag(a.cc,'sm')}</span><span class="truncate">${a.name}</span></a>
+            <div class="text-xs text-ink-500">${a.kind}</div>
           </div>
         </div>
-        <span class="text-[11px] font-bold tracking-micro px-1.5 py-0.5 rounded ${tagCls(a.tagTone)} shrink-0">${a.tag}</span>
+        <span class="text-xs font-bold tracking-micro px-2 py-0.5 rounded ${tagCls(a.tagTone)} shrink-0">${a.tag}</span>
       </div>
-      <div class="mt-2 space-y-0.5 text-[11px] text-ink-600">
-        <div class="flex items-center gap-1.5"><span class="text-ink-400 inline-flex"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg></span>${a.date}</div>
-        <div class="flex items-center gap-1.5"><span class="text-ink-400 [&_svg]:h-3.5 [&_svg]:w-3.5">${Ico.pin}</span>${a.loc}</div>
+      <div class="mt-2 space-y-0.5 text-xs text-ink-600">
+        <div class="flex items-center gap-1"><span class="text-ink-400 inline-flex"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg></span>${a.date}</div>
+        <div class="flex items-center gap-1"><span class="text-ink-400 [&_svg]:h-3.5 [&_svg]:w-3.5">${Ico.pin}</span>${a.loc}</div>
       </div>
-      <div class="mt-1.5 text-[11px] text-ink-600 line-clamp-2">${a.body}</div>
-      <button class="mt-1 text-[11px] font-semibold text-brand-600 hover:text-brand-700">▸ Show More</button>
+      <div class="mt-1 text-xs text-ink-600 line-clamp-2">${a.body}</div>
+      <button class="mt-1 text-xs font-semibold text-brand-600 hover:text-brand-700">▸ Show More</button>
     </div>`;
 
   const WEATHER_EVENTS = [
@@ -899,26 +899,26 @@ function AlertsCard() {
   const windIco = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`;
 
   const weatherContent = `
-    <div class="px-3 py-2 grid text-[11px] font-semibold tracking-micro uppercase text-ink-500 border-b border-ink-100 shrink-0" style="grid-template-columns:1fr auto auto;gap:0 12px;">
+    <div class="px-3 py-2 grid text-xs font-semibold tracking-micro uppercase text-ink-500 border-b border-ink-100 shrink-0" style="grid-template-columns:1fr auto auto;gap:0 12px;">
       <span>Event Name</span>
       <span>Region</span>
       <span>Category</span>
     </div>
     <div class="divide-y divide-ink-50">
       ${WEATHER_EVENTS.map(e => `
-      <div class="px-3 py-2.5 grid items-center" style="grid-template-columns:1fr auto auto;gap:0 12px;">
+      <div class="px-3 py-3 grid items-center" style="grid-template-columns:1fr auto auto;gap:0 12px;">
         <div>
           <a href="NatCatEventDetails.html" class="text-brand-600 font-semibold text-xs hover:underline">${e.name}</a>
-          <div class="flex items-center gap-1 mt-0.5 text-[11px] text-ink-400">
+          <div class="flex items-center gap-1 mt-0.5 text-xs text-ink-400">
             ${windIco} ${e.winds}
           </div>
         </div>
         <div class="text-right">
           <div class="text-xs text-ink-600 whitespace-nowrap">${e.region}</div>
-          <div class="text-[11px] text-ink-400 mt-0.5">${e.date}</div>
+          <div class="text-xs text-ink-400 mt-0.5">${e.date}</div>
         </div>
         <div>
-          <span style="font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:${catBg[e.catTone]};color:${catColor[e.catTone]};white-space:nowrap;">${e.cat}</span>
+          <span style="font-size:12px;font-weight:600;padding:4px 8px;border-radius:8px;background:${catBg[e.catTone]};color:${catColor[e.catTone]};white-space:nowrap;">${e.cat}</span>
         </div>
       </div>`).join('')}
     </div>`;
@@ -937,17 +937,17 @@ function AlertsCard() {
   const complianceContent = `
     <div class="flex items-center gap-3 px-3 py-3 border-b border-ink-100">
       <div class="flex flex-col items-center shrink-0">
-        <div style="width:44px;height:44px;border-radius:50%;background:#fef2f2;display:flex;align-items:center;justify-content:center;margin-bottom:6px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:#fef2f2;display:flex;align-items:center;justify-content:center;margin-bottom:4px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="#dc2626" stroke="#dc2626" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
         </div>
-        <div style="font-size:13px;font-weight:700;color:#dc2626;">Sanctioned</div>
+        <div style="font-size:14px;font-weight:700;color:#dc2626;">Sanctioned</div>
       </div>
-      <div class="flex items-start gap-2 flex-1 min-w-0" style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 12px;">
+      <div class="flex items-start gap-2 flex-1 min-w-0" style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 12px;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-px"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
         <p class="text-[12px] leading-snug text-ink-700" style="text-wrap:pretty">Sanctioned vessels may operate under specific licences or exemptions despite restrictions. Please verify each vessel for current applicable authorisations.</p>
       </div>
     </div>
-    <div class="px-3 py-2 grid text-[11px] font-semibold tracking-micro uppercase text-ink-500" style="grid-template-columns:1fr auto auto;gap:0 16px;border-bottom:1px solid #f3f4f6;">
+    <div class="px-3 py-2 grid text-xs font-semibold tracking-micro uppercase text-ink-500" style="grid-template-columns:1fr auto auto;gap:0 16px;border-bottom:1px solid #f3f4f6;">
       <span>Vessel</span>
       <span>Date Imposed</span>
       <span>Portfolio</span>
@@ -955,7 +955,7 @@ function AlertsCard() {
     <div class="flex-1 overflow-y-auto scroll-thin divide-y divide-ink-50">
       ${SANCTIONED_VESSELS.map(v => `
       <div class="px-3 py-2 grid items-center text-xs" style="grid-template-columns:1fr auto auto;gap:0 16px;">
-        <span class="flex items-center gap-1.5 min-w-0">
+        <span class="flex items-center gap-1 min-w-0">
           ${flagIco}
           <a href="VesselDetails.html?compliance=Sanctioned&v=${encodeURIComponent(v.name)}" class="text-brand-600 font-semibold truncate hover:underline">${v.name}</a>
         </span>
@@ -1016,7 +1016,7 @@ function MapCard() {
                 <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform translate-x-0.5"></span>
               </button>
             </div>
-            <p class="mt-1.5 text-[12px] leading-snug text-ink-500">Display vessel names directly on the map next to icons.</p>
+            <p class="mt-1 text-[12px] leading-snug text-ink-500">Display vessel names directly on the map next to icons.</p>
           </div>
         </div>
       </div>
@@ -1051,9 +1051,9 @@ function vesselPopupHTML(v) {
   const typeLabel = vesselTypeLabel(v.type);
   const latStr = `${v.lat.toFixed(2)}${v.lat>=0?'N':'S'}`;
   const lngStr = `${Math.abs(v.lng).toFixed(2)}${v.lng>=0?'E':'W'}`;
-  const flagImg = `<img src="flags/${v.flag.cc}.svg" srcset="flags/${v.flag.cc}.svg 2x" width="18" height="13" alt="${v.flag.name}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:4px;" />`;
-  const fromFlag = `<img src="flags/${v.from.cc}.svg" width="16" height="12" alt="" style="display:inline-block;border-radius:2px;margin-right:4px;vertical-align:middle;" />`;
-  const toFlag = `<img src="flags/${v.to.cc}.svg" width="16" height="12" alt="" style="display:inline-block;border-radius:2px;margin-right:4px;vertical-align:middle;" />`;
+  const flagImg = `<img src="flags/${v.flag.cc}.svg" srcset="flags/${v.flag.cc}.svg 2x" width="18" height="13" alt="${v.flag.name}" style="display:inline-block;border-radius:4px;vertical-align:middle;margin-right:4px;" />`;
+  const fromFlag = `<img src="flags/${v.from.cc}.svg" width="16" height="12" alt="" style="display:inline-block;border-radius:4px;margin-right:4px;vertical-align:middle;" />`;
+  const toFlag = `<img src="flags/${v.to.cc}.svg" width="16" height="12" alt="" style="display:inline-block;border-radius:4px;margin-right:4px;vertical-align:middle;" />`;
   return `
   <div class="vp">
     <div class="vp-header">

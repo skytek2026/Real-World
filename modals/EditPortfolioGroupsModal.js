@@ -25,20 +25,20 @@
     s.id = 'rw-modal-group-style';
     s.textContent = `
       .rw-grp-search {
-        width:100%; border:1px solid #d1d5db; border-radius:4px; padding:7px 10px;
-        font:inherit; font-size:13px; color:#111827; background:#fff;
+        width:100%; border:1px solid #d1d5db; border-radius:4px; padding:8px 12px;
+        font:inherit; font-size:14px; color:#111827; background:#fff;
         transition:border-color 120ms, box-shadow 120ms;
       }
       .rw-grp-search:focus { outline:none; border-color:var(--brand-400,#60a5fa); box-shadow:0 0 0 3px rgba(37,99,235,.10); }
       .rw-grp-list {
-        margin-top:10px; max-height:280px; overflow-y:auto;
+        margin-top:8px; max-height:280px; overflow-y:auto;
         border:1px solid #e5e7eb; border-radius:4px; background:#fff;
       }
       .rw-grp-list::-webkit-scrollbar { width:8px; }
       .rw-grp-list::-webkit-scrollbar-thumb { background:var(--brand-300,#93c5fd); border-radius:4px; }
       .rw-grp-row {
-        display:flex; align-items:center; gap:10px;
-        padding:10px 12px; border-bottom:1px solid #f3f4f6;
+        display:flex; align-items:center; gap:8px;
+        padding:12px 12px; border-bottom:1px solid #f3f4f6;
         cursor:pointer; transition:background 100ms;
       }
       .rw-grp-row:last-child { border-bottom:0; }
@@ -55,8 +55,8 @@
         content:''; position:absolute; left:5px; top:1px; width:5px; height:10px;
         border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);
       }
-      .rw-grp-row label { font-size:13px; color:var(--brand-600,#2563eb); cursor:pointer; flex:1; }
-      .rw-grp-empty   { padding:18px; text-align:center; font-size:13px; color:#9ca3af; }
+      .rw-grp-row label { font-size:14px; color:var(--brand-600,#2563eb); cursor:pointer; flex:1; }
+      .rw-grp-empty   { padding:20px; text-align:center; font-size:14px; color:#9ca3af; }
     `;
     document.head.appendChild(s);
   }
@@ -92,7 +92,7 @@
               <label class="rw-modal-label" for="epg-title"><strong>Group</strong> Title:</label>
               <input id="epg-title" type="text" class="rw-modal-input" value="${escapeHtml(title)}" />
             </div>
-            <div style="font-size:13px;color:#4b5563;margin:14px 0 6px;">Select Portfolios to add to group:</div>
+            <div style="font-size:14px;color:#4b5563;margin:12px 0 4px;">Select Portfolios to add to group:</div>
             <input id="epg-search" type="text" class="rw-grp-search" placeholder="Search" />
             <div class="rw-grp-list" id="epg-list"></div>
           </div>

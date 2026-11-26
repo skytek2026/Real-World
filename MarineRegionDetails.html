@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -21,7 +21,7 @@
   .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
   .leaflet-control-zoom a svg{width:16px;height:16px}
   #region-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #region-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px!important}
+  #region-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important}
   #mrd-map-wrap.is-fullscreen{position:fixed!important;inset:0!important;z-index:9999!important;border-radius:0!important}
   #mrd-layers-menu button:hover{background:#f3f4f6}
   /* Region popup — matches Regions page */
@@ -36,7 +36,7 @@
     width:26px;height:26px;
     padding:2px 0 0 0 !important;
     top:6px !important;right:6px !important;
-    border-radius:6px;
+    border-radius:8px;
     text-align:center;
     text-decoration:none !important;
     transition:opacity .12s, background .12s;
@@ -44,20 +44,20 @@
   .region-popup .leaflet-popup-close-button:hover{opacity:1;background:rgba(255,255,255,.18)}
   /* Pill tabs (Skytek DS — animated sliding pill) */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+  .ds-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
   .ds-tab:hover{color:#111827;}
   .ds-tab[aria-selected="true"]{color:#fff;}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none;}
   .ds-tab-pill.is-init{transition:none;}
-  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;}
+  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px;}
   /* Legacy pill tabs (kept for any leftover usage) */
   .ptabs{display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;position:relative}
-  .ptab{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:9999px;font-size:13px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;white-space:nowrap}
+  .ptab{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:9999px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;white-space:nowrap}
   .ptab.active{background:var(--brand-600,#2563eb);color:#fff}
   .ptab:not(.active){background:transparent;color:#6b7280}
   .ptab:not(.active):hover{color:#111827}
   /* Segment tabs (equal width, no pill container) */
-  .seg-tab{flex:1;padding:7px 4px;font-size:13px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
+  .seg-tab{flex:1;padding:8px 4px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
   .seg-tab.active{background:var(--brand-600,#2563eb);color:#fff}
   .seg-tab:not(.active):hover{color:#374151}
   /* Stat pills */
@@ -65,82 +65,82 @@
   .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px}
   .spill-red {display:inline-block;background:#fef2f2;color:#dc2626;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px}
   /* Totals table */
-  .tot-row{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:13px}
+  .tot-row{display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px}
   .tot-row:last-child{border-bottom:0}
   /* Portfolio table */
   .pf-tbl{width:100%;border-collapse:collapse}
-  .pf-tbl th{padding:8px 10px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
-  .pf-tbl td{padding:9px 10px;font-size:13px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
+  .pf-tbl th{padding:8px 12px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+  .pf-tbl td{padding:8px 12px;font-size:14px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
   .pf-tbl tr:last-child td{border-bottom:0}
   .pf-tbl tbody tr:hover td{background:#fafafa}
   /* Policies toolbar + table */
-  .pol-toolbar{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid #f3f4f6;flex-shrink:0;flex-wrap:wrap}
+  .pol-toolbar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0;flex-wrap:wrap}
   .pol-search{flex:1;min-width:200px;position:relative}
-  .pol-search input{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px 0 36px;font-size:13px;color:#374151;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+  .pol-search input{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px 0 36px;font-size:14px;color:#374151;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
   .pol-search input:focus{border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .pol-search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ca3af;width:15px;height:15px}
-  .pol-btn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#374151;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s}
+  .pol-btn{display:inline-flex;align-items:center;gap:4px;height:38px;padding:0 16px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:600;color:#374151;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s}
   .pol-btn:hover{background:#f9fafb;border-color:#d1d5db}
   .pol-btn .pchev{color:#9ca3af}
   .pol-btn-ghost{color:#9ca3af;border-style:solid}
   .pol-btn-primary{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb);color:#fff}
   .pol-btn-primary:hover{background:var(--brand-700,#1d4ed8);border-color:var(--brand-700,#1d4ed8)}
   .pol-tbl{width:100%;border-collapse:collapse}
-  .pol-tbl th{position:sticky;top:0;z-index:1;background:#fff;padding:10px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;cursor:pointer;user-select:none}
+  .pol-tbl th{position:sticky;top:0;z-index:1;background:#fff;padding:12px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;cursor:pointer;user-select:none}
   .pol-tbl th:hover{color:var(--text-primary,#111827)}
-  .pol-tbl th .th-in{display:inline-flex;align-items:center;gap:6px}
-  .pol-tbl td{padding:13px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle;white-space:nowrap}
+  .pol-tbl th .th-in{display:inline-flex;align-items:center;gap:4px}
+  .pol-tbl td{padding:12px 16px;font-size:14px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle;white-space:nowrap}
   .pol-tbl tbody tr:nth-child(even) td{background:#f9fafb}
   .pol-tbl tbody tr:hover td{background:#eff6ff}
   .pol-link{color:var(--brand-600,#2563eb);font-weight:500;cursor:pointer}
   .pol-link:hover{text-decoration:underline}
   .pol-flags{display:inline-flex;align-items:center;gap:12px}
-  .pol-flag{display:inline-flex;align-items:center;gap:6px}
+  .pol-flag{display:inline-flex;align-items:center;gap:4px}
   /* Notifications header */
-  .notif-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0}
+  .notif-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0}
   .notif-title{font-size:14px;font-weight:700;color:#111827}
-  .notif-tbl td{font-size:13px}
+  .notif-tbl td{font-size:14px}
   /* Region History */
-  .hist-title{font-size:14px;font-weight:700;color:#111827;padding:14px 16px 4px}
-  .hist-legend{padding:6px 20px 16px}.hist-legend:empty{display:none}
+  .hist-title{font-size:14px;font-weight:700;color:#111827;padding:16px 16px 4px}
+  .hist-legend{padding:8px 20px 16px}.hist-legend:empty{display:none}
   .hist-legend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 12px}
-  .hist-leg-bar{display:flex;align-items:center;gap:10px;font-size:12px;color:#6b7280;margin-bottom:6px;min-height:24px}
+  .hist-leg-bar{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b7280;margin-bottom:4px;min-height:24px}
   .hist-leg-clear{font:inherit;font-size:12px;font-weight:600;color:var(--brand-600,#2563eb);background:none;border:0;cursor:pointer;padding:2px 4px;border-radius:4px}
   .hist-leg-clear:hover{text-decoration:underline}
-  button.hist-leg{font:inherit;font-size:12px;background:transparent;border:1px solid transparent;border-radius:6px;padding:4px 6px;cursor:pointer;text-align:left;transition:background .12s,opacity .12s,border-color .12s}
+  button.hist-leg{font:inherit;font-size:12px;background:transparent;border:1px solid transparent;border-radius:8px;padding:4px 8px;cursor:pointer;text-align:left;transition:background .12s,opacity .12s,border-color .12s}
   button.hist-leg:hover{background:#f3f4f6}
   button.hist-leg.is-on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:#111827;font-weight:600}
   button.hist-leg.is-dim{opacity:.45}
   button.hist-leg:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:1px}
-  .hist-leg{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#374151;min-width:0}
+  .hist-leg{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#374151;min-width:0}
   .hist-leg svg{flex-shrink:0}
   .hist-cb{width:14px;height:14px;flex-shrink:0;border:1px solid #d1d5db;border-radius:4px;background:#fff;display:inline-grid;place-content:center;transition:background .12s,border-color .12s}
   .hist-cb.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   .hist-cb.on::after{content:"";width:8px;height:4px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
   button.hist-leg:hover .hist-cb:not(.on){border-color:#9ca3af}
   .hist-leg span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .hist-controls{display:flex;gap:14px;padding:4px 20px 20px;flex-wrap:wrap}
-  .hist-panel{border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;min-width:200px}
+  .hist-controls{display:flex;gap:12px;padding:4px 20px 20px;flex-wrap:wrap}
+  .hist-panel{border:1px solid #e5e7eb;border-radius:8px;padding:16px 16px;min-width:200px}
   .hist-panel h4{font-size:14px;font-weight:700;color:#111827;margin:0 0 1px}
-  .hist-panel .hist-sub{font-size:12px;color:#9ca3af;margin-bottom:10px}
-  .hist-opt{display:flex;align-items:center;gap:9px;font-size:13px;color:#374151;padding:5px 0;cursor:pointer;user-select:none}
+  .hist-panel .hist-sub{font-size:12px;color:#9ca3af;margin-bottom:8px}
+  .hist-opt{display:flex;align-items:center;gap:8px;font-size:14px;color:#374151;padding:4px 0;cursor:pointer;user-select:none}
   .hist-radio{width:18px;height:18px;border-radius:50%;border:1.5px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
-  .hist-inline{display:flex;flex-wrap:wrap;gap:2px 18px}
+  .hist-inline{display:flex;flex-wrap:wrap;gap:2px 16px}
   .ds-radio{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid var(--border-strong,#d1d5db);border-radius:50%;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
   .ds-radio:checked{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
   .ds-radio:focus-visible{outline:none;box-shadow:var(--shadow-focus,0 0 0 3px rgb(45 127 251/.32))}
   .hist-radio.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
-  .hist-check{width:18px;height:18px;border-radius:6px;border:1.5px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
+  .hist-check{width:18px;height:18px;border-radius:8px;border:1.5px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
   .hist-check.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   /* Create Region Report form */
-  .rpt-select{appearance:none;-webkit-appearance:none;height:38px;padding:0 34px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:13px;font-family:inherit;cursor:pointer;outline:none;transition:border-color .15s,box-shadow .15s}
+  .rpt-select{appearance:none;-webkit-appearance:none;height:38px;padding:0 36px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:13px;font-family:inherit;cursor:pointer;outline:none;transition:border-color .15s,box-shadow .15s}
   .rpt-select:hover{border-color:#d1d5db}
   .rpt-select:focus{border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   /* DS button + card footer (mirrors design-system styles.css) */
-  .ds-btn{font-family:inherit;font-size:13px;font-weight:500;line-height:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;height:32px;border-radius:6px;border:1px solid transparent;cursor:pointer;white-space:nowrap;text-decoration:none;outline:0;transition:background .15s,border-color .15s,color .15s,box-shadow .15s}
+  .ds-btn{font-family:inherit;font-size:14px;font-weight:500;line-height:1;display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:0 12px;height:32px;border-radius:8px;border:1px solid transparent;cursor:pointer;white-space:nowrap;text-decoration:none;outline:0;transition:background .15s,border-color .15s,color .15s,box-shadow .15s}
   .ds-btn svg{width:14px;height:14px}
-  .ds-btn--sm{height:28px;font-size:12px;padding:0 10px}
+  .ds-btn--sm{height:28px;font-size:12px;padding:0 12px}
   .ds-btn--sm svg{width:12px;height:12px}
   .ds-btn--primary{background:var(--brand-600,#2563eb);color:#fff;border-color:var(--brand-600,#2563eb)}
   .ds-btn--primary:hover{background:var(--brand-500,#3b82f6);border-color:var(--brand-500,#3b82f6)}
@@ -150,7 +150,7 @@
   .ds-btn--link:hover{color:var(--brand-600,#2563eb);text-decoration:underline}
   .ds-btn--ghost{background:transparent;color:#374151}
   .ds-btn--ghost:hover{background:#F3F4F6}
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit}
   .ds-card-foot--start{justify-content:flex-start}
   .ds-card-foot .ds-btn{text-transform:uppercase;letter-spacing:.05em;font-weight:600;color:var(--brand-600,#2563eb)}
   .ds-card-foot .ds-btn:hover{color:var(--brand-700,#1d4ed8)}
@@ -167,18 +167,18 @@
   .port-popup .leaflet-popup-tip { background:#fff; }
   .port-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
   .port-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; opacity:1; }
-  .pp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 14px 10px; }
+  .pp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 16px 12px; }
   .pp-title { font-size:14px; font-weight:700; }
-  .pp-sub { font-size:11px; font-weight:500; opacity:.75; margin-left:5px; }
+  .pp-sub { font-size:12px; font-weight:500; opacity:.75; margin-left:4px; }
   .pp-body { background:#fff; }
-  .pp-row { display:flex; align-items:center; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #f3f4f6; font-size:13px; }
+  .pp-row { display:flex; align-items:center; justify-content:space-between; padding:8px 16px; border-bottom:1px solid #f3f4f6; font-size:14px; }
   .pp-row:last-child { border-bottom:0; }
   .pp-k { color:#6b7280; font-weight:500; }
   .pp-v { font-weight:700; color:#111827; }
-  .pp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
+  .pp-cta { display:block; width:calc(100% - 28px); margin:4px 12px 12px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:14px; cursor:pointer; text-align:center; transition:background .15s; }
   .pp-cta:hover { background:var(--brand-50,#eff6ff); }
   /* Port labels (hover tooltip) — matches Ports page */
-  .port-label { background:#111827 !important; border:0 !important; border-radius:6px !important; color:#fff !important; font-size:11px !important; font-weight:600 !important; padding:3px 7px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
+  .port-label { background:#111827 !important; border:0 !important; border-radius:8px !important; color:#fff !important; font-size:12px !important; font-weight:600 !important; padding:4px 8px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
   .port-label::before { border-top-color:#111827 !important; }
   /* Vessel markers + hover tooltip + popup — matches Marine Dashboard */
   .vessel-marker { position:relative; cursor:pointer; }
@@ -186,39 +186,39 @@
   .vessel-marker::after { content:''; position:absolute; left:50%; top:50%; width:24px; height:24px; transform:translate(-50%,-50%); border-radius:50%; border:2px solid #fff; box-shadow:0 0 5px rgba(0,0,0,.45); opacity:0; transition:opacity .14s ease; pointer-events:none; }
   .leaflet-marker-icon:hover .vessel-marker::after { opacity:1; }
   .leaflet-marker-icon:hover { z-index:1000 !important; }
-  .vessel-tip.leaflet-tooltip { background:rgba(15,23,42,.93); border:0; border-radius:8px; box-shadow:0 3px 10px rgba(0,0,0,.4); padding:6px 9px; color:#fff; font-family:'Inter',sans-serif; }
+  .vessel-tip.leaflet-tooltip { background:rgba(15,23,42,.93); border:0; border-radius:8px; box-shadow:0 3px 10px rgba(0,0,0,.4); padding:8px 8px; color:#fff; font-family:'Inter',sans-serif; }
   .vessel-tip.leaflet-tooltip-top::before { border-top-color:rgba(15,23,42,.93); }
-  .vessel-tip .vtip-row { display:flex; align-items:center; gap:6px; }
-  .vessel-tip .vtip-flag { border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
+  .vessel-tip .vtip-row { display:flex; align-items:center; gap:4px; }
+  .vessel-tip .vtip-flag { border-radius:4px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
   .vessel-tip .vtip-name { font-weight:700; font-size:12px; letter-spacing:.01em; }
-  .vessel-tip .vtip-type { display:block; font-size:11px; color:#d1d5db; margin-top:2px; }
+  .vessel-tip .vtip-type { display:block; font-size:12px; color:#d1d5db; margin-top:2px; }
   .vessel-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .vessel-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',sans-serif; }
   .vessel-popup .leaflet-popup-tip { background:#fff; }
   .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
   .vessel-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; opacity:1; }
   .vp { background:#fff; color:#111827; }
-  .vp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 14px 10px; }
-  .vp-title { font-weight:800; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; }
+  .vp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 16px 12px; }
+  .vp-title { font-weight:700; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; }
   .vp-subtitle { font-size:12px; color:rgba(255,255,255,.85); margin-top:2px; }
-  .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; padding:12px 14px; }
+  .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; padding:12px 16px; }
   .vp-grid > div { min-width:0; }
   .vp-span { grid-column:1 / -1; }
-  .vp-k { font-size:11px; color:#6b7280; }
-  .vp-v { font-size:12.5px; color:#111827; margin-top:1px; font-weight:600; }
+  .vp-k { font-size:12px; color:#6b7280; }
+  .vp-v { font-size:14px; color:#111827; margin-top:1px; font-weight:600; }
   .vp-strong { font-weight:700; color:#111827; }
   .vp-nav { color:#16a34a; font-weight:700; }
-  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; text-decoration:none; transition:background .15s; }
+  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 12px 12px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:14px; cursor:pointer; text-align:center; text-decoration:none; transition:background .15s; }
   .vp-cta:hover { background:var(--brand-50,#eff6ff); }
   /* Mobile responsive */
   .mrd-top-row{display:flex;gap:12px;margin-bottom:12px;min-height:0;height:440px;}
   .mrd-top-row>div{height:440px;overflow-y:auto!important}
   .mrd-left-panel{width:260px;flex-shrink:0;}
   /* Card tab dropdown — used in place of pill tabs */
-  .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;}
+  .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 16px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;}
   .tab-dd:hover{border-color:#d1d5db;}
   .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   /* Phones and tablet portrait: stack the three top-row cards full width */
   @media(max-width:1023px){
     .mrd-top-row{flex-direction:column;height:auto!important;}
@@ -238,13 +238,13 @@
     .mrd-ltabs .ds-tab { flex:1 1 0; justify-content:center; }
     .mrd-ltabs .ds-tab-label { justify-content:center; }
     .mrd-pf-tbl { display:none; }
-    .mrd-pf-cards { display:flex; flex-direction:column; gap:10px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
+    .mrd-pf-cards { display:flex; flex-direction:column; gap:8px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
   }
-  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
-  .mrd-pf-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
-  .mrd-pf-kv .mrd-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
-  .mrd-pf-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
-  .mrd-pf-kv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; }
+  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .mrd-pf-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px 16px; margin:0; }
+  .mrd-pf-kv .mrd-wide { grid-column:1 / -1; padding-bottom:12px; border-bottom:1px solid #f3f4f6; }
+  .mrd-pf-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .mrd-pf-kv dd { margin:4px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; }
   .mrd-pf-kv dd strong { font-weight:700; color:#111827; }
   .mrd-pf-name { color:var(--brand-600,#2563eb) !important; font-weight:600; }
   html[data-theme="dark"] .mrd-pf-card { background:#161f2e; border-color:#2a374d; }
@@ -267,7 +267,7 @@ window.PAGE = { id:'regions', title:'Marine Region', crumb: regionName };
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -305,7 +305,7 @@ const POLICIES = [
 ];
 function mrdFlag(cc) {
   const names = { ru:'Russia', gb:'United Kingdom', us:'United States', cn:'China', ir:'Iran', pa:'Panama' };
-  return `<span class="pol-flag"><img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="20" height="14" alt="${cc}" style="border-radius:2px;box-shadow:0 0 0 1px rgba(15,23,42,.12);flex-shrink:0" /><span>${names[cc] || cc.toUpperCase()}</span></span>`;
+  return `<span class="pol-flag"><img src="flags/${cc}.svg" srcset="flags/${cc}.svg 2x" width="20" height="14" alt="${cc}" style="border-radius:4px;box-shadow:0 0 0 1px rgba(15,23,42,.12);flex-shrink:0" /><span>${names[cc] || cc.toUpperCase()}</span></span>`;
 }
 
 /* ── Notifications data ──────────────────────────────────────────────────── */
@@ -449,7 +449,7 @@ if (window.Highcharts && !Highcharts.__histHaloWrap) {
   });
 }
 function renderHistoryChart() {
-  return window.Highcharts ? '<div id="hist-hc" style="height:430px"></div>' : '<div style="padding:40px;text-align:center;color:#9ca3af;font-size:13px">Chart library failed to load.</div>';
+  return window.Highcharts ? '<div id="hist-hc" style="height:430px"></div>' : '<div style="padding:40px;text-align:center;color:#9ca3af;font-size:14px">Chart library failed to load.</div>';
 }
 function mountHistoryChart() {
   const el = document.getElementById('hist-hc'); if (!el || !window.Highcharts) return;
@@ -471,7 +471,7 @@ function mountHistoryChart() {
   });
 }
 function historyLegend() {
-  if (histGroup) return `<div style="display:flex;justify-content:center"><span class="hist-leg" style="padding:4px 6px;font-weight:600;color:#111827"><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#2563eb" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="#2563eb"/></svg><span>All portfolios</span></span></div>`;
+  if (histGroup) return `<div style="display:flex;justify-content:center"><span class="hist-leg" style="padding:4px 8px;font-weight:600;color:#111827"><svg width="22" height="10" aria-hidden="true"><line x1="0" y1="5" x2="22" y2="5" stroke="#2563eb" stroke-width="2"/><circle cx="11" cy="5" r="3" fill="#2563eb"/></svg><span>All portfolios</span></span></div>`;
   const n = HIST_SERIES.length - histHidden.size, all = !histHidden.size;
   return `<div class="hist-leg-bar"><span>${all ? 'Showing all portfolios' : `Showing ${n} of ${HIST_SERIES.length} portfolios`}</span><button type="button" class="hist-leg-clear" data-hist-all="${all ? 'none' : 'all'}">${all ? 'Clear all' : 'Select all'}</button></div>
   <div class="hist-legend-grid">${HIST_SERIES.map((s, i) => { const on = !histHidden.has(i);
@@ -655,7 +655,7 @@ function mrdVesselTooltip(v) {
 function mrdVesselPopup(v) {
   const latStr = `${Math.abs(v.lat).toFixed(2)}°${v.lat>=0?'N':'S'}`;
   const lngStr = `${Math.abs(v.lng).toFixed(2)}°${v.lng>=0?'E':'W'}`;
-  const flagImg = `<img src="flags/${v.flag.cc}.svg" srcset="flags/${v.flag.cc}.svg 2x" width="18" height="13" alt="${v.flag.name}" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px" />`;
+  const flagImg = `<img src="flags/${v.flag.cc}.svg" srcset="flags/${v.flag.cc}.svg 2x" width="18" height="13" alt="${v.flag.name}" style="display:inline-block;border-radius:4px;vertical-align:middle;margin-right:4px" />`;
   return `
   <div class="vp">
     <div class="vp-header">
@@ -700,22 +700,22 @@ function initMap() {
   const regionAssets    = 1247;
   const regionPopupHTML = `
     <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
-      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:11px 14px;display:flex;align-items:center;gap:8px">
+      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
         <span style="width:11px;height:11px;border-radius:50%;background:${regionDotColor};flex-shrink:0;border:1.5px solid rgba(255,255,255,.5)"></span>
         <span style="font-size:14px;font-weight:700;flex:1">${regionName}</span>
       </div>
-      <div style="background:#fff;padding:14px">
-        <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-          <span style="color:#6b7280;font-size:13px">Our Exposure:</span>
-          <span style="font-weight:700;color:#111827;font-size:13px">${regionExposure}</span>
+      <div style="background:#fff;padding:16px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#6b7280;font-size:14px">Our Exposure:</span>
+          <span style="font-weight:700;color:#111827;font-size:14px">${regionExposure}</span>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:9px">
-          <span style="color:#6b7280;font-size:13px">Assets:</span>
-          <span style="font-weight:700;color:#111827;font-size:13px">${regionAssets.toLocaleString()}</span>
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+          <span style="color:#6b7280;font-size:14px">Assets:</span>
+          <span style="font-weight:700;color:#111827;font-size:14px">${regionAssets.toLocaleString()}</span>
         </div>
         <div style="display:flex;justify-content:space-between">
-          <span style="color:#6b7280;font-size:13px">Risk Level:</span>
-          <span style="font-weight:700;font-size:13px;color:${regionRiskColor}">${regionRisk}</span>
+          <span style="color:#6b7280;font-size:14px">Risk Level:</span>
+          <span style="font-weight:700;font-size:14px;color:${regionRiskColor}">${regionRisk}</span>
         </div>
       </div>
     </div>`;
@@ -805,9 +805,9 @@ function initMap() {
       iconSize:[30,30], iconAnchor:[15,15],
     });
     const sanctionBadge = p.sanctioned
-      ? `<div style="background:#fef2f2;border-bottom:1px solid #fecaca;padding:7px 14px;display:flex;align-items:center;gap:7px;">
+      ? `<div style="background:#fef2f2;border-bottom:1px solid #fecaca;padding:8px 16px;display:flex;align-items:center;gap:8px;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-          <span style="font-size:11px;font-weight:700;color:#dc2626;letter-spacing:.03em;">SANCTIONED PORT</span>
+          <span style="font-size:12px;font-weight:700;color:#dc2626;letter-spacing:.03em;">SANCTIONED PORT</span>
         </div>`
       : '';
     const portPopupHTML = `
@@ -920,7 +920,7 @@ function Content() {
 
       <!-- LEFT: Totals / Region Details -->
       <div class="mrd-left-panel" style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
-        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6;">
+        <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6;">
           <div class="ds-tabs mrd-ltabs" data-tab-group="data-ltab">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
             <button class="ds-tab" aria-selected="${leftTab==='totals'}"  data-ltab="totals"><span class="ds-tab-label">Totals</span></button>
@@ -929,16 +929,16 @@ function Content() {
         </div>
         <div style="padding:12px 16px">
           ${leftTab === 'totals' ? `
-          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;padding-right:4px">
+          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:12px;font-weight:600;color:#6b7280;margin-bottom:4px;padding-right:4px">
             <span>Above Threshold</span><span>Total</span>
           </div>
           ${[['All Risk','$850M','$5.5B'],['Hull','$520M','$3.7B'],['Cargo','$230M','$1.2B'],['Liability','$100M','$550M']].map(([lbl,thr,tot]) => `
           <div class="tot-row">
-            <span style="flex:1;font-size:13px;color:#374151">${lbl}${lbl!=='All Risk'?':':''}</span>
-            <span style="color:#f97316;font-weight:600;font-size:13px;min-width:64px;text-align:right">${thr}</span>
-            <span style="color:#111827;font-weight:600;font-size:13px;min-width:56px;text-align:right">${tot}</span>
+            <span style="flex:1;font-size:14px;color:#374151">${lbl}${lbl!=='All Risk'?':':''}</span>
+            <span style="color:#f97316;font-weight:600;font-size:14px;min-width:64px;text-align:right">${thr}</span>
+            <span style="color:#111827;font-weight:600;font-size:14px;min-width:56px;text-align:right">${tot}</span>
           </div>`).join('')}` : `
-          <div style="font-size:13px;color:#6b7280;padding:8px 0">
+          <div style="font-size:14px;color:#6b7280;padding:8px 0">
             <div style="margin-bottom:8px"><span style="font-weight:600;color:#374151">Region:</span> ${regionName}</div>
             <div style="margin-bottom:8px"><span style="font-weight:600;color:#374151">Type:</span> Marine</div>
             <div style="margin-bottom:8px"><span style="font-weight:600;color:#374151">Portfolios:</span> 7</div>
@@ -950,17 +950,17 @@ function Content() {
 
       <!-- MIDDLE: Region Exposure by Portfolio -->
       <div style="flex:1.8;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
-        <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+        <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
           <span style="font-size:14px;font-weight:700;color:#111827">Region Exposure by Portfolio</span>
-          <span style="display:flex;align-items:center;gap:5px;font-size:12.5px;color:#6b7280">${LINK_SVG} ${PORTFOLIOS.length}</span>
+          <span style="display:flex;align-items:center;gap:4px;font-size:14px;color:#6b7280">${LINK_SVG} ${PORTFOLIOS.length}</span>
         </div>
         <div style="flex:1;overflow-y:auto" class="scroll-thin">
           <table class="pf-tbl mrd-pf-tbl">
             <thead><tr>
               <th>Name</th><th>Total</th>
-              <th><div style="display:flex;align-items:center;gap:3px">${INFO_SVG}Hull</div></th>
-              <th><div style="display:flex;align-items:center;gap:3px">${INFO_SVG}Cargo</div></th>
-              <th><div style="display:flex;align-items:center;gap:3px">${INFO_SVG}Liability</div></th>
+              <th><div style="display:flex;align-items:center;gap:4px">${INFO_SVG}Hull</div></th>
+              <th><div style="display:flex;align-items:center;gap:4px">${INFO_SVG}Cargo</div></th>
+              <th><div style="display:flex;align-items:center;gap:4px">${INFO_SVG}Liability</div></th>
             </tr></thead>
             <tbody>
               ${PORTFOLIOS.map(p => `<tr>
@@ -990,7 +990,7 @@ function Content() {
 
       <!-- RIGHT: Region Summary Statistics -->
       <div style="flex:2;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
-        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+        <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
           <div class="tabs-desktop-wrap">
             <div class="ds-tabs" id="rtab-tabs">
               <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -1006,92 +1006,92 @@ function Content() {
         ${rightTab === 'stats' ? `
         <div style="flex:1;overflow-y:auto;padding:12px 16px" class="scroll-thin">
           <!-- Date range -->
-          <div style="font-size:12px;color:#6b7280;margin-bottom:6px">Date Range:</div>
+          <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Date Range:</div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
             <span style="font-size:12px;color:#9ca3af">to</span>
             <div style="position:relative;flex:1">
-              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
           </div>
           <!-- Sub-tabs -->
-          <div style="display:flex;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;padding:4px;gap:4px;margin-bottom:14px">
+          <div style="display:flex;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;padding:4px;gap:4px;margin-bottom:12px">
             ${['hull','cargo','liability'].map(t => `<button class="seg-tab ${statSub===t?'active':''}" data-stab="${t}">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('')}
           </div>
           <!-- Stats grid 4 rows x 3 cols -->
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Asset Count</div>
               <span class="spill-gray">${s.avgCount}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Exposure Value</div>
               <span class="spill-blue">${s.avgExp}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Market Value</div>
               <span class="spill-blue">${s.avgMkt}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Asset Count</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiCountDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Asset Count</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiCountDate}</div>
               <span class="spill-blue">${s.hiCount}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Exposure Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiExpDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiExpDate}</div>
               <span class="spill-blue">${s.hiExp}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Market Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiMktDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Market Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiMktDate}</div>
               <span class="spill-blue">${s.hiMkt}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily War Exposure</div>
               <span class="spill-red">${s.warAvg}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily War Exposure</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warHiDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily War Exposure</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.warHiDate}</div>
               <span class="spill-red">${s.warHi}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily War Exposure</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warLoDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily War Exposure</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.warLoDate}</div>
               <span class="spill-red">${s.warLo}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Asset Count</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loCountDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Asset Count</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loCountDate}</div>
               <span class="spill-gray">${s.loCount}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Exposure Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loExpDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loExpDate}</div>
               <span class="spill-gray">${s.loExp}</span>
             </div>
             <div>
-              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Market Value</div>
-              <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loMktDate}</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Market Value</div>
+              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loMktDate}</div>
               <span class="spill-gray">${s.loMkt}</span>
             </div>
           </div>
         </div>` : `
         <div style="flex:1;overflow-y:auto;padding:16px" class="scroll-thin">
-          <div style="font-size:12.5px;color:#374151;font-weight:500;margin-bottom:6px">Date Range:</div>
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <div style="font-size:14px;color:#374151;font-weight:500;margin-bottom:4px">Date Range:</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
             <div style="position:relative;flex:1">
-              <input type="text" value="May 27th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:8px;padding:0 30px 0 10px;font-size:13px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
+              <input type="text" value="May 27th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:8px;padding:0 32px 0 12px;font-size:14px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
               <span style="position:absolute;right:9px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
             <div style="position:relative;flex:1">
-              <input type="text" value="Jun 10th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:8px;padding:0 30px 0 10px;font-size:13px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
+              <input type="text" value="Jun 10th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:8px;padding:0 32px 0 12px;font-size:14px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
               <span style="position:absolute;right:9px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
           </div>
-          <div style="font-size:12.5px;color:#374151;font-weight:500;margin-bottom:6px">Filter by Portfolio:</div>
+          <div style="font-size:14px;color:#374151;font-weight:500;margin-bottom:4px">Filter by Portfolio:</div>
           <select class="rpt-select" style="width:100%">
             <option>All portfolios</option>
             ${PORTFOLIOS.map(p => `<option>${p.name}</option>`).join('')}
@@ -1106,7 +1106,7 @@ function Content() {
     <!-- Bottom: tab bar + map -->
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;height:840px;flex-shrink:0">
       <!-- Tab selector -->
-      <div style="padding:10px 14px;border-bottom:1px solid #f3f4f6;flex-shrink:0;">
+      <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0;">
         <div class="tabs-desktop-wrap">
           <div class="ds-tabs" id="map-view-tabs" style="display:inline-flex;flex-wrap:wrap;max-width:100%">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -1130,12 +1130,12 @@ function Content() {
       <div id="mrd-map-wrap" style="position:relative;flex:1">
         <div id="region-map"></div>
         <button id="mrd-fs" class="map-btn" style="position:absolute;top:12px;left:12px;z-index:400">${SC.I.maximize}</button>
-        <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px">
+        <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:4px">
           <div style="position:relative">
             <button id="mrd-layers-btn" class="map-btn" title="Map type">${SC.I.layers}</button>
             <div id="mrd-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
               ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`
-                <button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;color:#374151;text-align:left">
+                <button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:14px;color:#374151;text-align:left">
                   <span data-label>${l}</span>
                   <span data-check style="display:flex;color:#2563eb;opacity:0">${SC.I.check}</span>
                 </button>`).join('')}
@@ -1144,7 +1144,7 @@ function Content() {
         </div>
         <!-- Legend -->
         <div style="position:absolute;bottom:16px;left:12px;z-index:400;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;box-shadow:0 2px 6px rgba(15,23,42,.1)">
-          <div style="font-size:13px;font-weight:700;color:#111827">Marine Region</div>
+          <div style="font-size:14px;font-weight:700;color:#111827">Marine Region</div>
           <div style="font-size:12px;color:#6b7280;margin-top:2px" id="mrd-legend-stats">5 Major Ports · 5 Active Vessels</div>
         </div>
       </div>` : mapTab === 'policies' ? `
@@ -1231,11 +1231,11 @@ function Content() {
         </div>
       </div>` : mapTab === 'history' ? `
       <div style="display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto" class="scroll-thin">
-        <div id="hist-chart" style="padding:14px 16px 0">${renderHistoryChart()}</div>
+        <div id="hist-chart" style="padding:16px 16px 0">${renderHistoryChart()}</div>
         <div class="hist-legend" id="hist-legend">${historyLegend()}</div>
         <div class="hist-controls" id="hist-controls">${renderHistoryControls()}</div>
       </div>` : `
-      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;padding:48px">
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:14px;padding:48px">
         <div style="text-align:center"><div style="font-size:32px;margin-bottom:12px">📋</div>${mapTab.replace(/([A-Z])/g,' $1').replace(/^./,s=>s.toUpperCase())} data coming soon</div>
       </div>`}
     </div>

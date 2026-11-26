@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -22,7 +22,7 @@
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
   /* Pill tabs */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:12px;font-weight:600;padding:6px 14px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .ds-tab{position:relative;font:inherit;font-size:12px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
   .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
@@ -31,7 +31,7 @@
   /* Map */
   #asset-map{position:absolute;inset:0;background:#0b2a3a}
   #asset-map .leaflet-top.leaflet-left{top:56px;left:2px;}
-  #asset-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px !important;}
+  #asset-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px !important;}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgba(15,23,42,.08) !important;border-radius:8px !important;overflow:hidden}
   .leaflet-bar a{background:#fff !important;color:#374151 !important}
   .leaflet-bar a:hover{background:#f3f4f6 !important}
@@ -43,7 +43,7 @@
     .top-row-grid { grid-template-columns: 1fr !important; }
   }
   @media (max-width: 767px) {
-    .policy-header { flex-direction: column; align-items: stretch !important; gap: 10px; }
+    .policy-header { flex-direction: column; align-items: stretch !important; gap: 8px; }
     .policy-header-tools { flex-direction: column; align-items: stretch; gap: 8px; }
     .policy-header-tools > div { width: 100%; }
     .policy-header-tools .policy-search { width: 100% !important; }
@@ -53,52 +53,52 @@
     .pol-edit-cols { display: none !important; }
   }
   #asset-map.no-labels .asset-label{display:none;}
-  .asset-label{background:#1f2937;color:#fff;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,.35);font-family:'Inter',sans-serif}
+  .asset-label{background:#1f2937;color:#fff;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600;white-space:nowrap;box-shadow:0 2px 4px rgba(0,0,0,.35);font-family:'Inter',sans-serif}
   .asset-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .asset-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',sans-serif; }
   .asset-popup .leaflet-popup-tip { background:#fff; }
-  .asset-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:6px !important; }
+  .asset-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:8px !important; }
   .asset-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; }
   /* Policy table */
   .pol-table{width:100%;border-collapse:collapse;font-size:12px}
-  .pol-table th{padding:9px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
+  .pol-table th{padding:8px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;text-transform:uppercase;letter-spacing:.04em}
   .pol-table th:hover{color:var(--brand-600,#2563eb)}
   /* Mobile policy cards */
   @media (min-width:768px){ .pol-cards{display:none} }   /* phones show the cards (rule above); must not override it */
-  .pcard{padding:14px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
+  .pcard{padding:16px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
   .pcard:last-child{border-bottom:0}
-  .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
   .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
   .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-600,#2563eb);text-decoration:none;word-break:break-word;cursor:pointer}
-  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#6b7280}
-  .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+  .pcard-sub{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:14px;color:#6b7280}
+  .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
-  .pcard-k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
-  .pcard-v{font-size:13px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .pcard-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
+  .pcard-v{font-size:14px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
   .pcard-v.is-strong{font-size:14px;font-weight:700;color:#111827}
   .pcard-v.is-muted{color:#9ca3af}
   .pcard-more{display:none}
   .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e5e7eb;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--brand-600,#2563eb)}
+  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:4px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--brand-600,#2563eb)}
   .pcard-chev{transition:transform .2s ease}
   .pcard.open .pcard-chev{transform:rotate(180deg)}
-  .pol-table td{padding:10px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle}
+  .pol-table td{padding:12px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
   .pol-table tbody tr:hover td{background:#f9fafb}
   .pol-table td.lnk{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
   .pol-table td.lnk:hover{color:var(--brand-700,#1d4ed8)}
   .pol-table td.type-cell{color:var(--brand-600,#2563eb);font-size:12px}
   .pol-table td.muted{color:#9ca3af}
-  .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:3px;vertical-align:middle;opacity:.5}
+  .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:4px;vertical-align:middle;opacity:.5}
   .sort-ico svg{width:7px;height:7px}
   /* Select */
-  .sel{border:1px solid #e5e7eb;border-radius:6px;padding:4px 22px 4px 8px;font-size:12px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
+  .sel{border:1px solid #e5e7eb;border-radius:8px;padding:4px 24px 4px 8px;font-size:12px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.01em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.01em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -117,7 +117,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -228,9 +228,9 @@ const PORTFOLIO_GROUPS = [
 function PanelDetailsContent() {
   return `
     <!-- Exposure banner -->
-    <div style="display:flex;justify-content:center;padding:14px 16px 6px;">
-      <div style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:10px 32px;text-align:center;min-width:180px;">
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
+    <div style="display:flex;justify-content:center;padding:16px 16px 8px;">
+      <div style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:12px 32px;text-align:center;min-width:180px;">
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
         <div style="font-size:20px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PF.exposure || '$148.5B'}</div>
       </div>
     </div>
@@ -242,7 +242,7 @@ function PanelDetailsContent() {
         ['Total number of Policies:', '2,475'],
         ['Number of Active Policies:', '2,475'],
       ].map(([k,v]) => `
-        <div class="flex items-center justify-between py-2.5 border-b border-ink-50 last:border-0 text-xs">
+        <div class="flex items-center justify-between py-3 border-b border-ink-50 last:border-0 text-xs">
           <span class="text-ink-500">${k}</span>
           <span class="font-semibold text-ink-800">${v}</span>
         </div>`).join('')}
@@ -270,12 +270,12 @@ function PanelGroupsContent() {
       <ul class="flex flex-col gap-2">
         ${PORTFOLIO_GROUPS.map(g => `
           <li>
-            <button type="button" class="w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg border border-ink-200 bg-white hover:bg-ink-50 hover:border-ink-300 transition-colors text-left">
-              <span class="flex items-center gap-2.5 min-w-0">
-                <span class="inline-flex w-7 h-7 shrink-0 rounded-md bg-brand-50 text-brand-600 items-center justify-center">
+            <button type="button" class="w-full flex items-center justify-between gap-3 px-3 py-3 rounded-lg border border-ink-200 bg-white hover:bg-ink-50 hover:border-ink-300 transition-colors text-left">
+              <span class="flex items-center gap-2 min-w-0">
+                <span class="inline-flex w-7 h-7 shrink-0 rounded-lg bg-brand-50 text-brand-600 items-center justify-center">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h6l2 2h10v11H3z"/></svg>
                 </span>
-                <span class="text-[13px] font-semibold text-ink-800 truncate">${g}</span>
+                <span class="text-sm font-semibold text-ink-800 truncate">${g}</span>
               </span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
@@ -316,7 +316,7 @@ function PanelDetails() {
 function PanelMap() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 flex flex-col overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.07);">
-    <div class="px-4 py-2.5 border-b border-ink-100 flex items-center justify-between">
+    <div class="px-4 py-3 border-b border-ink-100 flex items-center justify-between">
       <span class="text-sm font-bold text-ink-900">Asset Locations</span>
     </div>
     <div class="relative flex-1" id="asset-map-wrap" style="min-height:453px;">
@@ -341,20 +341,20 @@ function PanelMap() {
         <div class="relative">
           <button id="map-filters-btn" class="map-btn" title="Filter assets">${Ico.filter}</button>
           <div id="map-filters-menu" class="hidden absolute top-0 right-[calc(100%+8px)] w-[260px] bg-white border border-ink-200 rounded-xl shadow-card overflow-hidden flex flex-col" style="max-height:420px">
-            <div class="px-3 py-2.5 border-b border-ink-200 flex items-center justify-between">
+            <div class="px-3 py-3 border-b border-ink-200 flex items-center justify-between">
               <div class="text-sm font-bold text-ink-800">Filter Assets</div>
               <div class="flex items-center gap-1">
-                <button id="af-all"  class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50">All</button>
-                <button id="af-none" class="h-6 px-2 rounded-md border border-ink-200 text-[11px] font-semibold text-ink-700 hover:bg-ink-50">None</button>
+                <button id="af-all"  class="h-6 px-2 rounded-lg border border-ink-200 text-xs font-semibold text-ink-700 hover:bg-ink-50">All</button>
+                <button id="af-none" class="h-6 px-2 rounded-lg border border-ink-200 text-xs font-semibold text-ink-700 hover:bg-ink-50">None</button>
               </div>
             </div>
-            <div class="px-3 py-2 bg-ink-50 border-b border-ink-200 text-[11px] font-semibold uppercase tracking-micro text-ink-600">Asset Type</div>
+            <div class="px-3 py-2 bg-ink-50 border-b border-ink-200 text-xs font-semibold uppercase tracking-micro text-ink-600">Asset Type</div>
             <div class="overflow-y-auto scroll-thin py-1" id="af-list">
               ${ASSET_TYPES.map(t => `
-                <label class="af-row flex items-center gap-2.5 px-3 py-1.5 cursor-pointer hover:bg-ink-50" data-atype="${t.k.replace(/"/g,'&quot;')}">
+                <label class="af-row flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-ink-50" data-atype="${t.k.replace(/"/g,'&quot;')}">
                   <input type="checkbox" class="af-cb h-4 w-4 rounded border-ink-300 accent-brand-600" checked />
                   <span class="inline-flex w-3 h-3 rounded-full" style="background:${t.color};"></span>
-                  <span class="text-[13px] text-ink-700">${t.k}</span>
+                  <span class="text-sm text-ink-700">${t.k}</span>
                 </label>`).join('')}
             </div>
           </div>
@@ -368,7 +368,7 @@ function PanelMap() {
                 <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform translate-x-0.5"></span>
               </button>
             </div>
-            <p class="mt-1.5 text-[12px] leading-snug text-ink-500">Display asset names directly on the map next to icons.</p>
+            <p class="mt-1 text-[12px] leading-snug text-ink-500">Display asset names directly on the map next to icons.</p>
           </div>
         </div>
       </div>
@@ -387,9 +387,9 @@ function PolicyTable() {
       <div class="policy-header-tools flex items-center gap-2">
         <div class="relative">
           <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" placeholder="Search" class="policy-search pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
+          <input type="text" placeholder="Search" class="policy-search pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
         </div>
-        <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+        <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-2 text-ink-700 font-semibold hover:bg-ink-50">
           Edit Columns
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
@@ -397,7 +397,7 @@ function PolicyTable() {
     </div>
     <!-- Delete bar -->
     <div class="flex items-center gap-3 px-4 py-2 border-b border-ink-100 bg-ink-50/40">
-      <button class="flex items-center gap-1.5 text-xs border border-ink-200 rounded-md px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
+      <button class="flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>
@@ -441,7 +441,7 @@ function PolicyTable() {
               <span class="pcard-title" data-asset-idx="${i}">${a.name}</span>
               <div class="pcard-sub">${a.id}</div>
             </div>
-            <span style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${a.type}</span>
+            <span style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:12px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${a.type}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${a.exposure}</span></div>
@@ -470,13 +470,13 @@ function buildPopupHTML(m) {
   const statusColor = m.status === 'Operational' ? '#10b981' :
                       m.status === 'Under Maintenance' ? '#f59e0b' : '#9ca3af';
   const row = (label, val, color) =>
-    `<div><div style="font-size:11px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:13px;font-weight:600;color:${color||'#111827'};">${val ?? '—'}</div></div>`;
+    `<div><div style="font-size:12px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:14px;font-weight:600;color:${color||'#111827'};">${val ?? '—'}</div></div>`;
   return `
     <div style="background:var(--brand-600,#2563eb);padding:12px 36px 12px 16px;">
-      <div style="color:#fff;font-weight:700;font-size:13px;line-height:1.35;">${m.fullName || m.name}</div>
-      <div style="color:rgba(255,255,255,.75);font-size:11px;font-weight:500;margin-top:2px;">${m.type || ''}</div>
+      <div style="color:#fff;font-weight:700;font-size:14px;line-height:1.35;">${m.fullName || m.name}</div>
+      <div style="color:rgba(255,255,255,.75);font-size:12px;font-weight:500;margin-top:2px;">${m.type || ''}</div>
     </div>
-    <div style="padding:14px 16px 6px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;">
+    <div style="padding:16px 16px 8px;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;">
       ${row('Operator', m.operator)}
       ${row('Country', m.country)}
       ${row('Coordinates', m.coords)}
@@ -489,8 +489,8 @@ function buildPopupHTML(m) {
       ${row('Policy Type', m.policyType)}
       ${row('Field', m.field)}
     </div>
-    <div style="padding:4px 16px 14px;">
-      <button style="display:block;width:100%;background:transparent;color:var(--brand-600,#2563eb);border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;font-weight:500;font-size:13px;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AssetOffshoreDetails.html'">View Details</button>
+    <div style="padding:4px 16px 16px;">
+      <button style="display:block;width:100%;background:transparent;color:var(--brand-600,#2563eb);border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;font-weight:500;font-size:14px;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AssetOffshoreDetails.html'">View Details</button>
     </div>`;
 }
 
@@ -537,7 +537,7 @@ function initMap() {
     const ft = mapAssetType(a.type);
     const ftColor = (ASSET_TYPES.find(t => t.k === ft) || {}).color || a.color;
     const markerHtml = `
-      <div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
         <div class="asset-marker-dot" style="background:${ftColor};width:12px;height:12px;"></div>
         <div class="asset-label">${a.name}</div>
       </div>`;

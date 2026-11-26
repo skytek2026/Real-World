@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -24,7 +24,7 @@
   .leaflet-bar a:hover{background:#f3f4f6!important}
   /* Zoom control: sit below the fullscreen button (top-left), left-aligned with it */
   #detail-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #detail-map .leaflet-top.leaflet-left .leaflet-bar{margin:0 0 0 10px!important}
+  #detail-map .leaflet-top.leaflet-left .leaflet-bar{margin:0 0 0 8px!important}
   .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
   .leaflet-control-zoom a svg{width:16px;height:16px}
   /* Damage bar animation */
@@ -36,23 +36,23 @@
   .map-btn:hover{background:#f3f4f6}
   .map-btn.is-active{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-600,#2563eb)}
   /* Affected properties list */
-  .prop-row{display:flex;align-items:flex-start;gap:10px;width:100%;padding:12px 14px;background:transparent;border:0;border-bottom:1px solid #f3f4f6;cursor:pointer;text-align:left;transition:background .1s;font-family:inherit;}
+  .prop-row{display:flex;align-items:flex-start;gap:8px;width:100%;padding:12px 16px;background:transparent;border:0;border-bottom:1px solid #f3f4f6;cursor:pointer;text-align:left;transition:background .1s;font-family:inherit;}
   .prop-row:hover{background:#f9fafb;}
   .prop-row.is-active{background:var(--brand-50,#eff6ff);}
-  .prop-rank{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#8b5cf6;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
-  .prop-name{display:block;font-size:13px;font-weight:700;color:#111827;line-height:1.25;}
-  .prop-loc{display:block;font-size:11px;color:#6b7280;margin-top:2px;}
-  .prop-note{display:block;font-size:11px;color:#9ca3af;margin-top:5px;line-height:1.4;}
-  .prop-chev{flex-shrink:0;color:#d1d5db;margin-top:3px;}
+  .prop-rank{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#8b5cf6;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .prop-name{display:block;font-size:14px;font-weight:700;color:#111827;line-height:1.25;}
+  .prop-loc{display:block;font-size:12px;color:#6b7280;margin-top:2px;}
+  .prop-note{display:block;font-size:12px;color:#9ca3af;margin-top:4px;line-height:1.4;}
+  .prop-chev{flex-shrink:0;color:#d1d5db;margin-top:4px;}
   .prop-row:hover .prop-chev{color:#8b5cf6;}
   /* Pre/post-event satellite imagery treatments */
   /* Date stamp badge that sits on the imagery patch */
   .imagery-stamp{
     position:absolute;z-index:600;
     background:rgba(15,23,42,.82);color:#fff;
-    font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
-    padding:4px 9px;border-radius:6px;
-    backdrop-filter:blur(4px);display:flex;align-items:center;gap:6px;
+    font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:4px 8px;border-radius:8px;
+    backdrop-filter:blur(4px);display:flex;align-items:center;gap:4px;
     cursor:pointer;transition:background .15s;
     border:1px solid rgba(255,255,255,.12);
   }
@@ -62,19 +62,19 @@
   .imagery-stamp.is-pre  .dot{background:#9ca3af}
   .imagery-stamp .sub{font-weight:500;color:#d1d5db;text-transform:none;letter-spacing:0;margin-left:2px}
   /* Filter menu radio rows */
-  .filter-opt{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;background:#fff;border:0;cursor:pointer;text-align:left;font-family:inherit}
+  .filter-opt{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:#fff;border:0;cursor:pointer;text-align:left;font-family:inherit}
   .filter-opt:hover{background:#f9fafb}
   .filter-opt .radio{width:14px;height:14px;border-radius:50%;border:1.5px solid #d1d5db;flex-shrink:0;position:relative;transition:border-color .15s}
   .filter-opt.is-on .radio{border-color:var(--brand-600,#2563eb)}
   .filter-opt.is-on .radio::after{content:'';position:absolute;inset:2px;border-radius:50%;background:var(--brand-600,#2563eb)}
-  .filter-opt .opt-title{font-size:13px;font-weight:600;color:#111827;line-height:1.2;display:block}
+  .filter-opt .opt-title{font-size:14px;font-weight:600;color:#111827;line-height:1.2;display:block}
   .filter-opt.is-on .opt-title{color:var(--brand-700,#1d4ed8)}
-  .filter-opt .opt-sub{font-size:11px;color:#6b7280;margin-top:2px;font-variant-numeric:tabular-nums;display:block}
+  .filter-opt .opt-sub{font-size:12px;color:#6b7280;margin-top:2px;font-variant-numeric:tabular-nums;display:block}
   /* Global view btn */
-  .global-view-btn{display:flex;width:100%;align-items:center;justify-content:center;gap:6px;padding:6px 14px;border:1.5px solid var(--brand-600,#2563eb);border-radius:8px;background:#fff;color:var(--brand-600,#2563eb);font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+  .global-view-btn{display:flex;width:100%;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border:1.5px solid var(--brand-600,#2563eb);border-radius:8px;background:#fff;color:var(--brand-600,#2563eb);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
   .global-view-btn:hover{background:var(--brand-50,#eff6ff)}
   /* Download btn */
-  .download-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px 16px;background:var(--brand-600,#2563eb);color:#fff;border:0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+  .download-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 16px;background:var(--brand-600,#2563eb);color:#fff;border:0;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
   .download-btn:hover{background:var(--brand-700,#1d4ed8)}
 
   /* Before/after property popup */
@@ -82,12 +82,12 @@
   .ba-popup .leaflet-popup-content{margin:0;width:384px!important}
   .ba-popup a.leaflet-popup-close-button{top:9px;right:9px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:16px;font-weight:400;line-height:1;padding:0;transition:background .15s}
   .ba-popup a.leaflet-popup-close-button:hover{background:rgba(255,255,255,.34);color:#fff}
-  .ba-hd{background:var(--brand-600,#2563eb);padding:10px 40px 10px 14px;color:#fff}
-  .ba-hd .ba-hd-name{font-size:13px;font-weight:700;line-height:1.25;color:#fff}
-  .ba-hd .ba-hd-loc{font-size:11px;color:rgba(255,255,255,.82);margin-top:2px}
-  .ba-dl-row{display:flex;align-items:center;gap:8px;margin-top:10px}
-  .ba-dl-label{font-size:11px;color:#9ca3af;font-weight:600;margin-right:auto}
-  .ba-dl-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#4b5563;font-size:11px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+  .ba-hd{background:var(--brand-600,#2563eb);padding:12px 40px 12px 16px;color:#fff}
+  .ba-hd .ba-hd-name{font-size:14px;font-weight:700;line-height:1.25;color:#fff}
+  .ba-hd .ba-hd-loc{font-size:12px;color:rgba(255,255,255,.82);margin-top:2px}
+  .ba-dl-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+  .ba-dl-label{font-size:12px;color:#9ca3af;font-weight:600;margin-right:auto}
+  .ba-dl-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#4b5563;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
   .ba-dl-btn:hover{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-700,#1d4ed8)}
   .ba-dl-btn svg{flex-shrink:0}
   .ba-dl-tag{line-height:1}
@@ -117,7 +117,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -214,7 +214,7 @@ function AnalyticsPanel() {
   const dmgPairs = det.damage.map((pct, i) => {
     const barWidth = Math.max(pct, 2);
     return `
-    <div style="margin-bottom:10px;">
+    <div style="margin-bottom:8px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
         <span style="font-size:12px;color:#374151;">${DMG_LABELS[i]}</span>
         <span style="font-size:12px;font-weight:700;color:#374151;">${pct}%</span>
@@ -228,11 +228,11 @@ function AnalyticsPanel() {
   return `
   <!-- Card header — pinned, does not scroll -->
   <div style="padding:12px 16px;border-bottom:1px solid #e5e7eb;flex-shrink:0;background:#fff;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:.08em;color:#6b7280;text-transform:uppercase;">Analytics</div>
+    <div style="font-size:12px;font-weight:700;letter-spacing:.08em;color:#6b7280;text-transform:uppercase;">Analytics</div>
   </div>
 
   <!-- Global View — pinned, does not scroll -->
-  <div style="padding:12px 16px 10px;border-bottom:1px solid #f3f4f6;flex-shrink:0;background:#fff;">
+  <div style="padding:12px 16px 12px;border-bottom:1px solid #f3f4f6;flex-shrink:0;background:#fff;">
     <button class="global-view-btn" onclick="window.location.href='NatCatEvents.html'">
       ${IC.chevLeft} Global View
     </button>
@@ -242,42 +242,42 @@ function AnalyticsPanel() {
 
     <!-- Event info -->
     <div style="padding:16px;border-bottom:1px solid #f3f4f6;">
-      <div style="font-size:20px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.2;">${ev.name}</div>
-      <div style="font-size:12.5px;color:#6b7280;margin-bottom:2px;">${ev.location}</div>
-      <div style="font-size:12.5px;color:#6b7280;margin-bottom:12px;">${ev.dateStart}${ev.dateEnd?' – '+ev.dateEnd:''}</div>
+      <div style="font-size:20px;font-weight:700;color:#111827;margin-bottom:4px;line-height:1.2;">${ev.name}</div>
+      <div style="font-size:14px;color:#6b7280;margin-bottom:2px;">${ev.location}</div>
+      <div style="font-size:14px;color:#6b7280;margin-bottom:12px;">${ev.dateStart}${ev.dateEnd?' – '+ev.dateEnd:''}</div>
 
       <!-- Stats row -->
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-size:12.5px;color:#374151;">
-        <span style="display:flex;align-items:center;gap:5px;color:#4b5563;">${IC.people} ${det.people} Ppl</span>
-        <span style="display:flex;align-items:center;gap:5px;color:#4b5563;">${IC.area} ${det.area} Km²</span>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;font-size:14px;color:#374151;">
+        <span style="display:flex;align-items:center;gap:4px;color:#4b5563;">${IC.people} ${det.people} Ppl</span>
+        <span style="display:flex;align-items:center;gap:4px;color:#4b5563;">${IC.area} ${det.area} Km²</span>
       </div>
 
       <!-- RDS -->
-      <div style="font-size:12.5px;color:#374151;margin-bottom:3px;">
+      <div style="font-size:14px;color:#374151;margin-bottom:4px;">
         RDS Classification: <strong style="color:${det.rdsClass==='Extreme'?'#dc2626':det.rdsClass==='High'?'#d97706':det.rdsClass==='Medium'?'#2563eb':'#16a34a'}">${det.rdsClass}</strong>
       </div>
-      <div style="font-size:12.5px;color:#374151;margin-bottom:8px;">
+      <div style="font-size:14px;color:#374151;margin-bottom:8px;">
         RDS Exposure: <strong>${det.rdsExp}</strong>
       </div>
-      <div style="font-size:11px;color:#9ca3af;">Updated ${ev.updated}</div>
+      <div style="font-size:12px;color:#9ca3af;">Updated ${ev.updated}</div>
     </div>
 
     <!-- Damage breakdown -->
     <div style="padding:16px;border-bottom:1px solid #f3f4f6;">
       ${dmgPairs}
-      <div style="text-align:right;font-size:12px;color:#6b7280;margin-top:6px;">
+      <div style="text-align:right;font-size:12px;color:#6b7280;margin-top:4px;">
         Total Properties: ${det.props.toLocaleString()}
       </div>
     </div>
 
     <!-- Description -->
-    <div style="padding:16px;border-bottom:1px solid #f3f4f6;font-size:12.5px;color:#4b5563;line-height:1.6;">
+    <div style="padding:16px;border-bottom:1px solid #f3f4f6;font-size:14px;color:#4b5563;line-height:1.6;">
       ${det.desc}
     </div>
   </div>
 
   <!-- Download footer — fixed outside scroll -->
-  <div style="padding:14px 16px;border-top:1px solid #e5e7eb;flex-shrink:0;background:#fff;">
+  <div style="padding:16px 16px;border-top:1px solid #e5e7eb;flex-shrink:0;background:#fff;">
     <button class="download-btn">
       ${IC.download} Download Report
     </button>
@@ -287,7 +287,7 @@ function AnalyticsPanel() {
 /* ── Map right panel ───────────────────────────────────────────────────────── */
 function MapPanel() {
   const legendItems = det.damage.map((pct, i) => `
-    <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#fff;white-space:nowrap;">
+    <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#fff;white-space:nowrap;">
       <span style="width:9px;height:9px;border-radius:50%;background:${DMG_COLORS[i]};display:inline-block;flex-shrink:0;"></span>
       ${DMG_LABELS[i].split(' ')[0]} (${pct}%)
     </span>`).join('');
@@ -305,14 +305,14 @@ function MapPanel() {
       <div id="detail-map" style="position:absolute;inset:0;"></div>
 
       <!-- Right map controls -->
-      <div style="position:absolute;top:12px;right:12px;z-index:800;display:flex;flex-direction:column;gap:6px;">
+      <div style="position:absolute;top:12px;right:12px;z-index:800;display:flex;flex-direction:column;gap:4px;">
         <button class="map-btn" id="dm-filter-btn" title="Imagery layer">${IC.filter}</button>
         <button class="map-btn" title="Labels">${IC.tag}</button>
       </div>
 
       <!-- Imagery (pre/post) filter menu -->
       <div id="dm-filter-menu" style="display:none;position:absolute;top:12px;right:52px;z-index:900;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 8px 24px rgba(15,23,42,.12);overflow:hidden;min-width:220px;">
-        <div style="padding:9px 12px;border-bottom:1px solid #f3f4f6;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:.05em;text-transform:uppercase;">Satellite Imagery</div>
+        <div style="padding:8px 12px;border-bottom:1px solid #f3f4f6;font-size:12px;font-weight:700;color:#6b7280;letter-spacing:.05em;text-transform:uppercase;">Satellite Imagery</div>
         <button data-evlayer="pre"  class="filter-opt">
           <span class="radio"></span>
           <span style="min-width:0;flex:1"><span class="opt-title">Pre-Event Layer</span><span class="opt-sub" data-pre-date></span></span>
@@ -328,7 +328,7 @@ function MapPanel() {
         style="position:absolute;top:12px;left:12px;z-index:800;">${IC.expand}</button>
 
       <!-- Bottom legend overlay -->
-      <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:700;background:rgba(15,23,42,.82);border-radius:9999px;padding:7px 16px;display:flex;align-items:center;gap:14px;backdrop-filter:blur(4px);">
+      <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);z-index:700;background:rgba(15,23,42,.82);border-radius:9999px;padding:8px 16px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(4px);">
         ${legendItems}
       </div>
     </div>
@@ -355,7 +355,7 @@ function PropertiesPanel() {
     <div style="padding:12px 16px;background:#fff;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;gap:8px;flex-shrink:0;">
       ${IC.building}
       <span style="font-size:14px;font-weight:600;color:#111827;">Affected Properties</span>
-      <span style="margin-left:auto;font-size:11px;font-weight:600;color:#6b7280;background:#f3f4f6;border-radius:999px;padding:2px 8px;">${EVENT_PROPS.length}</span>
+      <span style="margin-left:auto;font-size:12px;font-weight:600;color:#6b7280;background:#f3f4f6;border-radius:999px;padding:2px 8px;">${EVENT_PROPS.length}</span>
     </div>
     <div style="flex:1;overflow-y:auto;" class="scroll-thin">
       ${rows}
@@ -661,14 +661,14 @@ function initDetailMap() {
             <div class="ba-hd-name">${p.name}</div>
             <div class="ba-hd-loc">${p.loc}</div>
           </div>
-          <div style="padding:12px 14px 14px;">
+          <div style="padding:12px 16px 16px;">
           <div class="ba-slider" style="position:relative;width:${IMG_W}px;height:290px;border-radius:8px;overflow:hidden;border:1px solid #e5e7eb;background:#111827;user-select:none;touch-action:none;">
             <img src="${wb('32246')}" alt="After" style="position:absolute;inset:0;width:${IMG_W}px;height:100%;object-fit:cover;max-width:none;" loading="lazy" />
             <div class="ba-before" style="position:absolute;top:0;bottom:0;left:0;width:50%;overflow:hidden;">
               <img src="${wb('60013')}" alt="Before" style="position:absolute;top:0;left:0;width:${IMG_W}px;height:100%;object-fit:cover;max-width:none;" loading="lazy" />
             </div>
-            <span style="position:absolute;top:8px;left:8px;font-size:11px;font-weight:700;color:#fff;background:rgba(15,23,42,.72);padding:3px 8px;border-radius:6px;letter-spacing:.02em;">BEFORE · Mar 2024</span>
-            <span style="position:absolute;top:8px;right:8px;font-size:11px;font-weight:700;color:#fff;background:rgba(185,28,28,.88);padding:3px 8px;border-radius:6px;letter-spacing:.02em;">AFTER · Jun 2026</span>
+            <span style="position:absolute;top:8px;left:8px;font-size:12px;font-weight:700;color:#fff;background:rgba(15,23,42,.72);padding:4px 8px;border-radius:8px;letter-spacing:.02em;">BEFORE · Mar 2024</span>
+            <span style="position:absolute;top:8px;right:8px;font-size:12px;font-weight:700;color:#fff;background:rgba(185,28,28,.88);padding:4px 8px;border-radius:8px;letter-spacing:.02em;">AFTER · Jun 2026</span>
             <div class="ba-divider" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px);pointer-events:none;box-shadow:0 0 4px rgba(0,0,0,.55);">
               <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#fff;box-shadow:0 1px 5px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 3 12 9 18"/><polyline points="15 6 21 12 15 18"/></svg>
@@ -687,7 +687,7 @@ function initDetailMap() {
               <span class="ba-dl-tag">After</span>
             </button>
           </div>
-          <div style="font-size:9.5px;color:#9ca3af;margin-top:8px;line-height:1.3;">Drag to compare · Satellite imagery © Esri, Maxar — World Imagery (Wayback)</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:8px;line-height:1.3;">Drag to compare · Satellite imagery © Esri, Maxar — World Imagery (Wayback)</div>
           </div>
         </div>`, { minWidth: BA_W, maxWidth: BA_W, className: 'ba-popup' });
       propMarkers[p.rank] = m;

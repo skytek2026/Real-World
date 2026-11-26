@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}},boxShadow:{card:'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)','card-hover':'0 4px 10px -2px rgb(15 23 42 / 0.08), 0 8px 24px -4px rgb(15 23 42 / 0.08)'}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
@@ -25,31 +25,31 @@ a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;bo
   .pgo-card--clip .pgo-fields{flex:1 1 0;min-height:0;overflow-y:auto}
 }
 .pgo-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;box-shadow:0 2px 4px 0 rgb(15 23 42/.08),0 1px 2px 0 rgb(15 23 42/.06);display:flex;flex-direction:column}
-.pgo-card-h{padding:12px 14px;border-bottom:1px solid #f3f4f6}
+.pgo-card-h{padding:12px 16px;border-bottom:1px solid #f3f4f6}
 .pgo-card-h h2{font-size:14px;font-weight:700;color:#111827}
-.pgo-fields{padding:2px 14px 6px;margin:0}
+.pgo-fields{padding:2px 16px 8px;margin:0}
 .pgo-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #f3f4f6}
 .pgo-row:last-child{border-bottom:0}
-.pgo-row dt{display:flex;align-items:center;gap:7px;font-size:12px;color:#6b7280;flex-shrink:0}
+.pgo-row dt{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b7280;flex-shrink:0}
 .pgo-row dt svg{width:15px;height:15px;flex-shrink:0;color:var(--brand-600,#1485c5)}
-.pgo-row dd{margin:0;font-size:13px;font-weight:600;color:#111827;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
-.pgo-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700}
+.pgo-row dd{margin:0;font-size:14px;font-weight:600;color:#111827;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
+.pgo-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 12px;border-radius:999px;font-size:12px;font-weight:700}
 .pgo-badge i{width:6px;height:6px;border-radius:50%;background:currentColor}
 .pgo-badge--ok{background:#dcfce7;color:#15803d}.pgo-badge--warn{background:#fef3c7;color:#b45309}.pgo-badge--bad{background:#fee2e2;color:#dc2626}
-.pgo-flags{display:inline-flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
-.pgo-flags img{width:20px;height:14px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
-.pgo-more{font-size:11px;font-weight:600;color:#6b7280}
-.pgo-foot{display:flex;justify-content:center;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid #eceef2;background:#f9fafb;margin-top:auto}
-.pgo-ghost{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font:600 11px/1 'Inter',sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5)}
+.pgo-flags{display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:wrap}
+.pgo-flags img{width:20px;height:14px;border-radius:4px;object-fit:cover;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
+.pgo-more{font-size:12px;font-weight:600;color:#6b7280}
+.pgo-foot{display:flex;justify-content:center;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid #eceef2;background:#f9fafb;margin-top:auto}
+.pgo-ghost{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font:600 11px/1 'Inter',sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5)}
 .pgo-ghost:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8)}
 .pgo-ghost:focus-visible{outline:2px solid #60a5fa;outline-offset:1px}
 .pgo-ghost svg{width:14px;height:14px}
-.pgo-strip--top{align-self:center;max-width:calc(100% - 28px);margin:12px 14px 4px}
+.pgo-strip--top{align-self:center;max-width:calc(100% - 28px);margin:12px 12px 4px}
 .pgo-strip--top .pgo-metric{padding:12px 32px;min-width:180px}
-.pgo-strip{margin:12px 14px 14px;display:flex;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;overflow:hidden}
-.pgo-metric{flex:1;padding:14px 16px;text-align:center}
+.pgo-strip{margin:12px 12px 12px;display:flex;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;overflow:hidden}
+.pgo-metric{flex:1;padding:16px 16px;text-align:center}
 .pgo-metric + .pgo-metric{border-left:1px solid var(--brand-100,#dbeafe)}
-.pgo-metric-l{font-size:11px;font-weight:500;color:#6b7280;margin-bottom:5px}
+.pgo-metric-l{font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px}
 .pgo-metric-v{font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1}
 html[data-theme="dark"] .pgo-strip{background:#15233c;border-color:#2a374d}
 html[data-theme="dark"] .pgo-metric + .pgo-metric{border-color:#2a374d}
@@ -70,7 +70,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .tracking-micro { letter-spacing:.08em; }
   /* Pill tabs */
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
-  .ds-tab  { position:relative; font:inherit; font-size:12px; font-weight:600; padding:6px 14px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+  .ds-tab  { position:relative; font:inherit; font-size:12px; font-weight:600; padding:8px 16px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; gap:4px; white-space:nowrap; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"] { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:var(--brand-600,#2563eb); border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transition:transform 300ms cubic-bezier(.34,1.2,.64,1), width 300ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
@@ -78,8 +78,8 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .ds-tab-label { position:relative; z-index:1; }
   /* Policy table */
   .pol-table { width:100%; border-collapse:collapse; font-size:12px; }
-  .pol-table th { padding:9px 12px; text-align:left; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); border-bottom:1px solid var(--border-default,#E5E7EB); white-space:nowrap; background:var(--slate-50,#F9FAFB); ;text-transform:uppercase;letter-spacing:.04em}
-  .pol-table td { padding:10px 12px; border-bottom:1px solid #f3f4f6; color:#374151; white-space:nowrap; vertical-align:middle; }
+  .pol-table th { padding:8px 12px; text-align:left; font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); border-bottom:1px solid var(--border-default,#E5E7EB); white-space:nowrap; background:var(--slate-50,#F9FAFB); ;text-transform:uppercase;letter-spacing:.04em}
+  .pol-table td { padding:12px 12px; border-bottom:1px solid #f3f4f6; color:#374151; white-space:nowrap; vertical-align:middle; }
   .pol-table tr:last-child td { border-bottom:0; }
   .pol-table tr:hover td { background:#f9fafb; }
   .pol-table th:nth-child(-n+2), .pol-table td:nth-child(-n+2) { position:sticky; z-index:1; background:#fff; }
@@ -94,22 +94,22 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .pcard-sub a.lnk { color:var(--brand-600,#2563eb); font-weight:600; }
   /* Mobile policy cards */
   .pol-cards { display:none; }
-  .pcard { padding:14px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
+  .pcard { padding:16px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
   .pcard:last-child { border-bottom:0; }
-  .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
   .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-600,#2563eb); word-break:break-word; }
-  .pcard-sub { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#6b7280; }
-  .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; }
+  .pcard-sub { display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-size:14px; color:#6b7280; }
+  .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
-  .pcard-k { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
-  .pcard-v { font-size:13px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .pcard-k { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
+  .pcard-v { font-size:14px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
   .pcard-v.is-strong { font-size:14px; font-weight:700; color:#111827; }
   .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
   .pcard-more { display:none; }
   .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e5e7eb; animation:pcardIn .22s ease; }
   @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
-  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:12.5px; font-weight:600; color:var(--brand-600,#2563eb); }
+  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:4px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; color:var(--brand-600,#2563eb); }
   .pcard-chev { transition:transform .2s ease; }
   .pcard.open .pcard-chev { transform:rotate(180deg); }
   /* Stat badge */
@@ -118,10 +118,10 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .stat-badge.green  { background:#dcfce7; color:#15803d; }
   .stat-badge.purple { background:#ede9fe; color:#6d28d9; }
   /* Select chrome */
-  .sel { border:1px solid #e5e7eb; border-radius:6px; padding:4px 24px 4px 8px; font-size:12px; color:#374151; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
+  .sel { border:1px solid #e5e7eb; border-radius:8px; padding:4px 24px 4px 8px; font-size:12px; color:#374151; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
   @media(max-width:767px){
     .ds-tabs.mobile-stretch { display:flex; width:100%; }
-    .ds-tabs.mobile-stretch .ds-tab { flex:1 1 0; min-width:0; justify-content:center; padding-left:6px; padding-right:6px; }
+    .ds-tabs.mobile-stretch .ds-tab { flex:1 1 0; min-width:0; justify-content:center; padding-left:8px; padding-right:8px; }
     .ds-tabs.mobile-stretch .ds-tab-label { justify-content:center; }
     .pvw-desktop { display:none !important; }
     .pvw-mobile { width:100%; }
@@ -134,10 +134,10 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   }
   /* Mobile dropdown for analysis tabs (hidden by default) */
   .analysis-tabs-mobile { display:none; }
-  .analysis-tabs-mobile select { width:100%; border:1px solid #e5e7eb; border-radius:9999px; padding:8px 32px 8px 14px; font-size:13px; font-weight:600; color:#111827; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
+  .analysis-tabs-mobile select { width:100%; border:1px solid #e5e7eb; border-radius:9999px; padding:8px 32px 8px 16px; font-size:14px; font-weight:600; color:#111827; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center; appearance:none; cursor:pointer; }
   /* ── Risk Score card (copied from Marine Portfolio Details) ── */
   /* Risk Score info popups (ported from Vessel Details) */
-  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#1485c5;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
@@ -145,19 +145,19 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .rs-tip.l{left:-6px;}
   .rs-tip.r{right:-6px;}
   .rs-tip::after{content:'';position:absolute;bottom:100%;width:9px;height:9px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:translateY(50%) rotate(45deg);}
-  .rs-tip.c::after{left:50%;margin-left:-4.5px;}
+  .rs-tip.c::after{left:50%;margin-left:-4px;}
   .rs-tip.l::after{left:14px;}
   .rs-tip.r::after{right:14px;}
-  .rs-tip-h{font-size:11px;font-weight:800;color:#111827;margin-bottom:6px;}
-  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:11px;}
-  .rs-tip-tbl th{padding:2px 3px;font-size:11px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
+  .rs-tip-h{font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:12px;}
+  .rs-tip-tbl th{padding:2px 4px;font-size:12px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
   .rs-tip-tbl th:first-child{text-align:left;}
-  .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
+  .rs-tip-tbl td{padding:4px 4px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
   .rs-seg{cursor:pointer;transition:stroke-width .15s,opacity .15s}
   svg:hover > .rs-seg{opacity:.55}svg > .rs-seg:hover{opacity:1;stroke-width:19}
-  .rs-dtip{position:fixed;z-index:1200;pointer-events:none;display:none;align-items:center;gap:6px;padding:5px 9px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;box-shadow:0 4px 12px rgba(15,23,42,.12);font-size:12px;color:#111827;white-space:nowrap}
-  .rs-dtip i{width:10px;height:10px;border-radius:2px;display:inline-block}
+  .rs-dtip{position:fixed;z-index:1200;pointer-events:none;display:none;align-items:center;gap:4px;padding:4px 8px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.12);font-size:12px;color:#111827;white-space:nowrap}
+  .rs-dtip i{width:10px;height:10px;border-radius:4px;display:inline-block}
 </style>
 <style>@media(max-width:639px){.co-rs-toggles,.co-rs-grid{display:contents !important}.co-rs-sanc{order:1;align-self:flex-end;flex-direction:row-reverse}.co-rs-gauge{order:2}.co-rs-trend{order:3;align-self:flex-end;margin-top:4px}.co-rs-years{order:4}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:5}}</style>
 <style>.rs-tip{display:none}.rs-info:hover .rs-tip,.rs-info:focus-within .rs-tip{display:block}  /* ── Environmental Rating (copied from Marine Portfolio Details) ── */
@@ -184,7 +184,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/marine-asset-details.js"></script>
@@ -294,7 +294,7 @@ function PanelRiskBreakdown() {
       2024: { good:18, avg:2, bad:1 },
     };
     const deltaPill = (d, extra='') => { const up = d >= 0, p = yearPill(up ? 60 : 10);
-      return `<div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
+      return `<div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
     const donut = (year, score, max, sw, numPx) => {
       const dist = RS_DIST[year], total = RS_BANDS.reduce((t, b) => t + dist[b.k], 0);
       const r = 50 - sw / 2, C = 2 * Math.PI * r, live = RS_BANDS.filter(b => dist[b.k] > 0), gap = live.length > 1 ? 0.9 : 0;
@@ -305,16 +305,16 @@ function PanelRiskBreakdown() {
       return `<div class="${year === 2026 ? 'mp-rs-2026' : ''}" style="position:relative;width:100%;max-width:${max}px;aspect-ratio:1;">
         <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="${year} average risk score ${score}; ${RS_BANDS.map(b => b.label + ' ' + dist[b.k]).join(', ')} assets">${segs}</svg>
         <div class="mp-rs-center" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
-          ${year === 2026 && mpWithSanctions ? `<span style="font-size:${Math.round(numPx * 0.38)}px;font-weight:800;color:#111827;line-height:1;">Sanctioned</span>` : `<span style="font-size:${numPx}px;font-weight:800;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${score}</span>
+          ${year === 2026 && mpWithSanctions ? `<span style="font-size:${Math.round(numPx * 0.38)}px;font-weight:700;color:#111827;line-height:1;">Sanctioned</span>` : `<span style="font-size:${numPx}px;font-weight:700;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${score}</span>
           ${year === 2026 ? '' : `<span style="font-size:${Math.max(10, Math.round(numPx / 3.4))}px;color:#6b7280;margin-top:2px;">Avg Score</span>`}`}
         </div>
       </div>`;
     };
-    const yearPillTag = y => `<span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px;">${y}</span>`;
+    const yearPillTag = y => `<span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;">${y}</span>`;
     let body = `
-    <div class="co-rs-body" style="padding:8px 12px 14px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:6px;">
-      <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:6px 8px;flex-wrap:wrap;">
-        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
+    <div class="co-rs-body" style="padding:8px 12px 16px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:4px;">
+      <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:4px 8px;flex-wrap:wrap;">
+        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#1485c5)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
@@ -322,29 +322,29 @@ function PanelRiskBreakdown() {
         </button>
       </div>
       <div class="co-rs-grid" style="display:grid;grid-template-columns:${mpWithTrends ? 'repeat(auto-fit,minmax(180px,1fr))' : '1fr'};gap:8px;">
-        <div class="co-rs-gauge${mpWithSanctions ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
-        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
+        <div class="co-rs-gauge${mpWithSanctions ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;">
+        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
           ${donut(2026, rsScore, 170, 8, 44)}
           ${deltaPill(rsDelta25)}
         </div>
         ${mpWithTrends ? `
-        <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
+        <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
           ${[[2025, rs2025, rsDelta2025, 'c'], [2024, rs2024, rsDelta24, 'r']].map(([y, v, d, al]) => `
-          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(y)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st ' + y + ': ' + v, al)}</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(y)}<div style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st ' + y + ': ' + v, al)}</div></div>
             ${donut(y, v, 104, 9, 24)}
             ${deltaPill(d)}
           </div>`).join('')}
         </div>` : ''}
       </div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:12px;color:#374151;padding-top:0;">
-        ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#6b7280;">[${b.range}]</span></span>`).join('')}
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 16px;font-size:12px;color:#374151;padding-top:0;">
+        ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:4px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#6b7280;">[${b.range}]</span></span>`).join('')}
       </div>
     </div>`;
   return `
@@ -391,19 +391,19 @@ function PolicySection() {
       <div class="ds-tabs shrink-0 mobile-stretch pvw-desktop" id="policy-view-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         <button class="ds-tab" aria-selected="${policyView==='details'}" data-pvw="details">
-          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:4px;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             Policy Details
           </span>
         </button>
         <button class="ds-tab" aria-selected="${policyView==='list'}" data-pvw="list">
-          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:4px;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
             Asset Details
           </span>
         </button>
         <button class="ds-tab" aria-selected="${policyView==='env'}" data-pvw="env">
-          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:5px;">
+          <span class="ds-tab-label" style="display:inline-flex;align-items:center;gap:4px;">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
             Environmental Rating
           </span>
@@ -416,31 +416,31 @@ function PolicySection() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="pol-card">
     <!-- Toolbar -->
-    <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">
+    <div class="pol-toolbar flex items-center gap-2 px-3 py-3 border-b border-ink-100 flex-wrap">
       ${tabsHtml}
       <div class="flex-1"></div>
       <!-- Search -->
       <div class="relative">
         <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" placeholder="Search" class="pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
+        <input type="text" placeholder="Search" class="pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
       </div>
       <button type="button" class="flex items-center justify-center shrink-0 border border-ink-200 rounded-lg text-ink-600 hover:bg-ink-50 hover:text-ink-900" style="width:32px;height:32px;" title="Reset filters" aria-label="Reset filters">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
       </button>
-      <select class="sel text-xs py-1.5">
+      <select class="sel text-xs py-2">
         <option>All</option><option>Active</option><option>Expired</option>
       </select>
-      <select class="sel text-xs py-1.5">
+      <select class="sel text-xs py-2">
         <option>All Types</option><option>Hull &amp; Machinery</option><option>P&amp;I</option><option>War Risks</option>
       </select>
-      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-2 text-ink-700 font-semibold hover:bg-ink-50">
         Edit Columns
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
     </div>
     <!-- Delete bar -->
     <div class="flex items-center gap-3 px-3 py-2 border-b border-ink-100 bg-ink-50/50">
-      <button class="flex items-center gap-1.5 text-xs border border-ink-200 rounded-md px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
+      <button class="flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>
@@ -481,7 +481,7 @@ function PolicySection() {
               <td style="color:#6b7280;">${p.insurer}</td>
               <td style="color:#6b7280;">${p.broker}</td>
               <td style="color:#6b7280;">${p.assured}</td>
-              <td style="font-size:11px;color:#6b7280;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
+              <td style="font-size:12px;color:#6b7280;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;">${p.umr}</td>
               <td style="color:#6b7280;">${p.delegate}</td>
               <td style="color:#6b7280;">${p.uw}</td>
             </tr>`).join('')}
@@ -496,7 +496,7 @@ function PolicySection() {
               <span class="pcard-title">${p.num}</span>
               <div class="pcard-sub"><a href="VesselDetails.html" class="lnk">${p.vessel}</a></div>
             </div>
-            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;">${p.type}</span>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:12px;">${p.type}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv"><span class="pcard-k">Exposure</span><span class="pcard-v is-strong">${p.exp}</span></div>
@@ -583,7 +583,7 @@ function EnvironmentalRatingContent() {
     </div>`;
 
   const aspectBadge = (item) => `
-    <div class="flex items-center justify-between py-1.5">
+    <div class="flex items-center justify-between py-2">
       <span class="text-xs text-ink-700">${item.label}</span>
       <div class="flex items-center gap-2">
         ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
@@ -627,8 +627,8 @@ function EnvironmentalRatingContent() {
                     <span class="text-ink-700">${item.label}</span>
                     <span class="${item.label.includes('Attained') ? 'text-red-600 font-semibold' : 'text-ink-900 font-medium'}">${item.value}</span>
                   </div>
-                  ${item.sub ? `<div class="text-[11px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
-                  ${item.sub && item.sub.includes('\n') ? `<div class="text-[11px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
+                  ${item.sub ? `<div class="text-xs text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
+                  ${item.sub && item.sub.includes('\n') ? `<div class="text-xs text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
                 </div>
               </div>
             `).join('')}
@@ -653,7 +653,7 @@ function EnvironmentalRatingContent() {
 function EnvironmentalSection(tabsHtml) {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden" id="env-card">
-    <div class="pol-toolbar flex items-center gap-2 px-3 py-2.5 border-b border-ink-100 flex-wrap">
+    <div class="pol-toolbar flex items-center gap-2 px-3 py-3 border-b border-ink-100 flex-wrap">
       ${tabsHtml}
     </div>
     <div class="p-3">

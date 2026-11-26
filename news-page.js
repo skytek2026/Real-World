@@ -162,7 +162,7 @@
       chips.push(`<span class="chip-tag">"${state.search}"<span class="chip-x" data-clear="search">×</span></span>`);
     }
     return `
-      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px">
         <span style="font-size:12px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.04em">Filtering by</span>
         ${chips.join('')}
         <button data-clear="all" style="font-size:12px;color:#2563eb;background:none;border:0;cursor:pointer;font-weight:600;font-family:inherit;padding:0 4px">Clear all</button>
@@ -376,7 +376,7 @@
   function MetaBar() {
     const list = filtered();
     return `
-      <span style="font-size:13px;color:#4b5563"><strong style="color:#111827;font-weight:700">${list.length}</strong> ${list.length === 1 ? 'article' : 'articles'}${state.cat !== 'all' ? ` in <strong style="color:#111827;font-weight:600">${catLabel(state.cat)}</strong>` : ''}</span>
+      <span style="font-size:14px;color:#4b5563"><strong style="color:#111827;font-weight:700">${list.length}</strong> ${list.length === 1 ? 'article' : 'articles'}${state.cat !== 'all' ? ` in <strong style="color:#111827;font-weight:600">${catLabel(state.cat)}</strong>` : ''}</span>
       <span style="font-size:12px;color:#9ca3af">Updated just now</span>`;
   }
 
@@ -411,7 +411,7 @@
 
       <div id="news-active">${ActiveFilters()}</div>
 
-      <div id="news-meta" style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:18px 0 12px">${MetaBar()}</div>
+      <div id="news-meta" style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:16px 0 12px">${MetaBar()}</div>
 
       <div id="news-results">${Grid()}</div>`;
   }

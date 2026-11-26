@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
@@ -54,16 +54,16 @@
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
+  .ds-tab { position:relative; font:inherit; font-size:14px; font-weight:600; padding:8px 20px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; text-align:center; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2563eb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
-  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:6px; }
+  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:4px; }
   /* Leaflet custom */
   #offshore-map { background:#e0ebe9; }
   #offshore-map .leaflet-top.leaflet-left { top:56px; left:2px; }
-  #offshore-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  #offshore-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow: 0 1px 2px rgb(15 23 42 / .08) !important; border-radius: 8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
@@ -75,7 +75,7 @@
   .map-btn:active { background:#e5e7eb; }
   .offshore-marker { display:flex; flex-direction:column; align-items:center; gap:2px; }
   .offshore-dot { position:relative; width:10px; height:10px; border-radius:50%; border:2px solid #fff; box-shadow:0 2px 4px rgba(0,0,0,.3); cursor:pointer; }
-  .offshore-label { background:#1f2937; color:#fff; padding:2px 6px; border-radius:4px; font-size:11px; font-weight:600; white-space:nowrap; box-shadow:0 2px 4px rgba(0,0,0,.3); }
+  .offshore-label { background:#1f2937; color:#fff; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:600; white-space:nowrap; box-shadow:0 2px 4px rgba(0,0,0,.3); }
   #offshore-map.no-labels .offshore-label { display:none; }
   /* Hover / selected ring around the asset dot */
   .offshore-dot::after {
@@ -92,14 +92,14 @@
   .asset-tip.leaflet-tooltip {
     background:rgba(15,23,42,.93); border:0; border-radius:8px;
     box-shadow:0 3px 10px rgba(0,0,0,.4);
-    padding:6px 9px; color:#fff;
+    padding:8px 8px; color:#fff;
     font-family:'Inter',system-ui,sans-serif;
   }
   .asset-tip.leaflet-tooltip-top::before { border-top-color:rgba(15,23,42,.93); }
-  .asset-tip .atip-row { display:flex; align-items:center; gap:6px; }
-  .asset-tip .atip-flag { border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
+  .asset-tip .atip-row { display:flex; align-items:center; gap:4px; }
+  .asset-tip .atip-flag { border-radius:4px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
   .asset-tip .atip-name { font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:12px; letter-spacing:.01em; }
-  .asset-tip .atip-type { display:block; font-size:11px; color:#d1d5db; margin-top:2px; }
+  .asset-tip .atip-type { display:block; font-size:12px; color:#d1d5db; margin-top:2px; }
   #map-container.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; border:0; display:flex; flex-direction:column; }
   #map-container.is-fullscreen > div:last-child { flex:1 1 auto; height:auto !important; min-height:0; }
   .asset-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
@@ -117,12 +117,12 @@
   /* DS table-header treatment for list-card column headers */
   .tracking-micro.uppercase.text-ink-500{background:var(--slate-50,#F9FAFB);color:var(--text-muted,#6B7280)}
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
-  .ds-btn{font-family:inherit;font-size:13px;font-weight:500;line-height:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;height:32px;border-radius:6px;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s;}
-  .ds-btn--sm{height:28px;font-size:12px;padding:0 10px;}
+  .ds-btn{font-family:inherit;font-size:14px;font-weight:500;line-height:1;display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:0 12px;height:32px;border-radius:8px;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s;}
+  .ds-btn--sm{height:28px;font-size:12px;padding:0 12px;}
   .ds-btn--sm svg{width:13px;height:13px;}
   .ds-btn--ghost{background:transparent;color:#374151;}
   .ds-btn--ghost:hover{background:#F3F4F6;}
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
@@ -183,7 +183,7 @@ html[data-theme="dark"] .ds-fdrawer {
 }
 .ds-fdrawer-close {
   border: 0; background: none; cursor: pointer;
-  color: var(--text-muted); padding: 5px; border-radius: 8px;
+  color: var(--text-muted); padding: 4px; border-radius: 8px;
   display: inline-flex;
   transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
 }
@@ -203,7 +203,7 @@ html[data-theme="dark"] .ds-fdrawer {
   flex: 0 0 auto;
   transition: padding var(--motion-base) var(--ease-out);
 }
-.ds-fdrawer-section:not(.is-open) { padding: 11px 0; }
+.ds-fdrawer-section:not(.is-open) { padding: 12px 0; }
 .ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
 .ds-fdrawer-section:last-child { border-bottom: 0; }
 .ds-fdrawer-acc-head {
@@ -214,7 +214,7 @@ html[data-theme="dark"] .ds-fdrawer {
 .ds-fdrawer-sec-title {
   font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
   color: var(--text-muted); margin: 0;
-  display: flex; align-items: center; gap: 7px;
+  display: flex; align-items: center; gap: 8px;
 }
 /* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
 .ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
@@ -230,7 +230,7 @@ html[data-theme="dark"] .ds-fdrawer {
 /* Section toolbar (Reset / Unselect all) */
 .ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; }
 .ds-fdrawer-act {
-  flex: 1; padding: 5px 8px;
+  flex: 1; padding: 4px 8px;
   border: 1px solid var(--border-default); border-radius: var(--radius-sm);
   background: var(--bg-surface);
   font: inherit; font-size: 12px; font-weight: 600; color: var(--text-secondary);
@@ -244,16 +244,16 @@ html[data-theme="dark"] .ds-fdrawer {
 .ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; }
 .ds-fdrawer-item {
   display: flex; align-items: center; gap: 8px; width: 100%;
-  text-align: left; padding: 7px 10px;
+  text-align: left; padding: 8px 12px;
   border: 0; border-radius: var(--radius-sm); background: transparent;
-  font-size: 12.5px; font-weight: 500; color: var(--text-secondary);
+  font-size: 14px; font-weight: 500; color: var(--text-secondary);
   cursor: pointer; white-space: nowrap;
 }
 .ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); }
 .ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; }
 .ds-fdrawer-foot {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  padding: 14px var(--fdrawer-pad-x);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 16px var(--fdrawer-pad-x);
   border-top: 1px solid var(--border-subtle);
   flex: 0 0 auto;
 }
@@ -269,8 +269,8 @@ html[data-theme="dark"] .ds-fdrawer {
 .mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
 .mfd-n { font-size:12px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
-.mfd-result { padding:10px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
-.mfd-btn { display:inline-flex; align-items:center; border-radius:6px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid transparent; }
+.mfd-result { padding:12px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
+.mfd-btn { display:inline-flex; align-items:center; border-radius:8px; font:inherit; font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; }
 .mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
 .mfd-btn--secondary:hover { background:var(--bg-sunken); }
 .mfd-btn--primary { background:var(--brand-600,#1485c5); color:#fff; }
@@ -279,7 +279,7 @@ html[data-theme="dark"] .ds-fdrawer {
 /* active-filter count on the map's Filter button */
 #map-filters-btn { position:relative; }
 #map-filters-btn.is-active { color:var(--brand-600,#1485c5); }
-.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:11px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
+.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:12px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
 html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 </style>
 </head>
@@ -298,7 +298,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -475,7 +475,7 @@ function tabs(tabs, active, groupAttr) {
   <div class="ds-tabs is-stretch" data-tab-group="${groupAttr}">
     <span class="ds-tab-pill is-init" data-tab-pill></span>
     ${tabs.map(t => `
-      <button ${groupAttr}="${t}" aria-selected="${t===active}" class="ds-tab" style="font-size:12px; padding:6px 12px;">
+      <button ${groupAttr}="${t}" aria-selected="${t===active}" class="ds-tab" style="font-size:12px; padding:8px 12px;">
         <span class="ds-tab-label">${t}</span>
       </button>
     `).join('')}
@@ -504,9 +504,9 @@ function PortfolioCard() {
   const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
 
   const statsCard = `
-    <div style="padding:14px 16px 6px;display:flex;justify-content:center;" class="shrink-0">
+    <div style="padding:16px 16px 8px;display:flex;justify-content:center;" class="shrink-0">
       <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 28px;text-align:center;min-width:180px;">
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Interests</div>
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Interests</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${totalInterests}</div>
       </div>
     </div>`;
@@ -549,7 +549,7 @@ function PortfolioCard() {
       ${tabBar}
       ${statsCard}
       <div class="flex-1 overflow-y-auto scroll-thin mt-2">
-        <div class="px-3 pt-2 pb-1 grid grid-cols-[minmax(0,1fr)_70px_90px] gap-4 text-[11px] font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white items-center">
+        <div class="px-3 pt-2 pb-1 grid grid-cols-[minmax(0,1fr)_70px_90px] gap-4 text-xs font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white items-center">
           <span>Name <span class="text-ink-300">${window.dsSortInd(false)}</span></span>
           <span class="text-right">Policies <span class="text-ink-300">${window.dsSortInd(false)}</span></span>
           <span class="text-right">Our Exposure <span class="text-ink-300">${window.dsSortInd(false)}</span></span>
@@ -567,7 +567,7 @@ function PortfolioCard() {
     ${tabBar}
     ${statsCard}
     <div class="flex-1 overflow-y-auto scroll-thin mt-2">
-      <div class="px-3 pt-2 pb-1 grid grid-cols-[minmax(0,1fr)_70px_90px] gap-4 text-[11px] font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white items-center">
+      <div class="px-3 pt-2 pb-1 grid grid-cols-[minmax(0,1fr)_70px_90px] gap-4 text-xs font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white items-center">
         <span>Name <span class="text-ink-300">${window.dsSortInd(false)}</span></span>
         <span class="text-right">Policies <span class="text-ink-300">${window.dsSortInd(false)}</span></span>
         <span class="text-right">Our Exposure <span class="text-ink-300">${window.dsSortInd(false)}</span></span>
@@ -604,7 +604,7 @@ function RegionsCard() {
           <span class="tabular-nums text-right font-semibold text-ink-900">${group.exposure}</span>
         </button>
         ${isExpanded ? (group.children || []).map(c => `
-          <div class="px-3 py-1.5 grid grid-cols-[minmax(0,1fr)_auto] gap-3 items-center text-xs bg-ink-50/40 hover:bg-ink-50">
+          <div class="px-3 py-2 grid grid-cols-[minmax(0,1fr)_auto] gap-3 items-center text-xs bg-ink-50/40 hover:bg-ink-50">
             <span class="text-brand-500 font-medium truncate pl-6">${c.name} <span class="text-ink-500 font-normal">(${c.count.toLocaleString()})</span></span>
             <span class="tabular-nums text-right text-ink-700">${c.exposure}</span>
           </div>
@@ -616,9 +616,9 @@ function RegionsCard() {
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0" style="height:420px;max-height:420px">
     <div class="p-3 border-b border-ink-100 shrink-0">${tabs(['Regions Aggregation','Exposure Aggregation'], state.regionsTab, 'data-regions-tab')}</div>
     ${state.regionsTab === 'Exposure Aggregation' ? `
-      <div style="padding:14px 16px 6px;display:flex;justify-content:center;" class="shrink-0">
+      <div style="padding:16px 16px 8px;display:flex;justify-content:center;" class="shrink-0">
         <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 28px;text-align:center;min-width:160px;">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${EXPOSURE_TOTAL}</div>
         </div>
       </div>
@@ -635,15 +635,15 @@ function RegionsCard() {
       </div>
     ` : `
     <div class="flex-1 overflow-y-auto scroll-thin">
-      <div class="px-3 pt-2 pb-2 grid grid-cols-[minmax(0,1fr)_auto] gap-3 text-[11px] font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white border-b border-ink-100">
+      <div class="px-3 pt-2 pb-2 grid grid-cols-[minmax(0,1fr)_auto] gap-3 text-xs font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white border-b border-ink-100">
         <span>Name</span>
         <span class="text-right"><span style="color:#ea580c">Above Threshold</span> <span class="text-ink-400">/</span> Our Exposure</span>
       </div>
-      <div class="px-3 pt-2 pb-1 text-[11px] font-bold text-ink-700">Monitored Regions:</div>
+      <div class="px-3 pt-2 pb-1 text-xs font-bold text-ink-700">Monitored Regions:</div>
       <div class="divide-y divide-ink-50">
         ${REGIONS_MONITORED.map((g, i) => renderGroup('mon', g, i)).join('')}
       </div>
-      <div class="px-3 pt-3 pb-1 text-[11px] font-bold text-ink-700">Our Top Exposure Today:</div>
+      <div class="px-3 pt-3 pb-1 text-xs font-bold text-ink-700">Our Top Exposure Today:</div>
       <div class="divide-y divide-ink-50">
         ${REGIONS_TOP.map((g, i) => renderGroup('top', g, i)).join('')}
       </div>
@@ -662,14 +662,14 @@ function WeatherCard() {
                cat.includes('3') ? 'bg-amber-100 text-amber-700' :
                cat.includes('Winter') ? 'bg-rose-100 text-rose-700' :
                'bg-orange-100 text-orange-700';
-    return `<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold ${bg}">${txt}</span>`;
+    return `<span class="px-2 py-0.5 rounded-lg text-xs font-semibold ${bg}">${txt}</span>`;
   };
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0" style="height:420px;max-height:420px">
     <div class="px-4 py-3 border-b border-ink-100 shrink-0">
       <div class="text-sm font-semibold text-ink-900">Weather</div>
     </div>
-    <div class="px-3 pt-2 pb-1 grid grid-cols-[minmax(0,1fr)_auto_auto] gap-3 text-[11px] font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white items-center">
+    <div class="px-3 pt-2 pb-1 grid grid-cols-[minmax(0,1fr)_auto_auto] gap-3 text-xs font-semibold tracking-micro uppercase text-ink-500 sticky top-0 bg-white items-center">
       <span>Event Name</span>
       <span>Category</span>
       <span>Status</span>
@@ -684,14 +684,14 @@ function WeatherCard() {
         <div class="px-3 py-2 hover:bg-ink-50 text-xs border-t border-ink-100 first:border-0 grid grid-cols-[minmax(0,1fr)_auto_auto] gap-3 items-center">
           <div class="min-w-0">
             <div class="font-semibold text-brand-600 truncate">${w.event}</div>
-            <div class="flex items-center gap-1 text-ink-500 text-[11px] mt-0.5">
+            <div class="flex items-center gap-1 text-ink-500 text-xs mt-0.5">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
               <span>${w.knots} knots</span>
               <span class="text-ink-400">· ${w.date}</span>
             </div>
           </div>
           ${badge(w.category, w.category)}
-          <span style="font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;white-space:nowrap;${statusStyle}">${w.status}</span>
+          <span style="font-size:12px;font-weight:600;padding:4px 12px;border-radius:8px;white-space:nowrap;${statusStyle}">${w.status}</span>
         </div>`;
       }).join('')}
     </div>
@@ -719,13 +719,13 @@ function buildPopupHTML(m) {
   const statusColor = m.status === 'Operational' ? '#10b981' :
                       m.status === 'Under Maintenance' ? '#f59e0b' : '#9ca3af';
   const row = (label, val, color) =>
-    `<div><div style="font-size:11px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:13px;font-weight:600;color:${color||'#111827'};">${val}</div></div>`;
+    `<div><div style="font-size:12px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:14px;font-weight:600;color:${color||'#111827'};">${val}</div></div>`;
   return `
     <div style="background:var(--brand-600,#2563eb);padding:12px 36px 12px 16px;">
-      <div style="color:#fff;font-weight:700;font-size:13px;line-height:1.35;">${m.fullName}</div>
-      <div style="color:rgba(255,255,255,.75);font-size:11px;font-weight:500;margin-top:2px;">${m.assetType}</div>
+      <div style="color:#fff;font-weight:700;font-size:14px;line-height:1.35;">${m.fullName}</div>
+      <div style="color:rgba(255,255,255,.75);font-size:12px;font-weight:500;margin-top:2px;">${m.assetType}</div>
     </div>
-    <div style="padding:14px 16px 6px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;">
+    <div style="padding:16px 16px 8px;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;">
       ${row('Operator', m.operator)}
       ${row('Country', m.country)}
       ${row('Coordinates', m.coords)}
@@ -738,8 +738,8 @@ function buildPopupHTML(m) {
       ${row('Policy Type', m.policyType)}
       ${row('Field', m.field)}
     </div>
-    <div style="padding:4px 16px 14px;">
-      <button style="display:block;width:100%;background:transparent;color:var(--brand-600,#2563eb);border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;font-weight:500;font-size:13px;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AssetOffshoreDetails.html'">View Details</button>
+    <div style="padding:4px 16px 16px;">
+      <button style="display:block;width:100%;background:transparent;color:var(--brand-600,#2563eb);border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;font-weight:500;font-size:14px;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AssetOffshoreDetails.html'">View Details</button>
     </div>`;
 }
 
@@ -1088,7 +1088,7 @@ function Content() {
                   <span class="inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform translate-x-0.5"></span>
                 </button>
               </div>
-              <p class="mt-1.5 text-[12px] leading-snug text-ink-500">Display asset names directly on the map next to icons.</p>
+              <p class="mt-1 text-[12px] leading-snug text-ink-500">Display asset names directly on the map next to icons.</p>
             </div>
           </div>
         </div>

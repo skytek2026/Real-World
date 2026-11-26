@@ -38,7 +38,7 @@
   --rw-modal-header-pad-x: 20px;
   --rw-modal-footer-pad-y: 14px;
   --rw-modal-footer-pad-x: 20px;
-  --rw-modal-action-gap:   10px;
+  --rw-modal-action-gap:   8px;
   --rw-modal-viewport-pad: 24px;   /* gap between modal and viewport edge */
 
   /* ——— Size variants (container max-width) ——— */
@@ -160,7 +160,7 @@
 }
 .rw-modal-subtitle {
   margin: 2px 0 0;
-  font-size: 12.5px;
+  font-size: 14px;
   line-height: 1.4;
   color: var(--rw-modal-text-muted);
 }
@@ -199,8 +199,8 @@
 
 /* Optional section divider inside the body */
 .rw-modal-section-title {
-  font-size: 13px; font-weight: 700; color: var(--rw-modal-text);
-  padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--rw-modal-border);
+  font-size: 14px; font-weight: 700; color: var(--rw-modal-text);
+  padding-top: 16px; margin-top: 12px; border-top: 1px solid var(--rw-modal-border);
 }
 
 /* ===========================================================================
@@ -226,13 +226,13 @@
    =========================================================================== */
 .rw-modal-btn {
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
   padding: 8px 16px;
   min-height: 34px;
   border-radius: var(--rw-modal-control-radius);

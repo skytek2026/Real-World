@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
@@ -39,16 +39,16 @@
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
   .ds-tabs.is-stretch{display:flex}
   .ds-tabs.is-stretch>.ds-tab{flex:1}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:8px 18px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+  .ds-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 20px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap}
   .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
-  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px}
+  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px}
   /* Map */
   #airport-map{position:absolute;inset:0;background:#0b1e2e}
   #airport-map .leaflet-top.leaflet-left{top:48px;left:2px}
-  #airport-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px !important}
+  #airport-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px !important}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgba(15,23,42,.08) !important;border-radius:8px !important;overflow:hidden}
   .leaflet-bar a{background:#fff !important;color:#374151 !important;line-height:30px !important}
   .leaflet-bar a:hover{background:#f3f4f6 !important}
@@ -60,32 +60,32 @@
   /* Map type menu */
   #ad-layers-menu .map-type-opt:hover{background:#f9fafb}
   /* Segment tabs (Summary Statistics) */
-  .seg-tabs{display:flex;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden}
-  .seg-tab{flex:1;padding:7px 10px;font-size:11px;font-weight:700;border:0;cursor:pointer;transition:background 120ms,color 120ms;background:#fff;color:#6b7280;letter-spacing:.04em}
+  .seg-tabs{display:flex;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden}
+  .seg-tab{flex:1;padding:8px 12px;font-size:12px;font-weight:700;border:0;cursor:pointer;transition:background 120ms,color 120ms;background:#fff;color:#6b7280;letter-spacing:.04em}
   .seg-tab:not(:last-child){border-right:1px solid #e5e7eb}
   .seg-tab.active{background:var(--brand-600,#2563eb);color:#fff}
   /* Status badges */
-  .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
+  .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
   .badge-parked{background:#f3f4f6;color:#4b5563}
   .badge-taxiing{background:#fef3c7;color:#92400e}
   .badge-boarding{background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)}
   .badge-loading{background:#ffedd5;color:#c2410c}
   .badge-arrived{background:#dcfce7;color:#15803d}
   /* Value chip */
-  .val-chip{display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
+  .val-chip{display:inline-flex;align-items:center;padding:2px 12px;border-radius:999px;font-size:14px;font-weight:700;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
   /* Table */
   .data-table{width:100%;border-collapse:collapse}
-  .data-table th{text-align:left;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:8px 12px;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap}
-  .data-table td{padding:10px 12px;font-size:12px;color:#111827;border-bottom:1px solid #f3f4f6}
+  .data-table th{text-align:left;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:8px 12px;border-bottom:1px solid var(--border-default,#E5E7EB);background:var(--slate-50,#F9FAFB);white-space:nowrap}
+  .data-table td{padding:12px 12px;font-size:12px;color:#111827;border-bottom:1px solid #f3f4f6}
   .data-table tbody tr:hover{background:#f9fafb}
   .data-table td.link{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
   .data-table td.link:hover{text-decoration:underline}
   /* Header badge */
-  .hdr-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:600}
+  .hdr-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
   .hdr-badge-gray{background:#f3f4f6;color:#4b5563}
   .hdr-badge-blue{background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
   /* Mobile responsive */
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   .airport-row1 { grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr); }
   .airport-row2 { grid-template-columns:calc((100% - 24px)/3) minmax(0,1fr); }
   /* Overflow guard: nothing in the page should bleed past the right edge on small viewports */
@@ -107,21 +107,21 @@
     .tabs-desktop-wrap{display:none!important;}
     .summary-date-row{flex-wrap:wrap;}
     /* Pagination strip wraps cleanly on narrow screens */
-    .pager-strip{flex-direction:column;gap:6px;align-items:flex-start;}
+    .pager-strip{flex-direction:column;gap:4px;align-items:flex-start;}
   }
   /* Phones: table rows as cards (every column heading kept) */
   .ad-mcards { display:none; }
   @media (max-width:767px) {
     .ad-tbl { display:none; }
-    .ad-mcards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+    .ad-mcards { display:flex; flex-direction:column; gap:8px; padding:12px; }
     /* keep each list compact: scroll inside the card instead of lengthening the page */
     .ad-mcards { max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
   }
-  .ad-mcard { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
-  .ad-mkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
-  .ad-mkv .ad-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
-  .ad-mkv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
-  .ad-mkv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .ad-mcard { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .ad-mkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px 16px; margin:0; }
+  .ad-mkv .ad-wide { grid-column:1 / -1; padding-bottom:12px; border-bottom:1px solid #f3f4f6; }
+  .ad-mkv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .ad-mkv dd { margin:4px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
   .ad-mkv dd strong { font-weight:700; color:#111827; }
   .ad-link { color:var(--brand-600,#2563eb); font-weight:600; text-decoration:none; }
   a.ad-link:hover { text-decoration:underline; }
@@ -147,7 +147,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -338,14 +338,14 @@ function CardPortfolioGround() {
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="height:100%;">
     <div class="px-4 py-3 border-b border-ink-100 flex items-center justify-between shrink-0">
       <div class="text-sm font-semibold text-ink-900">Portfolio Aircraft on the Ground</div>
-      <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1">
         <span class="hdr-badge hdr-badge-gray"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg> ${AIRCRAFT_GROUND.length}</span>
         <span class="hdr-badge hdr-badge-blue">$1.5B</span>
       </div>
     </div>
     <div class="px-4 py-3 shrink-0 flex justify-center">
       <div class="rounded-lg border border-blue-100 bg-blue-50 px-8 py-3 text-center" style="min-width:180px">
-        <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
+        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$1.5B</div>
       </div>
     </div>
@@ -388,15 +388,15 @@ function CardExposure() {
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="height:100%;">
     <div class="px-4 py-3 border-b border-ink-100 flex items-center justify-between shrink-0">
       <div class="text-sm font-semibold text-ink-900">Our Exposure By Portfolio</div>
-      <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1">
         <span class="hdr-badge hdr-badge-gray"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg> ${EXPOSURE.length}</span>
         <span class="hdr-badge hdr-badge-blue">$3.2B</span>
       </div>
     </div>
-    <div style="margin:10px 12px 12px;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;" class="shrink-0 exp-totals">
+    <div style="margin:8px 12px 12px;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;" class="shrink-0 exp-totals">
       ${[['Total Hull','$3.2B'],['Total CHW','$2.4B'],['Total HULLW','$582M'],['Total TLOHW','$280M']].map(([l,v],i)=>`
-        <div class="exp-tot" style="min-width:0;padding:10px 6px;text-align:center;">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:3px;">${l}</div>
+        <div class="exp-tot" style="min-width:0;padding:12px 8px;text-align:center;">
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">${l}</div>
           <div style="font-size:clamp(16px,1.6vw,22px);font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${v}</div>
         </div>`).join('')}
     </div>
@@ -443,18 +443,18 @@ function CardSummary() {
     </div>
     <div class="p-4 flex flex-col gap-4 flex-1">
       <div>
-        <div class="text-[11px] text-ink-500 mb-2">Date Range:</div>
+        <div class="text-xs text-ink-500 mb-2">Date Range:</div>
         <div class="flex items-center gap-2 flex-wrap">
-          <input type="text" value="Dec 1st 2024" class="border border-ink-200 rounded-md px-2.5 py-1.5 text-xs text-ink-900 w-28" />
+          <input type="text" value="Dec 1st 2024" class="border border-ink-200 rounded-lg px-3 py-2 text-xs text-ink-900 w-28" />
           <span class="text-xs text-ink-500">to</span>
-          <input type="text" value="Dec 31st 2024" class="border border-ink-200 rounded-md px-2.5 py-1.5 text-xs text-ink-900 w-28" />
+          <input type="text" value="Dec 31st 2024" class="border border-ink-200 rounded-lg px-3 py-2 text-xs text-ink-900 w-28" />
           <button class="map-ctrl w-7 h-7" style="flex-shrink:0;">${calIco}</button>
-          <select class="border border-ink-200 rounded-md px-2 py-1.5 text-xs text-ink-900 flex-1 min-w-[100px]"><option>All portfolios</option></select>
+          <select class="border border-ink-200 rounded-lg px-2 py-2 text-xs text-ink-900 flex-1 min-w-[100px]"><option>All portfolios</option></select>
         </div>
       </div>
       <div class="ds-tabs is-stretch" data-tab-group="seg-tab" id="ad-seg-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
-        ${tabs.map(t=>`<button class="ds-tab" data-seg="${t}" aria-selected="${t===statsTab}" style="font-size:12px;padding:6px 14px;"><span class="ds-tab-label">${t}</span></button>`).join('')}
+        ${tabs.map(t=>`<button class="ds-tab" data-seg="${t}" aria-selected="${t===statsTab}" style="font-size:12px;padding:8px 16px;"><span class="ds-tab-label">${t}</span></button>`).join('')}
       </div>
       <div class="flex flex-col gap-4 flex-1" id="ad-summary-body">${summaryBody()}</div>
     </div>
@@ -472,36 +472,36 @@ function summaryBody() {
   return `
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <div class="text-[11px] text-ink-500 mb-1.5">Average Daily Exposure Value:</div>
+            <div class="text-xs text-ink-500 mb-1">Average Daily Exposure Value:</div>
             <span class="val-chip">${s.avg}</span>
           </div>
           <div>
-            <div class="text-[11px] text-ink-500 mb-1 flex items-center gap-1">${infoIco} Average Daily Asset Count:</div>
+            <div class="text-xs text-ink-500 mb-1 flex items-center gap-1">${infoIco} Average Daily Asset Count:</div>
             <div class="text-xl font-bold text-ink-900 tabular-nums">${s.avgC}</div>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <div class="text-[11px] text-ink-500 mb-1.5">Highest Daily Exposure Value:</div>
+            <div class="text-xs text-ink-500 mb-1">Highest Daily Exposure Value:</div>
             <span class="val-chip">${s.hiV}</span>
-            <div class="text-[11px] text-ink-400 mt-1">${s.hiD}</div>
+            <div class="text-xs text-ink-400 mt-1">${s.hiD}</div>
           </div>
           <div>
-            <div class="text-[11px] text-ink-500 mb-1 flex items-center gap-1">${infoIco} Highest Daily Asset Count:</div>
+            <div class="text-xs text-ink-500 mb-1 flex items-center gap-1">${infoIco} Highest Daily Asset Count:</div>
             <div class="text-xl font-bold text-ink-900 tabular-nums">${s.hiC}</div>
-            <div class="text-[11px] text-ink-400 mt-1">${s.hiD}</div>
+            <div class="text-xs text-ink-400 mt-1">${s.hiD}</div>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <div class="text-[11px] text-ink-500 mb-1.5">Lowest Daily Exposure Value:</div>
+            <div class="text-xs text-ink-500 mb-1">Lowest Daily Exposure Value:</div>
             <span class="val-chip">${s.loV}</span>
-            <div class="text-[11px] text-ink-400 mt-1">${s.loD}</div>
+            <div class="text-xs text-ink-400 mt-1">${s.loD}</div>
           </div>
           <div>
-            <div class="text-[11px] text-ink-500 mb-1 flex items-center gap-1">${infoIco} Lowest Daily Asset Count:</div>
+            <div class="text-xs text-ink-500 mb-1 flex items-center gap-1">${infoIco} Lowest Daily Asset Count:</div>
             <div class="text-xl font-bold text-ink-900 tabular-nums">${s.loC}</div>
-            <div class="text-[11px] text-ink-400 mt-1">${s.loD}</div>
+            <div class="text-xs text-ink-400 mt-1">${s.loD}</div>
           </div>
         </div>`;
 }
@@ -524,38 +524,38 @@ function CardGeneralInfo() {
     <div class="flex-1 overflow-y-auto scroll-thin p-4">
       <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;display:flex;" class="mb-4">
         ${[['Terminals',terminals,iconTerminal],['Gates',gates,iconGate],['Runways',runways,iconRunway]].map(([l,v,ic],i)=>`
-        <div style="flex:1;padding:10px 8px;text-align:center;${i<2?'border-right:1px solid #dbeafe;':''}">
+        <div style="flex:1;padding:12px 8px;text-align:center;${i<2?'border-right:1px solid #dbeafe;':''}">
           <div class="flex justify-center mb-1">${ic}</div>
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:3px;">${l}</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">${l}</div>
           <div style="font-size:20px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${v}</div>
         </div>`).join('')}
       </div>
       <div class="border-t border-ink-100 pt-3 grid grid-cols-3 gap-x-4 gap-y-3 text-sm">
         <div>
-          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">IATA</div>
+          <div class="text-xs text-ink-500 font-medium uppercase tracking-micro mb-0.5">IATA</div>
           <div class="font-semibold text-ink-900">${AIRPORT.code}</div>
         </div>
         <div>
-          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">ICAO</div>
+          <div class="text-xs text-ink-500 font-medium uppercase tracking-micro mb-0.5">ICAO</div>
           <div class="font-semibold text-ink-900">${icao}</div>
         </div>
         <div>
-          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Elevation</div>
+          <div class="text-xs text-ink-500 font-medium uppercase tracking-micro mb-0.5">Elevation</div>
           <div class="font-semibold text-ink-900">${AIRPORT.elev || 'N/A'}</div>
         </div>
         <div class="col-span-2 min-w-0">
-          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Location</div>
-          <div class="font-semibold text-ink-900" style="display:flex;align-items:center;gap:5px;">${(AIRPORT.cc || COUNTRY_CC[AIRPORT.country]) ? `<img src="flags/${AIRPORT.cc || COUNTRY_CC[AIRPORT.country]}.svg" width="16" style="border-radius:2px;flex-shrink:0;" />` : ''}<span style="text-wrap:pretty;">${AIRPORT.country || 'Unknown'}</span></div>
+          <div class="text-xs text-ink-500 font-medium uppercase tracking-micro mb-0.5">Location</div>
+          <div class="font-semibold text-ink-900" style="display:flex;align-items:center;gap:4px;">${(AIRPORT.cc || COUNTRY_CC[AIRPORT.country]) ? `<img src="flags/${AIRPORT.cc || COUNTRY_CC[AIRPORT.country]}.svg" width="16" style="border-radius:4px;flex-shrink:0;" />` : ''}<span style="text-wrap:pretty;">${AIRPORT.country || 'Unknown'}</span></div>
         </div>
         <div>
-          <div class="text-[11px] text-ink-500 font-medium uppercase tracking-micro mb-0.5">Area</div>
+          <div class="text-xs text-ink-500 font-medium uppercase tracking-micro mb-0.5">Area</div>
           <div class="font-semibold text-ink-900">N/A</div>
         </div>
       </div>
       <div class="border-t border-ink-100 mt-4 pt-3">
         <div class="text-sm font-semibold text-ink-900 mb-2">Weather</div>
-        <div id="ad-weather" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;">
-          <div class="text-[11px] text-ink-500">Loading current conditions…</div>
+        <div id="ad-weather" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:12px 12px;">
+          <div class="text-xs text-ink-500">Loading current conditions…</div>
         </div>
       </div>
       <div class="border-t border-ink-100 mt-4 pt-3">
@@ -564,18 +564,18 @@ function CardGeneralInfo() {
         <div class="flex flex-col" style="gap:8px;">
           ${TI.list.map(t => `
           <div style="display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:start;">
-            <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:6px;padding:4px 0;text-align:center;font-size:11px;font-weight:700;color:#153F5E;">${t.t}</div>
+            <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:4px 0;text-align:center;font-size:12px;font-weight:700;color:#153F5E;">${t.t}</div>
             <div>
               <div class="text-xs font-semibold text-ink-900">${t.name}</div>
-              <div class="text-[11px] text-ink-500 mb-1">${t.role}</div>
+              <div class="text-xs text-ink-500 mb-1">${t.role}</div>
               <div style="display:flex;flex-wrap:wrap;gap:4px;">
-                ${t.airlines.map(a => `<span style="background:#f3f4f6;border-radius:999px;padding:2px 7px;font-size:11px;font-weight:500;color:#4b5563;">${a}</span>`).join('')}
+                ${t.airlines.map(a => `<span style="background:#f3f4f6;border-radius:999px;padding:2px 8px;font-size:12px;font-weight:500;color:#4b5563;">${a}</span>`).join('')}
               </div>
-              ${t.note ? `<div class="text-[11px] text-ink-500 mt-1" style="line-height:1.4;">${t.note}</div>` : ''}
+              ${t.note ? `<div class="text-xs text-ink-500 mt-1" style="line-height:1.4;">${t.note}</div>` : ''}
             </div>
           </div>`).join('')}
         </div>
-        ${TI.note ? `<div class="text-[11px] text-ink-500 mt-3" style="line-height:1.45;">${TI.note}</div>` : ''}
+        ${TI.note ? `<div class="text-xs text-ink-500 mt-3" style="line-height:1.45;">${TI.note}</div>` : ''}
         ` : `<div class="text-xs text-ink-500">Information not available for this airport.</div>`}
       </div>
     </div>
@@ -592,7 +592,7 @@ function CardAirportView() {
   ];
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card overflow-hidden flex flex-col" style="height:493px;">
-    <div class="px-4 py-3 border-b border-ink-100 shrink-0 flex items-center gap-1.5">
+    <div class="px-4 py-3 border-b border-ink-100 shrink-0 flex items-center gap-1">
       <div class="text-sm font-semibold text-ink-900">Airport View</div>
     </div>
     <div id="airport-map-wrap" class="relative flex-1">
@@ -603,7 +603,7 @@ function CardAirportView() {
           <button id="ad-layers-btn" class="map-ctrl" title="Map type">${SC.I.layers}</button>
           <div id="ad-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 10px 30px rgba(15,23,42,.18);overflow:hidden;padding:4px 0;">
             ${mapTypes.map(o => `
-              <button data-map-type="${o.id}" class="map-type-opt" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:13px;color:#374151;background:none;border:0;cursor:pointer;font-weight:500;">
+              <button data-map-type="${o.id}" class="map-type-opt" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:14px;color:#374151;background:none;border:0;cursor:pointer;font-weight:500;">
                 <span data-label>${o.label}</span>
                 <span data-check style="color:var(--brand-600,#2563eb);opacity:0;display:inline-flex;">${SC.I.check}</span>
               </button>`).join('')}
@@ -612,7 +612,7 @@ function CardAirportView() {
       </div>
       <div class="absolute bottom-0 left-0 z-[400] bg-white/90 backdrop-blur-sm px-3 py-2 rounded-tr-lg border-t border-r border-ink-200">
         <div class="text-[12px] font-semibold text-ink-900">${AIRPORT.name}</div>
-        <div class="text-[11px] text-ink-500 tracking-micro uppercase">${AIRPORT.code}</div>
+        <div class="text-xs text-ink-500 tracking-micro uppercase">${AIRPORT.code}</div>
       </div>
     </div>
   </div>`;
@@ -627,7 +627,7 @@ function CardAircraftTable() {
         <div class="ds-tabs" data-tab-group="table-tab" id="ad-table-tabs">
           <span class="ds-tab-pill is-init" data-tab-pill></span>
           ${allTabs.map(t=>`
-            <button data-table-tab="${t}" aria-selected="${t===tableTab}" class="ds-tab" style="font-size:12px;padding:6px 14px;">
+            <button data-table-tab="${t}" aria-selected="${t===tableTab}" class="ds-tab" style="font-size:12px;padding:8px 16px;">
               <span class="ds-tab-label">${t}</span>
             </button>`).join('')}
         </div>
@@ -914,7 +914,7 @@ async function loadWeather() {
   if (!el) return;
   const D = AIRPORT_DETAILS[AIRPORT.code] || {};
   const lat = D.lat ?? AIRPORT.lat, lng = D.lng ?? AIRPORT.lng;
-  if (lat == null || lng == null) { el.innerHTML = '<div class="text-[11px] text-ink-500" style="padding:10px 12px;">Location unavailable for this airport.</div>'; return; }
+  if (lat == null || lng == null) { el.innerHTML = '<div class="text-xs text-ink-500" style="padding:12px 12px;">Location unavailable for this airport.</div>'; return; }
   try {
     const url = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lng
       + '&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,visibility,is_day'
@@ -939,10 +939,10 @@ async function loadWeather() {
         : cross >= 15 ? { bg:'#fef3c7', fg:'#b45309', dot:'#d97706' }
         : { bg:'#dcfce7', fg:'#15803d', dot:'#16a34a' };
       const rl = String(Math.round(rwy / 10)).padStart(2, '0');
-      xw = '<div style="display:flex;align-items:center;gap:7px;background:' + tone.bg + ';border-radius:6px;padding:6px 9px;margin-top:9px;">'
+      xw = '<div style="display:flex;align-items:center;gap:8px;background:' + tone.bg + ';border-radius:8px;padding:8px 8px;margin-top:8px;">'
         + '<span style="width:6px;height:6px;border-radius:999px;background:' + tone.dot + ';flex-shrink:0;"></span>'
-        + '<span style="font-size:11px;font-weight:700;color:' + tone.fg + ';">' + Math.round(cross) + ' kt crosswind</span>'
-        + '<span style="font-size:11px;color:' + tone.fg + ';opacity:.85;margin-left:auto;white-space:nowrap;">RWY ' + rl + ' &middot; ' + (head >= 0 ? 'head' : 'tail') + ' ' + Math.abs(Math.round(head)) + ' kt</span></div>';
+        + '<span style="font-size:12px;font-weight:700;color:' + tone.fg + ';">' + Math.round(cross) + ' kt crosswind</span>'
+        + '<span style="font-size:12px;color:' + tone.fg + ';opacity:.85;margin-left:auto;white-space:nowrap;">RWY ' + rl + ' &middot; ' + (head >= 0 ? 'head' : 'tail') + ' ' + Math.abs(Math.round(head)) + ' kt</span></div>';
     }
 
     /* Next 6 hours */
@@ -953,39 +953,39 @@ async function loadWeather() {
       const temps = hr.temperature_2m.slice(1, n).map(t => Math.round(t));
       const lo = Math.min.apply(null, temps), hi = Math.max.apply(null, temps), span = (hi - lo) || 1;
       const pts = temps.map((t, i) => (i / ((temps.length - 1) || 1) * 100).toFixed(1) + ',' + (22 - (t - lo) / span * 18).toFixed(1)).join(' ');
-      strip = '<div style="margin-top:10px;padding-top:9px;border-top:1px solid ' + (day ? '#dbeafe' : '#dde3ec') + ';">'
-        + '<div class="text-[11px] font-semibold uppercase tracking-micro" style="color:#6b7280;margin-bottom:5px;">Next 6 hours</div>'
+      strip = '<div style="margin-top:8px;padding-top:8px;border-top:1px solid ' + (day ? '#dbeafe' : '#dde3ec') + ';">'
+        + '<div class="text-xs font-semibold uppercase tracking-micro" style="color:#6b7280;margin-bottom:4px;">Next 6 hours</div>'
         + '<svg viewBox="0 0 100 26" preserveAspectRatio="none" style="width:100%;height:20px;display:block;color:var(--brand-600,#2563eb);overflow:visible;"><polyline points="' + pts + '" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>'
-        + '<div style="display:flex;justify-content:space-between;gap:2px;margin-top:3px;">'
+        + '<div style="display:flex;justify-content:space-between;gap:2px;margin-top:4px;">'
         + temps.map((t, i) => {
             const hh = String(times[i + 1]).slice(11, 13);
             return '<div style="flex:1;text-align:center;min-width:0;">'
-              + '<div style="color:#9ca3af;font-size:9.5px;line-height:1.3;">' + hh + '</div>'
+              + '<div style="color:#9ca3af;font-size:12px;line-height:1.3;">' + hh + '</div>'
               + '<div style="color:#6b7280;display:flex;justify-content:center;">' + wxIcon(hr.weather_code[i + 1], hr.is_day[i + 1] !== 0, 13) + '</div>'
-              + '<div style="font-size:11px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;line-height:1.3;">' + t + '&deg;</div></div>';
+              + '<div style="font-size:12px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;line-height:1.3;">' + t + '&deg;</div></div>';
           }).join('')
         + '</div></div>';
     }
 
-    const stat = (l, v) => '<div style="min-width:0;"><div class="text-[11px] font-medium uppercase tracking-micro" style="color:#9ca3af;line-height:1.3;">' + l + '</div>'
+    const stat = (l, v) => '<div style="min-width:0;"><div class="text-xs font-medium uppercase tracking-micro" style="color:#9ca3af;line-height:1.3;">' + l + '</div>'
       + '<div class="text-[12px] font-semibold text-ink-900" style="line-height:1.35;text-wrap:pretty;">' + v + '</div></div>';
 
     el.style.background = day ? 'linear-gradient(180deg,#f0f7ff,#f9fafb)' : 'linear-gradient(180deg,#eef1f6,#f9fafb)';
     el.style.border = '1px solid ' + (day ? '#dbeafe' : '#dde3ec');
-    el.innerHTML = '<div style="display:flex;align-items:center;gap:10px;">'
+    el.innerHTML = '<div style="display:flex;align-items:center;gap:8px;">'
       + '<div style="color:' + (day ? '#1485c5' : '#4b5563') + ';flex-shrink:0;">' + wxIcon(c.weather_code, day, 36) + '</div>'
       + '<div style="min-width:0;">'
       + '<div style="font-size:24px;font-weight:700;color:#111827;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;">' + (temp != null ? temp + '&deg;C' : '-') + '</div>'
-      + '<div style="font-size:11px;color:#4b5563;line-height:1.4;margin-top:3px;text-wrap:pretty;">' + (WX_CODES[c.weather_code] || '-')
+      + '<div style="font-size:12px;color:#4b5563;line-height:1.4;margin-top:4px;text-wrap:pretty;">' + (WX_CODES[c.weather_code] || '-')
       + (c.apparent_temperature != null ? ' &middot; feels ' + Math.round(c.apparent_temperature) + '&deg;' : '') + '</div></div></div>'
-      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px 10px;margin-top:10px;">'
+      + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 8px;margin-top:8px;">'
       + stat('Wind', spd != null ? spd + ' kt ' + windDir(dir || 0) : '-')
       + stat('Visibility', vis)
       + stat('Humidity', c.relative_humidity_2m != null ? c.relative_humidity_2m + '%' : '-')
       + stat('Local time', c.time ? String(c.time).slice(11, 16) : '-')
       + '</div>' + xw + strip;
   } catch (e) {
-    el.innerHTML = '<div class="text-[11px] text-ink-500" style="padding:10px 12px;">Current conditions unavailable.</div>';
+    el.innerHTML = '<div class="text-xs text-ink-500" style="padding:12px 12px;">Current conditions unavailable.</div>';
   }
 }
 

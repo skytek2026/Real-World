@@ -25,10 +25,24 @@
       :root { --bg-canvas:#F5F7FA; --font-display:"Exo","Inter",system-ui,-apple-system,"Segoe UI",sans-serif; }
       /* Sky (Future, Skytek DS) canvas; Light (Current Real World scheme) keeps its own canvas */
       .rw-canvas { background-color:var(--bg-canvas) !important; }   /* DS bg-canvas */
+      /* Touch devices: form fields at 16px (iOS Safari zooms into anything smaller). Unlayered + !important
+         so no utility or inline style can undo it; desktop keeps the dense sizes. */
+      @media (pointer: coarse) {
+        input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]), select, textarea { font-size: max(1rem, 16px) !important; }
+        /* form controls cannot take an ::after tap area: give them a real minimum size on touch */
+        input[type="checkbox"], input[type="radio"] { min-width: 24px; min-height: 24px; }
+        select { min-height: 44px; }
+      }
+      /* Tailwind's text-xs is 12px on a 16px line (1.33): use 1.5 unless a page sets its own leading-* */
+      :root .text-xs:not([class*="leading-"]) { line-height: 1.125rem; }
+      /* Touch targets: small controls get an invisible 44x44 tap area (marked by markHitTargets) without moving the layout. */
+      .rw-hit-rel { position: relative; }
+      .rw-hit::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
+      .rw-hit-b::before { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }   /* when ::after is already used */
       /* Leaflet defaults -> DS type: Inter, on-scale sizes, text-primary */
       .leaflet-container, .leaflet-container .leaflet-popup-content-wrapper, .leaflet-control-scale-line, .leaflet-tooltip { font-family:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
-      .leaflet-container .leaflet-popup-content { font-size:13px; line-height:1.45; }
-      .leaflet-container .leaflet-control-scale-line { font-size:11px; }
+      .leaflet-container .leaflet-popup-content { font-size:14px; line-height:1.45; }
+      .leaflet-container .leaflet-control-scale-line { font-size:12px; }
       .leaflet-bar a.leaflet-control-zoom-in, .leaflet-bar a.leaflet-control-zoom-out { font:600 20px/30px 'Inter', system-ui, sans-serif; }
       /* DS display font for headings in Sky and Dark; Light keeps each page's own heading fonts */
       :is(h1, h2, h3, h4, .t-display, .t-h1, .t-h2, .t-h3, .t-h4, .card-title, .ds-rcard-title, .ds-popover-title,
@@ -44,7 +58,29 @@
       if (el && !el.classList.contains('rw-canvas') && getComputedStyle(el).backgroundColor === CANVAS_GREY) el.classList.add('rw-canvas');
     });
   }
-  const run = () => { markCanvas(); setTimeout(markCanvas, 400); setTimeout(markCanvas, 1500); };
+  // Touch: give interactive elements smaller than 44x44 an invisible 44x44 tap area (WCAG 2.5.5 / Apple HIG).
+  // Skips anything that already draws with ::after (switches, rings) or is absolutely/fixed positioned.
+  const COARSE = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  const HIT_SEL = 'a[href], button, [role="button"], [role="tab"], [role="switch"], [role="menuitem"], [role="option"], summary, label';
+  function markHitTargets() {
+    if (!COARSE) return;
+    document.querySelectorAll(HIT_SEL).forEach(el => {
+      if (el.classList.contains('rw-hit') || el.classList.contains('rw-hit-b') || el.closest('.leaflet-pane')) return;
+      const r = el.getBoundingClientRect();
+      if (!r.width || !r.height || (r.width >= 44 && r.height >= 44)) return;
+      if (el.tagName === 'LABEL' && !el.querySelector('input[type="checkbox"], input[type="radio"]')) return;
+      const used = p => { const c = getComputedStyle(el, p).content; return c && c !== 'none' && c !== 'normal'; };
+      const cls = !used('::after') ? 'rw-hit' : !used('::before') ? 'rw-hit-b' : null;   // a free pseudo-element for the tap area
+      if (!cls) return;
+      const pos = getComputedStyle(el).position;
+      if (pos === 'static') el.classList.add('rw-hit-rel');
+      el.classList.add(cls);
+    });
+  }
+  let hitTimer = null;
+  const scheduleHits = () => { clearTimeout(hitTimer); hitTimer = setTimeout(markHitTargets, 120); };
+  if (COARSE) new MutationObserver(scheduleHits).observe(document.documentElement, { childList: true, subtree: true });
+  const run = () => { markCanvas(); setTimeout(markCanvas, 400); setTimeout(markCanvas, 1500); scheduleHits(); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
 })();
 
@@ -233,14 +269,14 @@ function Sidebar() {
           <span class="shrink-0 flex items-center justify-center w-7 h-7 nav-ico">${I[item.icon]}</span>
           <span class="nav-label truncate hidden text-sm font-medium">${item.label}</span>
           ${item.badge?`<span class="absolute top-1.5 left-7 h-1.5 w-1.5 rounded-full bg-red-600 dot-pulse"></span>`:''}
-          <span class="nav-tip pointer-events-none fixed whitespace-nowrap rounded-lg text-white text-[13px] font-semibold px-3.5 py-2 transition-opacity" style="background:#111827; box-shadow:0 6px 12px -2px rgb(15 23 42 / .12), 0 3px 6px -3px rgb(15 23 42 / .10); z-index:99999; opacity:0; pointer-events:none;">
+          <span class="nav-tip pointer-events-none fixed whitespace-nowrap rounded-lg text-white text-sm font-semibold px-4 py-2 transition-opacity" style="background:#111827; box-shadow:0 6px 12px -2px rgb(15 23 42 / .12), 0 3px 6px -3px rgb(15 23 42 / .10); z-index:99999; opacity:0; pointer-events:none;">
             ${item.label}
             <span aria-hidden="true" class="absolute top-1/2 -translate-y-1/2" style="left:-5px; width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:6px solid #111827;"></span>
           </span>
         </${tag}>`;
       }).join('')}
     </nav>
-    <div class="sidebar-logo sidebar-footer" style="border-top:1px solid var(--slate-200,#e5e7eb);padding:14px 16px;opacity:0;pointer-events:none;transition:opacity 150ms;display:flex;flex-direction:column;align-items:center;gap:8px">
+    <div class="sidebar-logo sidebar-footer" style="border-top:1px solid var(--slate-200,#e5e7eb);padding:16px 16px;opacity:0;pointer-events:none;transition:opacity 150ms;display:flex;flex-direction:column;align-items:center;gap:8px">
       <a href="https://www.skytek.com" target="_blank" rel="noopener" title="skytek.com" style="display:block">
         <img src="${(window.__resources&&window.__resources.logoStacked)||'images/skytek-logo-stacked.png'}" alt="Skytek" style="width:76px;height:auto;display:block" />
       </a>
@@ -267,15 +303,15 @@ function Topbar() {
       </div>
     </div>
     <div class="flex items-center gap-1 shrink-0">
-      <a href="ContactSupport.html?from=${encodeURIComponent(((window.PAGE && window.PAGE.title) || document.title.split(' — ')[0]) + '|' + location.pathname.split('/').pop())}" id="report-issue-btn" class="h-9 px-2.5 rounded-lg text-ink-600 hover:text-ink-900 hover:bg-ink-100 flex items-center gap-1.5 ring-focus no-underline text-xs font-semibold" title="Report an issue" aria-label="Report an issue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><span class="hidden lg:inline">Report issue</span></a>
+      <a href="ContactSupport.html?from=${encodeURIComponent(((window.PAGE && window.PAGE.title) || document.title.split(' — ')[0]) + '|' + location.pathname.split('/').pop())}" id="report-issue-btn" class="h-9 px-3 rounded-lg text-ink-600 hover:text-ink-900 hover:bg-ink-100 flex items-center gap-1 ring-focus no-underline text-xs font-semibold" title="Report an issue" aria-label="Report an issue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><span class="hidden lg:inline">Report issue</span></a>
       <button id="notif-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Notifications">
         ${I.bell}<span class="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-red-600 dot-pulse"></span>
       </button>
       <div class="w-px h-6 bg-ink-200 mx-2"></div>
-      <button id="user-btn" class="flex items-center gap-2.5 h-9 pr-1.5 pl-2 rounded-lg hover:bg-ink-100 ring-focus">
+      <button id="user-btn" class="flex items-center gap-2 h-9 pr-2 pl-2 rounded-lg hover:bg-ink-100 ring-focus">
         <div class="hidden md:block text-right leading-tight">
           <div class="text-xs font-semibold text-ink-900">Paul Kiernan</div>
-          <div class="text-[11px] text-ink-500">Risk Manager</div>
+          <div class="text-xs text-ink-500">Risk Manager</div>
         </div>
         <div class="h-8 w-8 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
           <img src="${(window.__resources&&window.__resources.avatarPaul)||'images/avatar-paul-kiernan.avif'}" alt="Paul Kiernan" style="width:100%;height:100%;object-fit:cover" />
@@ -296,11 +332,11 @@ function Topbar() {
               <div class="text-sm font-medium text-ink-900 truncate">${n.t}</div>
               <div class="text-xs text-ink-500 mt-0.5 line-clamp-2">${n.sub}</div>
             </div>
-            <div class="text-[11px] text-ink-400 shrink-0">${n.time}</div>
+            <div class="text-xs text-ink-400 shrink-0">${n.time}</div>
           </div>`;
         }).join('')}
       </div>
-      <div class="px-4 py-2.5 border-t border-ink-100 bg-ink-50/60 text-center">
+      <div class="px-4 py-3 border-t border-ink-100 bg-ink-50/60 text-center">
         <button class="text-xs font-medium text-brand-600 hover:underline">View all activity</button>
       </div>
     </div>
@@ -310,15 +346,15 @@ function Topbar() {
         <div class="text-xs text-ink-500">paul.k@realworld.co</div>
       </div>
       <div class="py-1 text-sm">
-        <a href="Profile.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_USER}</span>My profile</a>
-        <a href="ContactSupport.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_HELP}</span>Support</a>
-        <a href="Administration.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_SHIELD}</span>Administration</a>
+        <a href="Profile.html" class="flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_USER}</span>My profile</a>
+        <a href="ContactSupport.html" class="flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_HELP}</span>Support</a>
+        <a href="Administration.html" class="flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${SVG_SHIELD}</span>Administration</a>
       </div>
       <div class="py-1 border-t border-ink-100 text-sm">
-        ${PROFILE_LINKS.map(l => `<a href="${l.href}" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${l.icon}</span>${l.label}</a>`).join('')}
+        ${PROFILE_LINKS.map(l => `<a href="${l.href}" class="flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-ink-100 text-ink-700 no-underline"><span class="text-ink-500">${l.icon}</span>${l.label}</a>`).join('')}
       </div>
       <div class="py-1 border-t border-ink-100">
-        <a href="index.html" class="flex items-center gap-2.5 w-full text-left px-3 py-1.5 hover:bg-ink-100 text-red-700 text-sm no-underline"><span>${SVG_SIGNOUT}</span>Sign out</a>
+        <a href="index.html" class="flex items-center gap-2 w-full text-left px-3 py-2 hover:bg-ink-100 text-red-700 text-sm no-underline"><span>${SVG_SIGNOUT}</span>Sign out</a>
       </div>
     </div>
   </header>`;
@@ -345,17 +381,17 @@ function TweaksPanel() {
     </div>
     <div class="p-3 space-y-3 text-sm">
       <label class="block">
-        <div class="text-[11px] font-semibold text-ink-600 mb-1 uppercase tracking-micro">Density</div>
+        <div class="text-xs font-semibold text-ink-600 mb-1 uppercase tracking-micro">Density</div>
         <div class="grid grid-cols-2 gap-1 bg-ink-100 p-1 rounded-lg">
           ${['comfortable','compact'].map(v => `
-            <button data-tweak-density="${v}" class="text-xs py-1 rounded-md ${TWEAKS.density===v?'bg-white shadow-sm font-semibold text-ink-900':'text-ink-500'}">${v}</button>`).join('')}
+            <button data-tweak-density="${v}" class="text-xs py-1 rounded-lg ${TWEAKS.density===v?'bg-white shadow-sm font-semibold text-ink-900':'text-ink-500'}">${v}</button>`).join('')}
         </div>
       </label>
       <label class="block">
-        <div class="text-[11px] font-semibold text-ink-600 mb-1 uppercase tracking-micro">Accent</div>
+        <div class="text-xs font-semibold text-ink-600 mb-1 uppercase tracking-micro">Accent</div>
         <div class="grid grid-cols-4 gap-2">
           ${[['blue','#2563eb'],['indigo','#4f46e5'],['teal','#0d9488'],['rose','#e11d48']].map(([n,c]) => `
-            <button data-tweak-accent="${n}" class="h-8 rounded-md border ${TWEAKS.accent===n?'ring-2 ring-ink-900':'border-ink-200'}" style="background:${c}"></button>`).join('')}
+            <button data-tweak-accent="${n}" class="h-8 rounded-lg border ${TWEAKS.accent===n?'ring-2 ring-ink-900':'border-ink-200'}" style="background:${c}"></button>`).join('')}
         </div>
       </label>
       <label class="flex items-center justify-between gap-2">

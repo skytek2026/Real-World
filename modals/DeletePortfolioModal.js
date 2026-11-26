@@ -38,14 +38,14 @@
             </button>
           </div>
           <div class="rw-modal-body" style="min-height:140px;">
-            <div style="font-size:13px;color:#374151;">
+            <div style="font-size:14px;color:#374151;">
               Are you sure you want to delete portfolio: <strong style="color:#111827;">${escapeHtml(name)}</strong>?
             </div>
           </div>
           <div class="rw-modal-footer">
             <button class="rw-modal-btn rw-modal-btn-cancel" data-modal-cancel>Cancel</button>
             <button class="rw-modal-btn rw-modal-btn-primary" data-modal-delete>
-              <span style="display:inline-flex;align-items:center;gap:6px;">
+              <span style="display:inline-flex;align-items:center;gap:4px;">
                 Delete
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
               </span>

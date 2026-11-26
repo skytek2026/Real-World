@@ -25,7 +25,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -44,16 +44,16 @@
   .leaflet-bar a:hover{background:#f3f4f6!important}
   /* Zoom control: sit below the fullscreen button (top-left), left-aligned with it */
   #nat-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #nat-map .leaflet-top.leaflet-left .leaflet-bar{margin:0 0 0 10px!important}
+  #nat-map .leaflet-top.leaflet-left .leaflet-bar{margin:0 0 0 8px!important}
   .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
   .leaflet-control-zoom a svg{width:16px;height:16px}
   /* Event card */
-  .ev-card{padding:12px 14px;cursor:pointer;border-bottom:1px solid #f3f4f6;transition:background .1s}
+  .ev-card{padding:12px 16px;cursor:pointer;border-bottom:1px solid #f3f4f6;transition:background .1s}
   .ev-card:hover{background:#f9fafb}
   .ev-card.active{background:#f0f9ff}
   .ev-card:last-child{border-bottom:0}
   /* Filter dropdowns */
-  .filt-sel{appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 10px;border:1px solid #e5e7eb;border-radius:8px;font-size:12.5px;color:#374151;background:#fff;cursor:pointer;font-family:inherit;outline:none;min-width:100px}
+  .filt-sel{appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#374151;background:#fff;cursor:pointer;font-family:inherit;outline:none;min-width:100px}
   .filt-sel:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
   /* Map btn */
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
@@ -66,7 +66,7 @@
   .nat-switch.is-on span{transform:translateX(20px)}
   .nat-switch:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px}
   .nat-label-wrap{background:transparent!important;border:0!important}
-  .nat-label{display:inline-block;white-space:nowrap;background:rgba(15,23,42,.88);color:#fff;font-family:'Exo','Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.01em;padding:3px 7px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.25);text-shadow:0 1px 1px rgba(0,0,0,.5);pointer-events:none}
+  .nat-label{display:inline-block;white-space:nowrap;background:rgba(15,23,42,.88);color:#fff;font-family:'Exo','Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.01em;padding:4px 8px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.25);text-shadow:0 1px 1px rgba(0,0,0,.5);pointer-events:none}
   @media (prefers-reduced-motion: reduce){.nat-switch,.nat-switch span{transition:none}}
   /* Mobile: stack events + map cards */
   @media(max-width:767px){
@@ -95,7 +95,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -166,9 +166,9 @@ function getFiltered() {
 function dots(cat, color) {
   if (!cat) return '';
   const filled = cat;
-  return `<div style="display:flex;align-items:center;gap:3px;margin-top:4px">
+  return `<div style="display:flex;align-items:center;gap:4px;margin-top:4px">
     ${[1,2,3,4,5].map(i => `<span style="width:8px;height:8px;border-radius:50%;background:${i<=filled?color:'transparent'};border:1.5px solid ${i<=filled?color:'#d1d5db'}"></span>`).join('')}
-    <span style="font-size:11px;font-weight:700;color:${color};margin-left:3px">CAT ${cat}</span>
+    <span style="font-size:12px;font-weight:700;color:${color};margin-left:4px">CAT ${cat}</span>
   </div>`;
 }
 
@@ -214,18 +214,18 @@ function initMap() {
 
     const popupHTML = `
     <div>
-      <div style="background:${cfg.color};padding:10px 14px 8px;color:#fff">
-        <div style="font-size:13px;font-weight:700">${e.name}</div>
-        <div style="font-size:11px;opacity:.82;margin-top:2px">${e.location}</div>
+      <div style="background:${cfg.color};padding:12px 16px 8px;color:#fff">
+        <div style="font-size:14px;font-weight:700">${e.name}</div>
+        <div style="font-size:12px;opacity:.82;margin-top:2px">${e.location}</div>
       </div>
-      <div style="padding:10px 14px 6px;font-size:12.5px;color:#374151">
+      <div style="padding:12px 16px 8px;font-size:14px;color:#374151">
         <div style="margin-bottom:4px"><span style="color:#9ca3af">Date: </span>${e.dateStart}${e.dateEnd?` — ${e.dateEnd}`:''}</div>
         ${e.cat ? `<div style="margin-bottom:4px"><span style="color:#9ca3af">Category: </span><strong style="color:${cfg.color}">CAT ${e.cat}</strong></div>` : ''}
-        <div style="font-size:11px;color:#9ca3af;margin-top:6px">Updated ${e.updated}</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:4px">Updated ${e.updated}</div>
       </div>
-      <div style="padding:4px 14px 14px">
+      <div style="padding:4px 16px 16px">
         <button onclick="sessionStorage.setItem('selectedNatCatEvent', JSON.stringify({id:${e.id},name:'${e.name.replace(/'/g,"\\'")}',type:'${e.type}',location:'${e.location.replace(/'/g,"\\'")}',dateStart:'${e.dateStart}',dateEnd:'${e.dateEnd||''}',cat:${e.cat||'null'},updated:'${e.updated}'})); window.location.href='NatCatEventDetails.html'"
-          style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:28px;padding:0 10px;background:transparent;color:${cfg.color};border:0;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s"
+          style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:28px;padding:0 12px;background:transparent;color:${cfg.color};border:0;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s"
           onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='transparent'">
           View Details →
         </button>
@@ -270,21 +270,21 @@ function renderEvents() {
   if (!panel) return;
   const filtered = getFiltered();
   if (filtered.length === 0) {
-    panel.innerHTML = `<div style="padding:32px 16px;text-align:center;color:#9ca3af;font-size:13px">No events match your search.</div>`;
+    panel.innerHTML = `<div style="padding:32px 16px;text-align:center;color:#9ca3af;font-size:14px">No events match your search.</div>`;
     return;
   }
   panel.innerHTML = filtered.map(e => {
     const cfg = TYPE_CFG[e.type] || TYPE_CFG.wildfire;
     const active = e.id === ST.selected;
     return `<div class="ev-card ${active?'active':''}" data-ev="${e.id}">
-      <div style="display:flex;align-items:flex-start;gap:10px">
+      <div style="display:flex;align-items:flex-start;gap:8px">
         ${typeIconCircle(e.type, 34)}
         <div style="flex:1;min-width:0">
-          <div style="font-size:13px;font-weight:600;color:${cfg.color};margin-bottom:2px">${e.name}</div>
+          <div style="font-size:14px;font-weight:600;color:${cfg.color};margin-bottom:2px">${e.name}</div>
           <div style="font-size:12px;color:#6b7280">${e.location}</div>
           <div style="font-size:12px;color:#6b7280;margin-top:2px">${e.dateStart}${e.dateEnd?` until ${e.dateEnd}`:''}</div>
           ${dots(e.cat, cfg.color)}
-          <div style="font-size:11px;color:#9ca3af;margin-top:4px">Updated ${e.updated}</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:4px">Updated ${e.updated}</div>
         </div>
       </div>
     </div>`;
@@ -328,14 +328,14 @@ window.render = function() {
         <div class="natcat-events-card" style="width:320px;flex-shrink:0;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
 
           <!-- Header -->
-          <div style="padding:16px 16px 10px">
-            <div style="font-size:11px;font-weight:800;color:#374151;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Events</div>
+          <div style="padding:16px 16px 12px">
+            <div style="font-size:12px;font-weight:700;color:#374151;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Events</div>
 
             <!-- Search -->
-            <div style="position:relative;margin-bottom:10px">
+            <div style="position:relative;margin-bottom:8px">
               <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);display:flex;pointer-events:none">${SEARCH_ICO}</span>
               <input id="ev-search" type="text" placeholder="Search" value="${ST.query}"
-                style="width:100%;height:34px;border:1px solid #e5e7eb;border-radius:8px;padding:0 10px 0 30px;font-size:13px;color:#111827;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s" />
+                style="width:100%;height:34px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px 0 32px;font-size:14px;color:#111827;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s" />
             </div>
 
             <!-- Filters -->
@@ -377,13 +377,13 @@ window.render = function() {
             <button id="nat-fs-btn" class="map-btn" style="position:absolute;top:12px;left:12px;z-index:1000" title="Fullscreen">${EXPAND_ICO}</button>
 
             <!-- Right controls -->
-            <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px">
+            <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:4px">
               <div style="position:relative">
                 <button id="nat-layers-btn" class="map-btn" title="Map Type">${LAYERS_ICO}</button>
                 <div id="nat-layers-menu" style="display:none;position:absolute;top:38px;right:0;width:150px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;z-index:9999">
-                  <div style="padding:6px 10px;font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f3f4f6">Map Type</div>
+                  <div style="padding:8px 12px;font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f3f4f6">Map Type</div>
                   ${[['satellite','Satellite','#0b1e2e'],['street','Street','#e8e0d4'],['light','Light','#e8e8e8'],['dark','Dark','#1a1a2e']].map(([k,l,c]) =>
-                    `<div class="map-type-opt" data-type="${k}" style="padding:8px 12px;font-size:12.5px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;color:#374151" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:2px;background:${c};flex-shrink:0"></span>${l}</div>`
+                    `<div class="map-type-opt" data-type="${k}" style="padding:8px 12px;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;color:#374151" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:4px;background:${c};flex-shrink:0"></span>${l}</div>`
                   ).join('')}
                 </div>
               </div>
@@ -391,10 +391,10 @@ window.render = function() {
                 <button id="nat-labels-btn" class="map-btn${natShowLabels ? ' is-active' : ''}" title="Labels" aria-haspopup="true" aria-expanded="false" aria-controls="nat-labels-menu">${TAG_ICO}</button>
                 <div id="nat-labels-menu" class="nat-labels-menu" style="display:none">
                   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-                    <span id="nat-labels-title" style="font-size:13px;font-weight:700;color:#111827">Show Labels</span>
+                    <span id="nat-labels-title" style="font-size:14px;font-weight:700;color:#111827">Show Labels</span>
                     <button id="nat-labels-toggle" type="button" role="switch" aria-checked="${natShowLabels}" aria-labelledby="nat-labels-title" class="nat-switch${natShowLabels ? ' is-on' : ''}"><span></span></button>
                   </div>
-                  <p style="margin-top:6px;font-size:12px;line-height:1.45;color:#6b7280">Display event names directly on the map next to markers.</p>
+                  <p style="margin-top:4px;font-size:12px;line-height:1.45;color:#6b7280">Display event names directly on the map next to markers.</p>
                 </div>
               </div>
             </div>

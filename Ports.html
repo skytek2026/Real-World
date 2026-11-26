@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
@@ -37,7 +37,7 @@
   .port-marker-sanctioned { position:relative; width:30px; height:30px; border-radius:50%; background:#dc2626; border:1px solid #fff; box-shadow:0 2px 8px rgba(220,38,38,.5); display:flex; align-items:center; justify-content:center; cursor:pointer; animation:pulse-red 2s infinite; }
   @keyframes pulse-red { 0%,100%{box-shadow:0 2px 8px rgba(220,38,38,.5)} 50%{box-shadow:0 0 0 6px rgba(220,38,38,.15),0 2px 8px rgba(220,38,38,.4)} }
   /* Port labels */
-  .port-label { background:#111827 !important; border:0 !important; border-radius:6px !important; color:#fff !important; font-size:11px !important; font-weight:600 !important; padding:3px 7px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
+  .port-label { background:#111827 !important; border:0 !important; border-radius:8px !important; color:#fff !important; font-size:12px !important; font-weight:600 !important; padding:4px 8px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
   .port-label::before { border-top-color:#111827 !important; }
 
   /* Popup */
@@ -46,30 +46,30 @@
   .port-popup .leaflet-popup-tip { background:#fff; }
   .port-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
   .port-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; opacity:1; }
-  .pp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 14px 10px; }
+  .pp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 16px 12px; }
   .pp-title { font-size:14px; font-weight:700; }
-  .pp-sub { font-size:11px; font-weight:500; opacity:.75; margin-left:5px; }
+  .pp-sub { font-size:12px; font-weight:500; opacity:.75; margin-left:4px; }
   .pp-body { background:#fff; }
-  .pp-row { display:flex; align-items:center; justify-content:space-between; padding:9px 14px; border-bottom:1px solid #f3f4f6; font-size:13px; }
+  .pp-row { display:flex; align-items:center; justify-content:space-between; padding:8px 16px; border-bottom:1px solid #f3f4f6; font-size:14px; }
   .pp-row:last-child { border-bottom:0; }
   .pp-k { color:#6b7280; font-weight:500; }
   .pp-v { font-weight:700; color:#111827; }
-  .pp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
+  .pp-cta { display:block; width:calc(100% - 28px); margin:4px 12px 12px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:14px; cursor:pointer; text-align:center; transition:background .15s; }
   .pp-cta:hover { background:var(--brand-50,#eff6ff); }
 
   /* View toggle — pill tabs */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+  .ds-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
   .ds-tab:hover{color:#111827;}
   .ds-tab[aria-selected="true"]{color:#fff;}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none;}
   .ds-tab-pill.is-init{transition:none;}
-  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px;}
+  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px;}
 
   /* List view */
   .ports-table { width:100%; border-collapse:collapse; }
-  .ports-table th { padding:10px 14px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; text-align:left; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); white-space:nowrap; }
-  .ports-table td { padding:11px 14px; font-size:13px; color:#374151; border-bottom:1px solid #f3f4f6; vertical-align:middle; }
+  .ports-table th { padding:12px 16px; font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; text-align:left; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); white-space:nowrap; }
+  .ports-table td { padding:12px 16px; font-size:14px; color:#374151; border-bottom:1px solid #f3f4f6; vertical-align:middle; }
   .ports-table tr:hover td { background:#f9fafb; }
   .port-link { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; }
   .port-link:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline !important; }
@@ -105,7 +105,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="modals/modal-base.css" />
 <script src="modals/AddPortModal.js"></script>
 <script>
@@ -181,8 +181,8 @@ const COUNTRY_ISO = {
 function flagImg(country) {
   const iso = COUNTRY_ISO[country];
   if (!iso) return `<span style="color:#374151;">${country}</span>`;
-  return `<span style="display:inline-flex;align-items:center;gap:5px;">
-    <img src="flags/${iso}.svg" width="16" style="border-radius:2px;vertical-align:middle;flex-shrink:0;" />
+  return `<span style="display:inline-flex;align-items:center;gap:4px;">
+    <img src="flags/${iso}.svg" width="16" style="border-radius:4px;vertical-align:middle;flex-shrink:0;" />
     <span style="color:#374151;">${country}</span>
   </span>`;
 }
@@ -190,9 +190,9 @@ function flagImg(country) {
 /* ---- Popup HTML ---- */
 function portPopupHTML(p, idx) {
   const sanctionBadge = p.sanctioned
-    ? `<div style="background:#fef2f2;border-bottom:1px solid #fecaca;padding:7px 14px;display:flex;align-items:center;gap:7px;">
+    ? `<div style="background:#fef2f2;border-bottom:1px solid #fecaca;padding:8px 16px;display:flex;align-items:center;gap:8px;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
-        <span style="font-size:11px;font-weight:700;color:#dc2626;letter-spacing:.03em;">SANCTIONED PORT</span>
+        <span style="font-size:12px;font-weight:700;color:#dc2626;letter-spacing:.03em;">SANCTIONED PORT</span>
       </div>`
     : '';
   return `
@@ -368,12 +368,12 @@ function ListView() {
       <tbody>
         ${window.__ports.map((p, idx) => `
           <tr>
-            <td><a class="port-link" href="PortDetails.html" onclick="sessionStorage.setItem('selectedPort', JSON.stringify(window.__ports[${idx}]))" style="text-decoration:none;">${p.name}${p.sanctioned?` <span style="font-size:11px;font-weight:700;padding:1px 6px;border-radius:999px;background:#fef2f2;color:#dc2626;vertical-align:middle;">SANCTIONED</span>`:''}</a></td>
+            <td><a class="port-link" href="PortDetails.html" onclick="sessionStorage.setItem('selectedPort', JSON.stringify(window.__ports[${idx}]))" style="text-decoration:none;">${p.name}${p.sanctioned?` <span style="font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:#fef2f2;color:#dc2626;vertical-align:middle;">SANCTIONED</span>`:''}</a></td>
             <td>${flagImg(p.country)}</td>
             <td class="tabular-nums">${p.lat.toFixed(4)}°</td>
             <td class="tabular-nums">${p.lng.toFixed(4)}°</td>
             <td class="tabular-nums font-semibold">${p.terminals}</td>
-            <td><span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:${p.sanctioned?'#fef2f2':'var(--brand-50,#eff6ff)'};color:${p.sanctioned?'#dc2626':'var(--brand-600,#2563eb)'};">${p.type}</span></td>
+            <td><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:${p.sanctioned?'#fef2f2':'var(--brand-50,#eff6ff)'};color:${p.sanctioned?'#dc2626':'var(--brand-600,#2563eb)'};">${p.type}</span></td>
           </tr>`).join('')}
       </tbody>
     </table>
@@ -387,7 +387,7 @@ function Content() {
   <div class="flex-1 overflow-hidden px-4 py-4" style="display:flex;flex-direction:column;">
     <!-- Page header: Add Port button -->
     <div class="flex items-center justify-end mb-3 shrink-0">
-      <button id="add-port-btn" class="inline-flex items-center gap-1.5 text-xs font-semibold text-white rounded-lg px-3.5 py-2" style="background:var(--brand-600,#2563eb);">
+      <button id="add-port-btn" class="inline-flex items-center gap-1 text-xs font-semibold text-white rounded-lg px-4 py-2" style="background:var(--brand-600,#2563eb);">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Add Port
       </button>

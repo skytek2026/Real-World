@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
   html,body { height:100%; font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
@@ -31,18 +31,18 @@
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(220,38,38,.55)}70%{box-shadow:0 0 0 10px rgba(220,38,38,0)}100%{box-shadow:0 0 0 0 rgba(220,38,38,0)}}
   /* ds-tabs */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .ds-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
   .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#1485c5);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
-  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px}
+  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px}
   /* Table */
   .voy-table{width:100%;border-collapse:collapse;font-size:12px}
-  .voy-table th{padding:8px 12px;text-align:left;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;user-select:none}
+  .voy-table th{padding:8px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:pointer;user-select:none}
   .voy-table th.ds-th--sortable{padding:0}
   .voy-table th:hover{color:var(--text-primary,#111827)}
-  .voy-table td{padding:10px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle;font-size:12px}
+  .voy-table td{padding:12px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle;font-size:12px}
   .voy-table tbody tr:hover td{background:#eff6ff;cursor:pointer}
   .voy-table tbody tr.is-expanded td{background:#eff6ff}
   .voy-table tbody tr.expanded-detail td{background:#eff6ff;border-bottom:1px solid #b8ddf5}
@@ -51,7 +51,7 @@
   .fly-chip{position:fixed;display:inline-flex;align-items:center;gap:8px;max-width:230px;height:38px;padding:0 12px;
     background:#fff;border:1px solid #b8ddf5;border-radius:8px;box-shadow:0 10px 24px -8px rgba(45,127,251,.45),0 2px 6px rgba(15,23,42,.12);
     will-change:transform,opacity;}
-  .fly-chip .fly-ico{width:24px;height:24px;flex-shrink:0;border-radius:6px;background:#dbeafe;display:flex;align-items:center;justify-content:center;}
+  .fly-chip .fly-ico{width:24px;height:24px;flex-shrink:0;border-radius:8px;background:#dbeafe;display:flex;align-items:center;justify-content:center;}
   .fly-chip .fly-name{font-size:12px;font-weight:600;color:#111827;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .cargo-wb-item.is-launching{transition:opacity .35s ease,transform .35s ease;opacity:.25;transform:scale(.97);}
   @keyframes voy-table-receive{0%{box-shadow:0 0 0 0 rgba(45,127,251,0);}28%{box-shadow:0 0 0 5px rgba(45,127,251,.28);}100%{box-shadow:0 0 0 0 rgba(45,127,251,0);}}
@@ -65,7 +65,7 @@
     .voy-table tbody tr.voy-row-new td,.voy-table tbody tr.voy-row-new td:first-child,.cargo-receiving{animation:none;}
   }
   /* Sortable headers — Skytek Design System */
-  .ds-th-sort{width:100%;display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:9px 12px;background:transparent;border:0;cursor:pointer;text-align:left;transition:color .12s ease,background .12s ease}
+  .ds-th-sort{width:100%;display:inline-flex;align-items:center;gap:4px;font:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:8px 12px;background:transparent;border:0;cursor:pointer;text-align:left;transition:color .12s ease,background .12s ease}
   .ds-th-sort:hover{color:var(--text-secondary,#4B5563);background:var(--slate-100,#F3F4F6)}
   .ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}
   .ds-th-sort .ds-sort-ind{display:inline-flex;flex-shrink:0;color:var(--text-muted,#6B7280);opacity:.4;transition:opacity .12s ease}
@@ -73,16 +73,16 @@
   .ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#111827)}
   .ds-th--active .ds-sort-ind{opacity:1;color:var(--brand-600,#1485c5)}
   /* Status badges */
-  .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
+  .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
   .badge-green{background:#dcfce7;color:#15803d}
   .badge-sky{background:#dbeafe;color:#1d4ed8}
   .badge-amber{background:#fef3c7;color:#b45309}
   .badge-red{background:#fee2e2;color:#b91c1c}
   /* Portfolio stat cards — Skytek DS "Individual stat cards" pattern */
   .stat-card{background:var(--bg-surface,#fff);border:1px solid var(--border-subtle,#ECEEF2);border-radius:var(--radius-lg,8px);display:flex;flex-direction:column;min-width:0}
-  .stat-card .ds-card-head{padding:11px 16px;border-bottom:1px solid var(--border-subtle,#ECEEF2);display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px}
-  .stat-card .ds-card-title{font-family:'Exo',var(--font-display,sans-serif);font-size:13px;font-weight:600;line-height:1.25;margin:0;color:var(--text-primary,#111827)}
-  .stat-card .ds-card-body{padding:16px;display:flex;flex-direction:column;gap:7px}
+  .stat-card .ds-card-head{padding:12px 16px;border-bottom:1px solid var(--border-subtle,#ECEEF2);display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px}
+  .stat-card .ds-card-title{font-family:'Exo',var(--font-display,sans-serif);font-size:14px;font-weight:600;line-height:1.25;margin:0;color:var(--text-primary,#111827)}
+  .stat-card .ds-card-body{padding:16px;display:flex;flex-direction:column;gap:8px}
   .stat-card .ds-metric-value{font-family:'Exo',var(--font-display,sans-serif);font-size:32px;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--brand-600,#1485c5)}
   .stat-card .ds-metric-value--neutral{color:var(--text-primary,#111827)}
   .stat-card .ds-metric-value--success{color:var(--success-700,#15803D)}
@@ -107,17 +107,17 @@
   #browse-files-btn:active,#confirm-upload:active,#wb-save:active{background:#0f6aa0;border-color:#0f6aa0;}
   #browse-files-btn:focus-within,#confirm-upload:focus-visible,#wb-save:focus-visible{outline:0;box-shadow:0 0 0 3px rgba(45,127,251,.32);}
   /* ── Date range fields ───────────────────────────────────────────────── */
-  .date-field{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;min-width:180px;height:34px;padding:0 12px;background:var(--bg-surface,#fff);border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);font-family:var(--font-sans);font-size:13px;font-weight:500;color:var(--text-primary,#111827);cursor:pointer;transition:border-color var(--motion-fast,140ms),box-shadow var(--motion-fast,140ms);}
+  .date-field{display:inline-flex;align-items:center;justify-content:space-between;gap:12px;min-width:180px;height:34px;padding:0 12px;background:var(--bg-surface,#fff);border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);font-family:var(--font-sans);font-size:14px;font-weight:500;color:var(--text-primary,#111827);cursor:pointer;transition:border-color var(--motion-fast,140ms),box-shadow var(--motion-fast,140ms);}
   .date-field:hover{border-color:var(--border-strong,#D1D5DB);}
   .date-field:focus-visible{outline:0;border-color:var(--brand-400,#43a8df);box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32));}
   /* ── Date range picker popup — Skytek Design System ──────────────────── */
-  .dp-pop{position:fixed;z-index:var(--z-overlay,1000);display:flex;background:var(--bg-surface,#fff);border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-xl,12px);box-shadow:var(--card-shadow-modal,0 32px 64px -16px rgba(15,23,42,.3));overflow:hidden;font-family:var(--font-sans);font-size:13px;}
-  .dp-presets{display:flex;flex-direction:column;background:var(--slate-50,#F9FAFB);border-right:1px solid var(--border-subtle,#ECEEF2);padding:10px;gap:2px;min-width:148px;}
-  .dp-preset{text-align:center;padding:9px 12px;border:1px solid transparent;background:transparent;border-radius:var(--radius-md,6px);font-family:inherit;font-size:13px;font-weight:500;color:var(--text-secondary,#4B5563);cursor:pointer;white-space:nowrap;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
+  .dp-pop{position:fixed;z-index:var(--z-overlay,1000);display:flex;background:var(--bg-surface,#fff);border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-xl,12px);box-shadow:var(--card-shadow-modal,0 32px 64px -16px rgba(15,23,42,.3));overflow:hidden;font-family:var(--font-sans);font-size:14px;}
+  .dp-presets{display:flex;flex-direction:column;background:var(--slate-50,#F9FAFB);border-right:1px solid var(--border-subtle,#ECEEF2);padding:12px;gap:2px;min-width:148px;}
+  .dp-preset{text-align:center;padding:8px 12px;border:1px solid transparent;background:transparent;border-radius:var(--radius-md,6px);font-family:inherit;font-size:14px;font-weight:500;color:var(--text-secondary,#4B5563);cursor:pointer;white-space:nowrap;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
   .dp-preset:hover{background:var(--slate-100,#F3F4F6);color:var(--text-primary,#111827);}
   .dp-preset.is-active{background:var(--brand-050,#eff6ff);border-color:var(--brand-300,#b8ddf5);font-weight:600;color:var(--brand-600,#1485c5);}
   .dp-main{display:flex;flex-direction:column;}
-  .dp-cals{position:relative;display:flex;gap:26px;padding:16px 20px 6px;}
+  .dp-cals{position:relative;display:flex;gap:24px;padding:16px 20px 8px;}
   .dp-nav{position:absolute;top:14px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:0;background:transparent;border-radius:var(--radius-md,6px);color:var(--text-muted,#6B7280);cursor:pointer;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
   .dp-nav:hover{background:var(--slate-100,#F3F4F6);color:var(--text-primary,#111827);}
   .dp-prev{left:14px;}
@@ -125,43 +125,43 @@
   .dp-cal{width:224px;}
   .dp-cal-title{text-align:center;font-family:var(--font-display,'Exo',sans-serif);font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--text-primary,#111827);margin-bottom:12px;}
   .dp-dow{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:4px;}
-  .dp-dow span{text-align:center;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:4px 0;}
+  .dp-dow span{text-align:center;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:4px 0;}
   .dp-days{display:grid;grid-template-columns:repeat(7,1fr);gap:2px 0;}
   .dp-empty{height:32px;}
-  .dp-day{height:32px;border:0;background:transparent;font-family:inherit;font-size:13px;color:var(--text-primary,#111827);cursor:pointer;border-radius:0;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
+  .dp-day{height:32px;border:0;background:transparent;font-family:inherit;font-size:14px;color:var(--text-primary,#111827);cursor:pointer;border-radius:0;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
   .dp-day:not(.dp-sel):hover{background:var(--slate-100,#F3F4F6);border-radius:var(--radius-sm,4px);}
   .dp-day.dp-in{background:var(--brand-050,#eff6ff);border-radius:0;color:var(--brand-600,#1485c5);}
   .dp-day.dp-sel{background:var(--brand-600,#1485c5);color:var(--white,#fff);font-weight:600;}
   .dp-day.dp-single{border-radius:var(--radius-sm,4px);}
   .dp-day.dp-start{border-radius:var(--radius-sm,4px) 0 0 var(--radius-sm,4px);}
   .dp-day.dp-end{border-radius:0 var(--radius-sm,4px) var(--radius-sm,4px) 0;}
-  .dp-footer{display:flex;justify-content:flex-end;gap:10px;padding:12px 20px;border-top:1px solid var(--border-subtle,#ECEEF2);}
-  .dp-btn{height:32px;padding:0 14px;border-radius:var(--radius-md,6px);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background var(--motion-fast,140ms),border-color var(--motion-fast,140ms);}
+  .dp-footer{display:flex;justify-content:flex-end;gap:8px;padding:12px 20px;border-top:1px solid var(--border-subtle,#ECEEF2);}
+  .dp-btn{height:32px;padding:0 16px;border-radius:var(--radius-md,6px);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background var(--motion-fast,140ms),border-color var(--motion-fast,140ms);}
   .dp-cancel{background:var(--bg-surface,#fff);border:1px solid var(--border-default,#E5E7EB);color:var(--slate-800,#1F2937);}
   .dp-cancel:hover{background:var(--slate-50,#F9FAFB);border-color:var(--border-strong,#D1D5DB);}
   .dp-apply{background:var(--brand-600,#1485c5);border:1px solid var(--brand-600,#1485c5);color:var(--white,#fff);}
   .dp-apply:hover{background:var(--brand-500,#1a92d1);border-color:var(--brand-500,#1a92d1);}
-  @media (max-width:720px){ .dp-cals{flex-direction:column;gap:18px;} .dp-pop{flex-direction:column;} .dp-presets{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--border-subtle,#ECEEF2);} }
+  @media (max-width:720px){ .dp-cals{flex-direction:column;gap:16px;} .dp-pop{flex-direction:column;} .dp-presets{flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--border-subtle,#ECEEF2);} }
   @media (max-width:640px){
     .cargo-actions-row{flex-direction:column;align-items:stretch;}
     .cargo-actions-row > div{width:100%;}
     .date-fields-row{flex-direction:column;align-items:stretch;}
     .date-fields-row .date-field{width:100%;min-width:0;}
     .cargo-actions-row > button{width:100%;justify-content:center;}
-    .portfolio-sum-head{flex-direction:column;align-items:flex-start !important;gap:3px;text-align:left;}
+    .portfolio-sum-head{flex-direction:column;align-items:flex-start !important;gap:4px;text-align:left;}
   }
   /* Filter input */
-  .filter-input{height:32px;border:1px solid #e5e7eb;border-radius:8px;padding:0 10px;font-size:12px;color:#374151;background:#fff;font-family:inherit;outline:none;width:220px;transition:border-color .15s}
+  .filter-input{height:32px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:12px;color:#374151;background:#fff;font-family:inherit;outline:none;width:220px;transition:border-color .15s}
   .filter-input:focus{border-color:#43a8df;box-shadow:0 0 0 2px rgba(14,165,233,.1)}
   /* Status filter button + menu */
   .cargo-filter-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#6b7280;cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
   .cargo-filter-btn:hover{background:#f9fafb;color:#374151;border-color:#d1d5db;}
   .cargo-filter-btn.is-active{border-color:#43a8df;color:var(--brand-600,#1485c5);background:#eff6ff;}
   .cargo-filter-dot{position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--brand-600,#1485c5);border:2px solid #fff;}
-  .cargo-filter-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:60;min-width:184px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);padding:6px;}
+  .cargo-filter-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:60;min-width:184px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);padding:8px;}
   .cargo-filter-menu[hidden]{display:none;}
-  .cargo-filter-menu-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;padding:6px 8px 4px;}
-  .cargo-filter-opt{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;height:32px;padding:0 8px;border:0;border-radius:8px;background:transparent;color:#374151;font-size:13px;font-weight:500;font-family:inherit;cursor:pointer;text-align:left;}
+  .cargo-filter-menu-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;padding:8px 8px 4px;}
+  .cargo-filter-opt{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;height:32px;padding:0 8px;border:0;border-radius:8px;background:transparent;color:#374151;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;text-align:left;}
   .cargo-filter-opt:hover{background:#f3f4f6;}
   .cargo-filter-opt.is-active{color:var(--brand-600,#1485c5);font-weight:600;}
   /* Card */
@@ -171,24 +171,24 @@
   .decl-cards, .clash-cards { display:none; }
   @media (max-width:767px) {
     .decl-table, .clash-table { display:none; }
-    .decl-cards, .clash-cards { display:flex; flex-direction:column; gap:10px; padding:12px; }
+    .decl-cards, .clash-cards { display:flex; flex-direction:column; gap:8px; padding:12px; }
   }
-  .decl-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:0 1px 2px rgb(15 23 42/.04); padding:12px 14px; }
+  .decl-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:0 1px 2px rgb(15 23 42/.04); padding:12px 16px; }
   .decl-cards .decl-card { padding:0; overflow:hidden; }
   .decl-card.is-expanded { border-color:#b8ddf5; }
   .decl-card--new { animation:voy-row-land 1.9s ease-out; }
-  .decl-card-main { padding:12px 14px; cursor:pointer; }
-  .decl-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
+  .decl-card-main { padding:12px 16px; cursor:pointer; }
+  .decl-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
   .decl-kv--top { grid-template-columns:minmax(0,1fr) auto; margin:0; padding:0; border:0; }
   .decl-kv--top > div:last-child { text-align:right; }
-  .decl-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
-  .decl-kv dd { margin:3px 0 0; font-size:13px; color:#374151; overflow-wrap:anywhere; }
+  .decl-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .decl-kv dd { margin:4px 0 0; font-size:14px; color:#374151; overflow-wrap:anywhere; }
   .decl-kv-wide { grid-column:1 / -1; }
   .clash-vessels { line-height:1.75; }
-  .decl-toggle { all:unset; display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:12.5px; font-weight:600; color:var(--brand-600,#1485c5); cursor:pointer; border-radius:4px; }
+  .decl-toggle { all:unset; display:inline-flex; align-items:center; gap:4px; margin-top:12px; font-size:14px; font-weight:600; color:var(--brand-600,#1485c5); cursor:pointer; border-radius:4px; }
   .decl-toggle:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; }
   .decl-card-detail { background:#eff6ff; border-top:1px solid #b8ddf5; }
-  .decl-card-detail .cargo-detail-layout { padding:10px !important; }
+  .decl-card-detail .cargo-detail-layout { padding:12px !important; }
   .decl-card-detail .cargo-map-wrap { flex:none !important; height:300px !important; }
   @media (prefers-reduced-motion: reduce) { .decl-card--new { animation:none; } }
   .cargo-map-wrap{position:relative;}
@@ -198,13 +198,13 @@
   .cargo-map-wrap .leaflet-control-zoom a{display:flex !important;align-items:center;justify-content:center;padding:0 !important;}
   .cargo-map-wrap .leaflet-control-zoom a svg{width:16px;height:16px;}
   .cargo-map-wrap .leaflet-top.leaflet-left{top:56px;left:2px;}
-  .cargo-map-wrap .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px !important;}
+  .cargo-map-wrap .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px !important;}
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;transition:background .15s;}
   .map-btn:hover{background:#f3f4f6;}
   .map-btn svg{width:16px;height:16px;}
   .map-btn-fs{width:32px;height:32px;border-radius:8px !important;}
   .cargo-map-wrap.is-fullscreen{position:fixed;inset:0;z-index:9999;height:100vh !important;width:100vw !important;border-radius:0;border:0;}
-  .map-type-opt{width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:13px;color:#374151;background:#fff;border:0;cursor:pointer;transition:background .15s;}
+  .map-type-opt{width:100%;display:flex;align-items:center;justify-content:space-between;padding:8px 12px;font-size:14px;color:#374151;background:#fff;border:0;cursor:pointer;transition:background .15s;}
   .map-type-opt:hover{background:#f3f4f6;}
   .map-type-menu{position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.16);overflow:hidden;padding:4px 0;}
   /* ── Upload progress bar (animated stripes) ──────────────────────────── */
@@ -218,7 +218,7 @@
   .up-progress{position:relative;padding-top:32px;}
   .up-pct-bubble{position:absolute;top:0;left:0;transform:translateX(-50%);
     display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;
-    background:var(--brand-600,#1485c5);color:#fff;font-size:12px;font-weight:800;
+    background:var(--brand-600,#1485c5);color:#fff;font-size:12px;font-weight:700;
     font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap;
     box-shadow:0 2px 6px rgba(45,127,251,.35);transition:left .12s linear;}
   .up-pct-bubble::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
@@ -252,14 +252,14 @@
     --toast-motion:var(--motion-base);--toast-ease:var(--ease-out);
   }
   .ds-toast-region{position:fixed;top:var(--toast-inset);left:50%;transform:translateX(-50%);z-index:var(--z-toast);display:flex;flex-direction:column;align-items:center;gap:var(--toast-gap);width:var(--toast-width);max-width:calc(100vw - 32px);pointer-events:none;}
-  .ds-toast{position:relative;pointer-events:auto;display:grid;grid-template-columns:auto 1fr auto;align-items:start;column-gap:10px;padding:var(--toast-pad-y) var(--toast-pad-x);padding-left:calc(var(--toast-pad-x) + var(--toast-accent));background:var(--white);border:1px solid var(--border-default);border-left:var(--toast-accent) solid var(--slate-400);border-radius:var(--toast-radius);box-shadow:var(--toast-shadow);overflow:hidden;}
+  .ds-toast{position:relative;pointer-events:auto;display:grid;grid-template-columns:auto 1fr auto;align-items:start;column-gap:8px;padding:var(--toast-pad-y) var(--toast-pad-x);padding-left:calc(var(--toast-pad-x) + var(--toast-accent));background:var(--white);border:1px solid var(--border-default);border-left:var(--toast-accent) solid var(--slate-400);border-radius:var(--toast-radius);box-shadow:var(--toast-shadow);overflow:hidden;}
   .ds-toast-icon{width:18px;height:18px;margin-top:1px;color:var(--text-muted);flex-shrink:0;}
-  .ds-toast-body{min-width:0;font-size:13px;line-height:1.45;}
+  .ds-toast-body{min-width:0;font-size:14px;line-height:1.45;}
   .ds-toast-title{font-weight:600;color:var(--text-primary);}
   .ds-toast-desc{font-size:12px;color:var(--text-secondary);margin-top:1px;}
   .ds-toast-actions{display:flex;align-items:center;gap:4px;margin-top:8px;}
   .ds-toast-side{display:flex;align-items:center;gap:2px;}
-  .ds-toast-dismiss{display:inline-grid;place-content:center;width:24px;height:24px;flex-shrink:0;border:0;background:transparent;border-radius:6px;color:var(--text-muted);cursor:pointer;font-family:inherit;transition:background var(--motion-fast),color var(--motion-fast);}
+  .ds-toast-dismiss{display:inline-grid;place-content:center;width:24px;height:24px;flex-shrink:0;border:0;background:transparent;border-radius:8px;color:var(--text-muted);cursor:pointer;font-family:inherit;transition:background var(--motion-fast),color var(--motion-fast);}
   .ds-toast-dismiss:hover{background:var(--slate-100);color:var(--text-primary);}
   .ds-toast-dismiss:focus-visible{outline:0;box-shadow:var(--shadow-focus);}
   /* Tone — left bar + icon color only; surface stays neutral white for legibility */
@@ -293,18 +293,18 @@
   .port-popup .leaflet-popup-tip{background:#fff;}
   .port-popup .leaflet-popup-close-button{color:#fff !important;top:8px !important;right:10px !important;font-size:24px !important;font-weight:300 !important;width:24px !important;height:24px !important;opacity:.85;}
   .port-popup .leaflet-popup-close-button:hover{background:rgba(255,255,255,.2) !important;color:#fff !important;opacity:1;}
-  .pp-header{color:#fff;padding:12px 14px 10px;}
+  .pp-header{color:#fff;padding:12px 16px 12px;}
   .pp-title{font-size:14px;font-weight:700;}
-  .pp-sub{font-size:11px;font-weight:500;opacity:.8;margin-left:5px;}
+  .pp-sub{font-size:12px;font-weight:500;opacity:.8;margin-left:4px;}
   .pp-body{background:#fff;}
-  .pp-row{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px solid #f3f4f6;font-size:13px;}
+  .pp-row{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:1px solid #f3f4f6;font-size:14px;}
   .pp-row:last-child{border-bottom:0;}
   .pp-k{color:#6b7280;font-weight:500;}
   .pp-v{font-weight:700;color:#111827;}
-  .pp-cta{display:block;width:calc(100% - 28px);margin:4px 14px 14px;background:transparent;color:var(--brand-600,#1485c5)!important;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;line-height:32px;font-weight:500;font-size:13px;cursor:pointer;text-align:center;transition:background .15s;}
+  .pp-cta{display:block;width:calc(100% - 28px);margin:4px 12px 12px;background:transparent;color:var(--brand-600,#1485c5)!important;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;line-height:32px;font-weight:500;font-size:14px;cursor:pointer;text-align:center;transition:background .15s;}
   .pp-cta:hover{background:var(--brand-50,#eff6ff);}
   /* Mobile responsive */
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   /* Tablet portrait: four counts in a row, Highest Single-Day Exposure full width below */
   @media(min-width:768px) and (max-width:1023px){
     .cargo-summary-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;}
@@ -343,7 +343,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -443,8 +443,8 @@ function statusBadge(v) {
   if (v.status === 'Completed') s = `<span class="badge badge-green"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg> Completed</span>`;
   else if (v.status === 'Started') s = `<span class="badge badge-sky"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg> Started</span>`;
   else s = `<span class="badge badge-amber"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg> Pending</span>`;
-  if (v.breach) s += ` <span class="badge badge-red" style="gap:3px;"><span style="width:6px;height:6px;background:#dc2626;border-radius:50%;display:inline-block;flex-shrink:0;"></span>BREACH</span>`;
-  return `<div style="display:flex;align-items:center;gap:5px;flex-wrap:nowrap;">${s}</div>`;
+  if (v.breach) s += ` <span class="badge badge-red" style="gap:4px;"><span style="width:6px;height:6px;background:#dc2626;border-radius:50%;display:inline-block;flex-shrink:0;"></span>BREACH</span>`;
+  return `<div style="display:flex;align-items:center;gap:4px;flex-wrap:nowrap;">${s}</div>`;
 }
 
 function filteredVoyages() {
@@ -512,7 +512,7 @@ function renderHeader() {
   const metricCell = (val, label, color, first) => `
     <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px 12px;flex:1;min-width:62px;${first ? '' : 'border-left:1px solid #e6ebf1;'}">
       <span style="font-size:14px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:${color};">${val}</span>
-      <span style="font-size:9.5px;font-weight:600;line-height:1.2;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;text-align:center;">${label}</span>
+      <span style="font-size:12px;font-weight:600;line-height:1.2;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;text-align:center;">${label}</span>
     </div>`;
   const metricsStrip = (wb, i) => {
     const m = wb.metrics || { completed:0, started:0, pending:0, breaches:0, exposure:'$0' };
@@ -528,16 +528,16 @@ function renderHeader() {
   return `
   <!-- Declarations workbook card -->
   ${st.uploadMode ? `
-  <div class="card" style="margin-bottom:10px;padding:0;overflow:hidden;">
+  <div class="card" style="margin-bottom:8px;padding:0;overflow:hidden;">
     <div id="upload-card-header" style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:${st.uploadCardCollapsed ? 'none' : '1px solid #e5e7eb'};">
-      <div style="display:flex;align-items:center;gap:10px;">
+      <div style="display:flex;align-items:center;gap:8px;">
         <button id="upload-card-toggle" aria-expanded="${!st.uploadCardCollapsed}" title="${st.uploadCardCollapsed ? 'Expand' : 'Collapse'}" style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:#6b7280;cursor:pointer;flex-shrink:0;padding:0;transition:background .14s ease,border-color .14s ease,color .14s ease;" onmouseover="this.style.background='#eff6ff';this.style.borderColor='#b8ddf5';this.style.color='var(--brand-600,#1485c5)';" onmouseout="this.style.background='var(--white,#fff)';this.style.borderColor='var(--border-default,#E5E7EB)';this.style.color='#6b7280';">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/>${st.uploadCardCollapsed ? '<line x1="12" y1="5" x2="12" y2="19"/>' : ''}</svg>
         </button>
-        <div style="font-size:13px;font-weight:700;color:#111827;">Upload declarations workbook</div>
+        <div style="font-size:14px;font-weight:700;color:#111827;">Upload declarations workbook</div>
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
-        <button id="download-template" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;height:28px;padding:0 10px;border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:var(--slate-800,#1F2937);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
+        <button id="download-template" style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:28px;padding:0 12px;border:1px solid var(--border-default,#E5E7EB);border-radius:var(--radius-md,6px);background:var(--white,#fff);color:var(--slate-800,#1F2937);font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download template
         </button>
@@ -546,12 +546,12 @@ function renderHeader() {
     <div id="upload-card-body"${st.uploadCardCollapsed ? ' style="display:none;"' : ''}>
     ${st.uploading ? `
     <div style="padding:24px;">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
         <div style="width:40px;height:40px;background:#dbeafe;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1485c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
         </div>
         <div style="flex:1;min-width:0;">
-          <div style="font-size:13px;font-weight:700;color:#111827;">${st.uploadedFile || 'declarations.xlsx'}</div>
+          <div style="font-size:14px;font-weight:700;color:#111827;">${st.uploadedFile || 'declarations.xlsx'}</div>
           <div style="font-size:12px;color:#6b7280;margin-top:1px;">Uploading voyages…</div>
         </div>
       </div>
@@ -560,42 +560,42 @@ function renderHeader() {
         <div class="up-track"><div id="up-fill" class="up-fill"></div></div>
       </div>
     </div>` : st.uploadedFile ? `
-    <div style="padding:20px 24px;display:flex;align-items:center;gap:14px;">
+    <div style="padding:20px 24px;display:flex;align-items:center;gap:12px;">
       <div style="width:40px;height:40px;background:#dcfce7;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:13px;font-weight:700;color:#111827;">${st.uploadedFile}</div>
+        <div style="font-size:14px;font-weight:700;color:#111827;">${st.uploadedFile}</div>
         <div style="font-size:12px;color:#16a34a;margin-top:1px;">Ready to upload</div>
       </div>
-      <button id="confirm-upload" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 16px;background:var(--brand-600,#1485c5);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">
+      <button id="confirm-upload" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;background:var(--brand-600,#1485c5);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         Upload
       </button>
     </div>` : `
-    <div id="drop-zone" style="margin:16px;border:2px dashed var(--brand-300,#b8ddf5);border-radius:8px;padding:36px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--brand-050,#eff6ff);cursor:pointer;transition:background 150ms,border-color 150ms;">
+    <div id="drop-zone" style="margin:16px;border:2px dashed var(--brand-300,#b8ddf5);border-radius:8px;padding:36px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--brand-050,#eff6ff);cursor:pointer;transition:background 150ms,border-color 150ms;">
       <div style="width:48px;height:48px;background:var(--brand-100,#dbeafe);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--brand-600,#1485c5);">
         ${SC.I.upload}
       </div>
       <div style="text-align:center;">
-        <p style="font-size:13px;color:#6b7280;max-width:460px;margin:0 auto 8px;">Upload an underwriting declarations workbook — every vessel is screened against AIS for voyage progress and breach of the stated region.</p>
-        <div style="font-size:14px;font-weight:600;color:#111827;margin-bottom:3px;">Drag &amp; drop your .xlsx file here</div>
+        <p style="font-size:14px;color:#6b7280;max-width:460px;margin:0 auto 8px;">Upload an underwriting declarations workbook — every vessel is screened against AIS for voyage progress and breach of the stated region.</p>
+        <div style="font-size:14px;font-weight:600;color:#111827;margin-bottom:4px;">Drag &amp; drop your .xlsx file here</div>
         <div style="font-size:12px;color:#6b7280;">or</div>
       </div>
-      <label id="browse-files-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:0 12px;background:var(--brand-600,#1485c5);border:1px solid var(--brand-600,#1485c5);color:var(--white,#fff);border-radius:var(--radius-md,6px);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
+      <label id="browse-files-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:32px;padding:0 12px;background:var(--brand-600,#1485c5);border:1px solid var(--brand-600,#1485c5);color:var(--white,#fff);border-radius:var(--radius-md,6px);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         Browse files
         <input id="file-input" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="display:none;" />
       </label>
-      <div style="font-size:11px;color:#9ca3af;">Supports .xlsx files only</div>
+      <div style="font-size:12px;color:#9ca3af;">Supports .xlsx files only</div>
     </div>`}
     </div>
   </div>` : `
-  <div class="card cargo-workbook-card" style="display:flex;flex-direction:column;gap:12px;padding:14px 18px;margin-bottom:10px;align-items:stretch;">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
-      <div style="font-size:13px;font-weight:700;color:#111827;">Declarations workbook${wbs.length > 1 ? 's' : ''} <span style="color:#9ca3af;font-weight:600;">(${wbs.length})</span></div>
+  <div class="card cargo-workbook-card" style="display:flex;flex-direction:column;gap:12px;padding:16px 20px;margin-bottom:8px;align-items:stretch;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div style="font-size:14px;font-weight:700;color:#111827;">Declarations workbook${wbs.length > 1 ? 's' : ''} <span style="color:#9ca3af;font-weight:600;">(${wbs.length})</span></div>
       <div class="cargo-workbook-btns" style="display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;">
-        <button id="upload-another-btn" style="display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;background:#fff;border:1px solid #e5e7eb;color:#374151;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
+        <button id="upload-another-btn" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;background:#fff;border:1px solid #e5e7eb;color:#374151;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
           Upload Another
         </button>
@@ -603,14 +603,14 @@ function renderHeader() {
     </div>
     <div style="display:flex;flex-direction:column;gap:8px;">
       ${wbs.map((wb, i) => `
-      <div class="cargo-wb-item" data-wb-item="${i}" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #eef2f6;border-radius:8px;background:#f9fafb;flex-wrap:wrap;">
+      <div class="cargo-wb-item" data-wb-item="${i}" style="display:flex;align-items:center;gap:12px;padding:12px 12px;border:1px solid #eef2f6;border-radius:8px;background:#f9fafb;flex-wrap:wrap;">
         <div class="cargo-wb-icon" style="width:34px;height:34px;background:#dbeafe;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${boxIcon}</div>
         <div style="width:160px;flex-shrink:0;min-width:0;">
-          <div style="font-size:13px;font-weight:600;color:#111827;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${wb.name}</div>
+          <div style="font-size:14px;font-weight:600;color:#111827;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${wb.name}</div>
           <div style="font-size:12px;color:#6b7280;margin-top:1px;">${wb.size || '—'}</div>
         </div>
         ${metricsStrip(wb, i)}
-        <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:#16a34a;white-space:nowrap;flex-shrink:0;">
+        <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#16a34a;white-space:nowrap;flex-shrink:0;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Analysed
         </span>
@@ -622,13 +622,13 @@ function renderHeader() {
         </button>
       </div>`).join('')}
     </div>
-    <div class="cargo-info-bar" style="display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid #f3f4f6;flex-wrap:wrap;">
+    <div class="cargo-info-bar" style="display:flex;align-items:center;gap:8px;padding-top:12px;border-top:1px solid #f3f4f6;flex-wrap:wrap;">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <p style="font-size:13px;color:#374151;flex:1;">Showing <strong>${VOYAGES.length}</strong> voyages from ${wbs.length > 1 ? `<strong>${wbs.length}</strong> uploaded workbooks` : 'the latest upload'} — every row is also saved server-side. Upload another xlsx to merge in more rows before saving to declarations.</p>
+      <p style="font-size:14px;color:#374151;flex:1;">Showing <strong>${VOYAGES.length}</strong> voyages from ${wbs.length > 1 ? `<strong>${wbs.length}</strong> uploaded workbooks` : 'the latest upload'} — every row is also saved server-side. Upload another xlsx to merge in more rows before saving to declarations.</p>
     </div>
-    <div class="cargo-wb-footer" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;padding-top:12px;border-top:1px solid #f3f4f6;">
-      <button id="wb-cancel" style="height:36px;padding:0 18px;border:1px solid var(--border-default,#E5E7EB);border-radius:8px;background:var(--white,#fff);color:var(--slate-800,#1F2937);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">Cancel</button>
-      <button id="wb-save" style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 18px;background:var(--brand-600,#1485c5);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
+    <div class="cargo-wb-footer" style="display:flex;align-items:center;justify-content:flex-end;gap:8px;padding-top:12px;border-top:1px solid #f3f4f6;">
+      <button id="wb-cancel" style="height:36px;padding:0 20px;border:1px solid var(--border-default,#E5E7EB);border-radius:8px;background:var(--white,#fff);color:var(--slate-800,#1F2937);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">Cancel</button>
+      <button id="wb-save" style="display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 20px;background:var(--brand-600,#1485c5);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         Save To Declarations
       </button>
@@ -641,8 +641,8 @@ function renderActionsRow() {
   <!-- Date range + Export to Excel -->
   <div class="cargo-actions-row" style="display:flex;align-items:flex-end;justify-content:flex-end;gap:16px;margin-top:12px;margin-bottom:20px;flex-wrap:wrap;">
     <div>
-      <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:5px;">Date Range:</div>
-      <div class="date-fields-row" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:4px;">Date Range:</div>
+      <div class="date-fields-row" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
         <button id="date-from-field" class="date-field" type="button">
           <span id="date-from-label">${fmtRangeDate(st.dateFrom)}</span>
           ${calIconSvg}
@@ -653,7 +653,7 @@ function renderActionsRow() {
         </button>
       </div>
     </div>
-    <button id="export-excel-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 16px;background:var(--white,#fff);border:1px solid var(--border-default,#E5E7EB);color:var(--slate-800,#1F2937);border-radius:var(--radius-md,6px);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
+    <button id="export-excel-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:36px;padding:0 16px;background:var(--white,#fff);border:1px solid var(--border-default,#E5E7EB);color:var(--slate-800,#1F2937);border-radius:var(--radius-md,6px);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Export to Excel
     </button>
@@ -677,9 +677,9 @@ function renderPortfolioSummary() {
 
   return `
   <div class="card" style="margin-bottom:12px;overflow:hidden;">
-    <div class="portfolio-sum-head" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px 16px;border-bottom:1px solid #e5e7eb;">
-      <div style="font-family:'Exo',sans-serif;font-size:13px;font-weight:700;color:#111827;letter-spacing:.01em;">Portfolio summary</div>
-      <div style="font-size:11px;color:var(--text-muted,#6B7280);"><span style="font-weight:700;color:#111827;">Total:</span> <span style="background:#fef3c7;color:#92400e;font-weight:600;padding:2px 7px;border-radius:4px;">${VOYAGES.length} Declarations</span></div>
+    <div class="portfolio-sum-head" style="display:flex;align-items:center;justify-content:space-between;gap:4px;padding:12px 16px;border-bottom:1px solid #e5e7eb;">
+      <div style="font-family:'Exo',sans-serif;font-size:14px;font-weight:700;color:#111827;letter-spacing:.01em;">Portfolio summary</div>
+      <div style="font-size:12px;color:var(--text-muted,#6B7280);"><span style="font-weight:700;color:#111827;">Total:</span> <span style="background:#fef3c7;color:#92400e;font-weight:600;padding:2px 8px;border-radius:4px;">${VOYAGES.length} Declarations</span></div>
     </div>
     <div class="cargo-summary-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:16px;">
       ${card('Completed', completed, 'ds-metric-value--success', 'voyages reached discharge port', `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>`)}
@@ -775,7 +775,7 @@ function renderDeclarationsTable() {
           const expanded = st.expanded.has(i);
           return `
           <tr class="${expanded ? 'is-expanded' : ''}${v._new ? ' voy-row-new' : ''}" data-row="${i}" style="cursor:pointer;">
-            <td style="text-align:left;padding:10px 6px 10px 16px;">
+            <td style="text-align:left;padding:12px 8px 12px 16px;">
               <span style="display:inline-flex;align-items:center;gap:8px;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand-600,#1485c5)" stroke-width="2.5" stroke-linecap="round" style="transform:${expanded ? 'rotate(90deg)' : 'rotate(0deg)'};transition:transform 150ms;display:inline-block;flex-shrink:0;"><path d="M9 18l6-6-6-6"/></svg>
               </span>
@@ -789,10 +789,10 @@ function renderDeclarationsTable() {
             <td style="color:#6b7280;">${v.dischDate || '—'}</td>
             <td><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</td>
-            <td>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
+            <td>${v.breachRegion ? `<span style="color:#dc2626;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
             <td style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</td>
             <td style="color:${v.breachEnd ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</td>
-            <td style="text-align:center;">${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
+            <td style="text-align:center;">${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
           </tr>
           ${expanded && !declIsPhone() ? `
           <tr class="expanded-detail">
@@ -822,10 +822,10 @@ function renderDeclarationsTable() {
               <div><dt>Discharge Date</dt><dd style="color:#6b7280;">${v.dischDate || '—'}</dd></div>
               <div><dt>Discharge Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
               <div><dt>Actual Discharge Date</dt><dd style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</dd></div>
-              <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#dc2626;font-size:11px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
+              <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#dc2626;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
               <div><dt>Breach Start Date</dt><dd style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</dd></div>
               <div><dt>Breach End Date</dt><dd style="color:${v.breachEnd ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</dd></div>
-              <div><dt>Days</dt><dd>${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
+              <div><dt>Days</dt><dd>${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
         </dl>
         <button type="button" class="decl-toggle" aria-expanded="${expanded}">
           <span>${expanded ? 'Hide route map' : 'Show route map'}</span>
@@ -896,10 +896,10 @@ function renderTabSection() {
       <div class="ds-tabs">
         <span class="ds-tab-pill is-init" data-tab-pill></span>
         <button data-tab="declarations" aria-selected="${st.tab==='declarations'}" class="ds-tab">
-          <span class="ds-tab-label">Declarations <span style="font-size:11px;font-weight:700;margin-left:2px;opacity:.75;">(${VOYAGES.length})</span></span>
+          <span class="ds-tab-label">Declarations <span style="font-size:12px;font-weight:700;margin-left:2px;opacity:.75;">(${VOYAGES.length})</span></span>
         </button>
         <button data-tab="clashAlerts" aria-selected="${st.tab==='clashAlerts'}" class="ds-tab">
-          <span class="ds-tab-label">Clash Alerts <span style="font-size:11px;font-weight:700;margin-left:2px;opacity:.75;">(${CLASH_ALERTS.length})</span></span>
+          <span class="ds-tab-label">Clash Alerts <span style="font-size:12px;font-weight:700;margin-left:2px;opacity:.75;">(${CLASH_ALERTS.length})</span></span>
         </button>
       </div>
       ${st.tab === 'declarations' ? `
@@ -934,10 +934,10 @@ function renderArchiveCard() {
   const archiveIcon = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="5" rx="1"/><path d="M4 8v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8"/><path d="M10 12h4"/></svg>`;
   return `
   <div class="card" style="overflow:hidden;margin-top:12px;">
-    <div class="cargo-archive-head" style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:12px 16px;border-bottom:1px solid #e5e7eb;">
-      <div style="font-family:'Exo',sans-serif;font-size:13px;font-weight:700;color:#111827;letter-spacing:.01em;display:inline-flex;align-items:center;gap:8px;">
+    <div class="cargo-archive-head" style="display:flex;align-items:center;justify-content:space-between;gap:4px;padding:12px 16px;border-bottom:1px solid #e5e7eb;">
+      <div style="font-family:'Exo',sans-serif;font-size:14px;font-weight:700;color:#111827;letter-spacing:.01em;display:inline-flex;align-items:center;gap:8px;">
         <span style="display:inline-flex;color:var(--text-muted,#9ca3af);">${archiveIcon}</span>
-        Archive <span style="font-size:11px;font-weight:700;opacity:.6;">(0)</span>
+        Archive <span style="font-size:12px;font-weight:700;opacity:.6;">(0)</span>
       </div>
     </div>
     ${renderArchiveEmpty()}
@@ -1067,7 +1067,7 @@ function reanalyseRow(i) {
   if (!strip || strip.dataset.busy === '1') return;
   strip.dataset.busy = '1';
   strip.innerHTML = `
-    <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0;padding:0 12px;">
+    <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;padding:0 12px;">
       <div class="up-track" style="flex:1;"><div class="up-fill" style="width:1%;"></div></div>
       <span class="wb-reana-pct" style="font-size:12px;font-weight:700;color:var(--brand-600,#1485c5);font-variant-numeric:tabular-nums;min-width:34px;text-align:right;">1%</span>
     </div>`;
@@ -1367,7 +1367,7 @@ function showToast(opts) {
     <div class="ds-toast-body">
       <div class="ds-toast-title"></div>
       ${o.desc ? '<div class="ds-toast-desc"></div>' : ''}
-      ${o.action ? '<div class="ds-toast-actions"><button type="button" class="ds-toast-action" style="height:24px;padding:0 4px;border:0;background:transparent;color:var(--brand-600,#1485c5);font:inherit;font-size:13px;font-weight:600;cursor:pointer;"></button></div>' : ''}
+      ${o.action ? '<div class="ds-toast-actions"><button type="button" class="ds-toast-action" style="height:24px;padding:0 4px;border:0;background:transparent;color:var(--brand-600,#1485c5);font:inherit;font-size:14px;font-weight:600;cursor:pointer;"></button></div>' : ''}
     </div>
     <div class="ds-toast-side">
       <button type="button" class="ds-toast-dismiss" aria-label="Dismiss notification">
@@ -1485,7 +1485,7 @@ function initMaps() {
     }
     // Port markers
     const makeIcon = (label, bg) => L.divIcon({
-      html: `<div style="width:28px;height:28px;border-radius:50%;background:${bg};color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);">${label}</div>`,
+      html: `<div style="width:28px;height:28px;border-radius:50%;background:${bg};color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);">${label}</div>`,
       iconSize:[28,28], iconAnchor:[14,14], className:'',
     });
     L.marker(loadCoords,  { icon: makeIcon('L','#1485c5') }).addTo(map)

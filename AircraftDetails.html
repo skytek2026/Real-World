@@ -9,7 +9,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
@@ -30,7 +30,7 @@
   /* Map */
   #aircraft-map{position:absolute;inset:0;background:#0b1e2e}
   #aircraft-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #aircraft-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px!important}
+  #aircraft-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgba(15,23,42,.08) !important;border-radius:8px !important;overflow:hidden}
   .leaflet-bar a{background:#fff !important;color:#374151 !important;line-height:30px !important}
   .leaflet-bar a:hover{background:#f3f4f6 !important}
@@ -48,12 +48,12 @@
   }
   /* Spec grid */
   .spec-grid{display:grid;grid-template-columns:repeat(3,1fr)}
-  .spec-cell{padding:11px 16px;border-bottom:1px solid #f3f4f6}
+  .spec-cell{padding:12px 16px;border-bottom:1px solid #f3f4f6}
   .spec-cell:not(:nth-child(3n)){border-right:1px solid #f3f4f6}
-  .spec-label{font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
-  .spec-value{font-size:13px;font-weight:600;color:#111827}
+  .spec-label{font-size:12px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+  .spec-value{font-size:14px;font-weight:600;color:#111827}
   /* Info grid */
-  .info-label{font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .info-label{font-size:12px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
   .info-value{font-size:12px;font-weight:600;color:#111827}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -73,7 +73,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -133,16 +133,16 @@ const SPECS = [
 function CardValue() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card">
-    <div class="px-3 py-2.5 flex items-center gap-2 border-b border-ink-100">
+    <div class="px-3 py-3 flex items-center gap-2 border-b border-ink-100">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      <span class="text-[13px] font-semibold text-ink-900">Aircraft Current Value</span>
+      <span class="text-sm font-semibold text-ink-900">Aircraft Current Value</span>
     </div>
     <div class="p-3">
-      <div class="rounded-lg bg-blue-50 border border-blue-100 px-3 py-2.5 text-center mb-3">
-        <div class="text-[11px] font-medium text-ink-500 mb-0.5">Est. Market Value</div>
+      <div class="rounded-lg bg-blue-50 border border-blue-100 px-3 py-3 text-center mb-3">
+        <div class="text-xs font-medium text-ink-500 mb-0.5">Est. Market Value</div>
         <div class="text-[24px] font-bold text-brand-600 leading-none">$106.6M</div>
       </div>
-      <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-[11px]">
+      <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
         <div>
           <div class="info-label">Purchase Price</div>
           <div class="info-value" style="color:#111827">$320.0M</div>
@@ -168,16 +168,16 @@ function CardInfo() {
   const flightId = (AC.flight || 'BA 179').replace(' ','');
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card">
-    <div class="px-3 py-2.5 flex items-center gap-2 border-b border-ink-100">
+    <div class="px-3 py-3 flex items-center gap-2 border-b border-ink-100">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      <span class="text-[13px] font-semibold text-ink-900">More ${flightId} Information</span>
+      <span class="text-sm font-semibold text-ink-900">More ${flightId} Information</span>
     </div>
     <div class="p-3">
       <div class="rounded-lg bg-blue-50 border border-blue-100 px-3 py-2 text-center mb-3">
-        <div class="text-[11px] font-semibold text-ink-500 uppercase tracking-micro mb-0.5">Aircraft Type</div>
+        <div class="text-xs font-semibold text-ink-500 uppercase tracking-micro mb-0.5">Aircraft Type</div>
         <div class="text-sm font-bold text-brand-600">${AC.type || 'Boeing 777-236(ER)'}</div>
       </div>
-      <div class="grid grid-cols-2 gap-x-3 gap-y-2.5 text-[11px]">
+      <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-xs">
         <div>
           <div class="info-label">Airline Name</div>
           <div class="info-value">${AC.airline || 'British Airways'}</div>
@@ -190,7 +190,7 @@ function CardInfo() {
           <div class="info-label">Country of Reg.</div>
           <div class="info-value flex items-center gap-1">
             United Kingdom
-            <img src="flags/gb.svg" alt="GB" width="14" height="10" class="rounded-sm ring-1 ring-black/10 object-cover" style="width:14px;height:10px" />
+            <img src="flags/gb.svg" alt="GB" width="14" height="10" class="rounded ring-1 ring-black/10 object-cover" style="width:14px;height:10px" />
           </div>
         </div>
         <div>
@@ -210,8 +210,8 @@ function CardInfo() {
           <div class="info-value">48 (12.4%)</div>
         </div>
         <div class="col-span-2 pt-1 border-t border-ink-100">
-          <div class="info-label mb-1.5">Seating Plan:</div>
-          <div class="flex items-center gap-3 text-[11px]">
+          <div class="info-label mb-1">Seating Plan:</div>
+          <div class="flex items-center gap-3 text-xs">
             <span class="flex items-center gap-1 text-ink-700 font-medium">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b"><path d="M4 20v-2a8 8 0 0 1 16 0v2M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
               Business Class: 48
@@ -231,21 +231,21 @@ function CardFlights() {
   const reg = AC.reg || 'G-STBF';
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card">
-    <div class="px-3 py-2.5 flex items-center gap-2 border-b border-ink-100">
+    <div class="px-3 py-3 flex items-center gap-2 border-b border-ink-100">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span class="text-[13px] font-semibold text-ink-900">Recent ${reg} flights</span>
+      <span class="text-sm font-semibold text-ink-900">Recent ${reg} flights</span>
     </div>
     <div>
       ${RECENT_FLIGHTS.map(f => `
         <div class="px-3 py-2 flex items-center gap-2 hover:bg-ink-50 border-b border-ink-100 last:border-0">
-          <span class="text-white text-[11px] font-bold px-1.5 py-0.5 rounded shrink-0 tabular-nums" style="background:${f.color};min-width:38px;text-align:center;">${f.badge}</span>
+          <span class="text-white text-xs font-bold px-2 py-0.5 rounded shrink-0 tabular-nums" style="background:${f.color};min-width:38px;text-align:center;">${f.badge}</span>
           <div class="flex-1 min-w-0">
             <div class="text-[12px] font-semibold text-ink-900">${f.from} → ${f.to}</div>
-            <div class="text-[11px] text-ink-400 tabular-nums">${f.date}</div>
+            <div class="text-xs text-ink-400 tabular-nums">${f.date}</div>
           </div>
           <div class="text-right shrink-0">
-            <div class="text-[11px] font-semibold text-ink-700 tabular-nums">${f.dur}</div>
-            <div class="text-[11px] font-medium" style="color:#10b981">Completed</div>
+            <div class="text-xs font-semibold text-ink-700 tabular-nums">${f.dur}</div>
+            <div class="text-xs font-medium" style="color:#10b981">Completed</div>
           </div>
         </div>`).join('')}
     </div>
@@ -255,11 +255,11 @@ function CardFlights() {
 function CardSpeed() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card">
-    <div class="px-3 py-2.5 flex items-center gap-2 border-b border-ink-100">
+    <div class="px-3 py-3 flex items-center gap-2 border-b border-ink-100">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      <span class="text-[13px] font-semibold text-ink-900">Speed &amp; Altitude graph</span>
+      <span class="text-sm font-semibold text-ink-900">Speed &amp; Altitude graph</span>
     </div>
-    <div class="p-3 grid grid-cols-2 gap-x-4 gap-y-2.5">
+    <div class="p-3 grid grid-cols-2 gap-x-4 gap-y-2">
       ${SPEED_ITEMS.map(([lbl, val]) => `
         <div>
           <div class="info-label">${lbl}</div>
@@ -272,13 +272,13 @@ function CardSpeed() {
 function CardFIR() {
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card">
-    <div class="px-3 py-2.5 flex items-center gap-2 border-b border-ink-100">
+    <div class="px-3 py-3 flex items-center gap-2 border-b border-ink-100">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
-      <span class="text-[13px] font-semibold text-ink-900">FIR/UIR</span>
+      <span class="text-sm font-semibold text-ink-900">FIR/UIR</span>
     </div>
     <div class="p-3">
       <div class="info-label mb-1">Current FIR</div>
-      <div class="text-[13px] font-semibold text-ink-900">London Terminal Control Area</div>
+      <div class="text-sm font-semibold text-ink-900">London Terminal Control Area</div>
     </div>
   </div>`;
 }
@@ -288,8 +288,8 @@ function StatusBar() {
   const altIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10M12 6a6 6 0 0 1 6 6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>`;
   const spdIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="15 8 19 12 15 16"/></svg>`;
   return `
-  <div class="shrink-0 bg-white border-b border-ink-200 px-4 py-2.5 flex items-center gap-4 z-20">
-    <span class="flex items-center gap-1.5 text-[12px] font-semibold text-ink-700">
+  <div class="shrink-0 bg-white border-b border-ink-200 px-4 py-3 flex items-center gap-4 z-20">
+    <span class="flex items-center gap-1 text-[12px] font-semibold text-ink-700">
       <span class="w-2 h-2 rounded-full bg-amber-400"></span>
       ${AC.status || 'On Ground'}
     </span>
@@ -297,7 +297,7 @@ function StatusBar() {
     <span class="flex items-center gap-1 text-[12px] text-ink-600">${altIco} <span class="tabular-nums">${AC.alt || '37,375 ft'}</span></span>
     <span class="flex items-center gap-1 text-[12px] text-ink-600">${spdIco} <span class="tabular-nums">${AC.spd || '470 kts'}</span></span>
     <span class="flex-1"></span>
-    <span class="text-[11px] text-ink-400">Last update: Just now</span>
+    <span class="text-xs text-ink-400">Last update: Just now</span>
   </div>`;
 }
 
@@ -313,15 +313,15 @@ function SectionMap() {
       ${pinIco}
       <span class="text-sm font-semibold text-ink-900">Current Position &amp; Flight Track</span>
       <span class="w-px h-4 bg-ink-200 mx-1"></span>
-      <span class="flex items-center gap-1.5 text-[11px] font-semibold text-ink-700">
+      <span class="flex items-center gap-1 text-xs font-semibold text-ink-700">
         <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
         ${AC.status || 'On Ground'}
       </span>
       <span class="w-px h-4 bg-ink-200 mx-1"></span>
-      <span class="flex items-center gap-1 text-[11px] text-ink-500">${altIco} <span class="tabular-nums">${AC.alt || '37,375 ft'}</span></span>
-      <span class="flex items-center gap-1 text-[11px] text-ink-500">${spdIco} <span class="tabular-nums">${AC.spd || '470 kts'}</span></span>
+      <span class="flex items-center gap-1 text-xs text-ink-500">${altIco} <span class="tabular-nums">${AC.alt || '37,375 ft'}</span></span>
+      <span class="flex items-center gap-1 text-xs text-ink-500">${spdIco} <span class="tabular-nums">${AC.spd || '470 kts'}</span></span>
       <span class="flex-1"></span>
-      <span class="text-[11px] text-ink-400">Last update: Just now</span>
+      <span class="text-xs text-ink-400">Last update: Just now</span>
     </div>
     <div class="relative" style="height:340px;">
       <div id="aircraft-map"></div>
@@ -344,21 +344,21 @@ function SectionMap() {
         </div>
       </div>
       <div class="absolute z-[400]" style="bottom:36px;left:12px;">
-        <div class="bg-white/95 border border-ink-200 rounded-lg px-3 py-2 shadow-card text-[11px]">
-          <div class="font-semibold text-ink-900 mb-1.5">Flight Track</div>
+        <div class="bg-white/95 border border-ink-200 rounded-lg px-3 py-2 shadow-card text-xs">
+          <div class="font-semibold text-ink-900 mb-1">Flight Track</div>
           <div class="flex items-center gap-2 mb-1 text-ink-600">
-            <div style="width:18px;height:2px;background:#10b981;border-radius:2px;flex-shrink:0;"></div>Completed
+            <div style="width:18px;height:2px;background:#10b981;border-radius:4px;flex-shrink:0;"></div>Completed
           </div>
           <div class="flex items-center gap-2 mb-1 text-ink-600">
             <div style="width:18px;height:0;border-top:2px dashed #9ca3af;flex-shrink:0;"></div>Remaining
           </div>
           <div class="flex items-center gap-2 text-ink-600">
-            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;margin:0 5px;"></div>Waypoints
+            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;margin:0 4px;"></div>Waypoints
           </div>
         </div>
       </div>
       <div class="absolute z-[400]" style="bottom:12px;right:12px;">
-        <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold text-white" style="background:rgba(15,23,42,.72);backdrop-filter:blur(4px);">${AC.status || 'On Ground'}</span>
+        <span class="px-3 py-1 rounded-lg text-xs font-semibold text-white" style="background:rgba(15,23,42,.72);backdrop-filter:blur(4px);">${AC.status || 'On Ground'}</span>
       </div>
     </div>
   </div>`;
@@ -373,11 +373,11 @@ function SectionDepArr() {
   return `
   <div class="grid grid-cols-2 gap-3 dep-arr-grid">
     <div class="bg-white rounded-xl border border-ink-200 shadow-card">
-      <div class="px-4 py-2.5 flex items-center gap-2 border-b border-ink-100 text-ink-600">${plnIco} <span class="text-sm font-semibold text-ink-900">Departure</span></div>
+      <div class="px-4 py-3 flex items-center gap-2 border-b border-ink-100 text-ink-600">${plnIco} <span class="text-sm font-semibold text-ink-900">Departure</span></div>
       <div class="p-4">
         <div class="text-[32px] font-bold text-ink-900 leading-none mb-1">${dep.code}</div>
         <div class="text-sm text-ink-500 mb-4">${NAMES[dep.code] || dep.name || dep.code}</div>
-        <div class="flex flex-col gap-1.5 text-[13px]">
+        <div class="flex flex-col gap-1 text-sm">
           <div><span class="font-semibold text-ink-900">Scheduled:</span> <span class="text-ink-700">${AC.dep || '18:27 UTC'}</span></div>
           <div><span class="font-semibold text-ink-900">Terminal:</span> <span class="text-ink-700">Terminal 5</span></div>
           <div><span class="font-semibold text-ink-900">Gate:</span> <span class="text-ink-700">T5-A12</span></div>
@@ -385,11 +385,11 @@ function SectionDepArr() {
       </div>
     </div>
     <div class="bg-white rounded-xl border border-ink-200 shadow-card">
-      <div class="px-4 py-2.5 flex items-center gap-2 border-b border-ink-100 text-ink-600">${pinIco} <span class="text-sm font-semibold text-ink-900">Arrival</span></div>
+      <div class="px-4 py-3 flex items-center gap-2 border-b border-ink-100 text-ink-600">${pinIco} <span class="text-sm font-semibold text-ink-900">Arrival</span></div>
       <div class="p-4">
         <div class="text-[32px] font-bold text-ink-900 leading-none mb-1">${arr.code}</div>
         <div class="text-sm text-ink-500 mb-4">${NAMES[arr.code] || arr.name || arr.code}</div>
-        <div class="flex flex-col gap-1.5 text-[13px]">
+        <div class="flex flex-col gap-1 text-sm">
           <div><span class="font-semibold text-ink-900">Scheduled:</span> <span class="text-brand-600">${AC.arr || '05:55+1 UTC'}</span></div>
           <div><span class="font-semibold text-ink-900">Terminal:</span> <span class="text-brand-600">Terminal 3</span></div>
           <div><span class="font-semibold text-ink-900">Gate:</span> <span class="text-ink-700">A15</span></div>

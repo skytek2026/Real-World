@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -21,59 +21,59 @@
   .region-popup .leaflet-popup-content-wrapper{padding:0;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.15)}
   .region-popup .leaflet-popup-content{margin:0}
   .region-popup .leaflet-popup-tip-container{margin-top:-1px}
-  .region-popup .leaflet-popup-close-button{color:#fff !important;opacity:.85;font:700 20px/1 'Inter',sans-serif !important;width:26px;height:26px;padding:2px 0 0 0 !important;top:6px !important;right:6px !important;border-radius:6px;text-align:center;text-decoration:none !important;transition:opacity .12s,background .12s}
+  .region-popup .leaflet-popup-close-button{color:#fff !important;opacity:.85;font:700 20px/1 'Inter',sans-serif !important;width:26px;height:26px;padding:2px 0 0 0 !important;top:6px !important;right:6px !important;border-radius:8px;text-align:center;text-decoration:none !important;transition:opacity .12s,background .12s}
   .region-popup .leaflet-popup-close-button:hover{opacity:1;background:rgba(255,255,255,.18)}
   /* Pill tabs */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:13px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .ds-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms ease;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
   .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
-  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:6px}
+  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px}
   /* Details list */
-  .det-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:12.5px}
+  .det-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px}
   .det-row:last-child{border-bottom:0}
   .det-label{color:var(--brand-600,#2563eb);font-weight:500}
   .det-value{color:#111827;font-weight:600;text-align:right}
   /* Portfolio table */
   .pf-tbl{width:100%;border-collapse:collapse}
-  .pf-tbl th{padding:8px 10px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
-  .pf-tbl td{padding:9px 10px;font-size:13px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
+  .pf-tbl th{padding:8px 12px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+  .pf-tbl td{padding:8px 12px;font-size:14px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
   .pf-tbl tr:last-child td{border-bottom:0}
   .pf-tbl tbody tr:hover td{background:#fafafa}
   /* DS metric strip */
   .ds-metric-strip{display:flex;background:var(--brand-050,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:var(--radius-lg,12px);overflow:hidden}
-  .ds-metric{flex:1;min-width:0;padding:14px 20px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--brand-100,#dbeafe)}
+  .ds-metric{flex:1;min-width:0;padding:16px 20px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--brand-100,#dbeafe)}
   .ds-metric:last-child{border-right:0}
-  .ds-metric-label{font-size:11px;font-weight:500;color:var(--text-muted,#6b7280);letter-spacing:.02em;white-space:nowrap}
+  .ds-metric-label{font-size:12px;font-weight:500;color:var(--text-muted,#6b7280);letter-spacing:.02em;white-space:nowrap}
   .ds-metric-value{font-size:24px;font-weight:700;line-height:1;color:var(--brand-600,#1485c5);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
   /* Stat pills */
-  .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb);font-size:13px;font-weight:700;padding:3px 10px;border-radius:8px;font-variant-numeric:tabular-nums}
+  .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;font-variant-numeric:tabular-nums}
   /* Map btn */
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
   .map-btn:hover{background:#f3f4f6}
   .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
   .leaflet-control-zoom a svg{width:16px;height:16px}
   #region-map .leaflet-top.leaflet-left{top:56px;left:2px}
-  #region-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:10px!important}
+  #region-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important}
   #prd-map-wrap.is-fullscreen{position:fixed!important;inset:0!important;z-index:9999!important;border-radius:0!important}
   #prd-layers-menu button:hover{background:#f3f4f6}
   /* Layout */
   .prd-top-row{display:grid;grid-template-columns:260px minmax(0,1fr) minmax(0,1fr);gap:12px;margin-bottom:12px;height:440px}
   .prd-top-row>div{height:440px;overflow-y:auto!important}
   /* Card tab dropdown */
-  .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s}
+  .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 16px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s}
   .tab-dd:hover{border-color:#d1d5db}
   .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15)}
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none}
   @media(max-width:1023px){.prd-top-row{grid-template-columns:1fr;height:auto}.prd-top-row>div{height:auto;max-height:none;min-width:0}.prd-top-row>div:has(.leaflet-container){height:360px}}
   @media(max-width:767px){.mobile-tab-select{display:block!important}.tabs-desktop-wrap{display:none!important}}
   /* DS card footer + Tertiary/Ghost button (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -90,7 +90,7 @@ window.PAGE = { id:'regions', title:'Property Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -169,15 +169,15 @@ function initMap() {
   props.forEach(p => {
     const icon = L.divIcon({
       className:'',
-      html:`<div style="width:26px;height:26px;border-radius:6px;background:#f97316;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(249,115,22,.4);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg></div>`,
+      html:`<div style="width:26px;height:26px;border-radius:8px;background:#f97316;border:2.5px solid #fff;box-shadow:0 2px 6px rgba(249,115,22,.4);display:flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg></div>`,
       iconSize:[26,26], iconAnchor:[13,13],
     });
     const popupHTML = `
       <div style="font-family:'Inter',sans-serif;width:240px;border-radius:12px;overflow:hidden">
-        <div style="background:var(--brand-600,#2563eb);color:#fff;padding:11px 14px"><span style="font-size:14px;font-weight:700">${p.name}</span></div>
-        <div style="background:#fff;padding:14px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:9px"><span style="color:#6b7280;font-size:13px">Type:</span><span style="font-weight:700;color:#111827;font-size:13px">${p.type}</span></div>
-          <div style="display:flex;justify-content:space-between"><span style="color:#6b7280;font-size:13px">Value:</span><span style="font-weight:700;color:#111827;font-size:13px">${p.value}</span></div>
+        <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px"><span style="font-size:14px;font-weight:700">${p.name}</span></div>
+        <div style="background:#fff;padding:16px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#6b7280;font-size:14px">Type:</span><span style="font-weight:700;color:#111827;font-size:14px">${p.type}</span></div>
+          <div style="display:flex;justify-content:space-between"><span style="color:#6b7280;font-size:14px">Value:</span><span style="font-weight:700;color:#111827;font-size:14px">${p.value}</span></div>
         </div>
       </div>`;
     L.marker(p.coord,{icon})
@@ -233,9 +233,9 @@ function initMap() {
 /* ── Stat cell helper ──────────────────────────────────────────────────── */
 function statCell(label, date, value) {
   return `
-  <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;padding:4px 0">
+  <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:4px 0">
     <div style="font-size:12px;font-weight:700;color:#111827">${label}</div>
-    ${date ? `<div style="font-size:11px;color:#f97316;font-weight:600">${date}</div>` : `<div style="height:1px"></div>`}
+    ${date ? `<div style="font-size:12px;color:#f97316;font-weight:600">${date}</div>` : `<div style="height:1px"></div>`}
     <span class="spill-blue">${value}</span>
   </div>`;
 }
@@ -253,14 +253,14 @@ function Content() {
 
       <!-- LEFT: Details -->
       <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column">
-        <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
           <span style="font-size:14px;font-weight:700;color:#111827">Details</span>
-          <div style="display:flex;align-items:center;gap:6px">
+          <div style="display:flex;align-items:center;gap:4px">
             <button class="map-btn" title="Edit" style="width:26px;height:26px">${EDIT_ICO}</button>
             <button class="map-btn" title="Delete" style="width:26px;height:26px">${TRASH_ICO}</button>
           </div>
         </div>
-        <div style="padding:8px 14px;flex:1">
+        <div style="padding:8px 16px;flex:1">
           <div class="det-row"><span class="det-label">Region Type:</span><span class="det-value">${d.type}</span></div>
           <div class="det-row"><span class="det-label">Created at:</span><span class="det-value">${d.createdAt}</span></div>
           <div class="det-row"><span class="det-label">Affected Policies:</span><span class="det-value">${d.affectedPolicies}</span></div>
@@ -278,11 +278,11 @@ function Content() {
 
       <!-- MIDDLE: Region Exposure by Portfolio -->
       <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-        <div style="padding:12px 14px;border-bottom:1px solid #f3f4f6">
+        <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6">
           <span style="font-size:14px;font-weight:700;color:#111827">Region Exposure by Portfolio</span>
         </div>
         <!-- Total Exposure metric blocks -->
-        <div style="padding:12px 14px 4px">
+        <div style="padding:12px 16px 4px">
           <div class="ds-metric-strip">
             <div class="ds-metric"><span class="ds-metric-label">Total Exposure</span><span class="ds-metric-value">${pe.totalExposure}</span></div>
             <div class="ds-metric"><span class="ds-metric-label">Total War Exposure</span><span class="ds-metric-value">${pe.totalWarExposure}</span></div>
@@ -311,7 +311,7 @@ function Content() {
 
       <!-- RIGHT: Region Summary Statistics / Create Region Report -->
       <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
-        <div style="padding:10px 12px;border-bottom:1px solid #f3f4f6">
+        <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6">
           <div class="tabs-desktop-wrap">
             <div class="ds-tabs" id="rtab-tabs" style="width:100%">
               <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -326,29 +326,29 @@ function Content() {
         </div>
         ${rightTab === 'stats' ? `
         <div style="flex:1;min-height:0;display:flex;flex-direction:column">
-        <div style="padding:12px 14px 0;flex-shrink:0">
+        <div style="padding:12px 16px 0;flex-shrink:0">
           <!-- Date range + portfolio filter -->
-          <div style="font-size:12px;color:#6b7280;margin-bottom:5px">Date Range:</div>
-          <div style="display:grid;grid-template-columns:1fr 14px 1fr 1fr;align-items:center;gap:8px;margin-bottom:14px">
+          <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Date Range:</div>
+          <div style="display:grid;grid-template-columns:1fr 14px 1fr 1fr;align-items:center;gap:8px;margin-bottom:12px">
             <div style="position:relative">
-              <input type="text" value="Jan 1st 2025" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+              <input type="text" value="Jan 1st 2025" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
             <span style="font-size:12px;color:#9ca3af;text-align:center">to</span>
             <div style="position:relative">
-              <input type="text" value="Dec 31st 2025" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+              <input type="text" value="Dec 31st 2025" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
-            <select style="height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 24px 0 8px;font-size:12.5px;color:#374151;background:#fff url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%2210%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpolyline points=%226 9 12 15 18 9%22/%3E%3C/svg%3E') no-repeat right 7px center;background-size:10px;font-family:inherit;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer">
+            <select style="height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 24px 0 8px;font-size:14px;color:#374151;background:#fff url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%2210%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2364748b%22 stroke-width=%222.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpolyline points=%226 9 12 15 18 9%22/%3E%3C/svg%3E') no-repeat right 7px center;background-size:10px;font-family:inherit;outline:none;appearance:none;-webkit-appearance:none;cursor:pointer">
               <option>All Portfolios</option>
               <option>Marriott Hotels (US)</option>
               <option>Top 500 yachts</option>
             </select>
           </div>
         </div>
-        <div style="flex:1;min-height:0;overflow-y:auto;padding:0 14px 12px" class="scroll-thin">
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px 12px" class="scroll-thin">
           <!-- Stats grid: 4 rows × 3 cols -->
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;column-gap:10px;row-gap:14px">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;column-gap:8px;row-gap:12px">
             ${statCell('Average Daily Asset Count',  '', s.avgAssetCount)}
             ${statCell('Highest Daily Asset Count',  s.hiAssetDate, s.hiAssetCount)}
             ${statCell('Lowest Daily Asset Count',   s.loAssetDate, s.loAssetCount)}
@@ -368,14 +368,14 @@ function Content() {
         </div>
         </div>` : `
         <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px">
-          <div style="text-align:center;color:#9ca3af;font-size:13px">Report builder coming soon</div>
+          <div style="text-align:center;color:#9ca3af;font-size:14px">Report builder coming soon</div>
         </div>`}
       </div>
     </div>
 
     <!-- Bottom: tab bar + map -->
     <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;min-height:520px">
-      <div style="padding:10px 14px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+      <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
         <div class="tabs-desktop-wrap">
           <div class="ds-tabs" id="map-view-tabs">
             <span class="ds-tab-pill is-init" data-tab-pill></span>
@@ -400,12 +400,12 @@ function Content() {
           <div style="position:relative">
             <button id="prd-layers-btn" class="map-btn" title="Map type">${SC.I.layers}</button>
             <div id="prd-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
-              ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`<button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;color:#374151;text-align:left"><span data-label>${l}</span><span data-check style="display:flex;color:var(--brand-600,#2563eb);opacity:0">${SC.I.check}</span></button>`).join('')}
+              ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`<button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:14px;color:#374151;text-align:left"><span data-label>${l}</span><span data-check style="display:flex;color:var(--brand-600,#2563eb);opacity:0">${SC.I.check}</span></button>`).join('')}
             </div>
           </div>
         </div>
       </div>` : `
-      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;padding:48px">
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:14px;padding:48px">
         <div style="text-align:center"><div style="font-size:32px;margin-bottom:12px">📋</div>${mapTab.charAt(0).toUpperCase()+mapTab.slice(1)} data coming soon</div>
       </div>`}
     </div>

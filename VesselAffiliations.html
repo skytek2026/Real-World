@@ -8,7 +8,7 @@
 <script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <style>
@@ -48,7 +48,7 @@
   /* Risk Score Trend node tooltips */
   .rs-node{position:absolute;width:20px;height:20px;transform:translate(-50%,-50%);cursor:pointer;z-index:3;border-radius:50%;}
   .rs-node:hover{background:rgba(45,127,251,0.12);}
-  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
   .rs-node:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#1485c5;}
@@ -57,14 +57,14 @@
   .rs-tip.l{left:-6px;}
   .rs-tip.r{right:-6px;}
   .rs-tip::after{content:'';position:absolute;bottom:100%;width:9px;height:9px;background:#fff;border-left:1px solid #e5e7eb;border-top:1px solid #e5e7eb;transform:translateY(50%) rotate(45deg);}
-  .rs-tip.c::after{left:50%;margin-left:-4.5px;}
+  .rs-tip.c::after{left:50%;margin-left:-4px;}
   .rs-tip.l::after{left:14px;}
   .rs-tip.r::after{right:14px;}
-  .rs-tip-h{font-size:11px;font-weight:800;color:#111827;margin-bottom:6px;}
-  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:11px;}
-  .rs-tip-tbl th{padding:2px 3px;font-size:11px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
+  .rs-tip-h{font-size:12px;font-weight:700;color:#111827;margin-bottom:4px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:12px;}
+  .rs-tip-tbl th{padding:2px 4px;font-size:12px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
   .rs-tip-tbl th:first-child{text-align:left;}
-  .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
+  .rs-tip-tbl td{padding:4px 4px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
@@ -74,19 +74,19 @@
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
+  .ds-tab { position:relative; font:inherit; font-size:14px; font-weight:600; padding:8px 20px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; text-align:center; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#1485c5; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
   .vaff-tabscroll{scrollbar-width:none;-ms-overflow-style:none}
   .vaff-tabscroll::-webkit-scrollbar{height:0;display:none}
-  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:6px; }
+  .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:4px; }
   .ds-tab[data-disabled="true"] { color:#d1d5db; cursor:not-allowed; }
   /* DS Pagination — provided by shared/pagination.css */
   #vessel-map { background:#0b1220; position:absolute; inset:0; }
   #vessel-map .leaflet-top.leaflet-left { top:46px; left:2px; }
-  #vessel-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  #vessel-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42/.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
@@ -97,26 +97,26 @@
   #vessel-tracking-card.is-fullscreen { position:fixed; inset:0; z-index:9999; border-radius:0; }
   #vessel-tracking-card.is-fullscreen #map-wrapper { min-height:0; flex:1; }
   /* Timeline overlay */
-  .timeline-overlay { position:absolute; bottom:16px; left:12px; right:12px; z-index:400; background:rgba(15,23,42,.82); border-radius:12px; padding:10px 14px; backdrop-filter:blur(4px); }
+  .timeline-overlay { position:absolute; bottom:16px; left:12px; right:12px; z-index:400; background:rgba(15,23,42,.82); border-radius:12px; padding:12px 16px; backdrop-filter:blur(4px); }
   .timeline-track { position:relative; height:6px; background:rgba(255,255,255,.25); border-radius:999px; cursor:pointer; flex:1; }
   .timeline-fill  { position:absolute; left:0; top:0; bottom:0; background:#1485c5; border-radius:999px; pointer-events:none; }
   .timeline-thumb { position:absolute; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; background:#fff; border:2px solid #1485c5; border-radius:999px; box-shadow:0 2px 6px rgba(0,0,0,.4); pointer-events:none; cursor:grab; }
   /* Mobile responsive */
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){
     .mobile-tab-select{display:block!important;}
     .tabs-desktop-wrap{display:none!important;}
     .vessel-top-section>div{height:auto!important;min-height:300px;}
-    .hist-date-row{flex-direction:column!important;align-items:flex-start!important;gap:6px!important;}
+    .hist-date-row{flex-direction:column!important;align-items:flex-start!important;gap:4px!important;}
     .hist-date-row input{width:100%!important;box-sizing:border-box;}
     .hist-date-arrow{display:none!important;}
   }
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#0f6aa0);}
 
   /* ── DS color conformance: override off-palette Tailwind utilities ── */
@@ -148,7 +148,7 @@
   }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -194,7 +194,7 @@ function tabs(items, active, attr) {
   <div class="ds-tabs" data-tab-group="${attr}">
     <span class="ds-tab-pill is-init" data-tab-pill></span>
     ${items.map(t => `
-      <button ${attr}="${t.k}" aria-selected="${t.k===active}" class="ds-tab" style="font-size:12px; padding:7px 14px;">
+      <button ${attr}="${t.k}" aria-selected="${t.k===active}" class="ds-tab" style="font-size:12px; padding:8px 16px;">
         <span class="ds-tab-label">${t.dot}${t.k}</span>
       </button>`).join('')}
   </div>`;
@@ -254,9 +254,9 @@ function KeyFindingsCard() {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths[f.icon]}</svg>
             </span>
             <div class="min-w-0">
-              <div class="text-[11px] text-ink-600 leading-snug">${f.label}</div>
+              <div class="text-xs text-ink-600 leading-snug">${f.label}</div>
               <div class="mt-0.5 text-xl font-bold leading-none text-red-700">${f.value}</div>
-              <div class="mt-1.5 text-[11px] text-ink-500 leading-snug">${f.note}</div>
+              <div class="mt-1 text-xs text-ink-500 leading-snug">${f.note}</div>
             </div>
           </div>`;
           }).join('')}
@@ -288,26 +288,26 @@ function OwnershipCard() {
             <div class="mt-4 text-xs font-bold text-ink-900">Sanctions hits <span class="font-semibold text-ink-500">(${e.hits.length})</span></div>
             <div class="mt-2 flex flex-col gap-2">
               ${e.hits.map(hit => `
-              <div class="rounded-md border border-ink-200 bg-white border-l-[3px] border-l-red-500 px-3 py-2">
+              <div class="rounded-lg border border-ink-200 bg-white border-l-[3px] border-l-red-500 px-3 py-2">
                 <div class="flex flex-wrap items-center gap-2">
                   <span class="text-xs font-bold text-ink-900">${hit.source}</span>
-                  <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-red-50 text-red-700 border border-red-200">${hit.state}</span>
-                  <span class="text-[11px] text-ink-600">${hit.added}</span>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-red-50 text-red-700 border border-red-200">${hit.state}</span>
+                  <span class="text-xs text-ink-600">${hit.added}</span>
                 </div>
                 <div class="mt-1 text-xs text-ink-700">${hit.text}</div>
               </div>`).join('')}
             </div>` : '';
           const fleet = e.fleet ? `
             <div class="mt-4 text-xs font-bold text-ink-900">Other vessels managed by this company <span class="font-semibold text-ink-500">(${e.fleet.length})</span> <span class="font-semibold text-red-600">· ${sanctionedCount} sanctioned</span></div>
-            <div class="mt-2 overflow-x-auto rounded-md border border-ink-200 bg-white">
+            <div class="mt-2 overflow-x-auto rounded-lg border border-ink-200 bg-white">
               <table class="w-full text-xs min-w-[680px]">
                 <thead class="bg-ink-50">
                   <tr>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Vessel</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">IMO</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Type</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Flag</th>
-                    <th class="px-3 py-2 text-left text-[11px] font-bold uppercase tracking-wider text-ink-500">Status</th>
+                    <th class="px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-ink-500">Vessel</th>
+                    <th class="px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-ink-500">IMO</th>
+                    <th class="px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-ink-500">Type</th>
+                    <th class="px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-ink-500">Flag</th>
+                    <th class="px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-ink-500">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -318,8 +318,8 @@ function OwnershipCard() {
                     <td class="px-3 py-2 text-ink-700">${v.type}</td>
                     <td class="px-3 py-2 text-ink-700">${v.flag}</td>
                     <td class="px-3 py-2">${v.sanctioned
-                      ? `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`
-                      : `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Clear</span>`}</td>
+                      ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`
+                      : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Clear</span>`}</td>
                   </tr>`).join('')}
                 </tbody>
               </table>
@@ -328,11 +328,11 @@ function OwnershipCard() {
           <div class="mt-3">
             <div class="text-xs text-ink-500">${e.k}</div>
             <div class="mt-0.5 text-base font-bold text-ink-900">${e.name}</div>
-            <div class="mt-1.5 flex items-center gap-2 text-sm font-semibold" style="color:${c.fg}">
+            <div class="mt-1 flex items-center gap-2 text-sm font-semibold" style="color:${c.fg}">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><circle cx="12" cy="12" r="9"/><path d="${c.icon}"/></svg>
               ${e.status}
             </div>
-            <div class="mt-1.5 text-xs text-ink-600">${e.detail}</div>
+            <div class="mt-1 text-xs text-ink-600">${e.detail}</div>
             ${hits}
             ${fleet}
           </div>`;
@@ -349,7 +349,7 @@ function Content() {
         const href = 'VesselDetails.html';
         const label = 'BACK TO VESSEL';
         return `
-      <a href="${href}" class="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+      <a href="${href}" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         ${label}
       </a>`;

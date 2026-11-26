@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
   html,body { height:100%; font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
@@ -17,7 +17,7 @@
   /* Map */
   #avia-detail-map { position:absolute; inset:0; background:#0b1e2e; }
   #avia-detail-map .leaflet-top.leaflet-left { top:56px; left:2px; }
-  #avia-detail-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:10px !important; }
+  #avia-detail-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
@@ -27,7 +27,7 @@
   .avia-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .avia-popup .leaflet-popup-content { margin:0; width:320px !important; font-family:'Inter',sans-serif; }
   .avia-popup .leaflet-popup-tip { background:#fff; }
-  .avia-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:6px !important; }
+  .avia-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:8px !important; }
   .avia-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; }
   .text-ink-900{color:#111827}.text-ink-700{color:#374151}.text-ink-600{color:#4b5563}.text-ink-500{color:#6b7280}.text-ink-400{color:#9ca3af}
   .bg-ink-100{background:#f3f4f6}.bg-ink-50{background:#f9fafb}
@@ -38,51 +38,51 @@
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.55)}70%{box-shadow:0 0 0 10px rgba(239,68,68,0)}100%{box-shadow:0 0 0 0 rgba(239,68,68,0)}}
   /* Pill tabs */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
-  .ds-tab{position:relative;font:inherit;font-size:12.5px;font-weight:600;padding:7px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .ds-tab{position:relative;font:inherit;font-size:14px;font-weight:600;padding:8px 16px;background:transparent;border:0;border-radius:9999px;color:#6b7280;cursor:pointer;transition:color 140ms;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
   .ds-tab:hover{color:#111827}
   .ds-tab[aria-selected="true"]{color:#fff}
   .ds-tab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 300ms cubic-bezier(.34,1.2,.64,1),width 300ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .ds-tab-pill.is-init{transition:none}
-  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:5px}
+  .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px}
   /* Policy table */
   .pol-table{width:100%;border-collapse:collapse;font-size:12px}
-  .pol-table th{padding:9px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:default;text-transform:uppercase;letter-spacing:.04em}
+  .pol-table th{padding:8px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:default;text-transform:uppercase;letter-spacing:.04em}
   .pol-table th.sortable{cursor:pointer}
   .pol-table th.sortable:hover{color:var(--brand-600,#2563eb)}
-  .pol-table td{padding:10px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle}
+  .pol-table td{padding:12px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
   .pol-table tbody tr:hover td{background:#f9fafb}
   .pol-table td.id-cell{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
   .pol-table td.id-cell:hover{color:var(--brand-700,#1d4ed8)}
   /* Mobile policy cards */
   .pol-cards{display:none}
-  .pcard{padding:14px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
+  .pcard{padding:16px 16px;border-bottom:1px solid #eef2f7;display:flex;flex-direction:column;gap:12px}
   .pcard:last-child{border-bottom:0}
-  .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
   .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
   .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-600,#2563eb);text-decoration:none;word-break:break-word}
-  .pcard-sub{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12.5px;color:#6b7280}
-  .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px}
+  .pcard-sub{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:14px;color:#6b7280}
+  .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
-  .pcard-k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
-  .pcard-v{font-size:13px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+  .pcard-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
+  .pcard-v{font-size:14px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
   .pcard-v.is-strong{font-size:14px;font-weight:700;color:#111827}
   .pcard-v.is-mono{font-family:monospace;font-size:12px}
   .pcard-more{display:none}
   .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e5e7eb;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;color:var(--brand-600,#2563eb)}
+  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:4px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--brand-600,#2563eb)}
   .pcard-chev{transition:transform .2s ease}
   .pcard.open .pcard-chev{transform:rotate(180deg)}
-  .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:3px;vertical-align:middle;opacity:.55}
+  .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:4px;vertical-align:middle;opacity:.55}
   .sort-ico svg{width:7px;height:7px}
   /* Select */
-  .sel{border:1px solid #e5e7eb;border-radius:6px;padding:4px 22px 4px 8px;font-size:12px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
+  .sel{border:1px solid #e5e7eb;border-radius:8px;padding:4px 24px 4px 8px;font-size:12px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 5px center;-webkit-appearance:none;font-family:inherit;cursor:pointer}
   /* Stat cards */
-  .stat-card{flex:1;padding:12px 10px;text-align:center;border-right:1px solid var(--brand-100,#dbeafe);}
+  .stat-card{flex:1;padding:12px 12px;text-align:center;border-right:1px solid var(--brand-100,#dbeafe);}
   .stat-card:last-child{border-right:0;}
   /* Mobile responsive */
-  .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
+  .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){
     .avi-top-panels{grid-template-columns:1fr!important;}
     .mobile-tab-select{display:block!important;}
@@ -98,10 +98,10 @@
     .pol-toolbar .relative,.pol-toolbar input[type=text]{width:100%}
   }
   /* DS card footer + Tertiary/Ghost buttons (ALL CAPS) — per Skytek DS */
-  .ds-card-foot{padding:10px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
+  .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.01em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.01em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -120,7 +120,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=21"></script>
+<script src="shared/chrome.js?v=22"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/aviation-map.js"></script>
@@ -249,7 +249,7 @@ function sortIcon() {
 
 /* ── Flag helper ── */
 function flag(cc, w=18, h=13) {
-  return `<img src="flags/${cc}.svg" width="${w}" height="${h}" style="border-radius:2px;vertical-align:middle;display:inline-block;" />`;
+  return `<img src="flags/${cc}.svg" width="${w}" height="${h}" style="border-radius:4px;vertical-align:middle;display:inline-block;" />`;
 }
 
 /* ── Tab pill positioning ── */
@@ -284,7 +284,7 @@ function PanelDetails() {
     </div>
     <div class="px-4 py-2 space-y-0 flex-1">
       ${rows.map(([k,v]) => `
-        <div class="flex items-center justify-between py-2.5 border-b border-ink-50 last:border-0 text-sm">
+        <div class="flex items-center justify-between py-3 border-b border-ink-50 last:border-0 text-sm">
           <span class="text-ink-500 text-xs">${k}</span>
           <span class="${k==='Id'?'text-brand-600 font-semibold text-xs':'font-semibold text-ink-800 text-xs'}">${v}</span>
         </div>`).join('')}
@@ -347,19 +347,19 @@ function PanelSummaryContent() {
     <div class="px-3 pt-3 pb-3 border-b border-ink-100">
       <div class="stat-cards-row" style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;overflow:hidden;display:flex;">
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Aircraft</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Aircraft</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">529</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Avg. Cost Of Aircraft</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Avg. Cost Of Aircraft</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$156.8M</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Highest Value Aircraft</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Highest Value Aircraft</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$284.3M</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Departures 2025</div>
+          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Departures 2025</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">142,856</div>
         </div>
       </div>
@@ -367,9 +367,9 @@ function PanelSummaryContent() {
     <!-- Fleet Breakdown -->
     <div class="px-4 py-3 border-b border-ink-100">
       <div class="text-xs font-semibold text-ink-700 mb-2 text-center">Fleet Breakdown:</div>
-      <div class="flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+      <div class="flex flex-wrap justify-center gap-x-4 gap-y-1">
         ${fleet.map(f => `
-          <span class="flex items-center gap-1.5 text-xs text-ink-700">
+          <span class="flex items-center gap-1 text-xs text-ink-700">
             ${flag(f.cc)} <span class="font-medium">${f.name}:</span> <span class="tabular-nums">${f.count}</span> <span class="text-ink-400">(${f.pct}%)</span>
           </span>`).join('')}
       </div>
@@ -377,9 +377,9 @@ function PanelSummaryContent() {
     <!-- Minority Shareholdings -->
     <div class="px-4 py-3">
       <div class="text-xs font-semibold text-ink-700 mb-2 text-center">Minority Shareholdings:</div>
-      <div class="flex flex-wrap justify-center gap-x-4 gap-y-1.5">
+      <div class="flex flex-wrap justify-center gap-x-4 gap-y-1">
         ${minority.map(m => `
-          <span class="flex items-center gap-1.5 text-xs text-ink-700">
+          <span class="flex items-center gap-1 text-xs text-ink-700">
             ${flag(m.cc)} <span class="font-medium">${m.name}:</span> <span class="tabular-nums text-ink-500">${m.pct}</span>
           </span>`).join('')}
       </div>
@@ -408,13 +408,13 @@ function PanelDestinationsContent() {
         <tbody>
           ${dests.map((d,i) => `
             <tr>
-              <td style="padding:10px 16px;font-size:13px;color:#111827;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">
+              <td style="padding:12px 16px;font-size:14px;color:#111827;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">
                 <span style="display:inline-flex;align-items:center;gap:8px;">${flag(d.cc, 20, 14)} ${d.country}</span>
               </td>
-              <td style="padding:10px 16px;font-size:13px;color:#374151;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">
+              <td style="padding:12px 16px;font-size:14px;color:#374151;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">
                 <span style="color:var(--brand-600,#2563eb);font-weight:600;">${d.code}</span> <span style="color:#6b7280;">- ${d.name}</span>
               </td>
-              <td style="padding:10px 16px;font-size:13px;color:#111827;text-align:right;font-variant-numeric:tabular-nums;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">${d.no}</td>
+              <td style="padding:12px 16px;font-size:14px;color:#111827;text-align:right;font-variant-numeric:tabular-nums;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">${d.no}</td>
             </tr>`).join('')}
         </tbody>
       </table>
@@ -479,9 +479,9 @@ function PolicySection() {
       <div class="flex-1"></div>
       <div class="relative">
         <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" placeholder="Search" class="pl-7 pr-3 py-1.5 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
+        <input type="text" placeholder="Search" class="pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
       </div>
-      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1.5 text-ink-700 font-semibold hover:bg-ink-50">
+      <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-2 text-ink-700 font-semibold hover:bg-ink-50">
         Edit Columns
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
@@ -548,7 +548,7 @@ function PolicySection() {
               <a class="pcard-title" href="#">${l.hdr}</a>
               <div class="pcard-sub">${l.name}</div>
             </div>
-            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${l.type}</span>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:12px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${l.type}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv"><span class="pcard-k">Limit Value</span><span class="pcard-v is-strong">${l.value}</span></div>
@@ -598,10 +598,10 @@ function PolicySection() {
         </thead>
         <tbody>
           ${LIST_POLICIES.slice((policyPage-1)*policyPerPage, policyPage*policyPerPage).map(p => {
-            const seatChip = (color, n, ico) => n ? `<span style="display:inline-flex;align-items:center;gap:3px;color:${color};font-size:12px;">${ico}<span style="color:#4b5563">${n}</span></span>` : '';
+            const seatChip = (color, n, ico) => n ? `<span style="display:inline-flex;align-items:center;gap:4px;color:${color};font-size:12px;">${ico}<span style="color:#4b5563">${n}</span></span>` : '';
             const armchair = lico('Armchair', 12);
             const ico = { first: armchair, business: armchair, economy: armchair };
-            const flagImg = `<img src="flags/${p.cc}.svg" width="16" height="12" style="display:inline-block;border-radius:2px;vertical-align:middle;margin-right:6px;" alt="${p.cc.toUpperCase()}" />`;
+            const flagImg = `<img src="flags/${p.cc}.svg" width="16" height="12" style="display:inline-block;border-radius:4px;vertical-align:middle;margin-right:4px;" alt="${p.cc.toUpperCase()}" />`;
             return `
               <tr>
                 <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-blue-600" /></td>
@@ -642,9 +642,9 @@ function PolicySection() {
           <div class="pcard-top">
             <div class="pcard-id">
               <a class="pcard-title" href="#">${p.reg}</a>
-              <div class="pcard-sub"><img src="flags/${p.cc}.svg" width="16" height="12" style="border-radius:2px;" alt="${cname}" />${p.airline}</div>
+              <div class="pcard-sub"><img src="flags/${p.cc}.svg" width="16" height="12" style="border-radius:4px;" alt="${cname}" />${p.airline}</div>
             </div>
-            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:11px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${p.model}</span>
+            <span class="stat-badge" style="background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:12px;padding:1px 8px;border-radius:999px;font-weight:700;white-space:nowrap;">${p.model}</span>
           </div>
           <div class="pcard-key">
             <div class="pcard-kv"><span class="pcard-k">Policy Ref</span><span class="pcard-v is-strong">${p.ref}</span></div>
@@ -679,7 +679,7 @@ function PolicySection() {
     ` : `
     <!-- Delete bar -->
     <div class="flex items-center gap-3 px-4 py-2 border-b border-ink-100 bg-ink-50/50">
-      <button class="flex items-center gap-1.5 text-xs border border-ink-200 rounded-md px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
+      <button class="flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-1 text-ink-600 hover:bg-ink-100 font-medium">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>

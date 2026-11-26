@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <script>
   tailwind.config = {
     theme: { extend: {
@@ -31,56 +31,56 @@
   .tracking-micro{letter-spacing:.04em}
 
   /* Report container — A4-ish doc shell sitting on light grey app bg */
-  .report-shell{max-width:1180px;margin:0 auto;padding:18px 22px 60px;display:flex;flex-direction:column;gap:14px}
+  .report-shell{max-width:1180px;margin:0 auto;padding:20px 24px 60px;display:flex;flex-direction:column;gap:12px}
   .report-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.05);overflow:hidden}
 
   /* Section headers (compact horizontal heading bar) */
-  .sec-head{padding:14px 22px;border-bottom:1px solid #f3f4f6;font-size:13px;font-weight:700;color:#111827;letter-spacing:.02em;text-transform:none}
-  .sec-body{padding:20px 22px}
+  .sec-head{padding:16px 24px;border-bottom:1px solid #f3f4f6;font-size:14px;font-weight:700;color:#111827;letter-spacing:.02em;text-transform:none}
+  .sec-body{padding:20px 24px}
 
   /* Top meta bar */
-  .meta-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 22px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+  .meta-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 24px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
   .meta-item{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#4b5563}
   .meta-item .lbl{color:#9ca3af;font-weight:500}
   .meta-item .val{color:#111827;font-weight:600;font-variant-numeric:tabular-nums}
   .meta-actions{display:flex;align-items:center;gap:8px}
-  .meta-btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 14px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;font-size:12.5px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s}
+  .meta-btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 16px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s}
   .meta-btn:hover{background:#f9fafb;border-color:#d1d5db}
   .meta-btn svg{color:#6b7280}
 
   /* Summary stat cards (light blue boxes) */
-  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
-  .stat-card{background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+  .stat-card{background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
   .stat-card .stat-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;color:var(--brand-600,#2563eb);margin-bottom:2px}
   .stat-card .stat-num{font-family:'Exo','Inter',sans-serif;font-size:30px;font-weight:700;color:var(--brand-700,#1d4ed8);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
   .stat-card .stat-label{font-size:12px;font-weight:500;color:#4b5563}
   @media(max-width:760px){ .stat-grid{grid-template-columns:repeat(2,1fr)} }
 
   /* Vessel list table */
-  .v-table{width:100%;border-collapse:collapse;font-size:12.5px}
-  .v-table th{text-align:left;padding:10px 12px;font-size:11px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #e5e7eb;white-space:nowrap}
-  .v-table td{padding:11px 12px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:middle}
+  .v-table{width:100%;border-collapse:collapse;font-size:14px}
+  .v-table th{text-align:left;padding:12px 12px;font-size:12px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #e5e7eb;white-space:nowrap}
+  .v-table td{padding:12px 12px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:middle}
   .v-table tr:last-child td{border-bottom:0}
   .v-table tr:hover td{background:#f9fafb}
-  .v-table td.vname a{color:var(--brand-600,#2563eb);font-weight:700;letter-spacing:.02em;text-decoration:none;font-size:12.5px}
+  .v-table td.vname a{color:var(--brand-600,#2563eb);font-weight:700;letter-spacing:.02em;text-decoration:none;font-size:14px}
   .v-table td.vname a:hover{text-decoration:underline}
   .v-table .imo{color:#4b5563;font-variant-numeric:tabular-nums}
   .v-table .alerts-cell{color:#111827;font-weight:700;font-variant-numeric:tabular-nums}
-  .v-table tr.v-group td{background:#f3f4f6;color:#111827;font-weight:700;font-size:12px;letter-spacing:.02em;padding:9px 12px;border-bottom:1px solid #e5e7eb;border-top:1px solid #e5e7eb}
+  .v-table tr.v-group td{background:#f3f4f6;color:#111827;font-weight:700;font-size:12px;letter-spacing:.02em;padding:8px 12px;border-bottom:1px solid #e5e7eb;border-top:1px solid #e5e7eb}
   .v-table tr.v-group:first-child td{border-top:0}
-  .v-table .flag-cell{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:#374151}
-  .v-table .flag-img{width:22px;height:16px;object-fit:cover;border:1px solid #e5e7eb;border-radius:2px;flex-shrink:0;display:block}
+  .v-table .flag-cell{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#374151}
+  .v-table .flag-img{width:22px;height:16px;object-fit:cover;border:1px solid #e5e7eb;border-radius:4px;flex-shrink:0;display:block}
 
   /* Alert Type Summary table — header matches system table style */
-  .alert-table{width:100%;border-collapse:collapse;font-size:13px}
-  .alert-table thead th{text-align:left;padding:10px 16px;font-size:11px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #e5e7eb;white-space:nowrap}
+  .alert-table{width:100%;border-collapse:collapse;font-size:14px}
+  .alert-table thead th{text-align:left;padding:12px 16px;font-size:12px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #e5e7eb;white-space:nowrap}
   .alert-table thead th:last-child{width:220px}
   .alert-table tbody td{padding:12px 16px;border-bottom:1px solid #f3f4f6;vertical-align:middle}
   .alert-table tbody tr:last-child td{border-bottom:0}
   .alert-table tbody tr:hover td{background:#f9fafb}
-  .alert-table .at-name{display:inline-flex;align-items:center;gap:11px;color:var(--brand-600,#2563eb);font-weight:600;font-size:13px}
+  .alert-table .at-name{display:inline-flex;align-items:center;gap:12px;color:var(--brand-600,#2563eb);font-weight:600;font-size:14px}
   .alert-table .at-name svg{width:19px;height:19px;color:var(--brand-600,#2563eb);flex-shrink:0}
-  .alert-table .at-desc{margin-top:4px;padding-left:30px;font-size:12px;color:#6b7280;line-height:1.5;max-width:560px}
+  .alert-table .at-desc{margin-top:4px;padding-left:32px;font-size:12px;color:#6b7280;line-height:1.5;max-width:560px}
   /* Custom masked icon — inherits currentColor so it themes (blue in table, white on navy card) */
   .icon-suspicious{display:inline-block;width:23px;height:23px;flex-shrink:0;background-color:currentColor;-webkit-mask:url('../images/icon-alert-suspicious-activity.svg') center/contain no-repeat;mask:url('../images/icon-alert-suspicious-activity.svg') center/contain no-repeat}
   .icon-port-call{display:inline-block;width:23px;height:23px;flex-shrink:0;background-color:currentColor;-webkit-mask:url('../images/icon-alert-sanctioned-port-call.svg') center/contain no-repeat;mask:url('../images/icon-alert-sanctioned-port-call.svg') center/contain no-repeat}
@@ -98,95 +98,95 @@
   .alert-table tr.at-flagged td:first-child{border-left:3px solid #dc2626}
 
   /* Vessel details body */
-  .vd-head{display:flex;align-items:flex-start;gap:14px;padding:18px 22px 8px}
-  .vd-flag-block{display:flex;align-items:flex-start;gap:14px;flex:1;min-width:0}
+  .vd-head{display:flex;align-items:flex-start;gap:12px;padding:20px 24px 8px}
+  .vd-flag-block{display:flex;align-items:flex-start;gap:12px;flex:1;min-width:0}
   .vd-flag{width:46px;height:32px;border:1px solid #e5e7eb;border-radius:4px;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#f9fafb;flex-shrink:0}
   .vd-flag img{width:100%;height:100%;object-fit:cover;display:block}
   .vd-title{font-family:'Exo','Inter',sans-serif;font-size:20px;font-weight:700;color:var(--brand-600,#2563eb);letter-spacing:.01em;line-height:1.15}
-  .vd-sub{font-size:12px;color:#6b7280;margin-top:3px;line-height:1.5}
-  .vd-sub .sep{margin:0 6px;color:#d1d5db}
+  .vd-sub{font-size:12px;color:#6b7280;margin-top:4px;line-height:1.5}
+  .vd-sub .sep{margin:0 4px;color:#d1d5db}
 
   /* Risk gauge block (matches VesselDetails page) */
-  .vd-body{display:grid;grid-template-columns:260px 1fr;gap:22px;padding:8px 22px 18px;align-items:flex-start}
-  .risk-block{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding-top:2px}
-  .risk-label{font-size:11px;font-weight:600;color:#9ca3af;letter-spacing:.08em;text-transform:uppercase;text-align:center}
-  .gauge-card{background:#f9fafb;border-radius:12px;padding:12px 8px 10px;display:flex;flex-direction:column;align-items:center}
+  .vd-body{display:grid;grid-template-columns:260px 1fr;gap:20px;padding:8px 24px 20px;align-items:flex-start}
+  .risk-block{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding-top:2px}
+  .risk-label{font-size:12px;font-weight:600;color:#9ca3af;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+  .gauge-card{background:#f9fafb;border-radius:12px;padding:12px 8px 12px;display:flex;flex-direction:column;align-items:center}
   .gauge-card svg.gauge-svg{width:100%;max-width:200px;height:auto;overflow:visible}
-  .gauge-pill{display:flex;align-items:center;gap:4px;margin-top:-14px;margin-bottom:2px}
-  .gauge-pill .pill-lbl{font-size:11px;font-weight:700;letter-spacing:.06em}
-  .risk-guide{display:flex;flex-direction:column;gap:6px}
-  .rg-card{border-radius:8px;padding:8px 9px;border:1px solid transparent}
-  .rg-card .rg-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+  .gauge-pill{display:flex;align-items:center;gap:4px;margin-top:-12px;margin-bottom:2px}
+  .gauge-pill .pill-lbl{font-size:12px;font-weight:700;letter-spacing:.06em}
+  .risk-guide{display:flex;flex-direction:column;gap:4px}
+  .rg-card{border-radius:8px;padding:8px 8px;border:1px solid transparent}
+  .rg-card .rg-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
   .rg-card .rg-ico{width:24px;height:24px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .rg-card .rg-name{font-size:11px;font-weight:700;line-height:1.1}
-  .rg-card .rg-range{font-size:9.5px;color:#6b7280;margin-top:1px}
-  .rg-card .rg-pct{margin-left:auto;font-size:12.5px;font-weight:800;color:#111827;flex-shrink:0;font-variant-numeric:tabular-nums}
+  .rg-card .rg-name{font-size:12px;font-weight:700;line-height:1.1}
+  .rg-card .rg-range{font-size:12px;color:#6b7280;margin-top:1px}
+  .rg-card .rg-pct{margin-left:auto;font-size:14px;font-weight:700;color:#111827;flex-shrink:0;font-variant-numeric:tabular-nums}
   .rg-card .rg-bar{height:4px;background:#e5e7eb;border-radius:999px;overflow:hidden}
   .rg-card .rg-bar > span{display:block;height:100%;border-radius:999px}
 
   /* Property grid */
-  .prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 28px}
-  .prop{display:flex;flex-direction:column;gap:3px;min-width:0}
-  .prop .pk{font-size:11px;font-weight:500;color:#9ca3af;letter-spacing:.01em}
-  .prop .pv{font-size:12.5px;font-weight:600;color:#111827;line-height:1.4;word-break:break-word}
+  .prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 28px}
+  .prop{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .prop .pk{font-size:12px;font-weight:500;color:#9ca3af;letter-spacing:.01em}
+  .prop .pv{font-size:14px;font-weight:600;color:#111827;line-height:1.4;word-break:break-word}
   .prop .pv.flag-val{display:inline-flex;align-items:center;gap:8px}
-  .prop .pv.flag-val .flag-img{width:22px;height:16px;object-fit:cover;border:1px solid #e5e7eb;border-radius:2px;display:block;flex-shrink:0}
+  .prop .pv.flag-val .flag-img{width:22px;height:16px;object-fit:cover;border:1px solid #e5e7eb;border-radius:4px;display:block;flex-shrink:0}
   @media(max-width:780px){ .vd-body{grid-template-columns:1fr} .prop-grid{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:520px){ .prop-grid{grid-template-columns:1fr} }
 
   /* Vessel Details spec table (right of risk gauge) */
   .vd-spec{min-width:0}
-  .vd-spec-head{font-size:11px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;padding-bottom:9px;border-bottom:1px solid #e5e7eb}
-  .spec-table{width:100%;border-collapse:collapse;font-size:12.5px}
-  .spec-table th{text-align:left;font-weight:500;color:#9ca3af;font-size:11px;letter-spacing:.01em;padding:9px 12px 9px 0;vertical-align:top;white-space:nowrap;width:1%}
-  .spec-table td{padding:9px 28px 9px 0;color:#111827;font-weight:600;vertical-align:top;line-height:1.4;word-break:break-word}
+  .vd-spec-head{font-size:12px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;padding-bottom:8px;border-bottom:1px solid #e5e7eb}
+  .spec-table{width:100%;border-collapse:collapse;font-size:14px}
+  .spec-table th{text-align:left;font-weight:500;color:#9ca3af;font-size:12px;letter-spacing:.01em;padding:8px 12px 8px 0;vertical-align:top;white-space:nowrap;width:1%}
+  .spec-table td{padding:8px 28px 8px 0;color:#111827;font-weight:600;vertical-align:top;line-height:1.4;word-break:break-word}
   .spec-table tr{border-bottom:1px solid #f3f4f6}
   .spec-table tr:last-child{border-bottom:0}
   .spec-table td.flagval span{display:inline-flex;align-items:center;gap:8px}
-  .spec-table td.flagval .flag-img{width:22px;height:16px;object-fit:cover;border:1px solid #e5e7eb;border-radius:2px;display:block;flex-shrink:0}
+  .spec-table td.flagval .flag-img{width:22px;height:16px;object-fit:cover;border:1px solid #e5e7eb;border-radius:4px;display:block;flex-shrink:0}
 
   /* Recent activity sub-block */
-  .ra-wrap{border-top:1px solid #f3f4f6;padding:14px 22px 18px;background:#fcfdff}
-  .ra-title{font-size:12.5px;font-weight:700;color:#111827;margin-bottom:10px;letter-spacing:.01em}
+  .ra-wrap{border-top:1px solid #f3f4f6;padding:16px 24px 20px;background:#fcfdff}
+  .ra-title{font-size:14px;font-weight:700;color:#111827;margin-bottom:8px;letter-spacing:.01em}
   .ra-table{width:100%;border-collapse:collapse;font-size:12px}
-  .ra-table th{text-align:left;padding:8px 10px;font-size:11px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #e5e7eb;white-space:nowrap}
-  .ra-table td{padding:9px 10px;border-bottom:1px solid #f3f4f6;vertical-align:middle;color:#374151}
+  .ra-table th{text-align:left;padding:8px 12px;font-size:12px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid #e5e7eb;white-space:nowrap}
+  .ra-table td{padding:8px 12px;border-bottom:1px solid #f3f4f6;vertical-align:middle;color:#374151}
   .ra-table tr:last-child td{border-bottom:0}
   .ra-table .notif{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#374151;font-weight:500}
-  .ra-table .notif .ni{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:#fef3c7;color:#d97706;flex-shrink:0}
+  .ra-table .notif .ni{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:#fef3c7;color:#d97706;flex-shrink:0}
   .ra-table .notif .ni svg{width:14px;height:14px}
   .ra-table .notif .ni.blue{background:var(--brand-100,#dbeafe);color:var(--brand-600,#2563eb)}
   .ra-table .notif .ni.red{background:#fee2e2;color:#dc2626}
   .ra-table .notif .ni.amber{background:#fef3c7;color:#d97706}
   .ra-table .date{color:#4b5563;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:12px}
-  .ra-table .ra-note{margin-top:5px;display:flex;align-items:flex-start;gap:5px;font-size:11px;font-weight:500;color:#e07d18;line-height:1.45}
+  .ra-table .ra-note{margin-top:4px;display:flex;align-items:flex-start;gap:4px;font-size:12px;font-weight:500;color:#e07d18;line-height:1.45}
   .ra-table .ra-note svg{width:13px;height:13px;flex-shrink:0;margin-top:1px}
 
   /* Risk Indicator Descriptions (blue card) */
-  .rid-card{background:linear-gradient(180deg,var(--brand-800,#1e3a8a) 0%, var(--brand-700,#1e40af) 100%);border-radius:12px;padding:22px 26px;color:#fff;box-shadow:0 1px 3px rgba(15,23,42,.08)}
-  .rid-title{font-family:'Exo','Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-200,#b8ddf5);margin-bottom:18px}
-  .rid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 28px}
-  .rid-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:6px 4px}
+  .rid-card{background:linear-gradient(180deg,var(--brand-800,#1e3a8a) 0%, var(--brand-700,#1e40af) 100%);border-radius:12px;padding:24px 28px;color:#fff;box-shadow:0 1px 3px rgba(15,23,42,.08)}
+  .rid-title{font-family:'Exo','Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-200,#b8ddf5);margin-bottom:16px}
+  .rid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 28px}
+  .rid-item{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:8px 4px}
   .rid-item .rid-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px}
-  .rid-item .rid-name{font-family:'Exo','Inter',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-top:2px}
+  .rid-item .rid-name{font-family:'Exo','Inter',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-top:2px}
   .rid-item .rid-desc{font-size:12px;color:var(--brand-200,#b8ddf5);line-height:1.5;max-width:260px}
   @media(max-width:760px){ .rid-grid{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:480px){ .rid-grid{grid-template-columns:1fr} }
 
   /* Disclaimers */
-  .disc{padding:14px 22px;color:#6b7280;font-size:11px;line-height:1.65}
-  .disc .disc-title{font-weight:700;color:#111827;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
-  .disc p{margin-bottom:3px}
+  .disc{padding:16px 24px;color:#6b7280;font-size:12px;line-height:1.65}
+  .disc .disc-title{font-weight:700;color:#111827;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+  .disc p{margin-bottom:4px}
   .disc strong{color:#374151;font-weight:600}
 
   /* Floating vessel navigation — appears once first vessel card is reached */
-  .vessel-fnav{position:fixed;right:24px;bottom:28px;display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:5px;box-shadow:0 10px 28px rgba(15,23,42,.16);z-index:40;opacity:0;transform:translateY(10px) scale(.96);pointer-events:none;transition:opacity .22s var(--ease-out,ease),transform .22s var(--ease-out,ease)}
+  .vessel-fnav{position:fixed;right:24px;bottom:28px;display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:4px;box-shadow:0 10px 28px rgba(15,23,42,.16);z-index:40;opacity:0;transform:translateY(10px) scale(.96);pointer-events:none;transition:opacity .22s var(--ease-out,ease),transform .22s var(--ease-out,ease)}
   .vessel-fnav.is-visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
   .vessel-fnav .fnav-btn{width:40px;height:40px;border-radius:999px;border:0;background:transparent;color:#4b5563;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s,color .15s}
   .vessel-fnav .fnav-btn:hover{background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
   .vessel-fnav .fnav-btn:disabled{opacity:.3;cursor:default}
   .vessel-fnav .fnav-btn:disabled:hover{background:transparent;color:#4b5563}
-  .vessel-fnav .fnav-sep{height:1px;background:#f3f4f6;margin:1px 6px}
+  .vessel-fnav .fnav-sep{height:1px;background:#f3f4f6;margin:1px 4px}
   .vessel-fnav .fnav-list{color:var(--brand-600,#2563eb)}
   .vessel-fnav .fnav-list:hover{background:var(--brand-600,#2563eb);color:#fff}
   .vessel-fnav .fnav-btn svg{width:20px;height:20px}
@@ -196,8 +196,8 @@
     .report-shell{padding:12px 12px 56px;gap:12px}
     .sec-head{padding:12px 16px}
     .sec-body{padding:16px}
-    .sec-body[style*="padding:0"]{padding:14px !important}
-    .rid-card{padding:18px 16px}
+    .sec-body[style*="padding:0"]{padding:16px !important}
+    .rid-card{padding:20px 16px}
 
     /* Meta bar: full-width action group, buttons stretch but stay inline */
     .meta-actions{width:100%;display:flex;gap:8px}
@@ -210,17 +210,17 @@
     .v-table thead, .alert-table thead, .ra-table thead { display:none; }
 
     .v-table tr, .alert-table tr, .ra-table tr {
-      border:1px solid #e5e7eb; border-radius:8px; margin:0 0 10px; padding:8px 4px; background:#fff;
+      border:1px solid #e5e7eb; border-radius:8px; margin:0 0 8px; padding:8px 4px; background:#fff;
     }
     .v-table tr:last-child, .alert-table tr:last-child, .ra-table tr:last-child { margin-bottom:0; }
     .v-table tr:hover td, .alert-table tbody tr:hover td, .ra-table tr:hover td { background:transparent; }
 
     .v-table td, .alert-table td, .ra-table td {
-      border:0; padding:6px 14px;
+      border:0; padding:8px 16px;
     }
     .v-table td::before, .alert-table td::before, .ra-table td::before {
-      content: attr(data-label); display:block; margin-bottom:3px;
-      font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#9ca3af;
+      content: attr(data-label); display:block; margin-bottom:4px;
+      font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#9ca3af;
     }
     /* keep the red flag accent on stacked flagged rows */
     .alert-table tr.at-flagged { border-left:3px solid #dc2626; }
@@ -228,7 +228,7 @@
     .alert-table .at-desc{padding-left:0}
     /* Alert Type Summary keeps a 2-column row on mobile: type left, count right */
     .alert-table tr{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-    .alert-table td{padding:10px 14px;width:auto}
+    .alert-table td{padding:12px 16px;width:auto}
     .alert-table td:first-child{flex:1 1 auto;min-width:0}
     .alert-table .at-name{flex-wrap:wrap}
     .alert-table .at-desc{max-width:none}
@@ -237,7 +237,7 @@
 
     /* Vessels card: compact label-left / value-right rows on mobile */
     .v-table tr{padding:2px 2px;margin-bottom:8px}
-    .v-table td{display:flex;align-items:center;justify-content:space-between;gap:14px;width:auto;padding:7px 14px;border-bottom:1px solid #f3f4f6}
+    .v-table td{display:flex;align-items:center;justify-content:space-between;gap:12px;width:auto;padding:8px 16px;border-bottom:1px solid #f3f4f6}
     .v-table td:last-child{border-bottom:0}
     .v-table td::before{margin-bottom:0;flex:0 0 auto}
     .v-table td .flag-cell{text-align:right}
@@ -250,7 +250,7 @@
     .spec-table, .spec-table tbody, .spec-table tr, .spec-table th, .spec-table td{display:block;width:auto}
     .spec-table tr{border:0}
     .spec-table th{padding:8px 0 1px;color:#9ca3af}
-    .spec-table td{padding:0 0 7px;border-bottom:1px solid #f3f4f6}
+    .spec-table td{padding:0 0 8px;border-bottom:1px solid #f3f4f6}
     .spec-table tr:last-child td:last-child{border-bottom:0}
   }
   @media (max-width: 420px) {
@@ -263,7 +263,7 @@
     body { background:#fff !important; }
     #sidebar, header.sticky, .meta-actions, .no-print { display:none !important; }
     main { padding:0 !important; background:#fff !important; }
-    .report-shell { max-width:none; padding:0; gap:10px; }
+    .report-shell { max-width:none; padding:0; gap:8px; }
     .report-card, .meta-bar { box-shadow:none; border-color:#e5e7eb; }
     .rid-card { color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
     .stat-card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
@@ -284,7 +284,7 @@
   }/*EDITMODE-END*/;
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
-<script src="../shared/chrome.js?v=21"></script>
+<script src="../shared/chrome.js?v=22"></script>
 
 <script>
 const SC = window.sharedChrome;
@@ -674,8 +674,8 @@ function SummaryCard() {
   <section class="report-card" id="summary-card">
     <div class="sec-head">Summary</div>
     <div class="sec-body">
-      <p class="text-[12.5px] text-ink-600 leading-[1.7] max-w-[920px]">${s.p1}</p>
-      <p class="text-[12.5px] text-ink-600 leading-[1.7] max-w-[920px]" style="margin-top:12px">${s.p2}</p>
+      <p class="text-sm text-ink-600 leading-[1.7] max-w-[920px]">${s.p1}</p>
+      <p class="text-sm text-ink-600 leading-[1.7] max-w-[920px]" style="margin-top:12px">${s.p2}</p>
       <div class="stat-grid">
         <div class="stat-card">
           <span class="stat-icon"><i data-lucide="ship" style="width:22px;height:22px"></i></span>
@@ -734,7 +734,7 @@ function VesselRow(v) {
             <td data-label="Flag"><span class="flag-cell">${flagImg(v.flagEmoji, 40, v.flag)}${v.flag}</span></td>
             <td class="alerts-cell" data-label="No. of Alerts">${alerts}</td>
             <td data-label="Location(s)">
-              <span style="display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <span style="display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap">
                 ${v.relatedCountries.map(rc =>
                   `<span class="flag-cell">${flagImg(rc.emoji, 40, rc.label)}${rc.label}</span>`
                 ).join('')}

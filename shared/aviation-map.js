@@ -52,34 +52,34 @@ function buildFlightPopupHTML(p) {
   const row = (lbl, val, extra) => `
     <div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f9fafb;">
       <span style="font-size:12px;color:#6b7280;">${lbl}:</span>
-      <span style="font-size:13px;font-weight:700;color:#111827;${extra||''}">${val}</span>
+      <span style="font-size:14px;font-weight:700;color:#111827;${extra||''}">${val}</span>
     </div>`;
   return `
-    <div style="background:var(--brand-600,#2563eb);padding:11px 36px 11px 14px;">
+    <div style="background:var(--brand-600,#2563eb);padding:12px 36px 12px 16px;">
       <div style="color:#fff;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
         <span style="font-weight:700;font-size:14px;">${p.flight}</span>
         <span style="font-weight:400;opacity:.85;font-size:12px;"> &middot; ${p.reg} &middot; ${p.type}</span>
       </div>
     </div>
-    <div style="padding:14px 16px 12px;border-bottom:1px solid #e5e7eb;">
+    <div style="padding:16px 16px 12px;border-bottom:1px solid #e5e7eb;">
       <div style="display:flex;align-items:flex-start;gap:4px;">
         <div style="flex:0 0 82px;">
-          <div style="font-size:11px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
-          <div style="font-size:24px;font-weight:800;color:#111827;line-height:1.1;">${p.from.code}</div>
-          <div style="font-size:11px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.dep}</div>
+          <div style="font-size:12px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
+          <div style="font-size:24px;font-weight:700;color:#111827;line-height:1.1;">${p.from.code}</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.dep}</div>
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:11px;">
-          <div style="display:flex;align-items:center;width:100%;gap:3px;">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:12px;">
+          <div style="display:flex;align-items:center;width:100%;gap:4px;">
             <div style="flex:1;border-top:1.5px dashed #d1d5db;"></div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#9ca3af" stroke="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
             <div style="flex:1;border-top:1.5px dashed #d1d5db;"></div>
           </div>
-          <div style="font-size:11px;color:#6b7280;white-space:nowrap;">${p.duration}</div>
+          <div style="font-size:12px;color:#6b7280;white-space:nowrap;">${p.duration}</div>
         </div>
         <div style="flex:0 0 82px;text-align:right;">
-          <div style="font-size:11px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
-          <div style="font-size:24px;font-weight:800;color:#111827;line-height:1.1;">${p.to.code}</div>
-          <div style="font-size:11px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.arr}</div>
+          <div style="font-size:12px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
+          <div style="font-size:24px;font-weight:700;color:#111827;line-height:1.1;">${p.to.code}</div>
+          <div style="font-size:12px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.arr}</div>
         </div>
       </div>
     </div>
@@ -89,8 +89,8 @@ function buildFlightPopupHTML(p) {
       ${row('Altitude', p.alt)}
       ${row('Speed', p.spd)}
     </div>
-    <div style="padding:10px 16px 14px;display:flex;justify-content:center;">
-      <button style="padding:0 16px;height:32px;border:1px solid transparent;color:var(--brand-600,#2563eb);border-radius:var(--radius-md,8px);font-size:13px;font-weight:500;background:transparent;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AircraftDetails.html'">View Details</button>
+    <div style="padding:12px 16px 16px;display:flex;justify-content:center;">
+      <button style="padding:0 16px;height:32px;border:1px solid transparent;color:var(--brand-600,#2563eb);border-radius:var(--radius-md,8px);font-size:14px;font-weight:500;background:transparent;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AircraftDetails.html'">View Details</button>
     </div>`;
 }
 
@@ -98,25 +98,25 @@ function buildAirportPopupHTML(a) {
   const lat = a.lat.toFixed(4) + '\u00b0';
   const lng = a.lng.toFixed(4) + '\u00b0';
   const row = (lbl, val) => `
-    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #f9fafb;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f9fafb;">
       <span style="font-size:12px;color:#6b7280;">${lbl}:</span>
-      <span style="font-size:13px;font-weight:700;color:#111827;">${val}</span>
+      <span style="font-size:14px;font-weight:700;color:#111827;">${val}</span>
     </div>`;
   return `
-    <div style="background:var(--brand-600,#2563eb);padding:11px 36px 11px 14px;">
+    <div style="background:var(--brand-600,#2563eb);padding:12px 36px 12px 16px;">
       <div style="color:#fff;line-height:1.35;">
-        <span style="font-weight:700;font-size:13px;">${a.name}</span>
-        <span style="font-weight:400;opacity:.85;font-size:11px;"> &middot; ${a.code} &middot; ${a.country}</span>
+        <span style="font-weight:700;font-size:14px;">${a.name}</span>
+        <span style="font-weight:400;opacity:.85;font-size:12px;"> &middot; ${a.code} &middot; ${a.country}</span>
       </div>
     </div>
-    <div style="padding:10px 16px 4px;">
+    <div style="padding:12px 16px 4px;">
       ${row('Latitude', lat)}
       ${row('Longitude', lng)}
       ${row('Elevation', a.elev)}
       ${row('Runways', a.runways + ' runway' + (a.runways !== 1 ? 's' : ''))}
     </div>
-    <div style="padding:8px 16px 14px;display:flex;justify-content:center;">
-      <button style="background:transparent;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 16px;height:32px;font-size:13px;font-weight:500;color:var(--brand-600,#2563eb);cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AirportDetails.html'">View Details</button>
+    <div style="padding:8px 16px 16px;display:flex;justify-content:center;">
+      <button style="background:transparent;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 16px;height:32px;font-size:14px;font-weight:500;color:var(--brand-600,#2563eb);cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AirportDetails.html'">View Details</button>
     </div>`;
 }
 

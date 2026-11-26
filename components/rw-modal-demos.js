@@ -15,13 +15,13 @@
     s.textContent =
       '.demo-twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}' +
       '.demo-formgrid{display:grid;gap:12px;align-content:start;}' +
-      '.demo-field{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;}' +
-      '.demo-field-label{font-size:13px;color:#374151;}' +
-      '.demo-field-control{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:7px 10px;font:inherit;font-size:13px;color:#111827;background:#fff;transition:border-color 120ms,box-shadow 120ms;}' +
+      '.demo-field{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center;}' +
+      '.demo-field-label{font-size:14px;color:#374151;}' +
+      '.demo-field-control{width:100%;border:1px solid #d1d5db;border-radius:8px;padding:8px 12px;font:inherit;font-size:14px;color:#111827;background:#fff;transition:border-color 120ms,box-shadow 120ms;}' +
       '.demo-field-control:focus{outline:0;border-color:#43a8df;box-shadow:0 0 0 3px rgba(37,99,235,.12);}' +
       ".demo-field-select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:28px;background:#fff url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\") no-repeat right 10px center;}" +
       '.demo-map{min-height:360px;border:1px solid #e5e7eb;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(45,127,251,0.05),rgba(45,127,251,0.02)),repeating-linear-gradient(45deg,#eef2f7 0 10px,#e6ecf3 10px 20px);}' +
-      '.demo-map-cap{font-family:monospace;font-size:11px;color:#6b7280;background:rgba(255,255,255,0.8);padding:4px 10px;border-radius:6px;}' +
+      '.demo-map-cap{font-family:monospace;font-size:12px;color:#6b7280;background:rgba(255,255,255,0.8);padding:4px 12px;border-radius:8px;}' +
       '@media (max-width:768px){.demo-twocol{grid-template-columns:1fr;}.demo-map{min-height:220px;}.demo-field{grid-template-columns:1fr;gap:4px;}}';
     document.head.appendChild(s);
   }
@@ -65,7 +65,7 @@
       subtitle: 'size="' + size + '"',
       body: function (b) {
         var p = document.createElement('p');
-        p.style.cssText = 'margin:0;font-size:13px;line-height:1.6;color:#4b5563;';
+        p.style.cssText = 'margin:0;font-size:14px;line-height:1.6;color:#4b5563;';
         p.innerHTML = 'This is the <strong>' + labels[size] + '</strong> container width. The same header, body, and footer slots scale across every size — only <code style="font-family:monospace;">--rw-modal-w-' + size + '</code> changes. Tab through the buttons below: focus is trapped inside this dialog, and Escape closes it.';
         b.appendChild(p);
       },
@@ -90,7 +90,7 @@
           h.textContent = 'Clause ' + i;
           b.appendChild(h);
           var p = document.createElement('p');
-          p.style.cssText = 'margin:8px 0 4px;font-size:13px;line-height:1.6;color:#4b5563;';
+          p.style.cssText = 'margin:8px 0 4px;font-size:14px;line-height:1.6;color:#4b5563;';
           p.textContent = 'The body region uses overflow-y:auto with min-height:0 so it scrolls independently while the header and footer remain fixed. This keeps primary actions reachable no matter how long the content runs.';
           b.appendChild(p);
         }
@@ -111,7 +111,7 @@
       closeOnOverlayClick: closeOnOverlay,
       body: function (b) {
         var p = document.createElement('p');
-        p.style.cssText = 'margin:0;font-size:13px;line-height:1.6;color:#4b5563;';
+        p.style.cssText = 'margin:0;font-size:14px;line-height:1.6;color:#4b5563;';
         p.textContent = closeOnOverlay
           ? 'Click anywhere on the dimmed backdrop to dismiss. Good for non-destructive, low-stakes dialogs.'
           : 'Clicking the backdrop does nothing — the user must choose an explicit action. Use this for forms with unsaved input or destructive confirmations.';
@@ -131,7 +131,7 @@
       danger: true,
       closeOnOverlayClick: false
     }).then(function (ok) {
-      if (ok) RWModal.open({ size: 'sm', title: 'Deleted', body: '<p style="margin:0;font-size:13px;color:#4b5563;">Portfolio removed.</p>', footer: [{ label: 'OK', variant: 'primary', onClick: function (m) { m.close(); } }] });
+      if (ok) RWModal.open({ size: 'sm', title: 'Deleted', body: '<p style="margin:0;font-size:14px;color:#4b5563;">Portfolio removed.</p>', footer: [{ label: 'OK', variant: 'primary', onClick: function (m) { m.close(); } }] });
     });
   }
 
@@ -173,7 +173,7 @@
         { label: 'Save', variant: 'primary', onClick: function (m) {
           var name = m.query('#ap2-name').value;
           m.close();
-          RWModal.open({ size: 'sm', title: 'Port saved', body: '<p style="margin:0;font-size:13px;color:#4b5563;">“' + name + '” was added to the registry.</p>', footer: [{ label: 'Done', variant: 'primary', onClick: function (x) { x.close(); } }] });
+          RWModal.open({ size: 'sm', title: 'Port saved', body: '<p style="margin:0;font-size:14px;color:#4b5563;">“' + name + '” was added to the registry.</p>', footer: [{ label: 'Done', variant: 'primary', onClick: function (x) { x.close(); } }] });
         } }
       ]
     });
@@ -185,7 +185,7 @@
     var overlay = P.Overlay({ labelledby: 'composed-title' });
     var container = P.Container({ size: 'md' });
     container.appendChild(P.Header({ title: 'Assembled by hand', titleId: 'composed-title', subtitle: 'Built from RWModal.parts.*' }));
-    container.appendChild(P.Body('<p style="margin:0;font-size:13px;line-height:1.6;color:#4b5563;">This dialog was composed slot-by-slot with <code style="font-family:monospace;">Overlay → Container → Header → Body → Footer</code>, then wired with <code style="font-family:monospace;">RWModal.mount()</code> for focus-trapping and dismissal. Same primitives the high-level <code style="font-family:monospace;">open()</code> uses internally.</p>'));
+    container.appendChild(P.Body('<p style="margin:0;font-size:14px;line-height:1.6;color:#4b5563;">This dialog was composed slot-by-slot with <code style="font-family:monospace;">Overlay → Container → Header → Body → Footer</code>, then wired with <code style="font-family:monospace;">RWModal.mount()</code> for focus-trapping and dismissal. Same primitives the high-level <code style="font-family:monospace;">open()</code> uses internally.</p>'));
     container.appendChild(P.Footer([
       { label: 'Close', variant: 'primary', onClick: function (m) { m.close(); } }
     ]));
