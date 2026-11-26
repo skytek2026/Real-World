@@ -706,7 +706,7 @@ function applyTweaks() {
     .bg-brand-50{background-color:${c[50]}!important}.bg-brand-100{background-color:${c[100]}!important}
     .bg-brand-500{background-color:${c[500]}!important}.bg-brand-600{background-color:${c[600]}!important}
     .bg-brand-700{background-color:${c[700]}!important}
-    .text-brand-500{color:${c[500]}!important}.text-brand-700{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
+    .text-brand-500{color:${c[500]}!important}.text-brand-600{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
     .border-brand-300{border-color:${c[300]}!important}.border-brand-500{border-color:${c[500]}!important}
     .ring-brand-100{--tw-ring-color:${c[100]}!important}
     /* Every scrollbar in the app is the thin style. The colour rule here makes current Chrome/Edge
@@ -737,12 +737,12 @@ function applyTweaks() {
     .hover\\:text-brand-700:hover{color:${c[700]}!important}
     .via-brand-400{--tw-gradient-stops:var(--tw-gradient-from),${c[400]},var(--tw-gradient-to,transparent)!important}
     .from-brand-400{--tw-gradient-from:${c[400]}!important}.to-brand-600{--tw-gradient-to:${c[600]}!important}
-    .nav-item.is-nav-active,.nav-item.is-nav-active:hover{background:${c[600]}!important;color:#fff!important}
+    .nav-item.is-nav-active,.nav-item.is-nav-active:hover{background:${c[700]}!important;color:#fff!important}   /* DS v4.1.2: same fill as the selected tab */
     .nav-item.is-nav-active .nav-ico{color:#fff!important}
     .ds-tab-pill{background:${c[700]}!important}   /* DS v4.1.1: white label 5.85:1 (brand-600 was 4.05:1) */
-    .asset-pill{background:${c[600]}!important}
-    .cat-pill{background:${c[600]}!important}
-    .ds-page-btn.is-active{background:${c[600]}!important;border-color:${c[600]}!important}
+    .asset-pill{background:${c[700]}!important}
+    .cat-pill{background:${c[700]}!important}
+    .ds-page-btn.is-active{background:${c[700]}!important;border-color:${c[700]}!important}
     .topbar-brand-link{color:${c[700]};transition:color 120ms}
     .topbar-brand-link:hover{color:${c[800] || c[700]}}
   `;
