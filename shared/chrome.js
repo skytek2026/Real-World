@@ -39,7 +39,7 @@
       :root .shadow-card { box-shadow: 0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06) !important; }        /* card-shadow-rest */
       :root .shadow-card-hover { box-shadow: 0 6px 12px -2px rgba(15,23,42,.12), 0 3px 6px -3px rgba(15,23,42,.10) !important; } /* card-shadow-hover */
       input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([class*="border-0"]):not([class*="border-none"]), select, textarea { border-color: #6B7280; }   /* border-control */
-      .bg-ink-100.text-ink-500, .bg-ink-100 .text-ink-500, [style*="background:#eff6ff"] [style*="color:#6b7280"], [style*="background:#eff6ff"] .text-ink-500 { color: #4B5563 !important; }   /* muted text on grey / tinted surfaces: ink-600 */
+      .bg-ink-100.text-ink-500, .bg-ink-100 > .text-ink-500, [style*="background:#eff6ff"] [style*="color:#6b7280"], [style*="background:#eff6ff"] .text-ink-500 { color: #4B5563 !important; }   /* muted text on grey / tinted surfaces: ink-600 */
       .ds-btn { white-space: nowrap; }
       /* Touch targets: small controls get an invisible 44x44 tap area (marked by markHitTargets) without moving the layout. */
       .rw-hit-rel { position: relative; }

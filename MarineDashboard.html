@@ -354,7 +354,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=26"></script>
+<script src="shared/chrome.js?v=27"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -612,7 +612,7 @@ function positionTabPills() {
 function PortfolioCard() {
   const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-700, #0F6AA0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
   const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-700, #0F6AA0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
-  const sortIco = `<span style="font-size:12px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
+  const sortIco = `<span style="font-size:12px;color:#6b7280;vertical-align:middle;"> ↕</span>`;
 
   const statsRow = `
     <div style="padding:12px 12px 0;">
@@ -716,7 +716,7 @@ function PortfolioCard() {
 
 function RegionsCard() {
   const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-700, #0F6AA0)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-  const sortIco = `<span style="font-size:12px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
+  const sortIco = `<span style="font-size:12px;color:#6b7280;vertical-align:middle;"> ↕</span>`;
 
   if (state.regionTab === 'Benchmark') {
     const marker = (color) => `<svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" style="transform:rotate(45deg); color:${color};" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg>`;

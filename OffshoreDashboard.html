@@ -20,7 +20,7 @@
   .text-ink-700 { color:#374151; }
   .text-ink-600 { color:#4b5563; }
   .text-ink-500 { color:#6b7280; }
-  .text-ink-500 { color:#9ca3af; }
+  .text-ink-500 { color:#6b7280; }
   .text-ink-300 { color:#d1d5db; }
   .text-ink-200 { color:#e5e7eb; }
   .text-ink-100 { color:#f3f4f6; }
@@ -298,7 +298,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=26"></script>
+<script src="shared/chrome.js?v=27"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -522,7 +522,7 @@ function PortfolioCard() {
   if (state.portfolioTab === 'Portfolio Groups') {
     const rows = PORTFOLIO_GROUPS.map((g, gi) => {
       const isExpanded = state.expandedGroups.has(gi);
-      const chevron = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate(${isExpanded?'90':'0'}deg);flex-shrink:0;color:#9ca3af"><polyline points="9 18 15 12 9 6"/></svg>`;
+      const chevron = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate(${isExpanded?'90':'0'}deg);flex-shrink:0;color:#6b7280"><polyline points="9 18 15 12 9 6"/></svg>`;
 
       return `
         <div>
@@ -593,7 +593,7 @@ function RegionsCard() {
   const renderGroup = (groupKey, group, gi) => {
     const idKey = `${groupKey}-${gi}`;
     const isExpanded = state.expandedRegions.has(idKey);
-    const chevron = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate(${isExpanded?'90':'0'}deg);flex-shrink:0;color:#9ca3af"><polyline points="9 18 15 12 9 6"/></svg>`;
+    const chevron = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform .2s;transform:rotate(${isExpanded?'90':'0'}deg);flex-shrink:0;color:#6b7280"><polyline points="9 18 15 12 9 6"/></svg>`;
     return `
       <div>
         <button data-region-grp="${idKey}" class="w-full text-left px-3 py-2 hover:bg-ink-50 grid grid-cols-[minmax(0,1fr)_auto] gap-3 items-center text-xs">
