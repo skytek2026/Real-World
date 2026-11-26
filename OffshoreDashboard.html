@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Offshore/Energy — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -45,7 +45,7 @@
   .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:999px; }
   .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#1485c5; }
   .tracking-micro { letter-spacing:0.04em; }
-  .ring-focus:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; border-radius:8px; }
+  .ring-focus:focus-visible { outline:2px solid #1a92d1; outline-offset:2px; border-radius:8px; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
   [data-density="compact"] .gap-density { gap:.75rem; }
@@ -61,7 +61,7 @@
   .ds-tab-pill.is-init { transition:none; }
   .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:4px; }
   /* Leaflet custom */
-  #offshore-map { background:#e0ebe9; }
+  #offshore-map { background:#e5e7eb; }
   #offshore-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #offshore-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
@@ -127,7 +127,7 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot .ds-btn{text-transform:uppercase;letter-spacing:.05em;font-weight:600;color:var(--brand-600,#2563eb);}
-  .ds-card-foot .ds-btn:hover{color:var(--brand-700,#1d4ed8);background:#eef2f7;}
+  .ds-card-foot .ds-btn:hover{color:var(--brand-700,#1d4ed8);background:#f3f4f6;}
   </style>
 
 <style>
@@ -298,7 +298,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -315,15 +315,15 @@ let state = {
 };
 
 const ASSET_TYPES = [
-  { k:'Oil Rig',                     color:'#ef4444' },
+  { k:'Oil Rig',                     color:'#ea580c' },
   { k:'Platform',                    color:'#06b6d4' },
-  { k:'Windfarm',                    color:'#10b981' },
-  { k:'Floating Storage (FSO)',      color:'#8b5cf6' },
+  { k:'Windfarm',                    color:'#16a34a' },
+  { k:'Floating Storage (FSO)',      color:'#9333ea' },
   { k:'Fixed Platform',              color:'#ec4899' },
-  { k:'Jack-Up Drilling Unit',       color:'#f59e0b' },
-  { k:'Mobile Drilling (MODU)',      color:'#3b82f6' },
+  { k:'Jack-Up Drilling Unit',       color:'#eab308' },
+  { k:'Mobile Drilling (MODU)',      color:'#1a92d1' },
   { k:'Mobile Production (MOPU)',    color:'#ea580c' },
-  { k:'Single Point Mooring (SPM)',  color:'#0ea5e9' },
+  { k:'Single Point Mooring (SPM)',  color:'#43a8df' },
   { k:'Subsea',                      color:'#14b8a6' },
   { k:'Well',                        color:'#a855f7' },
   { k:'Other',                       color:'#6b7280' },
@@ -431,19 +431,19 @@ const MARKERS = [
     coords:'57.80N / 2.90E', waterDepth:'145m',
     status:'Operational', production:'42,000 bbl/day',
     commissioned:'2011', policyType:'Cargo', field:'North Sea' },
-  { lat:58.1,  lng:2.5,   name:'Barracouta', color:'#8b5cf6',
+  { lat:58.1,  lng:2.5,   name:'Barracouta', color:'#9333ea',
     fullName:'Barracouta', assetType:'FPSO',
     operator:'Neptune Energy', country:'United Kingdom',
     coords:'58.10N / 2.50E', waterDepth:'112m',
     status:'Under Maintenance', production:'28,000 bbl/day',
     commissioned:'2004', policyType:'Hull & Machinery', field:'Barracouta Field' },
-  { lat:59.2,  lng:2.1,   name:'East Commander', color:'#10b981',
+  { lat:59.2,  lng:2.1,   name:'East Commander', color:'#16a34a',
     fullName:'East Commander', assetType:'Jack-Up Rig',
     operator:'Equinor', country:'Norway',
     coords:'59.20N / 2.10E', waterDepth:'78m',
     status:'Operational', production:'35,000 bbl/day',
     commissioned:'2015', policyType:'Energy Package', field:'North Sea' },
-  { lat:27.5,  lng:-91.2, name:'Dorado Mjol Elevator', color:'#f59e0b',
+  { lat:27.5,  lng:-91.2, name:'Dorado Mjol Elevator', color:'#eab308',
     fullName:'Dorado Mjol Elevator', assetType:'Semi-Submersible',
     operator:'Shell', country:'United States',
     coords:'27.50N / 91.20W', waterDepth:'1,480m',
@@ -500,8 +500,8 @@ function positionTabPills() {
 /* ----------- CARDS ----------- */
 function PortfolioCard() {
   const totalInterests = PORTFOLIOS.reduce((sum, p) => sum + (p.policies || 0), 0).toLocaleString();
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#43a8df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#43a8df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
 
   const statsCard = `
     <div style="padding:16px 16px 8px;display:flex;justify-content:center;" class="shrink-0">
@@ -587,8 +587,8 @@ function PortfolioCard() {
 }
 
 function RegionsCard() {
-  const folderSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-  const folderOpenSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+  const folderSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#43a8df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderOpenSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#43a8df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
 
   const renderGroup = (groupKey, group, gi) => {
     const idKey = `${groupKey}-${gi}`;
@@ -660,7 +660,7 @@ function WeatherCard() {
     const bg = cat.includes('5') ? 'bg-red-100 text-red-700' : 
                cat.includes('4') ? 'bg-orange-100 text-orange-700' :
                cat.includes('3') ? 'bg-amber-100 text-amber-700' :
-               cat.includes('Winter') ? 'bg-rose-100 text-rose-700' :
+               cat.includes('Winter') ? 'bg-[#fee2e2] text-[#b91c1c]' :
                'bg-orange-100 text-orange-700';
     return `<span class="px-2 py-0.5 rounded-lg text-xs font-semibold ${bg}">${txt}</span>`;
   };
@@ -716,8 +716,8 @@ function offshoreAssetTooltipHTML(m) {
   return `<span class="atip-row">${flagImg}<span class="atip-name">${m.name || m.fullName}</span></span><span class="atip-type">${m.assetType}${m.country ? ' \u00b7 ' + m.country : ''}</span>`;
 }
 function buildPopupHTML(m) {
-  const statusColor = m.status === 'Operational' ? '#10b981' :
-                      m.status === 'Under Maintenance' ? '#f59e0b' : '#9ca3af';
+  const statusColor = m.status === 'Operational' ? '#16a34a' :
+                      m.status === 'Under Maintenance' ? '#eab308' : '#9ca3af';
   const row = (label, val, color) =>
     `<div><div style="font-size:12px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:14px;font-weight:600;color:${color||'#111827'};">${val}</div></div>`;
   return `
@@ -751,10 +751,10 @@ let tileLayer = null;
 let assetMarkers = [];
 
 const MAP_TYPES = {
-  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
+  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
   street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f9fafb' },
-  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
+  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
+  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e5e7eb' },
 };
 
 function setMapType(type) {

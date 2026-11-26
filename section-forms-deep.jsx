@@ -1,8 +1,8 @@
-/* Section — Forms — full specification */
+/* Section: Forms: full specification */
 
 const FormAnatomyDemo = () => (
   <div className="ds-form-anatomy">
-    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
       <div className="ds-field">
         <label className="ds-field-label" htmlFor="anatomy-field">
           IMO number <span className="ds-field-required" aria-hidden="true">*</span>
@@ -12,12 +12,12 @@ const FormAnatomyDemo = () => (
         <div id="anatomy-help" className="ds-field-help">7 digits, no prefix. We'll validate against the IHS Maritime registry.</div>
       </div>
     </div>
-    <ol style={{ margin: 0, paddingLeft: 18, fontSize: 12.5, lineHeight: 1.65, color: "var(--text-secondary)" }}>
-      <li><strong style={{ color: "var(--text-primary)" }}>Label</strong> — sentence case, no colon, above the input.</li>
-      <li><strong style={{ color: "var(--text-primary)" }}>Required indicator</strong> — danger-500 asterisk, with a screen-reader-only "required".</li>
-      <li><strong style={{ color: "var(--text-primary)" }}>Input</strong> — 32 px (md) default, 28 px (sm) in compact density.</li>
-      <li><strong style={{ color: "var(--text-primary)" }}>Helper text</strong> — single line below, muted. Replaced by error when error fires.</li>
-      <li><strong style={{ color: "var(--text-primary)" }}>aria-describedby</strong> — links input to the help/error id.</li>
+    <ol style={{ margin: 0, paddingLeft: 20, fontSize: 12.5, lineHeight: 1.65, color: "var(--text-secondary)" }}>
+      <li><strong style={{ color: "var(--text-primary)" }}>Label</strong>, sentence case, no colon, above the input.</li>
+      <li><strong style={{ color: "var(--text-primary)" }}>Required indicator</strong>, danger-500 asterisk, with a screen-reader-only "required".</li>
+      <li><strong style={{ color: "var(--text-primary)" }}>Input</strong>, 32 px (md) default, 28 px (sm) in compact density.</li>
+      <li><strong style={{ color: "var(--text-primary)" }}>Helper text</strong>, single line below, muted. Replaced by error when error fires.</li>
+      <li><strong style={{ color: "var(--text-primary)" }}>aria-describedby</strong>, links input to the help/error id.</li>
     </ol>
   </div>
 );
@@ -41,7 +41,7 @@ const FieldStatesDemo = () => (
     </div>
     <div className="ds-field">
       <label className="ds-field-label">Read-only</label>
-      <input className="ds-input" defaultValue="IMO 9234567" readOnly style={{ background: "var(--slate-50)", color: "var(--text-primary)" }}/>
+      <input className="ds-input" defaultValue="IMO 9234567" readOnly style={{ background: "var(--slate-050)", color: "var(--text-primary)" }}/>
       <div className="ds-field-help">User can copy/select. Will submit. Use for computed or locked values.</div>
     </div>
     <div className="ds-field">
@@ -103,7 +103,7 @@ const ValidationTimingTable = () => (
       <tr>
         <td><strong>onChange (live)</strong></td>
         <td>Each keystroke</td>
-        <td>Strength meters, char counters, format hints. Never errors — only positive feedback.</td>
+        <td>Strength meters, char counters, format hints. Never errors: only positive feedback.</td>
       </tr>
       <tr>
         <td><strong>Async</strong></td>
@@ -161,7 +161,7 @@ const LabelLayoutDemo = () => (
 
 const FieldGroupDemo = () => (
   <fieldset style={{ border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", padding: 16, background: "var(--white)" }}>
-    <legend style={{ padding: "0 6px", fontSize: 12, fontWeight: 700, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Vessel identification</legend>
+    <legend style={{ padding: "0 8px", fontSize: 12, fontWeight: 700, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Vessel identification</legend>
     <div className="ds-field-grid">
       <div className="ds-field">
         <label className="ds-field-label">IMO number <span className="ds-field-required">*</span></label>
@@ -216,10 +216,10 @@ const FormsRules = () => (
       <tr><td><strong>Required indicator</strong></td><td>Danger-500 asterisk after the label. Plus an SR-only "required" so screen readers don't say "asterisk".</td></tr>
       <tr><td><strong>Optional indicator</strong></td><td>Show "(optional)" in muted text when most fields are required. Don't double-mark.</td></tr>
       <tr><td><strong>Placeholder vs label</strong></td><td>Placeholder is example data ("9234567"). It's never a substitute for a label.</td></tr>
-      <tr><td><strong>Helper vs error</strong></td><td>Helper shows by default. Error replaces it. Both share the same DOM slot — so the layout doesn't jump when validation fires.</td></tr>
+      <tr><td><strong>Helper vs error</strong></td><td>Helper shows by default. Error replaces it. Both share the same DOM slot, so the layout doesn't jump when validation fires.</td></tr>
       <tr><td><strong>Error placement</strong></td><td>Below the input, never above. <code>aria-describedby</code> wires the error id to the input.</td></tr>
       <tr><td><strong>aria-invalid</strong></td><td>Set when an error fires. Cleared on next input change. Drives the red border styling.</td></tr>
-      <tr><td><strong>Submission</strong></td><td>Disable Submit only while a request is in flight. Don't disable for invalid fields — let the submission show the errors at once.</td></tr>
+      <tr><td><strong>Submission</strong></td><td>Disable Submit only while a request is in flight. Don't disable for invalid fields, let the submission show the errors at once.</td></tr>
       <tr><td><strong>Focus on error</strong></td><td>On submit with errors, focus moves to the first invalid field. Page scrolls to bring it into view.</td></tr>
       <tr><td><strong>Autofill</strong></td><td>Use semantic <code>autocomplete</code> attributes (<code>email</code>, <code>given-name</code>, <code>organization</code>). Browsers do the right thing.</td></tr>
       <tr><td><strong>Prevent data loss</strong></td><td><code>beforeunload</code> warning when the form is dirty. Suppressed during programmatic navigation.</td></tr>
@@ -244,7 +244,7 @@ type FieldProps<T> = {
   onBlur?: () => void;
 };
 
-// React API — same surface for every input type
+// React API, same surface for every input type
 <Field name="imo" label="IMO number" required help="7 digits"
        status={imoStatus} error={imoError} {...register('imo')} />
 
@@ -319,7 +319,7 @@ const FormsDeepSection = () => (
 
     <div className="subsection">
       <h3 className="subsection-title">Field states</h3>
-      <p className="subsection-desc">Every input renders in eight states. Async validation is a first-class state — never blank during a registry lookup.</p>
+      <p className="subsection-desc">Every input renders in eight states. Async validation is a first-class state, never blank during a registry lookup.</p>
       <FieldStatesDemo />
     </div>
 
@@ -328,7 +328,7 @@ const FormsDeepSection = () => (
       <p className="subsection-desc">Five triggers. Pick by the cost of being wrong and the speed of the feedback loop.</p>
       <ValidationTimingTable />
       <div className="callout warn" style={{ marginTop: 12 }}>
-        <strong>Never fire errors on every keystroke.</strong> A user typing is not making a mistake — they're not done. Errors fire on blur or submit.
+        <strong>Never fire errors on every keystroke.</strong> A user typing is not making a mistake; they're not done. Errors fire on blur or submit.
       </div>
     </div>
 
@@ -341,7 +341,7 @@ const FormsDeepSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Field grouping</h3>
       <p className="subsection-desc">
-        Use semantic <code className="inline">&lt;fieldset&gt;</code> + <code className="inline">&lt;legend&gt;</code> when fields belong together — screen readers announce the group on each field, and the visual chrome reinforces it.
+        Use semantic <code className="inline">&lt;fieldset&gt;</code> + <code className="inline">&lt;legend&gt;</code> when fields belong together: screen readers announce the group on each field, and the visual chrome reinforces it.
       </p>
       <FieldGroupDemo />
     </div>
@@ -377,7 +377,7 @@ const FormsDeepSection = () => (
     </div>
 
     <div className="callout">
-      <strong>The principle:</strong> a form is a conversation. The user is talking; the form is listening. Don't interrupt mid-sentence (no per-keystroke errors), don't disable the submit button to make a point, and when the user makes a mistake, make the fix obvious — not a punishment.
+      <strong>The principle:</strong> a form is a conversation. The user is talking; the form is listening. Don't interrupt mid-sentence (no per-keystroke errors), don't disable the submit button to make a point, and when the user makes a mistake, make the fix obvious, not a punishment.
     </div>
   </>
 );

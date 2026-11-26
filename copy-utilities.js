@@ -1,5 +1,5 @@
 /* ============================================================
-   Copy Utilities — zero-touch enhancement layer
+   Copy Utilities: zero-touch enhancement layer
    ------------------------------------------------------------
    Auto-decorates existing primitives with copy actions:
      • <pre class="code">     → toolbar with Copy + format switcher
@@ -110,7 +110,7 @@
       const ok = await writeClipboard(raw.replace(/\n+$/, ""));
       if (ok) {
         flashCopied(btn, label);
-        announce(`${label} — copied to clipboard`);
+        announce(`${label}: copied to clipboard`);
       }
     });
   }
@@ -118,7 +118,7 @@
   /* -------- enhance a token-row <code> element -------- */
   function enhanceTokenCode(codeEl) {
     if (codeEl.dataset.copyEnhanced) return;
-    // only the FIRST <code> child of a token-row — the token name
+    // only the FIRST <code> child of a token-row: the token name
     const row = codeEl.closest(".token-row");
     if (!row) return;
     if (row.querySelector("code") !== codeEl) return;
@@ -285,7 +285,7 @@
     const head = panel.querySelector(":scope > .panel-head");
     const body = panel.querySelector(":scope > .panel-body");
     if (!head || !body) return;
-    // Only attach to ComponentBlock-style panels — those inside .subsection
+    // Only attach to ComponentBlock-style panels; those inside .subsection
     if (!panel.closest(".subsection")) return;
     // Skip if this panel only contains a single pre.code (it already has its own toolbar)
     if (body.querySelector(":scope > pre.code") && body.children.length === 1) return;
@@ -315,7 +315,7 @@
         const ok = await writeClipboard(text);
         if (ok) {
           flashCopied(b, label);
-          announce(`${label} — copied to clipboard`);
+          announce(`${label}: copied to clipboard`);
         }
       });
       return b;

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FRESH BREEZE — Marine — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -402,7 +402,7 @@
   .sts-facet-head { padding:8px 12px; border-bottom:1px solid #f3f4f6; font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; letter-spacing:.04em; margin-bottom:4px; }
   .sts-facet-row { display:flex; align-items:center; gap:8px; padding:8px 12px; font-size:14px; color:#111827; cursor:pointer; }
   .sts-facet-row:hover { background:#f9fafb; }
-  .ds-fdrawer{--z-drawer:1080;--bg-surface:#fff;--bg-muted:#f3f4f6;--bg-sunken:#f9fafb;--border-subtle:#eef2f7;--border-default:#e5e7eb;--text-primary:#111827;--text-secondary:#374151;--text-muted:#6b7280;--danger-500:#DC2626;--radius-sm:6px;--radius-pill:999px;--shadow-focus:0 0 0 3px rgb(45 127 251/.32);--motion-fast:140ms;--motion-base:200ms;--ease-out:cubic-bezier(.2,.8,.2,1);--font-display:inherit;--fdrawer-width:        360px;--fdrawer-max-width:    92vw;--fdrawer-scrim:        rgba(15, 23, 42, 0.38);--fdrawer-shadow:       -10px 0 30px rgba(15, 23, 42, 0.16);--fdrawer-pad-x:        18px;--fdrawer-head-pad:     16px 20px;--fdrawer-slide:        300ms;--fdrawer-slide-ease:   cubic-bezier(0.4, 0, 0.2, 1);--fdrawer-scrim-motion: 250ms;--fdrawer-acc-motion:   220ms;--fdrawer-list-max:     210px;}
+  .ds-fdrawer{--z-drawer:1080;--bg-surface:#fff;--bg-muted:#f3f4f6;--bg-sunken:#f9fafb;--border-subtle:#f3f4f6;--border-default:#e5e7eb;--text-primary:#111827;--text-secondary:#374151;--text-muted:#6b7280;--danger-500:#DC2626;--radius-sm:6px;--radius-pill:999px;--shadow-focus:0 0 0 3px rgb(45 127 251/.32);--motion-fast:140ms;--motion-base:200ms;--ease-out:cubic-bezier(.2,.8,.2,1);--font-display:inherit;--fdrawer-width:        360px;--fdrawer-max-width:    92vw;--fdrawer-scrim:        rgba(15, 23, 42, 0.38);--fdrawer-shadow:       -10px 0 30px rgba(15, 23, 42, 0.16);--fdrawer-pad-x:        18px;--fdrawer-head-pad:     16px 20px;--fdrawer-slide:        300ms;--fdrawer-slide-ease:   cubic-bezier(0.4, 0, 0.2, 1);--fdrawer-scrim-motion: 250ms;--fdrawer-acc-motion:   220ms;--fdrawer-list-max:     210px;}
   .ds-fdrawer { position: fixed; inset: 0; z-index: var(--z-drawer); visibility: hidden; } .ds-fdrawer.is-open { visibility: visible; } .ds-fdrawer-scrim { position: absolute; inset: 0; background: var(--fdrawer-scrim); opacity: 0; transition: opacity var(--fdrawer-scrim-motion) var(--ease-out); } .ds-fdrawer.is-open .ds-fdrawer-scrim { opacity: 1; } .ds-fdrawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: var(--fdrawer-width); max-width: var(--fdrawer-max-width); background: var(--bg-surface); box-shadow: var(--fdrawer-shadow); display: flex; flex-direction: column; transform: translateX(100%); transition: transform var(--fdrawer-slide) var(--fdrawer-slide-ease); } .ds-fdrawer.is-open .ds-fdrawer-panel { transform: translateX(0); } .ds-fdrawer-head { display: flex; align-items: center; justify-content: space-between; padding: var(--fdrawer-head-pad); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text-primary); flex: 0 0 auto; } .ds-fdrawer-close { border: 0; background: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 8px; display: inline-flex; transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-close:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-close:focus-visible { outline: 0; box-shadow: var(--shadow-focus); } .ds-fdrawer-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 4px var(--fdrawer-pad-x) 12px; display: flex; flex-direction: column; } .ds-fdrawer-section { padding: 16px 0; border-bottom: 1px solid var(--border-subtle); flex: 0 0 auto; transition: padding var(--motion-base) var(--ease-out); } .ds-fdrawer-section:not(.is-open) { padding: 12px 0; } .ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; } .ds-fdrawer-section:last-child { border-bottom: 0; } .ds-fdrawer-acc-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; } .ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); } .ds-fdrawer-sec-title { font-size:12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 8px; } .ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); } .ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); } .ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; } .ds-fdrawer-acc-body { display: none; padding-top: 12px; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { display: flex; flex-direction: column; flex: 1; min-height: 0; animation: ds-fdrawer-acc-in var(--fdrawer-acc-motion) var(--ease-out); } @keyframes ds-fdrawer-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } } .ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; } .ds-fdrawer-act { flex: 1; padding: 4px 8px; border: 1px solid var(--border-default); border-radius: var(--radius-sm); background: var(--bg-surface); font: inherit; font-size:12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); } .ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; } .ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; } .ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; } .ds-fdrawer-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 8px 12px; border: 0; border-radius: var(--radius-sm); background: transparent; font-size: 14px; font-weight: 500; color: var(--text-secondary); cursor: pointer; white-space: nowrap; } .ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; } .ds-fdrawer-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 16px var(--fdrawer-pad-x); border-top: 1px solid var(--border-subtle); flex: 0 0 auto; } .ds-fdrawer-foot > * { justify-content: center; height: 40px; padding: 0 16px; } .ds-fdrawer-foot > *:disabled { opacity: 0.45; cursor: default; pointer-events: none; } @media (prefers-reduced-motion: reduce) { .ds-fdrawer-panel, .ds-fdrawer-scrim { transition-duration: 1ms; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { animation-duration: 1ms; } }
   .ds-fdrawer-item input[type="radio"]{width:15px;height:15px;accent-color:var(--brand-600);cursor:pointer;margin:0;flex-shrink:0}
   .sts-ibtn{width:32px;padding:0;justify-content:center;color:#4b5563}
@@ -526,11 +526,11 @@
   .bg-blue-600{background-color:#1485c5!important}.text-blue-600{color:#1485c5!important}
   .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}.text-amber-500{color:#d97706!important}
   .bg-yellow-100{background-color:#fef3c7!important}.text-yellow-700{color:#b45309!important}
-  .bg-orange-50{background-color:#fffbeb!important}.bg-orange-500{background-color:#d97706!important}.text-orange-500{color:#d97706!important}.text-orange-600{color:#b45309!important}
-  .bg-green-50{background-color:#f0fdf4!important}.bg-green-100{background-color:#dcfce7!important}.bg-green-500{background-color:#16a34a!important}
-  .text-green-700{color:#15803d!important}.text-green-500{color:#16a34a!important}.border-green-200{border-color:#dcfce7!important}
-  .bg-red-50{background-color:#fef2f2!important}.bg-red-100{background-color:#fee2e2!important}.bg-red-500{background-color:#dc2626!important}
-  .text-red-700{color:#b91c1c!important}.text-red-600{color:#dc2626!important}.text-red-500{color:#dc2626!important}.text-red-400{color:#dc2626!important}
+  .bg-orange-50{background-color:#fffbeb!important}.bg-[#d97706]{background-color:#d97706!important}.text-[#d97706]{color:#d97706!important}.text-orange-600{color:#b45309!important}
+  .bg-green-50{background-color:#f0fdf4!important}.bg-green-100{background-color:#dcfce7!important}.bg-[#16a34a]{background-color:#16a34a!important}
+  .text-green-700{color:#15803d!important}.text-[#16a34a]{color:#16a34a!important}.border-[#dcfce7]{border-color:#dcfce7!important}
+  .bg-red-50{background-color:#fef2f2!important}.bg-red-100{background-color:#fee2e2!important}.bg-[#ea580c]{background-color:#dc2626!important}
+  .text-red-700{color:#b91c1c!important}.text-red-600{color:#dc2626!important}.text-[#ea580c]{color:#dc2626!important}.text-red-400{color:#dc2626!important}
   .bg-purple-100{background-color:#f3f4f6!important}.text-purple-700{color:#9333ea!important}
   .bg-cyan-100{background-color:#f3f4f6!important}.text-cyan-700{color:#0891b2!important}
   .bg-pink-100{background-color:#f3f4f6!important}.text-pink-700{color:#db2777!important}
@@ -672,7 +672,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -824,7 +824,7 @@ const VOYAGE_HISTORY = [
 
 const COMPLIANCE_STATUS = {
   'Not sanctioned': { fill:'#16A34A', ring:'#DCFCE7', changed:'Thu, 6 Aug 2026' },
-  'Warning':        { fill:'#f59e0b', ring:'#fcd68a', changed:'Mon, 14 Sep 2026' },
+  'Warning':        { fill:'#eab308', ring:'#fcd68a', changed:'Mon, 14 Sep 2026' },
   'Sanctioned':     { fill:'#dc2626', ring:'#f4a3a3', changed:'Fri, 2 Oct 2026' },
 };
 window.pageTweaks = () => `<label class="block">
@@ -3428,7 +3428,7 @@ function CasualtyRiskCardCopy6() {
   </div>`;
 }
 
-const ASSOC_RISK_COLOR = { Critical:'#dc2626', High:'#f97316', Medium:'#eab308', Low:'#16a34a', Informational:'#d1d5db' };
+const ASSOC_RISK_COLOR = { Critical:'#dc2626', High:'#d97706', Medium:'#eab308', Low:'#16a34a', Informational:'#d1d5db' };
 
 const ASSOC_ARROW = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400 shrink-0" style="display:inline-block;vertical-align:-2px;"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>';
 
@@ -3528,8 +3528,8 @@ function InspectionTable() {
         </thead>
         <tbody>
           ${(() => {
-            const okBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
-            const badBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`;
+            const okBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-[#dcfce7]"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok</span>`;
+            const badBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>Sanctioned</span>`;
             const LISTS = ['ofac','un','eu','aus','ofsi'];
             const cells = hit => LISTS.map(k => `<td class="px-3 py-2 text-center">${hit && hit[k] ? badBadge : okBadge}</td>`).join('');
             const folder = open => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${open ? '<path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/>' : '<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>'}</svg>`;
@@ -3559,8 +3559,8 @@ function InspectionTable() {
       </table>
       <div class="sc-cards" role="list" aria-label="Sanction compliance">
         ${(() => {
-            const okBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
-            const badBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned</span>`;
+            const okBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-[#dcfce7]"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok</span>`;
+            const badBadge = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>Sanctioned</span>`;
             const folder = open => `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${open ? '<path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/>' : '<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>'}</svg>`;
             const LISTS = [['ofac','OFAC'],['un','UN'],['eu','EU'],['aus','Australia'],['ofsi','OFSI']];
             const lists = hit => `<dl class="sc-lists">${LISTS.map(([k, lbl]) => `<div><dt title="${lbl} sanctions list">${lbl}</dt><dd>${hit && hit[k] ? badBadge : okBadge}</dd></div>`).join('')}</dl>`;
@@ -3643,9 +3643,9 @@ function InspectionTable() {
         <tbody>
           ${STS_DATA.map(r => {
             const border = r.highlight === 'red' ? 'border-l-4 border-l-red-400 bg-red-50 sts-top-red' : r.highlight === 'orange' ? 'border-l-4 border-l-orange-400 bg-orange-50 sts-dash-l sts-top-orange' : '';
-            const okBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
-            const sanctionBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
-            const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
+            const okBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok</span>`;
+            const sanctionBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>Sanctioned <svg class="w-3 h-3 text-[#ea580c]" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
+            const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
             const compBadge = (c) => c === 'sanctioned' ? sanctionBadge : c === 'ok-warn' ? warnBadge : okBadge;
             const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
             const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
@@ -3707,9 +3707,9 @@ function InspectionTable() {
       </table>
       <div class="sts-cards" role="list" aria-label="Ship-to-ship transfers">
         ${STS_DATA.map(r => {
-            const okBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok</span>`;
-            const sanctionBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>Sanctioned <svg class="w-3 h-3 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
-            const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
+            const okBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok</span>`;
+            const sanctionBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>Sanctioned <svg class="w-3 h-3 text-[#ea580c]" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
+            const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
             const compBadge = (c) => c === 'sanctioned' ? sanctionBadge : c === 'ok-warn' ? warnBadge : okBadge;
             const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
             const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
@@ -4227,7 +4227,7 @@ function HistoricalDetailsBody() {
     ${label}
     <svg viewBox="0 0 24 24" class="h-3 w-3 text-ink-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
   </button>`;
-  const arrow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5 inline-block ml-1 align-[-2px] text-orange-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>`;
+  const arrow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5 inline-block ml-1 align-[-2px] text-[#d97706]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>`;
   const cell = (val, isChanged) => isChanged
     ? `<td class="px-3 py-3 text-orange-600 font-semibold whitespace-nowrap"><span class="inline-flex items-center">${val}${arrow}</span></td>`
     : `<td class="px-3 py-3 text-ink-700 whitespace-nowrap">${val}</td>`;
@@ -4246,7 +4246,7 @@ function HistoricalDetailsBody() {
   <div>
     <div class="flex items-center justify-end flex-wrap gap-2 px-4 pt-3 pb-3">
       <span class="inline-flex items-center gap-1 text-xs text-ink-500">
-        <span class="inline-block w-2 h-2 rounded-full bg-orange-500"></span>Highlighted cells indicate a change from the prior record
+        <span class="inline-block w-2 h-2 rounded-full bg-[#d97706]"></span>Highlighted cells indicate a change from the prior record
       </span>
     </div>
     <div class="hd-table overflow-x-auto scroll-thin border-t border-ink-100">
@@ -4589,7 +4589,7 @@ function initMapWeather() {
   window.__evInit = true;
 }
 // Region shapes (approximate, illustrative) keyed "Group|Item"
-const REGION_COLORS = { 'Country EEZ':'#0ea5e9', 'High Risk Areas':'#f97316', 'JWLA-034':'#dc2626', 'Other':'#6b7280', 'Ports':'#1485c5', 'Real-Time Risk (Marine)':'#eab308', 'Real-Time Risk (Yacht)':'#14b8a6', 'Sanctioned Port':'#7f1d1d', 'Scrapping Yards':'#78716c', 'USA':'#4f46e5', 'War':'#991b1b' };
+const REGION_COLORS = { 'Country EEZ':'#43a8df', 'High Risk Areas':'#d97706', 'JWLA-034':'#dc2626', 'Other':'#6b7280', 'Ports':'#1485c5', 'Real-Time Risk (Marine)':'#eab308', 'Real-Time Risk (Yacht)':'#14b8a6', 'Sanctioned Port':'#7f1d1d', 'Scrapping Yards':'#78716c', 'USA':'#1d4ed8', 'War':'#991b1b' };
 const REGION_SHAPES = {
   'Country EEZ|Greece EEZ':  { poly:[[40.8,19.4],[40.6,23.0],[40.9,26.0],[39.5,26.6],[37.0,27.7],[36.0,29.6],[34.2,27.5],[34.0,24.0],[35.0,21.0],[37.5,20.0],[39.4,19.2]], dash:'5 4' },
   'Country EEZ|Egypt EEZ':   { poly:[[31.6,25.2],[33.6,26.5],[33.6,29.6],[33.0,33.5],[31.3,34.2],[31.0,32.3],[31.4,29.0],[31.6,25.2]], dash:'5 4' },
@@ -5725,7 +5725,7 @@ function initMapWeather() {
   window.__evInit__he = true;
 }
 
-const REGION_COLORS = { 'Country EEZ':'#0ea5e9', 'High Risk Areas':'#f97316', 'JWLA-034':'#dc2626', 'Other':'#6b7280', 'Ports':'#1485c5', 'Real-Time Risk (Marine)':'#eab308', 'Real-Time Risk (Yacht)':'#14b8a6', 'Sanctioned Port':'#7f1d1d', 'Scrapping Yards':'#78716c', 'USA':'#4f46e5', 'War':'#991b1b' };
+const REGION_COLORS = { 'Country EEZ':'#43a8df', 'High Risk Areas':'#d97706', 'JWLA-034':'#dc2626', 'Other':'#6b7280', 'Ports':'#1485c5', 'Real-Time Risk (Marine)':'#eab308', 'Real-Time Risk (Yacht)':'#14b8a6', 'Sanctioned Port':'#7f1d1d', 'Scrapping Yards':'#78716c', 'USA':'#1d4ed8', 'War':'#991b1b' };
 
 const REGION_SHAPES = {
   'Country EEZ|Greece EEZ':  { poly:[[40.8,19.4],[40.6,23.0],[40.9,26.0],[39.5,26.6],[37.0,27.7],[36.0,29.6],[34.2,27.5],[34.0,24.0],[35.0,21.0],[37.5,20.0],[39.4,19.2]], dash:'5 4' },

@@ -11,7 +11,7 @@
       extend: {
         fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
         colors: {
-          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
           ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
         },
         boxShadow: {
@@ -112,7 +112,7 @@
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
   .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
-  .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 
@@ -306,7 +306,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -542,33 +542,33 @@ const TABS_DATA = {
 
 const MAP_REGIONS_BY_TAB = {
   marine: [
-    {name:'North Sea / Scandinavia',  color:'#f59e0b', bounds:[[54,5],[72,28]],  exposure:'$89.4M',  assets:312,  risk:'Medium'},
-    {name:'Americas — Gulf Zone',     color:'#f59e0b', bounds:[[12,-112],[32,-86]],exposure:'$76.2M', assets:246,  risk:'High'},
-    {name:'Caribbean & Central America',color:'#f59e0b',bounds:[[5,-100],[18,-80]],exposure:'$24.4B', assets:646,  risk:'Medium'},
-    {name:'Western Europe',           color:'#3b82f6', bounds:[[43,-10],[58,28]], exposure:'$182.4B', assets:1240, risk:'Low'},
-    {name:'Middle East / Levant',     color:'#ef4444', bounds:[[20,24],[42,56]],  exposure:'$54.8B',  assets:892,  risk:'Critical'},
-    {name:'East Asia',                color:'#f59e0b', bounds:[[14,88],[52,136]], exposure:'$215.6M', assets:528,  risk:'Medium'},
+    {name:'North Sea / Scandinavia',  color:'#eab308', bounds:[[54,5],[72,28]],  exposure:'$89.4M',  assets:312,  risk:'Medium'},
+    {name:'Americas — Gulf Zone',     color:'#eab308', bounds:[[12,-112],[32,-86]],exposure:'$76.2M', assets:246,  risk:'High'},
+    {name:'Caribbean & Central America',color:'#eab308',bounds:[[5,-100],[18,-80]],exposure:'$24.4B', assets:646,  risk:'Medium'},
+    {name:'Western Europe',           color:'#1a92d1', bounds:[[43,-10],[58,28]], exposure:'$182.4B', assets:1240, risk:'Low'},
+    {name:'Middle East / Levant',     color:'#ea580c', bounds:[[20,24],[42,56]],  exposure:'$54.8B',  assets:892,  risk:'Critical'},
+    {name:'East Asia',                color:'#eab308', bounds:[[14,88],[52,136]], exposure:'$215.6M', assets:528,  risk:'Medium'},
   ],
   property: [
-    {name:'US Northeast Metro',       color:'#3b82f6', bounds:[[37,-80],[45,-69]], exposure:'$420.5B', assets:1820, risk:'Low'},
-    {name:'US West Coast',            color:'#f59e0b', bounds:[[32,-123],[42,-117]],exposure:'$268.1B',assets:1240, risk:'Medium'},
-    {name:'Western Europe',           color:'#3b82f6', bounds:[[43,-6],[54,12]],   exposure:'$512.7B', assets:2310, risk:'Low'},
-    {name:'Gulf Cooperation Council', color:'#ef4444', bounds:[[22,46],[30,56]],   exposure:'$96.3B',  assets:540,  risk:'High'},
-    {name:'East Asia Megacities',     color:'#f59e0b', bounds:[[30,118],[40,142]], exposure:'$338.9B', assets:1670, risk:'Medium'},
+    {name:'US Northeast Metro',       color:'#1a92d1', bounds:[[37,-80],[45,-69]], exposure:'$420.5B', assets:1820, risk:'Low'},
+    {name:'US West Coast',            color:'#eab308', bounds:[[32,-123],[42,-117]],exposure:'$268.1B',assets:1240, risk:'Medium'},
+    {name:'Western Europe',           color:'#1a92d1', bounds:[[43,-6],[54,12]],   exposure:'$512.7B', assets:2310, risk:'Low'},
+    {name:'Gulf Cooperation Council', color:'#ea580c', bounds:[[22,46],[30,56]],   exposure:'$96.3B',  assets:540,  risk:'High'},
+    {name:'East Asia Megacities',     color:'#eab308', bounds:[[30,118],[40,142]], exposure:'$338.9B', assets:1670, risk:'Medium'},
   ],
   aviation: [
-    {name:'North Atlantic Corridor',  color:'#3b82f6', bounds:[[38,-78],[54,-8]],  exposure:'$184.2B', assets:124,  risk:'Low'},
-    {name:'European Hubs',            color:'#f59e0b', bounds:[[42,-6],[54,18]],   exposure:'$142.6B', assets:98,   risk:'Medium'},
-    {name:'Middle East Hubs',         color:'#ef4444', bounds:[[22,42],[30,56]],   exposure:'$118.9B', assets:46,   risk:'High'},
-    {name:'Trans-Pacific',            color:'#f59e0b', bounds:[[24,128],[44,170]], exposure:'$97.4B',  assets:72,   risk:'Medium'},
-    {name:'Southeast Asia',           color:'#3b82f6', bounds:[[-6,98],[16,120]],  exposure:'$64.3B',  assets:58,   risk:'Low'},
+    {name:'North Atlantic Corridor',  color:'#1a92d1', bounds:[[38,-78],[54,-8]],  exposure:'$184.2B', assets:124,  risk:'Low'},
+    {name:'European Hubs',            color:'#eab308', bounds:[[42,-6],[54,18]],   exposure:'$142.6B', assets:98,   risk:'Medium'},
+    {name:'Middle East Hubs',         color:'#ea580c', bounds:[[22,42],[30,56]],   exposure:'$118.9B', assets:46,   risk:'High'},
+    {name:'Trans-Pacific',            color:'#eab308', bounds:[[24,128],[44,170]], exposure:'$97.4B',  assets:72,   risk:'Medium'},
+    {name:'Southeast Asia',           color:'#1a92d1', bounds:[[-6,98],[16,120]],  exposure:'$64.3B',  assets:58,   risk:'Low'},
   ],
   energy: [
-    {name:'North Sea Basin',          color:'#f59e0b', bounds:[[54,0],[62,8]],     exposure:'$210.4B', assets:312,  risk:'Medium'},
-    {name:'Gulf of Mexico',           color:'#ef4444', bounds:[[18,-97],[30,-82]], exposure:'$425.6B', assets:684,  risk:'High'},
-    {name:'Persian Gulf',             color:'#ef4444', bounds:[[24,48],[30,57]],   exposure:'$388.1B', assets:528,  risk:'Critical'},
-    {name:'West Africa Offshore',     color:'#f59e0b', bounds:[[-6,2],[8,12]],     exposure:'$96.8B',  assets:214,  risk:'Medium'},
-    {name:'Brazil Pre-Salt',          color:'#3b82f6', bounds:[[-28,-46],[-18,-36]],exposure:'$152.3B',assets:188,  risk:'Low'},
+    {name:'North Sea Basin',          color:'#eab308', bounds:[[54,0],[62,8]],     exposure:'$210.4B', assets:312,  risk:'Medium'},
+    {name:'Gulf of Mexico',           color:'#ea580c', bounds:[[18,-97],[30,-82]], exposure:'$425.6B', assets:684,  risk:'High'},
+    {name:'Persian Gulf',             color:'#ea580c', bounds:[[24,48],[30,57]],   exposure:'$388.1B', assets:528,  risk:'Critical'},
+    {name:'West Africa Offshore',     color:'#eab308', bounds:[[-6,2],[8,12]],     exposure:'$96.8B',  assets:214,  risk:'Medium'},
+    {name:'Brazil Pre-Salt',          color:'#1a92d1', bounds:[[-28,-46],[-18,-36]],exposure:'$152.3B',assets:188,  risk:'Low'},
   ],
 };
 const MAP_REGIONS = MAP_REGIONS_BY_TAB.marine;
@@ -592,14 +592,14 @@ let rFilterOpen = false;
 const SKYTEK_REGION_LIST = [
   { name:'Red Sea',                  count:298, exposure:'$412M', color:'#dc2626', bounds:[[13,33],[28,43]],    risk:'High' },
   { name:'Persian Gulf',             count:412, exposure:'$688M', color:'#dc2626', bounds:[[24,48],[30,57]],    risk:'High' },
-  { name:'Strait of Hormuz',         count:186, exposure:'$304M', color:'#7c3aed', bounds:[[25.5,55.5],[27.2,57.4]], risk:'Critical' },
-  { name:'Gulf of Aden',             count:174, exposure:'$221M', color:'#f97316', bounds:[[10.9,43],[13,51.5]], risk:'Medium' },
-  { name:'Gulf of Guinea',           count:264, exposure:'$355M', color:'#f97316', bounds:[[-2,-5],[6.5,9.5]],   risk:'Medium' },
+  { name:'Strait of Hormuz',         count:186, exposure:'$304M', color:'#9333ea', bounds:[[25.5,55.5],[27.2,57.4]], risk:'Critical' },
+  { name:'Gulf of Aden',             count:174, exposure:'$221M', color:'#d97706', bounds:[[10.9,43],[13,51.5]], risk:'Medium' },
+  { name:'Gulf of Guinea',           count:264, exposure:'$355M', color:'#d97706', bounds:[[-2,-5],[6.5,9.5]],   risk:'Medium' },
   { name:'Black Sea',                count:143, exposure:'$196M', color:'#dc2626', bounds:[[41,29],[46.6,41.8]], risk:'High' },
-  { name:'Eastern Mediterranean',    count:337, exposure:'$478M', color:'#f97316', bounds:[[31,27.5],[37,36.2]], risk:'Medium' },
-  { name:'Venezuela & S. Caribbean', count:96,  exposure:'$118M', color:'#7c3aed', bounds:[[9.4,-72],[12.8,-60]],risk:'Critical' },
-  { name:'Strait of Malacca',        count:389, exposure:'$540M', color:'#f97316', bounds:[[0.6,97],[6,104.4]],  risk:'Medium' },
-  { name:'South China Sea',          count:604, exposure:'$871M', color:'#f97316', bounds:[[3,105],[23,120.5]],  risk:'Medium' },
+  { name:'Eastern Mediterranean',    count:337, exposure:'$478M', color:'#d97706', bounds:[[31,27.5],[37,36.2]], risk:'Medium' },
+  { name:'Venezuela & S. Caribbean', count:96,  exposure:'$118M', color:'#9333ea', bounds:[[9.4,-72],[12.8,-60]],risk:'Critical' },
+  { name:'Strait of Malacca',        count:389, exposure:'$540M', color:'#d97706', bounds:[[0.6,97],[6,104.4]],  risk:'Medium' },
+  { name:'South China Sea',          count:604, exposure:'$871M', color:'#d97706', bounds:[[3,105],[23,120.5]],  risk:'Medium' },
   { name:'Indian Ocean HRA',         count:520, exposure:'$733M', color:'#16a34a', bounds:[[-5,45],[15,78]],     risk:'Low' },
   { name:'Baltic Sea',               count:212, exposure:'$284M', color:'#16a34a', bounds:[[54.4,11.2],[65.5,28.2]], risk:'Low' },
 ];
@@ -773,7 +773,7 @@ function initMap() {
   const skytek = SKYTEK_REGION_LIST.map(r => ({...r, assets:r.count, src:'Skytek Regions'}));
   const drawn = monitored.concat(skytek).filter(r => !rfState.excluded.has(rfKey(r.src, r.name)));
   drawn.forEach(r => {
-    const riskColor = {Low:'#16a34a',Medium:'#f97316',High:'#dc2626',Critical:'#7c3aed'}[r.risk]||'#6b7280';
+    const riskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#9333ea'}[r.risk]||'#6b7280';
     const popupHTML = `
     <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
       <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Port Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -66,7 +66,7 @@
   .trend-table tr.expandable.open .tr-chev { transform:rotate(90deg); color:var(--brand-600,#2563eb); }
   .trend-table tr.trend-detail { display:none; }
   .trend-table tr.trend-detail.open { display:table-row; }
-  .trend-table tr.trend-detail td { border-bottom:1px solid #f3f4f6; background:#fcfcfd; }
+  .trend-table tr.trend-detail td { border-bottom:1px solid #f3f4f6; background:#f9fafb; }
   .trend-detail-inner { padding:8px 0 12px; }
   /* Grid bar chart — column template MATCHES the table (150px label + 12 equal month cols) */
   .tr-chart-title { font-size:12px; font-weight:700; color:#111827; padding:2px 12px 8px 12px; }
@@ -89,7 +89,7 @@
   .risk-table tr:hover td { background:#f9fafb; }
   .type-dot { width:10px; height:10px; border-radius:4px; flex-shrink:0; }
   /* Map */
-  #port-map { position:absolute; inset:0; background:#0b2a3a; }
+  #port-map { position:absolute; inset:0; background:#1f2937; }
   .leaflet-control-zoom,.leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; line-height:30px !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
@@ -183,13 +183,13 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 /* Read brand color at render time so JS-driven colors (SVG fills, Leaflet styles) follow the theme. */
 function brand(shade) {
   const v = getComputedStyle(document.documentElement).getPropertyValue('--brand-' + shade).trim();
-  return v || ({600:'#2563eb',500:'#3b82f6',700:'#1d4ed8',100:'#dbeafe',50:'#eff6ff'}[shade] || '#2563eb');
+  return v || ({600:'#2563eb',500:'#1a92d1',700:'#1d4ed8',100:'#dbeafe',50:'#eff6ff'}[shade] || '#2563eb');
 }
 
 /* ---- Load port ---- */
@@ -283,9 +283,9 @@ const BERTH_PURPOSE = [
 
 /* ---- Bar chart SVG (grouped: 2023 / 2024 / Current Year) ---- */
 const TREND_SERIES = [
-  { key:'y2023', label:'2023',         color:'#6366f1' },
-  { key:'y2024', label:'2024',         color:'#3b82f6' },
-  { key:'cur',   label:'Current Year', color:'#10b981' },
+  { key:'y2023', label:'2023',         color:'#2563eb' },
+  { key:'y2024', label:'2024',         color:'#1a92d1' },
+  { key:'cur',   label:'Current Year', color:'#16a34a' },
 ];
 
 // Build three comparable series from a row's current-year data (+ optional real prev = 2023)

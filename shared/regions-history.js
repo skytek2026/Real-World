@@ -1,5 +1,5 @@
 (function(){
-const st = document.createElement('style'); st.textContent = ".voy-sel{appearance:none;-webkit-appearance:none;height:30px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font:inherit;font-size:12px;font-weight:600;color:#374151;background:#fff;cursor:pointer;outline:none}.voy-sel:focus{border-color:var(--brand-500,#3b82f6);box-shadow:0 0 0 3px rgb(59 130 246/.15)}.voy-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 14px rgb(15 23 42/.14);padding:8px 12px;font-size:12px;color:#111827;white-space:nowrap;z-index:5}.voy-tip-d{font-weight:600;margin-bottom:4px}.voy-tip-r{display:flex;align-items:center;gap:4px}.voy-tip-r b{font-weight:600}.voy-tip-r span:last-child{margin-left:8px}.voy-tip-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-500,#3b82f6)}.voy-radio{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#374151;cursor:pointer}.voy-radio input{width:15px;height:15px;accent-color:var(--brand-600,#2563eb);margin:0;cursor:pointer}"; document.head.appendChild(st);
+const st = document.createElement('style'); st.textContent = ".voy-sel{appearance:none;-webkit-appearance:none;height:30px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font:inherit;font-size:12px;font-weight:600;color:#374151;background:#fff;cursor:pointer;outline:none}.voy-sel:focus{border-color:var(--brand-500,#1a92d1);box-shadow:0 0 0 3px rgb(59 130 246/.15)}.voy-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 14px rgb(15 23 42/.14);padding:8px 12px;font-size:12px;color:#111827;white-space:nowrap;z-index:5}.voy-tip-d{font-weight:600;margin-bottom:4px}.voy-tip-r{display:flex;align-items:center;gap:4px}.voy-tip-r b{font-weight:600}.voy-tip-r span:last-child{margin-left:8px}.voy-tip-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-500,#1a92d1)}.voy-radio{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#374151;cursor:pointer}.voy-radio input{width:15px;height:15px;accent-color:var(--brand-600,#2563eb);margin:0;cursor:pointer}"; document.head.appendChild(st);
 let voyYear = '2026', voyRegion = 'High Risk Areas', voyMetric = 'ships';
 const VOY_REGION_GROUPS = [
   ['Country Eez', ['Ireland','Israel EEZ']],
@@ -36,22 +36,22 @@ function VoyChart() {
   const grid = ticks.map(t => `<line x1="${pl}" x2="${W - pr}" y1="${y(t)}" y2="${y(t)}" stroke="#eef2f6"></line><text x="${pl - 10}" y="${y(t) + 4}" text-anchor="end" font-size="8.5" fill="#6b7280">${t}</text>`).join('');
   const xt = pts.map((p, i) => [p, i]).filter(([p, i]) => i % 14 === 10).map(([p, i]) => `<line x1="${x(i)}" x2="${x(i)}" y1="${H - pb}" y2="${H - pb + 5}" stroke="#9ca3af"></line><text x="${x(i)}" y="${H - pb + 16}" text-anchor="middle" font-size="8.5" fill="#374151">${p.date.getDate()} ${p.date.toLocaleString('en-GB', { month: 'short' })}</text>`).join('');
   const path = pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.val).toFixed(1)}`).join(' ');
-  const dots = pts.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.val).toFixed(1)}" r="2.2" fill="var(--brand-500,#3b82f6)"></circle>`).join('');
+  const dots = pts.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.val).toFixed(1)}" r="2.2" fill="var(--brand-500,#1a92d1)"></circle>`).join('');
   window.__voy = { pts, W, H, pl, pr, pt, pb, x, y };
   return `<div style="display:flex;align-items:stretch;gap:4px">
       <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;color:#6b7280;text-align:center;white-space:nowrap">${label}</div>
       <div id="voy-plot" style="position:relative;flex:1;min-width:0">
       <svg id="voy-svg" viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="${label} over time">
         ${grid}<line x1="${pl}" x2="${W - pr}" y1="${H - pb}" y2="${H - pb}" stroke="#9ca3af"></line>${xt}
-        <path d="${path}" fill="none" stroke="var(--brand-500,#3b82f6)" stroke-width="1.1" stroke-linejoin="round"></path>${dots}
+        <path d="${path}" fill="none" stroke="var(--brand-500,#1a92d1)" stroke-width="1.1" stroke-linejoin="round"></path>${dots}
         <line id="voy-guide" x1="0" x2="0" y1="${pt}" y2="${H - pb}" stroke="#9ca3af" stroke-width="1" visibility="hidden"></line>
-        <circle id="voy-hover" r="5" fill="var(--brand-500,#3b82f6)" stroke="#fff" stroke-width="2" visibility="hidden"></circle>
+        <circle id="voy-hover" r="5" fill="var(--brand-500,#1a92d1)" stroke="#fff" stroke-width="2" visibility="hidden"></circle>
         <rect x="${pl}" y="${pt}" width="${W - pl - pr}" height="${H - pt - pb}" fill="transparent" style="cursor:crosshair"></rect>
       </svg>
       <div id="voy-tip" class="voy-tip" hidden></div>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:4px;font-size:12px;color:#374151;margin-top:4px"><span style="display:inline-flex;align-items:center"><span style="width:14px;height:2px;background:var(--brand-500,#3b82f6)"></span><span style="width:5px;height:5px;border-radius:50%;background:var(--brand-500,#3b82f6);margin-left:-8px"></span></span><span style="margin-left:4px">${voyRegion}</span></div>`;
+    <div style="display:flex;justify-content:center;align-items:center;gap:4px;font-size:12px;color:#374151;margin-top:4px"><span style="display:inline-flex;align-items:center"><span style="width:14px;height:2px;background:var(--brand-500,#1a92d1)"></span><span style="width:5px;height:5px;border-radius:50%;background:var(--brand-500,#1a92d1);margin-left:-8px"></span></span><span style="margin-left:4px">${voyRegion}</span></div>`;
 }
 function VoyagesContent() {
   const sel = (id, opts, cur, w) => `<div style="position:relative"><select id="${id}" class="voy-sel" style="width:${w}">${opts.map(o => `<option ${o === cur ? 'selected' : ''}>${o}</option>`).join('')}</select><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg></div>`;

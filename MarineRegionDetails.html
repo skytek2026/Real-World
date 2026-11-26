@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Marine Region Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -143,10 +143,10 @@
   .ds-btn--sm{height:28px;font-size:12px;padding:0 12px}
   .ds-btn--sm svg{width:12px;height:12px}
   .ds-btn--primary{background:var(--brand-600,#2563eb);color:#fff;border-color:var(--brand-600,#2563eb)}
-  .ds-btn--primary:hover{background:var(--brand-500,#3b82f6);border-color:var(--brand-500,#3b82f6)}
+  .ds-btn--primary:hover{background:var(--brand-500,#1a92d1);border-color:var(--brand-500,#1a92d1)}
   .ds-btn--secondary{background:#fff;color:#1F2937;border-color:#E5E7EB;box-shadow:0 1px 2px rgba(15,23,42,.05)}
   .ds-btn--secondary:hover{background:#F9FAFB;border-color:#d1d5db}
-  .ds-btn--link{background:transparent;color:var(--brand-500,#3b82f6);padding:0;height:auto;border:0;font-weight:500}
+  .ds-btn--link{background:transparent;color:var(--brand-500,#1a92d1);padding:0;height:auto;border:0;font-weight:500}
   .ds-btn--link:hover{color:var(--brand-600,#2563eb);text-decoration:underline}
   .ds-btn--ghost{background:transparent;color:#374151}
   .ds-btn--ghost:hover{background:#F3F4F6}
@@ -267,7 +267,7 @@ window.PAGE = { id:'regions', title:'Marine Region', crumb: regionName };
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -354,30 +354,30 @@ const NOTIFICATIONS = [
 /* ── Region History chart ────────────────────────────────────────────────── */
 const HIST_TICKS = ['16 Jun','30 Jun','14 Jul','28 Jul','11 Aug','25 Aug','8 Sep','22 Sep','6 Oct','20 Oct','3 Nov','17 Nov','1 Dec','15 Dec','29 Dec','12 Jan','26 Jan','9 Feb','23 Feb','9 Mar','23 Mar','6 Apr','20 Apr','4 May','18 May','1 Jun'];
 const HIST_SERIES = [
-  { name:'Ardmore MR Pool LLC',                        color:'#3b82f6', profile:'low' },
-  { name:'BL portfolio',                               color:'#4f46e5', profile:'low' },
+  { name:'Ardmore MR Pool LLC',                        color:'#1a92d1', profile:'low' },
+  { name:'BL portfolio',                               color:'#1d4ed8', profile:'low' },
   { name:'Bernhard Schulte Shipmanagement (Singapore)',color:'#16a34a', profile:'flat' },
   { name:'Cargo Exposure',                             color:'#ea580c', profile:'flat' },
   { name:'Cargo Exposure 2',                           color:'#6b7280', profile:'peaks' },
   { name:'Columbia Shipmanagement Limited',            color:'#c026d3', profile:'low' },
   { name:'Containers & Tankers',                       color:'#14b8a6', profile:'mid5' },
   { name:'Cruise Sample portfolio',                    color:'#dc2626', profile:'flat' },
-  { name:'Fleet Ship Management',                      color:'#f59e0b', profile:'flat' },
+  { name:'Fleet Ship Management',                      color:'#eab308', profile:'flat' },
   { name:'Gatik Ship Management M S',                  color:'#2dd4bf', profile:'low' },
-  { name:'Kai Heng Long Global Energy Limited',        color:'#0ea5e9', profile:'low' },
-  { name:'MKL vessels',                                color:'#6366f1', profile:'low' },
-  { name:'MPP Carriers 2026',                          color:'#22c55e', profile:'flat' },
+  { name:'Kai Heng Long Global Energy Limited',        color:'#43a8df', profile:'low' },
+  { name:'MKL vessels',                                color:'#2563eb', profile:'low' },
+  { name:'MPP Carriers 2026',                          color:'#16a34a', profile:'flat' },
   { name:'MSC containers',                             color:'#d97706', profile:'flat' },
   { name:'SCI LNG 2026',                               color:'#4b5563', profile:'low' },
   { name:'Sample',                                     color:'#a855f7', profile:'flat' },
   { name:'Scenic Ocean Fleet 2026',                    color:'#06b6d4', profile:'low' },
-  { name:'Scorpio Commercial Management',              color:'#ef4444', profile:'flat' },
-  { name:'Stefan Portfolio Test',                      color:'#f97316', profile:'flat' },
+  { name:'Scorpio Commercial Management',              color:'#ea580c', profile:'flat' },
+  { name:'Stefan Portfolio Test',                      color:'#d97706', profile:'flat' },
   { name:'Tankers - VLCC',                             color:'#5eead4', profile:'mid4' },
   { name:'Top 500 yachts',                             color:'#60a5fa', profile:'low' },
   { name:'Torm AS',                                    color:'#818cf8', profile:'flat' },
   { name:'Upload_test',                                color:'#15803d', profile:'flat' },
-  { name:'White Fox Ship Management - FZCO',           color:'#e11d48', profile:'flat' },
+  { name:'White Fox Ship Management - FZCO',           color:'#dc2626', profile:'flat' },
   { name:'missing_fields_test',                        color:'#6b7280', profile:'flat' },
 ];
 function histNoise(si, pi) { let h = (si*733 + pi*131 + 17) >>> 0; h = (h*9301 + 49297) % 233280; return h/233280; }
@@ -579,13 +579,13 @@ const MAP_PIN  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" st
 /* ── Vessels (region) ───────────────────────────────────────────────────── */
 const MRD_VTYPES = [
   { k:'Container',          color:'#2563eb' },
-  { k:'Bulk Carrier',       color:'#3b82f6' },
-  { k:'Tanker',             color:'#ef4444' },
-  { k:'Gas Carrier',        color:'#f97316' },
+  { k:'Bulk Carrier',       color:'#1a92d1' },
+  { k:'Tanker',             color:'#ea580c' },
+  { k:'Gas Carrier',        color:'#d97706' },
   { k:'LNG Carrier',        color:'#eab308' },
-  { k:'General Cargo',      color:'#22c55e' },
+  { k:'General Cargo',      color:'#16a34a' },
   { k:'Cruise Passenger',   color:'#ec4899' },
-  { k:'Vehicle Carrier',    color:'#8b5cf6' },
+  { k:'Vehicle Carrier',    color:'#9333ea' },
 ];
 const MRD_VNAMES = ['SEA BREEZE','OCEAN PIONEER','NORDIC STAR','ATLANTIC PEARL','BLUE HORIZON','SILVER WAVE','NORTHERN LIGHT','SOUTHERN CROSS','MARITIME GLORY','TIDAL FORCE','GULF VOYAGER','MERIDIAN','AMBER TRADER','IRON DUKE','CAPE HORN'];
 const MRD_VFLAGS = [
@@ -694,7 +694,7 @@ function initMap() {
     [35.5,-122.0],[37.0,-123.0],[38.5,-124.0],[40.0,-124.8],[42.0,-124.5],
   ];
   const regionRisk      = 'High';
-  const regionRiskColor = {Low:'#16a34a',Medium:'#f97316',High:'#dc2626',Critical:'#7c3aed'}[regionRisk] || '#6b7280';
+  const regionRiskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#9333ea'}[regionRisk] || '#6b7280';
   const regionDotColor  = '#2563eb';
   const regionExposure  = '$5.5B';
   const regionAssets    = 1247;
@@ -722,7 +722,7 @@ function initMap() {
   const GEO = (()=>{try{return JSON.parse(sessionStorage.getItem('selectedRegionGeo')||'null')}catch(e){return null}})();
   const oddPoly=(b,seed)=>{const s=b[0][0],w=b[0][1],n=b[1][0],e=b[1][1],cy=(s+n)/2,cx=(w+e)/2,ry=(n-s)/2,rx=(e-w)/2;let h=(seed||1)>>>0;const rnd=()=>{h=(h*9301+49297)%233280;return h/233280;};return Array.from({length:11},(_,i)=>{const a=i/11*6.28318,j=0.55+rnd()*0.6;return [cy+Math.sin(a)*ry*j,cx+Math.cos(a)*rx*j];});};
   (GEO ? L.polygon(oddPoly(GEO.bounds, (GEO.name||'').length*13+7), { color:'var(--brand-600,#2563eb)', weight:2, fillColor:'var(--brand-600,#2563eb)', fillOpacity:0.18 })
-       : L.polygon(coastPoly, { color:'#2563eb', weight:2, fillColor:'#3b82f6', fillOpacity:0.18 }))
+       : L.polygon(coastPoly, { color:'#2563eb', weight:2, fillColor:'#1a92d1', fillOpacity:0.18 }))
     .addTo(rMap)
     .bindPopup(regionPopupHTML, { maxWidth:260, minWidth:250, closeButton:true, className:'region-popup' });
   if (GEO) rMap.fitBounds(GEO.bounds, { padding:[40,40] });
@@ -935,7 +935,7 @@ function Content() {
           ${[['All Risk','$850M','$5.5B'],['Hull','$520M','$3.7B'],['Cargo','$230M','$1.2B'],['Liability','$100M','$550M']].map(([lbl,thr,tot]) => `
           <div class="tot-row">
             <span style="flex:1;font-size:14px;color:#374151">${lbl}${lbl!=='All Risk'?':':''}</span>
-            <span style="color:#f97316;font-weight:600;font-size:14px;min-width:64px;text-align:right">${thr}</span>
+            <span style="color:#d97706;font-weight:600;font-size:14px;min-width:64px;text-align:right">${thr}</span>
             <span style="color:#111827;font-weight:600;font-size:14px;min-width:56px;text-align:right">${tot}</span>
           </div>`).join('')}` : `
           <div style="font-size:14px;color:#6b7280;padding:8px 0">
@@ -1035,17 +1035,17 @@ function Content() {
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Asset Count</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiCountDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.hiCountDate}</div>
               <span class="spill-blue">${s.hiCount}</span>
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Exposure Value</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiExpDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.hiExpDate}</div>
               <span class="spill-blue">${s.hiExp}</span>
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Market Value</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.hiMktDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.hiMktDate}</div>
               <span class="spill-blue">${s.hiMkt}</span>
             </div>
             <div>
@@ -1054,27 +1054,27 @@ function Content() {
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily War Exposure</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.warHiDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.warHiDate}</div>
               <span class="spill-red">${s.warHi}</span>
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily War Exposure</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.warLoDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.warLoDate}</div>
               <span class="spill-red">${s.warLo}</span>
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Asset Count</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loCountDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.loCountDate}</div>
               <span class="spill-gray">${s.loCount}</span>
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Exposure Value</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loExpDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.loExpDate}</div>
               <span class="spill-gray">${s.loExp}</span>
             </div>
             <div>
               <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Market Value</div>
-              <div style="font-size:12px;color:#f97316;margin-bottom:4px">${s.loMktDate}</div>
+              <div style="font-size:12px;color:#d97706;margin-bottom:4px">${s.loMktDate}</div>
               <span class="spill-gray">${s.loMkt}</span>
             </div>
           </div>

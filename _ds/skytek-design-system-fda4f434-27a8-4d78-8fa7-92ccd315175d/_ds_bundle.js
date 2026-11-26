@@ -1877,7 +1877,7 @@ try { (() => {
     if (document.getElementById('rw-modal-demo-style')) return;
     var s = document.createElement('style');
     s.id = 'rw-modal-demo-style';
-    s.textContent = '.demo-twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}' + '.demo-formgrid{display:grid;gap:12px;align-content:start;}' + '.demo-field{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;}' + '.demo-field-label{font-size:13px;color:#334155;}' + '.demo-field-control{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:7px 10px;font:inherit;font-size:13px;color:#0f172a;background:#fff;transition:border-color 120ms,box-shadow 120ms;}' + '.demo-field-control:focus{outline:0;border-color:#8ec5fd;box-shadow:0 0 0 3px rgba(37,99,235,.12);}' + ".demo-field-select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:28px;background:#fff url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\") no-repeat right 10px center;}" + '.demo-map{min-height:360px;border:1px solid #e2e8f0;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(45,127,251,0.05),rgba(45,127,251,0.02)),repeating-linear-gradient(45deg,#eef2f7 0 10px,#e6ecf3 10px 20px);}' + '.demo-map-cap{font-family:monospace;font-size:11px;color:#64748b;background:rgba(255,255,255,0.8);padding:4px 10px;border-radius:6px;}' + '@media (max-width:768px){.demo-twocol{grid-template-columns:1fr;}.demo-map{min-height:220px;}.demo-field{grid-template-columns:1fr;gap:4px;}}';
+    s.textContent = '.demo-twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}' + '.demo-formgrid{display:grid;gap:12px;align-content:start;}' + '.demo-field{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;}' + '.demo-field-label{font-size:13px;color:#334155;}' + '.demo-field-control{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:7px 10px;font:inherit;font-size:13px;color:#0f172a;background:#fff;transition:border-color 120ms,box-shadow 120ms;}' + '.demo-field-control:focus{outline:0;border-color:#8ec5fd;box-shadow:0 0 0 3px rgba(37,99,235,.12);}' + ".demo-field-select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:28px;background:#fff url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\") no-repeat right 10px center;}" + '.demo-map{min-height:360px;border:1px solid #e2e8f0;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(45,127,251,0.05),rgba(45,127,251,0.02)),repeating-linear-gradient(45deg,#f3f4f6 0 10px,#e6ecf3 10px 20px);}' + '.demo-map-cap{font-family:monospace;font-size:11px;color:#64748b;background:rgba(255,255,255,0.8);padding:4px 10px;border-radius:6px;}' + '@media (max-width:768px){.demo-twocol{grid-template-columns:1fr;}.demo-map{min-height:220px;}.demo-field{grid-template-columns:1fr;gap:4px;}}';
     document.head.appendChild(s);
   }
   function field(label, id, value, opts) {
@@ -4118,7 +4118,7 @@ const IdentitySection = () => /*#__PURE__*/React.createElement("div", {
   }
 }, /*#__PURE__*/React.createElement(IdentityBlock, {
   glyph: /*#__PURE__*/React.createElement(VesselGlyph, {
-    color: "#ef4444",
+    color: "#ea580c",
     heading: 120
   }),
   name: "FRESH BREEZE",
@@ -10783,19 +10783,19 @@ const VESSEL_TYPE_PALETTE = [{
   color: "#2563eb"
 }, {
   k: "Bulk Carrier",
-  color: "#3b82f6"
+  color: "#1a92d1"
 }, {
   k: "Tanker",
-  color: "#ef4444"
+  color: "#ea580c"
 }, {
   k: "Gas Carrier",
-  color: "#f97316"
+  color: "#d97706"
 }, {
   k: "LNG Carrier",
   color: "#eab308"
 }, {
   k: "General Cargo",
-  color: "#22c55e"
+  color: "#16a34a"
 }, {
   k: "Refrigerated Cargo",
   color: "#06b6d4"
@@ -10804,13 +10804,13 @@ const VESSEL_TYPE_PALETTE = [{
   color: "#ec4899"
 }, {
   k: "Vehicle Carrier",
-  color: "#8b5cf6"
+  color: "#9333ea"
 }, {
   k: "Yacht",
-  color: "#f59e0b"
+  color: "#eab308"
 }];
 const TileProviders = () => {
-  const rows = [["Satellite", "default", "Esri World Imagery", "server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", "#0b1e2e"], ["Street View", "", "OpenStreetMap", "{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", "#e2e8f0"], ["Dark Mode", "", "CartoDB Dark Matter", "{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", "#0b0f1a"], ["Light Mode", "", "CartoDB Positron", "{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", "#f1f5f9"]];
+  const rows = [["Satellite", "default", "Esri World Imagery", "server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", "#111827"], ["Street View", "", "OpenStreetMap", "{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", "#e2e8f0"], ["Dark Mode", "", "CartoDB Dark Matter", "{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", "#0b0f1a"], ["Light Mode", "", "CartoDB Positron", "{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", "#f1f5f9"]];
   return /*#__PURE__*/React.createElement("table", {
     className: "spec-table"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Layer"), /*#__PURE__*/React.createElement("th", null), /*#__PURE__*/React.createElement("th", null, "Provider"), /*#__PURE__*/React.createElement("th", null, "Tile URL template"), /*#__PURE__*/React.createElement("th", null, "Fallback bg"))), /*#__PURE__*/React.createElement("tbody", null, rows.map(([name, def, prov, url, bg]) => /*#__PURE__*/React.createElement("tr", {
@@ -10941,21 +10941,21 @@ const LiveLeafletMap = () => {
     }, {
       name: "MIRAMAR",
       type: "Tanker",
-      color: "#ef4444",
+      color: "#ea580c",
       lat: 25,
       lng: 55,
       heading: 160
     }, {
       name: "SOUTHERN CROSS",
       type: "Bulk Carrier",
-      color: "#3b82f6",
+      color: "#1a92d1",
       lat: -25,
       lng: 30,
       heading: 320
     }, {
       name: "GULF VOYAGER",
       type: "Tanker",
-      color: "#ef4444",
+      color: "#ea580c",
       lat: 28,
       lng: -90,
       heading: 90
@@ -10969,14 +10969,14 @@ const LiveLeafletMap = () => {
     }, {
       name: "ARCTIC WIND",
       type: "Gas Carrier",
-      color: "#f97316",
+      color: "#d97706",
       lat: 62,
       lng: -160,
       heading: 200
     }, {
       name: "BLUE HORIZON",
       type: "General Cargo",
-      color: "#22c55e",
+      color: "#16a34a",
       lat: -10,
       lng: 100,
       heading: 270
@@ -10990,7 +10990,7 @@ const LiveLeafletMap = () => {
     }, {
       name: "SEASPRITE",
       type: "Yacht",
-      color: "#f59e0b",
+      color: "#eab308",
       lat: 38,
       lng: 18,
       heading: 120
@@ -11459,31 +11459,31 @@ const PropertyPin = ({
 }));
 const OFFSHORE_ASSETS = [{
   k: "Oil Rig",
-  color: "#ef4444"
+  color: "#ea580c"
 }, {
   k: "Platform",
   color: "#06b6d4"
 }, {
   k: "Windfarm",
-  color: "#10b981"
+  color: "#16a34a"
 }, {
   k: "Floating Storage (FSO)",
-  color: "#8b5cf6"
+  color: "#9333ea"
 }, {
   k: "Fixed Platform",
   color: "#ec4899"
 }, {
   k: "Jack-Up Drilling Unit",
-  color: "#f59e0b"
+  color: "#eab308"
 }, {
   k: "Mobile Drilling (MODU)",
-  color: "#3b82f6"
+  color: "#1a92d1"
 }, {
   k: "Mobile Production (MOPU)",
   color: "#ea580c"
 }, {
   k: "Single Point Mooring (SPM)",
-  color: "#0ea5e9"
+  color: "#43a8df"
 }, {
   k: "Subsea",
   color: "#14b8a6"
@@ -11568,7 +11568,7 @@ const MapsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, `// app/ui/Map/tiles.ts
 export const TILES = {
   satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-               attr: 'Tiles © Esri', bg: '#0b1e2e' },
+               attr: 'Tiles © Esri', bg: '#111827' },
   street:    { url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                attr: '© OpenStreetMap contributors', bg: '#e2e8f0' },
   dark:      { url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
@@ -11986,7 +11986,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     display: "inline-flex"
   }
 }, /*#__PURE__*/React.createElement(VesselTeardropGlyph, {
-  color: "#ef4444",
+  color: "#ea580c",
   heading: 0,
   size: 28
 }), /*#__PURE__*/React.createElement("span", {
@@ -12033,7 +12033,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     gap: 16
   }
 }, /*#__PURE__*/React.createElement(VesselTeardropGlyph, {
-  color: "#7c2d12",
+  color: "#991b1b",
   heading: 0,
   size: 28
 }), /*#__PURE__*/React.createElement("div", {
@@ -18200,7 +18200,7 @@ RWModal.mount(overlay, { closeOnOverlayClick: true, closeOnEsc: true });`), /*#_
   className: "code"
 }, `const ok = await RWModal.confirm({ title: 'Delete?', message: 'Cannot be undone.', danger: true });
 
-:root { --rw-modal-radius: 8px; --rw-modal-primary: #0f766e; --rw-modal-w-md: 560px; }`)), /*#__PURE__*/React.createElement("style", null, `
+:root { --rw-modal-radius: 8px; --rw-modal-primary: #15803d; --rw-modal-w-md: 560px; }`)), /*#__PURE__*/React.createElement("style", null, `
       .ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 5px; border-radius: 4px;
         background: var(--slate-100); border: 1px solid var(--border-default); border-bottom-width: 2px; color: var(--text-secondary); }
       .ms-demo-row { display: flex; flex-wrap: wrap; gap: 28px; }

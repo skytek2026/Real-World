@@ -9,7 +9,7 @@
   tailwind.config = { theme: { extend: {
     fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] },
     colors: {
-      brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+      brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
       ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
     },
     boxShadow: { 'card':'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)' },
@@ -80,7 +80,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script type="text/babel">
 /* CreateNewMarineRegion screen (previously CreateNewMarineRegion.jsx; inlined so the page also works when opened from disk) */
 /* Add Region — create a monitored region by drawing on the map or adding HRA / Port / Country / Sea coverage. */
@@ -137,7 +137,7 @@ function quotaToneFor(used) {
   const nearLimit = !atLimit && remaining <= 4;
   const tone = atLimit ? { fg:'#b91c1c', bg:'#fef2f2', bd:'#fecaca', dot:'#dc2626' }
              : nearLimit ? { fg:'var(--brand-700,#1d4ed8)', bg:'var(--brand-50,#eff6ff)', bd:'var(--brand-200,#b8ddf5)', dot:'var(--brand-600,#2563eb)' }
-             : { fg:'#15803d', bg:'#f0fdf4', bd:'#bbf7d0', dot:'#16a34a' };
+             : { fg:'#15803d', bg:'#f0fdf4', bd:'#dcfce7', dot:'#16a34a' };
   return { remaining, atLimit, nearLimit, tone };
 }
 
@@ -189,14 +189,14 @@ const SKYTEK_REGIONS = [
 ];
 const CAT_TONE = {
   'War Risk':   { fg:'#b91c1c', bg:'#fef2f2', bd:'#fecaca' },
-  'Piracy':     { fg:'#b45309', bg:'#fffbeb', bd:'#fde68a' },
-  'Sanctions':  { fg:'#7c3aed', bg:'#f5f3ff', bd:'#ddd6fe' },
-  'Chokepoint': { fg:'#0f766e', bg:'#f0fdfa', bd:'#99f6e4' },
+  'Piracy':     { fg:'#b45309', bg:'#fffbeb', bd:'#fef3c7' },
+  'Sanctions':  { fg:'#9333ea', bg:'#eff6ff', bd:'#dbeafe' },
+  'Chokepoint': { fg:'#15803d', bg:'#f0fdf4', bd:'#99f6e4' },
   'Weather':    { fg:'#0369a1', bg:'#f0f9ff', bd:'#bae6fd' },
 };
 
-const SHAPE_STYLE = { color:'var(--brand-600,#2563eb)', weight:2, fillColor:'var(--brand-500,#3b82f6)', fillOpacity:.18 };
-const DRAFT_STYLE = { color:'var(--brand-600,#2563eb)', weight:2, dashArray:'5 4', fillColor:'var(--brand-500,#3b82f6)', fillOpacity:.1 };
+const SHAPE_STYLE = { color:'var(--brand-600,#2563eb)', weight:2, fillColor:'var(--brand-500,#1a92d1)', fillOpacity:.18 };
+const DRAFT_STYLE = { color:'var(--brand-600,#2563eb)', weight:2, dashArray:'5 4', fillColor:'var(--brand-500,#1a92d1)', fillOpacity:.1 };
 
 function SkytekPicker({ selected, onToggle, onClear }) {
   const [q, setQ] = useState('');
@@ -272,7 +272,7 @@ function RegionMap({ mapType, tool, shapes, onAddShape, onEraseShape, onDone, ap
         L.DomEvent.stop(e);
         cb.current.onEraseShape(s.id);
       });
-      layer.on('mouseover', () => { if (cb.current.tool === 'erase') layer.setStyle({ color:'#dc2626', fillColor:'#ef4444', fillOpacity:.25 }); });
+      layer.on('mouseover', () => { if (cb.current.tool === 'erase') layer.setStyle({ color:'#dc2626', fillColor:'#ea580c', fillOpacity:.25 }); });
       layer.on('mouseout',  () => layer.setStyle(SHAPE_STYLE));
       grp.addLayer(layer);
     });
@@ -434,7 +434,7 @@ function AddRegion() {
   const atLimit = remaining === 0;
   const nearLimit = !atLimit && remaining <= 2;
   const quotaTone = atLimit ? { fg:'#b91c1c', bg:'#fef2f2', bd:'#fecaca', dot:'#dc2626' }
-                  : nearLimit ? { fg:'#b45309', bg:'#fffbeb', bd:'#fde68a', dot:'#f59e0b' }
+                  : nearLimit ? { fg:'#b45309', bg:'#fffbeb', bd:'#fef3c7', dot:'#eab308' }
                   : { fg:'var(--brand-700,#1d4ed8)', bg:'var(--brand-50,#eff6ff)', bd:'var(--brand-200,#b8ddf5)', dot:'var(--brand-600,#2563eb)' };
   const saveRegion = () => {
     if (atLimit) return;
@@ -581,7 +581,7 @@ function AddRegion() {
               <div className="absolute flex flex-col gap-1 items-end" style={{top:'12px',right:'56px',zIndex:400}}>
                 {shapes.map(s => (
                   <span key={s.id} className="flex items-center gap-1 pl-2 pr-1 py-1 rounded-lg bg-white border border-ink-200 shadow-card text-xs font-semibold text-ink-700 whitespace-nowrap">
-                    <span style={{width:'8px',height:'8px',borderRadius:'2px',background:'var(--brand-500,#3b82f6)',border:'1px solid var(--brand-600,#2563eb)'}}></span>
+                    <span style={{width:'8px',height:'8px',borderRadius:'2px',background:'var(--brand-500,#1a92d1)',border:'1px solid var(--brand-600,#2563eb)'}}></span>
                     {s.label}
                     <button onClick={()=>eraseShape(s.id)} aria-label={'Remove '+s.label} style={{border:0,background:'transparent',cursor:'pointer',color:'#9ca3af',display:'flex',padding:'2px'}}>{icon('X',11)}</button>
                   </span>

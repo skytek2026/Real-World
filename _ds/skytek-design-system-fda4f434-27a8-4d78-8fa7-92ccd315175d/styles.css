@@ -2212,7 +2212,7 @@ html::-webkit-scrollbar-corner,
   border-radius: var(--radius-md);
   border: 1px solid var(--border-default);
   overflow: hidden;
-  background: #0b1e2e;
+  background: #111827;
   position: relative;
 }
 .ds-leaflet .leaflet-control-zoom,
@@ -2227,7 +2227,7 @@ html::-webkit-scrollbar-corner,
   color: var(--slate-700) !important;
 }
 .ds-leaflet .leaflet-bar a:hover { background: var(--slate-100) !important; }
-.ds-leaflet .leaflet-container { background: #0b1e2e; font-family: var(--font-sans); }
+.ds-leaflet .leaflet-container { background: #111827; font-family: var(--font-sans); }
 
 /* Vessel teardrop divIcon, canonical glyph */
 .ds-vessel-marker { will-change: transform; }

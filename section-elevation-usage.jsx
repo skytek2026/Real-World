@@ -10,7 +10,7 @@ const ElevationUsage = () => (
             <h3 className="ds-card-title" style={{ color: "var(--success-700)" }}>Use elevation (shadow)</h3>
           </div>
           <div className="ds-card-body">
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
               <li>Interactive cards that respond to hover/focus</li>
               <li>Floating panels, drawers, popovers</li>
               <li>Content that overlays other content (modals)</li>
@@ -24,7 +24,7 @@ const ElevationUsage = () => (
             <h3 className="ds-card-title" style={{ color: "var(--warning-700)" }}>Use borders instead</h3>
           </div>
           <div className="ds-card-body">
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
               <li>Static containers (cards in a grid with no hover)</li>
               <li>Form input fields and controls</li>
               <li>Section dividers and navigation</li>
@@ -115,7 +115,7 @@ const ElevationUsage = () => (
                 zIndex: 10,
               }}
             >
-              <div className="t-label" style={{ marginBottom: 6 }}>Risk grade</div>
+              <div className="t-label" style={{ marginBottom: 4 }}>Risk grade</div>
               <select className="ds-input ds-select" style={{ height: 28, fontSize: 12 }}>
                 <option>All</option>
               </select>
@@ -144,7 +144,7 @@ const ElevationUsage = () => (
               <div style={{ padding: 16, fontSize: 13, color: "var(--text-secondary)" }}>
                 Are you sure you want to delete this policy? This cannot be undone.
               </div>
-              <div style={{ padding: "8px 16px", borderTop: "1px solid var(--border-subtle)", background: "var(--slate-50)", display: "flex", justifyContent: "flex-end", gap: 8 }}>
+              <div style={{ padding: "8px 16px", borderTop: "1px solid var(--border-subtle)", background: "var(--slate-050)", display: "flex", justifyContent: "flex-end", gap: 8 }}>
                 <button className="ds-btn ds-btn--secondary ds-btn--sm">Cancel</button>
                 <button className="ds-btn ds-btn--danger ds-btn--sm">Delete</button>
               </div>
@@ -183,20 +183,6 @@ const ElevationUsage = () => (
           </div>
         </div>
       </div>
-    </div>
-
-    <div className="subsection">
-      <h3 className="subsection-title">Dark theme support</h3>
-      <p className="subsection-desc">Elevation tokens are semantics-first. Dark mode only changes the token values, not the component structure.</p>
-      <pre className="code">{`/* In tokens.css or as a CSS class */
-[data-theme="dark"] {
-  --card-shadow-rest:   0 1px 3px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.18);
-  --card-shadow-hover:  0 4px 12px rgba(0, 0, 0, 0.32), 0 2px 4px rgba(0, 0, 0, 0.24);
-  --card-shadow-active: 0 8px 20px rgba(0, 0, 0, 0.40), 0 4px 8px rgba(0, 0, 0, 0.28);
-  --card-shadow-raised: 0 12px 28px rgba(0, 0, 0, 0.48), 0 6px 12px rgba(0, 0, 0, 0.32);
-  --card-shadow-modal:  0 20px 48px rgba(0, 0, 0, 0.56), 0 8px 16px rgba(0, 0, 0, 0.36);
-}`}
-      </pre>
     </div>
   </>
 );

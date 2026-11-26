@@ -25,7 +25,7 @@
       .storm-legend .sl-rows { display:flex; flex-direction:column; gap:4px; }
       .storm-legend .sl-r { display:flex; align-items:center; gap:8px; font-size:12px; color:#4b5563; white-space:nowrap; }
       .storm-legend .sl-r svg, .storm-legend .sl-cur { flex-shrink:0; }
-      .storm-legend .sl-cur { width:12px; height:12px; margin:0 4px; border-radius:50%; background:#ef4444; border:2px solid #fff; box-shadow:0 0 0 3px rgba(239,68,68,.3); display:inline-block; }
+      .storm-legend .sl-cur { width:12px; height:12px; margin:0 4px; border-radius:50%; background:#ea580c; border:2px solid #fff; box-shadow:0 0 0 3px rgba(239,68,68,.3); display:inline-block; }
       html[data-theme="dark"] .storm-legend { background:rgba(15,23,42,.9); border-color:#374151; }
       html[data-theme="dark"] .storm-legend .sl-r { color:#d1d5db; }
     `;
@@ -105,7 +105,7 @@
     const layers = [], { now, past, fore } = points(storm), cur = [storm.lat, storm.lng];
     if (fore.length) {
       const ring = conePolygon(storm.lat, storm.lng, fore, now);
-      if (ring) layers.push(L.polygon(ring, { color:'#60a5fa', weight:2, dashArray:'6 6', fillColor:'#3b82f6', fillOpacity:.22, interactive:false }).addTo(map));
+      if (ring) layers.push(L.polygon(ring, { color:'#60a5fa', weight:2, dashArray:'6 6', fillColor:'#1a92d1', fillOpacity:.22, interactive:false }).addTo(map));
     }
     if (past.length) layers.push(L.polyline([...past.map(p => [p.lat, p.lng]), cur], { color:'#e5e7eb', weight:2, opacity:.95, interactive:false }).addTo(map));
     if (fore.length) layers.push(L.polyline([cur, ...fore.map(p => [p.lat, p.lng])], { color:'#d1d5db', weight:2, dashArray:'5 6', opacity:.95, interactive:false }).addTo(map));

@@ -1,10 +1,10 @@
-/* Section — Voice & terminology */
+/* Section: Voice & terminology */
 
 const VoicePrinciples = () => (
   <div className="grid-3">
     {[
-      ["Direct", "Operators are scanning under time pressure. One sentence beats two. Lead with the action or the consequence — not with throat-clearing."],
-      ["Specific", "\"Failed\" is not enough. \"Couldn't fetch vessel — connection timed out after 30 s\" is. Names beat pronouns; numbers beat adjectives."],
+      ["Direct", "Operators are scanning under time pressure. One sentence beats two. Lead with the action or the consequence, not with throat-clearing."],
+      ["Specific", "\"Failed\" is not enough. \"Couldn't fetch vessel: connection timed out after 30 s\" is. Names beat pronouns; numbers beat adjectives."],
       ["Respectful", "Never blame the user. \"Required\" not \"You forgot…\". Skytek's tone is a calm colleague, not a panicked alert."],
       ["Consistent", "Same noun for the same thing on every screen. \"Vessel\" everywhere, never \"ship\" in one place and \"vessel\" in another."],
       ["Plain", "No marketing copy in product UI. No exclamation points. No \"oops\". No emoji. Jargon is OK when it's the right word."],
@@ -132,7 +132,7 @@ const Terminology = () => (
       <tr><td><strong>Region</strong></td><td>Area, territory, zone</td><td>Geographic grouping. "Area" reserved for sub-region inside a region.</td></tr>
       <tr><td><strong>Alert</strong></td><td>Notification, warning, event</td><td>An actionable signal. "Notification" is the system-wide bell-icon delivery channel.</td></tr>
       <tr><td><strong>Acknowledged</strong></td><td>Seen, viewed, read</td><td>Specifically: a user marked the alert as seen.</td></tr>
-      <tr><td><strong>Rating</strong></td><td>Score, grade, rank</td><td>A–E PSC compliance rating. Reserved noun — not generic.</td></tr>
+      <tr><td><strong>Rating</strong></td><td>Score, grade, rank</td><td>A–E PSC compliance rating. Reserved noun: not generic.</td></tr>
     </tbody>
   </table>
 );
@@ -143,10 +143,10 @@ const CaseRules = () => (
       <div className="ds-card-head"><h3 className="ds-card-title">Sentence case · UI</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
         <p style={{ marginTop: 0 }}>Everything operator-facing: buttons, menu items, page titles, section headings, form labels, empty states, error copy.</p>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
-          <li>"Add vessel to portfolio" — not "Add Vessel To Portfolio"</li>
-          <li>"Sanctioned vessels" — proper-noun "Sanctioned" stays cap</li>
-          <li>"Last seen" — not "Last Seen"</li>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
+          <li>"Add vessel to portfolio", not "Add Vessel To Portfolio"</li>
+          <li>"Sanctioned vessels", proper-noun "Sanctioned" stays cap</li>
+          <li>"Last seen", not "Last Seen"</li>
         </ul>
       </div>
     </div>
@@ -154,7 +154,7 @@ const CaseRules = () => (
       <div className="ds-card-head"><h3 className="ds-card-title">Title case · proper nouns &amp; reports</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
         <p style={{ marginTop: 0 }}>Product names, module names, exported reports, formal documents.</p>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>"Skytek Real World", "Marine Dashboard"</li>
           <li>"Q1 2026 Sanctions Exposure Report"</li>
           <li>"OFAC SDN List", "Marshall Islands Flag Authority"</li>
@@ -172,9 +172,9 @@ const NumberStyle = () => (
       <tr><td>In prose, ≥ 10</td><td>Numerals</td><td>"23 vessels were updated."</td></tr>
       <tr><td>In UI labels, any value</td><td>Numerals</td><td>"7 active alerts"</td></tr>
       <tr><td>Start of sentence</td><td>Spell out OR rewrite</td><td>"Twelve vessels…" OR "We updated 12 vessels…"</td></tr>
-      <tr><td>Units &amp; measurements</td><td>Numerals + non-breaking space</td><td>"12.4 kn", "248 nm" — see Formatting chapter</td></tr>
+      <tr><td>Units &amp; measurements</td><td>Numerals + non-breaking space</td><td>"12.4 kn", "248 nm", see Formatting chapter</td></tr>
       <tr><td>Money</td><td>Numerals + symbol</td><td>"$2.4M" tile, "$2,400,000" table</td></tr>
-      <tr><td>Time</td><td>Numerals + zone</td><td>"14:32 UTC" — never "two thirty"</td></tr>
+      <tr><td>Time</td><td>Numerals + zone</td><td>"14:32 UTC", never "two thirty"</td></tr>
     </tbody>
   </table>
 );
@@ -185,12 +185,12 @@ const VoiceSection = () => (
       <h3 className="subsection-title">Why this chapter</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
         Words are the smallest tokens in the system, and the most often duplicated. A "Save" button on one screen and an "Update" button on another are the same UI inconsistency as two button shades of blue.
-        This chapter is the vocabulary — verbs, nouns, tone, and the rules that hold them together.
+        This chapter is the vocabulary, verbs, nouns, tone, and the rules that hold them together.
       </p>
     </div>
 
     <div className="subsection">
-      <h3 className="subsection-title">Tone — six principles</h3>
+      <h3 className="subsection-title">Tone: six principles</h3>
       <VoicePrinciples />
     </div>
 
@@ -202,7 +202,7 @@ const VoiceSection = () => (
 
     <div className="subsection">
       <h3 className="subsection-title">Button verbs</h3>
-      <p className="subsection-desc">Twelve verbs cover the product. If you reach for a thirteenth, propose it via RFC — most "new verb" needs map to one of these.</p>
+      <p className="subsection-desc">Twelve verbs cover the product. If you reach for a thirteenth, propose it via RFC, most "new verb" needs map to one of these.</p>
       <VerbConventions />
     </div>
 

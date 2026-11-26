@@ -1,4 +1,4 @@
-/* Section — Event log / timeline */
+/* Section: Event log / timeline */
 
 const TimelineEvent = ({ tone = "default", icon, actor, verb, object, time, detail, payload }) => (
   <div className="ds-event">
@@ -94,13 +94,13 @@ const EventAnatomy = () => (
         </div>
       </div>
       <ol style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <li><strong>Glyph</strong> — 24 px circle, tone matches event class (brand / success / warning / danger / neutral). Lucide icon at 12 px.</li>
-        <li><strong>Actor</strong> — person email or "System". Bold.</li>
-        <li><strong>Verb</strong> — past tense, lowercase. "created", "updated", "raised", "cleared".</li>
-        <li><strong>Object</strong> — what was acted on. Bold-ish.</li>
-        <li><strong>Time</strong> — right-aligned, mono, absolute time with zone.</li>
-        <li><strong>Detail</strong> — one optional line of context.</li>
-        <li><strong>Payload</strong> — diff or code block, only when the change is data-shaped.</li>
+        <li><strong>Glyph</strong>, 24 px circle, tone matches event class (brand / success / warning / danger / neutral). Lucide icon at 12 px.</li>
+        <li><strong>Actor</strong>, person email or "System". Bold.</li>
+        <li><strong>Verb</strong>, past tense, lowercase. "created", "updated", "raised", "cleared".</li>
+        <li><strong>Object</strong>, what was acted on. Bold-ish.</li>
+        <li><strong>Time</strong>, right-aligned, mono, absolute time with zone.</li>
+        <li><strong>Detail</strong>, one optional line of context.</li>
+        <li><strong>Payload</strong>, diff or code block, only when the change is data-shaped.</li>
       </ol>
     </div>
   </div>
@@ -160,9 +160,9 @@ const TimelineVariants = () => (
       </tr>
       <tr>
         <td><strong>Alert detail · Trail</strong></td>
-        <td>None — single alert's lineage</td>
+        <td>None: single alert's lineage</td>
         <td>Reverse chronological, flat</td>
-        <td>Complete — typically &lt; 20 entries</td>
+        <td>Complete: typically &lt; 20 entries</td>
       </tr>
       <tr>
         <td><strong>Compliance · Audit log</strong></td>
@@ -191,10 +191,10 @@ const TimelineRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Time display</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>Absolute UTC time on every event row.</li>
           <li>Day header is local-to-user (e.g. "Today", "Yesterday", "27 Apr 2026").</li>
-          <li>Relative time ("2 min ago") only appears on the top-of-feed item or in a hover tooltip — never as the only timestamp.</li>
+          <li>Relative time ("2 min ago") only appears on the top-of-feed item or in a hover tooltip, never as the only timestamp.</li>
           <li>Live feeds show a tick indicator next to the day header that updates every 60 s.</li>
         </ul>
       </div>
@@ -202,7 +202,7 @@ const TimelineRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Empty &amp; loading</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>Empty state: "No activity in this range." Single line, no illustration.</li>
           <li>Loading: 3 skeleton rows; never a centered spinner over an existing feed.</li>
           <li>Error: a danger banner above the rail, "Couldn't load activity. Retry." Don't blank the existing rows.</li>
@@ -247,7 +247,7 @@ const EventLogSection = () => (
     <div className="subsection" style={{ marginTop: 0 }}>
       <h3 className="subsection-title">Why this chapter</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
-        Vessel history, alert trails, audit logs, NatCat updates, portfolio activity — every Skytek surface needs to show "what happened, when, who did it."
+        Vessel history, alert trails, audit logs, NatCat updates, portfolio activity, every Skytek surface needs to show "what happened, when, who did it."
         Today these timelines live in five modules with five different row designs. One component, one event shape, one set of rules.
       </p>
     </div>
@@ -264,9 +264,9 @@ const EventLogSection = () => (
     </div>
 
     <div className="subsection">
-      <h3 className="subsection-title">In context — vessel activity</h3>
+      <h3 className="subsection-title">In context: vessel activity</h3>
       <p className="subsection-desc">
-        A live composition: system alerts, user actions, state changes, and records — all in one rail, grouped by day with sticky day headers.
+        A live composition: system alerts, user actions, state changes, and records, all in one rail, grouped by day with sticky day headers.
       </p>
       <VesselAuditDemo />
     </div>
@@ -274,7 +274,7 @@ const EventLogSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Surface variants</h3>
       <p className="subsection-desc">
-        The component is the same; defaults differ per surface. Don't author a custom variant — configure props.
+        The component is the same; defaults differ per surface. Don't author a custom variant, configure props.
       </p>
       <TimelineVariants />
     </div>
@@ -291,7 +291,7 @@ const EventLogSection = () => (
     </div>
 
     <div className="callout">
-      <strong>The principle:</strong> a timeline tells one story per row — who did what, to what, when. Two stories means two rows. If you can't fit it on a single line + one detail, it's a card, not an event.
+      <strong>The principle:</strong> a timeline tells one story per row, who did what, to what, when. Two stories means two rows. If you can't fit it on a single line + one detail, it's a card, not an event.
     </div>
   </>
 );

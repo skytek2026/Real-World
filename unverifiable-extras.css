@@ -1,5 +1,5 @@
 /* ============================================================
-   Unverifiable status — extension to the Skytek design system.
+   Unverifiable status: extension to the Skytek design system.
    Adds a third semantic state alongside Ok / Sanctioned for cases
    where an entity or attribute could not be analysed (e.g.
    "Unknown" country, "Unknown Entity" beneficial owner).
@@ -42,22 +42,22 @@
 .s-cell--sanctioned .s-dot { background: var(--danger-500); }
 .s-cell--sanctioned        { color: var(--danger-700); font-weight: 600; }
 
-/* Unverifiable — the new state.
+/* Unverifiable, the new state.
    Hollow ring + question mark + amber-slate tone.
    Clearly NOT green, clearly NOT red. */
 .s-cell--unverif .s-dot {
   background: var(--white);
   border: 1.5px solid var(--unverif-500);
   color: var(--unverif-700);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 800;
   line-height: 1;
   width: 12px; height: 12px;
 }
 .s-cell--unverif .s-dot::after { content: "?"; }
 .s-cell--unverif { color: var(--unverif-700); }
 
-/* Treatment B — diagonal stripe pill (used in tweak variant) */
+/* Treatment B, diagonal stripe pill (used in tweak variant) */
 .s-cell--unverif-stripe {
   color: var(--unverif-700);
   background:
@@ -74,12 +74,12 @@
   background: var(--white);
   border: 1.5px solid var(--unverif-500);
   color: var(--unverif-700);
-  font-size: 12px; font-weight: 700; line-height: 1;
+  font-size: 11px; font-weight: 800; line-height: 1;
   width: 12px; height: 12px;
 }
 .s-cell--unverif-stripe .s-dot::after { content: "?"; }
 
-/* Treatment D — minimalist dash with small warn glyph (Sarah/Gabriel's ask) */
+/* Treatment D, minimalist dash with small warn glyph (Sarah/Gabriel's ask) */
 .s-cell--unverif-dash {
   color: var(--text-muted);
   font-weight: 500;
@@ -98,22 +98,22 @@
   display: inline-flex;
 }
 
-/* Treatment C — neutral grey "N/A" with warn affordance */
+/* Treatment C, neutral grey "N/A" with warn affordance */
 .s-cell--unverif-na .s-dot {
   background: var(--slate-200);
   border: 1px solid var(--slate-300);
   width: 14px; height: 14px;
   border-radius: 4px;
   color: var(--slate-600);
-  font-size: 12px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   line-height: 1;
 }
-.s-cell--unverif-na .s-dot::after { content: "N/A"; font-size: 12px; letter-spacing: -0.02em; }
+.s-cell--unverif-na .s-dot::after { content: "N/A"; font-size: 11px; letter-spacing: -0.02em; }
 .s-cell--unverif-na { color: var(--slate-600); }
 .s-cell--unverif-na .warn-tag {
   display: inline-flex; align-items: center; gap: 2px;
   color: var(--unverif-700);
-  font-size: 12px; font-weight: 600;
+  font-size: 11px; font-weight: 600;
 }
 
 /* ——— Row-level affordance for unverifiable subjects ——— */
@@ -134,7 +134,7 @@ tr.row--unverif > td:first-child::before {
   background: var(--unverif-500);
 }
 
-/* Subject value styling — "Unknown" / "Unknown Entity" */
+/* Subject value styling, "Unknown" / "Unknown Entity" */
 .s-subject-unknown {
   color: var(--unverif-700);
   font-style: italic;
@@ -256,7 +256,7 @@ tr.row--unverif > td:first-child::before {
   gap: 0;
 }
 .mock-tab {
-  font-size: 14px;
+  font-size: 12.5px;
   font-weight: 500;
   padding: 12px 16px;
   background: transparent;
@@ -276,7 +276,7 @@ tr.row--unverif > td:first-child::before {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 14px;
+  font-size: 13px;
 }
 .compliance-table th {
   text-align: left;
@@ -287,7 +287,7 @@ tr.row--unverif > td:first-child::before {
   letter-spacing: 0.04em;
   padding: 12px 16px;
   border-bottom: 1px solid var(--border-default);
-  background: var(--slate-50);
+  background: var(--slate-050);
 }
 .compliance-table th.center { text-align: center; }
 .compliance-table td {
@@ -344,7 +344,7 @@ tr.row--unverif > td:first-child::before {
   border-bottom-color: var(--success-100);
 }
 .audit-pane__pill {
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 2px 8px;
@@ -392,7 +392,7 @@ tr.row--unverif > td:first-child::before {
   letter-spacing: -0.01em;
 }
 .section-block .lead {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
   margin: 0 0 12px;
   max-width: 720px;
@@ -401,10 +401,10 @@ tr.row--unverif > td:first-child::before {
 /* Diff list */
 .diff-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 4px; }
 .diff-list li {
-  font-size: 14px;
+  font-size: 13px;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  background: var(--slate-50);
+  background: var(--slate-050);
   display: flex; gap: 8px;
 }
 .diff-list li::before {

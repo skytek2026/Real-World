@@ -3,20 +3,20 @@
    `url` MUST be a real external link (opens in new tab).
    `published` is a relative offset (hours ago) for the formatter. */
 window.NEWS_SOURCES = [
-  { id:'lloyds-list',  name:"Lloyd's List",        color:'#0c2340', short:'LL' },
-  { id:'tradewinds',   name:'TradeWinds',          color:'#005ca9', short:'TW' },
-  { id:'gcaptain',     name:'gCaptain',            color:'#003366', short:'gC' },
+  { id:'lloyds-list',  name:"Lloyd's List",        color:'#1f2937', short:'LL' },
+  { id:'tradewinds',   name:'TradeWinds',          color:'#0f6aa0', short:'TW' },
+  { id:'gcaptain',     name:'gCaptain',            color:'#1f2937', short:'gC' },
   { id:'maritime-exec',name:'The Maritime Executive', color:'#003e7e', short:'ME' },
-  { id:'splash247',    name:'Splash247',           color:'#e11d48', short:'S2' },
-  { id:'reinsurance-news', name:'Reinsurance News', color:'#0f766e', short:'RN' },
-  { id:'insurance-journal', name:'Insurance Journal', color:'#1e3a8a', short:'IJ' },
-  { id:'artemis',      name:'Artemis.bm',          color:'#7c2d12', short:'Ar' },
+  { id:'splash247',    name:'Splash247',           color:'#dc2626', short:'S2' },
+  { id:'reinsurance-news', name:'Reinsurance News', color:'#15803d', short:'RN' },
+  { id:'insurance-journal', name:'Insurance Journal', color:'#0d5580', short:'IJ' },
+  { id:'artemis',      name:'Artemis.bm',          color:'#991b1b', short:'Ar' },
   { id:'flight-global',name:'FlightGlobal',        color:'#0891b2', short:'FG' },
-  { id:'ainonline',    name:'AIN',                 color:'#7c3aed', short:'AI' },
-  { id:'offshore-eng', name:'Offshore Engineer',   color:'#047857', short:'OE' },
+  { id:'ainonline',    name:'AIN',                 color:'#9333ea', short:'AI' },
+  { id:'offshore-eng', name:'Offshore Engineer',   color:'#15803d', short:'OE' },
   { id:'upstream',     name:'Upstream Online',     color:'#dc2626', short:'Up' },
   { id:'pc360',        name:'PropertyCasualty360', color:'#9333ea', short:'PC' },
-  { id:'reuters',      name:'Reuters',             color:'#ff8000', short:'Rt' },
+  { id:'reuters',      name:'Reuters',             color:'#d97706', short:'Rt' },
 ];
 
 window.NEWS_CATEGORIES = [

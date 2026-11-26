@@ -1,4 +1,4 @@
-/* Section 6 — Engineering Handoff */
+/* Section 6: Engineering Handoff */
 
 const HandoffSection = () => (
   <>
@@ -6,24 +6,24 @@ const HandoffSection = () => (
       <h3 className="subsection-title">Developer copy utilities</h3>
       <p className="subsection-desc">
         Every <code className="inline">&lt;pre class="code"&gt;</code> block and every token row in the docs is auto-decorated with a one-click copy action.
-        The enhancement is non-invasive — no JSX changes required. A single <code className="inline">copy-utilities.js</code> module observes the DOM and attaches buttons.
+        The enhancement is non-invasive: no JSX changes required. A single <code className="inline">copy-utilities.js</code> module observes the DOM and attaches buttons.
       </p>
 
       <div className="grid-2" style={{ marginBottom: 16 }}>
         <div className="ds-card">
           <div className="ds-card-head"><h3 className="ds-card-title">What gets copy actions</h3></div>
           <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.65 }}>
-            <ul style={{ margin: 0, paddingLeft: 18 }}>
-              <li><strong>Code blocks</strong> — top-right toolbar with language pill + Copy button, on every <code className="inline">pre.code</code></li>
-              <li><strong>Token rows</strong> — hover-revealed chip beside every token name in foundations &amp; handoff tables</li>
-              <li><strong>Opt-in elements</strong> — add <code className="inline">data-copy="value"</code> to any element (keyboard-activated)</li>
+            <ul style={{ margin: 0, paddingLeft: 20 }}>
+              <li><strong>Code blocks</strong>, top-right toolbar with language pill + Copy button, on every <code className="inline">pre.code</code></li>
+              <li><strong>Token rows</strong>, hover-revealed chip beside every token name in foundations &amp; handoff tables</li>
+              <li><strong>Opt-in elements</strong>, add <code className="inline">data-copy="value"</code> to any element (keyboard-activated)</li>
             </ul>
           </div>
         </div>
         <div className="ds-card">
           <div className="ds-card-head"><h3 className="ds-card-title">Behavior contract</h3></div>
           <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.65 }}>
-            <ul style={{ margin: 0, paddingLeft: 18 }}>
+            <ul style={{ margin: 0, paddingLeft: 20 }}>
               <li>Preserves source whitespace &amp; indentation (raw <code className="inline">textContent</code>)</li>
               <li>"Copied" state for 1.8 s, then reverts</li>
               <li>Fires polite ARIA-live announcement for screen readers</li>
@@ -34,11 +34,11 @@ const HandoffSection = () => (
         </div>
       </div>
 
-      <p className="t-caption" style={{ marginTop: 16, marginBottom: 6 }}>Try it — hover any token to see the chip:</p>
+      <p className="t-caption" style={{ marginTop: 16, marginBottom: 4 }}>Try it: hover any token to see the chip:</p>
       <div className="panel">
         <div className="token-row" style={{ gridTemplateColumns: "200px 100px 1fr" }}>
           <code>--brand-600</code>
-          <span className="t-mono" style={{ color: "var(--text-muted)" }}>#2d7ffb</span>
+          <span className="t-mono" style={{ color: "var(--text-muted)" }}>#1485c5</span>
           <span className="t-caption">Primary action / key headings</span>
         </div>
         <div className="token-row" style={{ gridTemplateColumns: "200px 100px 1fr" }}>
@@ -53,7 +53,7 @@ const HandoffSection = () => (
         </div>
       </div>
 
-      <p className="t-caption" style={{ marginTop: 16, marginBottom: 6 }}>API — opt-in copy for arbitrary nodes:</p>
+      <p className="t-caption" style={{ marginTop: 16, marginBottom: 4 }}>API: opt-in copy for arbitrary nodes:</p>
       <pre className="code">{`<!-- Any element with data-copy becomes a focusable copy trigger -->
 <span class="ds-badge ds-badge--info"
       data-copy="role=&quot;status&quot; aria-live=&quot;polite&quot;"
@@ -64,7 +64,7 @@ const HandoffSection = () => (
 <!-- pre.code blocks are auto-decorated, no markup change needed -->
 <pre class="code">npm install @skytek/design-system</pre>`}</pre>
 
-      <p className="t-caption" style={{ marginTop: 16, marginBottom: 6 }}>Integration — single script, zero refactor:</p>
+      <p className="t-caption" style={{ marginTop: 16, marginBottom: 4 }}>Integration: single script, zero refactor:</p>
       <pre className="code">{`<!-- In your shell HTML, after the docs render -->
 <script src="copy-utilities.js" defer></script>
 
@@ -119,19 +119,12 @@ const HandoffSection = () => (
   --bg-surface: #FFFFFF;
   --text-primary: var(--slate-900);
   --border-default: var(--slate-200);
-}
-
-/* future: dark mode swaps semantics only */
-[data-theme="dark"] {
-  --bg-surface: var(--slate-900);
-  --text-primary: var(--slate-50);
-  --border-default: var(--slate-700);
 }`}</pre>
     </div>
 
     <div className="subsection">
       <h3 className="subsection-title">Tailwind mapping</h3>
-      <p className="subsection-desc">Replace <code className="inline">tailwind.config.js</code>'s ad-hoc <code className="inline">react-dark-blue</code> palette with semantic classes that resolve to tokens. Engineers use <code className="inline">bg-surface</code>, <code className="inline">text-primary</code>, <code className="inline">border-default</code> — never raw colors.</p>
+      <p className="subsection-desc">Replace <code className="inline">tailwind.config.js</code>'s ad-hoc <code className="inline">react-dark-blue</code> palette with semantic classes that resolve to tokens. Engineers use <code className="inline">bg-surface</code>, <code className="inline">text-primary</code>, <code className="inline">border-default</code>, never raw colors.</p>
       <pre className="code">{`// tailwind.config.js
 export default {
   theme: {
@@ -174,14 +167,14 @@ export default {
           <tr><td>Compound components</td><td>Dot-namespace</td><td><code>Card.Header</code>, <code>Form.Field</code>, <code>Table.Row</code></td></tr>
           <tr><td>Data attributes</td><td><code>data-slot</code> for shadcn-style internal slots</td><td><code>data-slot="card-title"</code></td></tr>
           <tr><td>Hooks</td><td><code>use&lt;Capability&gt;</code></td><td><code>useFormField()</code>, <code>useToast()</code></td></tr>
-          <tr><td>Storybook</td><td><code>Design System / &lt;Component&gt;</code></td><td>Already in place — keep.</td></tr>
+          <tr><td>Storybook</td><td><code>Design System / &lt;Component&gt;</code></td><td>Already in place: keep.</td></tr>
         </tbody>
       </table>
     </div>
 
     <div className="subsection">
       <h3 className="subsection-title">Migration plan</h3>
-      <p className="subsection-desc">Five-phase rollout. Each phase lands behind no flag — the system is additive. Old code keeps working until each module is touched.</p>
+      <p className="subsection-desc">Five-phase rollout. Each phase lands behind no flag; the system is additive. Old code keeps working until each module is touched.</p>
       <div className="panel">
         {[
           ["Phase 1 · Tokens land","Week 1","Add tokens.css, update tailwind.config.js, ship a compat shim that maps react-dark-blue → --brand-600. Zero visual change.","No regressions"],
@@ -206,23 +199,22 @@ export default {
         <div className="ds-card">
           <div className="ds-card-head" style={{ background: "var(--success-050)" }}><h3 className="ds-card-title" style={{ color: "var(--success-700)" }}>First (high ROI, low risk)</h3></div>
           <div className="ds-card-body">
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-              <li>Color &amp; spacing tokens — affect everything, zero behavior change.</li>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
+              <li>Color &amp; spacing tokens: affect everything, zero behavior change.</li>
               <li>Button (consolidate <code>common/button</code> + <code>app/ui/Button</code>).</li>
-              <li>Input / Select / FormField — the cause of most inconsistency reports.</li>
-              <li>Table — collapse 4 implementations to 1.</li>
-              <li>Page header pattern — visible quick win on every page.</li>
+              <li>Input / Select / FormField, the cause of most inconsistency reports.</li>
+              <li>Table: collapse 4 implementations to 1.</li>
+              <li>Page header pattern: visible quick win on every page.</li>
             </ul>
           </div>
         </div>
         <div className="ds-card">
           <div className="ds-card-head" style={{ background: "var(--warning-050)" }}><h3 className="ds-card-title" style={{ color: "var(--warning-700)" }}>Later (slower, scoped)</h3></div>
           <div className="ds-card-body">
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-              <li>Highcharts theme — wrap charts to consume tokens.</li>
-              <li>Leaflet map controls — match Button system.</li>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
+              <li>Highcharts theme: wrap charts to consume tokens.</li>
+              <li>Leaflet map controls: match Button system.</li>
               <li>DataTable virtualization &amp; column-resize ergonomics.</li>
-              <li>Dark mode (semantic-only swap; the architecture supports it).</li>
               <li>Removing styled-components entirely (after module sweep).</li>
             </ul>
           </div>
@@ -232,7 +224,7 @@ export default {
 
     <div className="subsection">
       <h3 className="subsection-title">Linting &amp; guardrails</h3>
-      <pre className="code">{`// .eslintrc — forbid raw hex in JSX/CSS-in-JS
+      <pre className="code">{`// .eslintrc: forbid raw hex in JSX/CSS-in-JS
 "no-restricted-syntax": ["error",
   { selector: "Literal[value=/^#[0-9a-fA-F]{3,8}$/]",
     message: "Use a design token (var(--…)) instead of a raw hex color." }

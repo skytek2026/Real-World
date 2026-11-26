@@ -1,8 +1,8 @@
-/* Compliance / Sanction list mock — focused on the "Unknown" entity bug fix.
+/* Compliance / Sanction list mock, focused on the "Unknown" entity bug fix.
 
    The bug: when a relationship's value is "Unknown" or "Unknown Entity",
    the system runs sanction list checks against the literal string and
-   reports green "Ok" — falsely implying the entity has been screened.
+   reports green "Ok", falsely implying the entity has been screened.
 
    The fix: introduce an "Unverifiable" / "Cannot be analysed" state so
    it's visually clear those rows could not be evaluated and may carry
@@ -52,7 +52,7 @@ const StatusCell = ({ status, treatment = "default" }) => {
   // unverifiable variants
   if (treatment === "dash") {
     return (
-      <span className="s-cell s-cell--unverif-dash" title="Cannot be analysed — subject is unknown.">
+      <span className="s-cell s-cell--unverif-dash" title="Cannot be analysed: subject is unknown.">
         <span className="dash">—</span>
         <span className="warn-glyph"><WarnIcon size={11} color="var(--unverif-500)" /></span>
       </span>
@@ -60,21 +60,21 @@ const StatusCell = ({ status, treatment = "default" }) => {
   }
   if (treatment === "stripe") {
     return (
-      <span className="s-cell s-cell--unverif-stripe" title="Cannot be analysed — subject is unknown.">
+      <span className="s-cell s-cell--unverif-stripe" title="Cannot be analysed: subject is unknown.">
         <span className="s-dot" /> Unverifiable
       </span>
     );
   }
   if (treatment === "na") {
     return (
-      <span className="s-cell s-cell--unverif-na" title="Cannot be analysed — subject is unknown.">
+      <span className="s-cell s-cell--unverif-na" title="Cannot be analysed: subject is unknown.">
         <span className="s-dot" />
         <span className="warn-tag"><WarnIcon size={10} /> Unknown subject</span>
       </span>
     );
   }
   return (
-    <span className="s-cell s-cell--unverif" title="Cannot be analysed — subject is unknown.">
+    <span className="s-cell s-cell--unverif" title="Cannot be analysed: subject is unknown.">
       <span className="s-dot" /> Unverifiable
     </span>
   );
@@ -83,7 +83,7 @@ const StatusCell = ({ status, treatment = "default" }) => {
 const REASON_COPY = {
   "no-record": {
     title: "Provider has no record",
-    body: <>The data provider returned <em>unknown</em> for this relationship — they hold no record of the underlying entity. Sanctions screening cannot run. <strong>Treat as elevated risk.</strong></>,
+    body: <>The data provider returned <em>unknown</em> for this relationship; they hold no record of the underlying entity. Sanctions screening cannot run. <strong>Treat as elevated risk.</strong></>,
   },
   "link-terminated": {
     title: "Active link terminated",
@@ -113,7 +113,7 @@ const SubjectName = ({ name, unknown, link, reason }) => {
 };
 
 /* ============================================================
-   "Before" — current behaviour as shown in the screenshot.
+   "Before", current behaviour as shown in the screenshot.
    Every Unknown subject gets green Ok across all five lists.
    ============================================================ */
 const BeforeTable = () => {
@@ -172,7 +172,7 @@ const BeforeTable = () => {
 };
 
 /* ============================================================
-   "After" — Unverifiable status replaces false Ok.
+   "After", Unverifiable status replaces false Ok.
    ============================================================ */
 const AfterTable = ({ treatment }) => {
   const rows = [
@@ -232,21 +232,21 @@ const AfterTable = ({ treatment }) => {
    Top-of-tab banner shown when unverifiable rows are present.
    ============================================================ */
 const UnverifBanner = () => (
-  <div className="ds-alert ds-alert--unverif" style={{ margin: "12px 14px 0" }} role="status">
+  <div className="ds-alert ds-alert--unverif" style={{ margin: "12px 12px 0" }} role="status">
     <span style={{ marginTop: 1 }}><WarnIcon size={18} color="var(--unverif-700)" /></span>
     <div className="ds-alert-body">
       <div className="ds-alert-title">3 subjects could not be analysed</div>
       <div style={{ color: "var(--unverif-700)", fontSize: 12.5, lineHeight: 1.5 }}>
         <strong>Owner's Domicile Country</strong>, <strong>Group Beneficial</strong> and <strong>Operator</strong> are listed as <em>Unknown</em>.
-        Sanctions screening cannot run against an unknown subject — there may be sanctioned implications that have not been surfaced.
-        <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "var(--unverif-700)", marginLeft: 6, fontWeight: 600 }}>How is this resolved? →</a>
+        Sanctions screening cannot run against an unknown subject; there may be sanctioned implications that have not been surfaced.
+        <a href="#" onClick={(e) => e.preventDefault()} style={{ color: "var(--unverif-700)", marginLeft: 4, fontWeight: 600 }}>How is this resolved? →</a>
       </div>
     </div>
   </div>
 );
 
 /* ============================================================
-   Mock browser frame — vessel detail page chrome
+   Mock browser frame, vessel detail page chrome
    ============================================================ */
 const MockFrame = ({ children }) => (
   <div className="mock-frame">
@@ -332,14 +332,13 @@ const Page = () => {
         <h1>"Unknown" subjects must not pass as compliant</h1>
         <p>
           When a relationship resolves to <em>Unknown</em> or <em>Unknown Entity</em>, the platform
-          currently runs the literal string against each sanctions list and reports green <strong>Ok</strong> —
-          which reads as "screened and cleared". It hasn't been screened at all. This deck introduces
+          currently runs the literal string against each sanctions list and reports green <strong>Ok</strong>, which reads as "screened and cleared". It hasn't been screened at all. This deck introduces
           an <strong>Unverifiable</strong> state so users see, immediately, that there could be
           sanctions implications that haven't been surfaced.
         </p>
       </div>
 
-      {/* — Section 1: the new state — */}
+      {/*: Section 1: the new state, */}
       <div className="section-block">
         <h2>The new state · Unverifiable</h2>
         <p className="lead">
@@ -349,24 +348,24 @@ const Page = () => {
         </p>
         <div style={{ display: "flex", gap: 24, flexWrap: "wrap", padding: "16px", background: "var(--white)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-lg)" }}>
           <div>
-            <div className="t-label" style={{ marginBottom: 6 }}>Ok</div>
+            <div className="t-label" style={{ marginBottom: 4 }}>Ok</div>
             <StatusCell status="ok" />
           </div>
           <div>
-            <div className="t-label" style={{ marginBottom: 6 }}>Sanctioned</div>
+            <div className="t-label" style={{ marginBottom: 4 }}>Sanctioned</div>
             <StatusCell status="sanctioned" />
           </div>
           <div>
-            <div className="t-label" style={{ marginBottom: 6 }}>Unverifiable <span style={{ color: "var(--unverif-700)" }}>(new)</span></div>
+            <div className="t-label" style={{ marginBottom: 4 }}>Unverifiable <span style={{ color: "var(--unverif-700)" }}>(new)</span></div>
             <StatusCell status="unverif" treatment={tweaks.treatment} />
           </div>
           <div style={{ flex: 1, minWidth: 280, paddingLeft: 24, borderLeft: "1px solid var(--border-subtle)", fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.55 }}>
-            <strong style={{ color: "var(--text-primary)" }}>Sarah / Gabriel asked for a dash.</strong> A bare <code>—</code> stops the false green Ok but doesn't carry the second message — that this could be hiding sanctioned exposure. The <em>— + warn</em> tweak option keeps the dash and adds a small amber glyph; <em>Ring+?</em> is louder. Pick whichever the team prefers.
+            <strong style={{ color: "var(--text-primary)" }}>Sarah / Gabriel asked for a dash.</strong> A bare <code>—</code> stops the false green Ok but doesn't carry the second message; that this could be hiding sanctioned exposure. The <em>— + warn</em> tweak option keeps the dash and adds a small amber glyph; <em>Ring+?</em> is louder. Pick whichever the team prefers.
           </div>
         </div>
       </div>
 
-      {/* — Section 2: Before / After — */}
+      {/*: Section 2: Before / After, */}
       <div className="section-block">
         <h2>Before · After</h2>
         <p className="lead">
@@ -382,14 +381,14 @@ const Page = () => {
                 Unknown subjects pass as Ok
               </div>
               <MockFrame>
-                <div style={{ padding: "0 14px" }}>
+                <div style={{ padding: "0 16px" }}>
                   <BeforeTable />
                 </div>
               </MockFrame>
-              <div style={{ padding: "12px 14px", background: "var(--danger-050)", borderTop: "1px solid var(--danger-100)", color: "var(--danger-700)", fontSize: 12.5, lineHeight: 1.5 }}>
+              <div style={{ padding: "12px 16px", background: "var(--danger-050)", borderTop: "1px solid var(--danger-100)", color: "var(--danger-700)", fontSize: 12.5, lineHeight: 1.5 }}>
                 <strong>Problem.</strong> The bottom three rows show <em>Unknown</em> / <em>Unknown Entity</em> as the subject,
                 yet the system returns green Ok across all five sanctions lists. A reviewer scanning the page sees
-                "no flags" and clears the vessel — without realising three of its key relationships were never
+                "no flags" and clears the vessel: without realising three of its key relationships were never
                 actually screened.
               </div>
             </div>
@@ -402,11 +401,11 @@ const Page = () => {
             </div>
             <MockFrame>
               {tweaks.showBanner && <UnverifBanner />}
-              <div className={afterClass} style={{ padding: "0 14px" }}>
+              <div className={afterClass} style={{ padding: "0 16px" }}>
                 <AfterTable treatment={tweaks.treatment} />
               </div>
             </MockFrame>
-            <div style={{ padding: "12px 14px", background: "var(--success-050)", borderTop: "1px solid var(--success-100)", color: "var(--success-700)", fontSize: 12.5, lineHeight: 1.5 }}>
+            <div style={{ padding: "12px 16px", background: "var(--success-050)", borderTop: "1px solid var(--success-100)", color: "var(--success-700)", fontSize: 12.5, lineHeight: 1.5 }}>
               <strong>What changed.</strong> Three behaviours work together: (1) <strong>row tint &amp; left rail</strong>
               draw the eye to unknown subjects, (2) <strong>cell status</strong> shows Unverifiable instead of Ok,
               and (3) a <strong>tab-level banner</strong> states the count and the implication up front so the
@@ -416,7 +415,7 @@ const Page = () => {
         </div>
       </div>
 
-      {/* — Section 3: Behaviour spec — */}
+      {/*: Section 3: Behaviour spec, */}
       <div className="section-block">
         <h2>Behaviour spec</h2>
         <p className="lead">What triggers Unverifiable, why the subject is unknown, and how it surfaces.</p>
@@ -429,11 +428,11 @@ const Page = () => {
             <tr>
               <td><strong>No record</strong><div className="t-caption">Provider has nothing on this entity.</div></td>
               <td>Provider returns <code className="inline">unknown</code> with no entity ID and no historical record.</td>
-              <td><em>"The data provider returned <strong>unknown</strong> for this relationship — they hold no record of the underlying entity. Sanctions screening cannot run. Treat as elevated risk."</em></td>
+              <td><em>"The data provider returned <strong>unknown</strong> for this relationship; they hold no record of the underlying entity. Sanctions screening cannot run. Treat as elevated risk."</em></td>
             </tr>
             <tr>
               <td><strong>Active link terminated</strong><div className="t-caption">e.g. Tech Manager 2021–2025, no successor.</div></td>
-              <td>Provider returns <code className="inline">unknown</code> but has historical records — the prior link ended on a known date and no replacement was filed.</td>
+              <td>Provider returns <code className="inline">unknown</code> but has historical records: the prior link ended on a known date and no replacement was filed.</td>
               <td><em>"A previously-recorded link ended (e.g. Technical Manager 2021–2025). No successor has been registered, so the current holder is unknown. Verify before clearing."</em></td>
             </tr>
             <tr>
@@ -444,24 +443,24 @@ const Page = () => {
             <tr>
               <td><strong>Risk score gauge</strong></td>
               <td>The score is computed only from screened subjects.</td>
-              <td>Footnote chip on the gauge: <em>"Score excludes 3 unverifiable subjects."</em> — keeps the score truthful.</td>
+              <td>Footnote chip on the gauge: <em>"Score excludes 3 unverifiable subjects."</em>, keeps the score truthful.</td>
             </tr>
           </tbody>
         </table>
 
         <div className="callout warn" style={{ marginTop: 16 }}>
-          <strong>Where the reason comes from.</strong> The provider response already distinguishes "no record" from "link terminated" (per Stefan). We surface that on hover instead of inventing a single generic message. Reviewers respond differently to the two cases — "no record" usually means escalate; "link terminated" usually means chase the broker for the successor. One pattern, two stories.
+          <strong>Where the reason comes from.</strong> The provider response already distinguishes "no record" from "link terminated" (per Stefan). We surface that on hover instead of inventing a single generic message. Reviewers respond differently to the two cases, "no record" usually means escalate; "link terminated" usually means chase the broker for the successor. One pattern, two stories.
         </div>
       </div>
 
-      {/* — Section 4: Where else this surfaces — */}
+      {/*: Section 4: Where else this surfaces, */}
       <div className="section-block">
         <h2>Where else this surfaces</h2>
         <p className="lead">The pattern propagates beyond the table cell.</p>
 
         <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: 16, alignItems: "flex-start" }}>
           <SmallScoreCallout />
-          <div className="ds-card" style={{ padding: 14 }}>
+          <div className="ds-card" style={{ padding: 16 }}>
             <div className="t-label" style={{ marginBottom: 8 }}>Tab indicator</div>
             <div style={{ display: "flex", gap: 0, borderBottom: "1px solid var(--border-default)", marginBottom: 12 }}>
               <button className="mock-tab">Inspection Data</button>
@@ -472,22 +471,21 @@ const Page = () => {
               <button className="mock-tab">Casualty Data</button>
             </div>
             <p className="t-caption" style={{ margin: 0 }}>
-              When unverifiable subjects exist on a vessel, the Sanction Compliance tab gets a small amber dot —
-              same affordance the team already uses for "Suspicious Activities" but in the unverifiable hue.
+              When unverifiable subjects exist on a vessel, the Sanction Compliance tab gets a small amber dot, same affordance the team already uses for "Suspicious Activities" but in the unverifiable hue.
               Visible from any tab on the vessel detail page.
             </p>
           </div>
         </div>
       </div>
 
-      {/* — Section 5: What we explicitly did NOT do — */}
+      {/*: Section 5: What we explicitly did NOT do, */}
       <div className="section-block">
         <h2>What we deliberately didn't do</h2>
         <ul className="diff-list">
-          <li>Mark unverifiable subjects as <strong>Sanctioned</strong> — false positives erode trust in the red dot.</li>
-          <li>Hide unverifiable rows from the <em>Compliance</em> table — the reviewer must still see them. (Hiding may make sense for the <em>Ownership</em> table specifically — that's a separate decision.)</li>
-          <li>Reuse the existing <strong>orange "At risk"</strong> warning hue — it already means "screened and borderline". Conflating the two would dilute both.</li>
-          <li>Block PDF export when unverifiable subjects exist — but the PDF inherits the same banner copy so downstream readers also see the caveat.</li>
+          <li>Mark unverifiable subjects as <strong>Sanctioned</strong>, because false positives erode trust in the red dot.</li>
+          <li>Hide unverifiable rows from the <em>Compliance</em> table: the reviewer must still see them. (Hiding may make sense for the <em>Ownership</em> table specifically; that's a separate decision.)</li>
+          <li>Reuse the existing <strong>orange "At risk"</strong> warning hue; it already means "screened and borderline". Conflating the two would dilute both.</li>
+          <li>Block PDF export when unverifiable subjects exist, but the PDF inherits the same banner copy so downstream readers also see the caveat.</li>
         </ul>
       </div>
 
@@ -499,7 +497,7 @@ const Page = () => {
         </p>
       </div>
 
-      {/* — Tweaks panel — */}
+      {/*: Tweaks panel: */}
       <TweaksPanel title="Tweaks">
         <TweakSection label="Cell treatment" />
         <TweakRadio

@@ -1,4 +1,4 @@
-/* Comprehensive Buttons documentation — variants, sizes, states, anatomy, tokens, matrix, guidelines */
+/* Comprehensive Buttons documentation: variants, sizes, states, anatomy, tokens, matrix, guidelines */
 
 /* ——— Redesigned interaction-states data ——— */
 const SIZE_DEFS = [
@@ -9,16 +9,16 @@ const SIZE_DEFS = [
 
 const STATE_DEFS = [
   { key: "default",  label: "Default",  trigger: "rest",            style: {} },
-  { key: "hover",    label: "Hover",    trigger: ":hover",          style: { background: "var(--brand-500)", borderColor: "var(--brand-500)" } },
+  { key: "hover",    label: "Hover",    trigger: ":hover",          style: { background: "var(--brand-800)", borderColor: "var(--brand-800)" } },
   { key: "focus",    label: "Focus",    trigger: ":focus-visible",  style: { boxShadow: "var(--shadow-focus)" }, focus: true },
-  { key: "active",   label: "Active",   trigger: ":active",         style: { background: "#1f5fc7", borderColor: "#1f5fc7" } },
+  { key: "active",   label: "Active",   trigger: ":active",         style: { background: "var(--brand-700)", borderColor: "var(--brand-700)" } },
   { key: "disabled", label: "Disabled", trigger: "[disabled]",      disabled: true },
 ];
 
 const BS_STATES_CSS = `
 .bs-states kbd.bs-kbd {
   font-family: var(--font-mono); font-size: 11px; line-height: 1;
-  padding: 2px 5px; border-radius: 4px;
+  padding: 2px 4px; border-radius: 4px;
   background: var(--slate-100); border: 1px solid var(--border-default);
   border-bottom-width: 2px; color: var(--text-secondary);
 }
@@ -50,46 +50,46 @@ const BS_STATES_CSS = `
 }
 .bs-corner, .bs-colhead, .bs-rowhead, .bs-cell { background: var(--bg-surface); }
 .bs-corner {
-  display: flex; align-items: flex-end; padding: 12px 14px;
-  background: var(--slate-50);
+  display: flex; align-items: flex-end; padding: 12px 16px;
+  background: var(--slate-050);
 }
 .bs-colhead {
-  padding: 12px 14px; background: var(--slate-50);
+  padding: 12px 16px; background: var(--slate-050);
   display: flex; flex-direction: column; gap: 4px;
 }
 .bs-colhead.is-focus, .bs-cell.is-focus { background: var(--brand-050); }
 .bs-colhead-name {
   font-size: 12px; font-weight: 700; color: var(--text-primary);
-  letter-spacing: 0.01em; display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.01em; display: flex; align-items: center; gap: 4px;
 }
 .bs-wcag {
-  font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
   letter-spacing: 0.06em; color: var(--brand-600);
   background: var(--white); border: 1px solid var(--brand-100);
-  padding: 1px 4px; border-radius: 3px;
+  padding: 1px 4px; border-radius: 4px;
 }
-.bs-trigger { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); }
+.bs-trigger { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
 .bs-rowhead {
-  display: flex; flex-direction: column; gap: 3px; justify-content: center;
-  padding: 0 14px; background: var(--slate-50);
+  display: flex; flex-direction: column; gap: 4px; justify-content: center;
+  padding: 0 16px; background: var(--slate-050);
 }
 .bs-size-name { font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
 .bs-def {
-  font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
   color: var(--brand-600); background: var(--brand-050);
-  border: 1px solid var(--brand-100); padding: 1px 5px; border-radius: 3px;
+  border: 1px solid var(--brand-100); padding: 1px 4px; border-radius: 4px;
 }
 .bs-size-h { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
-.bs-cell { display: flex; align-items: center; justify-content: center; padding: 26px 14px; }
+.bs-cell { display: flex; align-items: center; justify-content: center; padding: 28px 16px; }
 
 /* Loading strip */
 .bs-loading-strip {
   display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
-  margin-top: 16px; padding: 18px 24px;
+  margin-top: 16px; padding: 20px 24px;
   border: 1px solid var(--border-default); border-radius: var(--radius-lg);
   background: var(--bg-surface);
 }
-.bs-loading-copy { display: flex; align-items: flex-start; gap: 14px; }
+.bs-loading-copy { display: flex; align-items: flex-start; gap: 12px; }
 .bs-loading-stage { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .bs-spinner {
   display: inline-block; width: 12px; height: 12px; border-radius: 50%;
@@ -107,7 +107,7 @@ const BS_STATES_CSS = `
   margin-top: 16px;
 }
 .bs-focus-demo {
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 12px;
   padding: 24px; border: 1px solid var(--border-default); border-radius: var(--radius-lg);
   background: var(--bg-surface);
 }
@@ -124,7 +124,7 @@ const BS_STATES_CSS = `
 }
 .bs-focus-row {
   display: grid; grid-template-columns: 116px 1fr; gap: 16px; align-items: center;
-  padding: 12px 18px; border-top: 1px solid var(--border-subtle);
+  padding: 12px 20px; border-top: 1px solid var(--border-subtle);
 }
 .bs-focus-row:first-child { border-top: 0; }
 .bs-focus-k { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -141,11 +141,11 @@ const ButtonsDeep = () => (
     {/* ====== VARIANTS ====== */}
     <div className="subsection">
       <h3 className="subsection-title">Variants</h3>
-      <p className="subsection-desc">Six variants cover the full hierarchy of action priority. One primary per surface — secondary/tertiary support, destructive carries weight, link sits in copy.</p>
+      <p className="subsection-desc">Six variants cover the full hierarchy of action priority. One primary per surface: secondary/tertiary support, destructive carries weight, link sits in copy.</p>
       
       <div style={{ display: "grid", gap: 12 }}>
         {[
-          { name: "Primary", cls: "ds-btn--primary", purpose: "Most important action on the surface. One per view.", token: "--brand-600 → --brand-500" },
+          { name: "Primary", cls: "ds-btn--primary", purpose: "Most important action on the surface. One per view.", token: "--brand-700 → --brand-800" },
           { name: "Secondary", cls: "ds-btn--secondary", purpose: "Supporting actions. Cancel, alternative paths, secondary CTAs.", token: "--white + --border-default" },
           { name: "Tertiary / Ghost", cls: "ds-btn--ghost", purpose: "Lowest emphasis. Toolbars, table row actions, dense surfaces.", token: "transparent + hover --slate-100" },
           { name: "Destructive", cls: "ds-btn--danger", purpose: "Irreversible or data-loss actions. Always confirmed via modal.", token: "--danger-500 → --danger-700" },
@@ -240,20 +240,20 @@ const ButtonsDeep = () => (
     {/* ====== STATES (redesigned) ====== */}
     <div className="subsection bs-states">
       <h3 className="subsection-title">Interaction states</h3>
-      <p className="subsection-desc">Every button resolves to five interaction states across three sizes. States are driven by native pseudo-classes — never toggled with JavaScript — so they stay in lock-step with the browser's real hover, focus, and pointer behavior. Transitions run at <code className="inline">var(--motion-fast)</code> (140ms ease-out).</p>
+      <p className="subsection-desc">Every button resolves to five interaction states across three sizes. States are driven by native pseudo-classes, never toggled with JavaScript, so they stay in lock-step with the browser's real hover, focus, and pointer behavior. Transitions run at <code className="inline">var(--motion-fast)</code> (140ms ease-out).</p>
 
-      {/* Live specimen — the real component, not a mockup */}
+      {/* Live specimen: the real component, not a mockup */}
       <div className="bs-live">
         <div className="bs-live-copy">
           <div className="t-overline" style={{ color: "var(--brand-600)" }}>Live specimen</div>
-          <p className="t-caption" style={{ margin: "4px 0 0" }}>Hover, press, or press <kbd className="bs-kbd">Tab</kbd> to focus — this is the production component reacting in real time, not a static example.</p>
+          <p className="t-caption" style={{ margin: "4px 0 0" }}>Hover, press, or press <kbd className="bs-kbd">Tab</kbd> to focus; this is the production component reacting in real time, not a static example.</p>
         </div>
         <div className="bs-live-stage">
           <button className="ds-btn ds-btn--primary ds-btn--lg"><Icon d={I.check} /> Save changes</button>
         </div>
       </div>
 
-      {/* States × Sizes matrix — the canonical reference grid */}
+      {/* States × Sizes matrix, the canonical reference grid */}
       <div className="panel bs-panel" style={{ marginTop: 20 }}>
         <div className="panel-head">
           <h4>Primary · States × Sizes</h4>
@@ -300,17 +300,17 @@ const ButtonsDeep = () => (
           </div>
         </div>
         <div className="panel-foot">
-          Same recipe applies to Secondary, Ghost, and Destructive — only the fill/border tokens swap. Focus, active, and disabled behavior is identical across variants.
+          Same recipe applies to Secondary, Ghost, and Destructive, only the fill/border tokens swap. Focus, active, and disabled behavior is identical across variants.
         </div>
       </div>
 
-      {/* Async loading — the sixth, behavioral state */}
+      {/* Async loading: the sixth, behavioral state */}
       <div className="bs-loading-strip">
         <div className="bs-loading-copy">
           <span className="ds-badge ds-badge--info ds-badge--dot">Async</span>
           <div>
             <div className="t-h4" style={{ marginBottom: 2 }}>Loading</div>
-            <p className="t-caption" style={{ margin: 0, maxWidth: 380 }}>A behavioral overlay on any state. Spinner replaces the leading icon, <code className="inline">aria-busy="true"</code> is set, and <code className="inline">pointer-events</code> are suppressed — but the button stays focusable.</p>
+            <p className="t-caption" style={{ margin: 0, maxWidth: 380 }}>A behavioral overlay on any state. Spinner replaces the leading icon, <code className="inline">aria-busy="true"</code> is set, and <code className="inline">pointer-events</code> are suppressed, but the button stays focusable.</p>
           </div>
         </div>
         <div className="bs-loading-stage">
@@ -325,8 +325,8 @@ const ButtonsDeep = () => (
         </div>
       </div>
 
-      {/* State reference — trigger, change, token, a11y */}
-      <h4 className="t-h4" style={{ margin: "28px 0 10px" }}>State specification</h4>
+      {/* State reference: trigger, change, token, a11y */}
+      <h4 className="t-h4" style={{ margin: "28px 0 8px" }}>State specification</h4>
       <div className="panel" style={{ overflow: "hidden" }}>
         <table className="spec-table" style={{ border: 0 }}>
           <thead>
@@ -349,9 +349,9 @@ const ButtonsDeep = () => (
             <tr>
               <td><strong>Hover</strong></td>
               <td><code className="inline">:hover</code></td>
-              <td className="t-caption">Fill lightens one step; cursor → pointer.</td>
-              <td><code className="inline">--brand-500</code></td>
-              <td className="t-caption">Never the sole signal — paired with focus + active.</td>
+              <td className="t-caption">Fill darkens one step; cursor → pointer.</td>
+              <td><code className="inline">--brand-800</code></td>
+              <td className="t-caption">Never the sole signal: paired with focus + active.</td>
             </tr>
             <tr className="bs-row-focus">
               <td><strong>Focus</strong></td>
@@ -364,8 +364,8 @@ const ButtonsDeep = () => (
               <td><strong>Active</strong></td>
               <td><code className="inline">:active</code></td>
               <td className="t-caption">Fill darkens one step (pressed).</td>
-              <td><code className="inline">#1f5fc7</code></td>
-              <td className="t-caption">Instant — no transition delay on press-down.</td>
+              <td><code className="inline">--brand-700</code></td>
+              <td className="t-caption">Instant: no transition delay on press-down.</td>
             </tr>
             <tr>
               <td><strong>Disabled</strong></td>
@@ -392,7 +392,7 @@ const ButtonsDeep = () => (
             ["Ring width", "3px solid offset"],
             ["Ring color", "rgba(46,134,192,0.32)"],
             ["Contrast", "≥ 3:1 vs. adjacent surface (WCAG 2.4.11)"],
-            ["Visibility", "Keyboard only — suppressed on mouse via :focus-visible"],
+            ["Visibility", "Keyboard only: suppressed on mouse via :focus-visible"],
             ["Activation", <span><kbd className="bs-kbd">Enter</kbd> and <kbd className="bs-kbd">Space</kbd> both fire onClick</span>],
             ["Never", "outline: none without a visible replacement"],
           ].map(([k, v], i) => (
@@ -421,10 +421,10 @@ const ButtonsDeep = () => (
           </button>
           {/* Annotations */}
           <div style={{ position: "absolute", top: -28, left: -8, right: -8, height: 1, borderTop: "1px dashed var(--brand-500)" }} />
-          <div style={{ position: "absolute", top: -44, left: "50%", transform: "translateX(-50%)", fontSize: 10, color: "var(--brand-600)", whiteSpace: "nowrap" }}>① Container</div>
-          <div style={{ position: "absolute", bottom: -22, left: 14, fontSize: 10, color: "var(--brand-600)" }}>② Leading icon</div>
-          <div style={{ position: "absolute", bottom: -22, left: "50%", transform: "translateX(-50%)", fontSize: 10, color: "var(--brand-600)" }}>③ Label</div>
-          <div style={{ position: "absolute", bottom: -22, right: 14, fontSize: 10, color: "var(--brand-600)" }}>④ Trailing icon</div>
+          <div style={{ position: "absolute", top: -44, left: "50%", transform: "translateX(-50%)", fontSize: 11, color: "var(--brand-600)", whiteSpace: "nowrap" }}>① Container</div>
+          <div style={{ position: "absolute", bottom: -22, left: 14, fontSize: 11, color: "var(--brand-600)" }}>② Leading icon</div>
+          <div style={{ position: "absolute", bottom: -22, left: "50%", transform: "translateX(-50%)", fontSize: 11, color: "var(--brand-600)" }}>③ Label</div>
+          <div style={{ position: "absolute", bottom: -22, right: 14, fontSize: 11, color: "var(--brand-600)" }}>④ Trailing icon</div>
         </div>
       </div>
 
@@ -516,10 +516,10 @@ const ButtonsDeep = () => (
           <tbody>
             <tr>
               <td><strong>Primary</strong></td>
-              <td><code className="inline">--brand-600</code></td>
+              <td><code className="inline">--brand-700</code></td>
               <td><code className="inline">--white</code></td>
-              <td><code className="inline">--brand-600</code></td>
-              <td><code className="inline">--brand-500</code></td>
+              <td><code className="inline">--brand-700</code></td>
+              <td><code className="inline">--brand-800</code></td>
               <td><code className="inline">--shadow-focus</code></td>
             </tr>
             <tr>
@@ -527,7 +527,7 @@ const ButtonsDeep = () => (
               <td><code className="inline">--white</code></td>
               <td><code className="inline">--slate-800</code></td>
               <td><code className="inline">--border-default</code></td>
-              <td><code className="inline">--slate-50</code></td>
+              <td><code className="inline">--slate-050</code></td>
               <td><code className="inline">--shadow-focus</code></td>
             </tr>
             <tr>
@@ -575,7 +575,7 @@ const ButtonsDeep = () => (
     {/* ====== MATRIX ====== */}
     <div className="subsection">
       <h3 className="subsection-title">Variants × Sizes × States matrix</h3>
-      <p className="subsection-desc">Figma naming convention: <code className="inline">Button/[Variant]/[Size]/[State]</code> — e.g. <code className="inline">Button/Primary/Large/Hover</code>.</p>
+      <p className="subsection-desc">Figma naming convention: <code className="inline">Button/[Variant]/[Size]/[State]</code>, e.g. <code className="inline">Button/Primary/Large/Hover</code>.</p>
 
       {[
         { variant: "Primary", cls: "ds-btn--primary" },
@@ -604,7 +604,7 @@ const ButtonsDeep = () => (
                 <div style={{ display: "grid", placeItems: "center" }}>
                   <button className={`ds-btn ${v.cls} ${s.cls}`} style={
                     v.variant === "Primary" ? { background: "var(--brand-500)", borderColor: "var(--brand-500)" } :
-                    v.variant === "Secondary" ? { background: "var(--slate-50)", borderColor: "var(--border-strong)" } :
+                    v.variant === "Secondary" ? { background: "var(--slate-050)", borderColor: "var(--border-strong)" } :
                     v.variant === "Ghost" ? { background: "var(--slate-100)" } :
                     { background: "var(--danger-700)", borderColor: "var(--danger-700)" }
                   }>Action</button>
@@ -612,10 +612,10 @@ const ButtonsDeep = () => (
                 <div style={{ display: "grid", placeItems: "center" }}><button className={`ds-btn ${v.cls} ${s.cls}`} style={{ boxShadow: "var(--shadow-focus)" }}>Action</button></div>
                 <div style={{ display: "grid", placeItems: "center" }}>
                   <button className={`ds-btn ${v.cls} ${s.cls}`} style={
-                    v.variant === "Primary" ? { background: "#0B3A5A", borderColor: "#0B3A5A" } :
+                    v.variant === "Primary" ? { background: "#0D5580", borderColor: "#0D5580" } :
                     v.variant === "Secondary" ? { background: "var(--slate-100)" } :
                     v.variant === "Ghost" ? { background: "var(--slate-150)" } :
-                    { background: "#9F1F1F", borderColor: "#9F1F1F" }
+                    { background: "#991B1B", borderColor: "#991B1B" }
                   }>Action</button>
                 </div>
                 <div style={{ display: "grid", placeItems: "center" }}><button className={`ds-btn ${v.cls} ${s.cls}`} disabled>Action</button></div>
@@ -633,8 +633,8 @@ const ButtonsDeep = () => (
         <div className="do">
           <div className="hd">✓ Do</div>
           <div className="bd">
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.7, color: "var(--text-secondary)" }}>
-              <li><strong>One primary per surface.</strong> Form footers, dialogs, page headers — each gets exactly one.</li>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.7, color: "var(--text-secondary)" }}>
+              <li><strong>One primary per surface.</strong> Form footers, dialogs, page headers, each gets exactly one.</li>
               <li><strong>Order matters.</strong> Primary on the right, secondary to its left, destructive at far left or in overflow.</li>
               <li><strong>Verb-first labels.</strong> "Save changes", "Delete vessel", "Export report".</li>
               <li><strong>Match button size to context.</strong> Dense tables → sm. Form footers → md. Hero CTAs → lg.</li>
@@ -645,7 +645,7 @@ const ButtonsDeep = () => (
         <div className="dont">
           <div className="hd">✗ Don't</div>
           <div className="bd">
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.7, color: "var(--text-secondary)" }}>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.7, color: "var(--text-secondary)" }}>
               <li><strong>Stack two primaries.</strong> Confuses hierarchy. Demote one to secondary.</li>
               <li><strong>Use buttons for navigation.</strong> Use links (<code className="inline">{`<a>`}</code>) when the destination is a URL. Buttons trigger actions.</li>
               <li><strong>Use destructive for "Cancel".</strong> Cancel is always secondary.</li>
@@ -688,7 +688,7 @@ const ButtonsDeep = () => (
 </Button>`}</pre>
 
       <h4 className="t-h4" style={{ marginTop: 24, marginBottom: 8 }}>Behavior expectations</h4>
-      <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.7, color: "var(--text-secondary)" }}>
+      <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.7, color: "var(--text-secondary)" }}>
         <li><strong>Loading state:</strong> Sets <code className="inline">aria-busy="true"</code>, sets <code className="inline">pointer-events: none</code>, replaces <code className="inline">iconLeft</code> with spinner. Stays focusable for keyboard users.</li>
         <li><strong>Disabled + loading:</strong> Mutually exclusive; if both pass, loading wins (action is in-progress, not unavailable).</li>
         <li><strong>Long text:</strong> Truncates with ellipsis on single line; never wraps. Tooltip surfaces full text on hover.</li>
@@ -717,7 +717,7 @@ const ButtonsDeep = () => (
           </tr>
           <tr>
             <td>Multiple clicks during loading</td>
-            <td className="t-caption">Pointer-events: none prevents click handler. Don't debounce in the component — handle in caller.</td>
+            <td className="t-caption">Pointer-events: none prevents click handler. Don't debounce in the component, handle in caller.</td>
           </tr>
           <tr>
             <td>Icon-only button on touch device</td>

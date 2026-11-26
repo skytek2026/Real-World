@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assets — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -55,7 +55,7 @@
   .search-wrap .search-ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none; }
   .filter-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #374151; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
   .filter-btn:hover { border-color: var(--brand-300, #93c5fd); background: #f9fafb; }
-  .filter-btn.has-filter::after { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 9px solid #e11d48; border-left: 9px solid transparent; }
+  .filter-btn.has-filter::after { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 9px solid #dc2626; border-left: 9px solid transparent; }
   .filter-btn.reset { color: #4b5563; }
   .filter-btn.edit-cols { font-weight: 600; color: #111827; border-color: #d1d5db; }
   .filter-menu-wrap { position: relative; display: inline-flex; }
@@ -92,7 +92,7 @@
   .filter-drawer.open .drawer-overlay { opacity: 1; }
   .filter-drawer .drawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: 360px; max-width: 92vw; background: #fff; box-shadow: -10px 0 30px rgba(15,23,42,.16); display: flex; flex-direction: column; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); }
   .filter-drawer.open .drawer-panel { transform: translateX(0); }
-  .drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #eef2f7; font-size: 14px; font-weight: 700; color: #111827; }
+  .drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #f3f4f6; font-size: 14px; font-weight: 700; color: #111827; }
   .drawer-close { border: 0; background: none; cursor: pointer; color: #6b7280; padding: 4px; border-radius: 8px; display: inline-flex; }
   .drawer-close:hover { background: #f3f4f6; color: #111827; }
   .drawer-body { flex: 1; overflow-y: auto; padding: 4px 20px 12px; display: flex; flex-direction: column; }
@@ -109,7 +109,7 @@
   @keyframes accIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
   /* --- Mobile asset cards --- */
   .asset-cards { display: none; }
-  .acard { padding: 16px 16px; border-bottom: 1px solid #eef2f7; display: flex; flex-direction: column; gap: 12px; }
+  .acard { padding: 16px 16px; border-bottom: 1px solid #f3f4f6; display: flex; flex-direction: column; gap: 12px; }
   .acard:last-child { border-bottom: 0; }
   .acard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
   .acard-id { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
@@ -138,11 +138,11 @@
   }
   .drawer-section.open .filter-menu-list { max-height: none; flex: 1 1 0; min-height: 0; }
   .drawer-sec-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; margin: 0; display: flex; align-items: center; gap: 8px; }
-  .drawer-dot { width: 6px; height: 6px; border-radius: 999px; background: #e11d48; display: inline-block; }
+  .drawer-dot { width: 6px; height: 6px; border-radius: 999px; background: #dc2626; display: inline-block; }
   .drawer-section .filter-menu-head { border-bottom: 0; padding: 0 0 8px; margin: 0; }
   .drawer-section .filter-menu-list { max-height: 210px; }
   .drawer-section .range-menu { padding: 4px 2px 0; }
-  .drawer-foot { display: flex; gap: 8px; padding: 16px 20px; border-top: 1px solid #eef2f7; }
+  .drawer-foot { display: flex; gap: 8px; padding: 16px 20px; border-top: 1px solid #f3f4f6; }
   .drawer-foot .filter-btn { flex: 1; justify-content: center; padding: 12px; overflow: visible; }
   .drawer-foot .filter-btn:disabled { opacity: .45; cursor: default; pointer-events: none; }
 
@@ -201,8 +201,8 @@
   .badge .badge-ico svg { transform: rotate(45deg); }
   .badge-container { background: var(--brand-100, #dbeafe); color: var(--brand-700, #1d4ed8); }
   .badge-vehicle   { background: #dcfce7; color: #15803d; }
-  .badge-bulk      { background: #fef9c3; color: #a16207; }
-  .badge-tanker    { background: #ede9fe; color: #6d28d9; }
+  .badge-bulk      { background: #fef3c7; color: #b45309; }
+  .badge-tanker    { background: #ede9fe; color: #9333ea; }
   .badge-other     { color: #6b7280; }
 
   /* --- Pagination --- */
@@ -228,7 +228,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -561,7 +561,7 @@ const TYPE_COLORS = {
   'General Cargo':   '#16a34a',
   'Refrigerated Cargo': '#0891b2',
   'Cruise Passenger':   '#db2777',
-  'Yacht':              '#0d9488',
+  'Yacht':              '#0891b2',
 };
 function typeIco(type) {
   const c = TYPE_COLORS[type] || '#6b7280';
@@ -605,14 +605,14 @@ function propertyBadge(type) {
 const OFFSHORE_COLORS = {
   'Fixed Platform':           '#ec4899',
   'TLP':                      '#06b6d4',
-  'FPSO':                     '#8b5cf6',
+  'FPSO':                     '#9333ea',
   'Subsea Installation':      '#06b6d4',
-  'Jack-Up Rig':              '#f59e0b',
-  'Semi-Submersible':         '#3b82f6',
-  'Drillship':                '#3b82f6',
+  'Jack-Up Rig':              '#eab308',
+  'Semi-Submersible':         '#1a92d1',
+  'Drillship':                '#1a92d1',
   'Mobile Production (MOPU)': '#ea580c',
-  'Windfarm':                 '#10b981',
-  'Oil Rig':                  '#ef4444',
+  'Windfarm':                 '#16a34a',
+  'Oil Rig':                  '#ea580c',
 };
 function offshoreBadge(type) {
   const c = OFFSHORE_COLORS[type] || '#6b7280';

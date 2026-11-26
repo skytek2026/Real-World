@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Organisations — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -22,13 +22,13 @@
   /* Status badges */
   .sbadge{font-size:12px;font-weight:500;padding:4px 12px;border-radius:8px;display:inline-block;white-space:nowrap}
   .sb-active  {background:#f0fdf4;color:#16a34a}
-  .sb-pending {background:#fefce8;color:#ca8a04}
-  .sb-inactive{background:#fef2f2;color:#e11d48}
+  .sb-pending {background:#fffbeb;color:#ca8a04}
+  .sb-inactive{background:#fef2f2;color:#dc2626}
   /* Access chips */
   .chip{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;margin:1px 2px 1px 0;white-space:nowrap}
   .chip-ports  {background:#eff6ff;color:#2563eb;border:1px solid #b8ddf5}
-  .chip-weather{background:#f0fdf4;color:#059669;border:1px solid #86efac}
-  .chip-risk   {background:#fff7ed;color:#c2410c;border:1px solid #fdba74}
+  .chip-weather{background:#f0fdf4;color:#16a34a;border:1px solid #86efac}
+  .chip-risk   {background:#fffbeb;color:#c2410c;border:1px solid #fdba74}
   /* Header controls */
   .hbtn{display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#374151;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .1s,border-color .1s}
   .hbtn:hover{background:#f9fafb;border-color:#d1d5db}
@@ -39,7 +39,7 @@
   /* Action buttons */
   .actbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
   .actbtn:hover{background:#f3f4f6;color:#374151}
-  .actbtn.danger:hover{background:#fef2f2;color:#e11d48}
+  .actbtn.danger:hover{background:#fef2f2;color:#dc2626}
   /* Pagination */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
@@ -58,7 +58,7 @@
   .access-row:hover{background:#f9fafb}
   .access-row.checked-ports   {background:#eff6ff;border-color:#b8ddf5}
   .access-row.checked-weather {background:#f0fdf4;border-color:#86efac}
-  .access-row.checked-risk    {background:#fff7ed;border-color:#fdba74}
+  .access-row.checked-risk    {background:#fffbeb;border-color:#fdba74}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
@@ -75,7 +75,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>

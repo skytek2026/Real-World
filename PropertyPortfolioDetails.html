@@ -11,7 +11,7 @@
       extend: {
         fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] },
         colors: {
-          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
           ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
         },
         boxShadow: {
@@ -76,7 +76,7 @@
 
   /* Map */
   #map-container{height:720px;flex:0 0 auto;}
-  #pp-map{position:absolute;inset:0;background:#e0ebe9;}
+  #pp-map{position:absolute;inset:0;background:#e5e7eb;}
   #pp-map .leaflet-top.leaflet-left{top:56px;left:2px;}
   #pp-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important;}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgb(15 23 42 / .08)!important;border-radius:8px!important;overflow:hidden;}
@@ -118,7 +118,7 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
 </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -133,7 +133,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC  = window.sharedChrome;
 const Ico = SC.I;
@@ -186,9 +186,9 @@ const WEATHER_RISKS = [
 const PROPERTIES = [
   { lat:40.7484, lng:-73.9857, name:'Empire State Building',  cat:'Corporate & Office',   location:'New York, USA', value:'$2.1B', occupancy:'94%', size:'257,211 sq ft', risk:'Low',    riskColor:'#16a34a', status:'Operational', statusColor:'#16a34a', inspection:'2024-10-14' },
   { lat:40.7589, lng:-73.9851, name:'Rockefeller Center',     cat:'Corporate & Office',   location:'New York, USA', value:'$1.8B', occupancy:'90%', size:'188,000 sq ft', risk:'Low',    riskColor:'#16a34a', status:'Operational', statusColor:'#16a34a', inspection:'2024-08-22' },
-  { lat:40.7505, lng:-73.9934, name:'Madison Square Garden',  cat:'Retail & Hospitality', location:'New York, USA', value:'$1.2B', occupancy:'87%', size:'164,000 sq ft', risk:'Medium', riskColor:'#f59e0b', status:'Under Review', statusColor:'#f59e0b', inspection:'2024-07-09' },
-  { lat:40.7488, lng:-73.9680, name:'Chrysler Building',      cat:'Corporate & Office',   location:'New York, USA', value:'$890M', occupancy:'85%', size:'118,000 sq ft', risk:'Medium', riskColor:'#f59e0b', status:'Operational', statusColor:'#16a34a', inspection:'2024-06-18' },
-  { lat:40.7614, lng:-73.9776, name:'Plaza Hotel',            cat:'Retail & Hospitality', location:'New York, USA', value:'$540M', occupancy:'78%', size:'92,000 sq ft',  risk:'High',   riskColor:'#dc2626', status:'Under Review', statusColor:'#f59e0b', inspection:'2024-05-30' },
+  { lat:40.7505, lng:-73.9934, name:'Madison Square Garden',  cat:'Retail & Hospitality', location:'New York, USA', value:'$1.2B', occupancy:'87%', size:'164,000 sq ft', risk:'Medium', riskColor:'#eab308', status:'Under Review', statusColor:'#eab308', inspection:'2024-07-09' },
+  { lat:40.7488, lng:-73.9680, name:'Chrysler Building',      cat:'Corporate & Office',   location:'New York, USA', value:'$890M', occupancy:'85%', size:'118,000 sq ft', risk:'Medium', riskColor:'#eab308', status:'Operational', statusColor:'#16a34a', inspection:'2024-06-18' },
+  { lat:40.7614, lng:-73.9776, name:'Plaza Hotel',            cat:'Retail & Hospitality', location:'New York, USA', value:'$540M', occupancy:'78%', size:'92,000 sq ft',  risk:'High',   riskColor:'#dc2626', status:'Under Review', statusColor:'#eab308', inspection:'2024-05-30' },
   { lat:40.7077, lng:-74.0083, name:'One World Trade Center', cat:'Corporate & Office',   location:'New York, USA', value:'$3.8B', occupancy:'96%', size:'325,000 sq ft', risk:'Low',    riskColor:'#16a34a', status:'Operational', statusColor:'#16a34a', inspection:'2024-11-02' },
 ];
 
@@ -279,7 +279,7 @@ function PortfolioDetailsCard() {
 /* ── Weather Risk card ──────────────────────────────────────────────────── */
 function WeatherRiskCard() {
   const badgeClass = { red:'badge-active', amber:'badge-monitoring', gray:'badge-past' };
-  const dotColor   = { red:'#ef4444', amber:'#f59e0b', gray:'#9ca3af' };
+  const dotColor   = { red:'#ea580c', amber:'#eab308', gray:'#9ca3af' };
 
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col" style="height:360px;">

@@ -6,7 +6,7 @@
 <title>Aircraft Details — Aviation — Real World</title>
 <!-- v2 -->
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -28,7 +28,7 @@
   .scroll-thin::-webkit-scrollbar-thumb:hover{background:var(--brand-600,#1485c5)}
   .tracking-micro{letter-spacing:0.04em}
   /* Map */
-  #aircraft-map{position:absolute;inset:0;background:#0b1e2e}
+  #aircraft-map{position:absolute;inset:0;background:#111827}
   #aircraft-map .leaflet-top.leaflet-left{top:56px;left:2px}
   #aircraft-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px!important}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgba(15,23,42,.08) !important;border-radius:8px !important;overflow:hidden}
@@ -73,7 +73,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -213,7 +213,7 @@ function CardInfo() {
           <div class="info-label mb-1">Seating Plan:</div>
           <div class="flex items-center gap-3 text-xs">
             <span class="flex items-center gap-1 text-ink-700 font-medium">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b"><path d="M4 20v-2a8 8 0 0 1 16 0v2M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#eab308"><path d="M4 20v-2a8 8 0 0 1 16 0v2M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
               Business Class: 48
             </span>
             <span class="flex items-center gap-1 text-ink-700 font-medium">
@@ -245,7 +245,7 @@ function CardFlights() {
           </div>
           <div class="text-right shrink-0">
             <div class="text-xs font-semibold text-ink-700 tabular-nums">${f.dur}</div>
-            <div class="text-xs font-medium" style="color:#10b981">Completed</div>
+            <div class="text-xs font-medium" style="color:#16a34a">Completed</div>
           </div>
         </div>`).join('')}
     </div>
@@ -290,7 +290,7 @@ function StatusBar() {
   return `
   <div class="shrink-0 bg-white border-b border-ink-200 px-4 py-3 flex items-center gap-4 z-20">
     <span class="flex items-center gap-1 text-[12px] font-semibold text-ink-700">
-      <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+      <span class="w-2 h-2 rounded-full bg-[#eab308]"></span>
       ${AC.status || 'On Ground'}
     </span>
     <span class="w-px h-4 bg-ink-200"></span>
@@ -314,7 +314,7 @@ function SectionMap() {
       <span class="text-sm font-semibold text-ink-900">Current Position &amp; Flight Track</span>
       <span class="w-px h-4 bg-ink-200 mx-1"></span>
       <span class="flex items-center gap-1 text-xs font-semibold text-ink-700">
-        <span class="w-2 h-2 rounded-full bg-amber-400 shrink-0"></span>
+        <span class="w-2 h-2 rounded-full bg-[#eab308] shrink-0"></span>
         ${AC.status || 'On Ground'}
       </span>
       <span class="w-px h-4 bg-ink-200 mx-1"></span>
@@ -347,13 +347,13 @@ function SectionMap() {
         <div class="bg-white/95 border border-ink-200 rounded-lg px-3 py-2 shadow-card text-xs">
           <div class="font-semibold text-ink-900 mb-1">Flight Track</div>
           <div class="flex items-center gap-2 mb-1 text-ink-600">
-            <div style="width:18px;height:2px;background:#10b981;border-radius:4px;flex-shrink:0;"></div>Completed
+            <div style="width:18px;height:2px;background:#16a34a;border-radius:4px;flex-shrink:0;"></div>Completed
           </div>
           <div class="flex items-center gap-2 mb-1 text-ink-600">
             <div style="width:18px;height:0;border-top:2px dashed #9ca3af;flex-shrink:0;"></div>Remaining
           </div>
           <div class="flex items-center gap-2 text-ink-600">
-            <div style="width:8px;height:8px;border-radius:50%;background:#10b981;flex-shrink:0;margin:0 4px;"></div>Waypoints
+            <div style="width:8px;height:8px;border-radius:50%;background:#16a34a;flex-shrink:0;margin:0 4px;"></div>Waypoints
           </div>
         </div>
       </div>
@@ -516,19 +516,19 @@ function initMap() {
   ];
   const splitAt = 3; // completed up to this index
 
-  L.polyline(route.slice(0, splitAt + 1), { color:'#10b981', weight:2.5, opacity:1 }).addTo(acMap);
+  L.polyline(route.slice(0, splitAt + 1), { color:'#16a34a', weight:2.5, opacity:1 }).addTo(acMap);
   L.polyline(route.slice(splitAt),        { color:'#9ca3af', weight:2,   opacity:.9, dashArray:'7 5' }).addTo(acMap);
 
   route.forEach(([lat, lng], i) => {
     if (i === 0 || i === route.length - 1) return;
     L.circleMarker([lat, lng], {
-      radius:4, fillColor: i <= splitAt ? '#10b981' : '#9ca3af',
+      radius:4, fillColor: i <= splitAt ? '#16a34a' : '#9ca3af',
       color:'#fff', weight:1.5, fillOpacity:1,
     }).addTo(acMap);
   });
 
   /* Destination ring */
-  L.circleMarker([25.25, 55.36], { radius:7, fillColor:'#10b981', color:'#fff', weight:2.5, fillOpacity:1 }).addTo(acMap);
+  L.circleMarker([25.25, 55.36], { radius:7, fillColor:'#16a34a', color:'#fff', weight:2.5, fillOpacity:1 }).addTo(acMap);
 
   /* Plane icon */
   const rot = AC.rot || 80;

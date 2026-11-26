@@ -1,5 +1,5 @@
 /* ============================================================================
-   section-charts.jsx — "Charts — composite components" spec section.
+   section-charts.jsx: "Charts: composite components" spec section.
    Live demos render the real charts-lib.jsx components; the .tsx in the code
    blocks mirrors them. Depends on charts-lib.jsx (window.Bar/Line/Donut).
    ============================================================================ */
@@ -98,8 +98,8 @@ const DonutDemo = () => {
           <Donut variant="donut" data={DONUT_DATA} formatValue={nf} legendPlacement="right" legend={false}
             centerSlot={
               <div style={{ display: "grid", gap: 2 }}>
-                <span style={{ fontSize: 26, fontWeight: 700, fontFamily: "var(--font-display)", color: "var(--brand-600)" }}>72%</span>
-                <span className="t-caption" style={{ fontSize: 10.5 }}>monitored</span>
+                <span style={{ fontSize: 24, fontWeight: 700, fontFamily: "var(--font-display)", color: "var(--brand-600)" }}>72%</span>
+                <span className="t-caption" style={{ fontSize: 11 }}>monitored</span>
               </div>
             }
             title="Center-label slot" caption="centerSlot renders arbitrary JSX in the hole." height={240} />
@@ -120,7 +120,7 @@ const StateDemo = () => {
       </div>
       <div className="panel" style={{ padding: 20 }}>
         <Bar variant="single" data={BAR_DATA} series={["Alerts"]} formatValue={nf} state={stateProp}
-          title="Active alerts by domain" caption="Same component — every state is a prop, never a separate render path." height={220} />
+          title="Active alerts by domain" caption="Same component: every state is a prop, never a separate render path." height={220} />
       </div>
     </div>
   );
@@ -133,7 +133,7 @@ const ChartsSpec = () => (
     <div className="subsection" style={{ marginTop: 0 }}>
       <h3 className="subsection-title">Architecture &amp; shared foundation</h3>
       <p className="subsection-desc">
-        Composite charts are thin assemblies over the domain primitives. They own <em>data shape, scales, layout and state</em> — never colors, fonts, or axis styling, which come from tokens.
+        Composite charts are thin assemblies over the domain primitives. They own <em>data shape, scales, layout and state</em>, never colors, fonts, or axis styling, which come from tokens.
         Every chart is wrapped in one <code className="inline">&lt;ChartFrame&gt;</code> that standardizes the title, legend, responsive measurement, the four states, the hidden data table and the accessibility shell.
       </p>
 
@@ -146,12 +146,12 @@ const ChartsSpec = () => (
             <tr><td><code className="inline">GridLines</code> / <code className="inline">Axis</code></td><td className="t-caption">Horizontal gridlines + value/category ticks. 4–6 nice ticks; 11px mono labels; value-axis line only.</td></tr>
             <tr><td><code className="inline">Marks.Bar / .Line / .Area / .Arc</code></td><td className="t-caption">The data geometry. Each mark is focusable (<code className="inline">tabIndex</code>) and carries its own <code className="inline">aria-label</code>.</td></tr>
             <tr><td><code className="inline">Tooltip</code></td><td className="t-caption">Single inverse-surface tooltip, positioned from mark <code className="inline">hover</code>/<code className="inline">focus</code>. One per chart, hosted by the frame.</td></tr>
-            <tr><td><code className="inline">Legend</code></td><td className="t-caption">Bottom (bar/line) or right (donut). Swatch shape follows the mark — square for bars/arcs, line for series.</td></tr>
+            <tr><td><code className="inline">Legend</code></td><td className="t-caption">Bottom (bar/line) or right (donut). Swatch shape follows the mark, square for bars/arcs, line for series.</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h4 className="t-h4" style={{ margin: "8px 0 8px" }}>Shared props — <code className="inline">ChartBaseProps&lt;T&gt;</code></h4>
+      <h4 className="t-h4" style={{ margin: "8px 0 8px" }}>Shared props: <code className="inline">ChartBaseProps&lt;T&gt;</code></h4>
       <pre className="code">{`// app/ui/charts/types.ts
 export type Token = string;                         // e.g. 'var(--chart-cat-1)'
 export type Formatter<V = number> = (v: V) => string;
@@ -195,7 +195,7 @@ export interface ChartBaseProps<T> {
   onPointClick?: (datum: T) => void;
 }`}</pre>
 
-      <p className="subsection-desc" style={{ marginTop: 16, marginBottom: 10 }}>A composite chart, live and responsive — drag the window or collapse the panel to watch it reflow, rotate tight labels, and re-tick:</p>
+      <p className="subsection-desc" style={{ marginTop: 16, marginBottom: 8 }}>A composite chart, live and responsive, drag the window or collapse the panel to watch it reflow, rotate tight labels, and re-tick:</p>
       <div className="panel" style={{ padding: 20 }}>
         {React.createElement(window.Bar, { variant: "grouped", data: BAR_DATA, series: ["High", "Medium", "Low"], formatValue: nf, title: "Alerts by domain & severity", caption: "Grouped bar · responsive · keyboard-navigable", height: 264 })}
       </div>
@@ -224,12 +224,12 @@ export interface ChartBaseProps<T> {
 
       <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>Primitive assembly blueprint</h4>
       <ol className="cx-steps">
-        <li><strong>Measure</strong> — <code className="inline">Canvas</code> reads container width via <code className="inline">useMeasure</code>; derive <code className="inline">innerW/innerH</code> from margins.</li>
-        <li><strong>Scales</strong> — <code className="inline">scaleBand</code> over <code className="inline">data.label</code> for x; <code className="inline">scaleLinear([0, niceMax], [innerH, 0])</code> for y. Stacked uses the per-row <em>sum</em> for the y-domain; grouped subdivides the band by <code className="inline">series.length</code>.</li>
-        <li><strong>Guides</strong> — <code className="inline">GridLines</code> on y-ticks, <code className="inline">Axis</code> left (values) + bottom (categories). No vertical gridlines.</li>
-        <li><strong>Marks</strong> — map rows → <code className="inline">Marks.Bar</code>. Stacked accumulates an offset; grouped offsets by sub-band index. Fill = <code className="inline">colors[i]</code>.</li>
-        <li><strong>Interaction</strong> — each bar wires <code className="inline">onMouseEnter/onFocus → Tooltip</code> and is <code className="inline">tabIndex=0</code> with an <code className="inline">aria-label</code>.</li>
-        <li><strong>Frame</strong> — wrap in <code className="inline">ChartFrame</code> for title, legend (when series&gt;1), state and the hidden table.</li>
+        <li><strong>Measure</strong>, <code className="inline">Canvas</code> reads container width via <code className="inline">useMeasure</code>; derive <code className="inline">innerW/innerH</code> from margins.</li>
+        <li><strong>Scales</strong>, <code className="inline">scaleBand</code> over <code className="inline">data.label</code> for x; <code className="inline">scaleLinear([0, niceMax], [innerH, 0])</code> for y. Stacked uses the per-row <em>sum</em> for the y-domain; grouped subdivides the band by <code className="inline">series.length</code>.</li>
+        <li><strong>Guides</strong>, <code className="inline">GridLines</code> on y-ticks, <code className="inline">Axis</code> left (values) + bottom (categories). No vertical gridlines.</li>
+        <li><strong>Marks</strong>, map rows → <code className="inline">Marks.Bar</code>. Stacked accumulates an offset; grouped offsets by sub-band index. Fill = <code className="inline">colors[i]</code>.</li>
+        <li><strong>Interaction</strong>, each bar wires <code className="inline">onMouseEnter/onFocus → Tooltip</code> and is <code className="inline">tabIndex=0</code> with an <code className="inline">aria-label</code>.</li>
+        <li><strong>Frame</strong>, wrap in <code className="inline">ChartFrame</code> for title, legend (when series&gt;1), state and the hidden table.</li>
       </ol>
 
       <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>Implementation (excerpt)</h4>
@@ -293,11 +293,11 @@ export function BarChart({ data, series, variant = 'single', colors, formatValue
       <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>Primitive assembly blueprint</h4>
       <ol className="cx-steps">
         <li><strong>Measure</strong> &amp; derive inner rect (as bar).</li>
-        <li><strong>Scales</strong> — x = <code className="inline">scalePoint/scaleTime</code> over the domain; y = <code className="inline">scaleLinear</code> over <code className="inline">[0, niceMax]</code> across <em>all</em> series so they share one axis.</li>
-        <li><strong>Guides</strong> — y <code className="inline">GridLines</code> + left axis. X ticks thinned to fit (label width budget).</li>
-        <li><strong>Marks</strong> — one <code className="inline">Marks.Line</code> path per series (<code className="inline">Marks.Area</code> adds a closed fill below). Point markers sit on each vertex for hit-testing + keyboard stops.</li>
-        <li><strong>Interaction</strong> — a shared crosshair + the single Tooltip listing every series value at the hovered x. Points are the focusable marks for keyboard.</li>
-        <li><strong>Frame</strong> — legend bottom when series&gt;1.</li>
+        <li><strong>Scales</strong>, x = <code className="inline">scalePoint/scaleTime</code> over the domain; y = <code className="inline">scaleLinear</code> over <code className="inline">[0, niceMax]</code> across <em>all</em> series so they share one axis.</li>
+        <li><strong>Guides</strong>, y <code className="inline">GridLines</code> + left axis. X ticks thinned to fit (label width budget).</li>
+        <li><strong>Marks</strong>, one <code className="inline">Marks.Line</code> path per series (<code className="inline">Marks.Area</code> adds a closed fill below). Point markers sit on each vertex for hit-testing + keyboard stops.</li>
+        <li><strong>Interaction</strong>, a shared crosshair + the single Tooltip listing every series value at the hovered x. Points are the focusable marks for keyboard.</li>
+        <li><strong>Frame</strong>, legend bottom when series&gt;1.</li>
       </ol>
 
       <pre className="code">{`// app/ui/charts/LineChart.tsx
@@ -350,7 +350,7 @@ export function LineChart({ data, series, variant = 'single', colors, curve = 'l
             <tr><td><code className="inline">variant</code></td><td className="t-caption">'donut'|'pie'</td><td><code className="inline">'donut'</code></td><td className="t-caption">Pie sets innerRadius 0.</td></tr>
             <tr><td><code className="inline">innerRatio</code></td><td className="t-caption">number</td><td><code className="inline">0.62</code></td><td className="t-caption">Donut hole as a fraction of outer radius.</td></tr>
             <tr><td><code className="inline">centerLabel</code></td><td className="t-caption">{`{ value: string; label: string }`}</td><td>—</td><td className="t-caption">Convenience two-line center metric (donut only).</td></tr>
-            <tr><td><code className="inline">centerSlot</code></td><td className="t-caption">ReactNode</td><td>—</td><td className="t-caption">Full control of the hole — overrides centerLabel.</td></tr>
+            <tr><td><code className="inline">centerSlot</code></td><td className="t-caption">ReactNode</td><td>—</td><td className="t-caption">Full control of the hole, overrides centerLabel.</td></tr>
             <tr><td colSpan={4} className="t-caption"><strong>+ all <code className="inline">ChartBaseProps</code></strong>. Legend defaults to <code className="inline">'right'</code>.</td></tr>
           </tbody>
         </table>
@@ -358,12 +358,12 @@ export function LineChart({ data, series, variant = 'single', colors, curve = 'l
 
       <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>Primitive assembly blueprint</h4>
       <ol className="cx-steps">
-        <li><strong>Measure</strong> — take <code className="inline">min(width, height)</code>; the plot is square and centered.</li>
-        <li><strong>Scale</strong> — <code className="inline">scaleArc</code> maps each value to an angular span proportional to the total (start at −90°).</li>
-        <li><strong>Marks</strong> — one <code className="inline">Marks.Arc</code> per segment between <code className="inline">outerR</code> and <code className="inline">innerR</code> (innerR = 0 for pie). 2px surface-colored stroke separates slices.</li>
-        <li><strong>Center</strong> — render <code className="inline">centerSlot</code> (or <code className="inline">centerLabel</code>) into the hole via <code className="inline">&lt;foreignObject&gt;</code>.</li>
-        <li><strong>Interaction</strong> — arcs are focusable; hover/focus emits the segment + share to the Tooltip.</li>
-        <li><strong>Frame</strong> — right-side legend with per-segment share %; wrap in <code className="inline">ChartFrame</code>.</li>
+        <li><strong>Measure</strong>, take <code className="inline">min(width, height)</code>; the plot is square and centered.</li>
+        <li><strong>Scale</strong>, <code className="inline">scaleArc</code> maps each value to an angular span proportional to the total (start at −90°).</li>
+        <li><strong>Marks</strong>, one <code className="inline">Marks.Arc</code> per segment between <code className="inline">outerR</code> and <code className="inline">innerR</code> (innerR = 0 for pie). 2px surface-colored stroke separates slices.</li>
+        <li><strong>Center</strong>, render <code className="inline">centerSlot</code> (or <code className="inline">centerLabel</code>) into the hole via <code className="inline">&lt;foreignObject&gt;</code>.</li>
+        <li><strong>Interaction</strong>, arcs are focusable; hover/focus emits the segment + share to the Tooltip.</li>
+        <li><strong>Frame</strong>, right-side legend with per-segment share %; wrap in <code className="inline">ChartFrame</code>.</li>
       </ol>
 
       <pre className="code">{`// app/ui/charts/DonutChart.tsx
@@ -400,7 +400,7 @@ export function DonutChart({ data, variant = 'donut', innerRatio = 0.62, centerL
     {/* ===== STATES ===== */}
     <div className="subsection">
       <h3 className="subsection-title">State architecture</h3>
-      <p className="subsection-desc">Loading, empty, error and the data state are <strong>props on one component</strong>, resolved by <code className="inline">ChartFrame</code> — modules never branch into a separate "no data" component.</p>
+      <p className="subsection-desc">Loading, empty, error and the data state are <strong>props on one component</strong>, resolved by <code className="inline">ChartFrame</code>, modules never branch into a separate "no data" component.</p>
       <StateDemo />
       <div className="panel" style={{ overflow: "hidden", marginTop: 16 }}>
         <table className="spec-table" style={{ border: 0 }}>
@@ -424,7 +424,7 @@ export function DonutChart({ data, variant = 'donut', innerRatio = 0.62, centerL
           <thead><tr><th>Concern</th><th>Implementation</th></tr></thead>
           <tbody>
             <tr><td><strong>Roles</strong></td><td className="t-caption"><code className="inline">&lt;figure role="group" aria-label&gt;</code> wraps the chart; the SVG is <code className="inline">role="application"</code> for arrow-key nav; each mark is <code className="inline">role="img"</code> with an <code className="inline">aria-label</code>.</td></tr>
-            <tr><td><strong>Hidden data table</strong></td><td className="t-caption">A visually-hidden <code className="inline">&lt;table&gt;</code> (<code className="inline">.sr-only</code>) mirrors the series — the reliable, verbose path for screen readers. Always present unless <code className="inline">a11y.dataTable=false</code>.</td></tr>
+            <tr><td><strong>Hidden data table</strong></td><td className="t-caption">A visually-hidden <code className="inline">&lt;table&gt;</code> (<code className="inline">.sr-only</code>) mirrors the series: the reliable, verbose path for screen readers. Always present unless <code className="inline">a11y.dataTable=false</code>.</td></tr>
             <tr><td><strong>Keyboard nav</strong></td><td className="t-caption"><kbd className="ms-kbd">Tab</kbd> enters the plot; <kbd className="ms-kbd">←</kbd><kbd className="ms-kbd">→</kbd> (and <kbd className="ms-kbd">Home</kbd>/<kbd className="ms-kbd">End</kbd>) rove between marks; focus drives the same Tooltip as hover.</td></tr>
             <tr><td><strong>Color independence</strong></td><td className="t-caption">Palette is color-blind safe (≥3:1 adjacent pairs); series are also separated by legend order + tooltip labels, never color alone.</td></tr>
             <tr><td><strong>Motion</strong></td><td className="t-caption">Enter/transition animations honor <code className="inline">prefers-reduced-motion</code>.</td></tr>
@@ -443,15 +443,15 @@ export function DonutChart({ data, variant = 'donut', innerRatio = 0.62, centerL
 const CHART_CSS = `
 .cx-host { position: relative; }
 .cx-frame { margin: 0; }
-.cx-frame-title { display: block; margin-bottom: 10px; }
+.cx-frame-title { display: block; margin-bottom: 8px; }
 .cx-frame-cap { margin-top: 8px; }
 .cx-plotwrap { display: flex; flex-direction: column; }
 .cx-plotwrap.is-right { flex-direction: row; align-items: center; gap: 20px; }
 .cx-plot { position: relative; width: 100%; }
 .cx-plotwrap.is-right .cx-plot { flex: 1; min-width: 0; }
 .cx-svg { display: block; overflow: visible; }
-.cx-axis-lbl { font-size: 10px; fill: var(--chart-axis-label); font-family: var(--font-mono); }
-.cx-cat-lbl { font-size: 10.5px; fill: var(--chart-axis-label); font-family: var(--font-sans); }
+.cx-axis-lbl { font-size: 11px; fill: var(--chart-axis-label); font-family: var(--font-mono); }
+.cx-cat-lbl { font-size: 11px; fill: var(--chart-axis-label); font-family: var(--font-sans); }
 .cx-bar { transition: opacity 120ms; outline: none; cursor: pointer; }
 .cx-bar:hover, .cx-bar:focus-visible { opacity: .82; }
 .cx-bar:focus-visible { stroke: var(--text-primary); stroke-width: 2; }
@@ -462,17 +462,17 @@ const CHART_CSS = `
 .cx-arc:hover, .cx-arc:focus-visible { opacity: .85; }
 .cx-arc:focus-visible { stroke: var(--text-primary); stroke-width: 2.5; }
 .cx-center { display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; }
-.cx-center-val { font-size: 22px; font-weight: 700; fill: var(--text-primary); font-family: var(--font-display); }
+.cx-center-val { font-size: 24px; font-weight: 700; fill: var(--text-primary); font-family: var(--font-display); }
 .cx-center-lbl { font-size: 11px; fill: var(--text-muted); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .06em; }
 /* legend */
 .cx-legend { list-style: none; margin: 12px 0 0; padding: 0; display: flex; gap: 8px 16px; flex-wrap: wrap; }
 .cx-legend--right { flex-direction: column; margin: 0; gap: 8px; min-width: 130px; flex-shrink: 0; }
-.cx-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-secondary); }
+.cx-legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-secondary); }
 .cx-legend-sw { width: 10px; flex-shrink: 0; display: inline-block; }
 .cx-legend--right .cx-legend-lbl { flex: 1; }
 .cx-legend-val { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 /* tooltip */
-.cx-tip { position: absolute; transform: translate(-50%, -100%); background: var(--bg-inverse); color: var(--text-inverse); border-radius: 6px; padding: 8px 10px; font-size: 12px; box-shadow: var(--card-shadow-hover); pointer-events: none; z-index: 6; white-space: nowrap; min-width: 120px; }
+.cx-tip { position: absolute; transform: translate(-50%, -100%); background: var(--bg-inverse); color: var(--text-inverse); border-radius: 6px; padding: 8px 12px; font-size: 12px; box-shadow: var(--card-shadow-hover); pointer-events: none; z-index: 6; white-space: nowrap; min-width: 120px; }
 .cx-tip-title { font-weight: 600; margin-bottom: 4px; }
 .cx-tip-row { display: flex; align-items: center; gap: 8px; line-height: 1.6; }
 .cx-tip-sw { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
@@ -485,14 +485,14 @@ const CHART_CSS = `
 .cx-empty-dash { font-size: 40px; color: var(--text-disabled); line-height: 1; }
 /* segmented control + demo head + steps */
 .cx-demo-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.cx-seg { display: inline-flex; gap: 2px; padding: 3px; background: var(--slate-100); border: 1px solid var(--border-subtle); border-radius: 8px; }
-.cx-seg-btn { font: inherit; font-size: 12px; font-weight: 600; padding: 5px 12px; border: 0; background: transparent; border-radius: 6px; color: var(--text-secondary); cursor: pointer; transition: background 120ms, color 120ms; }
+.cx-seg { display: inline-flex; gap: 2px; padding: 4px; background: var(--slate-100); border: 1px solid var(--border-subtle); border-radius: 8px; }
+.cx-seg-btn { font: inherit; font-size: 12px; font-weight: 600; padding: 4px 12px; border: 0; background: transparent; border-radius: 6px; color: var(--text-secondary); cursor: pointer; transition: background 120ms, color 120ms; }
 .cx-seg-btn:hover { color: var(--text-primary); }
 .cx-seg-btn.is-active { background: var(--bg-surface); color: var(--brand-600); box-shadow: var(--card-shadow-rest); }
 .cx-seg-btn:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
-.cx-steps { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 13.5px; line-height: 1.55; color: var(--text-secondary); }
+.cx-steps { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
 .cx-steps strong { color: var(--text-primary); }
-.ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 5px; border-radius: 4px; background: var(--slate-100); border: 1px solid var(--border-default); border-bottom-width: 2px; color: var(--text-secondary); }
+.ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 4px; border-radius: 4px; background: var(--slate-100); border: 1px solid var(--border-default); border-bottom-width: 2px; color: var(--text-secondary); }
 @media (max-width: 720px) {
   .cx-plotwrap.is-right { flex-direction: column; align-items: stretch; }
   .cx-legend--right { flex-direction: row; flex-wrap: wrap; }

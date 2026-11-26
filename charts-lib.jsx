@@ -1,5 +1,5 @@
 /* ============================================================================
-   charts-lib.jsx — Skytek composite chart layer (live reference implementation)
+   charts-lib.jsx: Skytek composite chart layer (live reference implementation)
    Built from shared primitives: Canvas, Scale, Axis, GridLines, Legend,
    Tooltip, ChartFrame. Token-driven (--chart-*), responsive (ResizeObserver),
    accessible (figure role + hidden data table + roving keyboard focus).
@@ -25,7 +25,7 @@ function axisTicks(maxVal, count = 5) {
 const linear = (d0, d1, r0, r1) => (v) => r0 + ((v - d0) / ((d1 - d0) || 1)) * (r1 - r0);
 const truncate = (s, n) => (s && s.length > n ? s.slice(0, n - 1) + "…" : s);
 
-/* ── useMeasure — the responsive backbone of <Canvas> ─────────────────── */
+/* ── useMeasure, the responsive backbone of <Canvas> ─────────────────── */
 function useMeasure() {
   const ref = React.useRef(null);
   const [w, setW] = React.useState(0);
@@ -79,7 +79,7 @@ const Legend = ({ items, placement = "bottom" }) => (
   <ul className={`cx-legend cx-legend--${placement}`}>
     {items.map((it) => (
       <li key={it.label} className="cx-legend-item">
-        <span className="cx-legend-sw" style={{ background: it.color, borderRadius: it.shape === "line" ? 2 : 3, height: it.shape === "line" ? 3 : 10 }} />
+        <span className="cx-legend-sw" style={{ background: it.color, borderRadius: it.shape === "line" ? 2 : 4, height: it.shape === "line" ? 3 : 10 }} />
         <span className="cx-legend-lbl">{it.label}</span>
         {it.value != null && <span className="cx-legend-val">{it.value}</span>}
       </li>
@@ -87,7 +87,7 @@ const Legend = ({ items, placement = "bottom" }) => (
   </ul>
 );
 
-/* ── ChartFrame — composite shell: title, state, legend, responsive,
+/* ── ChartFrame: composite shell: title, state, legend, responsive,
       hidden data table, a11y wrapper. children = (dims) => <svg/> ─────── */
 const ChartFrame = ({
   title, caption, height = 260, legend, legendPlacement = "bottom",
@@ -138,7 +138,7 @@ const ChartFrame = ({
       {caption && <div className="cx-frame-cap t-caption">{caption}</div>}
       {dataTable && (
         <table className="sr-only">
-          <caption>{ariaLabel || title} — data table</caption>
+          <caption>{ariaLabel || title}: data table</caption>
           <thead><tr>{dataTable.columns.map((c, i) => <th key={i} scope="col">{c}</th>)}</tr></thead>
           <tbody>{dataTable.rows.map((r, i) => <tr key={i}>{r.map((c, j) => j === 0 ? <th key={j} scope="row">{c}</th> : <td key={j}>{c}</td>)}</tr>)}</tbody>
         </table>
@@ -160,7 +160,7 @@ const AxisLeft = ({ ticks, scaleY, x, fmt }) => (
 );
 
 /* ════════════════════════════════════════════════════════════════════
-   BAR CHART — variants: single | stacked | grouped
+   BAR CHART, variants: single | stacked | grouped
    ════════════════════════════════════════════════════════════════════ */
 const BarChart = ({
   data, series, variant = "single", height = 260,
@@ -263,7 +263,7 @@ const BarChart = ({
 };
 
 /* ════════════════════════════════════════════════════════════════════
-   LINE CHART — variants: single | multi | area
+   LINE CHART, variants: single | multi | area
    ════════════════════════════════════════════════════════════════════ */
 const LineChart = ({
   data, series, variant = "single", height = 260,
@@ -334,7 +334,7 @@ const LineChart = ({
 };
 
 /* ════════════════════════════════════════════════════════════════════
-   DONUT CHART — variants: donut | pie  (+ center-label slot)
+   DONUT CHART, variants: donut | pie  (+ center-label slot)
    ════════════════════════════════════════════════════════════════════ */
 const DonutChart = ({
   data, variant = "donut", height = 260, colors,
@@ -401,7 +401,7 @@ const DonutChart = ({
   );
 };
 
-/* ── WithTip — hosts tooltip state + renders the absolute tooltip div ── */
+/* ── WithTip, hosts tooltip state + renders the absolute tooltip div ── */
 const WithTip = ({ Chart, ...props }) => {
   const [tip, setTip] = React.useState(null);
   return (

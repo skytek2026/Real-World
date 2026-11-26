@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Property — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -45,7 +45,7 @@
   .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:999px; }
   .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#1485c5; }
   .tracking-micro { letter-spacing:0.04em; }
-  .ring-focus:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; border-radius:8px; }
+  .ring-focus:focus-visible { outline:2px solid #1a92d1; outline-offset:2px; border-radius:8px; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
   [data-density="compact"] .gap-density { gap:.75rem; }
@@ -61,7 +61,7 @@
   .ds-tab-pill.is-init { transition:none; }
   .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:4px; }
   /* Leaflet custom */
-  #prop-map { background:#e0ebe9; }
+  #prop-map { background:#e5e7eb; }
   #prop-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #prop-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
@@ -127,7 +127,7 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   /* property markers: hover / selected ring (same as the Marine vessels and Aviation markers), just outside the 34px circle */
   .marker-icon { cursor:pointer; }
   .marker-icon::after {
@@ -312,7 +312,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -365,10 +365,10 @@ const REGIONS = [
 ];
 
 const WEATHER_RISKS = [
-  { area:'California Wildfire Zone', updated:'2025-07-01 14:30 UTC', status:'Active',     risk:'Wildfire Risk',       color:'#ef4444' },
-  { area:'Hurricane Track - Florida', updated:'2025-07-01 13:45 UTC', status:'Active',     risk:'Hurricane Category 2',color:'#ef4444' },
-  { area:'Texas Tornado Alley',       updated:'2025-07-01 12:15 UTC', status:'Active',     risk:'Severe Weather',      color:'#ef4444' },
-  { area:'New Madrid Seismic Zone',   updated:'2025-07-01 11:20 UTC', status:'Monitoring', risk:'Earthquake Risk',     color:'#f59e0b' },
+  { area:'California Wildfire Zone', updated:'2025-07-01 14:30 UTC', status:'Active',     risk:'Wildfire Risk',       color:'#ea580c' },
+  { area:'Hurricane Track - Florida', updated:'2025-07-01 13:45 UTC', status:'Active',     risk:'Hurricane Category 2',color:'#ea580c' },
+  { area:'Texas Tornado Alley',       updated:'2025-07-01 12:15 UTC', status:'Active',     risk:'Severe Weather',      color:'#ea580c' },
+  { area:'New Madrid Seismic Zone',   updated:'2025-07-01 11:20 UTC', status:'Monitoring', risk:'Earthquake Risk',     color:'#eab308' },
   { area:'Pacific Northwest Storm',   updated:'2025-06-30 22:10 UTC', status:'Past',       risk:'Storm Damage',        color:'#6b7280' },
 ];
 
@@ -476,7 +476,7 @@ function RegionCard() {
       ${REGIONS.map(r => `
         <button class="w-full text-left px-3 py-2 hover:bg-ink-50 grid grid-cols-[1fr_auto_auto] gap-6 text-xs items-center">
           <span class="truncate ${r.color?'text-orange-600 font-semibold':'text-ink-800 font-medium'}">${r.name}</span>
-          <span class="tabular-nums text-rose-600 font-semibold">${r.above}</span>
+          <span class="tabular-nums text-[#dc2626] font-semibold">${r.above}</span>
           <span class="tabular-nums text-right font-semibold text-ink-900">${r.ours}</span>
         </button>
       `).join('')}
@@ -490,7 +490,7 @@ function RegionCard() {
 function WeatherCard() {
   const dot = (color) => `<div class="w-2 h-2 rounded-full shrink-0" style="background:${color}"></div>`;
   const badge = (txt, color) => {
-    const bg = color === '#ef4444' ? 'bg-red-100 text-red-700' : color === '#f59e0b' ? 'bg-amber-100 text-amber-700' : 'bg-ink-100 text-ink-600';
+    const bg = color === '#ea580c' ? 'bg-red-100 text-red-700' : color === '#eab308' ? 'bg-amber-100 text-amber-700' : 'bg-ink-100 text-ink-600';
     return `<span class="px-2 py-0.5 rounded-lg text-xs font-semibold ${bg}">${txt}</span>`;
   };
   return `
@@ -555,10 +555,10 @@ let currentMapType = 'satellite';
 let tileLayer = null;
 
 const MAP_TYPES = {
-  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
+  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
   street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f9fafb' },
-  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
+  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
+  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e5e7eb' },
 };
 
 function setMapType(type) {

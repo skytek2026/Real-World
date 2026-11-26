@@ -100,7 +100,7 @@ const ElevationScale = () => {
                   <td><strong>{l.level}</strong></td>
                   <td><code style={{ fontSize: 11 }}>{l.token}</code></td>
                   <td><code style={{ fontSize: 11 }}>{l.tailwind}</code></td>
-                  <td><code className="t-mono" style={{ fontSize: 10, color: "var(--text-muted)" }}>{l.hex === "none" ? "none" : l.hex.substring(0, 30) + "…"}</code></td>
+                  <td><code className="t-mono" style={{ fontSize: 11, color: "var(--text-muted)" }}>{l.hex === "none" ? "none" : l.hex.substring(0, 30) + "…"}</code></td>
                   <td className="t-caption">{l.use}</td>
                 </tr>
               ))}

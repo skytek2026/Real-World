@@ -14,7 +14,7 @@
       extend: {
         fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'], display:['Exo','Inter','sans-serif'] },
         colors: {
-          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
           ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
         },
         boxShadow: {
@@ -55,7 +55,7 @@
   [data-density="compact"] .gap-density { gap: 0.75rem; }
   [data-density="comfortable"] .gap-density { gap: 1rem; }
   .kbd { font-family: ui-monospace, Menlo, monospace; font-size: 12px; padding: 1px 4px; border: 1px solid #e5e7eb; border-bottom-width: 2px; border-radius: 4px; background: #f9fafb; color: #4b5563; }
-  .ring-focus:focus-visible { outline: 2px solid #3b82f6; outline-offset: 2px; border-radius: 8px; }
+  .ring-focus:focus-visible { outline: 2px solid #1a92d1; outline-offset: 2px; border-radius: 8px; }
 
   /* Solid-hover tiles: turn brand-blue with all text/icons in white on hover.
      Written as plain CSS because Tailwind CDN doesn't always JIT-compile group-hover
@@ -76,7 +76,7 @@
   }
   /* ── Dashboard live search ── */
   .dash-search-field { height:46px; transition:border-color .15s, box-shadow .15s; }
-  .dash-search-field:focus-within { border-color:var(--brand-300,#93c5fd); box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#3b82f6) 16%, transparent); }
+  .dash-search-field:focus-within { border-color:var(--brand-300,#93c5fd); box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#1a92d1) 16%, transparent); }
   .dash-search-field input { flex:1; min-width:0; height:100%; border:0; outline:0; background:transparent; font:inherit; font-size:14px; color:#111827; }
   .dash-search-field input::placeholder { color:#9ca3af; }
   .dash-search-field input::-webkit-search-cancel-button { cursor:pointer; }
@@ -120,16 +120,16 @@
   }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
 const spark = SC.sparkline, tone = SC.toneClasses;
 
 const KPIS = [
-  { label:'Total Exposure', value:'$4.2B', hint:'USD', icon:'bolt', tone:'indigo', delta:'+2.4%', dir:'up', spark:[28,30,29,33,31,36,34,40,38,44], sparkColor:'#6366f1' },
+  { label:'Total Exposure', value:'$4.2B', hint:'USD', icon:'bolt', tone:'indigo', delta:'+2.4%', dir:'up', spark:[28,30,29,33,31,36,34,40,38,44], sparkColor:'#2563eb' },
   { label:'Active Policies', value:'156', hint:'renewals in 30d: 12', icon:'doc', tone:'emerald', delta:'+6', dir:'up', spark:[10,12,11,14,13,17,16,20,22,26], sparkColor:'#16a34a' },
-  { label:'Risk Alerts', value:'12', hint:'3 critical · 9 watch', icon:'bolt', tone:'amber', delta:'+3', dir:'up', danger:true, spark:[14,12,15,13,16,14,18,15,13,17], sparkColor:'#ef4444' },
+  { label:'Risk Alerts', value:'12', hint:'3 critical · 9 watch', icon:'bolt', tone:'amber', delta:'+3', dir:'up', danger:true, spark:[14,12,15,13,16,14,18,15,13,17], sparkColor:'#ea580c' },
   { label:'Global Regions', value:'24', hint:'across 4 continents', icon:'pin', tone:'rose', delta:'', dir:'' },
 ];
 const CATEGORIES = [
@@ -316,7 +316,7 @@ function Content() {
             </div>
           </div>
         </div>
-        <div class="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full bg-emerald-500 ring-2 ring-white"></div>
+        <div class="absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full bg-[#16a34a] ring-2 ring-white"></div>
       </div>
       <div class="space-y-1">
         <div class="text-[24px] font-semibold text-ink-900 tracking-tight"><span class="text-ink-700" style="font-family: Exo">${greet}, </span><span class="text-brand-600" style="font-family: Exo">Paul!</span></div>
@@ -329,7 +329,7 @@ function Content() {
       <div class="bg-white rounded-xl border border-ink-200 grid grid-cols-2 md:grid-cols-4 divide-y divide-x divide-ink-100 md:divide-y-0 overflow-hidden">
       ${KPIS.map(k => {
         const t = tone(k.tone);
-        const deltaCls = k.dir==='up' ? (k.danger?'text-rose-600 bg-rose-50':'text-emerald-600 bg-emerald-50') : k.dir==='down' ? 'text-rose-600 bg-rose-50' : 'text-ink-500 bg-ink-100';
+        const deltaCls = k.dir==='up' ? (k.danger?'text-[#dc2626] bg-[#fef2f2]':'text-[#16a34a] bg-[#f0fdf4]') : k.dir==='down' ? 'text-[#dc2626] bg-[#fef2f2]' : 'text-ink-500 bg-ink-100';
         const arrow = k.dir==='up' ? Ico.arrowUp : k.dir==='down' ? Ico.arrowDown : '';
         return `<div class="relative text-left p-4">
           <div class="flex items-start justify-between">
@@ -371,13 +371,13 @@ function Content() {
       </div>` : `<a href="${q.href}" class="quick-tile group relative bg-white rounded-xl border border-ink-200 p-5 shadow-card hover:shadow-card-hover tile-hover ring-focus flex flex-col items-center justify-center gap-2 min-h-[116px] no-underline transition-colors">
         <div class="text-brand-600 group-hover:text-white transition-colors">${Ico[q.icon]}</div>
         <div class="text-sm font-semibold text-brand-600 group-hover:text-white transition-colors">${q.label}</div>
-        ${q.alert ? `<div class="w-full mt-2 pt-2 border-t border-ink-100 group-hover:border-white/30 flex justify-center transition-colors"><span class="inline-flex items-center gap-1 text-xs font-semibold text-rose-600 group-hover:text-white transition-colors"><span class="h-1.5 w-1.5 rounded-full bg-rose-500 dot-pulse"></span>${q.newCount} ${q.alertLabel}</span></div>` : ''}
+        ${q.alert ? `<div class="w-full mt-2 pt-2 border-t border-ink-100 group-hover:border-white/30 flex justify-center transition-colors"><span class="inline-flex items-center gap-1 text-xs font-semibold text-[#dc2626] group-hover:text-white transition-colors"><span class="h-1.5 w-1.5 rounded-full bg-[#dc2626] dot-pulse"></span>${q.newCount} ${q.alertLabel}</span></div>` : ''}
         ${q.metrics ? `<div class="w-full mt-2 pt-2 border-t border-ink-100 group-hover:border-white/30 ${q.inline ? 'flex justify-center gap-5' : 'flex flex-col gap-1'} text-xs transition-colors">${q.metrics.map(([k,v]) => q.inline ? `<div class="flex items-center gap-1"><span class="text-ink-500 group-hover:text-white/80 transition-colors">${k}</span><span class="font-semibold tabular-nums text-ink-800 group-hover:text-white transition-colors">${v}</span></div>` : `<div class="flex items-center justify-between gap-2"><span class="text-ink-500 group-hover:text-white/80 transition-colors">${k}</span><span class="font-semibold tabular-nums text-ink-800 group-hover:text-white transition-colors">${v}</span></div>`).join('')}</div>` : ''}
       </a>`).join('')}
     </section>
 
     <section class="border-t border-ink-200 pt-4 pb-8 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-500">
-      <div class="flex items-center gap-4"><span class="inline-flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>All systems operational</span><span>Last sync just now</span></div>
+      <div class="flex items-center gap-4"><span class="inline-flex items-center gap-1"><span class="h-1.5 w-1.5 rounded-full bg-[#16a34a]"></span>All systems operational</span><span>Last sync just now</span></div>
       <div class="flex items-center gap-4"><span>v2.4.1</span><span>Region · Global</span></div>
     </section>
   </div>`;

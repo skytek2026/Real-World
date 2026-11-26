@@ -581,7 +581,7 @@ function genOverlay() {
     </div>
     <div class="rb-modal-f">${btn('Run in background', 'Minimize2', 'genbg')}${btn('Cancel job', '', 'gencancel')}</div>` : `
     <div class="rb-modal-b">
-      <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px">
+      <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#f0fdf4;border:1px solid #dcfce7;border-radius:8px">
         ${ic('CircleCheck', 18, '#16a34a')}
         <div><div style="font-size:14px;font-weight:700;color:#15803d">Report generated</div>
         <div style="font-size:12px;color:#166534">${d.sections.length} sections · ${fmtN(t.assets)} assets · ${fmtM(t.exp)} exposure · finished ${new Date().toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' })}</div></div>
@@ -712,7 +712,7 @@ const CSS = `
 .rb-step{display:flex;align-items:center;gap:8px;font-size:12px;color:#9ca3af}
 .rb-step.done{color:#4b5563}
 .rb-step.now{color:#111827;font-weight:600}
-.rb-job{display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 12px;border-radius:999px;background:#fef3c7;border:1px solid #fde68a;color:#b45309;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+.rb-job{display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 12px;border-radius:999px;background:#fef3c7;border:1px solid #fef3c7;color:#b45309;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
 .rb-overlay{position:fixed;inset:0;background:rgba(15,23,42,.42);display:flex;align-items:center;justify-content:center;padding:20px;z-index:900}
 .rb-modal{width:100%;max-width:520px;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(15,23,42,.25);overflow:hidden}
 .rb-modal-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 16px;border-bottom:1px solid #f3f4f6}

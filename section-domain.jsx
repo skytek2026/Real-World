@@ -1,4 +1,4 @@
-/* Section — Domain primitives: Data viz, Maps, Formatting */
+/* Section: Domain primitives: Data viz, Maps, Formatting */
 
 /* ============================================================
    Data visualization
@@ -6,7 +6,7 @@
 
 const CategoricalPalette = () => {
   const cats = [
-    ["--chart-cat-1", "#2d7ffb", "Series 1"],
+    ["--chart-cat-1", "#1485c5", "Series 1"],
     ["--chart-cat-2", "#D97706", "Series 2"],
     ["--chart-cat-3", "#16A34A", "Series 3"],
     ["--chart-cat-4", "#9333EA", "Series 4"],
@@ -26,7 +26,7 @@ const CategoricalPalette = () => {
         ))}
       </div>
       <p className="t-caption" style={{ marginTop: 0 }}>
-        Use in declared order — series 1 is always the primary or first series in legend order.
+        Use in declared order: series 1 is always the primary or first series in legend order.
         Tested for protanopia, deuteranopia and tritanopia with adjacent-pair contrast ≥ 3:1.
       </p>
     </div>
@@ -35,7 +35,7 @@ const CategoricalPalette = () => {
 
 const SequentialRamp = ({ title, vars, labels, desc }) => (
   <div>
-    <div className="t-label" style={{ marginBottom: 6 }}>{title}</div>
+    <div className="t-label" style={{ marginBottom: 4 }}>{title}</div>
     <div className="chart-ramp">
       {vars.map(v => <div key={v} style={{ background: `var(${v})` }} />)}
     </div>
@@ -136,7 +136,7 @@ const DemoSparklines = () => {
             <div style={{ flex: 1 }}>
               <div className="t-caption" style={{ marginBottom: 2 }}>{r.label}</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-                <span className="t-numeric" style={{ fontSize: 18, fontWeight: 700 }}>{r.value}</span>
+                <span className="t-numeric" style={{ fontSize: 20, fontWeight: 700 }}>{r.value}</span>
                 <span style={{ fontSize: 11, fontWeight: 600,
                                color: r.up === true ? "var(--danger-700)" : r.up === false ? "var(--success-700)" : "var(--text-muted)" }}>
                   {r.delta}
@@ -174,7 +174,7 @@ const DataVizSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Categorical palette</h3>
       <p className="subsection-desc">
-        Eight ordered hues for qualitative series — pie slices, multi-line charts, stacked bars.
+        Eight ordered hues for qualitative series, pie slices, multi-line charts, stacked bars.
         Engineers select by index, never by hex. The palette is fixed so charts read the same across modules.
       </p>
       <CategoricalPalette />
@@ -197,7 +197,7 @@ const DataVizSection = () => (
           title="Divergent · danger ↔ neutral ↔ success"
           vars={["--chart-div-neg-3","--chart-div-neg-2","--chart-div-neg-1","--chart-div-zero","--chart-div-pos-1","--chart-div-pos-2","--chart-div-pos-3"]}
           labels={["−high", "", "", "0", "", "", "+high"]}
-          desc="Always center on neutral. Asymmetric ranges should not stretch the ramp — clip and label instead."
+          desc="Always center on neutral. Asymmetric ranges should not stretch the ramp, clip and label instead."
         />
       </div>
     </div>
@@ -232,7 +232,7 @@ const DataVizSection = () => (
               { r: "d", n: 44, label: "D" },
               { r: "e", n: 18, label: "E" },
             ].map(x => (
-              <div key={x.label} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+              <div key={x.label} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
                 <div style={{
                   width: "100%",
                   height: `${x.n}%`,
@@ -302,7 +302,7 @@ Highcharts.setOptions(skytekChartTheme);`}</pre>
    Maps & geospatial
    ============================================================ */
 
-/* Canonical vessel type palette — matches MarineDashboard VESSEL_TYPES */
+/* Canonical vessel type palette, matches MarineDashboard VESSEL_TYPES */
 const VESSEL_TYPE_PALETTE = [
   { k: "Container",          color: "#2563eb" },
   { k: "Bulk Carrier",       color: "#3b82f6" },
@@ -319,7 +319,7 @@ const VESSEL_TYPE_PALETTE = [
 const TileProviders = () => {
   const rows = [
     ["Satellite",   "default", "Esri World Imagery",       "server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", "#0b1e2e"],
-    ["Street View", "",        "OpenStreetMap",            "{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",                                              "#e2e8f0"],
+    ["Street View", "",        "OpenStreetMap",            "{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",                                              "#e5e7eb"],
     ["Dark Mode",   "",        "CartoDB Dark Matter",      "{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",                                   "#0b0f1a"],
     ["Light Mode",  "",        "CartoDB Positron",         "{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",                                  "#f1f5f9"],
   ];
@@ -336,7 +336,7 @@ const TileProviders = () => {
             <td style={{ fontSize: 12.5, color: "var(--text-secondary)" }}>{prov}</td>
             <td><code style={{ fontSize: 11 }}>{url}</code></td>
             <td>
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
                 <span className="swatch-mini" style={{ background: bg, width: 18, height: 18 }} />
                 <span className="t-mono" style={{ fontSize: 11, color: "var(--text-muted)" }}>{bg}</span>
               </span>
@@ -528,7 +528,7 @@ const MapToolbarPreview = () => (
   </div>
 );
 
-/* Filter menu — vessel/asset type toggle popover (mirrors map-filters-menu) */
+/* Filter menu: vessel/asset type toggle popover (mirrors map-filters-menu) */
 const FilterMenuPreview = () => {
   const [on, setOn] = React.useState(() => new Set(VESSEL_TYPE_PALETTE.map(t => t.k)));
   const toggle = (k) => setOn(prev => {
@@ -564,7 +564,7 @@ const FilterMenuPreview = () => {
   );
 };
 
-/* Selection & hover states — the white ring around a marker */
+/* Selection & hover states, the white ring around a marker */
 const SelectionStates = () => (
   <div className="grid-3" style={{ alignItems: "stretch" }}>
     {[
@@ -597,20 +597,20 @@ const AircraftGlyph = ({ heading = 0, size = 26, color = "#eab308" }) => (
 );
 
 const AirportPin = ({ size = 30 }) => (
-  <span style={{ width: size, height: size, borderRadius: 8, background: "var(--brand-600)", border: "2px solid #fff", boxShadow: "0 2px 6px rgba(0,0,0,.28)", display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+  <span style={{ width: size, height: size, borderRadius: 8, background: "var(--brand-600)", border: "2px solid #fff", boxShadow: "var(--glyph-shadow)", display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
     <svg viewBox="0 0 24 24" width={size * 0.5} height={size * 0.5} fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" /></svg>
   </span>
 );
 
 const OffshoreDot = ({ color, label }) => (
-  <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
-    <span style={{ width: 12, height: 12, borderRadius: "50%", background: color, border: "2px solid #fff", boxShadow: "0 2px 4px rgba(0,0,0,.3)" }} />
-    {label && <span style={{ background: "#1e293b", color: "#fff", padding: "2px 6px", borderRadius: 4, fontSize: 10, fontWeight: 600, whiteSpace: "nowrap" }}>{label}</span>}
+  <span style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+    <span style={{ width: 12, height: 12, borderRadius: "50%", background: color, border: "2px solid #fff", boxShadow: "var(--glyph-shadow-sm)" }} />
+    {label && <span style={{ background: "#1e293b", color: "#fff", padding: "2px 8px", borderRadius: 4, fontSize: 11, fontWeight: 600, whiteSpace: "nowrap" }}>{label}</span>}
   </span>
 );
 
 const PropertyPin = ({ color, ico, alert, size = 34 }) => (
-  <span style={{ position: "relative", width: size, height: size, borderRadius: 8, background: color, border: "2px solid #fff", boxShadow: "0 2px 6px rgba(0,0,0,.28)", display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
+  <span style={{ position: "relative", width: size, height: size, borderRadius: 8, background: color, border: "2px solid #fff", boxShadow: "var(--glyph-shadow)", display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#fff" }}>
     <span style={{ display: "inline-flex" }} dangerouslySetInnerHTML={{ __html: ico }} />
     {alert && <span style={{ position: "absolute", top: -4, right: -4, width: 11, height: 11, borderRadius: "50%", background: "#dc2626", border: "2px solid #fff", boxShadow: "0 0 0 0 rgba(220,38,38,.55)", animation: "anchor-pulse 1.6s infinite" }} />}
   </span>
@@ -644,9 +644,9 @@ const MapsSection = () => (
       <h3 className="subsection-title">Library: Leaflet</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
         Skytek uses <code className="inline">leaflet@1.9.4</code> as its canonical map library across Marine, Aviation, Offshore, NatCat and Ports.
-        No second mapping library ships with the product. Choose Leaflet primitives (<code className="inline">L.tileLayer</code>, <code className="inline">L.marker</code>, <code className="inline">L.divIcon</code>, <code className="inline">L.popup</code>) — never roll a new map runtime.
+        No second mapping library ships with the product. Choose Leaflet primitives (<code className="inline">L.tileLayer</code>, <code className="inline">L.marker</code>, <code className="inline">L.divIcon</code>, <code className="inline">L.popup</code>): never roll a new map runtime.
       </p>
-      <pre className="code">{`<!-- Load order — pin to 1.9.4 across all surfaces -->
+      <pre className="code">{`<!-- Load order: pin to 1.9.4 across all surfaces -->
 <link rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -657,22 +657,22 @@ const MapsSection = () => (
     </div>
 
     <div className="subsection">
-      <h3 className="subsection-title">Basemaps — four tile providers</h3>
+      <h3 className="subsection-title">Basemaps: four tile providers</h3>
       <p className="subsection-desc">
         Every Skytek map ships with the same four basemap options behind the <strong>Layers</strong> button. Satellite is the default in operator-facing surfaces;
-        Light is the default in printable reports. Engineers don't pick custom providers — these four are the contract.
+        Light is the default in printable reports. Engineers don't pick custom providers; these four are the contract.
       </p>
       <TileProviders />
       <div className="callout warn" style={{ marginTop: 12 }}>
         <strong>Attribution is non-negotiable.</strong> Every tile layer must keep its <code className="inline">attribution</code> string. Removing the OSM / Carto / Esri credit violates their license.
       </div>
-      <p className="t-caption" style={{ marginTop: 12, marginBottom: 6 }}>The <code className="inline">setMapType</code> helper switches layers and syncs the gap-fill background color so transitions don't flash white:</p>
+      <p className="t-caption" style={{ marginTop: 12, marginBottom: 4 }}>The <code className="inline">setMapType</code> helper switches layers and syncs the gap-fill background color so transitions don't flash white:</p>
       <pre className="code">{`// app/ui/Map/tiles.ts
 export const TILES = {
   satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
                attr: 'Tiles © Esri', bg: '#0b1e2e' },
   street:    { url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-               attr: '© OpenStreetMap contributors', bg: '#e2e8f0' },
+               attr: '© OpenStreetMap contributors', bg: '#e5e7eb' },
   dark:      { url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
                attr: '© OpenStreetMap contributors © CARTO', bg: '#0b0f1a' },
   light:     { url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
@@ -692,17 +692,17 @@ export const TILES = {
     </div>
 
     <div className="subsection">
-      <h3 className="subsection-title">Vessel marker — teardrop divIcon</h3>
+      <h3 className="subsection-title">Vessel marker: teardrop divIcon</h3>
       <p className="subsection-desc">
         One canonical marker shape: a 16 × 16 teardrop SVG inside a Leaflet <code className="inline">L.divIcon</code>.
-        <strong> Rotation</strong> encodes heading (degrees true). <strong>Fill color</strong> encodes vessel type — sourced from the locked type palette below.
+        <strong> Rotation</strong> encodes heading (degrees true). <strong>Fill color</strong> encodes vessel type: sourced from the locked type palette below.
       </p>
       <div className="grid-2" style={{ alignItems: "flex-start" }}>
         <div className="panel">
           <div className="panel-head"><h4>Heading rotation</h4></div>
           <div className="panel-body" style={{ display: "flex", gap: 24, alignItems: "center", justifyContent: "space-around" }}>
             {[0, 45, 90, 180, 270].map(h => (
-              <div key={h} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+              <div key={h} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
                 <VesselTeardropGlyph color="#2563eb" heading={h} size={28} />
                 <span className="t-mono" style={{ fontSize: 11, color: "var(--text-muted)" }}>{String(h).padStart(3, "0")}°</span>
               </div>
@@ -719,7 +719,7 @@ export const TILES = {
         </div>
       </div>
 
-      <p className="t-caption" style={{ marginTop: 12, marginBottom: 6 }}>Canonical factory — every vessel marker in the product is built this way:</p>
+      <p className="t-caption" style={{ marginTop: 12, marginBottom: 4 }}>Canonical factory: every vessel marker in the product is built this way:</p>
       <pre className="code">{`// app/ui/Map/vesselIcon.ts
 import L from 'leaflet';
 
@@ -749,7 +749,7 @@ export function vesselLabelIcon(name: string) {
     <div className="subsection">
       <h3 className="subsection-title">Markers across domains</h3>
       <p className="subsection-desc">
-        The vessel teardrop is one instance of a single cross-domain system. Every asset class — vessel, aircraft, airport, offshore installation, property — gets <strong>one canonical marker</strong>, and all of them encode information on the same four channels.
+        The vessel teardrop is one instance of a single cross-domain system. Every asset class: vessel, aircraft, airport, offshore installation, property, gets <strong>one canonical marker</strong>, and all of them encode information on the same four channels.
         This is what lets an operator read any Skytek map the same way, whether they're in Marine, Aviation, Offshore or Property.
       </p>
 
@@ -760,8 +760,8 @@ export function vesselLabelIcon(name: string) {
         <tbody>
           <tr><td><strong>Shape</strong></td><td>Asset class</td><td className="t-caption">teardrop = vessel · aircraft glyph = flight · square pin = property · brand pin = airport · dot = offshore installation</td></tr>
           <tr><td><strong>Fill color</strong></td><td>Type / category <em>within</em> the class</td><td className="t-caption">vessel type · asset type · property category (airport &amp; aircraft fills are fixed)</td></tr>
-          <tr><td><strong>Rotation</strong></td><td>Heading (degrees true)</td><td className="t-caption">moving assets only — vessels &amp; aircraft. Static installations never rotate.</td></tr>
-          <tr><td><strong>Overlay</strong> <span className="t-caption">(pulse / badge)</span></td><td>Status &amp; alerts</td><td className="t-caption">sanctioned vessel, property risk pulse — never a recolor of the glyph</td></tr>
+          <tr><td><strong>Rotation</strong></td><td>Heading (degrees true)</td><td className="t-caption">moving assets only: vessels &amp; aircraft. Static installations never rotate.</td></tr>
+          <tr><td><strong>Overlay</strong> <span className="t-caption">(pulse / badge)</span></td><td>Status &amp; alerts</td><td className="t-caption">sanctioned vessel, property risk pulse, never a recolor of the glyph</td></tr>
         </tbody>
       </table>
 
@@ -779,7 +779,7 @@ export function vesselLabelIcon(name: string) {
               <div style={{ height: 40, display: "flex", alignItems: "center" }}>{g.comp}</div>
               <div style={{ fontSize: 12.5, fontWeight: 600 }}>{g.name}</div>
               <div className="t-caption" style={{ fontSize: 11 }}>{g.sub}</div>
-              <span className="ds-badge ds-badge--neutral" style={{ fontSize: 10 }}>{g.domain}</span>
+              <span className="ds-badge ds-badge--neutral" style={{ fontSize: 11 }}>{g.domain}</span>
             </div>
           ))}
         </div>
@@ -790,15 +790,15 @@ export function vesselLabelIcon(name: string) {
         <div className="panel">
           <div className="panel-head"><h4>Aviation</h4></div>
           <div className="panel-body" style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <div style={{ display: "flex", gap: 18, alignItems: "center", justifyContent: "space-around" }}>
+            <div style={{ display: "flex", gap: 16, alignItems: "center", justifyContent: "space-around" }}>
               {[0, 90, 180, 270].map((h) => (
-                <div key={h} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+                <div key={h} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
                   <AircraftGlyph heading={h} size={26} />
                   <span className="t-mono" style={{ fontSize: 11, color: "var(--text-muted)" }}>{String(h).padStart(3, "0")}°</span>
                 </div>
               ))}
             </div>
-            <p className="t-caption" style={{ margin: 0 }}>Aircraft are a single class — fill is fixed amber (<code className="inline">#eab308</code>), <strong>rotation encodes heading</strong>. Airports are static infrastructure: a brand-blue pin with a white glyph, no rotation.</p>
+            <p className="t-caption" style={{ margin: 0 }}>Aircraft are a single class, fill is fixed amber (<code className="inline">#eab308</code>), <strong>rotation encodes heading</strong>. Airports are static infrastructure: a brand-blue pin with a white glyph, no rotation.</p>
           </div>
           <div className="panel-foot">Status (cruising / climbing / descending) lives in the popup, not the glyph color.</div>
         </div>
@@ -809,7 +809,7 @@ export function vesselLabelIcon(name: string) {
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
               {OFFSHORE_ASSETS.map((a) => (
                 <span key={a.k} className="vessel-type-swatch">
-                  <span style={{ width: 10, height: 10, borderRadius: "50%", background: a.color, border: "1.5px solid #fff", boxShadow: "0 1px 2px rgba(0,0,0,.25)", flexShrink: 0 }} />
+                  <span style={{ width: 10, height: 10, borderRadius: "50%", background: a.color, border: "1.5px solid #fff", boxShadow: "var(--glyph-shadow-xs)", flexShrink: 0 }} />
                   {a.k}
                 </span>
               ))}
@@ -823,53 +823,52 @@ export function vesselLabelIcon(name: string) {
         <div className="panel-head"><h4>Property</h4><span className="meta">fill = category · pulse = active risk</span></div>
         <div className="panel-body" style={{ display: "flex", flexWrap: "wrap", gap: 20, alignItems: "center" }}>
           {PROPERTY_CATS.map((c) => (
-            <div key={c.k} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div key={c.k} style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <PropertyPin color={c.color} ico={c.ico} size={32} />
               <span style={{ fontSize: 12.5, color: "var(--text-secondary)" }}>{c.k}</span>
             </div>
           ))}
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginLeft: "auto" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginLeft: "auto" }}>
             <PropertyPin color="#2563eb" ico={PROPERTY_CATS[0].ico} alert size={32} />
             <span style={{ fontSize: 12.5, color: "var(--danger-700)", fontWeight: 600 }}>+ active risk pulse</span>
           </div>
         </div>
-        <div className="panel-foot">Rounded-square pin with a white category glyph. The pulsing red corner dot is the <em>status overlay</em> — same rule as a sanctioned vessel.</div>
+        <div className="panel-foot">Rounded-square pin with a white category glyph. The pulsing red corner dot is the <em>status overlay</em>, same rule as a sanctioned vessel.</div>
       </div>
 
-      <p className="t-caption" style={{ marginTop: 12, marginBottom: 6 }}>Each domain ships one <code className="inline">divIcon</code> factory — same structure as <code className="inline">vesselIcon</code>, differing only in shape and what each channel encodes:</p>
-      <pre className="code">{`// app/ui/Map/markers/aircraft.ts — fill fixed, rotation = heading
+      <p className="t-caption" style={{ marginTop: 12, marginBottom: 4 }}>Each domain ships one <code className="inline">divIcon</code> factory: same structure as <code className="inline">vesselIcon</code>, differing only in shape and what each channel encodes:</p>
+      <pre className="code">{`// app/ui/Map/markers/aircraft.ts: fill fixed, rotation = heading
 export const aircraftIcon = (heading: number) => L.divIcon({
   className: '', iconSize: [24, 24], iconAnchor: [12, 12],
   html: \`<div style="transform:rotate(\${heading}deg);color:var(--aviation-aircraft,#eab308)">\${PLANE_SVG}</div>\`,
 });
 
-// app/ui/Map/markers/airport.ts — static infrastructure pin
+// app/ui/Map/markers/airport.ts: static infrastructure pin
 export const airportIcon = () => L.divIcon({
   className: '', iconSize: [32, 32], iconAnchor: [16, 16],
   html: \`<div class="rw-pin rw-pin--brand">\${PLANE_WHITE_SVG}</div>\`,
 });
 
-// app/ui/Map/markers/offshore.ts — fill = asset type, optional label
+// app/ui/Map/markers/offshore.ts: fill = asset type, optional label
 export const offshoreIcon = (color: string, label?: string) => L.divIcon({
   className: '', iconSize: [120, 40], iconAnchor: [60, 20],
   html: \`<div class="rw-offshore"><span class="rw-offshore-dot" style="background:\${color}"></span>\${label ? \`<span class="rw-offshore-label">\${label}</span>\` : ''}</div>\`,
 });
 
-// app/ui/Map/markers/property.ts — fill = category, alert = status overlay
+// app/ui/Map/markers/property.ts: fill = category, alert = status overlay
 export const propertyIcon = (color: string, glyph: string, alert = false) => L.divIcon({
   className: '', iconSize: [34, 34], iconAnchor: [17, 17],
   html: \`<div class="rw-pin" style="background:\${color}">\${glyph}\${alert ? '<span class="rw-pin-pulse"></span>' : ''}</div>\`,
 });`}</pre>
       <div className="callout" style={{ marginTop: 12 }}>
-        <strong>Open question for the team:</strong> aircraft currently use a single fixed fill. If aviation needs type/operator differentiation on the glyph (as Marine does for vessel type), that's an RFC to add an aircraft-class palette — keeping fill = type consistent across every domain.
+        <strong>Open question for the team:</strong> aircraft currently use a single fixed fill. If aviation needs type/operator differentiation on the glyph (as Marine does for vessel type), that's an RFC to add an aircraft-class palette, keeping fill = type consistent across every domain.
       </div>
     </div>
 
     <div className="subsection">
       <h3 className="subsection-title">Status overlays</h3>
       <p className="subsection-desc">
-        Vessel <em>type</em> owns the fill. Status (sanctioned, AIS silence, route deviation) is layered on as an overlay — a pulsing ring, an alert badge, or a tag in the popup —
-        never as a color change to the glyph itself. This is the rule that lets operators read "what is this asset" and "what's wrong with it" as two separate questions.
+        Vessel <em>type</em> owns the fill. Status (sanctioned, AIS silence, route deviation) is layered on as an overlay, a pulsing ring, an alert badge, or a tag in the popup, never as a color change to the glyph itself. This is the rule that lets operators read "what is this asset" and "what's wrong with it" as two separate questions.
       </p>
       <div className="dodont">
         <div className="do">
@@ -903,14 +902,14 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     </div>
 
     <div className="subsection">
-      <h3 className="subsection-title">Popup template — <code>.vp</code></h3>
+      <h3 className="subsection-title">Popup template: <code>.vp</code></h3>
       <p className="subsection-desc">
         One template, four parts: <strong>header</strong> (brand fill, vessel name, type subtitle) · <strong>route</strong> (origin → destination ports with ADT/ETA) ·
         <strong>grid</strong> (vessel data in 2-column key/value pairs) · <strong>CTA</strong> (link to the full vessel detail page).
         300 px wide, brand-blue header, 12.5 px body, tabular numerals for numbers.
       </p>
       <PopupTemplatePreview />
-      <p className="t-caption" style={{ marginTop: 12, marginBottom: 6 }}>Render with <code className="inline">bindPopup</code> + the <code className="inline">ds-vessel-popup</code> wrapper class:</p>
+      <p className="t-caption" style={{ marginTop: 12, marginBottom: 4 }}>Render with <code className="inline">bindPopup</code> + the <code className="inline">ds-vessel-popup</code> wrapper class:</p>
       <pre className="code">{`marker.bindPopup(vesselPopupHTML(v), {
   className: 'ds-vessel-popup',
   maxWidth: 320, minWidth: 300,
@@ -935,11 +934,11 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
       <h3 className="subsection-title">Filter menu</h3>
       <p className="subsection-desc">
         The <strong>filter</strong> control opens a type toggle: a header with <strong>All / None</strong> shortcuts, a section label, and one row per
-        type — a checkbox, the type's marker glyph in its locked color, and the label. Toggling a type hides or shows its markers (and their labels) in place;
-        the selection persists in page state, so it survives basemap switches and re-renders. Marine filters by <code className="inline">VESSEL_TYPES</code>; Offshore filters by <code className="inline">ASSET_TYPES</code> — same component, different list.
+        type, a checkbox, the type's marker glyph in its locked color, and the label. Toggling a type hides or shows its markers (and their labels) in place;
+        the selection persists in page state, so it survives basemap switches and re-renders. Marine filters by <code className="inline">VESSEL_TYPES</code>; Offshore filters by <code className="inline">ASSET_TYPES</code>, same component, different list.
       </p>
       <FilterMenuPreview />
-      <p className="t-caption" style={{ marginTop: 8 }}>The glyph in each row is the same marker drawn on the map, so the legend and the filter are one and the same — no separate key to learn.</p>
+      <p className="t-caption" style={{ marginTop: 8 }}>The glyph in each row is the same marker drawn on the map, so the legend and the filter are one and the same, no separate key to learn.</p>
     </div>
 
     <div className="subsection">
@@ -947,13 +946,13 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
       <p className="subsection-desc">
         Markers are interactive. On <strong>hover</strong>, a 24 px white ring with a soft shadow appears around the glyph and the marker lifts above its
         neighbours (<code className="inline">z-index</code> raised). Opening a marker's popup adds <code className="inline">.is-selected</code>, which keeps the
-        ring on while the popup is open. The ring is the one selection affordance across every domain — it never recolors or resizes the glyph itself.
+        ring on while the popup is open. The ring is the one selection affordance across every domain; it never recolors or resizes the glyph itself.
       </p>
       <SelectionStates />
-      <div className="grid-2" style={{ marginTop: 14, alignItems: "flex-start" }}>
+      <div className="grid-2" style={{ marginTop: 12, alignItems: "flex-start" }}>
         <div className="callout">
           <strong>Hover tooltip vs. label.</strong> Hovering a marker shows a dark tooltip (flag + name + type). When the <strong>Labels</strong> toggle is on,
-          names render permanently beside every marker and the hover tooltip is suppressed — the name is already on the map, so a tooltip would just repeat it.
+          names render permanently beside every marker and the hover tooltip is suppressed, because the name is already on the map and a tooltip would just repeat it.
         </div>
         <div className="callout">
           <strong>One close model.</strong> Popups close on the × button, on outside-click, or on opening another marker. Only one popup is open at a time; selecting a new marker deselects the previous.
@@ -969,20 +968,20 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
       </p>
       <div className="panel">
         <div className="panel-body" style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
             <span className="map-cluster map-cluster--sm">7</span>
             <span className="t-caption">small · &lt; 10</span>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
             <span className="map-cluster map-cluster--md">42</span>
             <span className="t-caption">medium · 10–99</span>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
             <span className="map-cluster map-cluster--lg">218</span>
             <span className="t-caption">large · 100+</span>
           </div>
           <div style={{ flex: 1, color: "var(--text-secondary)", fontSize: 13 }}>
-            Use <code>leaflet.markercluster</code> when a layer exceeds 200 markers. Below that, render individually — clustering at low density hides real positions.
+            Use <code>leaflet.markercluster</code> when a layer exceeds 200 markers. Below that, render individually: clustering at low density hides real positions.
           </div>
         </div>
       </div>
@@ -996,7 +995,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
           <tr><td>Max markers per layer</td><td>≤ 5,000 without clustering</td><td>Above this, Leaflet's DOM marker layer hits frame-rate cliffs.</td></tr>
           <tr><td>Tile prefetch</td><td>Disabled</td><td>Esri / Carto rate-limit anonymous tiles. Don't pre-warm tiles the user can't see.</td></tr>
           <tr><td>Marker rotation</td><td>CSS transform on inner div, not SVG <code>transform</code></td><td>Composited rotation is GPU-accelerated; SVG attribute rotation re-rasterizes.</td></tr>
-          <tr><td>Popup content</td><td>HTML string, not React</td><td>Leaflet popups are mounted outside React's tree — keep them framework-free.</td></tr>
+          <tr><td>Popup content</td><td>HTML string, not React</td><td>Leaflet popups are mounted outside React's tree, keep them framework-free.</td></tr>
           <tr><td>Fullscreen</td><td>CSS class swap, not native Fullscreen API</td><td>Avoids permission prompt; map can render alongside other UI in inspect tools.</td></tr>
         </tbody>
       </table>
@@ -1004,7 +1003,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
 
     <div className="callout" style={{ marginTop: 24 }}>
       <strong>Single source of truth:</strong> the tile providers, the teardrop divIcon, the type palette, and the <code className="inline">.vp</code> popup template all live in <code className="inline">app/ui/Map/*</code>.
-      Marine, Aviation, Offshore and NatCat surfaces import from there — never copy-paste the marker factory or popup HTML into a module.
+      Marine, Aviation, Offshore and NatCat surfaces import from there, never copy-paste the marker factory or popup HTML into a module.
     </div>
   </>
 );
@@ -1027,7 +1026,7 @@ const FormatTimeTable = () => (
       <div className="format-example">
         <span className="label">Time-of-day</span>
         <span className="out">14:32 UTC</span>
-        <span className="desc">Always include the zone. 24h clock everywhere — no AM/PM.</span>
+        <span className="desc">Always include the zone. 24h clock everywhere: no AM/PM.</span>
       </div>
       <div className="format-example">
         <span className="label">Date · short</span>
@@ -1070,7 +1069,7 @@ const FormatNumberTable = () => (
       <div className="format-example">
         <span className="label">Integer</span>
         <span className="out">1,247,832</span>
-        <span className="desc">Group with comma. No grouping below 10,000? — always group.</span>
+        <span className="desc">Group with comma. No grouping below 10,000? always group.</span>
       </div>
       <div className="format-example">
         <span className="label">Decimal</span>
@@ -1131,7 +1130,7 @@ const DomainUnits = () => (
 );
 
 const FormatHelperAPI = () => (
-  <pre className="code">{`// app/lib/format.ts — the only correct place these live.
+  <pre className="code">{`// app/lib/format.ts: the only correct place these live.
 // Modules must NOT call Intl directly; everything routes through here so locale,
 // timezone, and product conventions stay consistent.
 
@@ -1186,13 +1185,13 @@ const FormattingSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Time &amp; date</h3>
       <p className="subsection-desc">
-        Skytek is a global product — operators in Dublin, Houston and Singapore look at the same alert. UTC is the canonical wire format;
+        Skytek is a global product, operators in Dublin, Houston and Singapore look at the same alert. UTC is the canonical wire format;
         the local-time toggle is a presentation concern. The rules below close the gap between API payloads and what an operator reads.
       </p>
       <FormatTimeTable />
       <div className="grid-2" style={{ marginTop: 16 }}>
         <div className="callout">
-          <strong>UTC by default.</strong> Every absolute time renders with its zone. A bare "14:32" is a bug — operators read it as their own.
+          <strong>UTC by default.</strong> Every absolute time renders with its zone. A bare "14:32" is a bug: operators read it as their own.
         </div>
         <div className="callout warn">
           <strong>Relative needs absolute.</strong> "2 min ago" is a hover-tooltip pair with the absolute timestamp. Audit logs show both inline.
@@ -1211,7 +1210,7 @@ const FormattingSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Domain units</h3>
       <p className="subsection-desc">
-        Maritime, aviation and offshore each carry their own unit conventions. The product never silently converts — it shows the native unit and lets the user toggle.
+        Maritime, aviation and offshore each carry their own unit conventions. The product never silently converts; it shows the native unit and lets the user toggle.
       </p>
       <DomainUnits />
     </div>
@@ -1219,7 +1218,7 @@ const FormattingSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Format helper API</h3>
       <p className="subsection-desc">
-        One module, one set of functions. The rule: <strong>no module calls <code className="inline">Intl</code>, <code className="inline">toLocaleString</code> or <code className="inline">date-fns</code> directly</strong> — everything routes through <code className="inline">app/lib/format.ts</code>.
+        One module, one set of functions. The rule: <strong>no module calls <code className="inline">Intl</code>, <code className="inline">toLocaleString</code> or <code className="inline">date-fns</code> directly</strong>, everything routes through <code className="inline">app/lib/format.ts</code>.
       </p>
       <FormatHelperAPI />
     </div>
@@ -1236,7 +1235,7 @@ const FormattingSection = () => (
         <div className="ds-card">
           <div className="ds-card-head"><h3 className="ds-card-title">Pluralization</h3></div>
           <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.55, color: "var(--text-secondary)" }}>
-            ICU MessageFormat — never <code className="inline">{`\${n === 1 ? 'item' : 'items'}`}</code> in source. The format helper consumes ICU keys, not concatenations.
+            ICU MessageFormat: never <code className="inline">{`\${n === 1 ? 'item' : 'items'}`}</code> in source. The format helper consumes ICU keys, not concatenations.
           </div>
         </div>
         <div className="ds-card">
@@ -1260,7 +1259,7 @@ const DomainSection = () => (
     <div className="subsection" style={{ marginTop: 0 }}>
       <h3 className="subsection-title">Why this chapter exists</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
-        Skytek is a monitoring product — its job is to put the right number, the right time, and the right asset in front of an operator at a glance.
+        Skytek is a monitoring product; its job is to put the right number, the right time, and the right asset in front of an operator at a glance.
         Generic web components don't cover charts, maps, or domain-specific formatting. Without rules here, every module reinvents them and consistency leaks.
         These primitives are the shared vocabulary that connects the dashboard, vessel detail, alerts, and reports.
       </p>

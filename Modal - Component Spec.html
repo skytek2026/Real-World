@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- @dsCard group="Brand" name="Modal — Component Spec" subtitle="Tokenized, accessible dialog refactored from AddPortModal" -->
+<!-- @dsCard group="Brand" name="Modal: Component Spec" subtitle="Tokenized, accessible dialog refactored from AddPortModal" -->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -118,7 +118,7 @@
   <header class="doc-hero" data-screen-label="Modal spec">
     <div class="doc-kicker"><span class="dot"></span> Component · Overlay</div>
     <h1>Modal</h1>
-    <p>A single, tokenized dialog primitive that standardizes every popup on the platform — assembled from five composable slots, accessible by default, and re-themeable through CSS variables. Refactored from the original <code class="inline">AddPortModal</code>.</p>
+    <p>A single, tokenized dialog primitive that standardizes every popup on the platform, assembled from five composable slots, accessible by default, and re-themeable through CSS variables. Refactored from the original <code class="inline">AddPortModal</code>.</p>
     <div class="doc-meta">
       <span class="chip"><strong>API</strong> RWModal.open()</span>
       <span class="chip"><strong>Sizes</strong> SM · MD · LG · XL · Full</span>
@@ -129,7 +129,7 @@
 
   <!-- ░░ 1 · LIVE DEMOS ░░ -->
   <section class="doc-sec">
-    <div class="lbl">01 — Playground</div>
+    <div class="lbl">01: Playground</div>
     <h2>Live behavior</h2>
     <p class="lead">Every dialog below is the real component. Open one and press <kbd>Tab</kbd> to feel the focus trap, <kbd>Esc</kbd> to dismiss, or click the dimmed backdrop where enabled. Focus returns to the trigger button on close.</p>
 
@@ -183,7 +183,7 @@
 
   <!-- ░░ 2 · ANATOMY ░░ -->
   <section class="doc-sec">
-    <div class="lbl">02 — Structure</div>
+    <div class="lbl">02: Structure</div>
     <h2>Anatomy: five slots</h2>
     <p class="lead">The component decomposes into five independently styleable regions. The high-level <code class="inline">open()</code> assembles them for you; <code class="inline">RWModal.parts.*</code> exposes each as a builder for full control.</p>
 
@@ -205,9 +205,9 @@
       </div>
 
       <div class="slot-legend">
-        <div class="slot-item"><span class="n">1</span><div><div class="nm">Overlay / Backdrop <code>.rw-modal-overlay</code></div><div class="ds">Fixed full-bleed scrim — <code class="inline">rgba(15,23,42,.45)</code> + 2px blur. Centers the container and owns the dismiss-on-backdrop click.</div></div></div>
+        <div class="slot-item"><span class="n">1</span><div><div class="nm">Overlay / Backdrop <code>.rw-modal-overlay</code></div><div class="ds">Fixed full-bleed scrim: <code class="inline">rgba(15,23,42,.45)</code> + 2px blur. Centers the container and owns the dismiss-on-backdrop click.</div></div></div>
         <div class="slot-item"><span class="n">2</span><div><div class="nm">Container <code>.rw-modal</code></div><div class="ds">The surface: 12px radius, layered elevation, size-bounded max-width, capped at the viewport with internal flex column.</div></div></div>
-        <div class="slot-item"><span class="n">3</span><div><div class="nm">Header <code>.rw-modal-header</code></div><div class="ds">Title (+ optional subtitle) and the standardized circular close button. Pinned — never scrolls.</div></div></div>
+        <div class="slot-item"><span class="n">3</span><div><div class="nm">Header <code>.rw-modal-header</code></div><div class="ds">Title (+ optional subtitle) and the standardized circular close button. Pinned: never scrolls.</div></div></div>
         <div class="slot-item"><span class="n">4</span><div><div class="nm">Body <code>.rw-modal-body</code></div><div class="ds">The only scroll region. Consistent <code class="inline">20px / 24px</code> inner padding; <code class="inline">overscroll-behavior: contain</code>.</div></div></div>
         <div class="slot-item"><span class="n">5</span><div><div class="nm">Footer <code>.rw-modal-footer</code></div><div class="ds">Right-aligned actions with token-driven gap. Primary / secondary / ghost / danger button variants; split layout for destructive-left.</div></div></div>
       </div>
@@ -216,9 +216,9 @@
 
   <!-- ░░ 3 · SIZES ░░ -->
   <section class="doc-sec">
-    <div class="lbl">03 — Sizing</div>
+    <div class="lbl">03: Sizing</div>
     <h2>Size variants</h2>
-    <p class="lead">Set with the <code class="inline">size</code> prop. Each maps to one max-width token — widths are the only thing that changes.</p>
+    <p class="lead">Set with the <code class="inline">size</code> prop. Each maps to one max-width token, widths are the only thing that changes.</p>
     <div class="panel" style="overflow:hidden;">
       <table class="spec-table" style="border:0;">
         <thead><tr><th>Variant</th><th>Prop</th><th>Token</th><th>Max-width</th><th>Use for</th></tr></thead>
@@ -235,7 +235,7 @@
 
   <!-- ░░ 4 · API ░░ -->
   <section class="doc-sec">
-    <div class="lbl">04 — API</div>
+    <div class="lbl">04: API</div>
     <h2>Props</h2>
     <p class="lead"><code class="inline">RWModal.open(config)</code> returns an instance with <code class="inline">.close()</code>, <code class="inline">.query()</code>, <code class="inline">.el</code>, and <code class="inline">.modal</code>.</p>
     <div class="panel" style="overflow:hidden;">
@@ -277,9 +277,9 @@
 
   <!-- ░░ 5 · TOKENS ░░ -->
   <section class="doc-sec">
-    <div class="lbl">05 — Theming</div>
+    <div class="lbl">05: Theming</div>
     <h2>Design tokens</h2>
-    <p class="lead">Every visual property reads from a <code class="inline">--rw-modal-*</code> variable. Override them on <code class="inline">:root</code> — or on any ancestor — to re-theme without touching markup. Defaults are self-contained; <code class="inline">--brand-*</code> are inherited when a host system defines them.</p>
+    <p class="lead">Every visual property reads from a <code class="inline">--rw-modal-*</code> variable. Override them on <code class="inline">:root</code>, or on any ancestor, to re-theme without touching markup. Defaults are self-contained; <code class="inline">--brand-*</code> are inherited when a host system defines them.</p>
     <div class="panel" style="overflow:hidden;">
       <table class="spec-table" style="border:0;">
         <thead><tr><th>Token</th><th>Default</th><th>Controls</th></tr></thead>
@@ -304,7 +304,7 @@
 
   <!-- ░░ 6 · ACCESSIBILITY ░░ -->
   <section class="doc-sec">
-    <div class="lbl">06 — Accessibility</div>
+    <div class="lbl">06: Accessibility</div>
     <h2>Built-in a11y</h2>
     <p class="lead">The component ships WCAG-aligned behavior so consumers don't re-implement it per modal.</p>
     <div class="grid-2">
@@ -312,14 +312,14 @@
       <div class="callout"><strong>Focus trap.</strong> <kbd>Tab</kbd> / <kbd>Shift+Tab</kbd> cycle within the dialog; a <code class="inline">focusin</code> guard pulls focus back if it ever escapes.</div>
       <div class="callout"><strong>Return focus.</strong> The element that opened the modal is restored on close, so keyboard users never lose their place.</div>
       <div class="callout"><strong>Dismissal.</strong> <kbd>Esc</kbd> closes (when enabled); background scroll is locked and nested modals are reference-counted.</div>
-      <div class="callout"><strong>Visible focus.</strong> All interactive elements expose a <code class="inline">:focus-visible</code> ring — never <code class="inline">outline:none</code> without a replacement.</div>
+      <div class="callout"><strong>Visible focus.</strong> All interactive elements expose a <code class="inline">:focus-visible</code> ring: never <code class="inline">outline:none</code> without a replacement.</div>
       <div class="callout"><strong>Reduced motion.</strong> Rise / fade animations collapse under <code class="inline">prefers-reduced-motion</code>.</div>
     </div>
   </section>
 
   <!-- ░░ 7 · USAGE ░░ -->
   <section class="doc-sec" style="border-bottom:0;">
-    <div class="lbl">07 — Usage</div>
+    <div class="lbl">07: Usage</div>
     <h2>Assembling a modal</h2>
     <p class="lead">Link the two files, then call the high-level API or compose the slots by hand.</p>
 
@@ -327,17 +327,17 @@
     <pre class="code">&lt;link rel="stylesheet" href="components/rw-modal.css"&gt;
 &lt;script src="components/rw-modal.js"&gt;&lt;/script&gt;</pre>
 
-    <h3 class="t-h4" style="margin:24px 0 8px;">High-level — open() with slots</h3>
+    <h3 class="t-h4" style="margin:24px 0 8px;">High-level: open() with slots</h3>
     <pre class="code">const modal = RWModal.open({
   size: 'md',
   title: 'Add a new Port',
   subtitle: 'Define location and metadata',
   closeOnOverlayClick: false,        // form has unsaved input
   initialFocus: '#field-name',
-  body: (el) =&gt; {                    // body slot — populate imperatively
+  body: (el) =&gt; {                    // body slot: populate imperatively
     el.appendChild(buildPortForm());
   },
-  footer: [                          // footer slot — button variants
+  footer: [                          // footer slot, button variants
     { label: 'Cancel', variant: 'secondary', closeOnClick: true },
     { label: 'Save',   variant: 'primary', onClick: (m) =&gt; {
         const name = m.query('#field-name').value;
@@ -349,7 +349,7 @@
   onClose: () =&gt; console.log('dismissed'),
 });</pre>
 
-    <h3 class="t-h4" style="margin:24px 0 8px;">Low-level — compose the sub-components</h3>
+    <h3 class="t-h4" style="margin:24px 0 8px;">Low-level: compose the sub-components</h3>
     <pre class="code">const P = RWModal.parts;
 const overlay   = P.Overlay({ labelledby: 'm-title' });
 const container = P.Container({ size: 'lg' });

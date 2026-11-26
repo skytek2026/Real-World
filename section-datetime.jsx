@@ -1,6 +1,6 @@
-/* Section — Date, time & range pickers */
+/* Section: Date, time & range pickers */
 
-/* Static calendar grid generator — pure presentational */
+/* Static calendar grid generator, pure presentational */
 const buildMonth = (year, monthIdx) => {
   const first = new Date(year, monthIdx, 1);
   const start = new Date(first);
@@ -183,7 +183,7 @@ const PresetRules = () => (
     </thead>
     <tbody>
       <tr><td><strong>Today</strong></td><td>00:00 → now (local)</td><td>Always</td></tr>
-      <tr><td><strong>Last 7 days</strong></td><td>now − 6d → now</td><td>Always — the operator default</td></tr>
+      <tr><td><strong>Last 7 days</strong></td><td>now − 6d → now</td><td>Always: the operator default</td></tr>
       <tr><td><strong>Last 30 days</strong></td><td>now − 29d → now</td><td>Always</td></tr>
       <tr><td><strong>Last 90 days</strong></td><td>now − 89d → now</td><td>Trend / portfolio surfaces</td></tr>
       <tr><td><strong>Year to date</strong></td><td>1 Jan year → now</td><td>Reporting, compliance</td></tr>
@@ -199,7 +199,7 @@ const DatePickerRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Time zones</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>Dates are stored as <code>UTC</code>. The picker's labels are in the user's zone but the wire value is UTC.</li>
           <li>The "Today" preset uses the user's local midnight, not UTC midnight.</li>
           <li>Picker footer always shows the wire value: <code>2026-04-28T00:00Z → 2026-04-28T23:59Z</code>.</li>
@@ -210,10 +210,10 @@ const DatePickerRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Constraints</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li><code>minDate</code> / <code>maxDate</code> disable cells; never hide them.</li>
           <li>Disabled cells get a tooltip on hover: "No data before 1 Jan 2024."</li>
-          <li>Max range (e.g. 90 days) shows a banner when exceeded — never silently clamps.</li>
+          <li>Max range (e.g. 90 days) shows a banner when exceeded, never silently clamps.</li>
           <li>Weekend / holiday styling is opt-in per surface, not a default.</li>
         </ul>
       </div>
@@ -221,7 +221,7 @@ const DatePickerRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Keyboard</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li><kbd>↑↓←→</kbd> move by day · <kbd>PgUp/PgDn</kbd> by month · <kbd>Shift+PgUp/PgDn</kbd> by year</li>
           <li><kbd>Home/End</kbd> jump to start/end of week</li>
           <li><kbd>Enter</kbd> commits the focused cell; <kbd>Esc</kbd> closes without committing</li>
@@ -232,7 +232,7 @@ const DatePickerRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Open behavior</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>Range picker opens at the month containing the current <em>start</em>.</li>
           <li>If no value, open at the current month.</li>
           <li>Two months for range, one for single date. No three-month layouts.</li>
@@ -244,7 +244,7 @@ const DatePickerRules = () => (
 );
 
 const DatePickerApi = () => (
-  <pre className="code">{`// app/ui/Date — three components, one shape.
+  <pre className="code">{`// app/ui/Date: three components, one shape.
 type DateValue = string | null;   // ISO 8601 UTC, e.g. "2026-04-28T00:00:00Z"
 type DateRange = { start: DateValue; end: DateValue };
 
@@ -282,8 +282,7 @@ const DateTimeSection = () => (
     <div className="subsection" style={{ marginTop: 0 }}>
       <h3 className="subsection-title">Why this primitive</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
-        Skytek's lists, reports and alerts live or die on date selection. The product needs three calendar primitives — single date, date range, and time-of-day —
-        with a consistent set of presets, the same keyboard model, and the same wire format. This is the canonical implementation.
+        Skytek's lists, reports and alerts live or die on date selection. The product needs three calendar primitives, single date, date range, and time-of-day, with a consistent set of presets, the same keyboard model, and the same wire format. This is the canonical implementation.
       </p>
     </div>
 
@@ -301,7 +300,7 @@ const DateTimeSection = () => (
       <h3 className="subsection-title">Date range</h3>
       <p className="subsection-desc">
         Two months side-by-side, preset shortcuts on the left, hover preview while choosing the end date. Clicking a preset overrides the manual selection
-        (and vice versa — manual selection clears the active preset).
+        (and vice versa, manual selection clears the active preset).
       </p>
       <div className="panel">
         <div className="panel-body" style={{ display: "flex", justifyContent: "center", padding: 24, background: "var(--bg-canvas)" }}>
@@ -313,7 +312,7 @@ const DateTimeSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Time picker</h3>
       <p className="subsection-desc">
-        Segmented HH · MM · (SS) with explicit zone marker. Keyboard-first — arrow keys increment, tab moves between segments. Never a stepped dropdown.
+        Segmented HH · MM · (SS) with explicit zone marker. Keyboard-first: arrow keys increment, tab moves between segments. Never a stepped dropdown.
       </p>
       <div className="panel">
         <div className="panel-body">
@@ -324,7 +323,7 @@ const DateTimeSection = () => (
 
     <div className="subsection">
       <h3 className="subsection-title">Preset shortcuts</h3>
-      <p className="subsection-desc">Eight presets cover the product. Surfaces opt in via the <code className="inline">presets</code> prop — never invent a new one.</p>
+      <p className="subsection-desc">Eight presets cover the product. Surfaces opt in via the <code className="inline">presets</code> prop: never invent a new one.</p>
       <PresetRules />
     </div>
 

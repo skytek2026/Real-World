@@ -1,7 +1,7 @@
-/* Section — Foundations II: Iconography (Lucide), Density modes, Motion */
+/* Section: Foundations II: Iconography (Lucide), Density modes, Motion */
 
 /* ============================================================
-   Iconography — Lucide
+   Iconography, Lucide
    ============================================================ */
 
 const ICON_SIZE_RULES = [
@@ -15,53 +15,55 @@ const ICON_SIZE_RULES = [
 ];
 
 const LUCIDE_INVENTORY = [
-  // [alias, lucideName, usage]
-  ["menu",      "Menu",          "Sidebar trigger"],
-  ["grid",      "LayoutGrid",    "Dashboard nav"],
-  ["ship",      "Ship",          "Marine nav, vessel detail"],
-  ["plane",     "Plane",         "Aviation nav, aircraft detail"],
-  ["bolt",      "Zap",           "Offshore/Energy nav"],
-  ["building",  "Building",      "Property nav"],
-  ["office",    "Building2",     "Companies nav"],
-  ["briefcase", "Briefcase",     "Portfolios nav"],
-  ["cargo",     "Container",     "Cargo nav, container metrics"],
-  ["doc",       "FileText",      "Reports nav, document rows"],
-  ["globe",     "Globe",         "Regions nav, world view toggle"],
+  // [alias, lucideName, usage], kept alphabetical by alias
+  ["alertTri",  "TriangleAlert", "Warning state, alert badge"],
   ["anchor",    "Anchor",        "Ports nav, port detail"],
-  ["wave",      "Waves",         "NatCat nav, marine events"],
-  ["cloud",     "Cloud",         "Weather nav"],
-  ["cloudrain", "CloudRain",     "Weather event glyph"],
-  ["gem",       "Gem",           "Assets search nav"],
-  ["pin",       "MapPin",        "Location refs in popovers and lists"],
-  ["search",    "Search",        "Toolbar, command palette"],
-  ["filter",    "Filter",        "Filter buttons, map filter menu"],
-  ["layers",    "Layers",        "Map layer switcher"],
-  ["tag",       "Tag",           "Labels menu, badge editor"],
+  ["arrowDown", "ArrowDown",     "Sort desc, negative delta"],
+  ["arrowUp",   "ArrowUp",       "Sort asc, positive delta"],
   ["bell",      "Bell",          "Notifications"],
-  ["users",     "Users",         "Organizations, teams"],
-  ["plus",      "Plus",          "Create actions"],
-  ["minus",     "Minus",         "Zoom out, decrement"],
-  ["x",         "X",             "Close, dismiss, remove chip"],
+  ["bolt",      "Zap",           "Offshore/Energy nav"],
+  ["briefcase", "Briefcase",     "Portfolios nav"],
+  ["building",  "Building",      "Property nav"],
+  ["cargo",     "Container",     "Cargo nav, container metrics"],
   ["check",     "Check",         "Confirm, selected state, completed"],
   ["chev",      "ChevronRight",  "Disclosure, drill-in, breadcrumbs"],
   ["chevDown",  "ChevronDown",   "Dropdown trigger, accordion"],
-  ["arrowUp",   "ArrowUp",       "Sort asc, positive delta"],
-  ["arrowDown", "ArrowDown",     "Sort desc, negative delta"],
-  ["maximize",  "Maximize2",     "Map fullscreen enter"],
-  ["minimize",  "Minimize2",     "Map fullscreen exit"],
-  ["alertTri",  "TriangleAlert", "Warning state, alert badge"],
-  ["radio",     "RadioTower",    "AIS / signal status"],
-  ["clock",     "Clock",         "Time-range filters, history"],
   ["clipboard", "Clipboard",     "Copy action, audit"],
+  ["clock",     "Clock",         "Time-range filters, history"],
+  ["cloud",     "Cloud",         "Weather nav"],
+  ["cloudrain", "CloudRain",     "Weather event glyph"],
   ["compass",   "Compass",       "Map orient, heading"],
-  ["help",      "CircleHelp",    "Inline help, tooltips trigger"],
-  ["shield",    "ShieldCheck",   "Permissions, security indicators"],
-  ["news",      "Newspaper",     "News nav"],
-  ["leaf",      "Leaf",          "ESG / sustainability filters"],
+  ["doc",       "FileText",      "Reports nav, document rows"],
+  ["download",  "Download",      "Export, save file, download report"],
   ["factory",   "Factory",       "Industry classifications"],
+  ["filter",    "Filter",        "Filter buttons, map filter menu"],
+  ["gem",       "Gem",           "Assets search nav"],
+  ["globe",     "Globe",         "Regions nav, world view toggle"],
+  ["grid",      "LayoutGrid",    "Dashboard nav"],
+  ["help",      "CircleHelp",    "Inline help, tooltips trigger"],
+  ["layers",    "Layers",        "Map layer switcher"],
+  ["leaf",      "Leaf",          "ESG / sustainability filters"],
+  ["maximize",  "Maximize2",     "Map fullscreen enter"],
+  ["menu",      "Menu",          "Sidebar trigger"],
+  ["minimize",  "Minimize2",     "Map fullscreen exit"],
+  ["minus",     "Minus",         "Zoom out, decrement"],
+  ["news",      "Newspaper",     "News nav"],
+  ["office",    "Building2",     "Companies nav"],
+  ["pin",       "MapPin",        "Location refs in popovers and lists"],
+  ["plane",     "Plane",         "Aviation nav, aircraft detail"],
+  ["plus",      "Plus",          "Create actions"],
+  ["radio",     "RadioTower",    "AIS / signal status"],
+  ["search",    "Search",        "Toolbar, command palette"],
+  ["shield",    "ShieldCheck",   "Permissions, security indicators"],
+  ["ship",      "Ship",          "Marine nav, vessel detail"],
+  ["tag",       "Tag",           "Labels menu, badge editor"],
+  ["upload",    "Upload",        "Import data, attach file, upload report"],
+  ["users",     "Users",         "Organizations, teams"],
+  ["wave",      "Waves",         "NatCat nav, marine events"],
+  ["x",         "X",             "Close, dismiss, remove chip"],
 ];
 
-// Inline replicas (a few of the most common) — for the spec page itself,
+// Inline replicas (a few of the most common), for the spec page itself,
 // which doesn't load Lucide. Strokes match Lucide's default (stroke-width=2,
 // linecap/linejoin=round).
 const LucideShim = {
@@ -150,19 +152,19 @@ const StrokeRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Stroke weight</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        Lucide default — <strong style={{ color: "var(--text-primary)" }}>2 px</strong>. Never thin Lucide icons below 1.5 — they're designed for 2 and the optical balance breaks. Custom icons in the system follow the same weight.
+        Lucide default: <strong style={{ color: "var(--text-primary)" }}>2 px</strong>. Never thin Lucide icons below 1.5; they're designed for 2 and the optical balance breaks. Custom icons in the system follow the same weight.
       </div>
     </div>
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Color</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        Always <code>currentColor</code> — icons inherit from their text or button context. Status-toned icons get their color from the parent (<code>.ds-alert--warning</code> etc.), never hardcoded.
+        Always <code>currentColor</code>, icons inherit from their text or button context. Status-toned icons get their color from the parent (<code>.ds-alert--warning</code> etc.), never hardcoded.
       </div>
     </div>
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Alignment</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        Icons inside a label use <code>display: inline-flex</code> + <code>gap: 6px</code> with the parent — never margins. Vertically centered to the cap-height, not the baseline.
+        Icons inside a label use <code>display: inline-flex</code> + <code>gap: 4px</code> with the parent: never margins. Vertically centered to the cap-height, not the baseline.
       </div>
     </div>
   </div>
@@ -214,7 +216,7 @@ const IconographySection = () => (
       <pre className="code">{`<!-- Load order: before chrome.js, after Tailwind -->
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
 
-// app/ui/icons/lucide.ts — single source of truth for aliases + sizes
+// app/ui/icons/lucide.ts: single source of truth for aliases + sizes
 export const LUCIDE_NAMES = {
   menu:  'Menu',         grid:    'LayoutGrid',
   ship:  'Ship',         plane:   'Plane',
@@ -234,13 +236,13 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
 });`}</pre>
       <p className="t-caption" style={{ marginTop: 8 }}>
         Use <code className="inline">{`${'$'}{I.alias}`}</code> in chrome / shell strings; use <code className="inline">&lt;Icon name="alias" /&gt;</code> in React.
-        Modules never reach for <code className="inline">lucide.icons.ShipFront</code> directly — always through the alias map.
+        Modules never reach for <code className="inline">lucide.icons.ShipFront</code> directly: always through the alias map.
       </p>
     </div>
 
     <div className="subsection">
       <h3 className="subsection-title">Sizes</h3>
-      <p className="subsection-desc">Seven discrete sizes. The Lucide grid is 24 — anything between rasterizes poorly. Pick from the table; don't interpolate.</p>
+      <p className="subsection-desc">Seven discrete sizes. The Lucide grid is 24, anything between rasterizes poorly. Pick from the table; don't interpolate.</p>
       <IconSizesPanel />
     </div>
 
@@ -252,7 +254,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
     <div className="subsection">
       <h3 className="subsection-title">Accessible icon buttons</h3>
       <p className="subsection-desc">
-        Icon-only buttons need an <code className="inline">aria-label</code>. Icon+label buttons must not — the label IS the accessible name, and a redundant <code className="inline">aria-label</code> overrides it.
+        Icon-only buttons need an <code className="inline">aria-label</code>. Icon+label buttons must not: the label IS the accessible name, and a redundant <code className="inline">aria-label</code> overrides it.
       </p>
       <A11yIconRules />
     </div>
@@ -260,15 +262,15 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
     <div className="subsection">
       <h3 className="subsection-title">Inventory</h3>
       <p className="subsection-desc">
-        The canonical alias map. Aliases are stable across product surfaces — when "ship" is added to a new module, every module already knows what it means.
+        The canonical alias map. Aliases are stable across product surfaces, when "ship" is added to a new module, every module already knows what it means.
         Adding to this list requires an RFC + entry in <code className="inline">LUCIDE_NAMES</code>.
       </p>
       <div className="panel">
         <div className="panel-head"><h4>{LUCIDE_INVENTORY.length} canonical aliases</h4><span className="meta">v1.0 · sync with chrome.js</span></div>
         <div style={{ padding: 8, display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 0 }}>
           {LUCIDE_INVENTORY.map(([alias, lucide, use]) => (
-            <div key={alias} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 12px", borderTop: "1px solid var(--border-subtle)" }}>
-              <span style={{ width: 28, height: 28, display: "inline-flex", alignItems: "center", justifyContent: "center", color: "var(--slate-700)", background: "var(--slate-50)", borderRadius: "var(--radius-sm)", flexShrink: 0 }}>
+            <div key={alias} style={{ display: "flex", alignItems: "center", gap: 8, padding: "8px 12px", borderTop: "1px solid var(--border-subtle)" }}>
+              <span style={{ width: 28, height: 28, display: "inline-flex", alignItems: "center", justifyContent: "center", color: "var(--slate-700)", background: "var(--slate-050)", borderRadius: "var(--radius-sm)", flexShrink: 0 }}>
                 <LuReal name={lucide} size={16}/>
               </span>
               <div style={{ minWidth: 0, flex: 1 }}>
@@ -280,7 +282,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
         </div>
       </div>
       <p className="t-caption" style={{ marginTop: 8 }}>
-        Icons above render from the live Lucide library (<code className="inline">lucide@0.469.0</code>) — the same source the product uses.
+        Icons above render from the live Lucide library (<code className="inline">lucide@0.469.0</code>): the same source the product uses.
       </p>
     </div>
 
@@ -312,7 +314,7 @@ const DensityComparison = () => {
   ];
   const renderTable = (density) => (
     <div data-density={density} style={{ background: "var(--white)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", overflow: "hidden" }}>
-      <div className="ds-density-head" style={{ padding: density === "compact" ? "10px 14px" : "14px 16px" }}>
+      <div className="ds-density-head" style={{ padding: density === "compact" ? "12px 16px" : "16px 16px" }}>
         <strong style={{ fontSize: 13 }}>Vessels</strong>
         <span className="t-caption" style={{ marginLeft: 8 }}>{rows.length} of 412 · <code style={{ fontSize: 11 }}>data-density="{density}"</code></span>
       </div>
@@ -323,11 +325,11 @@ const DensityComparison = () => {
         <tbody>
           {rows.map(r => (
             <tr key={r[0]} style={{
-              "--row-pad": density === "compact" ? "5px 12px" : "12px 12px",
+              "--row-pad": density === "compact" ? "8px 12px" : "12px 12px",
             }}>
               {r.map((c, i) => (
                 <td key={i} style={{
-                  padding: density === "compact" ? "5px 12px" : "12px 12px",
+                  padding: density === "compact" ? "8px 12px" : "12px 12px",
                   fontSize: density === "compact" ? 12 : 13,
                 }} className={i === 3 ? "num" : ""}>{c}</td>
               ))}
@@ -357,12 +359,12 @@ const DensityTokenMatrix = () => (
       <tr><th>Element</th><th>Comfortable</th><th>Compact</th><th>How it's wired</th></tr>
     </thead>
     <tbody>
-      <tr><td>Row padding (table, list)</td><td>12 px y</td><td>5–6 px y</td><td><code>.ds-table.is-comfy</code> / <code>.ds-table.is-compact</code></td></tr>
+      <tr><td>Row padding (table, list)</td><td>12 px y</td><td>8 px y</td><td><code>.ds-table.is-comfy</code> / <code>.ds-table.is-compact</code></td></tr>
       <tr><td>Body font size</td><td>13 px</td><td>12.5 px</td><td>Inherited via row class</td></tr>
       <tr><td>Card padding</td><td>16 px</td><td>12 px</td><td><code>[data-density="compact"] .ds-card-body</code></td></tr>
-      <tr><td>Gap between siblings</td><td>16 px (<code>--space-5</code>)</td><td>12 px (<code>--space-4</code>)</td><td>Utility <code>.gap-density</code></td></tr>
+      <tr><td>Gap between siblings</td><td>16 px (<code>--space-4</code>)</td><td>12 px (<code>--space-3</code>)</td><td>Utility <code>.gap-density</code></td></tr>
       <tr><td>Section vertical padding</td><td>20 px</td><td>12 px</td><td>Utility <code>.py-density</code></td></tr>
-      <tr><td>Sidebar nav item</td><td>10 px y</td><td>6 px y</td><td><code>[data-density] .ds-sidebar-item</code></td></tr>
+      <tr><td>Sidebar nav item</td><td>8 px y</td><td>4 px y</td><td><code>[data-density] .ds-sidebar-item</code></td></tr>
       <tr><td>Form field height</td><td>32 px (md)</td><td>28 px (sm)</td><td><code>ds-input</code> + size class</td></tr>
       <tr><td>Button default size</td><td>md (32 px)</td><td>sm (28 px)</td><td>Component sets default from density context</td></tr>
     </tbody>
@@ -376,9 +378,9 @@ const DensityDefaults = () => (
     ].map(() => null)}
     {[
       ["Dashboards (Marine, Aviation, etc.)", "comfortable", "Information-light tiles; visual hierarchy comes from whitespace."],
-      ["Detail pages (Vessel, Aircraft, Port)","comfortable", "Reading mode — operators dwell on individual records."],
+      ["Detail pages (Vessel, Aircraft, Port)","comfortable", "Reading mode: operators dwell on individual records."],
       ["List + search (Assets, Companies)",   "compact",     "Operator scans 50+ rows; row count beats whitespace."],
-      ["Tables inside cards (alerts, history)","compact",    "Local density — table compresses without affecting outer card."],
+      ["Tables inside cards (alerts, history)","compact",    "Local density: table compresses without affecting outer card."],
       ["Map popovers",                        "compact",     "Constrained 300 px width; every line counts."],
       ["Reports & exports",                   "comfortable", "Print medium; whitespace reads as quality."],
       ["Modals & overlays",                   "comfortable", "Single task focus."],
@@ -397,13 +399,13 @@ const DensitySection = () => (
     <div className="subsection" style={{ marginTop: 0 }}>
       <h3 className="subsection-title">One attribute, two modes</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
-        Density is a single attribute on the <code className="inline">&lt;body&gt;</code> — <code className="inline">data-density="comfortable"</code> or <code className="inline">data-density="compact"</code>.
+        Density is a single attribute on the <code className="inline">&lt;body&gt;</code>, <code className="inline">data-density="comfortable"</code> or <code className="inline">data-density="compact"</code>.
         Every density-aware component reads from it. Operators can switch globally via the Tweaks panel; individual surfaces can override locally on a parent element.
       </p>
       <pre className="code">{`<!-- Global, on <body> -->
 <body data-density="compact">
 
-<!-- Local override — affects only this subtree -->
+<!-- Local override: affects only this subtree -->
 <section data-density="compact">
   <table class="ds-table">…</table>
 </section>
@@ -414,13 +416,13 @@ document.body.dataset.density = 'compact';`}</pre>
 
     <div className="subsection">
       <h3 className="subsection-title">Side by side</h3>
-      <p className="subsection-desc">Same content, two densities. Same tokens. The diff is mechanical — no per-table styling, no inline padding.</p>
+      <p className="subsection-desc">Same content, two densities. Same tokens. The diff is mechanical: no per-table styling, no inline padding.</p>
       <DensityComparison />
     </div>
 
     <div className="subsection">
       <h3 className="subsection-title">Token mapping</h3>
-      <p className="subsection-desc">What density actually changes. Anything not listed here is density-invariant — colors, radii, type families, icon sizes don't move with density.</p>
+      <p className="subsection-desc">What density actually changes. Anything not listed here is density-invariant, colors, radii, type families, icon sizes don't move with density.</p>
       <DensityTokenMatrix />
     </div>
 
@@ -446,7 +448,7 @@ document.body.dataset.density = 'compact';`}</pre>
     </div>
 
     <div className="callout">
-      <strong>Density is presentation, not data.</strong> Switching modes never changes what's on screen — just how tightly it's packed. Don't gate features behind a density state.
+      <strong>Density is presentation, not data.</strong> Switching modes never changes what's on screen, just how tightly it's packed. Don't gate features behind a density state.
     </div>
   </>
 );
@@ -583,13 +585,13 @@ const MotionRules = () => (
     scroll-behavior: auto !important;
   }
 }`}</pre>
-        <p style={{ marginBottom: 0 }}>Microinteractions at <code>--motion-instant</code> stay — they're the system's way of saying "I heard you".</p>
+        <p style={{ marginBottom: 0 }}>Microinteractions at <code>--motion-instant</code> stay; they're the system's way of saying "I heard you".</p>
       </div>
     </div>
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">What never moves</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li>Data values. A KPI counter never animates from 0 to the real number.</li>
           <li>Map basemap. Tile fade is the library default; we don't add to it.</li>
           <li>Page-level layout (sidebar collapse is the only exception).</li>
@@ -607,13 +609,13 @@ const MotionSection = () => (
       <h3 className="subsection-title">Why motion matters here</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
         Skytek is a monitoring product. Motion has one job: confirm that the system heard the operator, or signal that something on screen changed.
-        Anything beyond that is decoration — and decoration costs reading time during an incident. The rules below are deliberately conservative.
+        Anything beyond that is decoration, and decoration costs reading time during an incident. The rules below are deliberately conservative.
       </p>
     </div>
 
     <div className="subsection">
       <h3 className="subsection-title">Duration tokens</h3>
-      <p className="subsection-desc">Four durations. Pick from the list — no in-between values, no per-component overrides.</p>
+      <p className="subsection-desc">Four durations. Pick from the list: no in-between values, no per-component overrides.</p>
       <div className="panel">
         {DURATION_TOKENS.map(([token, ms, where]) => (
           <div key={token} className="token-row" style={{ gridTemplateColumns: "180px 90px 1fr" }}>
@@ -636,7 +638,7 @@ const MotionSection = () => (
             <div className="ds-card-body">
               <EasingCurve name={token} cp={cp} color={token.includes("emphasis") ? "var(--chart-cat-2)" : "var(--brand-600)"} />
               <div className="t-mono" style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 8 }}>{cp}</div>
-              <p className="t-caption" style={{ marginTop: 6, marginBottom: 0 }}>{where}</p>
+              <p className="t-caption" style={{ marginTop: 4, marginBottom: 0 }}>{where}</p>
             </div>
           </div>
         ))}
@@ -645,7 +647,7 @@ const MotionSection = () => (
 
     <div className="subsection">
       <h3 className="subsection-title">System animations</h3>
-      <p className="subsection-desc">Named keyframes that ship with the system. Modules consume by class — never duplicate the keyframes locally.</p>
+      <p className="subsection-desc">Named keyframes that ship with the system. Modules consume by class: never duplicate the keyframes locally.</p>
       <SystemAnimations />
     </div>
 
@@ -668,9 +670,77 @@ const MotionSection = () => (
 /* Reversible: drawer */
 .ds-drawer { transition: transform var(--motion-slow) var(--ease-in-out); }
 
-/* Selection: tab pill — the only place ease-emphasis is allowed */
+/* Selection: tab pill, the only place ease-emphasis is allowed */
 .ds-tab-pill { transition: transform var(--motion-slow) var(--ease-emphasis),
                            width     var(--motion-slow) var(--ease-emphasis); }`}</pre>
+    </div>
+
+    <div className="subsection">
+      <h3 className="subsection-title">Scrollbars</h3>
+      <p className="subsection-desc" style={{ maxWidth: 820 }}>
+        One scrollbar treatment everywhere: a <strong>6&nbsp;px</strong> thin bar with a brand-blue thumb on a light-grey track.
+        It replaces the OS default so dense tables, map popovers and side panels read as part of the product rather than the operating system.
+        The page root gets it automatically; for any inner scroll container, add the <code className="inline">.ds-scroll</code> class (or <code className="inline">data-scroll</code> attribute).
+      </p>
+
+      <div className="grid-2" style={{ gap: 24, alignItems: "start" }}>
+        <div>
+          <div className="t-label" style={{ marginBottom: 8 }}>Live: vertical <code style={{ fontSize: 11 }}>.ds-scroll</code></div>
+          <div className="ds-scroll" style={{ height: 200, overflowY: "auto", background: "var(--white)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", padding: "8px 16px" }}>
+            {Array.from({ length: 24 }).map((_, i) => (
+              <div key={i} style={{ padding: "8px 0", borderBottom: i < 23 ? "1px solid var(--border-subtle)" : "none", fontSize: 13, color: "var(--text-secondary)", display: "flex", justifyContent: "space-between" }}>
+                <span>Vessel record {String(i + 1).padStart(2, "0")}</span>
+                <span className="t-mono" style={{ color: "var(--text-muted)", fontSize: 11 }}>{(12 + i * 0.3).toFixed(1)} kn</span>
+              </div>
+            ))}
+          </div>
+          <p className="t-caption" style={{ marginTop: 4 }}>Scroll the panel: thumb is <code style={{ fontSize: 11 }}>--brand-500</code>, track is <code style={{ fontSize: 11 }}>--slate-100</code>.</p>
+        </div>
+
+        <div>
+          <div className="t-label" style={{ marginBottom: 8 }}>Tokens</div>
+          <div className="panel">
+            {[
+              ["--scrollbar-size",        "6px",          "Bar thickness (width & height)"],
+              ["--scrollbar-track",       "--slate-100",  "Track: light grey"],
+              ["--scrollbar-thumb",       "--brand-500",  "Thumb: theme color"],
+              ["--scrollbar-thumb-hover", "--brand-600",  "Thumb on hover"],
+            ].map(([token, val, where]) => (
+              <div key={token} className="token-row" style={{ gridTemplateColumns: "200px 110px 1fr" }}>
+                <code>{token}</code>
+                <span className="t-mono" style={{ color: "var(--brand-600)" }}>{val}</span>
+                <span className="t-caption">{where}</span>
+              </div>
+            ))}
+          </div>
+          <div className="callout" style={{ marginTop: 12 }}>
+            <strong>Firefox note:</strong> <code>scrollbar-width</code> only supports <code>thin</code>/<code>auto</code>, so Firefox renders a system-thin bar (≈ 8–11 px) rather than an exact 6 px, but the brand thumb &amp; grey track colors match. WebKit/Blink honour the precise 6 px.
+          </div>
+        </div>
+      </div>
+
+      <pre className="code" style={{ marginTop: 16 }}>{`:root {
+  --scrollbar-size:        6px;
+  --scrollbar-track:       var(--slate-100);   /* light grey */
+  --scrollbar-thumb:       var(--brand-500);   /* theme color */
+  --scrollbar-thumb-hover: var(--brand-600);
+}
+
+/* Firefox */
+html, .ds-scroll, [data-scroll] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* WebKit / Blink, Chrome, Safari, Edge, Opera */
+.ds-scroll::-webkit-scrollbar       { width: var(--scrollbar-size); height: var(--scrollbar-size); }
+.ds-scroll::-webkit-scrollbar-track { background: var(--scrollbar-track); border-radius: 9999px; }
+.ds-scroll::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 9999px; }
+.ds-scroll::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }`}</pre>
+
+      <div className="callout warn" style={{ marginTop: 12 }}>
+        <strong>Don't hide scrollbars.</strong> Operators need to know how much more is below the fold during an incident. Style the bar: never set <code>scrollbar-width: none</code> or <code>::-webkit-scrollbar &#123; display:none &#125;</code> on data regions.
+      </div>
     </div>
 
     <div className="callout">

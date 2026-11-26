@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Airport Details — Aviation — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -46,7 +46,7 @@
   .ds-tab-pill.is-init{transition:none}
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px}
   /* Map */
-  #airport-map{position:absolute;inset:0;background:#0b1e2e}
+  #airport-map{position:absolute;inset:0;background:#111827}
   #airport-map .leaflet-top.leaflet-left{top:48px;left:2px}
   #airport-map .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px !important}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgba(15,23,42,.08) !important;border-radius:8px !important;overflow:hidden}
@@ -67,7 +67,7 @@
   /* Status badges */
   .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
   .badge-parked{background:#f3f4f6;color:#4b5563}
-  .badge-taxiing{background:#fef3c7;color:#92400e}
+  .badge-taxiing{background:#fef3c7;color:#991b1b}
   .badge-boarding{background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)}
   .badge-loading{background:#ffedd5;color:#c2410c}
   .badge-arrived{background:#dcfce7;color:#15803d}
@@ -147,7 +147,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -507,9 +507,9 @@ function summaryBody() {
 }
 
 function CardGeneralInfo() {
-  const iconTerminal = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.95 9.84173C24.838 9.43162 24.5684 9.0824 24.2001 8.87012C23.8317 8.65785 23.3944 8.59972 22.9834 8.7084L17.3167 10.2251L9.91671 3.3584L7.86671 3.9084L12.3 11.5584L6.98337 12.9751L4.88337 11.3417L3.33337 11.7584L6.10004 16.5584L23.8 11.8251C24.6667 11.5751 25.1667 10.6917 24.95 9.84173ZM35 16.6417L33.3334 19.9751H25L23.3334 16.6417L25 14.9751H28.3334V11.6417H30V14.9751H33.3334L35 16.6417ZM36.6667 33.3084V36.6417H3.33337V33.3084H25V21.6417H33.3334V33.3084H36.6667Z" fill="#153F5E"></path></svg>`;
-  const iconGate = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M33.65 6.66675H6.66671C4.83337 6.66675 3.35004 8.16675 3.35004 10.0001V16.6667C5.18337 16.6667 6.66671 18.1667 6.66671 20.0001C6.66671 21.8334 5.18337 23.3334 3.33337 23.3334V30.0001C3.33337 31.8334 4.83337 33.3334 6.66671 33.3334H33.3334C35.1667 33.3334 36.6667 31.8334 36.6667 30.0001V10.0001C36.6667 8.16675 35.3167 6.66675 33.65 6.66675ZM29.55 22.1667L14.7834 26.1001L12.0167 21.3001L13.5667 20.8834L15.6667 22.5334L19.65 21.4667L15.65 14.5334L17.9834 13.9001L24.6667 20.1334L28.7334 19.0501C29.1444 18.9414 29.5817 18.9995 29.9501 19.2118C30.3184 19.4241 30.588 19.7733 30.7 20.1834C30.8028 20.5986 30.7403 21.0374 30.5258 21.4074C30.3112 21.7774 29.9614 22.0497 29.55 22.1667Z" fill="#153F5E"></path></svg>`;
-  const iconRunway = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.9445 36.4671C19.4986 36.0192 19.3155 35.3277 19.2395 34.4235L15.3301 35.3045C15.1136 35.3896 15.024 35.2936 15.004 35.0976L15.0788 34.1574C15.1149 34.0079 15.1884 33.8867 15.3218 33.8106L18.7768 31.3552L18.5725 27.6953L8.93509 29.8813C8.70437 29.9413 8.59481 29.8562 8.63219 29.5952L8.79975 28.1039L18.3998 23.0442L18.247 19.5415C18.3475 18.1565 18.7826 17.1466 19.4715 16.729C19.853 16.4989 20.0515 16.4822 20.4318 16.6755C21.1768 17.0545 21.6479 18.0927 21.7529 19.5415L21.6002 23.0442L31.2002 28.1039L31.3678 29.5952C31.4051 29.8562 31.2956 29.9413 31.0648 29.8813L21.4281 27.6953L21.2232 31.3552L24.6782 33.8106C24.8116 33.8867 24.8857 34.0079 24.9211 34.1574L24.9959 35.0976C24.9759 35.2936 24.8863 35.3896 24.6704 35.3045L20.7604 34.4235C20.6844 35.3309 20.5007 36.0231 20.0502 36.4717C20.0083 36.5135 19.9845 36.5065 19.9445 36.4671ZM8.83906 26.4212L14.7482 3.5H15.9301L10.9194 25.3243L8.83906 26.4212ZM20.3944 3.5L20.4492 5.61901H19.4019L19.4921 3.5H20.3944ZM19.0365 12.2126H20.8133L20.9879 15.2964H20.9634C20.5929 15.1262 20.2584 15.0521 19.8659 15.0753C19.5604 15.094 19.2981 15.1675 19.0268 15.2964H18.8947L19.0365 12.2126ZM19.3761 6.93824H20.5168L20.7147 10.459H19.1686L19.3761 6.93824ZM25.3645 3.5L31.0378 26.3561L29.0593 25.3133L24.0969 3.5L25.3645 3.5Z" fill="#153F5E"></path></svg>`;
+  const iconTerminal = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.95 9.84173C24.838 9.43162 24.5684 9.0824 24.2001 8.87012C23.8317 8.65785 23.3944 8.59972 22.9834 8.7084L17.3167 10.2251L9.91671 3.3584L7.86671 3.9084L12.3 11.5584L6.98337 12.9751L4.88337 11.3417L3.33337 11.7584L6.10004 16.5584L23.8 11.8251C24.6667 11.5751 25.1667 10.6917 24.95 9.84173ZM35 16.6417L33.3334 19.9751H25L23.3334 16.6417L25 14.9751H28.3334V11.6417H30V14.9751H33.3334L35 16.6417ZM36.6667 33.3084V36.6417H3.33337V33.3084H25V21.6417H33.3334V33.3084H36.6667Z" fill="#374151"></path></svg>`;
+  const iconGate = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M33.65 6.66675H6.66671C4.83337 6.66675 3.35004 8.16675 3.35004 10.0001V16.6667C5.18337 16.6667 6.66671 18.1667 6.66671 20.0001C6.66671 21.8334 5.18337 23.3334 3.33337 23.3334V30.0001C3.33337 31.8334 4.83337 33.3334 6.66671 33.3334H33.3334C35.1667 33.3334 36.6667 31.8334 36.6667 30.0001V10.0001C36.6667 8.16675 35.3167 6.66675 33.65 6.66675ZM29.55 22.1667L14.7834 26.1001L12.0167 21.3001L13.5667 20.8834L15.6667 22.5334L19.65 21.4667L15.65 14.5334L17.9834 13.9001L24.6667 20.1334L28.7334 19.0501C29.1444 18.9414 29.5817 18.9995 29.9501 19.2118C30.3184 19.4241 30.588 19.7733 30.7 20.1834C30.8028 20.5986 30.7403 21.0374 30.5258 21.4074C30.3112 21.7774 29.9614 22.0497 29.55 22.1667Z" fill="#374151"></path></svg>`;
+  const iconRunway = `<svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.9445 36.4671C19.4986 36.0192 19.3155 35.3277 19.2395 34.4235L15.3301 35.3045C15.1136 35.3896 15.024 35.2936 15.004 35.0976L15.0788 34.1574C15.1149 34.0079 15.1884 33.8867 15.3218 33.8106L18.7768 31.3552L18.5725 27.6953L8.93509 29.8813C8.70437 29.9413 8.59481 29.8562 8.63219 29.5952L8.79975 28.1039L18.3998 23.0442L18.247 19.5415C18.3475 18.1565 18.7826 17.1466 19.4715 16.729C19.853 16.4989 20.0515 16.4822 20.4318 16.6755C21.1768 17.0545 21.6479 18.0927 21.7529 19.5415L21.6002 23.0442L31.2002 28.1039L31.3678 29.5952C31.4051 29.8562 31.2956 29.9413 31.0648 29.8813L21.4281 27.6953L21.2232 31.3552L24.6782 33.8106C24.8116 33.8867 24.8857 34.0079 24.9211 34.1574L24.9959 35.0976C24.9759 35.2936 24.8863 35.3896 24.6704 35.3045L20.7604 34.4235C20.6844 35.3309 20.5007 36.0231 20.0502 36.4717C20.0083 36.5135 19.9845 36.5065 19.9445 36.4671ZM8.83906 26.4212L14.7482 3.5H15.9301L10.9194 25.3243L8.83906 26.4212ZM20.3944 3.5L20.4492 5.61901H19.4019L19.4921 3.5H20.3944ZM19.0365 12.2126H20.8133L20.9879 15.2964H20.9634C20.5929 15.1262 20.2584 15.0521 19.8659 15.0753C19.5604 15.094 19.2981 15.1675 19.0268 15.2964H18.8947L19.0365 12.2126ZM19.3761 6.93824H20.5168L20.7147 10.459H19.1686L19.3761 6.93824ZM25.3645 3.5L31.0378 26.3561L29.0593 25.3133L24.0969 3.5L25.3645 3.5Z" fill="#374151"></path></svg>`;
   const D = AIRPORT_DETAILS[AIRPORT.code] || {};
   const icao = D.icao || AIRPORT.icao || '—';
   const terminals = D.terminals ?? AIRPORT.terminals ?? '—';
@@ -564,7 +564,7 @@ function CardGeneralInfo() {
         <div class="flex flex-col" style="gap:8px;">
           ${TI.list.map(t => `
           <div style="display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:start;">
-            <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:4px 0;text-align:center;font-size:12px;font-weight:700;color:#153F5E;">${t.t}</div>
+            <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:4px 0;text-align:center;font-size:12px;font-weight:700;color:#374151;">${t.t}</div>
             <div>
               <div class="text-xs font-semibold text-ink-900">${t.name}</div>
               <div class="text-xs text-ink-500 mb-1">${t.role}</div>

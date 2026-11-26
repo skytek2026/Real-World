@@ -49,7 +49,7 @@
   cursor:pointer; position:relative; flex-shrink:0;
   transition:background 120ms, border-color 120ms;
 }
-.rw-modal-check-row input[type="checkbox"]:checked { background:var(--brand-500,#3b82f6); border-color:var(--brand-500,#3b82f6); }
+.rw-modal-check-row input[type="checkbox"]:checked { background:var(--brand-500,#1a92d1); border-color:var(--brand-500,#1a92d1); }
 .rw-modal-check-row input[type="checkbox"]:checked::after {
   content:''; position:absolute; left:5px; top:1px; width:5px; height:10px;
   border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);
@@ -60,7 +60,7 @@
 .rw-modal-btn-cancel   { background:#fff; color:var(--brand-600,#2563eb); border:1px solid var(--brand-300,#93c5fd); }
 .rw-modal-btn-cancel:hover { background:#f0f7ff; }
 .rw-modal-btn-cancel:active { background:var(--brand-100,#dbeafe); border-color:var(--brand-400,#60a5fa); }
-.rw-modal-btn-primary  { background:var(--brand-500,#3b82f6); color:#fff; border:1px solid var(--brand-500,#3b82f6); }
+.rw-modal-btn-primary  { background:var(--brand-500,#1a92d1); color:#fff; border:1px solid var(--brand-500,#1a92d1); }
 .rw-modal-btn-primary:hover { background:var(--brand-600,#2563eb); border-color:var(--brand-600,#2563eb); }
 .rw-modal-btn-primary:active { background:var(--brand-700,#1d4ed8); border-color:var(--brand-700,#1d4ed8); }
 

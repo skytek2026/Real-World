@@ -1,4 +1,4 @@
-/* Section 4 — Layout, Interaction, Accessibility */
+/* Section 4: Layout, Interaction, Accessibility */
 
 const LayoutSection = () => (
   <>
@@ -13,13 +13,13 @@ const LayoutSection = () => (
               <div className="app-nav-brand-mark" style={{ width: 22, height: 22, fontSize: 11 }}>S</div>
               <span style={{ fontWeight: 600, fontSize: 13 }}>Skytek</span>
             </div>
-            <div style={{ padding: "12px 0 4px 20px", fontSize: 10, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Monitor</div>
+            <div style={{ padding: "12px 0 4px 20px", fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Monitor</div>
             <a className="ds-sidebar-item is-active"><Icon d={I.bars} /> Dashboard</a>
             <a className="ds-sidebar-item"><Icon d={I.ship} /> Vessels</a>
             <a className="ds-sidebar-item"><Icon d={I.plane} /> Aircraft</a>
             <a className="ds-sidebar-item"><Icon d={I.globe} /> Regions</a>
             <a className="ds-sidebar-item"><Icon d={I.folder} /> Portfolios</a>
-            <div style={{ padding: "12px 0 4px 20px", fontSize: 10, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Account</div>
+            <div style={{ padding: "12px 0 4px 20px", fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Account</div>
             <a className="ds-sidebar-item"><Icon d={I.settings} /> Settings</a>
           </div>
           <div style={{ display: "grid", gridTemplateRows: "48px 1fr", minWidth: 0 }}>
@@ -48,13 +48,13 @@ const LayoutSection = () => (
       <h3 className="subsection-title">Page header pattern</h3>
       <p className="subsection-desc">Every detail and list page follows the same shape: breadcrumbs → title row → tabs (optional) → content. Action buttons live on the right of the title row.</p>
       <div className="ds-card">
-        <div style={{ padding: "12px 20px", display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--text-muted)" }}>
+        <div style={{ padding: "12px 20px", display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "var(--text-muted)" }}>
           <span>Portfolios</span><Icon d={I.chevronRight} size={12} /><span>Atlantic Hull 2026</span>
         </div>
         <div style={{ padding: "0 20px 16px", display: "flex", alignItems: "flex-end", gap: 16 }}>
           <div style={{ flex: 1 }}>
             <h2 className="t-h1" style={{ margin: 0 }}>Atlantic Hull 2026</h2>
-            <div className="row" style={{ marginTop: 6 }}>
+            <div className="row" style={{ marginTop: 4 }}>
               <span className="ds-badge ds-badge--success ds-badge--dot">Active</span>
               <span className="t-caption">142 vessels · 12 policies · last updated 4m ago</span>
             </div>
@@ -125,7 +125,7 @@ const InteractionSection = () => (
         <tr><td><strong>Hover</strong></td><td>Background steps one shade up. No size or border-width change.</td><td><code>--motion-fast (140ms)</code></td></tr>
         <tr><td><strong>Active / Pressed</strong></td><td>Background steps one shade darker. Visual stays inside element bounds.</td><td><code>--motion-instant (80ms)</code></td></tr>
         <tr><td><strong>Focus-visible</strong></td><td>3px ring at <code>rgba(46,134,192,0.32)</code>. Always visible on keyboard navigation.</td><td><code>--shadow-focus</code></td></tr>
-        <tr><td><strong>Disabled</strong></td><td>Background <code>--slate-50</code>, text <code>--text-disabled</code>, no hover. Cursor not-allowed.</td><td>—</td></tr>
+        <tr><td><strong>Disabled</strong></td><td>Background <code>--slate-050</code>, text <code>--text-disabled</code>, no hover. Cursor not-allowed.</td><td>—</td></tr>
         <tr><td><strong>Loading</strong></td><td>Inline spinner inside button; outer chrome unchanged. For pages: skeleton frames (no spinner).</td><td><code>--motion-base</code></td></tr>
         <tr><td><strong>Error</strong></td><td>Border <code>--danger-500</code>, message below field. No shake.</td><td>—</td></tr>
         <tr><td><strong>Success (transient)</strong></td><td>Toast top-center, 4s. Inline rows tint <code>--success-050</code> for 1.5s.</td><td><code>--motion-slow</code></td></tr>
@@ -152,15 +152,15 @@ const A11ySection = () => (
   <table className="spec-table">
     <thead><tr><th>Rule</th><th>Standard</th><th>How to verify</th></tr></thead>
     <tbody>
-      <tr><td>Body text contrast ≥ 4.5:1; large text ≥ 3:1.</td><td>WCAG 2.2 AA (1.4.3)</td><td>Token contrast verified — see Engineering Handoff &gt; tokens.</td></tr>
+      <tr><td>Body text contrast ≥ 4.5:1; large text ≥ 3:1.</td><td>WCAG 2.2 AA (1.4.3)</td><td>Token contrast verified: see Engineering Handoff &gt; tokens.</td></tr>
       <tr><td>UI control contrast ≥ 3:1 against adjacent surface.</td><td>WCAG 2.2 AA (1.4.11)</td><td>All <code>ds-btn--secondary</code> and <code>ds-input</code> borders verified ≥ 3:1.</td></tr>
       <tr><td>Visible focus on every interactive element.</td><td>WCAG 2.2 AA (2.4.7)</td><td><code>:focus-visible</code> applies <code>--shadow-focus</code>; never override with <code>outline:none</code>.</td></tr>
-      <tr><td>Touch targets ≥ 44 × 44px on mobile.</td><td>WCAG 2.2 AA (2.5.5)</td><td>Use <code>ds-btn--lg</code> on mobile breakpoints; row hit areas span the full row.</td></tr>
+      <tr><td>Touch targets at least 24 × 24px everywhere; 44 × 44px on touch screens.</td><td>WCAG 2.2 AA (2.5.8, 24px); 2.5.5 (44px) is AAA</td><td><code>ds-btn--lg</code> is 40px: on touch, extend its hit area to 44px with padding or an invisible hit area; row hit areas span the full row.</td></tr>
       <tr><td>Inputs always labeled (visible label or <code>aria-label</code>).</td><td>WCAG 2.2 A (1.3.1)</td><td><code>FormItem</code> generates <code>htmlFor</code>+<code>id</code> automatically.</td></tr>
       <tr><td>Errors announced via <code>aria-invalid</code> + <code>aria-describedby</code>.</td><td>WCAG 2.2 A (3.3.1)</td><td>Inherited from React Hook Form Form primitive.</td></tr>
       <tr><td>Tables use proper <code>&lt;th scope&gt;</code>; not for layout.</td><td>WCAG 2.2 A (1.3.1)</td><td>Replace legacy <code>common/components/table</code> with <code>app/ui/Table</code>.</td></tr>
       <tr><td>Modals trap focus; <code>Esc</code> closes.</td><td>WCAG 2.2 AA (2.1.2)</td><td>Inherited from Radix Dialog.</td></tr>
-      <tr><td>Status colors are paired with text or icon — never alone.</td><td>WCAG 2.2 A (1.4.1)</td><td><code>ds-badge--dot</code> + label; <code>ds-rating</code> always shows letter.</td></tr>
+      <tr><td>Status colors are paired with text or icon, never alone.</td><td>WCAG 2.2 A (1.4.1)</td><td><code>ds-badge--dot</code> + label; <code>ds-rating</code> always shows letter.</td></tr>
       <tr><td>Respect <code>prefers-reduced-motion</code>.</td><td>WCAG 2.2 AAA (2.3.3)</td><td>Global CSS rule disables non-essential transitions.</td></tr>
     </tbody>
   </table>

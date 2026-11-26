@@ -48,7 +48,7 @@ const PLANES = [
 ];
 
 function buildFlightPopupHTML(p) {
-  const statusColor = p.status==='Cruising' ? '#2563eb' : p.status==='Climbing' ? '#10b981' : p.status==='Descending' ? '#f59e0b' : '#6b7280';
+  const statusColor = p.status==='Cruising' ? '#2563eb' : p.status==='Climbing' ? '#16a34a' : p.status==='Descending' ? '#eab308' : '#6b7280';
   const row = (lbl, val, extra) => `
     <div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f9fafb;">
       <span style="font-size:12px;color:#6b7280;">${lbl}:</span>
@@ -125,10 +125,10 @@ let currentMapType = 'satellite';
 let tileLayer = null;
 
 const MAP_TYPES = {
-  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
+  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
   street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f9fafb' },
-  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
+  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
+  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e5e7eb' },
 };
 
 function setMapType(type) {

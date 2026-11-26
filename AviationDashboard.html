@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aviation — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -45,7 +45,7 @@
   .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:999px; }
   .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#1485c5; }
   .tracking-micro { letter-spacing:0.04em; }
-  .ring-focus:focus-visible { outline:2px solid #3b82f6; outline-offset:2px; border-radius:8px; }
+  .ring-focus:focus-visible { outline:2px solid #1a92d1; outline-offset:2px; border-radius:8px; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
   [data-density="compact"] .gap-density { gap:.75rem; }
@@ -61,7 +61,7 @@
   .ds-tab-pill.is-init { transition:none; }
   .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:4px; }
   /* Leaflet custom */
-  #avia-map { background:#e0ebe9; }
+  #avia-map { background:#e5e7eb; }
   #avia-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #avia-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
@@ -128,7 +128,7 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   /* aircraft hover / selected ring (same as the Marine Dashboard's vessel markers) */
   .plane-marker { position:relative; cursor:pointer; }
   .plane-marker::after {
@@ -329,7 +329,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -537,8 +537,8 @@ function positionTabPills() {
 
 /* ----------- CARDS ----------- */
 function PortfolioCard() {
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#43a8df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#43a8df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
   const sortIco = `<span style="font-size:12px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   if (state.portfolioTab === 'Portfolio Groups') {
@@ -630,7 +630,7 @@ function PortfolioCard() {
 
 function AirportCard() {
   const infoIcon = `<svg viewBox="0 0 16 16" class="w-3.5 h-3.5 text-brand-600" fill="currentColor"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="5.5" r="0.8"/><path d="M8 7.5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#43a8df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
 
   const tabBar = `
     <div class="p-3 border-b border-ink-100 shrink-0">
@@ -777,7 +777,7 @@ function NotamCard() {
     return `<span class="px-2 py-0.5 rounded-lg text-xs font-semibold ${bg}">${txt}</span>`;
   };
   const icon = (isWarn) => {
-    const color = isWarn ? '#f59e0b' : '#ef4444';
+    const color = isWarn ? '#eab308' : '#ea580c';
     return `<svg viewBox="0 0 24 24" class="w-4 h-4 shrink-0" fill="none" stroke="${color}" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
   };
 
@@ -785,7 +785,7 @@ function NotamCard() {
 
   if (state.notamTab === 'Weather') {
     const catColor = { rose:'#dc2626', orange:'#ea580c', amber:'#d97706', yellow:'#ca8a04' };
-    const catBg    = { rose:'#fef2f2', orange:'#fff7ed', amber:'#fffbeb', yellow:'#fefce8' };
+    const catBg    = { rose:'#fef2f2', orange:'#fffbeb', amber:'#fffbeb', yellow:'#fffbeb' };
     const windIco = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`;
 
     return `
@@ -824,10 +824,10 @@ function NotamCard() {
 
   if (state.notamTab === 'Alerts') {
     const sev = {
-      Critical: { fill:'#ef4444', border:'#fecaca', bg:'#fef2f2', text:'#dc2626' },
-      High:     { fill:'#f97316', border:'#fed7aa', bg:'#fff7ed', text:'#ea580c' },
-      Medium:   { fill:'#eab308', border:'#fde68a', bg:'#fefce8', text:'#ca8a04' },
-      Low:      { fill:'#3b82f6', border:'#b8ddf5', bg:'#eff6ff', text:'#2563eb' },
+      Critical: { fill:'#ea580c', border:'#fecaca', bg:'#fef2f2', text:'#dc2626' },
+      High:     { fill:'#d97706', border:'#fef3c7', bg:'#fffbeb', text:'#ea580c' },
+      Medium:   { fill:'#eab308', border:'#fef3c7', bg:'#fffbeb', text:'#ca8a04' },
+      Low:      { fill:'#1a92d1', border:'#b8ddf5', bg:'#eff6ff', text:'#2563eb' },
     };
     const triangleIco = (color) => `<svg viewBox="0 0 24 24" class="w-4 h-4 shrink-0 mt-0.5" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
 
@@ -902,7 +902,7 @@ function NotamCard() {
 
 /* ----------- POPUPS ----------- */
 function buildFlightPopupHTML(p) {
-  const statusColor = p.status==='Cruising' ? '#2563eb' : p.status==='Climbing' ? '#10b981' : p.status==='Descending' ? '#f59e0b' : '#6b7280';
+  const statusColor = p.status==='Cruising' ? '#2563eb' : p.status==='Climbing' ? '#16a34a' : p.status==='Descending' ? '#eab308' : '#6b7280';
   const row = (lbl, val, extra) => `
     <div style="display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f9fafb;">
       <span style="font-size:12px;color:#6b7280;">${lbl}:</span>
@@ -994,10 +994,10 @@ let currentMapType = 'satellite';
 let tileLayer = null;
 
 const MAP_TYPES = {
-  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
+  satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
   street:    { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', bg: '#f9fafb' },
-  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#0b1e2e' },
-  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e0ebe9' },
+  dark:      { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#111827' },
+  light:     { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', bg: '#e5e7eb' },
 };
 
 function setMapType(type) {

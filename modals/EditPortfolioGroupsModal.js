@@ -50,7 +50,7 @@
         cursor:pointer; position:relative; flex-shrink:0;
         transition:background 120ms, border-color 120ms;
       }
-      .rw-grp-row input[type="checkbox"]:checked { background:var(--brand-500,#3b82f6); border-color:var(--brand-500,#3b82f6); }
+      .rw-grp-row input[type="checkbox"]:checked { background:var(--brand-500,#1a92d1); border-color:var(--brand-500,#1a92d1); }
       .rw-grp-row input[type="checkbox"]:checked::after {
         content:''; position:absolute; left:5px; top:1px; width:5px; height:10px;
         border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);

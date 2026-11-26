@@ -1,4 +1,4 @@
-/* Section — Stewardship: governance, versioning, testing, performance */
+/* Section: Stewardship: governance, versioning, testing, performance */
 
 const ComponentStatusTable = () => {
   const rows = [
@@ -27,7 +27,7 @@ const ComponentStatusTable = () => {
             <td style={{ color: "var(--text-secondary)", fontSize: 12.5 }}>
               {status === "stable" && "Safe to use. Breaking changes require a major bump + 1 cycle deprecation."}
               {status === "beta" && "API may change. No version pinning required, but flag in PR if used in critical paths."}
-              {status === "draft" && "Spec only — not in app/ui yet. Do not import."}
+              {status === "draft" && "Spec only: not in app/ui yet. Do not import."}
               {status === "deprecated" && "Migration codemod available. Removed in v2.0."}
             </td>
           </tr>
@@ -59,7 +59,7 @@ const Changelog = () => (
       <ul>
         <li>Token names finalized after eng + design review.</li>
         <li>Tailwind mapping ships in <code>tailwind.config.js</code>.</li>
-        <li>Storybook coverage at 92% — Toast + Command palette still beta.</li>
+        <li>Storybook coverage at 92%: Toast + Command palette still beta.</li>
       </ul>
     </div>
     <div className="changelog-entry">
@@ -82,7 +82,7 @@ const SemVerCard = ({ kind, title, examples }) => (
       <div className="t-label" style={{ marginBottom: 8, color: kind === "major" ? "var(--danger-700)" : kind === "minor" ? "var(--info-700)" : "var(--success-700)" }}>
         {kind === "major" ? "MAJOR · X.0.0" : kind === "minor" ? "MINOR · 1.X.0" : "PATCH · 1.0.X"}
       </div>
-      <ul style={{ margin: 0, paddingLeft: 18 }}>
+      <ul style={{ margin: 0, paddingLeft: 20 }}>
         {examples.map((e, i) => <li key={i}>{e}</li>)}
       </ul>
     </div>
@@ -161,7 +161,7 @@ const StewardshipSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Why a stewardship chapter</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
-        A design system rots without a steward. This chapter describes how the system stays current — who owns it, how it changes, how engineers can trust each release,
+        A design system rots without a steward. This chapter describes how the system stays current, who owns it, how it changes, how engineers can trust each release,
         and what the system promises in return for that trust.
       </p>
     </div>
@@ -169,7 +169,7 @@ const StewardshipSection = () => (
     {/* Governance */}
     <div className="subsection">
       <h3 className="subsection-title">Ownership &amp; governance</h3>
-      <p className="subsection-desc">A small group with a clear contract. The system isn't a side project — it has an owner of record.</p>
+      <p className="subsection-desc">A small group with a clear contract. The system isn't a side project; it has an owner of record.</p>
       <table className="spec-table">
         <thead><tr><th>Role</th><th>Responsibility</th><th>Cadence</th></tr></thead>
         <tbody>
@@ -186,7 +186,7 @@ const StewardshipSection = () => (
       <h3 className="subsection-title">RFC process</h3>
       <p className="subsection-desc">
         Anything that adds a token, a component, or a public API change needs an RFC.
-        Style tweaks, bug fixes, and Storybook additions don't — those go straight to PR.
+        Style tweaks, bug fixes, and Storybook additions don't; those go straight to PR.
       </p>
       <div className="panel">
         {[
@@ -194,7 +194,7 @@ const StewardshipSection = () => (
           ["2 · Proposal",       "API sketch (TypeScript types), token additions, visual mock.", "1 page max"],
           ["3 · Prior art",      "What exists in the codebase today? What do other systems do (Polaris, Carbon, Material)?", "Short list"],
           ["4 · Alternatives",   "What did you reject, and why? (Composition vs. new primitive is the most common branch.)", "Bullets"],
-          ["5 · Migration",      "If this replaces something — what's the codemod plan? What's the deprecation window?", "Concrete steps"],
+          ["5 · Migration",      "If this replaces something: what's the codemod plan? What's the deprecation window?", "Concrete steps"],
           ["6 · Approval",       "System lead + one steward (design OR eng, whichever side the change touches more) approve before code lands.", "≤ 1 week"],
         ].map(([k, d, m]) => (
           <div key={k} className="token-row" style={{ gridTemplateColumns: "170px 1fr 130px" }}>
@@ -241,7 +241,7 @@ const StewardshipSection = () => (
         <div className="ds-card">
           <div className="ds-card-head"><h3 className="ds-card-title">Window</h3></div>
           <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-            <ul style={{ margin: 0, paddingLeft: 18 }}>
+            <ul style={{ margin: 0, paddingLeft: 20 }}>
               <li>One <strong>minor</strong> cycle of warning (e.g. 1.4 → 1.5).</li>
               <li>Removed in the next <strong>major</strong>. Never sooner.</li>
               <li>Codemod ships in the same release that marks the deprecation.</li>
@@ -251,7 +251,7 @@ const StewardshipSection = () => (
         <div className="ds-card">
           <div className="ds-card-head"><h3 className="ds-card-title">Signaling</h3></div>
           <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-            <ul style={{ margin: 0, paddingLeft: 18 }}>
+            <ul style={{ margin: 0, paddingLeft: 20 }}>
               <li><code>@deprecated</code> JSDoc on the export (TS surfaces it in autocomplete).</li>
               <li>Runtime <code>console.warn</code> on first use in dev, once per session.</li>
               <li>Status pill in Storybook + this spec table flips to <span className="steward-status steward-status--deprecated">deprecated</span>.</li>
@@ -279,7 +279,7 @@ const StewardshipSection = () => (
     {/* Testing */}
     <div className="subsection">
       <h3 className="subsection-title">Testing matrix</h3>
-      <p className="subsection-desc">What gets tested where. CI is the source of truth — if a check isn't here, it doesn't gate a release.</p>
+      <p className="subsection-desc">What gets tested where. CI is the source of truth, if a check isn't here, it doesn't gate a release.</p>
       <TestingMatrix />
     </div>
 
@@ -301,7 +301,7 @@ const StewardshipSection = () => (
         <div className="ds-card">
           <div className="ds-card-head"><h3 className="ds-card-title">"Do we need this?"</h3></div>
           <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6 }}>
-            <ul style={{ margin: 0, paddingLeft: 18, color: "var(--text-secondary)" }}>
+            <ul style={{ margin: 0, paddingLeft: 20, color: "var(--text-secondary)" }}>
               <li>Can it be built by composing existing primitives?</li>
               <li>Does it appear in ≥ 2 modules, or is it a one-off?</li>
               <li>Does it duplicate a Highcharts / Leaflet / radix-ui feature?</li>
@@ -315,11 +315,11 @@ const StewardshipSection = () => (
         <div className="ds-card">
           <div className="ds-card-head"><h3 className="ds-card-title">PR checklist</h3></div>
           <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6 }}>
-            <ul style={{ margin: 0, paddingLeft: 18, color: "var(--text-secondary)" }}>
+            <ul style={{ margin: 0, paddingLeft: 20, color: "var(--text-secondary)" }}>
               <li>RFC merged (if API change).</li>
               <li>Storybook story per variant × size × state.</li>
               <li>axe passes · keyboard happy path works.</li>
-              <li>Tokens only — no raw hex, no magic <code>px</code> outside the scale.</li>
+              <li>Tokens only: no raw hex, no magic <code>px</code> outside the scale.</li>
               <li>Bundle size delta ≤ budget.</li>
               <li>Changelog label set (<code>type:breaking</code> / <code>feature</code> / <code>fix</code>).</li>
               <li>Codemod added if deprecating anything.</li>
@@ -348,7 +348,7 @@ const StewardshipSection = () => (
     </div>
 
     <div className="callout" style={{ marginTop: 24 }}>
-      <strong>The system's promise:</strong> if you read this spec and use the tokens, your UI will keep working — through theme swaps, library upgrades, even product rebrands — without a rewrite.
+      <strong>The system's promise:</strong> if you read this spec and use the tokens, your UI will keep working, through theme swaps, library upgrades, even product rebrands, without a rewrite.
       The system's ask back is exactly this: only what's in the spec, never invented locally.
     </div>
   </>

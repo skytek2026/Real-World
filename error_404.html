@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Page not found — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -21,7 +21,7 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 .e4-dev-lbl{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#4b5563;white-space:nowrap}
 .e4-dev-lbl svg{width:14px;height:14px;color:#6b7280}
 .e4-select{height:32px;min-width:150px;border:1px solid #e5e7eb;border-radius:8px;padding:0 32px 0 12px;font:600 13px/1 'Inter',sans-serif;color:#111827;background:#f9fafb url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer}
-.e4-select:focus{outline:none;border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-500,#3b82f6) 16%,transparent);background-color:#fff}
+.e4-select:focus{outline:none;border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-500,#1a92d1) 16%,transparent);background-color:#fff}
 
 /* The ghost record: the row you expected, with nothing in it */
 .e4-ghost{position:relative;display:flex;align-items:center;gap:12px;width:100%;max-width:380px;padding:16px 16px;border:1.5px dashed #d1d5db;border-radius:12px;background:#fff}
@@ -66,7 +66,7 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 html[data-theme="dark"] .e4-dev-box,html[data-theme="dark"] .e4-ghost{background:#161f2e;border-color:#34435c}
 html[data-theme="dark"] .e4-dev-lbl{color:#c0c9d8}
 html[data-theme="dark"] .e4-select{background-color:#1f2937;border-color:#2a374d;color:#e7ecf4}
-html[data-theme="dark"] .e4-ghost-ico{background:color-mix(in srgb,var(--brand-500,#3b82f6) 18%,transparent);color:var(--brand-300,#93c5fd)}
+html[data-theme="dark"] .e4-ghost-ico{background:color-mix(in srgb,var(--brand-500,#1a92d1) 18%,transparent);color:var(--brand-300,#93c5fd)}
 html[data-theme="dark"] .e4-ghost-id,html[data-theme="dark"] .e4-title{color:#e7ecf4}
 html[data-theme="dark"] .e4-ghost-kind,html[data-theme="dark"] .e4-lede,html[data-theme="dark"] .e4-tech dd{color:#c0c9d8}
 html[data-theme="dark"] .e4-ghost-bars span{background:#2a374d}
@@ -90,7 +90,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 const esc = v => String(v == null ? '' : v).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));

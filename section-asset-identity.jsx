@@ -1,4 +1,4 @@
-/* Section — Asset identity & status (Domain primitives)
+/* Section: Asset identity & status (Domain primitives)
    How every asset (vessel, offshore installation, aircraft, property) is
    identified and status-coded consistently across lists, tables, detail
    headers, popups, alerts and reports. The Maps chapter governs the asset
@@ -27,10 +27,10 @@ const FlagSection = () => (
   <div className="subsection" style={{ marginTop: 0 }}>
     <h3 className="subsection-title">Flag chip</h3>
     <p className="subsection-desc" style={{ maxWidth: 820 }}>
-      Nationality is the single most repeated identity signal in the product — a vessel's flag state, an asset's country
+      Nationality is the single most repeated identity signal in the product, a vessel's flag state, an asset's country
       of jurisdiction, a region row, a sanction subject's domicile, a port's country. One chip renders all of them:
       a <code className="inline">flagcdn.com</code> raster at a fixed aspect, 2&nbsp;px corners, a 1&nbsp;px hairline ring so light flags
-      stay legible on white. It is <strong>never the sole identifier</strong> — it always sits beside the country name or asset name.
+      stay legible on white. It is <strong>never the sole identifier</strong>; it always sits beside the country name or asset name.
     </p>
 
     <div className="grid-2" style={{ alignItems: "flex-start" }}>
@@ -57,11 +57,11 @@ const FlagSection = () => (
           <span className="flag-pair"><Flag cc="lr" name="Liberia" /> Liberia</span>
           <span className="flag-pair"><Flag cc="mh" name="Marshall Islands" /> Marshall Islands</span>
         </div>
-        <div className="panel-foot">The <code>alt</code> carries the country name — a bare flag fails screen readers.</div>
+        <div className="panel-foot">The <code>alt</code> carries the country name: a bare flag fails screen readers.</div>
       </div>
     </div>
 
-    <p className="t-caption" style={{ marginTop: 12, marginBottom: 6 }}>One helper, two sizes, retina by default. Modules never hand-build the <code className="inline">&lt;img&gt;</code>:</p>
+    <p className="t-caption" style={{ marginTop: 12, marginBottom: 4 }}>One helper, two sizes, retina by default. Modules never hand-build the <code className="inline">&lt;img&gt;</code>:</p>
     <pre className="code">{`// app/ui/Flag.tsx
 export function Flag({ cc, name, size = 'sm' }: { cc: string; name: string; size?: 'sm' | 'md' }) {
   return (
@@ -69,7 +69,7 @@ export function Flag({ cc, name, size = 'sm' }: { cc: string; name: string; size
       className={\`ds-flag ds-flag--\${size}\`}
       src={\`https://flagcdn.com/w\${size === 'md' ? 40 : 20}/\${cc}.png\`}
       srcSet={\`https://flagcdn.com/w80/\${cc}.png 2x\`}
-      alt={name}          // never empty — nationality is meaning, not decoration
+      alt={name}          // never empty: nationality is meaning, not decoration
       loading="lazy"
     />
   );
@@ -105,7 +105,7 @@ const VesselGlyph = ({ color = "#2563eb", heading = 45, size = 28 }) => (
 
 const OffshoreGlyph = ({ color = "#ea580c", size = 16 }) => (
   <span style={{ display: "inline-flex", width: 28, height: 28, alignItems: "center", justifyContent: "center" }}>
-    <span style={{ width: 14, height: 14, borderRadius: "50%", background: color, border: "2px solid #fff", boxShadow: "0 1px 3px rgba(0,0,0,.3)" }} />
+    <span style={{ width: 14, height: 14, borderRadius: "50%", background: color, border: "2px solid #fff", boxShadow: "var(--glyph-shadow-sm)" }} />
   </span>
 );
 
@@ -134,7 +134,7 @@ const IdentitySection = () => (
     <p className="subsection-desc" style={{ maxWidth: 820 }}>
       Every asset answers the same four questions, in the same order, wherever it appears: <strong>what is it</strong> (type glyph),
       <strong> what is it called</strong> (name), <strong>whose is it / where is it flagged</strong> (flag + country), and
-      <strong> how do we key it</strong> (the canonical ID). Compliance status rides at the end of the name line as a badge — never as a recolor.
+      <strong> how do we key it</strong> (the canonical ID). Compliance status rides at the end of the name line as a badge, never as a recolor.
       This block is the heading of every detail page, the header of every map popup, and the lead cell of every asset list.
     </p>
 
@@ -164,15 +164,15 @@ const IdentitySection = () => (
       </thead>
       <tbody>
         <tr><td><strong>Name</strong></td><td>All assets</td><td>Free text</td><td>Display font, <strong>UPPERCASE</strong> for vessels (matches AIS); title-case for offshore/property.</td></tr>
-        <tr><td><strong>IMO number</strong></td><td>Vessels, offshore (where assigned)</td><td>7 digits</td><td>Mono, tabular, never grouped. The durable key — survives name &amp; flag changes.</td></tr>
-        <tr><td><strong>MMSI</strong></td><td>Vessels</td><td>9 digits</td><td>Mono, tabular. Transient — can change with flag; never the primary key.</td></tr>
+        <tr><td><strong>IMO number</strong></td><td>Vessels, offshore (where assigned)</td><td>7 digits</td><td>Mono, tabular, never grouped. The durable key: survives name &amp; flag changes.</td></tr>
+        <tr><td><strong>MMSI</strong></td><td>Vessels</td><td>9 digits</td><td>Mono, tabular. Transient: can change with flag; never the primary key.</td></tr>
         <tr><td><strong>Call sign</strong></td><td>Vessels, aircraft</td><td>Alphanumeric</td><td>Mono, uppercase.</td></tr>
         <tr><td><strong>Unit ID / CVN</strong></td><td>Offshore installations</td><td>Registry-specific</td><td>Mono. Shown beside IMO when both exist.</td></tr>
         <tr><td><strong>Flag</strong></td><td>All assets</td><td>ISO 3166-1 α-2</td><td>Flag chip + country name (see above).</td></tr>
       </tbody>
     </table>
     <div className="callout" style={{ marginTop: 12 }}>
-      <strong>IMO is the key, not the name.</strong> Vessel names and flags change — sometimes to evade screening (see the Historical Details
+      <strong>IMO is the key, not the name.</strong> Vessel names and flags change, sometimes to evade screening (see the Historical Details
       and Name/Flag Change patterns). Lists, dedupe and cross-references key on <code className="inline">imo</code>; the name is a label on top of it.
     </div>
   </div>
@@ -186,14 +186,13 @@ const StatusSection = () => (
     <p className="subsection-desc" style={{ maxWidth: 820 }}>
       An asset carries up to three <em>independent</em> status dimensions, and they must never be collapsed into one swatch.
       <strong> Operational state</strong> (is it running), <strong>compliance state</strong> (has it been screened), and
-      <strong> risk severity</strong> (how bad is the current finding) each map to their own semantic tokens. All three use the badge primitive —
-      tint + ink + optional leading dot — so the product reads one status language.
+      <strong> risk severity</strong> (how bad is the current finding) each map to their own semantic tokens. All three use the badge primitive, tint + ink + optional leading dot, so the product reads one status language.
     </p>
 
     <div className="grid-2" style={{ alignItems: "flex-start" }}>
       <div className="panel">
         <div className="panel-head"><h4>Operational state</h4><span className="meta">offshore · property</span></div>
-        <div className="panel-body" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div className="panel-body" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <div className="status-row"><span className="ds-badge ds-badge--success ds-badge--dot">Operational</span><span>running / on-station · <code className="inline">--success</code></span></div>
           <div className="status-row"><span className="ds-badge ds-badge--warning ds-badge--dot">Under Maintenance</span><span>degraded / in service · <code className="inline">--warning</code></span></div>
           <div className="status-row"><span className="ds-badge ds-badge--neutral ds-badge--dot">Decommissioned</span><span>cold-stacked / retired · <code className="inline">--slate</code></span></div>
@@ -202,7 +201,7 @@ const StatusSection = () => (
       </div>
       <div className="panel">
         <div className="panel-head"><h4>Compliance state</h4><span className="meta">vessels · subjects</span></div>
-        <div className="panel-body" style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div className="panel-body" style={{ display: "flex", flexDirection: "column", gap: 8 }}>
           <div className="status-row"><span className="s-cell s-cell--ok"><span className="s-dot" /> Clear</span><span>screened, no hit · <code className="inline">--success</code></span></div>
           <div className="status-row"><span className="s-cell s-cell--sanctioned"><span className="s-dot" /> Sanctioned</span><span>positive match · <code className="inline">--danger</code></span></div>
           <div className="status-row"><span className="s-cell s-cell--unverif">?</span><span style={{ marginLeft: 4 }}>Unverifiable · <code className="inline">--unverif</code></span></div>
@@ -211,9 +210,9 @@ const StatusSection = () => (
       </div>
     </div>
 
-    <div className="callout warn" style={{ marginTop: 14 }}>
+    <div className="callout warn" style={{ marginTop: 12 }}>
       <strong>One dimension, one channel.</strong> A sanctioned vessel that is also operational shows <em>both</em> a danger compliance
-      badge and a success operational badge — it is never rendered in a single blended color. Operators must be able to read each question separately.
+      badge and a success operational badge; it is never rendered in a single blended color. Operators must be able to read each question separately.
     </div>
   </div>
 );
@@ -224,7 +223,7 @@ const SeveritySection = () => (
   <div className="subsection">
     <h3 className="subsection-title">Severity scale</h3>
     <p className="subsection-desc" style={{ maxWidth: 820 }}>
-      Findings — casualties, deficiencies, weather impact — carry a three-step severity. It is an <em>ordered</em> scale (unlike the
+      Findings: casualties, deficiencies, weather impact, carry a three-step severity. It is an <em>ordered</em> scale (unlike the
       categorical event types below), so it maps to the semantic ramp: danger → warning → neutral. This replaces the ad-hoc colored text that
       drifted across casualty, inspection and weather surfaces.
     </p>
@@ -248,7 +247,7 @@ const ALERT_TYPES = [
   ["Route Deviation",  "event-chip--route-dev",   "Vessel departs its filed route.",                              "warning token"],
   ["Drifting",         "event-chip--drifting",    "Stationary or near-zero power for an extended window.",         "cyan"],
   ["Loitering",        "event-chip--loitering",   "Extended dwell in a sensitive area.",                          "orange"],
-  ["Name/Flag Change", "event-chip--name-flag",   "Identity changed — a classic evasion signal.",                 "pink"],
+  ["Name/Flag Change", "event-chip--name-flag",   "Identity changed: a classic evasion signal.",                 "pink"],
   ["Unusual Movement", "event-chip--unusual",     "Erratic course or speed pattern.",                             "warning token"],
   ["STS Transfer",     "event-chip--sts",         "Ship-to-ship transfer detected.",                              "orange"],
 ];
@@ -257,7 +256,7 @@ const EventTypeSection = () => (
   <div className="subsection">
     <h3 className="subsection-title">Event &amp; alert types</h3>
     <p className="subsection-desc" style={{ maxWidth: 820 }}>
-      Suspicious-activity and alert classes are a <em>categorical</em> vocabulary — there is no "worse" hue, only a different kind of event.
+      Suspicious-activity and alert classes are a <em>categorical</em> vocabulary; there is no "worse" hue, only a different kind of event.
       Each type owns one color so an operator learns the palette once and reads it across the dashboard alert feed, the vessel
       Suspicious Activity tab, and the map. These are tokens (<code className="inline">--event-*</code>), reconciling the per-page colors
       that had drifted apart. Severity (above) answers "how bad"; the event type answers "what kind".
@@ -315,8 +314,7 @@ const SanctionSection = () => (
   <div className="subsection">
     <h3 className="subsection-title">Sanction compliance matrix</h3>
     <p className="subsection-desc" style={{ maxWidth: 820 }}>
-      The vessel's Sanction Compliance tab screens every <strong>related subject</strong> — the vessel, its flag, owner, operator and managers —
-      against five lists (OFAC, UN, EU, Australia, OFSI). The matrix is the canonical layout: relationship rows down, lists across, one cell state per check.
+      The vessel's Sanction Compliance tab screens every <strong>related subject</strong>, the vessel, its flag, owner, operator and managers, against five lists (OFAC, UN, EU, Australia, OFSI). The matrix is the canonical layout: relationship rows down, lists across, one cell state per check.
     </p>
 
     <div className="panel">
@@ -342,7 +340,7 @@ const SanctionSection = () => (
           </tbody>
         </table>
       </div>
-      <div className="panel-foot">Tinted rows are <em>Unverifiable</em> — the subject resolved to "Unknown", so screening could not run.</div>
+      <div className="panel-foot">Tinted rows are <em>Unverifiable</em>, the subject resolved to "Unknown", so screening could not run.</div>
     </div>
 
     <h4 style={{ fontSize: 13, fontWeight: 700, margin: "20px 0 8px" }}>Cell states</h4>
@@ -352,14 +350,14 @@ const SanctionSection = () => (
       </thead>
       <tbody>
         <tr><td><SCell status="ok" /></td><td>Subject screened, no list match.</td><td>Cleared against this list.</td></tr>
-        <tr><td><SCell status="sanctioned" /></td><td>Subject matches a list entry.</td><td>Positive hit — drives the asset's overall compliance to <em>Sanctioned</em>.</td></tr>
-        <tr><td><span className="s-cell s-cell--unverif">?</span></td><td>Subject is <em>Unknown</em> / has no provider record.</td><td>Screening could not run. <strong>Treat as elevated risk</strong> — must not show as Ok.</td></tr>
+        <tr><td><SCell status="sanctioned" /></td><td>Subject matches a list entry.</td><td>Positive hit: drives the asset's overall compliance to <em>Sanctioned</em>.</td></tr>
+        <tr><td><span className="s-cell s-cell--unverif">?</span></td><td>Subject is <em>Unknown</em> / has no provider record.</td><td>Screening could not run. <strong>Treat as elevated risk</strong>, must not show as Ok.</td></tr>
       </tbody>
     </table>
 
     <div className="callout danger" style={{ marginTop: 12 }}>
       <strong>"Unknown" must never pass as compliant.</strong> When a relationship resolves to <em>Unknown</em>, the platform must render the
-      Unverifiable state — not a green Ok. A reviewer scanning all-green clears the vessel; the Unverifiable cell, row tint, and a small amber dot
+      Unverifiable state, not a green Ok. A reviewer scanning all-green clears the vessel; the Unverifiable cell, row tint, and a small amber dot
       on the tab keep unscreened subjects visible. Do not reuse the warning "At risk" orange (that means "screened and borderline") and do not
       mark unverifiable subjects as Sanctioned (false positives erode trust in the red dot).
     </div>

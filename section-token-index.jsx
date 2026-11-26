@@ -1,14 +1,17 @@
-/* Section — Token index: every CSS variable, searchable */
+/* Section: Token index: every CSS variable, searchable */
 
 const TOKEN_CATALOG = [
   // [name, type, value, where]
   // Color · Brand
-  ["--brand-600", "color", "#2d7ffb",  "Primary action, key headings, link hover"],
-  ["--brand-500", "color", "#51a2fc",  "Hover/highlight, default link"],
-  ["--brand-400", "color", "#8ec5fd",  "Accent, focus rings"],
-  ["--brand-300", "color", "#bfdbfe",  "Decorative, subtle accent"],
-  ["--brand-100", "color", "#dbeafe",  "Tint backgrounds"],
-  ["--brand-050", "color", "#eff6ff",  "Lightest brand tint"],
+  ["--brand-800", "color", "#0d5580",  "Primary hover / pressed; text on brand tints (7.99:1)"],
+  ["--brand-700", "color", "#0f6aa0",  "Primary button fill; links (5.85:1 on white)"],
+  ["--brand-600", "color", "#1485c5",  "Focus ring, selected states, large text / UI (4.05:1)"],
+  ["--brand-500", "color", "#1a92d1",  "Hover / highlight (non-text on white)"],
+  ["--brand-400", "color", "#43a8df",  "Accent, non-text marks"],
+  ["--brand-300", "color", "#84c5ec",  "Decorative, subtle accent"],
+  ["--brand-200", "color", "#b8ddf5",  "Light tint, selected-row borders"],
+  ["--brand-100", "color", "#dceffb",  "Tint backgrounds"],
+  ["--brand-050", "color", "#eff8fd",  "Lightest brand tint"],
   // Color · Slate
   ["--slate-950", "color", "#0B1220",  "Deepest text, dark surface base"],
   ["--slate-900", "color", "#111827",  "Primary text"],
@@ -21,7 +24,7 @@ const TOKEN_CATALOG = [
   ["--slate-200", "color", "#E5E7EB",  "Default borders"],
   ["--slate-150", "color", "#ECEEF2",  "Subtle borders"],
   ["--slate-100", "color", "#F3F4F6",  "Muted surfaces"],
-  ["--slate-50",  "color", "#F9FAFB",  "App background, sunken rows"],
+  ["--slate-050", "color", "#F9FAFB",  "App background, muted surfaces, sunken rows"],
   ["--white",     "color", "#FFFFFF",  "Cards, modals, raised surfaces"],
   // Color · Status
   ["--success-700", "color", "#15803D",  "Success text, success badges"],
@@ -32,6 +35,7 @@ const TOKEN_CATALOG = [
   ["--warning-500", "color", "#D97706",  "Warning fill, alert glyph border"],
   ["--warning-100", "color", "#FEF3C7",  "Warning badge bg"],
   ["--warning-050", "color", "#FFFBEB",  "Warning alert bg"],
+  ["--danger-800",  "color", "#991B1B",  "Danger button pressed / active state"],
   ["--danger-700",  "color", "#B91C1C",  "Danger text, danger badges"],
   ["--danger-500",  "color", "#DC2626",  "Danger fill, danger glyph border"],
   ["--danger-100",  "color", "#FEE2E2",  "Danger badge bg"],
@@ -41,22 +45,26 @@ const TOKEN_CATALOG = [
   ["--info-100",    "color", "#DBEAFE",  "Info badge bg"],
   ["--info-050",    "color", "#EFF6FF",  "Info alert bg"],
   // Color · Rating (locked)
-  ["--rating-a", "color", "#2E7D4F", "Risk rating A (best). Locked — domain semantic."],
+  ["--rating-a", "color", "#2E7D4F", "Risk rating A (best). Locked: domain semantic."],
   ["--rating-b", "color", "#6FA84A", "Risk rating B"],
   ["--rating-c", "color", "#C9A227", "Risk rating C"],
   ["--rating-d", "color", "#D97706", "Risk rating D"],
   ["--rating-e", "color", "#C0392B", "Risk rating E (worst)"],
   // Semantic · surfaces
-  ["--bg-app",      "semantic", "var(--slate-50)",  "Default page background"],
+  ["--bg-app",      "semantic", "var(--slate-050)",  "Default page background"],
   ["--bg-canvas",   "semantic", "#F5F7FA",          "Map / dashboard canvas"],
   ["--bg-surface",  "semantic", "var(--white)",     "Cards, modals, panels"],
   ["--bg-raised",   "semantic", "var(--white)",     "Elevated surfaces"],
-  ["--bg-sunken",   "semantic", "var(--slate-50)",  "Form rows, inset blocks"],
+  ["--bg-sunken",   "semantic", "var(--slate-050)",  "Form rows, inset blocks"],
   ["--bg-muted",    "semantic", "var(--slate-100)", "Disabled, placeholders"],
   ["--bg-inverse",  "semantic", "var(--slate-900)", "Dark surfaces, tooltips"],
   ["--border-subtle",  "semantic", "var(--slate-150)", "Internal dividers"],
   ["--border-default", "semantic", "var(--slate-200)", "Cards, inputs, buttons"],
   ["--border-strong",  "semantic", "var(--slate-300)", "Hover, emphasized"],
+  ["--border-info",    "semantic", "color-mix(in srgb, var(--info-500) 18%, transparent)",    "Info badge / alert border"],
+  ["--border-success", "semantic", "color-mix(in srgb, var(--success-500) 18%, transparent)", "Success badge / alert border"],
+  ["--border-warning", "semantic", "color-mix(in srgb, var(--warning-500) 20%, transparent)", "Warning badge / alert border"],
+  ["--border-danger",  "semantic", "color-mix(in srgb, var(--danger-500) 18%, transparent)",  "Danger badge / alert border"],
   // Semantic · text
   ["--text-primary",   "semantic", "var(--slate-900)", "Body, headings"],
   ["--text-secondary", "semantic", "var(--slate-600)", "Supporting copy"],
@@ -66,7 +74,7 @@ const TOKEN_CATALOG = [
   ["--text-link",      "semantic", "var(--brand-500)", "Inline links"],
   ["--text-on-brand",  "semantic", "var(--white)",     "On primary buttons"],
   // Type
-  ["--font-sans",    "type", "Inter · system-ui",  "Default body family"],
+  ["--font-sans",    "type", "Inter · Open Sans · system-ui",  "Default body family"],
   ["--font-display", "type", "Exo · Inter · Lato · system-ui",  "Headings, titles"],
   ["--font-mono",    "type", "JetBrains Mono · SF Mono",        "Code, numbers, tokens"],
   // Spacing
@@ -101,32 +109,34 @@ const TOKEN_CATALOG = [
   ["--motion-fast",    "motion", "140ms", "Hover, focus, color transitions"],
   ["--motion-base",    "motion", "200ms", "Component-level: dropdown, popover, tab"],
   ["--motion-slow",    "motion", "320ms", "Layout: modal mount, drawer, page reveal"],
-  ["--ease-out",       "motion", "cubic-bezier(0.16, 1, 0.3, 1)",     "Default — enters, reveals"],
+  ["--ease-out",       "motion", "cubic-bezier(0.16, 1, 0.3, 1)",     "Default: enters, reveals"],
   ["--ease-in-out",    "motion", "cubic-bezier(0.4, 0, 0.2, 1)",      "Reversible transitions"],
-  ["--ease-emphasis",  "motion", "cubic-bezier(0.34, 1.2, 0.64, 1)",  "Tab pill, selection — overshoots slightly"],
+  ["--ease-emphasis",  "motion", "cubic-bezier(0.34, 1.2, 0.64, 1)",  "Tab pill, selection: overshoots slightly"],
   // Z-index
   ["--z-base",    "z-index", "1",    "Default stacking"],
   ["--z-sticky",  "z-index", "100",  "Sticky headers, scrolling chrome"],
-  ["--z-overlay", "z-index", "1000", "Popovers, dropdowns"],
+  ["--z-overlay", "z-index", "1000", "Overlays and scrims under a modal"],
+  ["--z-popover", "z-index", "1050", "Popovers, dropdowns, menus"],
   ["--z-modal",   "z-index", "1100", "Modals"],
-  ["--z-toast",   "z-index", "1200", "Toasts (always on top)"],
+  ["--z-toast",   "z-index", "1200", "Toasts: above modals"],
+  ["--z-tooltip", "z-index", "1300", "Tooltips: the top layer"],
   // Chart palette · categorical
-  ["--chart-cat-1", "chart", "#2d7ffb", "Series 1 — primary blue"],
-  ["--chart-cat-2", "chart", "#D97706", "Series 2 — amber"],
-  ["--chart-cat-3", "chart", "#16A34A", "Series 3 — green"],
-  ["--chart-cat-4", "chart", "#9333EA", "Series 4 — purple"],
-  ["--chart-cat-5", "chart", "#DB2777", "Series 5 — pink"],
-  ["--chart-cat-6", "chart", "#0891B2", "Series 6 — cyan"],
-  ["--chart-cat-7", "chart", "#65A30D", "Series 7 — lime"],
-  ["--chart-cat-8", "chart", "#475569", "Series 8 — slate"],
+  ["--chart-cat-1", "chart", "#1485c5", "Series 1: brand blue"],
+  ["--chart-cat-2", "chart", "#D97706", "Series 2: amber"],
+  ["--chart-cat-3", "chart", "#16A34A", "Series 3: green"],
+  ["--chart-cat-4", "chart", "#9333EA", "Series 4: purple"],
+  ["--chart-cat-5", "chart", "#DB2777", "Series 5: pink"],
+  ["--chart-cat-6", "chart", "#0891B2", "Series 6: cyan"],
+  ["--chart-cat-7", "chart", "#65A30D", "Series 7: lime"],
+  ["--chart-cat-8", "chart", "#475569", "Series 8: slate"],
   // Chart · sequential
-  ["--chart-seq-1", "chart", "#eff6ff", "Sequential ramp · low"],
-  ["--chart-seq-2", "chart", "#dbeafe", "Sequential ramp"],
-  ["--chart-seq-3", "chart", "#bfdbfe", "Sequential ramp"],
-  ["--chart-seq-4", "chart", "#8ec5fd", "Sequential ramp"],
-  ["--chart-seq-5", "chart", "#51a2fc", "Sequential ramp"],
-  ["--chart-seq-6", "chart", "#2d7ffb", "Sequential ramp"],
-  ["--chart-seq-7", "chart", "#1d4ed8", "Sequential ramp · high"],
+  ["--chart-seq-1", "chart", "#eff8fd", "Sequential ramp · low"],
+  ["--chart-seq-2", "chart", "#dceffb", "Sequential ramp"],
+  ["--chart-seq-3", "chart", "#b8ddf5", "Sequential ramp"],
+  ["--chart-seq-4", "chart", "#84c5ec", "Sequential ramp"],
+  ["--chart-seq-5", "chart", "#43a8df", "Sequential ramp"],
+  ["--chart-seq-6", "chart", "#1485c5", "Sequential ramp"],
+  ["--chart-seq-7", "chart", "#0d5580", "Sequential ramp · high"],
   // Chart · divergent
   ["--chart-div-neg-3", "chart", "#B91C1C", "Divergent · −high"],
   ["--chart-div-neg-2", "chart", "#DC2626", "Divergent · −med"],
@@ -169,7 +179,7 @@ const TOKEN_GROUPS = [
 
 const TokenPreview = ({ type, value }) => {
   if (type === "color" || type === "semantic" || type === "chart" || type === "map") {
-    if (value.startsWith("#") || value.startsWith("var(")) {
+    if (value.startsWith("#") || value.startsWith("var(") || value.startsWith("color-mix(")) {
       return <span className="ds-token-swatch-bar" style={{ background: value }} />;
     }
     if (value === "0 0 #0000") {
@@ -199,7 +209,7 @@ const TokenPreview = ({ type, value }) => {
         </span>
       );
     }
-    return <span className="t-mono" style={{ fontSize: 10, color: "var(--brand-600)" }}>ƒ</span>;
+    return <span className="t-mono" style={{ fontSize: 11, color: "var(--brand-600)" }}>ƒ</span>;
   }
   if (type === "z-index") {
     return <span className="t-mono" style={{ fontSize: 11, color: "var(--brand-600)" }}>{value}</span>;
@@ -239,13 +249,40 @@ const TokenIndexToolbar = ({ query, setQuery, group, setGroup, counts, total }) 
   </div>
 );
 
+
+/* Any custom property declared on :root that the catalogue above does not describe is added from the live
+   stylesheet, so the index always lists every token (descriptions only for catalogued ones). */
+const TOKEN_TYPE_OF = (n) => /^--(brand|slate|success|warning|danger|info|white|rating|unverif|event|glyph)/.test(n) ? "color"
+  : /^--(bg|text|border|focus)/.test(n) ? "semantic" : /^--(font|t-)/.test(n) ? "type" : /^--space/.test(n) ? "spacing"
+  : /^--radius/.test(n) ? "radius" : /shadow/.test(n) ? "shadow" : /^--(motion|ease)|-motion$|-anim$|-delay/.test(n) ? "motion"
+  : /^--z-/.test(n) ? "z-index" : /^--chart/.test(n) ? "chart" : /^--map/.test(n) ? "map" : "semantic";
+const liveTokens = () => {
+  const known = new Set(TOKEN_CATALOG.map(r => r[0])); const out = []; const seen = new Set();
+  try {
+    for (const sheet of Array.from(document.styleSheets)) {
+      let rules; try { rules = sheet.cssRules; } catch (e) { continue; }
+      for (const r of Array.from(rules || [])) {
+        if (r.selectorText !== ":root" || !r.style) continue;
+        for (const prop of Array.from(r.style)) {
+          if (!prop.startsWith("--") || known.has(prop) || seen.has(prop)) continue;
+          seen.add(prop);
+          const v = getComputedStyle(document.documentElement).getPropertyValue(prop).trim() || r.style.getPropertyValue(prop).trim();
+          out.push([prop, TOKEN_TYPE_OF(prop), v, "From styles.css"]);
+        }
+      }
+    }
+  } catch (e) {}
+  return out;
+};
+
 const TokenIndexSection = () => {
+  const ALL_TOKENS = React.useMemo(() => TOKEN_CATALOG.concat(liveTokens()), []);
   const [query, setQuery] = React.useState("");
   const [group, setGroup] = React.useState("all");
 
   const matches = React.useMemo(() => {
     const q = query.trim().toLowerCase();
-    return TOKEN_CATALOG.filter(([name, type, value, where]) => {
+    return ALL_TOKENS.filter(([name, type, value, where]) => {
       if (group !== "all" && type !== group) return false;
       if (!q) return true;
       return name.toLowerCase().includes(q)
@@ -255,8 +292,8 @@ const TokenIndexSection = () => {
   }, [query, group]);
 
   const counts = React.useMemo(() => {
-    const c = { all: TOKEN_CATALOG.length };
-    TOKEN_CATALOG.forEach(([, type]) => { c[type] = (c[type] || 0) + 1; });
+    const c = { all: ALL_TOKENS.length };
+    ALL_TOKENS.forEach(([, type]) => { c[type] = (c[type] || 0) + 1; });
     return c;
   }, []);
 
@@ -280,7 +317,7 @@ const TokenIndexSection = () => {
       <div className="subsection" style={{ marginTop: 0 }}>
         <h3 className="subsection-title">Why this exists</h3>
         <p className="subsection-desc" style={{ maxWidth: 820 }}>
-          One searchable list of every CSS variable in the system — what it is, what it's worth, and where it's used.
+          One searchable list of every CSS variable in the system, what it is, what it's worth, and where it's used.
           The fastest answer to "what's the token for X" without flipping between Foundations chapters. The whole inventory below renders directly from
           the token catalog; filter by category or search by name, value, or use-case.
         </p>
@@ -319,7 +356,7 @@ const TokenIndexSection = () => {
       })}
 
       <div className="callout" style={{ marginTop: 32 }}>
-        <strong>This index is the contract.</strong> If a token is in here, it ships in the system and engineers can rely on it. If it's not in here, it doesn't exist — module-local values get rejected at lint.
+        <strong>This index is the contract.</strong> If a token is in here, it ships in the system and engineers can rely on it. If it's not in here, it doesn't exist, module-local values get rejected at lint.
       </div>
     </>
   );

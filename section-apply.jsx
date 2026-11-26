@@ -1,4 +1,4 @@
-/* Section 5 — Apply the system: 4 product surfaces */
+/* Section 5: Apply the system: 4 product surfaces */
 
 const ApplyHeader = ({ name, what, why }) => (
   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 12 }}>
@@ -8,13 +8,13 @@ const ApplyHeader = ({ name, what, why }) => (
     </div>
     <div className="ds-card" style={{ padding: 12 }}>
       <div className="t-overline">What changes</div>
-      <ul style={{ margin: "6px 0 0", paddingLeft: 18, fontSize: 12.5, color: "var(--text-secondary)", lineHeight: 1.55 }}>
+      <ul style={{ margin: "4px 0 0", paddingLeft: 20, fontSize: 12.5, color: "var(--text-secondary)", lineHeight: 1.55 }}>
         {what.map((w,i) => <li key={i}>{w}</li>)}
       </ul>
     </div>
     <div className="ds-card" style={{ padding: 12 }}>
       <div className="t-overline">Why</div>
-      <ul style={{ margin: "6px 0 0", paddingLeft: 18, fontSize: 12.5, color: "var(--text-secondary)", lineHeight: 1.55 }}>
+      <ul style={{ margin: "4px 0 0", paddingLeft: 20, fontSize: 12.5, color: "var(--text-secondary)", lineHeight: 1.55 }}>
         {why.map((w,i) => <li key={i}>{w}</li>)}
       </ul>
     </div>
@@ -30,12 +30,12 @@ const Frame = ({ label, children, h = 520 }) => (
 
 const ProductShell = ({ active, title, children, breadcrumb, actions }) => (
   <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", height: "100%" }}>
-    <div className="ds-sidebar" style={{ width: "100%", padding: "10px 0", height: "100%", overflow: "hidden" }}>
-      <div style={{ padding: "0 14px 10px", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid var(--border-subtle)" }}>
+    <div className="ds-sidebar" style={{ width: "100%", padding: "12px 0", height: "100%", overflow: "hidden" }}>
+      <div style={{ padding: "0 16px 12px", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid var(--border-subtle)" }}>
         <div className="app-nav-brand-mark" style={{ width: 22, height: 22, fontSize: 11 }}>S</div>
         <span style={{ fontWeight: 600, fontSize: 13 }}>Skytek</span>
       </div>
-      <div style={{ padding: "10px 0 4px 18px", fontSize: 10, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Monitor</div>
+      <div style={{ padding: "12px 0 4px 20px", fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Monitor</div>
       <a className={`ds-sidebar-item ${active==="dashboard"?"is-active":""}`}><Icon d={I.bars}/> Dashboard</a>
       <a className={`ds-sidebar-item ${active==="vessels"?"is-active":""}`}><Icon d={I.ship}/> Vessels</a>
       <a className={`ds-sidebar-item ${active==="aircraft"?"is-active":""}`}><Icon d={I.plane}/> Aircraft</a>
@@ -51,10 +51,10 @@ const ProductShell = ({ active, title, children, breadcrumb, actions }) => (
         </div>
         <div className="spacer-grow"/>
         <button className="ds-btn ds-btn--ghost ds-btn--icon ds-btn--sm"><Icon d={I.bell}/></button>
-        <span className="ds-avatar" style={{ width: 24, height: 24, fontSize: 10 }}>JL</span>
+        <span className="ds-avatar" style={{ width: 24, height: 24, fontSize: 11 }}>JL</span>
       </div>
       <div style={{ overflow: "auto" }}>
-        <div style={{ padding: "12px 20px 0", display: "flex", gap: 6, fontSize: 11.5, color: "var(--text-muted)" }}>
+        <div style={{ padding: "12px 20px 0", display: "flex", gap: 4, fontSize: 12, color: "var(--text-muted)" }}>
           {breadcrumb}
         </div>
         <div style={{ padding: "4px 20px 12px", display: "flex", alignItems: "flex-end", gap: 12 }}>
@@ -108,7 +108,7 @@ const ApplyDashboard = () => (
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 12, marginTop: 12 }}>
           <div className="ds-card" style={{ padding: 0, height: 280, position: "relative", overflow: "hidden" }}>
-            <div style={{ padding: "10px 14px", borderBottom: "1px solid var(--border-subtle)", display: "flex", alignItems: "center" }}>
+            <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--border-subtle)", display: "flex", alignItems: "center" }}>
               <h3 className="ds-card-title" style={{ flex: 1 }}>Live fleet · North Atlantic</h3>
               <button className="ds-btn ds-btn--ghost ds-btn--sm"><Icon d={I.filter}/> Filter</button>
             </div>
@@ -119,7 +119,7 @@ const ApplyDashboard = () => (
             </div>
           </div>
           <div className="ds-card" style={{ padding: 0 }}>
-            <div style={{ padding: "10px 14px", borderBottom: "1px solid var(--border-subtle)" }}>
+            <div style={{ padding: "12px 16px", borderBottom: "1px solid var(--border-subtle)" }}>
               <h3 className="ds-card-title">Recent alerts</h3>
             </div>
             <div>
@@ -129,7 +129,7 @@ const ApplyDashboard = () => (
                 ["info","Region updated","NA-04 · 14m"],
                 ["success","Policy added","#44721 · 1h"],
               ].map(([k,t,m],i)=>(
-                <div key={i} style={{ display:"flex", gap:10, padding:"10px 14px", borderTop:i?"1px solid var(--border-subtle)":0, alignItems:"flex-start" }}>
+                <div key={i} style={{ display:"flex", gap: 8, padding: "12px 16px", borderTop:i?"1px solid var(--border-subtle)":0, alignItems:"flex-start" }}>
                   <span className={`ds-badge ds-badge--${k} ds-badge--dot`} style={{ marginTop: 2 }}/>
                   <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
                     <div style={{ fontWeight: 600 }}>{t}</div>
@@ -169,7 +169,7 @@ const ApplyTable = () => (
         </>}
       >
         <div className="ds-card" style={{ padding: 0 }}>
-          <div style={{ padding: 10, borderBottom: "1px solid var(--border-subtle)", display: "flex", gap: 8, alignItems: "center" }}>
+          <div style={{ padding: 12, borderBottom: "1px solid var(--border-subtle)", display: "flex", gap: 8, alignItems: "center" }}>
             <div style={{ position: "relative", width: 280 }}>
               <input className="ds-input" placeholder="Search vessels…" style={{ paddingLeft: 28, height: 28 }} />
               <span style={{ position:"absolute", left:8, top:7, color:"var(--text-muted)" }}><Icon d={I.search} size={14}/></span>
@@ -220,7 +220,7 @@ const ApplyTable = () => (
               ))}
             </tbody>
           </table>
-          <div style={{ padding: 10, borderTop: "1px solid var(--border-subtle)", display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ padding: 12, borderTop: "1px solid var(--border-subtle)", display: "flex", alignItems: "center", gap: 8 }}>
             <span className="t-caption">1–8 of 142</span>
             <div className="spacer-grow"/>
             <button className="ds-btn ds-btn--ghost ds-btn--sm">Previous</button>
@@ -239,7 +239,7 @@ const ApplyDetail = () => (
       what={[
         "Header consolidates badge + meta + actions in one row",
         "Tabs replace tab-like segmented controls in legacy modules",
-        "Definition lists for properties — uniform key/value layout",
+        "Definition lists for properties: uniform key/value layout",
       ]}
       why={[
         "Header height is consistent across all detail pages",
@@ -266,7 +266,7 @@ const ApplyDetail = () => (
         <div style={{ display:"grid", gridTemplateColumns:"1fr 320px", gap: 12 }}>
           <div className="ds-card">
             <div className="ds-card-head"><h3 className="ds-card-title">Particulars</h3></div>
-            <div className="ds-card-body" style={{ display:"grid", gridTemplateColumns:"160px 1fr 160px 1fr", gap:"10px 16px", fontSize: 13 }}>
+            <div className="ds-card-body" style={{ display:"grid", gridTemplateColumns:"160px 1fr 160px 1fr", gap: "8px 16px", fontSize: 13 }}>
               {[
                 ["IMO","9472183"],["MMSI","248901000"],
                 ["Flag","Malta"],["Type","Bulk carrier"],
@@ -282,7 +282,7 @@ const ApplyDetail = () => (
           </div>
           <div className="ds-card">
             <div className="ds-card-head"><h3 className="ds-card-title">Risk profile</h3></div>
-            <div className="ds-card-body" style={{ display: "grid", gap: 10 }}>
+            <div className="ds-card-body" style={{ display: "grid", gap: 8 }}>
               {[["PSC compliance","94%",94],["Sanctions risk","Low",10],["Voyage risk","Medium",55]].map(([k,v,p],i)=>(
                 <div key={i}>
                   <div style={{ display:"flex", justifyContent:"space-between", fontSize: 12, marginBottom: 4 }}>
@@ -321,7 +321,7 @@ const ApplyForm = () => (
         "Sticky footer with one primary CTA",
       ]}
       why={[
-        "Engineers drop in <Form>, <FormField>, <FormItem> — no styling",
+        "Engineers drop in <Form>, <FormField>, <FormItem>, no styling",
         "Errors are visible without leaving the field",
         "Save is unambiguous; Cancel is the secondary path",
       ]}
@@ -350,9 +350,9 @@ const ApplyForm = () => (
               <div className="ds-field" style={{ gridColumn: "1 / -1" }}>
                 <label className="ds-field-label">Coverage type</label>
                 <div className="row" style={{ gap: 16 }}>
-                  <label className="row" style={{ gap: 6, fontSize: 13 }}><input type="radio" name="ct" className="ds-radio" defaultChecked/> Hull &amp; Machinery</label>
-                  <label className="row" style={{ gap: 6, fontSize: 13 }}><input type="radio" name="ct" className="ds-radio"/> P&amp;I</label>
-                  <label className="row" style={{ gap: 6, fontSize: 13 }}><input type="radio" name="ct" className="ds-radio"/> War risk</label>
+                  <label className="row" style={{ gap: 4, fontSize: 13 }}><input type="radio" name="ct" className="ds-radio" defaultChecked/> Hull &amp; Machinery</label>
+                  <label className="row" style={{ gap: 4, fontSize: 13 }}><input type="radio" name="ct" className="ds-radio"/> P&amp;I</label>
+                  <label className="row" style={{ gap: 4, fontSize: 13 }}><input type="radio" name="ct" className="ds-radio"/> War risk</label>
                 </div>
               </div>
               <div className="ds-field"><label className="ds-field-label">Premium (USD)</label><input className="ds-input" defaultValue="−250" aria-invalid="true"/><div className="ds-field-error"><Icon d={I.alert} size={12}/> Must be a positive number.</div></div>

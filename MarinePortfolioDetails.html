@@ -13,7 +13,7 @@
     theme: { extend: {
       fontFamily: { sans:['Inter','ui-sans-serif','system-ui','sans-serif'], display:['Exo','Inter','sans-serif'] },
       colors: {
-        brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+        brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
         ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
       },
       boxShadow: {
@@ -112,7 +112,7 @@
   .pcard-sub a.lnk { color:var(--brand-600,#2563eb); font-weight:600; }
   /* Mobile policy cards */
   .pol-cards { display:none; }
-  .pcard { padding:16px 16px; border-bottom:1px solid #eef2f7; display:flex; flex-direction:column; gap:12px; }
+  .pcard { padding:16px 16px; border-bottom:1px solid #f3f4f6; display:flex; flex-direction:column; gap:12px; }
   .pcard:last-child { border-bottom:0; }
   .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
@@ -134,7 +134,7 @@
   .stat-badge { display:inline-block; padding:1px 8px; border-radius:999px; font-size:12px; font-weight:700; }
   .stat-badge.blue   { background:var(--brand-100,#dbeafe); color:var(--brand-700,#1d4ed8); }
   .stat-badge.green  { background:#dcfce7; color:#15803d; }
-  .stat-badge.purple { background:#ede9fe; color:#6d28d9; }
+  .stat-badge.purple { background:#ede9fe; color:#9333ea; }
   /* Stat pill (full width) */
   .stat-pill { display:block; width:100%; padding:4px 12px; border-radius:8px; background:var(--brand-100,#dbeafe); color:var(--brand-700,#1d4ed8); font-size:12px; font-weight:700; text-align:center; margin-top:4px; }
   /* Dark theme: Portfolio Activity metric badges match the Our Aggregated Exposure box
@@ -143,7 +143,7 @@
   /* Select chrome */
   .sel { border:1px solid #e5e7eb; border-radius:8px; padding:4px 24px 4px 8px; font-size:12px; color:#374151; background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 6px center; -webkit-appearance:none; cursor:pointer; font-family:inherit; }
   /* Compliance circle */
-  .compliance-circle { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,#22c55e,#16a34a); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(22,163,74,.3); }
+  .compliance-circle { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,#16a34a,#16a34a); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(22,163,74,.3); }
   /* Mobile responsive */
   .top-panels-grid { grid-template-columns:minmax(0,5fr) minmax(0,8fr) minmax(0,6fr); }
   .psc-grid { grid-template-columns:repeat(4,1fr); }
@@ -175,7 +175,7 @@
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   /* Risk Score info popups (ported from Vessel Details) */
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
@@ -211,7 +211,7 @@
   html[data-theme="dark"] .pol-empty { color:#93a0b4; }
 </style>
 <style>.pol-table.cas-table th,.pol-table.cas-table td{position:static !important;left:auto !important;width:auto !important;min-width:0 !important;max-width:none !important;box-shadow:none !important;white-space:normal}.pol-table.cas-table{width:100%;min-width:0 !important;table-layout:auto}.pol-table.cas-table th{text-transform:none;letter-spacing:0;white-space:nowrap}.pol-table.cas-table th svg{display:inline-block}.cas-wrap{overflow-y:hidden}.pol-table.cas-table td:nth-child(1),.pol-table.cas-table td:nth-child(5){white-space:nowrap !important}</style>
-<style>.voy-sel{appearance:none;-webkit-appearance:none;height:30px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font:inherit;font-size:12px;font-weight:600;color:#374151;background:#fff;cursor:pointer;outline:none}.voy-sel:focus{border-color:var(--brand-500,#3b82f6);box-shadow:0 0 0 3px rgb(59 130 246/.15)}.voy-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 14px rgb(15 23 42/.14);padding:8px 12px;font-size:12px;color:#111827;white-space:nowrap;z-index:5}.voy-tip-d{font-weight:600;margin-bottom:4px}.voy-tip-r{display:flex;align-items:center;gap:4px}.voy-tip-r b{font-weight:600}.voy-tip-r span:last-child{margin-left:8px}.voy-tip-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-500,#3b82f6)}.voy-radio{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#374151;cursor:pointer}.voy-radio input{width:15px;height:15px;accent-color:var(--brand-600,#2563eb);margin:0;cursor:pointer}</style>
+<style>.voy-sel{appearance:none;-webkit-appearance:none;height:30px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font:inherit;font-size:12px;font-weight:600;color:#374151;background:#fff;cursor:pointer;outline:none}.voy-sel:focus{border-color:var(--brand-500,#1a92d1);box-shadow:0 0 0 3px rgb(59 130 246/.15)}.voy-tip{position:absolute;pointer-events:none;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 14px rgb(15 23 42/.14);padding:8px 12px;font-size:12px;color:#111827;white-space:nowrap;z-index:5}.voy-tip-d{font-weight:600;margin-bottom:4px}.voy-tip-r{display:flex;align-items:center;gap:4px}.voy-tip-r b{font-weight:600}.voy-tip-r span:last-child{margin-left:8px}.voy-tip-dot{width:7px;height:7px;border-radius:50%;background:var(--brand-500,#1a92d1)}.voy-radio{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:#374151;cursor:pointer}.voy-radio input{width:15px;height:15px;accent-color:var(--brand-600,#2563eb);margin:0;cursor:pointer}</style>
 <style>@media(max-width:639px){.co-rs-toggles,.co-rs-grid{display:contents !important}.co-rs-sanc{order:1;align-self:flex-end;flex-direction:row-reverse}.co-rs-gauge{order:2}.co-rs-trend{order:3;align-self:flex-end;margin-top:4px}.co-rs-years{order:4}.co-rs-body > :not(.co-rs-toggles):not(.co-rs-grid){order:5}}</style>
 <style>.rs-tip{display:none}.rs-info:hover .rs-tip,.rs-info:focus-within .rs-tip{display:block}</style>
 </head>
@@ -228,7 +228,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="shared/pagination.css" />
@@ -374,8 +374,8 @@ function DonutSVG(score = 100) {
   const risk = rsScore <= 10
     ? { label:'GOOD', c:'#16a34a', glow:'#86efac' }
     : rsScore <= 25
-    ? { label:'AVERAGE RISK', c:'#f97316', glow:'#fed7aa' }
-    : { label:'BELOW AVERAGE', c:'#ef4444', glow:'#fca5a5' };
+    ? { label:'AVERAGE RISK', c:'#d97706', glow:'#fef3c7' }
+    : { label:'BELOW AVERAGE', c:'#ea580c', glow:'#fca5a5' };
   // Gauge geometry: 270° arc, start=135°, sweep clockwise
   const CX = 100, CY = 108, R = 80, RO = 95, SW = 11;
   const toRad = d => d * Math.PI / 180;
@@ -390,7 +390,7 @@ function DonutSVG(score = 100) {
     return `M ${x1},${y1} A ${rr},${rr} 0 ${sw > 180 ? 1 : 0},1 ${x2},${y2}`;
   };
   // Banded segment color: green ≤10, orange ≤25, red >25
-  const gaugeColor = s => (s <= 10 ? '#22c55e' : s <= 25 ? '#f97316' : '#ef4444');
+  const gaugeColor = s => (s <= 10 ? '#16a34a' : s <= 25 ? '#d97706' : '#ea580c');
   const N = 26, SEG_GAP = 0.9;
   const whiteCasing = `<path d="${arcD(gAngle(0), gAngle(GAUGE_MAX), R)}" fill="none" stroke="#ffffff" stroke-width="${SW}" stroke-linecap="butt"/>`;
   const segPaths = Array.from({ length: N }, (_, i) => {
@@ -509,13 +509,13 @@ function PortCallsContent() {
           <td style="padding:8px 8px;color:#374151;"><span style="display:inline-flex;align-items:center;gap:8px;"><img src="flags/${p.cc}.svg" width="18" style="border-radius:4px;vertical-align:middle;flex-shrink:0;" alt="">${p.country}</span></td>
           <td style="padding:8px 8px;color:#374151;">
             <span style="display:inline-flex;align-items:center;gap:8px;">
-              <span style="display:inline-block;width:56px;height:6px;border-radius:999px;background:#eef2f7;position:relative;overflow:hidden;">
+              <span style="display:inline-block;width:56px;height:6px;border-radius:999px;background:#f3f4f6;position:relative;overflow:hidden;">
                 <span style="position:absolute;inset:0 auto 0 0;width:${(p.pct/max*100).toFixed(1)}%;background:var(--brand-600,#2563eb);border-radius:999px;"></span>
               </span>
-              <span style="font-variant-numeric:tabular-nums;color:#1e3a8a;font-weight:500;">${p.pct.toFixed(1)}%</span>
+              <span style="font-variant-numeric:tabular-nums;color:#0d5580;font-weight:500;">${p.pct.toFixed(1)}%</span>
             </span>
           </td>
-          <td style="padding:8px 8px;text-align:right;font-variant-numeric:tabular-nums;color:#1e3a8a;font-weight:600;">${p.no}</td>
+          <td style="padding:8px 8px;text-align:right;font-variant-numeric:tabular-nums;color:#0d5580;font-weight:600;">${p.no}</td>
         </tr>`).join('')}
       </tbody>
     </table>
@@ -917,7 +917,7 @@ function EnvironmentalRatingContent() {
 function UtilisationContent() {
   const cards = [
     { title:'Main Sailed',     accent:'var(--brand-400,#60a5fa)', rows:[['2024','150 nm','125 nm'],['2023','200 nm','200 nm']] },
-    { title:'Ports Visited',   accent:'var(--brand-500,#3b82f6)', rows:[['2024','4.1','3.2'],['2023','21 nm','21 nm']] },
+    { title:'Ports Visited',   accent:'var(--brand-500,#1a92d1)', rows:[['2024','4.1','3.2'],['2023','21 nm','21 nm']] },
     { title:'Days in Port',    accent:'var(--brand-600,#2563eb)', rows:[['2024','142.8','104.2'],['2023','24','30']] },
     { title:'Days Travelling', accent:'var(--brand-700,#1d4ed8)', rows:[['2024','153.4','202.9'],['2023','102.8','261.2']] },
     { title:'Flop Idle',       accent:'var(--brand-800,#1e40af)', rows:[['2024','139.6','133.0'],['2023','70.4','66.8']] },
@@ -1002,22 +1002,22 @@ function VoyChart() {
   const grid = ticks.map(t => `<line x1="${pl}" x2="${W - pr}" y1="${y(t)}" y2="${y(t)}" stroke="#eef2f6"></line><text x="${pl - 10}" y="${y(t) + 4}" text-anchor="end" font-size="8.5" fill="#6b7280">${t}</text>`).join('');
   const xt = pts.map((p, i) => [p, i]).filter(([p, i]) => i % 14 === 10).map(([p, i]) => `<line x1="${x(i)}" x2="${x(i)}" y1="${H - pb}" y2="${H - pb + 5}" stroke="#9ca3af"></line><text x="${x(i)}" y="${H - pb + 16}" text-anchor="middle" font-size="8.5" fill="#374151">${p.date.getDate()} ${p.date.toLocaleString('en-GB', { month: 'short' })}</text>`).join('');
   const path = pts.map((p, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(p.val).toFixed(1)}`).join(' ');
-  const dots = pts.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.val).toFixed(1)}" r="2.2" fill="var(--brand-500,#3b82f6)"></circle>`).join('');
+  const dots = pts.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.val).toFixed(1)}" r="2.2" fill="var(--brand-500,#1a92d1)"></circle>`).join('');
   window.__voy = { pts, W, H, pl, pr, pt, pb, x, y };
   return `<div style="display:flex;align-items:stretch;gap:4px">
       <div style="writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;color:#6b7280;text-align:center;white-space:nowrap">${label}</div>
       <div id="voy-plot" style="position:relative;flex:1;min-width:0">
       <svg id="voy-svg" viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" role="img" aria-label="${label} over time">
         ${grid}<line x1="${pl}" x2="${W - pr}" y1="${H - pb}" y2="${H - pb}" stroke="#9ca3af"></line>${xt}
-        <path d="${path}" fill="none" stroke="var(--brand-500,#3b82f6)" stroke-width="1.1" stroke-linejoin="round"></path>${dots}
+        <path d="${path}" fill="none" stroke="var(--brand-500,#1a92d1)" stroke-width="1.1" stroke-linejoin="round"></path>${dots}
         <line id="voy-guide" x1="0" x2="0" y1="${pt}" y2="${H - pb}" stroke="#9ca3af" stroke-width="1" visibility="hidden"></line>
-        <circle id="voy-hover" r="5" fill="var(--brand-500,#3b82f6)" stroke="#fff" stroke-width="2" visibility="hidden"></circle>
+        <circle id="voy-hover" r="5" fill="var(--brand-500,#1a92d1)" stroke="#fff" stroke-width="2" visibility="hidden"></circle>
         <rect x="${pl}" y="${pt}" width="${W - pl - pr}" height="${H - pt - pb}" fill="transparent" style="cursor:crosshair"></rect>
       </svg>
       <div id="voy-tip" class="voy-tip" hidden></div>
       </div>
     </div>
-    <div style="display:flex;justify-content:center;align-items:center;gap:4px;font-size:12px;color:#374151;margin-top:4px"><span style="display:inline-flex;align-items:center"><span style="width:14px;height:2px;background:var(--brand-500,#3b82f6)"></span><span style="width:5px;height:5px;border-radius:50%;background:var(--brand-500,#3b82f6);margin-left:-8px"></span></span><span style="margin-left:4px">${voyRegion}</span></div>`;
+    <div style="display:flex;justify-content:center;align-items:center;gap:4px;font-size:12px;color:#374151;margin-top:4px"><span style="display:inline-flex;align-items:center"><span style="width:14px;height:2px;background:var(--brand-500,#1a92d1)"></span><span style="width:5px;height:5px;border-radius:50%;background:var(--brand-500,#1a92d1);margin-left:-8px"></span></span><span style="margin-left:4px">${voyRegion}</span></div>`;
 }
 function VoyagesContent() {
   const sel = (id, opts, cur, w) => `<div style="position:relative"><select id="${id}" class="voy-sel" style="width:${w}">${opts.map(o => `<option ${o === cur ? 'selected' : ''}>${o}</option>`).join('')}</select><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg></div>`;

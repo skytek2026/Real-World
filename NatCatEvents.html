@@ -11,7 +11,7 @@
       extend: {
         fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
         colors: {
-          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
           ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
         },
         boxShadow: {
@@ -95,7 +95,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -117,11 +117,11 @@ const EVENTS = [
 ];
 
 const TYPE_CFG = {
-  cyclone:    { color:'#06b6d4', light:'#ecfeff' },
-  wildfire:   { color:'#f97316', light:'#fff7ed' },
+  cyclone:    { color:'#06b6d4', light:'#f0fdf4' },
+  wildfire:   { color:'#d97706', light:'#fffbeb' },
   hurricane:  { color:'#dc2626', light:'#fef2f2' },
-  flood:      { color:'#0ea5e9', light:'#f0f9ff' },
-  earthquake: { color:'#8b5cf6', light:'#f5f3ff' },
+  flood:      { color:'#43a8df', light:'#f0f9ff' },
+  earthquake: { color:'#9333ea', light:'#eff6ff' },
 };
 
 const ICON_SVG = {
@@ -382,7 +382,7 @@ window.render = function() {
                 <button id="nat-layers-btn" class="map-btn" title="Map Type">${LAYERS_ICO}</button>
                 <div id="nat-layers-menu" style="display:none;position:absolute;top:38px;right:0;width:150px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;z-index:9999">
                   <div style="padding:8px 12px;font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f3f4f6">Map Type</div>
-                  ${[['satellite','Satellite','#0b1e2e'],['street','Street','#e8e0d4'],['light','Light','#e8e8e8'],['dark','Dark','#1a1a2e']].map(([k,l,c]) =>
+                  ${[['satellite','Satellite','#111827'],['street','Street','#e8e0d4'],['light','Light','#e8e8e8'],['dark','Dark','#1a1a2e']].map(([k,l,c]) =>
                     `<div class="map-type-opt" data-type="${k}" style="padding:8px 12px;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;color:#374151" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:4px;background:${c};flex-shrink:0"></span>${l}</div>`
                   ).join('')}
                 </div>

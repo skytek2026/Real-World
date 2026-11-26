@@ -11,7 +11,7 @@
       extend: {
         fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
         colors: {
-          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
           ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
         },
         boxShadow: {
@@ -32,7 +32,7 @@
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
 
-  #weather-map{position:absolute;inset:0;background:#a8c8e8}
+  #weather-map{position:absolute;inset:0;background:#84c5ec}
 
   /* Pill tabs (DS) */
   .ds-tabs{position:relative;display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
@@ -103,7 +103,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script src="shared/storm-track.js?v=5"></script>
 <script>
 const SC = window.sharedChrome;
@@ -171,7 +171,7 @@ const SYSTEMS = [
   {
     id:1, name:'TC Hidaya', type:'Tropical Cyclone', cat:'Category 2', status:'Active',
     lat:-17.2, lng:57.4, wind:110, pressure:978, movement:'SE at 12 km/h',
-    color:'#ef4444', glow:'rgba(239,68,68,.35)', radius:17,
+    color:'#ea580c', glow:'rgba(239,68,68,.35)', radius:17,
     updated:'2025-07-04 18:00 UTC',
     // past: 6-hourly; forecast: 12-hourly (t = UTC, wind = km/h)
     track:[
@@ -184,12 +184,12 @@ const SYSTEMS = [
   {
     id:2, name:'TC Ialy', type:'Tropical Depression', cat:'Depression', status:'Active',
     lat:-15.3, lng:56.2, wind:55, pressure:997, movement:'S at 6 km/h',
-    color:'#f97316', glow:'rgba(249,115,22,.3)', radius:10, track:[],
+    color:'#d97706', glow:'rgba(249,115,22,.3)', radius:10, track:[],
   },
   {
     id:3, name:'Disturbance 95S', type:'Tropical Disturbance', cat:'Disturbance', status:'Active',
     lat:10.1, lng:52.3, wind:30, pressure:1008, movement:'NW at 8 km/h',
-    color:'#f97316', glow:'rgba(249,115,22,.25)', radius:8, track:[],
+    color:'#d97706', glow:'rgba(249,115,22,.25)', radius:8, track:[],
   },
   {
     id:4, name:'Ex-TC Javen', type:'Extratropical Cyclone', cat:'Extratropical', status:'Active',
@@ -199,12 +199,12 @@ const SYSTEMS = [
   {
     id:5, name:'Disturbance 96S', type:'Tropical Disturbance', cat:'Disturbance', status:'Active',
     lat:-15.9, lng:56.9, wind:20, pressure:1010, movement:'SE at 10 km/h',
-    color:'#3b82f6', glow:'rgba(59,130,246,.3)', radius:8, track:[],
+    color:'#1a92d1', glow:'rgba(59,130,246,.3)', radius:8, track:[],
   },
   {
     id:6, name:'Hurricane Milena', type:'Hurricane', cat:'Category 3', status:'Active',
     lat:27.4, lng:-82.3, wind:120, pressure:958, movement:'NNE at 15 km/h',
-    color:'#ef4444', glow:'rgba(239,68,68,.35)', radius:18,
+    color:'#ea580c', glow:'rgba(239,68,68,.35)', radius:18,
     updated:'2025-07-04 18:00 UTC',
     track:[
       {lat:23.4, lng:-84.6, kind:'past', t:'2025-07-04T00:00Z', wind:95},{lat:24.8, lng:-83.9, kind:'past', t:'2025-07-04T06:00Z', wind:105},
@@ -483,7 +483,7 @@ function Content() {
             <span class="ds-tab-label">${lico('List', 13)} List</span>
           </button>
         </div>
-        <span style="margin-left:auto;background:#ef4444;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;white-space:nowrap">${SYSTEMS.filter(s=>s.status==='Active').length} Active</span>
+        <span style="margin-left:auto;background:#ea580c;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;white-space:nowrap">${SYSTEMS.filter(s=>s.status==='Active').length} Active</span>
       </div>
       ${viewMode === 'Map' ? MapView() : ListView()}
     </div>

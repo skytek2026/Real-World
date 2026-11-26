@@ -1,4 +1,4 @@
-/* Section 3 — Components: buttons, forms, badges, alerts, cards, tables, tabs, etc. */
+/* Section 3: Components: buttons, forms, badges, alerts, cards, tables, tabs, etc. */
 
 const ComponentBlock = ({ id, name, purpose, variants, states, rules, children }) => (
   <div id={id} className="subsection" style={{ marginTop: 48 }}>
@@ -33,7 +33,7 @@ const ButtonsBlock = () => (
     purpose="Trigger actions. One primary per surface; secondary actions are quieter; destructive actions use the danger variant only when the action cannot be undone safely."
     variants={<><code className="inline">primary</code> · <code className="inline">secondary</code> · <code className="inline">ghost</code> · <code className="inline">danger</code> · <code className="inline">link</code></>}
     states={<>default · hover · active · disabled · loading · focus-visible</>}
-    rules={<>Heights snap to <code className="inline">24 / 28 / 32 / 40px</code>. Icon-only buttons are square. Never stack &gt; 3 buttons in a row — collapse into a menu.</>}
+    rules={<>Heights snap to <code className="inline">24 / 28 / 32 / 40px</code>. Icon-only buttons are square. Never stack &gt; 3 buttons in a row, collapse into a menu.</>}
   >
     <div className="col" style={{ gap: 24 }}>
       <div className="row">
@@ -117,10 +117,10 @@ const FormsBlock = () => (
       <div className="ds-field">
         <label className="ds-field-label">Toggles & checks</label>
         <div className="row" style={{ gap: 16 }}>
-          <label className="row" style={{ gap: 6, fontSize: 13 }}><input type="checkbox" className="ds-check" defaultChecked /> Active</label>
-          <label className="row" style={{ gap: 6, fontSize: 13 }}><input type="checkbox" className="ds-check" /> Archived</label>
-          <label className="row" style={{ gap: 6, fontSize: 13 }}><input type="radio" name="r" className="ds-radio" defaultChecked /> Daily</label>
-          <label className="row" style={{ gap: 6, fontSize: 13 }}><input type="radio" name="r" className="ds-radio" /> Weekly</label>
+          <label className="row" style={{ gap: 4, fontSize: 13 }}><input type="checkbox" className="ds-check" defaultChecked /> Active</label>
+          <label className="row" style={{ gap: 4, fontSize: 13 }}><input type="checkbox" className="ds-check" /> Archived</label>
+          <label className="row" style={{ gap: 4, fontSize: 13 }}><input type="radio" name="r" className="ds-radio" defaultChecked /> Daily</label>
+          <label className="row" style={{ gap: 4, fontSize: 13 }}><input type="radio" name="r" className="ds-radio" /> Weekly</label>
           <button role="switch" aria-checked="true" className="ds-switch" />
           <button role="switch" aria-checked="false" className="ds-switch" />
         </div>
@@ -152,7 +152,7 @@ const BadgesBlock = () => (
         <span className="ds-rating ds-rating--c">C</span>
         <span className="ds-rating ds-rating--d">D</span>
         <span className="ds-rating ds-rating--e">E</span>
-        <span className="t-caption">PSC compliance grades — tied to <code className="inline">--rating-*</code></span>
+        <span className="t-caption">PSC compliance grades: tied to <code className="inline">--rating-*</code></span>
       </div>
     </div>
   </ComponentBlock>
@@ -193,7 +193,7 @@ const CardsBlock = () => (
     name="Cards"
     purpose="Group related content on dashboards and detail pages. Cards never nest more than one level deep."
     variants={<>plain · stat · list · with footer actions</>}
-    rules={<>Single border + <code className="inline">shadow-xs</code>. Card title is H3 / 16px. Internal padding 16px (or 24px on dashboards). Footer actions are <strong>ghost (tertiary) buttons only, in ALL CAPS</strong> — never a filled primary inside a card foot.</>}
+    rules={<>Single border + <code className="inline">shadow-xs</code>. Card title is H3 / 16px. Internal padding 16px (or 24px on dashboards). Footer actions are <strong>ghost (tertiary) buttons only, in ALL CAPS</strong>, never a filled primary inside a card foot.</>}
   >
     <div className="col" style={{ gap: 24 }}>
       <div className="grid-3">
@@ -221,8 +221,8 @@ const CardsBlock = () => (
           <div className="ds-card-head"><h3 className="ds-card-title">Recent activity</h3><a className="ds-btn ds-btn--link">View all</a></div>
           <div className="ds-card-body" style={{ padding: 0 }}>
             {["Policy #44721 added", "Region NA-04 updated", "M/V Stratos flagged"].map((t, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 16px", borderTop: i ? "1px solid var(--border-subtle)" : 0, fontSize: 13 }}>
-                <span className="ds-avatar" style={{ width: 22, height: 22, fontSize: 10 }}>JL</span>
+              <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "12px 16px", borderTop: i ? "1px solid var(--border-subtle)" : 0, fontSize: 13 }}>
+                <span className="ds-avatar" style={{ width: 22, height: 22, fontSize: 11 }}>JL</span>
                 <span style={{ flex: 1 }}>{t}</span>
                 <span className="t-caption">2m</span>
               </div>
@@ -231,9 +231,9 @@ const CardsBlock = () => (
         </div>
       </div>
 
-      {/* Card footers — ghost buttons, ALL CAPS */}
+      {/* Card footers: ghost buttons, ALL CAPS */}
       <div className="col" style={{ gap: 8 }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)" }}>Card footers — ghost (tertiary) buttons, ALL CAPS</div>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)" }}>Card footers: ghost (tertiary) buttons, ALL CAPS</div>
         <div className="grid-3">
           {/* Right-aligned dual action (default) */}
           <div className="ds-card">
@@ -271,22 +271,22 @@ const MetricCardsBlock = () => (
   <ComponentBlock
     id="c-metrics"
     name="Metric cards & stat strips"
-    purpose="Surface key numbers at the top of a view. One glance should tell the underwriter what's happening — value, unit and direction."
+    purpose="Surface key numbers at the top of a view. One glance should tell the underwriter what's happening, value, unit and direction."
     variants={<><code className="inline">metric strip</code> · <code className="inline">single stat card</code> · <code className="inline">stat + delta</code></>}
     rules={<>
       Always abbreviate at scale: <code className="inline">4,932</code> stays as-is; <code className="inline">$605,200,000</code> becomes <code className="inline">$605.2M</code>.
       Use 1 decimal place for abbreviated values. Currency: prefix <code className="inline">$</code>, right-align in tables, brand-colored in strips.
       Counts: no symbol, neutral <code className="inline">text-primary</code> unless the number signals risk (then use danger color).
-      Label is 11–12 px muted, always above the value — never below.
+      Label is 11–12 px muted, always above the value, never below.
       Strip background: <code className="inline">brand-050</code> with <code className="inline">brand-100</code> borders. Max 4 metrics per strip before it wraps to a 2×2 grid.
       Delta badges show change vs. prior period; up = danger (risk increasing), down = success (risk decreasing).
     </>}
   >
     <div className="col" style={{ gap: 32 }}>
 
-      {/* Metric strip — matches reference */}
+      {/* Metric strip: matches reference */}
       <div className="col" style={{ gap: 8 }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)" }}>Metric strip — 2-up</div>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)" }}>Metric strip: 2-up</div>
         <div className="ds-metric-strip">
           <div className="ds-metric">
             <span className="ds-metric-label">Total Policies</span>
@@ -299,9 +299,9 @@ const MetricCardsBlock = () => (
         </div>
       </div>
 
-      {/* Metric strip — 4-up */}
+      {/* Metric strip: 4-up */}
       <div className="col" style={{ gap: 8 }}>
-        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)" }}>Metric strip — 4-up with deltas</div>
+        <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)" }}>Metric strip: 4-up with deltas</div>
         <div className="ds-metric-strip">
           <div className="ds-metric">
             <span className="ds-metric-label">Active Vessels</span>
@@ -341,7 +341,7 @@ const MetricCardsBlock = () => (
             <div className="ds-card-head"><h3 className="ds-card-title">Vessels at risk</h3><span className="t-caption">Live</span></div>
             <div className="ds-card-body">
               <span className="ds-metric-value ds-metric-value--danger" style={{ fontSize: 32 }}>23</span>
-              <div style={{ marginTop: 6, display: "flex", alignItems: "center", gap: 6 }}>
+              <div style={{ marginTop: 4, display: "flex", alignItems: "center", gap: 4 }}>
                 <span className="ds-badge ds-badge--danger">+4 today</span>
                 <span className="t-caption">across 6 portfolios</span>
               </div>
@@ -351,7 +351,7 @@ const MetricCardsBlock = () => (
             <div className="ds-card-head"><h3 className="ds-card-title">Total Exposure</h3><span className="t-caption">All portfolios</span></div>
             <div className="ds-card-body">
               <span className="ds-metric-value" style={{ fontSize: 32 }}>$605.2B</span>
-              <div style={{ marginTop: 6 }}>
+              <div style={{ marginTop: 4 }}>
                 <span className="t-caption">$360.8B marine hull · $244.4B other</span>
               </div>
             </div>
@@ -359,8 +359,8 @@ const MetricCardsBlock = () => (
           <div className="ds-card">
             <div className="ds-card-head"><h3 className="ds-card-title">Compliance score</h3><span className="t-caption">This quarter</span></div>
             <div className="ds-card-body">
-              <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
-                <span className="ds-metric-value ds-metric-value--success" style={{ fontSize: 32 }}>94<span style={{ fontSize: 18, fontWeight: 500 }}>%</span></span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
+                <span className="ds-metric-value ds-metric-value--success" style={{ fontSize: 32 }}>94<span style={{ fontSize: 20, fontWeight: 500 }}>%</span></span>
                 <span className="ds-badge ds-badge--success">↑ +1.2</span>
               </div>
               <div className="ds-progress" style={{ marginTop: 12 }}><span style={{ width: "94%" }} /></div>
@@ -379,7 +379,7 @@ const MetricCardsBlock = () => (
             </thead>
             <tbody>
               {[
-                ["4,932", "4,932", "Under 10K — show exact with comma separator"],
+                ["4,932", "4,932", "Under 10K: show exact with comma separator"],
                 ["$605,200,000", "$605.2M", "Abbreviate ≥ 1M; 1 decimal place"],
                 ["$2,100,000,000,000", "$2.1T", "Abbreviate ≥ 1B → B; ≥ 1T → T"],
                 ["0.9412", "94%", "Percentages: 0 decimal places unless < 10%"],
@@ -446,7 +446,7 @@ const TablesBlock = () => {
     name="Tables"
     purpose="The most-used surface in this product. Density is critical: an underwriter scans 200+ rows per session."
     variants={<>default · compact · comfy · with selection · sortable header</>}
-    rules={<>One implementation only — replaces the four current variants. Sticky header, alternating-row backgrounds removed in favor of subtle hover highlight. Numeric columns right-aligned with <code className="inline">tabular-nums</code>. Every column header is a sort control — click to cycle <em>ascending → descending → unsorted</em>; the <Icon d={I.sort} size={11} className="inline-ico" /> glyph is always visible so columns read as sortable, and turns into a solid <Icon d={I.arrowDown} size={11} className="inline-ico" /> on the active column. Headers carry <code className="inline">aria-sort</code> for screen readers.</>}
+    rules={<>One implementation only: replaces the four current variants. Sticky header, alternating-row backgrounds removed in favor of subtle hover highlight. Numeric columns right-aligned with <code className="inline">tabular-nums</code>. Every column header is a sort control, click to cycle <em>ascending → descending → unsorted</em>; the <Icon d={I.sort} size={11} className="inline-ico" /> glyph is always visible so columns read as sortable, and turns into a solid <Icon d={I.arrowDown} size={11} className="inline-ico" /> on the active column. Headers carry <code className="inline">aria-sort</code> for screen readers.</>}
   >
     <div className="ds-card" style={{ overflow: "hidden", padding: 0 }}>
       <div style={{ padding: 12, borderBottom: "1px solid var(--border-subtle)", display: "flex", alignItems: "center", gap: 8 }}>
@@ -500,8 +500,8 @@ const TablesBlock = () => {
           ))}
         </tbody>
       </table>
-      <div style={{ padding: "8px 12px", borderTop: "1px solid var(--border-subtle)", background: "var(--slate-50)" }}>
-        <span className="t-caption">Live — click any header to sort. First click sorts (numeric columns open descending), a second reverses, a third returns to the default order.</span>
+      <div style={{ padding: "8px 12px", borderTop: "1px solid var(--border-subtle)", background: "var(--slate-050)" }}>
+        <span className="t-caption">Live: click any header to sort. First click sorts (numeric columns open descending), a second reverses, a third returns to the default order.</span>
       </div>
     </div>
   </ComponentBlock>
@@ -520,7 +520,7 @@ const NavTabsBlock = () => {
     purpose="Top-of-page navigation primitives. Tabs switch views within a single resource; breadcrumbs show hierarchy."
   >
     <div className="ds-card">
-      <div style={{ padding: "16px 20px 0", display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "var(--text-muted)" }}>
+      <div style={{ padding: "16px 20px 0", display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "var(--text-muted)" }}>
         <a className="ds-btn ds-btn--link" style={{ fontSize: 12 }}>Portfolios</a>
         <Icon d={I.chevronRight} size={12} />
         <a className="ds-btn ds-btn--link" style={{ fontSize: 12 }}>Atlantic Hull 2026</a>
@@ -563,9 +563,9 @@ const NavTabsBlock = () => {
 const OverlayBlock = () => (
   <ComponentBlock
     id="c-overlays"
-    name="Modals, Drawers, Popovers, Tooltips"
-    purpose="Surfaces that overlay the page. Modals block; drawers and popovers don't."
-    rules={<>Modal width <code className="inline">480 / 640 / 800px</code>. Drawer width <code className="inline">400 / 560 / 720px</code> from right. Tooltip max-width <code className="inline">240px</code>.</>}
+    name="Modals &amp; Drawers"
+    purpose="Surfaces that overlay the page. Modals block; drawers don't."
+    rules={<>Modal width <code className="inline">480 / 640 / 800px</code>. Drawer width <code className="inline">400 / 560 / 720px</code> from right. <a href="#c-tooltip">Tooltips</a> and <a href="#c-popover">Popovers</a> have their own full specifications.</>}
   >
     <div className="grid-2">
       <div className="surface" style={{ padding: 0 }}>
@@ -577,7 +577,7 @@ const OverlayBlock = () => (
               <button className="ds-btn ds-btn--ghost ds-btn--icon ds-btn--sm"><Icon d={I.x} /></button>
             </div>
             <div style={{ padding: "16px 20px", fontSize: 13, color: "var(--text-secondary)" }}>This will permanently remove <strong style={{ color: "var(--text-primary)" }}>Atlantic Hull 2026</strong>, its 142 policies, and all associated voyage data. This cannot be undone.</div>
-            <div style={{ padding: "12px 20px", borderTop: "1px solid var(--border-subtle)", background: "var(--slate-50)", display: "flex", justifyContent: "flex-end", gap: 8 }}>
+            <div style={{ padding: "12px 20px", borderTop: "1px solid var(--border-subtle)", background: "var(--slate-050)", display: "flex", justifyContent: "flex-end", gap: 8 }}>
               <button className="ds-btn ds-btn--secondary">Cancel</button>
               <button className="ds-btn ds-btn--danger">Delete portfolio</button>
             </div>
@@ -585,26 +585,8 @@ const OverlayBlock = () => (
         </div>
       </div>
       <div className="surface" style={{ padding: 0 }}>
-        <div className="surface-toolbar"><span className="dot r" /><span className="dot y" /><span className="dot g" /><span style={{ marginLeft: 8 }}>popover · tooltip · empty state</span></div>
+        <div className="surface-toolbar"><span className="dot r" /><span className="dot y" /><span className="dot g" /><span style={{ marginLeft: 8 }}>empty state</span></div>
         <div style={{ padding: 24, display: "grid", gap: 16 }}>
-          <div style={{ position: "relative", display: "inline-block", width: "fit-content" }}>
-            <button className="ds-btn ds-btn--secondary"><Icon d={I.filter} /> Filters</button>
-            <div style={{ position: "absolute", top: 38, left: 0, width: 280, background: "white", border: "1px solid var(--border-default)", borderRadius: 6, boxShadow: "var(--shadow-md)", padding: 12, zIndex: 2 }}>
-              <div className="t-label" style={{ marginBottom: 8 }}>Filter vessels</div>
-              <div className="ds-field" style={{ gap: 4 }}>
-                <label className="ds-field-label" style={{ fontSize: 11 }}>Risk grade</label>
-                <select className="ds-input ds-select" style={{ height: 28, fontSize: 12 }}><option>All</option></select>
-              </div>
-              <div style={{ display: "flex", gap: 8, marginTop: 12, justifyContent: "flex-end" }}>
-                <button className="ds-btn ds-btn--ghost ds-btn--sm">Reset</button>
-                <button className="ds-btn ds-btn--primary ds-btn--sm">Apply</button>
-              </div>
-            </div>
-          </div>
-          <div style={{ position: "relative", display: "inline-block", marginTop: 80 }}>
-            <button className="ds-btn ds-btn--ghost"><Icon d={I.info} /> hover me</button>
-            <div className="ds-tooltip" style={{ top: -32, left: "50%", transform: "translateX(-50%)" }}>Risk score updated 4m ago</div>
-          </div>
           <div className="ds-empty">
             <div className="ds-empty-icon"><Icon d={I.folder} size={20} /></div>
             <h4>No vessels match these filters</h4>
@@ -615,7 +597,7 @@ const OverlayBlock = () => (
       </div>
     </div>
     <div className="callout" style={{ marginTop: 16 }}>
-      <strong>Modals are a standardized component.</strong> See the live, tokenized <a href="#c-modal" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Modal — full specification</a> for the production API, slots, sizes and accessibility.
+      <strong>Modals are a standardized component.</strong> See the live, tokenized <a href="#c-modal" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Modal: full specification</a> for the production API, slots, sizes and accessibility.
     </div>
   </ComponentBlock>
 );
@@ -655,11 +637,11 @@ const PaginationBlock = () => (
     purpose="Navigates large datasets across pages. Always paired with a results summary so the user knows their position in the set."
     variants={<><code className="inline">default</code> · <code className="inline">compact</code> · <code className="inline">table-footer</code></>}
     states={<>default · hover · active (current page) · disabled (prev on page 1 / next on last page)</>}
-    rules={<>Show page numbers when total pages ≤ 7; collapse middle pages with an ellipsis beyond that. Minimum hit target <code className="inline">32×32px</code>. Always show a results count (<em>"1–25 of 847 results"</em>). Never use pagination for infinite-scroll surfaces — use a "Load more" button instead.</>}
+    rules={<>Show page numbers when total pages ≤ 7; collapse middle pages with an ellipsis beyond that. Minimum hit target <code className="inline">32×32px</code>. Always show a results count (<em>"1–25 of 847 results"</em>). Never use pagination for infinite-scroll surfaces, use a "Load more" button instead.</>}
   >
     <div className="col" style={{ gap: 32 }}>
 
-      {/* Default — numbered */}
+      {/* Default: numbered */}
       <div className="col" style={{ gap: 8 }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 4 }}>Default</div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
@@ -684,7 +666,7 @@ const PaginationBlock = () => (
 
       <hr className="section-hr" style={{ margin: "0" }} />
 
-      {/* Compact — prev/next only */}
+      {/* Compact: prev/next only */}
       <div className="col" style={{ gap: 8 }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 4 }}>Compact</div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
@@ -699,7 +681,7 @@ const PaginationBlock = () => (
 
       <hr className="section-hr" style={{ margin: "0" }} />
 
-      {/* Table footer — full strip */}
+      {/* Table footer: full strip */}
       <div className="col" style={{ gap: 8 }}>
         <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: 4 }}>Table footer</div>
         <div className="ds-card" style={{ overflow: "hidden", padding: 0 }}>
@@ -735,7 +717,7 @@ const PaginationBlock = () => (
           <div className="ds-pagination-wrap">
             <span>Showing 1–4 of 847 vessels</span>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <label style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <label style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 Rows per page
                 <select className="ds-input" style={{ height: 28, width: "auto", padding: "0 8px", fontSize: 13 }}>
                   <option>25</option>
@@ -769,30 +751,30 @@ const PaginationBlock = () => (
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
 
-          {/* DO — recommended mobile layout */}
+          {/* DO: recommended mobile layout */}
           <div className="col" style={{ gap: 8 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: "var(--success-700)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Do — stacked controls</div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: "var(--success-700)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Do: stacked controls</div>
             <div style={{ width: 360, maxWidth: "100%", margin: "0 auto", border: "8px solid #1F2937", borderRadius: 28, overflow: "hidden", background: "var(--white)" }}>
               {/* status bar */}
-              <div style={{ height: 28, background: "var(--white)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 18px", fontSize: 11, fontWeight: 600 }}>
+              <div style={{ height: 28, background: "var(--white)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", fontSize: 11, fontWeight: 600 }}>
                 <span>9:41</span>
                 <span style={{ display: "flex", gap: 4, alignItems: "center", color: "var(--text-primary)" }}>● ● ●</span>
               </div>
               {/* fake list rows */}
-              <div style={{ background: "var(--bg-app)", padding: "12px 16px", display: "grid", gap: 10 }}>
+              <div style={{ background: "var(--bg-app)", padding: "12px 16px", display: "grid", gap: 8 }}>
                 {[
                   ["M/V Stratos", "Panama · medium"],
                   ["M/V Oceanus", "Liberia · high"],
                   ["M/V Nereid",  "Malta · low"],
                 ].map(([v, m]) => (
-                  <div key={v} className="ds-card" style={{ padding: "10px 12px" }}>
+                  <div key={v} className="ds-card" style={{ padding: "12px 12px" }}>
                     <div style={{ fontSize: 13, fontWeight: 600 }}>{v}</div>
                     <div style={{ fontSize: 11, color: "var(--text-muted)" }}>{m}</div>
                   </div>
                 ))}
               </div>
               {/* mobile pagination strip */}
-              <div style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--slate-50)", padding: "12px 16px", display: "flex", flexDirection: "column", gap: 10 }}>
+              <div style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--slate-050)", padding: "12px 16px", display: "flex", flexDirection: "column", gap: 8 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12, color: "var(--text-muted)" }}>
                   <span>1–25 of 847</span>
                   <button className="ds-btn ds-btn--link" style={{ fontSize: 12 }}>Jump to page…</button>
@@ -812,25 +794,25 @@ const PaginationBlock = () => (
             </div>
           </div>
 
-          {/* DON'T — desktop pagination crammed onto mobile */}
+          {/* DON'T: desktop pagination crammed onto mobile */}
           <div className="col" style={{ gap: 8 }}>
-            <div style={{ fontSize: 11, fontWeight: 600, color: "var(--danger-700)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Don't — desktop pattern on phone</div>
+            <div style={{ fontSize: 11, fontWeight: 600, color: "var(--danger-700)", letterSpacing: "0.06em", textTransform: "uppercase" }}>Don't: desktop pattern on phone</div>
             <div style={{ width: 360, maxWidth: "100%", margin: "0 auto", border: "8px solid #1F2937", borderRadius: 28, overflow: "hidden", background: "var(--white)" }}>
-              <div style={{ height: 28, background: "var(--white)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 18px", fontSize: 11, fontWeight: 600 }}>
+              <div style={{ height: 28, background: "var(--white)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 20px", fontSize: 11, fontWeight: 600 }}>
                 <span>9:41</span>
                 <span style={{ display: "flex", gap: 4, alignItems: "center", color: "var(--text-primary)" }}>● ● ●</span>
               </div>
-              <div style={{ background: "var(--bg-app)", padding: "12px 16px", display: "grid", gap: 10 }}>
+              <div style={{ background: "var(--bg-app)", padding: "12px 16px", display: "grid", gap: 8 }}>
                 {[["M/V Stratos","Panama · medium"],["M/V Oceanus","Liberia · high"],["M/V Nereid","Malta · low"]].map(([v, m]) => (
-                  <div key={v} className="ds-card" style={{ padding: "10px 12px" }}>
+                  <div key={v} className="ds-card" style={{ padding: "12px 12px" }}>
                     <div style={{ fontSize: 13, fontWeight: 600 }}>{v}</div>
                     <div style={{ fontSize: 11, color: "var(--text-muted)" }}>{m}</div>
                   </div>
                 ))}
               </div>
-              <div style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--slate-50)", padding: "10px 8px", display: "flex", flexDirection: "column", gap: 8 }}>
+              <div style={{ borderTop: "1px solid var(--border-subtle)", background: "var(--slate-050)", padding: "12px 8px", display: "flex", flexDirection: "column", gap: 8 }}>
                 <div style={{ fontSize: 11, color: "var(--text-muted)", textAlign: "center" }}>Showing 1–25 of 847 results</div>
-                {/* cramped numbered row — intentionally bad */}
+                {/* cramped numbered row: intentionally bad */}
                 <nav className="ds-pagination" aria-label="bad" style={{ justifyContent: "center", overflowX: "auto" }}>
                   <button className="ds-page-btn" disabled style={{ minWidth: 26, height: 26, padding: 0 }}><Icon d={I.chevronLeft} size={12} /></button>
                   <button className="ds-page-btn is-active" style={{ minWidth: 26, height: 26, padding: 0, fontSize: 11 }}>1</button>
@@ -842,7 +824,7 @@ const PaginationBlock = () => (
                   <button className="ds-page-btn" style={{ minWidth: 26, height: 26, padding: 0, fontSize: 11 }}>34</button>
                   <button className="ds-page-btn" style={{ minWidth: 26, height: 26, padding: 0 }}><Icon d={I.chevronRight} size={12} /></button>
                 </nav>
-                <div style={{ fontSize: 10, color: "var(--danger-600)", textAlign: "center", marginTop: 2 }}>26px hit targets · fails WCAG 2.5.5</div>
+                <div style={{ fontSize: 11, color: "var(--danger-600)", textAlign: "center", marginTop: 2 }}>26px hit targets · fails WCAG 2.5.5</div>
               </div>
             </div>
           </div>
@@ -850,24 +832,24 @@ const PaginationBlock = () => (
 
         {/* Include / Drop table */}
         <div className="grid-2" style={{ gap: 16, marginTop: 8 }}>
-          <div style={{ background: "var(--success-050)", border: "1px solid var(--success-100)", borderRadius: "var(--radius-md)", padding: "14px 16px" }}>
+          <div style={{ background: "var(--success-050)", border: "1px solid var(--success-100)", borderRadius: "var(--radius-md)", padding: "16px 16px" }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: "var(--success-700)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 8 }}>Include on mobile</div>
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.65, color: "var(--text-primary)" }}>
-              <li><strong>Prev / Next buttons</strong> — full-width, min 44×44 px, labelled with icon + text</li>
-              <li><strong>Current page indicator</strong> — "1 / 34" pill between the buttons</li>
-              <li><strong>Result count</strong> — condensed: <code className="inline">"1–25 of 847"</code></li>
-              <li><strong>Jump to page</strong> — link that opens a bottom sheet with a numeric input (only when total pages &gt; 10)</li>
-              <li><strong>Disabled state</strong> — prev on page 1, next on last page</li>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.65, color: "var(--text-primary)" }}>
+              <li><strong>Prev / Next buttons</strong>, full-width, min 44×44 px, labelled with icon + text</li>
+              <li><strong>Current page indicator</strong>, "1 / 34" pill between the buttons</li>
+              <li><strong>Result count</strong>, condensed: <code className="inline">"1–25 of 847"</code></li>
+              <li><strong>Jump to page</strong>, link that opens a bottom sheet with a numeric input (only when total pages &gt; 10)</li>
+              <li><strong>Disabled state</strong>, prev on page 1, next on last page</li>
             </ul>
           </div>
-          <div style={{ background: "var(--danger-050)", border: "1px solid var(--danger-100)", borderRadius: "var(--radius-md)", padding: "14px 16px" }}>
+          <div style={{ background: "var(--danger-050)", border: "1px solid var(--danger-100)", borderRadius: "var(--radius-md)", padding: "16px 16px" }}>
             <div style={{ fontSize: 11, fontWeight: 600, color: "var(--danger-700)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 8 }}>Drop on mobile</div>
-            <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, lineHeight: 1.65, color: "var(--text-primary)" }}>
-              <li><strong>Numbered page list</strong> — hit targets fall below 44 px and the row overflows</li>
-              <li><strong>Ellipsis collapsing</strong> — irrelevant once the number strip is gone</li>
-              <li><strong>"Rows per page" selector</strong> — move to the filter / settings sheet; default to 25</li>
-              <li><strong>Word "results"</strong> — abbreviate aggressively; screen real estate is the constraint</li>
-              <li><strong>First / Last buttons</strong> — replaced by the jump-to-page sheet</li>
+            <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, lineHeight: 1.65, color: "var(--text-primary)" }}>
+              <li><strong>Numbered page list</strong>, hit targets fall below 44 px and the row overflows</li>
+              <li><strong>Ellipsis collapsing</strong>, irrelevant once the number strip is gone</li>
+              <li><strong>"Rows per page" selector</strong>, move to the filter / settings sheet; default to 25</li>
+              <li><strong>Word "results"</strong>, abbreviate aggressively; screen real estate is the constraint</li>
+              <li><strong>First / Last buttons</strong>, replaced by the jump-to-page sheet</li>
             </ul>
           </div>
         </div>

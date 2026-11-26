@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Weather Event Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -226,7 +226,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script src="shared/storm-track.js?v=5"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
@@ -271,7 +271,7 @@ function flag(cc, w=18, h=13) {
 const DEFAULT_STORM = {
   id:1, name:'TC Hidaya', type:'Tropical Cyclone', cat:'Category 2', status:'Active',
   lat:-17.2, lng:57.4, wind:110, pressure:978, movement:'SE at 12 km/h',
-  color:'#ef4444', glow:'rgba(239,68,68,.35)', radius:17,
+  color:'#ea580c', glow:'rgba(239,68,68,.35)', radius:17,
   updated:'2025-07-04 18:00 UTC',
   // past: 6-hourly; forecast: 12-hourly (t = UTC, wind = km/h)
   track:[
@@ -316,18 +316,18 @@ const PORTFOLIOS = [
 ];
 const TOTAL_EXPOSURE = '$1,587.3M';
 const PF_TYPE_CFG = {
-  Marine:   { color:'#0ea5e9' },
+  Marine:   { color:'#43a8df' },
   Property: { color:'#d97706' },
-  Offshore: { color:'#7c3aed' },
+  Offshore: { color:'#9333ea' },
 };
 
 /* ── Assets in zone ─────────────────────────────────────────────────── */
 const ASSETS = [
-  { name:'AP WUHU',         portfolio:'Ships size > 15',                imo:'9556446', cc:'mh', country:'Marshall Islands', type:'Car Carrier',  typeColor:'#7c3aed', typeBg:'#f5f3ff', ref:'N/A',         inception:'N/A',        expiry:'N/A',        owner:'Nautical AI World LLC',   exposure:'$500k',  market:'$53.6M',  updated:'2025-02-04' },
+  { name:'AP WUHU',         portfolio:'Ships size > 15',                imo:'9556446', cc:'mh', country:'Marshall Islands', type:'Car Carrier',  typeColor:'#9333ea', typeBg:'#eff6ff', ref:'N/A',         inception:'N/A',        expiry:'N/A',        owner:'Nautical AI World LLC',   exposure:'$500k',  market:'$53.6M',  updated:'2025-02-04' },
   { name:'ZAARIPH',         portfolio:'Containerships Sample portfolio', imo:'9427959', cc:'lr', country:'Liberia',          type:'Container',    typeColor:'#16a34a', typeBg:'#f0fdf4', ref:'N/A',         inception:'N/A',        expiry:'N/A',        owner:'Megacarrier No 5 Co.',   exposure:'$79.9M', market:'$60.5M',  updated:'2025-02-04' },
   { name:'ZAARIMIKA',       portfolio:'Containerships Tankers',          imo:'9427959', cc:'lr', country:'Liberia',          type:'Container',    typeColor:'#16a34a', typeBg:'#f0fdf4', ref:'CTA_flat_95', inception:'2025-02-20', expiry:'2028-02-20', owner:'Megacarrier No 5 Co.',   exposure:'$79.9M', market:'$60.5M',  updated:'2025-02-04' },
-  { name:'ZAARIGM LEADER',  portfolio:'Car Carrier fleet',               imo:'9204958', cc:'pa', country:'Panama',           type:'Car Carrier',  typeColor:'#7c3aed', typeBg:'#f5f3ff', ref:'N/A',         inception:'N/A',        expiry:'2026-02-20', owner:'Eastern Heritage Ves Co', exposure:'$200M',  market:'$66.0M',  updated:'2025-02-04' },
-  { name:'BW TULIP',        portfolio:'Norway Flag',                     imo:'9730664', cc:'sg', country:'Singapore',        type:'LNG Carrier',  typeColor:'#db2777', typeBg:'#fdf2f8', ref:'N/A',         inception:'N/A',        expiry:'N/A',        owner:'BW LNG I Private Li.',   exposure:'$1.0',   market:'$272.4M', updated:'2025-02-04' },
+  { name:'ZAARIGM LEADER',  portfolio:'Car Carrier fleet',               imo:'9204958', cc:'pa', country:'Panama',           type:'Car Carrier',  typeColor:'#9333ea', typeBg:'#eff6ff', ref:'N/A',         inception:'N/A',        expiry:'2026-02-20', owner:'Eastern Heritage Ves Co', exposure:'$200M',  market:'$66.0M',  updated:'2025-02-04' },
+  { name:'BW TULIP',        portfolio:'Norway Flag',                     imo:'9730664', cc:'sg', country:'Singapore',        type:'LNG Carrier',  typeColor:'#db2777', typeBg:'#fef2f2', ref:'N/A',         inception:'N/A',        expiry:'N/A',        owner:'BW LNG I Private Li.',   exposure:'$1.0',   market:'$272.4M', updated:'2025-02-04' },
 ];
 
 /* ── Asset map positions (relative to storm) ───────────────────────── */
@@ -346,12 +346,12 @@ ASSETS.forEach(a => { ASSET_INFO[a.name] = a; });
 const MAP_VESSELS = [
   ...ASSET_POS.map(p => ({ ...ASSET_INFO[p.name], lat:p.lat, lng:p.lng, heading:p.heading })),
   { name:'OCEAN PIONEER',  type:'Bulk Carrier', typeColor:'#2563eb', cc:'pa', country:'Panama',          lat:-13.8, lng:54.2, heading:70,  imo:'9612345', portfolio:'Bulkcarrier / Renewals',         owner:'Indus Shipping Co.',       exposure:'$31.0M', market:'$44.2M',  ref:'N/A',         inception:'2025-01-12', expiry:'2026-01-12', updated:'2025-02-04' },
-  { name:'NORDIC STAR',    type:'Tanker',       typeColor:'#0ea5e9', cc:'no', country:'Norway',          lat:-14.2, lng:60.1, heading:250, imo:'9701882', portfolio:'Tankers / Renewals',           owner:'Nordic Tankers AS',        exposure:'$48.0M', market:'$71.5M',  ref:'NRT_22',      inception:'2024-11-03', expiry:'2027-11-03', updated:'2025-02-04' },
+  { name:'NORDIC STAR',    type:'Tanker',       typeColor:'#43a8df', cc:'no', country:'Norway',          lat:-14.2, lng:60.1, heading:250, imo:'9701882', portfolio:'Tankers / Renewals',           owner:'Nordic Tankers AS',        exposure:'$48.0M', market:'$71.5M',  ref:'NRT_22',      inception:'2024-11-03', expiry:'2027-11-03', updated:'2025-02-04' },
   { name:'PACIFIC DAWN',   type:'Container',    typeColor:'#16a34a', cc:'hk', country:'Hong Kong',       lat:-16.4, lng:61.8, heading:300, imo:'9655321', portfolio:'Containerships Sample portfolio', owner:'Pacific Lines Ltd.',       exposure:'$79.9M', market:'$60.5M',  ref:'N/A',         inception:'N/A',        expiry:'N/A',        updated:'2025-02-04' },
   { name:'BLUE HORIZON',   type:'Bulk Carrier', typeColor:'#2563eb', cc:'mt', country:'Malta',           lat:-19.1, lng:60.6, heading:205, imo:'9588210', portfolio:'Bulkcarrier / Renewals',         owner:'Horizon Bulk Carriers',    exposure:'$22.0M', market:'$38.9M',  ref:'N/A',         inception:'2025-02-01', expiry:'2028-02-01', updated:'2025-02-04' },
   { name:'SILVER WAVE',    type:'LNG Carrier',  typeColor:'#db2777', cc:'sg', country:'Singapore',       lat:-21.0, lng:58.8, heading:160, imo:'9744119', portfolio:'Norway Flag',                  owner:'BW LNG I Private Li.',     exposure:'$1.0',   market:'$268.0M', ref:'N/A',         inception:'N/A',        expiry:'N/A',        updated:'2025-02-04' },
-  { name:'CORAL GULF',     type:'Car Carrier',  typeColor:'#7c3aed', cc:'mh', country:'Marshall Islands', lat:-20.4, lng:53.2, heading:30,  imo:'9209877', portfolio:'Car Carrier fleet',            owner:'Eastern Heritage Ves Co',  exposure:'$200M',  market:'$66.0M',  ref:'N/A',         inception:'N/A',        expiry:'2026-02-20', updated:'2025-02-04' },
-  { name:'ATLANTIC PEARL', type:'Tanker',       typeColor:'#0ea5e9', cc:'gr', country:'Greece',          lat:-15.0, lng:52.6, heading:110, imo:'9633471', portfolio:'Tankers / VLCC',               owner:'Aegean Maritime SA',       exposure:'$50.0M', market:'$58.3M',  ref:'N/A',         inception:'N/A',        expiry:'N/A',        updated:'2025-02-04' },
+  { name:'CORAL GULF',     type:'Car Carrier',  typeColor:'#9333ea', cc:'mh', country:'Marshall Islands', lat:-20.4, lng:53.2, heading:30,  imo:'9209877', portfolio:'Car Carrier fleet',            owner:'Eastern Heritage Ves Co',  exposure:'$200M',  market:'$66.0M',  ref:'N/A',         inception:'N/A',        expiry:'2026-02-20', updated:'2025-02-04' },
+  { name:'ATLANTIC PEARL', type:'Tanker',       typeColor:'#43a8df', cc:'gr', country:'Greece',          lat:-15.0, lng:52.6, heading:110, imo:'9633471', portfolio:'Tankers / VLCC',               owner:'Aegean Maritime SA',       exposure:'$50.0M', market:'$58.3M',  ref:'N/A',         inception:'N/A',        expiry:'N/A',        updated:'2025-02-04' },
   { name:'MARITIME GLORY', type:'Container',    typeColor:'#16a34a', cc:'lr', country:'Liberia',         lat:-13.0, lng:57.0, heading:190, imo:'9427959', portfolio:'Containerships Tankers',        owner:'Megacarrier No 5 Co.',     exposure:'$79.9M', market:'$60.5M',  ref:'CTA_flat_95', inception:'2025-02-20', expiry:'2028-02-20', updated:'2025-02-04' },
   { name:'SOUTHERN CROSS', type:'Bulk Carrier', typeColor:'#2563eb', cc:'cy', country:'Cyprus',          lat:-22.2, lng:56.2, heading:20,  imo:'9501230', portfolio:'Bulk sea pontoons',            owner:'Southern Bulk Co.',        exposure:'$5.0M',  market:'$9.4M',   ref:'N/A',         inception:'N/A',        expiry:'N/A',        updated:'2025-02-04' },
   { name:'DEEP EXPLORER',  type:'LNG Carrier',  typeColor:'#db2777', cc:'jp', country:'Japan',           lat:-18.9, lng:53.0, heading:130, imo:'9788654', portfolio:'Norway Flag',                  owner:'Nippon Gas Lines',         exposure:'$1.0',   market:'$255.1M', ref:'N/A',         inception:'N/A',        expiry:'N/A',        updated:'2025-02-04' },
@@ -359,11 +359,11 @@ const MAP_VESSELS = [
 
 /* Vessel filter — type list + active-set state (Marine Dashboard style) */
 const EVT_VESSEL_TYPES = [
-  { k:'Car Carrier',  color:'#7c3aed' },
+  { k:'Car Carrier',  color:'#9333ea' },
   { k:'Container',    color:'#16a34a' },
   { k:'LNG Carrier',  color:'#db2777' },
   { k:'Bulk Carrier', color:'#2563eb' },
-  { k:'Tanker',       color:'#0ea5e9' },
+  { k:'Tanker',       color:'#43a8df' },
 ];
 let evtVesselFilter = new Set(EVT_VESSEL_TYPES.map(t => t.k));
 let evtVesselMarkers = [];
@@ -473,10 +473,10 @@ function applyEvtPropertyFilter() {
 /* ── Offshore assets (in the water near the event) ──────────────────────
    Marker style mirrors the Offshore Dashboard (colored dot + label). */
 const EVT_OFFSHORE_TYPES = [
-  { k:'Oil Rig',                color:'#ef4444' },
+  { k:'Oil Rig',                color:'#ea580c' },
   { k:'Platform',               color:'#06b6d4' },
-  { k:'Windfarm',               color:'#10b981' },
-  { k:'Floating Storage (FSO)', color:'#8b5cf6' },
+  { k:'Windfarm',               color:'#16a34a' },
+  { k:'Floating Storage (FSO)', color:'#9333ea' },
 ];
 const EVT_OFFSHORE_COLOR = Object.fromEntries(EVT_OFFSHORE_TYPES.map(t => [t.k, t.color]));
 const OFFSHORE_POS = [
@@ -494,7 +494,7 @@ function evtOffshoreTooltip(m) {
   return `<span class="atip-row">${flag}<span class="atip-name">${m.name}</span></span><span class="atip-type">${m.assetType}${m.country ? ' · ' + m.country : ''}</span>`;
 }
 function evtOffshorePopup(m) {
-  const statusColor = m.status === 'Operational' ? '#10b981' : m.status === 'Under Maintenance' ? '#f59e0b' : '#9ca3af';
+  const statusColor = m.status === 'Operational' ? '#16a34a' : m.status === 'Under Maintenance' ? '#eab308' : '#9ca3af';
   const row = (label, val, color) => `<div><div style="font-size:12px;color:#6b7280;margin-bottom:2px;">${label}:</div><div style="font-size:14px;font-weight:600;color:${color || '#111827'};">${val}</div></div>`;
   return `
     <div style="background:var(--brand-600,#2563eb);padding:12px 36px 12px 16px;">
@@ -606,7 +606,7 @@ function applyEvtAviationFilter() {
 /* ── Region-specific asset bundles ──────────────────────────────────────
    Each weather event draws assets that actually belong to its region:
    airports on real airports, vessels at sea / in port, properties on land. */
-const TC = { 'Car Carrier':'#7c3aed','Container':'#16a34a','LNG Carrier':'#db2777','Bulk Carrier':'var(--brand-600,#2563eb)','Tanker':'#0ea5e9' };
+const TC = { 'Car Carrier':'#9333ea','Container':'#16a34a','LNG Carrier':'#db2777','Bulk Carrier':'var(--brand-600,#2563eb)','Tanker':'#43a8df' };
 const mkV = (name,type,cc,country,lat,lng,heading,imo,portfolio,owner,exposure,market) =>
   ({ name, type, typeColor:TC[type]||'var(--brand-600,#2563eb)', cc, country, lat, lng, heading, imo, portfolio, owner, exposure, market, ref:'N/A', inception:'N/A', expiry:'N/A', updated:'2025-07-04' });
 const mkP = (name,cat,lat,lng,location,value,occupancy,size,risk) =>
@@ -745,7 +745,7 @@ let mapView = 'Portfolio';
 let mapType = 'satellite';
 
 const EVT_TILES = {
-  satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#0b1e2e' },
+  satellite: { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#111827' },
   street:    { url:'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#e5e7eb' },
   dark:      { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#0b0f1a' },
   light:     { url:'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', attr:'Tiles © Esri', bg:'#f3f4f6' },
@@ -974,7 +974,7 @@ window.render = function() {
               </div>
               <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
                 <span style="font-size:12px;color:#6b7280;font-variant-numeric:tabular-nums">${stormUpdated}</span>
-                <span style="padding:4px 12px;border-radius:999px;background:#ef4444;color:#fff;font-size:12px;font-weight:700;letter-spacing:.02em">${STORM.status || 'Active'}</span>
+                <span style="padding:4px 12px;border-radius:999px;background:#ea580c;color:#fff;font-size:12px;font-weight:700;letter-spacing:.02em">${STORM.status || 'Active'}</span>
               </div>
             </div>
             <div style="flex:1;position:relative;overflow:hidden;min-height:0">

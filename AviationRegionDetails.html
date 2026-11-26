@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Aviation Region Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -99,7 +99,7 @@
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
   .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
-  .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
+  .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Phones: portfolio tables as cards (all headings kept); lists scroll inside their card */
   .ard-mcards { display:none; }
@@ -136,7 +136,7 @@ window.PAGE = { id:'regions', title:'Aviation Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -365,7 +365,7 @@ const ALERTS = [
 function alertCard(al) {
   const inTransit = al.status !== 'Landed';
   const statusStyle = inTransit
-    ? 'color:#c2410c;border-color:#fed7aa;background:#fff7ed'
+    ? 'color:#c2410c;border-color:#fef3c7;background:#fffbeb'
     : 'color:#111827;border-color:#e5e7eb;background:#fff';
   return `
   <div class="airport-card" style="cursor:default;margin-bottom:8px">
@@ -465,7 +465,7 @@ function Content() {
           ${TOTALS_ROWS.map(r => `
           <div class="tot-row">
             <span style="flex:1;font-size:14px;color:#374151">${r.label}${r.label!=='All Risk'?':':''}</span>
-            <span style="color:#f97316;font-weight:600;font-size:14px;min-width:64px;text-align:right">${r.thr}</span>
+            <span style="color:#d97706;font-weight:600;font-size:14px;min-width:64px;text-align:right">${r.thr}</span>
             <span style="color:#111827;font-weight:600;font-size:14px;min-width:56px;text-align:right;margin-left:16px">${r.tot}</span>
           </div>`).join('')}` : `
           <div style="font-size:14px;color:#6b7280;padding:8px 0;display:flex;flex-direction:column;gap:8px">
@@ -558,24 +558,24 @@ function Content() {
             <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
               <div style="flex:1">
                 <div style="font-size:14px;font-weight:600;color:#111827">Highest Daily Exposure Value:</div>
-                <div style="font-size:12px;color:#f97316;font-weight:600;margin-top:2px">${s.hiExpDate}</div>
+                <div style="font-size:12px;color:#d97706;font-weight:600;margin-top:2px">${s.hiExpDate}</div>
               </div>
               <span class="spill-blue">${s.hiExp}</span>
               <div style="flex:1">
                 <div style="display:flex;align-items:center;gap:4px;color:#6b7280;font-size:12px">${INFO_ICO}Highest Daily Asset Count:</div>
-                <div style="font-size:12px;color:#f97316;font-weight:600;margin-top:2px">${s.hiADate}</div>
+                <div style="font-size:12px;color:#d97706;font-weight:600;margin-top:2px">${s.hiADate}</div>
               </div>
               <span style="font-size:14px;font-weight:700;color:#111827;min-width:30px;text-align:right">${s.hiA}</span>
             </div>
             <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
               <div style="flex:1">
                 <div style="font-size:14px;font-weight:600;color:#111827">Lowest Daily Exposure Value:</div>
-                <div style="font-size:12px;color:#f97316;font-weight:600;margin-top:2px">${s.loExpDate}</div>
+                <div style="font-size:12px;color:#d97706;font-weight:600;margin-top:2px">${s.loExpDate}</div>
               </div>
               <span class="spill-blue">${s.loExp}</span>
               <div style="flex:1">
                 <div style="display:flex;align-items:center;gap:4px;color:#6b7280;font-size:12px">${INFO_ICO}Lowest Daily Asset Count:</div>
-                <div style="font-size:12px;color:#f97316;font-weight:600;margin-top:2px">${s.loADate}</div>
+                <div style="font-size:12px;color:#d97706;font-weight:600;margin-top:2px">${s.loADate}</div>
               </div>
               <span style="font-size:14px;font-weight:700;color:#111827;min-width:30px;text-align:right">${s.loA}</span>
             </div>

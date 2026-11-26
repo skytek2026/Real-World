@@ -1,4 +1,4 @@
-/* Modal — full specification section for the Skytek Design System spec page.
+/* Modal: full specification section for the Skytek Design System spec page.
    Renders the live, standardized RWModal component (components/rw-modal.*).
    Demo triggers call window.ModalDemos / window.RWModal (loaded as plain JS). */
 
@@ -42,13 +42,13 @@ const ModalSpec = () => (
         </div>
       </div>
       <div className="callout" style={{ marginTop: 16 }}>
-        <strong>Refactored from <code className="inline">AddPortModal</code>.</strong> The "Add a new Port" demo is the original modal rebuilt on this shell — same form, standardized overlay/header/body/footer and accessibility.
+        <strong>Refactored from <code className="inline">AddPortModal</code>.</strong> The "Add a new Port" demo is the original modal rebuilt on this shell, same form, standardized overlay/header/body/footer and accessibility.
       </div>
     </div>
 
     {/* ====== ANATOMY ====== */}
     <div className="subsection">
-      <h3 className="subsection-title">Anatomy — five slots</h3>
+      <h3 className="subsection-title">Anatomy: five slots</h3>
       <p className="subsection-desc">The component decomposes into five independently styleable regions. <code className="inline">RWModal.open()</code> assembles them; <code className="inline">RWModal.parts.*</code> exposes each as a builder.</p>
       <div className="panel" style={{ overflow: "hidden" }}>
         <table className="spec-table" style={{ border: 0 }}>
@@ -67,7 +67,7 @@ const ModalSpec = () => (
     {/* ====== SIZES ====== */}
     <div className="subsection">
       <h3 className="subsection-title">Size variants</h3>
-      <p className="subsection-desc">Set with the <code className="inline">size</code> prop. Each maps to one max-width token — widths are the only thing that changes.</p>
+      <p className="subsection-desc">Set with the <code className="inline">size</code> prop. Each maps to one max-width token, widths are the only thing that changes.</p>
       <div className="panel" style={{ overflow: "hidden" }}>
         <table className="spec-table" style={{ border: 0 }}>
           <thead><tr><th>Variant</th><th>Prop</th><th>Token</th><th>Max-width</th><th>Use for</th></tr></thead>
@@ -152,9 +152,9 @@ const ModalSpec = () => (
       <div className="grid-2">
         <div className="callout"><strong>Roles &amp; naming.</strong> Overlay carries <code className="inline">role="dialog"</code> + <code className="inline">aria-modal="true"</code>, with <code className="inline">aria-labelledby</code> bound to the title (or <code className="inline">aria-label</code>).</div>
         <div className="callout"><strong>Focus trap.</strong> <kbd className="ms-kbd">Tab</kbd> / <kbd className="ms-kbd">Shift+Tab</kbd> cycle within the dialog; a <code className="inline">focusin</code> guard recovers escaped focus.</div>
-        <div className="callout"><strong>Return focus.</strong> The trigger element is refocused on close — keyboard users never lose their place.</div>
+        <div className="callout"><strong>Return focus.</strong> The trigger element is refocused on close, keyboard users never lose their place.</div>
         <div className="callout"><strong>Dismissal &amp; lock.</strong> <kbd className="ms-kbd">Esc</kbd> closes; background scroll is locked and nested modals are reference-counted.</div>
-        <div className="callout"><strong>Visible focus.</strong> All controls expose a <code className="inline">:focus-visible</code> ring — never <code className="inline">outline:none</code> without a replacement.</div>
+        <div className="callout"><strong>Visible focus.</strong> All controls expose a <code className="inline">:focus-visible</code> ring: never <code className="inline">outline:none</code> without a replacement.</div>
         <div className="callout"><strong>Reduced motion.</strong> Rise / fade animations collapse under <code className="inline">prefers-reduced-motion</code>.</div>
       </div>
     </div>
@@ -168,7 +168,7 @@ const ModalSpec = () => (
       <pre className="code">{`<link rel="stylesheet" href="components/rw-modal.css">
 <script src="components/rw-modal.js"></script>`}</pre>
 
-      <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>High-level — open() with slots</h4>
+      <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>High-level: open() with slots</h4>
       <pre className="code">{`const modal = RWModal.open({
   size: 'md',
   title: 'Add a new Port',
@@ -184,7 +184,7 @@ const ModalSpec = () => (
   ],
 });`}</pre>
 
-      <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>Low-level — compose the sub-components</h4>
+      <h4 className="t-h4" style={{ margin: "24px 0 8px" }}>Low-level: compose the sub-components</h4>
       <pre className="code">{`const P = RWModal.parts;
 const overlay   = P.Overlay({ labelledby: 'm-title' });
 const container = P.Container({ size: 'lg' });
@@ -201,7 +201,7 @@ RWModal.mount(overlay, { closeOnOverlayClick: true, closeOnEsc: true });`}</pre>
     </div>
 
     <style>{`
-      .ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 5px; border-radius: 4px;
+      .ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 4px; border-radius: 4px;
         background: var(--slate-100); border: 1px solid var(--border-default); border-bottom-width: 2px; color: var(--text-secondary); }
       .ms-demo-row { display: flex; flex-wrap: wrap; gap: 28px; }
       .ms-demo-grp { display: flex; flex-direction: column; gap: 8px; }

@@ -40,7 +40,7 @@
   .ad-cols input{accent-color:var(--brand-600,#1485c5)}
   .ad-cols-foot{display:flex;justify-content:space-between;padding:8px 8px 2px;border-top:1px solid var(--border-subtle,#f3f4f6);margin-top:4px}
   .ad-cards{display:none}
-  .ad-card{padding:16px 16px;border-bottom:1px solid #eef2f7;display:grid;gap:8px}
+  .ad-card{padding:16px 16px;border-bottom:1px solid #f3f4f6;display:grid;gap:8px}
   .ad-card-top{display:flex;align-items:flex-start;gap:8px}
   .ad-card-id{flex:1;min-width:0}
   .ad-card-id a{display:block;color:var(--brand-600,#1485c5);font-weight:600;font-size:14px;text-decoration:none;overflow-wrap:anywhere}

@@ -39,6 +39,10 @@
       .rw-hit-rel { position: relative; }
       .rw-hit::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
       .rw-hit-b::before { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }   /* when ::after is already used */
+      /* Library / browser defaults onto DS colours: Leaflet's loading background (#ddd) -> slate-100,
+         the browser's select background (#efefef) -> white unless the page sets one */
+      .leaflet-container { background: #F3F4F6; }
+      select:not([class*="bg-"]) { background-color: #FFFFFF; }
       /* Leaflet defaults -> DS type: Inter, on-scale sizes, text-primary */
       .leaflet-container, .leaflet-container .leaflet-popup-content-wrapper, .leaflet-control-scale-line, .leaflet-tooltip { font-family:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
       .leaflet-container .leaflet-popup-content { font-size:14px; line-height:1.45; }
@@ -236,8 +240,8 @@ const NOTIFS = [
 
 function toneClasses(tone) {
   const m = {
-    indigo:  { bg:'bg-indigo-50',  text:'text-indigo-600',  ring:'ring-indigo-100' },
-    emerald: { bg:'bg-emerald-50', text:'text-emerald-600', ring:'ring-emerald-100' },
+    indigo:  { bg:'bg-[#eff6ff]',  text:'text-[#1d4ed8]',  ring:'ring-indigo-100' },
+    emerald: { bg:'bg-[#f0fdf4]', text:'text-[#16a34a]', ring:'ring-emerald-100' },
     amber:   { bg:'bg-amber-50',   text:'text-amber-600',   ring:'ring-amber-100' },
     rose:    { bg:'bg-red-50',    text:'text-red-700',    ring:'ring-red-100' },
     brand:   { bg:'bg-brand-50',   text:'text-brand-600',   ring:'ring-brand-100' },
@@ -390,7 +394,7 @@ function TweaksPanel() {
       <label class="block">
         <div class="text-xs font-semibold text-ink-600 mb-1 uppercase tracking-micro">Accent</div>
         <div class="grid grid-cols-4 gap-2">
-          ${[['blue','#2563eb'],['indigo','#4f46e5'],['teal','#0d9488'],['rose','#e11d48']].map(([n,c]) => `
+          ${[['blue','#2563eb'],['indigo','#1d4ed8'],['teal','#0891b2'],['rose','#dc2626']].map(([n,c]) => `
             <button data-tweak-accent="${n}" class="h-8 rounded-lg border ${TWEAKS.accent===n?'ring-2 ring-ink-900':'border-ink-200'}" style="background:${c}"></button>`).join('')}
         </div>
       </label>
@@ -469,7 +473,7 @@ function buildDarkCss() {
   ${D} [style*="background:#dbeafe"], ${D} [style*="background:#f0f9ff"], ${D} [style*="background:var(--brand-50"],
   ${D} [style*="background:var(--brand-050"] { background-color:#15233c !important; }
   /* Tailwind CDN blue/sky/indigo pastel tints (cross-origin sheet — scanner can't reach) */
-  ${D} .bg-blue-50, ${D} .bg-sky-50, ${D} .bg-indigo-50, ${D} .bg-cyan-50 { background-color:#15233c !important; }
+  ${D} .bg-blue-50, ${D} .bg-sky-50, ${D} .bg-[#eff6ff], ${D} .bg-cyan-50 { background-color:#15233c !important; }
   ${D} .bg-blue-100, ${D} .bg-sky-100, ${D} .bg-indigo-100 { background-color:#1a2b47 !important; }
   ${D} .border-blue-100, ${D} .border-sky-100, ${D} .border-indigo-100, ${D} .border-blue-200, ${D} .border-sky-200 { border-color:#2a3d5e !important; }
   ${D} [style*="border:1px solid #dbeafe"], ${D} [style*="border-color:#dbeafe"], ${D} [style*="solid #e0eaff"],
@@ -537,7 +541,7 @@ function buildDarkCss() {
   ${D} .ev-card.active { background-color:${surf3} !important; }
   ${D} .scroll-thin::-webkit-scrollbar-thumb { background:${surf3} !important; }
 
-  /* Inline-hex surfaces → dark. Semicolon/6-digit forms avoid matching #fff7ed etc. */
+  /* Inline-hex surfaces → dark. Semicolon/6-digit forms avoid matching #fffbeb etc. */
   ${D} [style*="background:#fff;"], ${D} [style*="background: #fff;"],
   ${D} [style*="background:#ffffff"], ${D} [style*="background: #ffffff"],
   ${D} [style*="background-color:#fff;"], ${D} [style*="background-color:#ffffff"],
@@ -551,7 +555,7 @@ function buildDarkCss() {
 
   /* Inline-hex text (dark → light) */
   ${D} [style*="color:#111827"], ${D} [style*="color:#111827"], ${D} [style*="color:#1f2937"],
-  ${D} [style*="color:#0b1e2e"], ${D} [style*="color:#1f2937"], ${D} [style*="color:#0f1623"],
+  ${D} [style*="color:#111827"], ${D} [style*="color:#1f2937"], ${D} [style*="color:#0f1623"],
   ${D} [style*="color: #111827"], ${D} [style*="color:#111"] { color:${tx} !important; }
   ${D} [style*="color:#374151"], ${D} [style*="color:#374151"], ${D} [style*="color:#4b5563"],
   ${D} [style*="color:#4b5563"], ${D} [style*="color: #374151"] { color:${tx2} !important; }
@@ -680,13 +684,13 @@ function applyTweaks() {
   document.body.dataset.density = TWEAKS.density;
   document.body.dataset.sparklines = TWEAKS.showSparklines ? 'on' : 'off';
   const accentMap = {
-    blue:   {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
-    indigo: {50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3'},
-    teal:   {50:'#f0fdfa',100:'#ccfbf1',200:'#99f6e4',300:'#5eead4',400:'#2dd4bf',500:'#14b8a6',600:'#0d9488',700:'#0f766e',800:'#115e59'},
-    rose:   {50:'#fff1f2',100:'#ffe4e6',200:'#fecdd3',300:'#fda4af',400:'#fb7185',500:'#f43f5e',600:'#e11d48',700:'#be123c',800:'#9f1239'},
+    blue:   {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+    indigo: {50:'#eff6ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#2563eb',600:'#1d4ed8',700:'#4338ca',800:'#3730a3'},
+    teal:   {50:'#f0fdf4',100:'#ccfbf1',200:'#99f6e4',300:'#5eead4',400:'#2dd4bf',500:'#14b8a6',600:'#0891b2',700:'#15803d',800:'#115e59'},
+    rose:   {50:'#fef2f2',100:'#fee2e2',200:'#fee2e2',300:'#fda4af',400:'#fb7185',500:'#dc2626',600:'#dc2626',700:'#b91c1c',800:'#9f1239'},
     sky:    {50:'#eff6ff',100:'#dbeafe',200:'#c3dafd',300:'#bfdbfe',400:'#8ec5fd',500:'#51a2fc',600:'#2d7ffb',700:'#1f5fc7',800:'#1a4fa0'},
     azure:  {50:'#eff8fd',100:'#dceffb',200:'#b8ddf5',300:'#84c5ec',400:'#43a8df',500:'#1a92d1',600:'#1485c5',700:'#0f6aa0',800:'#0d5580'},
-    navy:   {50:'#eef2ff',100:'#dbe2f5',200:'#b6c4e8',300:'#8197cf',400:'#4f6bb0',500:'#2e4a8f',600:'#1e3a8a',700:'#172e6e',800:'#11224f'},
+    navy:   {50:'#eff6ff',100:'#dbe2f5',200:'#b6c4e8',300:'#8197cf',400:'#4f6bb0',500:'#2e4a8f',600:'#0d5580',700:'#172e6e',800:'#11224f'},
   };
   const c = accentMap[TWEAKS.accent] || accentMap.sky;
   let style = document.getElementById('tweak-accent-style');

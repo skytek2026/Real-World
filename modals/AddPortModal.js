@@ -41,7 +41,7 @@
         width:18px; height:18px; border:1px solid #d1d5db; border-radius:4px; background:#fff;
         cursor:pointer; position:relative; flex-shrink:0; transition:background 120ms, border-color 120ms;
       }
-      .rw-ap-check:checked { background:var(--brand-500,#3b82f6); border-color:var(--brand-500,#3b82f6); }
+      .rw-ap-check:checked { background:var(--brand-500,#1a92d1); border-color:var(--brand-500,#1a92d1); }
       .rw-ap-check:checked::after {
         content:''; position:absolute; left:5px; top:1px; width:5px; height:10px;
         border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);
@@ -67,7 +67,7 @@
       }
       .rw-ap-multi-row:hover { background:#f3f4f6; }
       .rw-ap-twocol { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap:20px; }
-      .rw-ap-map { width:100%; min-height:420px; height:100%; border:1px solid #e5e7eb; border-radius:8px; background:#e0ebe9; overflow:hidden; }
+      .rw-ap-map { width:100%; min-height:420px; height:100%; border:1px solid #e5e7eb; border-radius:8px; background:#e5e7eb; overflow:hidden; }
       .rw-ap-map .leaflet-top.leaflet-left { top:6px !important; left:6px !important; }
       .rw-ap-map-wrap { position:relative; width:100%; height:100%; min-height:420px; }
       .rw-ap-layers-btn { position:absolute; top:6px; right:6px; z-index:500; width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgba(15,23,42,.08); cursor:pointer; }

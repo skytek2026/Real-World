@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nat Cat Event Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#1a92d1',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -39,12 +39,12 @@
   .prop-row{display:flex;align-items:flex-start;gap:8px;width:100%;padding:12px 16px;background:transparent;border:0;border-bottom:1px solid #f3f4f6;cursor:pointer;text-align:left;transition:background .1s;font-family:inherit;}
   .prop-row:hover{background:#f9fafb;}
   .prop-row.is-active{background:var(--brand-50,#eff6ff);}
-  .prop-rank{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#8b5cf6;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .prop-rank{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#9333ea;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;}
   .prop-name{display:block;font-size:14px;font-weight:700;color:#111827;line-height:1.25;}
   .prop-loc{display:block;font-size:12px;color:#6b7280;margin-top:2px;}
   .prop-note{display:block;font-size:12px;color:#9ca3af;margin-top:4px;line-height:1.4;}
   .prop-chev{flex-shrink:0;color:#d1d5db;margin-top:4px;}
-  .prop-row:hover .prop-chev{color:#8b5cf6;}
+  .prop-row:hover .prop-chev{color:#9333ea;}
   /* Pre/post-event satellite imagery treatments */
   /* Date stamp badge that sits on the imagery patch */
   .imagery-stamp{
@@ -58,7 +58,7 @@
   }
   .imagery-stamp:hover{background:rgba(15,23,42,.94)}
   .imagery-stamp .chev{opacity:.7;margin-left:2px}
-  .imagery-stamp .dot{width:6px;height:6px;border-radius:50%;background:#22c55e}
+  .imagery-stamp .dot{width:6px;height:6px;border-radius:50%;background:#16a34a}
   .imagery-stamp.is-pre  .dot{background:#9ca3af}
   .imagery-stamp .sub{font-weight:500;color:#d1d5db;text-transform:none;letter-spacing:0;margin-left:2px}
   /* Filter menu radio rows */
@@ -117,17 +117,17 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=22"></script>
+<script src="shared/chrome.js?v=23"></script>
 <script>
 const SC = window.sharedChrome;
 
 /* ── Event type config ─────────────────────────────────────────────────────── */
 const TYPE_CFG = {
-  cyclone:    { color:'#06b6d4', light:'#ecfeff', label:'Cyclone' },
-  wildfire:   { color:'#f97316', light:'#fff7ed', label:'Wildfire' },
+  cyclone:    { color:'#06b6d4', light:'#f0fdf4', label:'Cyclone' },
+  wildfire:   { color:'#d97706', light:'#fffbeb', label:'Wildfire' },
   hurricane:  { color:'#dc2626', light:'#fef2f2', label:'Hurricane' },
-  flood:      { color:'#0ea5e9', light:'#f0f9ff', label:'Flood' },
-  earthquake: { color:'#8b5cf6', light:'#f5f3ff', label:'Earthquake' },
+  flood:      { color:'#43a8df', light:'#f0f9ff', label:'Flood' },
+  earthquake: { color:'#9333ea', light:'#eff6ff', label:'Earthquake' },
 };
 
 const ICON_SVG = {
@@ -192,7 +192,7 @@ const det  = EVENT_DETAILS[ev.id] || EVENT_DETAILS[3];
 const cfg  = TYPE_CFG[ev.type] || TYPE_CFG.hurricane;
 
 const DMG_LABELS  = ['Undamaged','Minor Damage','Major Damage','Completely Destroyed'];
-const DMG_COLORS  = ['#16a34a','#eab308','#f97316','#dc2626'];
+const DMG_COLORS  = ['#16a34a','#eab308','#d97706','#dc2626'];
 
 /* ── SVG icons ─────────────────────────────────────────────────────────────── */
 const IC = {
@@ -547,7 +547,7 @@ function initDetailMap() {
   // Earthquake epicenter rings
   if (ev.type === 'earthquake') {
     [20000, 40000, 80000].forEach(r => {
-      L.circle([det.lat, det.lng], { radius:r, color:'#8b5cf6', fillOpacity:0, weight:1.5, dashArray:'4 4', opacity:0.5 }).addTo(detailMap);
+      L.circle([det.lat, det.lng], { radius:r, color:'#9333ea', fillOpacity:0, weight:1.5, dashArray:'4 4', opacity:0.5 }).addTo(detailMap);
     });
   }
 
@@ -555,24 +555,24 @@ function initDetailMap() {
   if (ev.id === 12) {
     // Debris-flow path: Langtang Lirung collapse → Lhende valley → Gyirong Port → Bhotekoshi/Trishuli → Devighat
     const path = [[28.2765,85.5194],[28.2800,85.4700],[28.2830,85.4200],[28.2785,85.3800],[28.2530,85.3710],[28.2050,85.3550],[28.1580,85.3380],[28.1100,85.2900],[28.0400,85.2300],[27.9700,85.1850],[27.9200,85.1500],[27.8870,85.1300]];
-    L.polyline(path, { color:'#0ea5e9', weight:10, opacity:0.25, lineCap:'round' }).addTo(detailMap);
-    L.polyline(path, { color:'#0ea5e9', weight:3, dashArray:'8 6', opacity:0.95 }).addTo(detailMap);
-    L.circle([28.2765,85.5194], { radius:2500, color:'#0ea5e9', fillColor:'#0ea5e9', fillOpacity:0.2, weight:2 }).addTo(detailMap)
+    L.polyline(path, { color:'#43a8df', weight:10, opacity:0.25, lineCap:'round' }).addTo(detailMap);
+    L.polyline(path, { color:'#43a8df', weight:3, dashArray:'8 6', opacity:0.95 }).addTo(detailMap);
+    L.circle([28.2765,85.5194], { radius:2500, color:'#43a8df', fillColor:'#43a8df', fillOpacity:0.2, weight:2 }).addTo(detailMap)
       .bindTooltip('Glacier collapse origin — Langtang Lirung', { direction:'top' });
     detailMap.fitBounds(L.latLngBounds(path).pad(0.12));
   } else if (ev.id === 13) {
     // Coastal flood footprint along the shoreline + stalled/retrograding storm centre offshore
     const coast = [[35.25,-75.53],[35.59,-75.47],[36.20,-75.75],[36.85,-75.97],[37.60,-75.60],[38.35,-75.07],[38.93,-74.90],[39.28,-74.57],[39.75,-74.10],[40.09,-74.04],[40.36,-73.97],[40.58,-73.90],[40.65,-73.40],[40.80,-72.60],[41.00,-72.00]];
-    L.polyline(coast, { color:'#0ea5e9', weight:14, opacity:0.22, lineCap:'round' }).addTo(detailMap);
-    L.polyline(coast, { color:'#0ea5e9', weight:3, dashArray:'8 6', opacity:0.95 }).addTo(detailMap)
+    L.polyline(coast, { color:'#43a8df', weight:14, opacity:0.22, lineCap:'round' }).addTo(detailMap);
+    L.polyline(coast, { color:'#43a8df', weight:3, dashArray:'8 6', opacity:0.95 }).addTo(detailMap)
       .bindTooltip('Coastal flooding — Outer Banks to Long Island', { sticky:true });
     const track = [[37.40,-73.40],[38.30,-72.90],[39.10,-72.80],[39.70,-73.10],[39.95,-73.60],[40.05,-73.20],[40.30,-72.40]];
     L.polyline(track, { color:'#dc2626', weight:2.5, dashArray:'8 6', opacity:0.85 }).addTo(detailMap)
       .bindTooltip('Storm centre track (stalled, Sep 23–27)', { sticky:true });
-    L.circle([39.95,-73.60], { radius:90000, color:'#0ea5e9', fillColor:'#0ea5e9', fillOpacity:0.08, weight:1.5, dashArray:'4 4' }).addTo(detailMap);
+    L.circle([39.95,-73.60], { radius:90000, color:'#43a8df', fillColor:'#43a8df', fillOpacity:0.08, weight:1.5, dashArray:'4 4' }).addTo(detailMap);
     detailMap.fitBounds(L.latLngBounds(coast.concat(track)).pad(0.08));
   } else if (ev.type === 'flood') {
-    L.circle([det.lat, det.lng], { radius:25000, color:'#0ea5e9', fillColor:'#0ea5e9', fillOpacity:0.15, weight:2, dashArray:'6 5' }).addTo(detailMap);
+    L.circle([det.lat, det.lng], { radius:25000, color:'#43a8df', fillColor:'#43a8df', fillOpacity:0.15, weight:2, dashArray:'6 5' }).addTo(detailMap);
   }
 
   // Layers selector removed — the map is fixed to street base + satellite patch.
@@ -628,7 +628,7 @@ function initDetailMap() {
 
       const icon = L.divIcon({
         className: 'prop-marker',
-        html: `<div style="width:26px;height:26px;border-radius:50% 50% 50% 0;background:#8b5cf6;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);color:#fff;font-size:12px;font-weight:700;">${p.rank}</span></div>`,
+        html: `<div style="width:26px;height:26px;border-radius:50% 50% 50% 0;background:#9333ea;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);color:#fff;font-size:12px;font-weight:700;">${p.rank}</span></div>`,
         iconSize: [26,26], iconAnchor: [13,26],
       });
       const m = L.marker([p.lat, p.lng], { icon }).addTo(detailMap);

@@ -1,4 +1,4 @@
-/* Section — Export & report design */
+/* Section: Export & report design */
 
 const CoverPagePreview = () => (
   <div className="ds-paper ds-paper--cover">
@@ -7,17 +7,17 @@ const CoverPagePreview = () => (
       <span className="mark">S</span>
       <span>Skytek</span>
     </div>
-    <div style={{ marginTop: 18 }}>
-      <div className="t-overline" style={{ color: "rgba(255,255,255,.7)", fontSize: 8, marginBottom: 6 }}>QUARTERLY EXPOSURE REPORT</div>
+    <div style={{ marginTop: 16 }}>
+      <div className="t-overline" style={{ color: "rgba(255,255,255,.7)", fontSize: 8, marginBottom: 4 }}>QUARTERLY EXPOSURE REPORT</div>
       <h1>Black Sea Portfolio</h1>
       <div style={{ fontSize: 11, opacity: .85, marginTop: 4 }}>Q1 2026 · 12 Jan → 31 Mar</div>
     </div>
     <div className="meta">
       <div><strong>Prepared for</strong></div>
       <div>Maeve Daly · Lead Underwriter</div>
-      <div style={{ marginTop: 6 }}><strong>Issued</strong></div>
+      <div style={{ marginTop: 4 }}><strong>Issued</strong></div>
       <div>28 April 2026 · 14:32 UTC</div>
-      <div style={{ marginTop: 6 }}><strong>Reference</strong></div>
+      <div style={{ marginTop: 4 }}><strong>Reference</strong></div>
       <div>SKY-RPT-2026-Q1-BSP-0142</div>
     </div>
   </div>
@@ -80,10 +80,10 @@ const PageRules = () => (
       <tr><td><strong>Page header</strong></td><td>Two columns: doc title (left) · reference code (right). Hairline border-bottom. Repeats on every page except the cover.</td></tr>
       <tr><td><strong>Page footer</strong></td><td>Two columns: "Confidential · Skytek · {`{date}`}" (left) · "Page X of Y" (right). Repeats including cover.</td></tr>
       <tr><td><strong>Page numbering</strong></td><td>Roman lowercase on front matter (cover, TOC, exec summary). Arabic from the first body section. "Page X of Y" always.</td></tr>
-      <tr><td><strong>Table breaks</strong></td><td>Repeat header row on each page. Never orphan a single body row at the bottom — push to next page if &lt; 3 rows remain.</td></tr>
+      <tr><td><strong>Table breaks</strong></td><td>Repeat header row on each page. Never orphan a single body row at the bottom, push to next page if &lt; 3 rows remain.</td></tr>
       <tr><td><strong>Section breaks</strong></td><td>H1 sections start on a new page if they would otherwise begin in the bottom third.</td></tr>
       <tr><td><strong>Widows &amp; orphans</strong></td><td>Min 2 lines at end of page; min 2 lines at top of next page. Enforced via <code>orphans: 2; widows: 2</code>.</td></tr>
-      <tr><td><strong>Color</strong></td><td>Same tokens as the app. Brand and rating colors are intentional in print — never desaturate.</td></tr>
+      <tr><td><strong>Color</strong></td><td>Same tokens as the app. Brand and rating colors are intentional in print, never desaturate.</td></tr>
     </tbody>
   </table>
 );
@@ -97,7 +97,7 @@ const ClassificationStrip = () => (
       ["DRAFT",        "var(--text-muted)",  "var(--slate-100)"],
     ].map(([label, fg, bg]) => (
       <span key={label} style={{
-        display: "inline-flex", alignItems: "center", padding: "4px 10px",
+        display: "inline-flex", alignItems: "center", padding: "4px 12px",
         background: bg, color: fg,
         borderRadius: "var(--radius-sm)",
         fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 700,
@@ -112,7 +112,7 @@ const WatermarkRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Watermarks</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <ul style={{ margin: 0, paddingLeft: 18 }}>
+        <ul style={{ margin: 0, paddingLeft: 20 }}>
           <li><strong>DRAFT</strong> · slate-400, 12% opacity, −22° rotation, repeats on every body page</li>
           <li><strong>CONFIDENTIAL</strong> · danger-700, 12% opacity, applied automatically to classification ≥ Confidential</li>
           <li><strong>SAMPLE</strong> · brand-600, 14% opacity, applied to anonymized exports for sales</li>
@@ -123,7 +123,7 @@ const WatermarkRules = () => (
     <div className="ds-card">
       <div className="ds-card-head"><h3 className="ds-card-title">Classification</h3></div>
       <div className="ds-card-body" style={{ fontSize: 13, lineHeight: 1.6, color: "var(--text-secondary)" }}>
-        <p style={{ marginTop: 0 }}>Top-right of every page — including cover. Color matches the classification level.</p>
+        <p style={{ marginTop: 0 }}>Top-right of every page: including cover. Color matches the classification level.</p>
         <ClassificationStrip />
         <p style={{ marginTop: 12, marginBottom: 0, fontSize: 12 }}>
           Default is <strong>CONFIDENTIAL</strong> for portfolio and exposure reports. Toggled by the report builder, not the user.
@@ -134,7 +134,7 @@ const WatermarkRules = () => (
 );
 
 const PrintCSS = () => (
-  <pre className="code">{`/* app/styles/print.css — loaded for every report surface */
+  <pre className="code">{`/* app/styles/print.css: loaded for every report surface */
 @page {
   size: A4 portrait;
   margin: 22mm 20mm 18mm 20mm;
@@ -171,7 +171,7 @@ const PrintCSS = () => (
 const ExportWorkflow = () => (
   <div className="panel">
     {[
-      ["1 · Build",   "Operator configures a report surface (portfolio, date range, classification). Surface renders at A4 width in a preview pane.", "Same components as the app — DS-table, charts, timelines."],
+      ["1 · Build",   "Operator configures a report surface (portfolio, date range, classification). Surface renders at A4 width in a preview pane.", "Same components as the app, DS-table, charts, timelines."],
       ["2 · Preview", "Print preview shows pagination, headers, footers, watermarks. Operator can flip pages and verify breaks.",                       "Browser print preview is the source of truth."],
       ["3 · Export",  "One click triggers browser PDF print at A4. Headless render for unattended generation uses the same CSS.",                       "PDF is byte-identical between operator + scheduled run."],
       ["4 · Distribute","Generated PDF is logged in the audit log with reference code, classification, recipient, and SHA-256.",                       "Audit log appears in this spec's Event log chapter."],
@@ -189,13 +189,13 @@ const ChartsInReports = () => (
   <table className="spec-table">
     <thead><tr><th>Concern</th><th>App</th><th>Report</th></tr></thead>
     <tbody>
-      <tr><td>Background</td><td>Surface tokens, can be elevated</td><td>Transparent — page is white</td></tr>
-      <tr><td>Interaction</td><td>Hover tooltips, click drilldown</td><td>None — value labels rendered inline</td></tr>
-      <tr><td>Animation</td><td>200 ms enter</td><td>None — first render is final</td></tr>
+      <tr><td>Background</td><td>Surface tokens, can be elevated</td><td>Transparent: page is white</td></tr>
+      <tr><td>Interaction</td><td>Hover tooltips, click drilldown</td><td>None: value labels rendered inline</td></tr>
+      <tr><td>Animation</td><td>200 ms enter</td><td>None: first render is final</td></tr>
       <tr><td>Legend position</td><td>Top-left, inline</td><td>Bottom of figure, centered, with figure number</td></tr>
-      <tr><td>Caption</td><td>Optional eyebrow above</td><td>Required: "Fig. 3 — Sanctioned exposure by region" below</td></tr>
-      <tr><td>Resolution</td><td>SVG</td><td>SVG (vector) — never raster, never canvas</td></tr>
-      <tr><td>Data limit</td><td>250 points / series</td><td>Same — downsample upstream, not in the report</td></tr>
+      <tr><td>Caption</td><td>Optional eyebrow above</td><td>Required: "Fig. 3: Sanctioned exposure by region" below</td></tr>
+      <tr><td>Resolution</td><td>SVG</td><td>SVG (vector): never raster, never canvas</td></tr>
+      <tr><td>Data limit</td><td>250 points / series</td><td>Same: downsample upstream, not in the report</td></tr>
     </tbody>
   </table>
 );
@@ -205,7 +205,7 @@ const ExportSection = () => (
     <div className="subsection" style={{ marginTop: 0 }}>
       <h3 className="subsection-title">Why this chapter</h3>
       <p className="subsection-desc" style={{ maxWidth: 820 }}>
-        Compliance work produces PDFs. Underwriters share them with reinsurers. Auditors archive them. Print is not a fallback — it's a first-class output of the product.
+        Compliance work produces PDFs. Underwriters share them with reinsurers. Auditors archive them. Print is not a fallback; it's a first-class output of the product.
         This chapter defines the report system: page rules, typography for paper, classification &amp; watermarks, and the export workflow.
       </p>
     </div>
@@ -232,7 +232,7 @@ const ExportSection = () => (
 
     <div className="subsection">
       <h3 className="subsection-title">Print typography</h3>
-      <p className="subsection-desc">Same families as the app (Exo + Inter), shifted to point sizes. 10 pt body is the floor — anything below 8.5 pt is for footnotes only.</p>
+      <p className="subsection-desc">Same families as the app (Exo + Inter), shifted to point sizes. 10 pt body is the floor, anything below 8.5 pt is for footnotes only.</p>
       <PrintTypography />
     </div>
 
@@ -244,7 +244,7 @@ const ExportSection = () => (
     <div className="subsection">
       <h3 className="subsection-title">Charts &amp; visuals in reports</h3>
       <p className="subsection-desc">
-        Same tokens, same chart library — different defaults. Reports are static surfaces; everything that helps interaction in the app (hover, animation, dynamic legends) becomes noise on paper.
+        Same tokens, same chart library, different defaults. Reports are static surfaces; everything that helps interaction in the app (hover, animation, dynamic legends) becomes noise on paper.
       </p>
       <ChartsInReports />
     </div>
