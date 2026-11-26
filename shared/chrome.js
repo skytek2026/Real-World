@@ -34,7 +34,13 @@
         select { min-height: 44px; }
       }
       /* Tailwind's text-xs is 12px on a 16px line (1.33): use 1.5 unless a page sets its own leading-* */
-      :root .text-xs:not([class*="leading-"]) { line-height: 1.125rem; }
+      /* Skytek DS v4.1.0 */
+      :focus-visible { outline: 2px solid #1485C5; outline-offset: 2px; }   /* DS --shadow-focus: brand-600 ring with a gap, 4.05:1 */
+      :root .shadow-card { box-shadow: 0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06) !important; }        /* card-shadow-rest */
+      :root .shadow-card-hover { box-shadow: 0 6px 12px -2px rgba(15,23,42,.12), 0 3px 6px -3px rgba(15,23,42,.10) !important; } /* card-shadow-hover */
+      input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([class*="border-0"]):not([class*="border-none"]), select, textarea { border-color: #6B7280; }   /* border-control */
+      .bg-ink-100.text-ink-500, .bg-ink-100 .text-ink-500, [style*="background:#eff6ff"] [style*="color:#6b7280"], [style*="background:#eff6ff"] .text-ink-500 { color: #4B5563 !important; }   /* muted text on grey / tinted surfaces: ink-600 */
+      .ds-btn { white-space: nowrap; }
       /* Touch targets: small controls get an invisible 44x44 tap area (marked by markHitTargets) without moving the layout. */
       .rw-hit-rel { position: relative; }
       .rw-hit::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
@@ -244,7 +250,7 @@ function toneClasses(tone) {
     emerald: { bg:'bg-[#f0fdf4]', text:'text-[#16a34a]', ring:'ring-emerald-100' },
     amber:   { bg:'bg-amber-50',   text:'text-amber-600',   ring:'ring-amber-100' },
     rose:    { bg:'bg-red-50',    text:'text-red-700',    ring:'ring-red-100' },
-    brand:   { bg:'bg-brand-50',   text:'text-brand-600',   ring:'ring-brand-100' },
+    brand:   { bg:'bg-brand-50',   text:'text-brand-700',   ring:'ring-brand-100' },
     ink:     { bg:'bg-ink-100',    text:'text-ink-700',     ring:'ring-ink-200' },
   };
   return m[tone] || m.brand;
@@ -284,7 +290,7 @@ function Sidebar() {
       <a href="https://www.skytek.com" target="_blank" rel="noopener" title="skytek.com" style="display:block">
         <img src="${(window.__resources&&window.__resources.logoStacked)||'images/skytek-logo-stacked.png'}" alt="Skytek" style="width:76px;height:auto;display:block" />
       </a>
-      <button type="button" id="sidebar-disclaimer-btn" style="background:none;border:0;color:var(--brand-600,#2563eb);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0">Disclaimer</button>
+      <button type="button" id="sidebar-disclaimer-btn" style="background:none;border:0;color:var(--brand-700, #0F6AA0);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:underline;padding:0">Disclaimer</button>
     </div>
   </aside>`;
 }
@@ -325,7 +331,7 @@ function Topbar() {
     <div id="notif-pop" class="hidden fixed top-14 right-2 sm:right-16 left-2 sm:left-auto sm:w-[360px] max-w-[360px] sm:max-w-none mx-auto sm:mx-0 bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden pop-enter" style="z-index:9999">
       <div class="flex items-center justify-between px-4 py-3 border-b border-ink-100">
         <div class="text-sm font-semibold text-ink-900">Notifications</div>
-        <button class="text-xs text-brand-600 hover:underline">Mark all read</button>
+        <button class="text-xs text-brand-700 hover:underline">Mark all read</button>
       </div>
       <div class="max-h-[60vh] sm:max-h-[360px] overflow-y-auto scroll-thin divide-y divide-ink-100">
         ${NOTIFS.map(n => {
@@ -336,12 +342,12 @@ function Topbar() {
               <div class="text-sm font-medium text-ink-900 truncate">${n.t}</div>
               <div class="text-xs text-ink-500 mt-0.5 line-clamp-2">${n.sub}</div>
             </div>
-            <div class="text-xs text-ink-400 shrink-0">${n.time}</div>
+            <div class="text-xs text-ink-500 shrink-0">${n.time}</div>
           </div>`;
         }).join('')}
       </div>
       <div class="px-4 py-3 border-t border-ink-100 bg-ink-50/60 text-center">
-        <button class="text-xs font-medium text-brand-600 hover:underline">View all activity</button>
+        <button class="text-xs font-medium text-brand-700 hover:underline">View all activity</button>
       </div>
     </div>
     <div id="user-pop" class="hidden fixed top-14 right-2 w-56 bg-white border border-ink-200 rounded-xl shadow-card-hover overflow-hidden pop-enter" style="z-index:9999">
@@ -486,7 +492,7 @@ function buildDarkCss() {
 
   ${D} .text-ink-900, ${D} .text-ink-800, ${D} .text-gray-900, ${D} .text-gray-800 { color:${tx} !important; }
   ${D} .text-ink-700, ${D} .text-ink-600, ${D} .text-gray-700, ${D} .text-gray-600 { color:${tx2} !important; }
-  ${D} .text-ink-500, ${D} .text-ink-400, ${D} .text-gray-500, ${D} .text-gray-400 { color:${tx3} !important; }
+  ${D} .text-ink-500, ${D} .text-ink-500, ${D} .text-gray-500, ${D} .text-gray-400 { color:${tx3} !important; }
   ${D} .text-ink-300, ${D} .text-gray-300 { color:${tx4} !important; }
 
   ${D} .border-ink-100, ${D} .border-ink-200, ${D} .border-gray-100, ${D} .border-gray-200,
@@ -499,7 +505,7 @@ function buildDarkCss() {
   ${D} .hover\\:text-ink-800:hover, ${D} .hover\\:text-ink-900:hover { color:${tx} !important; }
   ${D} .ring-white { --tw-ring-color:${surf2} !important; }
   ${D} .divide-ink-100 { border-color:${bd}; }
-  ${D} .text-brand-600 { color:#1485c5 !important; }
+  ${D} .text-brand-700 { color:#0F6AA0 !important; }
 
   /* Selected tabs & active nav must stay white (beats the .text-ink-* / autogen remaps) */
   ${D} .ds-tab[aria-selected="true"], ${D} .ds-tab[aria-selected="true"] .ds-tab-label,
@@ -700,7 +706,7 @@ function applyTweaks() {
     .bg-brand-50{background-color:${c[50]}!important}.bg-brand-100{background-color:${c[100]}!important}
     .bg-brand-500{background-color:${c[500]}!important}.bg-brand-600{background-color:${c[600]}!important}
     .bg-brand-700{background-color:${c[700]}!important}
-    .text-brand-500{color:${c[500]}!important}.text-brand-600{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
+    .text-brand-500{color:${c[500]}!important}.text-brand-700{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
     .border-brand-300{border-color:${c[300]}!important}.border-brand-500{border-color:${c[500]}!important}
     .ring-brand-100{--tw-ring-color:${c[100]}!important}
     /* Every scrollbar in the app is the thin style. The colour rule here makes current Chrome/Edge
@@ -733,12 +739,12 @@ function applyTweaks() {
     .from-brand-400{--tw-gradient-from:${c[400]}!important}.to-brand-600{--tw-gradient-to:${c[600]}!important}
     .nav-item.is-nav-active,.nav-item.is-nav-active:hover{background:${c[600]}!important;color:#fff!important}
     .nav-item.is-nav-active .nav-ico{color:#fff!important}
-    .ds-tab-pill{background:${c[600]}!important}
+    .ds-tab-pill{background:${c[700]}!important}   /* DS v4.1.1: white label 5.85:1 (brand-600 was 4.05:1) */
     .asset-pill{background:${c[600]}!important}
     .cat-pill{background:${c[600]}!important}
     .ds-page-btn.is-active{background:${c[600]}!important;border-color:${c[600]}!important}
-    .topbar-brand-link{color:${c[600]};transition:color 120ms}
-    .topbar-brand-link:hover{color:${c[700]}}
+    .topbar-brand-link{color:${c[700]};transition:color 120ms}
+    .topbar-brand-link:hover{color:${c[800] || c[700]}}
   `;
 
   // ── Global dark theme ─────────────────────────────────────────────────────

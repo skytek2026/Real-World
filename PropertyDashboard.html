@@ -20,7 +20,7 @@
   .text-ink-700 { color:#374151; }
   .text-ink-600 { color:#4b5563; }
   .text-ink-500 { color:#6b7280; }
-  .text-ink-400 { color:#9ca3af; }
+  .text-ink-500 { color:#9ca3af; }
   .text-ink-300 { color:#d1d5db; }
   .text-ink-200 { color:#e5e7eb; }
   .text-ink-100 { color:#f3f4f6; }
@@ -30,7 +30,7 @@
   .border-ink-100 { border-color:#f3f4f6; }
   .border-ink-200 { border-color:#e5e7eb; }
   .shadow-card { box-shadow:0 1px 2px rgba(15,23,42,.08), 0 0 0 1px rgba(15,23,42,.02); }
-  .text-brand-600 { color:#2563eb; }
+  .text-brand-700 { color:#2563eb; }
   .bg-brand-600 { background:#2563eb; }
   .bg-brand-050 { background:#eff6ff; }
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
@@ -54,7 +54,7 @@
   .ds-tabs { position:relative; display:inline-flex; gap:4px; padding:4px; background:#f3f4f6; border:1px solid #e5e7eb; border-radius:9999px; }
   .ds-tabs.is-stretch { display:flex; }
   .ds-tabs.is-stretch > .ds-tab { flex:1; }
-  .ds-tab { position:relative; font:inherit; font-size:14px; font-weight:600; padding:8px 20px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; text-align:center; }
+  .ds-tab { position:relative; font:inherit; font-size:14px; font-weight:600; padding:8px 20px; background:transparent; border:0; border-radius:9999px; color:#4B5563; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:4px; white-space:nowrap; text-align:center; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
   .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2563eb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
@@ -65,12 +65,12 @@
   #prop-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #prop-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   #map-fullscreen.map-btn-fs { width:32px; height:32px; border-radius:8px !important; left:12px !important; top:12px !important; }
-  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow: 0 1px 2px rgb(15 23 42 / .08) !important; border-radius: 8px !important; overflow:hidden; }
+  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow: 0 1px 2px rgb(15 23 42 / .05) !important; border-radius: 8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
   .leaflet-control-zoom a { display:flex !important; align-items:center; justify-content:center; padding:0 !important; }
   .leaflet-control-zoom a svg { width:16px; height:16px; }
-  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow: 0 1px 2px rgb(15 23 42 / .08); }
+  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow: 0 1px 2px rgb(15 23 42 / .05); }
   .map-btn:hover { background:#f3f4f6; }
   .map-btn:active { background:#e5e7eb; }
   .marker-icon { position:relative; width:34px; height:34px; display:flex; align-items:center; justify-content:center; border:1px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.28); color:#fff; }
@@ -116,7 +116,7 @@
   .pp-row:last-child { border-bottom:0; }
   .pp-k { color:#6b7280; font-weight:500; }
   .pp-v { font-weight:600; color:#111827; text-align:right; }
-  .pp-cta { display:block; width:calc(100% - 28px); margin:4px 12px 12px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:14px; cursor:pointer; text-align:center; transition:background .15s; }
+  .pp-cta { display:block; width:calc(100% - 28px); margin:4px 12px 12px; background:transparent; color:var(--brand-700, #0F6AA0)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:14px; cursor:pointer; text-align:center; transition:background .15s; }
   .pp-cta:hover { background:var(--brand-50,#eff6ff); }
 
   /* DS table-header treatment for list-card column headers */
@@ -126,7 +126,7 @@
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-700, #0F6AA0);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   /* property markers: hover / selected ring (same as the Marine vessels and Aviation markers), just outside the 34px circle */
   .marker-icon { cursor:pointer; }
@@ -230,8 +230,8 @@ html[data-theme="dark"] .ds-fdrawer {
   display: flex; align-items: center; gap: 8px;
 }
 /* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
-.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
-.ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
+.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-700, #0F6AA0); }
+.ds-fdrawer-acc-chev { color: var(--brand-700, #0F6AA0); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
 .ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); }
 /* Active-filter marker */
 .ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; }
@@ -292,7 +292,7 @@ html[data-theme="dark"] .ds-fdrawer {
 .mfd-btn:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
 /* active-filter count on the map's Filter button */
 #map-filters-btn { position:relative; }
-#map-filters-btn.is-active { color:var(--brand-600,#1485c5); }
+#map-filters-btn.is-active { color:var(--brand-700, #0F6AA0); }
 .map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:12px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
 html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 </style>
@@ -312,7 +312,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=23"></script>
+<script src="shared/chrome.js?v=25"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -447,7 +447,7 @@ function PortfolioCard() {
       </div>
       ${PORTFOLIOS.map((p, idx) => `
         <button class="w-full text-left px-3 py-2 hover:bg-ink-50 flex items-center justify-between text-xs" onclick="sessionStorage.setItem('selectedPropertyPortfolio', JSON.stringify(window.__PROPERTY_PORTFOLIOS[${idx}])); window.location.href='PropertyPortfolioDetails.html'">
-          <span class="truncate text-brand-600 font-medium hover:underline">${p.name}</span>
+          <span class="truncate text-brand-700 font-medium hover:underline">${p.name}</span>
           <span class="flex items-center gap-6 tabular-nums text-ink-600 shrink-0">
             <span class="w-10 text-right">${p.props}</span>
             <span class="w-20 text-right font-semibold text-ink-900">${p.exposure}</span>
@@ -456,8 +456,8 @@ function PortfolioCard() {
       `).join('')}
     </div>
     <div class="ds-card-foot ds-card-foot--between shrink-0">
-      <button class="inline-flex items-center gap-1 text-brand-600 font-semibold hover:text-brand-700 tracking-micro">+ ADD PORTFOLIO</button>
-      <button class="inline-flex items-center gap-1 text-brand-600 font-semibold hover:text-brand-700 tracking-micro">VIEW ALL PORTFOLIOS</button>
+      <button class="inline-flex items-center gap-1 text-brand-700 font-semibold hover:text-brand-800 tracking-micro">+ ADD PORTFOLIO</button>
+      <button class="inline-flex items-center gap-1 text-brand-700 font-semibold hover:text-brand-800 tracking-micro">VIEW ALL PORTFOLIOS</button>
     </div>
   </div>`;
 }
@@ -475,14 +475,14 @@ function RegionCard() {
     <div class="flex-1 overflow-y-auto scroll-thin divide-y divide-ink-50">
       ${REGIONS.map(r => `
         <button class="w-full text-left px-3 py-2 hover:bg-ink-50 grid grid-cols-[1fr_auto_auto] gap-6 text-xs items-center">
-          <span class="truncate ${r.color?'text-orange-600 font-semibold':'text-ink-800 font-medium'}">${r.name}</span>
+          <span class="truncate ${r.color?'text-[#c2410c] font-semibold':'text-ink-800 font-medium'}">${r.name}</span>
           <span class="tabular-nums text-[#dc2626] font-semibold">${r.above}</span>
           <span class="tabular-nums text-right font-semibold text-ink-900">${r.ours}</span>
         </button>
       `).join('')}
     </div>
     <div class="ds-card-foot ds-card-foot--center shrink-0">
-      <button class="text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">ALL REGIONS</button>
+      <button class="text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">ALL REGIONS</button>
     </div>
   </div>`;
 }
@@ -518,7 +518,7 @@ function WeatherCard() {
       `).join('')}
     </div>
     <div class="ds-card-foot ds-card-foot--center shrink-0">
-      <button class="text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">ALL WEATHER RISKS</button>
+      <button class="text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">ALL WEATHER RISKS</button>
     </div>
   </div>`;
 }
@@ -829,7 +829,7 @@ function Content() {
               ].map(o => `
                 <button data-map-type="${o.id}" class="map-type-opt w-full flex items-center justify-between px-3 py-2 text-sm text-ink-700 hover:bg-ink-50 transition-colors">
                   <span data-label>${o.label}</span>
-                  <span class="text-brand-600 opacity-0" data-check>${Ico.check}</span>
+                  <span class="text-brand-700 opacity-0" data-check>${Ico.check}</span>
                 </button>`).join('')}
             </div>
           </div>
