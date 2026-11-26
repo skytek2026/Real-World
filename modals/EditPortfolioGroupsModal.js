@@ -46,7 +46,7 @@
       .rw-grp-row:hover { background:#eff6ff; }
       .rw-grp-row input[type="checkbox"] {
         appearance:none; -webkit-appearance:none;
-        width:18px; height:18px; border:1px solid #d1d5db; border-radius:3px; background:#fff;
+        width:18px; height:18px; border:1px solid #d1d5db; border-radius:4px; background:#fff;
         cursor:pointer; position:relative; flex-shrink:0;
         transition:background 120ms, border-color 120ms;
       }

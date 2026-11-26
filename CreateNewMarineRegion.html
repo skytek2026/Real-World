@@ -9,7 +9,7 @@
   tailwind.config = { theme: { extend: {
     fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'] },
     colors: {
-      brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+      brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
       ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
     },
     boxShadow: { 'card':'0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06)' },
@@ -23,11 +23,11 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-700,#1d4ed8)}
-  .scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:var(--brand-400,#51a2fc) #f3f4f6}
+  .scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:var(--brand-400,#1a92d1) #f3f4f6}
   .scroll-thin::-webkit-scrollbar,.ds-scroll::-webkit-scrollbar{width:6px;height:6px}
   .scroll-thin::-webkit-scrollbar-track,.ds-scroll::-webkit-scrollbar-track{background:#f3f4f6}
-  .scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
-  .scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:var(--brand-500,#2d7ffb)}
+  .scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:var(--brand-400,#1a92d1);border-radius:999px}
+  .scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:var(--brand-500,#1485c5)}
   input[type="checkbox"]{accent-color:var(--brand-600,#2563eb)}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#374151!important;line-height:30px!important}
@@ -62,7 +62,7 @@
   .ds-tab[aria-selected="true"],.ds-tab[aria-selected="true"]:hover{background:var(--brand-600,#2563eb);color:#fff;box-shadow:0 1px 2px rgba(15,23,42,.12)}
   @media(max-width:640px){.ds-tabs{width:100%;display:flex}.ds-tab{flex:1 1 0;padding:8px 10px;font-size:12px}}
   @media(max-width:900px){.cnr-cols{grid-template-columns:1fr!important}.cnr-map-wrap{height:340px!important}}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -80,7 +80,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script type="text/babel">
 /* CreateNewMarineRegion screen (previously CreateNewMarineRegion.jsx; inlined so the page also works when opened from disk) */
 /* Add Region — create a monitored region by drawing on the map or adding HRA / Port / Country / Sea coverage. */
@@ -136,7 +136,7 @@ function quotaToneFor(used) {
   const atLimit = remaining === 0;
   const nearLimit = !atLimit && remaining <= 4;
   const tone = atLimit ? { fg:'#b91c1c', bg:'#fef2f2', bd:'#fecaca', dot:'#dc2626' }
-             : nearLimit ? { fg:'var(--brand-700,#1d4ed8)', bg:'var(--brand-50,#eff6ff)', bd:'var(--brand-200,#bfdbfe)', dot:'var(--brand-600,#2563eb)' }
+             : nearLimit ? { fg:'var(--brand-700,#1d4ed8)', bg:'var(--brand-50,#eff6ff)', bd:'var(--brand-200,#b8ddf5)', dot:'var(--brand-600,#2563eb)' }
              : { fg:'#15803d', bg:'#f0fdf4', bd:'#bbf7d0', dot:'#16a34a' };
   return { remaining, atLimit, nearLimit, tone };
 }
@@ -203,8 +203,8 @@ function SkytekPicker({ selected, onToggle, onClear }) {
   const list = SKYTEK_REGIONS.filter(r => !q.trim() || r.name.toLowerCase().includes(q.trim().toLowerCase()));
   return (
     <>
-      <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg" style={{background:'var(--brand-50,#eff6ff)',border:'1px solid var(--brand-200,#bfdbfe)'}}>
-        <span style={{width:'30px',height:'30px',borderRadius:'8px',background:'#fff',border:'1px solid var(--brand-200,#bfdbfe)',color:'var(--brand-600,#2563eb)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{icon('Globe',16) || icon('Map',16)}</span>
+      <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg" style={{background:'var(--brand-50,#eff6ff)',border:'1px solid var(--brand-200,#b8ddf5)'}}>
+        <span style={{width:'30px',height:'30px',borderRadius:'8px',background:'#fff',border:'1px solid var(--brand-200,#b8ddf5)',color:'var(--brand-600,#2563eb)',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{icon('Globe',16) || icon('Map',16)}</span>
         <div className="min-w-0">
           <div className="text-sm font-bold" style={{color:'var(--brand-700,#1d4ed8)'}}>Skytek maintained regions</div>
           <div className="text-xs" style={{color:'var(--brand-700,#1d4ed8)',opacity:.85}}>Curated risk boundaries kept current by Skytek. They don't count towards your custom region limit.</div>
@@ -435,7 +435,7 @@ function AddRegion() {
   const nearLimit = !atLimit && remaining <= 2;
   const quotaTone = atLimit ? { fg:'#b91c1c', bg:'#fef2f2', bd:'#fecaca', dot:'#dc2626' }
                   : nearLimit ? { fg:'#b45309', bg:'#fffbeb', bd:'#fde68a', dot:'#f59e0b' }
-                  : { fg:'var(--brand-700,#1d4ed8)', bg:'var(--brand-50,#eff6ff)', bd:'var(--brand-200,#bfdbfe)', dot:'var(--brand-600,#2563eb)' };
+                  : { fg:'var(--brand-700,#1d4ed8)', bg:'var(--brand-50,#eff6ff)', bd:'var(--brand-200,#b8ddf5)', dot:'var(--brand-600,#2563eb)' };
   const saveRegion = () => {
     if (atLimit) return;
     try { localStorage.setItem(QUOTA_KEY, String(used + 1)); } catch (e) {}
@@ -532,7 +532,7 @@ function AddRegion() {
                   <div className="flex flex-wrap gap-1.5 pt-1 border-t border-ink-100">
                     {added.map((a,i) => (
                       <span key={i} className="cnr-chip" title={a.detail || a.kind}>
-                        <span className="text-[10px] font-bold uppercase tracking-wide text-brand-400">{a.kind}</span>{a.value}
+                        <span className="text-[11px] font-bold uppercase tracking-wide text-brand-400">{a.kind}</span>{a.value}
                         <button onClick={()=>setAdded(list=>list.filter((_,j)=>j!==i))} aria-label={'Remove '+a.value}>{icon('X',12)}</button>
                       </span>
                     ))}
@@ -575,7 +575,7 @@ function AddRegion() {
               </div>
             </div>
             {skytekTab && !selectedRegions.length ? (
-              <div className="absolute left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-ink-900/85 text-white text-[11.5px] font-medium whitespace-nowrap" style={{bottom:'14px',zIndex:400}}>Select regions to preview them on the map</div>
+              <div className="absolute left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-ink-900/85 text-white text-[12px] font-medium whitespace-nowrap" style={{bottom:'14px',zIndex:400}}>Select regions to preview them on the map</div>
             ) : null}
             {shapes.length ? (
               <div className="absolute flex flex-col gap-1 items-end" style={{top:'12px',right:'56px',zIndex:400}}>
@@ -590,7 +590,7 @@ function AddRegion() {
               </div>
             ) : null}
             {tool ? (
-              <div className="absolute left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-ink-900/85 text-white text-[11.5px] font-medium whitespace-nowrap" style={{bottom:'14px',zIndex:400}}>
+              <div className="absolute left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-ink-900/85 text-white text-[12px] font-medium whitespace-nowrap" style={{bottom:'14px',zIndex:400}}>
                 {tool === 'erase' ? 'Tap a shape to remove it'
                   : tool === 'rect' ? 'Drag on the map to draw a rectangle'
                   : tool === 'polygon' ? 'Tap to place points, then Done'

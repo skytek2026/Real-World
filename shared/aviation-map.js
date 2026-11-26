@@ -64,9 +64,9 @@ function buildFlightPopupHTML(p) {
     <div style="padding:14px 16px 12px;border-bottom:1px solid #e5e7eb;">
       <div style="display:flex;align-items:flex-start;gap:4px;">
         <div style="flex:0 0 82px;">
-          <div style="font-size:10px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
+          <div style="font-size:11px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
           <div style="font-size:24px;font-weight:800;color:#111827;line-height:1.1;">${p.from.code}</div>
-          <div style="font-size:10px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.dep}</div>
+          <div style="font-size:11px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.dep}</div>
         </div>
         <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:11px;">
           <div style="display:flex;align-items:center;width:100%;gap:3px;">
@@ -74,12 +74,12 @@ function buildFlightPopupHTML(p) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="#9ca3af" stroke="none"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
             <div style="flex:1;border-top:1.5px dashed #d1d5db;"></div>
           </div>
-          <div style="font-size:10px;color:#6b7280;white-space:nowrap;">${p.duration}</div>
+          <div style="font-size:11px;color:#6b7280;white-space:nowrap;">${p.duration}</div>
         </div>
         <div style="flex:0 0 82px;text-align:right;">
-          <div style="font-size:10px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
+          <div style="font-size:11px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
           <div style="font-size:24px;font-weight:800;color:#111827;line-height:1.1;">${p.to.code}</div>
-          <div style="font-size:10px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.arr}</div>
+          <div style="font-size:11px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.arr}</div>
         </div>
       </div>
     </div>

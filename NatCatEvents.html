@@ -11,7 +11,7 @@
       extend: {
         fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
         colors: {
-          brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+          brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
           ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
         },
         boxShadow: {
@@ -31,11 +31,11 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
-  html,body,.scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
+  html,body,.scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}
   html::-webkit-scrollbar,body::-webkit-scrollbar,.scroll-thin::-webkit-scrollbar,.ds-scroll::-webkit-scrollbar{width:6px;height:6px}
   html::-webkit-scrollbar-track,body::-webkit-scrollbar-track,.scroll-thin::-webkit-scrollbar-track,.ds-scroll::-webkit-scrollbar-track{background:#f3f4f6}
-  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,.scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}
-  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,.scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
+  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,.scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}
+  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,.scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#1485c5}
   /* Map */
   #nat-map{position:absolute;inset:0}
   #nat-map-wrap.is-fullscreen{position:fixed!important;inset:0!important;z-index:9999!important;border-radius:0!important}
@@ -58,15 +58,15 @@
   /* Map btn */
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
   .map-btn:hover{background:#f3f4f6}
-  .map-btn.is-active{color:var(--brand-600,#2563eb);border-color:var(--brand-200,#bfdbfe);background:var(--brand-50,#eff6ff)}
+  .map-btn.is-active{color:var(--brand-600,#2563eb);border-color:var(--brand-200,#b8ddf5);background:var(--brand-50,#eff6ff)}
   .nat-labels-menu{position:absolute;top:0;right:calc(100% + 8px);width:260px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.14);padding:12px;z-index:1000}
   .nat-switch{position:relative;flex-shrink:0;width:44px;height:24px;border:0;border-radius:999px;background:#d1d5db;cursor:pointer;transition:background-color .15s}
   .nat-switch span{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.3);transition:transform .15s}
-  .nat-switch.is-on{background:var(--brand-600,#2d7ffb)}
+  .nat-switch.is-on{background:var(--brand-600,#1485c5)}
   .nat-switch.is-on span{transform:translateX(20px)}
   .nat-switch:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px}
   .nat-label-wrap{background:transparent!important;border:0!important}
-  .nat-label{display:inline-block;white-space:nowrap;background:rgba(15,23,42,.88);color:#fff;font-family:'Exo','Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.01em;padding:3px 7px;border-radius:5px;box-shadow:0 1px 3px rgba(0,0,0,.25);text-shadow:0 1px 1px rgba(0,0,0,.5);pointer-events:none}
+  .nat-label{display:inline-block;white-space:nowrap;background:rgba(15,23,42,.88);color:#fff;font-family:'Exo','Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:.01em;padding:3px 7px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.25);text-shadow:0 1px 1px rgba(0,0,0,.5);pointer-events:none}
   @media (prefers-reduced-motion: reduce){.nat-switch,.nat-switch span{transition:none}}
   /* Mobile: stack events + map cards */
   @media(max-width:767px){
@@ -78,7 +78,7 @@
   .nat-popup .leaflet-popup-content-wrapper{padding:0;border-radius:12px;overflow:hidden;box-shadow:0 8px 24px rgba(15,23,42,.18)}
   .nat-popup .leaflet-popup-content{margin:0;width:260px!important;font-family:'Inter',sans-serif}
   .nat-popup .leaflet-popup-close-button{color:#fff!important;top:8px!important;right:10px!important;font-size:20px!important;font-weight:300!important}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -95,7 +95,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -325,7 +325,7 @@ window.render = function() {
       <main class="flex-1 overflow-hidden flex gap-3 natcat-main" style="min-height:0;background:#f3f4f6;padding:12px">
 
         <!-- Events card -->
-        <div class="natcat-events-card" style="width:320px;flex-shrink:0;background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div class="natcat-events-card" style="width:320px;flex-shrink:0;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
 
           <!-- Header -->
           <div style="padding:16px 16px 10px">
@@ -362,7 +362,7 @@ window.render = function() {
         </div>
 
         <!-- Map card -->
-        <div class="natcat-map-card" style="flex:1;background:#fff;border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden;min-width:0">
+        <div class="natcat-map-card" style="flex:1;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden;min-width:0">
           <!-- Map title bar -->
           <div style="height:48px;background:#fff;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0">
             ${BOLT_ICO}
@@ -380,8 +380,8 @@ window.render = function() {
             <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px">
               <div style="position:relative">
                 <button id="nat-layers-btn" class="map-btn" title="Map Type">${LAYERS_ICO}</button>
-                <div id="nat-layers-menu" style="display:none;position:absolute;top:38px;right:0;width:150px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;z-index:9999">
-                  <div style="padding:6px 10px;font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f3f4f6">Map Type</div>
+                <div id="nat-layers-menu" style="display:none;position:absolute;top:38px;right:0;width:150px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;z-index:9999">
+                  <div style="padding:6px 10px;font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f3f4f6">Map Type</div>
                   ${[['satellite','Satellite','#0b1e2e'],['street','Street','#e8e0d4'],['light','Light','#e8e8e8'],['dark','Dark','#1a1a2e']].map(([k,l,c]) =>
                     `<div class="map-type-opt" data-type="${k}" style="padding:8px 12px;font-size:12.5px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;color:#374151" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:2px;background:${c};flex-shrink:0"></span>${l}</div>`
                   ).join('')}
@@ -391,7 +391,7 @@ window.render = function() {
                 <button id="nat-labels-btn" class="map-btn${natShowLabels ? ' is-active' : ''}" title="Labels" aria-haspopup="true" aria-expanded="false" aria-controls="nat-labels-menu">${TAG_ICO}</button>
                 <div id="nat-labels-menu" class="nat-labels-menu" style="display:none">
                   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-                    <span id="nat-labels-title" style="font-size:13.5px;font-weight:700;color:#111827">Show Labels</span>
+                    <span id="nat-labels-title" style="font-size:13px;font-weight:700;color:#111827">Show Labels</span>
                     <button id="nat-labels-toggle" type="button" role="switch" aria-checked="${natShowLabels}" aria-labelledby="nat-labels-title" class="nat-switch${natShowLabels ? ' is-on' : ''}"><span></span></button>
                   </div>
                   <p style="margin-top:6px;font-size:12px;line-height:1.45;color:#6b7280">Display event names directly on the map next to markers.</p>

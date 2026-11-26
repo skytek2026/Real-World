@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Offshore Region Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -13,7 +13,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
+  .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
   #region-map{position:absolute;inset:0}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#374151!important;line-height:30px!important}
@@ -106,7 +106,7 @@
   .ds-card-foot--center{justify-content:center;}
   .ds-foot-btn{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 8px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Phones: Totals / Region Details tabs fill the card; exposure rows as cards (all headings kept) */
   .mrd-pf-cards { display:none; }
   @media (max-width:767px) {
@@ -116,10 +116,10 @@
     .mrd-pf-tbl { display:none; }
     .mrd-pf-cards { display:flex; flex-direction:column; gap:10px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
   }
-  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
   .mrd-pf-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
   .mrd-pf-kv .mrd-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
-  .mrd-pf-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .mrd-pf-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
   .mrd-pf-kv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; }
   .mrd-pf-kv dd strong { font-weight:700; color:#111827; }
   .mrd-pf-name { color:var(--brand-600,#2563eb) !important; font-weight:600; }
@@ -142,7 +142,7 @@ window.PAGE = { id:'regions', title:'Offshore Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -395,7 +395,7 @@ function Content() {
         </div>
         <div style="padding:12px 16px">
           ${leftTab === 'totals' ? `
-          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:11.5px;font-weight:600;color:#6b7280;margin-bottom:6px;padding-right:4px">
+          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;padding-right:4px">
             <span>Above Threshold</span><span>Total</span>
           </div>
           ${[['All Risk','$850M','$5.5B'],['Hull','$520M','$3.7B'],['Cargo','$230M','$1.2B'],['Liability','$100M','$550M']].map(([lbl,thr,tot]) => `
@@ -474,10 +474,10 @@ function Content() {
           <!-- Date range -->
           <div style="font-size:12px;color:#6b7280;margin-bottom:6px">Date Range:</div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:7px;padding:0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
             <span style="font-size:12px;color:#9ca3af">to</span>
             <div style="position:relative;flex:1">
-              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:7px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
           </div>
@@ -488,58 +488,58 @@ function Content() {
           <!-- Stats grid 4 rows x 3 cols -->
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Asset Count</div>
               <span class="spill-gray">${s.avgCount}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Exposure Value</div>
               <span class="spill-blue">${s.avgExp}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Market Value</div>
               <span class="spill-blue">${s.avgMkt}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Asset Count</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiCountDate}</div>
               <span class="spill-blue">${s.hiCount}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Exposure Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiExpDate}</div>
               <span class="spill-blue">${s.hiExp}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Market Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiMktDate}</div>
               <span class="spill-blue">${s.hiMkt}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily War Exposure</div>
               <span class="spill-red">${s.warAvg}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily War Exposure</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warHiDate}</div>
               <span class="spill-red">${s.warHi}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily War Exposure</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warLoDate}</div>
               <span class="spill-red">${s.warLo}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Asset Count</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loCountDate}</div>
               <span class="spill-gray">${s.loCount}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Exposure Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loExpDate}</div>
               <span class="spill-gray">${s.loExp}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Market Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loMktDate}</div>
               <span class="spill-gray">${s.loMkt}</span>
             </div>
@@ -581,7 +581,7 @@ function Content() {
         <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px">
           <div style="position:relative">
             <button id="mrd-layers-btn" class="map-btn" title="Map type">${SC.I.layers}</button>
-            <div id="mrd-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
+            <div id="mrd-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
               ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`
                 <button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;color:#374151;text-align:left">
                   <span data-label>${l}</span>
@@ -593,7 +593,7 @@ function Content() {
         <!-- Legend -->
         <div style="position:absolute;bottom:16px;left:12px;z-index:400;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;box-shadow:0 2px 6px rgba(15,23,42,.1)">
           <div style="font-size:13px;font-weight:700;color:#111827">Offshore Region</div>
-          <div style="font-size:11.5px;color:#6b7280;margin-top:2px">5 Installations · 5 Active Rigs</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:2px">5 Installations · 5 Active Rigs</div>
         </div>
       </div>` : `
       <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:13px;padding:48px">

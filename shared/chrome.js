@@ -24,10 +24,14 @@
     st.textContent = `
       :root { --bg-canvas:#F5F7FA; --font-display:"Exo","Inter",system-ui,-apple-system,"Segoe UI",sans-serif; }
       /* Sky (Future, Skytek DS) canvas; Light (Current Real World scheme) keeps its own canvas */
-      html:not([data-theme="dark"]):not([data-rw-scheme="light"]) .rw-canvas { background-color:var(--bg-canvas) !important; }
-      html[data-rw-scheme="light"]:not([data-theme="dark"]) .rw-canvas { background-color:#f1f5f9 !important; }
+      .rw-canvas { background-color:var(--bg-canvas) !important; }   /* DS bg-canvas */
+      /* Leaflet defaults -> DS type: Inter, on-scale sizes, text-primary */
+      .leaflet-container, .leaflet-container .leaflet-popup-content-wrapper, .leaflet-control-scale-line, .leaflet-tooltip { font-family:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+      .leaflet-container .leaflet-popup-content { font-size:13px; line-height:1.45; }
+      .leaflet-container .leaflet-control-scale-line { font-size:11px; }
+      .leaflet-bar a.leaflet-control-zoom-in, .leaflet-bar a.leaflet-control-zoom-out { font:600 20px/30px 'Inter', system-ui, sans-serif; }
       /* DS display font for headings in Sky and Dark; Light keeps each page's own heading fonts */
-      html:not([data-rw-scheme="light"]) :is(h1, h2, h3, h4, .t-display, .t-h1, .t-h2, .t-h3, .t-h4, .card-title, .ds-rcard-title, .ds-popover-title,
+      :is(h1, h2, h3, h4, .t-display, .t-h1, .t-h2, .t-h3, .t-h4, .card-title, .ds-rcard-title, .ds-popover-title,
       .ds-fdrawer-head, .ds-vessel-label, .vp-title, .vp-port-code, .vp-cta, .asset-identity-name) { font-family:var(--font-display); }
     `;
     document.head.appendChild(st);
@@ -92,9 +96,9 @@ try {
 /* Apply persisted theme attribute ASAP to reduce flash-of-light on load */
 (function applyThemeAttrEarly() {
   try {
-    const t = localStorage.getItem('rw_theme') || 'light';
-    document.documentElement.setAttribute('data-theme', t);
-    document.documentElement.setAttribute('data-rw-scheme', t);   // chosen scheme (data-theme is reduced to light/dark later)
+    // One theme (Light, azure brand) until themes are introduced: reset any stored Dark / Sky choice.
+    localStorage.setItem('rw_theme', 'light');
+    document.documentElement.setAttribute('data-theme', 'light');
   } catch {}
 })();
 
@@ -264,7 +268,6 @@ function Topbar() {
     </div>
     <div class="flex items-center gap-1 shrink-0">
       <a href="ContactSupport.html?from=${encodeURIComponent(((window.PAGE && window.PAGE.title) || document.title.split(' — ')[0]) + '|' + location.pathname.split('/').pop())}" id="report-issue-btn" class="h-9 px-2.5 rounded-lg text-ink-600 hover:text-ink-900 hover:bg-ink-100 flex items-center gap-1.5 ring-focus no-underline text-xs font-semibold" title="Report an issue" aria-label="Report an issue"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg><span class="hidden lg:inline">Report issue</span></a>
-      <button id="theme-toggle-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Toggle dark mode"></button>
       <button id="notif-btn" class="relative h-9 w-9 rounded-lg text-ink-500 hover:text-ink-800 hover:bg-ink-100 flex items-center justify-center ring-focus" title="Notifications">
         ${I.bell}<span class="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-red-600 dot-pulse"></span>
       </button>
@@ -367,13 +370,13 @@ function TweaksPanel() {
 }
 
 function getTheme() {
-  try { return localStorage.getItem('rw_theme') || 'light'; } catch { return 'light'; }
+  return 'light';   // single theme (Skytek DS v4.0.0); themes come later
 }
-const THEME_ACCENT = { sky:'sky', light:'azure', dark:'sky' };   // Light = current Real World scheme (#1485c5); Sky/Dark = Skytek Design System (#2d7ffb)
-function setTheme(id) {
-  try { localStorage.setItem('rw_theme', id); } catch {}
-  // Map theme to a distinct accent palette (light→dark blue ramp)
-  TWEAKS.accent = THEME_ACCENT[id] || 'sky';
+const THEME_ACCENT = { light:'azure' };   // Skytek DS brand: the azure ramp (#1485c5)
+function setTheme() {
+  // Themes are not offered yet: always Light.
+  try { localStorage.setItem('rw_theme', 'light'); } catch {}
+  TWEAKS.accent = THEME_ACCENT.light;
   applyTweaks();
 }
 
@@ -456,7 +459,7 @@ function buildDarkCss() {
   ${D} .hover\\:text-ink-800:hover, ${D} .hover\\:text-ink-900:hover { color:${tx} !important; }
   ${D} .ring-white { --tw-ring-color:${surf2} !important; }
   ${D} .divide-ink-100 { border-color:${bd}; }
-  ${D} .text-brand-600 { color:#2d7ffb !important; }
+  ${D} .text-brand-600 { color:#1485c5 !important; }
 
   /* Selected tabs & active nav must stay white (beats the .text-ink-* / autogen remaps) */
   ${D} .ds-tab[aria-selected="true"], ${D} .ds-tab[aria-selected="true"] .ds-tab-label,
@@ -637,12 +640,11 @@ function applyTweaks() {
   // Apply global theme from localStorage before resolving accent
   const storedTheme = getTheme();
   if (storedTheme in THEME_ACCENT) TWEAKS.accent = THEME_ACCENT[storedTheme];
-  document.documentElement.setAttribute('data-rw-scheme', storedTheme);
 
   document.body.dataset.density = TWEAKS.density;
   document.body.dataset.sparklines = TWEAKS.showSparklines ? 'on' : 'off';
   const accentMap = {
-    blue:   {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+    blue:   {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
     indigo: {50:'#eef2ff',100:'#e0e7ff',200:'#c7d2fe',300:'#a5b4fc',400:'#818cf8',500:'#6366f1',600:'#4f46e5',700:'#4338ca',800:'#3730a3'},
     teal:   {50:'#f0fdfa',100:'#ccfbf1',200:'#99f6e4',300:'#5eead4',400:'#2dd4bf',500:'#14b8a6',600:'#0d9488',700:'#0f766e',800:'#115e59'},
     rose:   {50:'#fff1f2',100:'#ffe4e6',200:'#fecdd3',300:'#fda4af',400:'#fb7185',500:'#f43f5e',600:'#e11d48',700:'#be123c',800:'#9f1239'},
@@ -838,26 +840,6 @@ function wireChrome() {
     if (userPop  && except!==userPop)  userPop.classList.add('hidden');
   }
   if (notifBtn) notifBtn.onclick = (e) => { e.stopPropagation(); closeAll(notifPop); notifPop.classList.toggle('hidden'); };
-
-  // Theme toggle (moon in light mode → dark; sun in dark mode → light)
-  const themeBtn = document.getElementById('theme-toggle-btn');
-  if (themeBtn) {
-    const MOON = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-    const SUN  = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
-    const syncIcon = () => {
-      const dark = getTheme() === 'dark';
-      themeBtn.innerHTML = dark ? SUN : MOON;
-      themeBtn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
-    };
-    syncIcon();
-    themeBtn.onclick = (e) => {
-      e.stopPropagation();
-      setTheme(getTheme() === 'dark' ? 'light' : 'dark');
-      syncIcon();
-    };
-  }
-  if (userBtn)  userBtn.onclick  = (e) => { e.stopPropagation(); closeAll(userPop);  userPop.classList.toggle('hidden'); };
-  document.addEventListener('click', () => closeAll());
 
   document.querySelectorAll('[data-tweak-density]').forEach(b => b.onclick = () => {
     TWEAKS.density = b.dataset.tweakDensity; if (window.render) window.render(); applyTweaks(); persistTweaks();

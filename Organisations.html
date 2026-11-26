@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Organisations — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
+  .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
   /* Table */
   .org-tbl{width:100%;border-collapse:collapse;min-width:900px}
   .org-tbl th{padding:10px 16px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;background:var(--slate-50,#F9FAFB);text-transform:uppercase;letter-spacing:.04em}
@@ -26,7 +26,7 @@
   .sb-inactive{background:#fef2f2;color:#e11d48}
   /* Access chips */
   .chip{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;margin:1px 2px 1px 0;white-space:nowrap}
-  .chip-ports  {background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
+  .chip-ports  {background:#eff6ff;color:#2563eb;border:1px solid #b8ddf5}
   .chip-weather{background:#f0fdf4;color:#059669;border:1px solid #86efac}
   .chip-risk   {background:#fff7ed;color:#c2410c;border:1px solid #fdba74}
   /* Header controls */
@@ -34,7 +34,7 @@
   .hbtn:hover{background:#f9fafb;border-color:#d1d5db}
   .hbtn.hactive{background:var(--brand-50);border-color:var(--brand-200);color:var(--brand-600)}
   /* Dropdowns */
-  .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:170px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
+  .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:170px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
   .fdrop-item{padding:8px 12px;font-size:13px;color:#374151;cursor:pointer}.fdrop-item:hover{background:#f9fafb}.fdrop-item.fsel{color:var(--brand-600);font-weight:600;background:var(--brand-50)}
   /* Action buttons */
   .actbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
@@ -56,10 +56,10 @@
   .access-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:background .1s,border-color .1s;margin-bottom:6px}
   .access-row:last-child{margin-bottom:0}
   .access-row:hover{background:#f9fafb}
-  .access-row.checked-ports   {background:#eff6ff;border-color:#bfdbfe}
+  .access-row.checked-ports   {background:#eff6ff;border-color:#b8ddf5}
   .access-row.checked-weather {background:#f0fdf4;border-color:#86efac}
   .access-row.checked-risk    {background:#fff7ed;border-color:#fdba74}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -75,7 +75,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -241,7 +241,7 @@ function renderModal() {
           ${['Ports','Weather','Risk'].map(a => {
             const checked = f.access.includes(a);
             return `<div class="access-row ${checked ? ROW_CLS[a] : ''}" data-access-row="${a}">
-              <div style="width:18px;height:18px;border-radius:5px;border:${checked ? '0' : '1.5px solid #d1d5db'};background:${checked ? 'var(--brand-600)' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .1s">
+              <div style="width:18px;height:18px;border-radius:6px;border:${checked ? '0' : '1.5px solid #d1d5db'};background:${checked ? 'var(--brand-600)' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .1s">
                 ${checked ? `<span style="color:#fff;display:flex">${SVG.check}</span>` : ''}
               </div>
               <span class="chip ${ACCESS_CLS[a]}">${a}</span>

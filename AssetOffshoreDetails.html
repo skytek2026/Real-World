@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Asset Details — Offshore/Energy — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -35,8 +35,8 @@
   .bg-brand-050  { background:#eff6ff; }
   .scroll-thin::-webkit-scrollbar { width:5px; }
   .scroll-thin::-webkit-scrollbar-track { background:transparent; }
-  .scroll-thin::-webkit-scrollbar-thumb { background:var(--brand-400,#51a2fc); border-radius:999px; }
-  .scroll-thin::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#2d7ffb); }
+  .scroll-thin::-webkit-scrollbar-thumb { background:var(--brand-400,#1a92d1); border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover { background:var(--brand-600,#1485c5); }
   .tracking-micro { letter-spacing:0.04em; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
@@ -71,7 +71,7 @@
   .asset-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .asset-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',sans-serif; }
   .asset-popup .leaflet-popup-tip { background:#fff; }
-  .asset-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:6px !important; }
+  .asset-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:6px !important; }
   .asset-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; }
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; line-height:30px !important; }
@@ -83,7 +83,7 @@
   /* Lightbox */
   #lightbox { position:fixed; inset:0; z-index:9999; background:rgba(15,23,42,.92); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .2s ease; }
   #lightbox.is-open { opacity:1; pointer-events:all; }
-  #lightbox-img { max-width:88vw; max-height:82vh; border-radius:10px; object-fit:contain; box-shadow:0 24px 64px rgba(0,0,0,.6); display:block; transition:opacity .15s ease; }
+  #lightbox-img { max-width:88vw; max-height:82vh; border-radius:8px; object-fit:contain; box-shadow:0 24px 64px rgba(0,0,0,.6); display:block; transition:opacity .15s ease; }
   #lightbox-caption { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); color:#fff; font-size:13px; font-weight:600; letter-spacing:.03em; text-shadow:0 1px 4px rgba(0,0,0,.6); white-space:nowrap; }
   #lightbox-counter { position:absolute; top:20px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.6); font-size:12px; font-weight:600; letter-spacing:.05em; }
   .lb-btn { position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .15s; }
@@ -98,7 +98,7 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -116,7 +116,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -275,7 +275,7 @@ function Content() {
         <div class="p-4 flex flex-col gap-4">
           <div class="rounded-lg border border-blue-100 bg-blue-50 px-4 py-3 text-center">
             <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Insured Value</div>
-            <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$3.5B</div>
+            <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$3.5B</div>
           </div>
           <div class="flex flex-col gap-2.5 text-[12px]">
             <div class="flex items-baseline justify-between gap-2">
@@ -394,7 +394,7 @@ function Content() {
             ].map(([src, lbl], i) => `
               <div data-lightbox-idx="${i}" style="border-radius:8px;overflow:hidden;position:relative;height:130px;cursor:pointer;" class="ref-thumb">
                 <img src="${src}" alt="${lbl}" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .2s ease;" />
-                <div style="position:absolute;bottom:0;left:0;right:0;padding:4px 7px;background:linear-gradient(transparent,rgba(15,23,42,.55));font-size:9px;font-weight:600;color:#fff;letter-spacing:.03em;">${lbl}</div>
+                <div style="position:absolute;bottom:0;left:0;right:0;padding:4px 7px;background:linear-gradient(transparent,rgba(15,23,42,.55));font-size:11px;font-weight:600;color:#fff;letter-spacing:.03em;">${lbl}</div>
               </div>`).join('')}
           </div>
         </div>
@@ -480,7 +480,7 @@ function initDetailMap() {
 
   const zin  = el.querySelector('.leaflet-control-zoom-in');
   const zout = el.querySelector('.leaflet-control-zoom-out');
-  if (zin)  zin.innerHTML  = `<span style="font-size:18px;line-height:30px;display:block;text-align:center;">+</span>`;
+  if (zin)  zin.innerHTML  = `<span style="font-size:20px;line-height:30px;display:block;text-align:center;">+</span>`;
   if (zout) zout.innerHTML = `<span style="font-size:20px;line-height:30px;display:block;text-align:center;">&minus;</span>`;
 
   /* Layers menu */

@@ -15,7 +15,7 @@
     theme: { extend: {
       fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','sans-serif'], display: ['Exo','Inter','sans-serif'] },
       colors: {
-        brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#bfdbfe',400:'#8ec5fd',500:'#51a2fc',600:'#2d7ffb',700:'#1d4ed8',800:'#1f5fc7'},
+        brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#b8ddf5',400:'#43a8df',500:'#1a92d1',600:'#1485c5',700:'#1d4ed8',800:'#0f6aa0'},
         ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
       },
       boxShadow: {
@@ -30,25 +30,25 @@
   h1,h2,h3,h4,h5,h6,.font-display,.tracking-micro { font-family:'Exo','Inter',sans-serif; }
   .tracking-micro { letter-spacing:.08em; }
   /* Page root scrollbar — DS applies it automatically */
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
   html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background:#f3f4f6; }
-  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
-  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:999px; }
+  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#1485c5; }
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
-  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   .scroll-thin::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { width:6px; height:6px; }
   .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
-  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
-  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#1485c5; }
   .pop-enter { animation: pop .16s cubic-bezier(.2,.8,.2,1); transform-origin: top right; }
   @keyframes pop { from {opacity:0;transform:translateY(-4px) scale(.98);} to {opacity:1;transform:translateY(0) scale(1);} }
   .dot-pulse { position:relative; }
   .dot-pulse::after { content:''; position:absolute; inset:-3px; border-radius:999px; box-shadow:0 0 0 0 rgba(239,68,68,.5); animation:pulse 1.8s infinite; }
   @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(239,68,68,.55);} 70%{box-shadow:0 0 0 10px rgba(239,68,68,0);} 100%{box-shadow:0 0 0 0 rgba(239,68,68,0);} }
   .tile-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:10.5px; padding:1px 5px; border:1px solid #e5e7eb; border-bottom-width:2px; border-radius:4px; background:#f9fafb; color:#4b5563; }
-  .ring-focus:focus-visible { outline:2px solid #51a2fc; outline-offset:2px; border-radius:8px; }
+  .kbd { font-family: ui-monospace, Menlo, monospace; font-size:11px; padding:1px 5px; border:1px solid #e5e7eb; border-bottom-width:2px; border-radius:4px; background:#f9fafb; color:#4b5563; }
+  .ring-focus:focus-visible { outline:2px solid #1a92d1; outline-offset:2px; border-radius:8px; }
   [data-density="compact"] .py-density { padding-top:.75rem; padding-bottom:.75rem; }
   [data-density="comfortable"] .py-density { padding-top:1.25rem; padding-bottom:1.25rem; }
   [data-density="compact"] .gap-density { gap:.75rem; }
@@ -74,7 +74,7 @@
     background:rgba(15,23,42,.88); color:#fff;
     font-family:'Exo','Inter',sans-serif;
     font-size:11px; font-weight:700; letter-spacing:.01em;
-    padding:3px 7px; border-radius:5px;
+    padding:3px 7px; border-radius:6px;
     box-shadow:0 1px 3px rgba(0,0,0,.25);
     text-shadow:0 1px 1px rgba(0,0,0,.5);
     pointer-events:none;
@@ -82,7 +82,7 @@
   .vessel-marker svg { filter: drop-shadow(0 1px 2px rgba(0,0,0,.5)); }
   /* Vessel hover tooltip — name + type + flag */
   .vessel-tip.leaflet-tooltip {
-    background:rgba(15,23,42,.93); border:0; border-radius:7px;
+    background:rgba(15,23,42,.93); border:0; border-radius:8px;
     box-shadow:0 3px 10px rgba(0,0,0,.4);
     padding:6px 9px; color:#fff;
     font-family:'Inter',system-ui,sans-serif;
@@ -110,27 +110,27 @@
   .vessel-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',system-ui,sans-serif; }
   .vessel-popup .leaflet-popup-tip { background:#fff; }
   .vp { background:#fff; color:#111827; }
-  .vp-header { background:var(--brand-600,#2d7ffb); color:#fff; padding:12px 14px 10px; display:flex; align-items:flex-start; justify-content:space-between; }
+  .vp-header { background:var(--brand-600,#1485c5); color:#fff; padding:12px 14px 10px; display:flex; align-items:flex-start; justify-content:space-between; }
   .vp-header-main { min-width:0; }
-  .vp-title { font-family:'Exo','Inter',sans-serif; font-weight:800; font-size:15px; letter-spacing:.02em; display:flex; align-items:center; }
-  .vp-subtitle { font-size:11.5px; color:rgba(255,255,255,.85); margin-top:2px; }
+  .vp-title { font-family:'Exo','Inter',sans-serif; font-weight:800; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; }
+  .vp-subtitle { font-size:12px; color:rgba(255,255,255,.85); margin-top:2px; }
   .vp-route { display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; padding:12px 14px; border-bottom:1px solid #e5e7eb; }
   .vp-port { text-align:center; }
-  .vp-port-code { font-family:'Exo','Inter',sans-serif; font-weight:800; font-size:15px; color:#111827; }
-  .vp-port-name { font-size:11.5px; color:#374151; margin-top:1px; }
-  .vp-port-time { font-size:10px; color:#6b7280; margin-top:3px; letter-spacing:.02em; }
+  .vp-port-code { font-family:'Exo','Inter',sans-serif; font-weight:800; font-size:14px; color:#111827; }
+  .vp-port-name { font-size:12px; color:#374151; margin-top:1px; }
+  .vp-port-time { font-size:11px; color:#6b7280; margin-top:3px; letter-spacing:.02em; }
   .vp-arrow { color:#6b7280; font-size:16px; }
   .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; padding:12px 14px; }
   .vp-grid > div { min-width:0; }
   .vp-span { grid-column:1 / -1; }
-  .vp-k { font-size:10.5px; color:#6b7280; }
+  .vp-k { font-size:11px; color:#6b7280; }
   .vp-v { font-size:12.5px; color:#111827; margin-top:1px; font-weight:600; }
   .vp-strong { font-weight:700; color:#111827; }
   .vp-muted { color:#6b7280; font-weight:500; font-size:11px; }
   .vp-nav { color:#16a34a; font-weight:700; }
-  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2d7ffb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
+  .vp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#1485c5)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
   .vp-cta:hover { background:var(--brand-50,#eff6ff); }
-  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:6px; opacity:.9; }
+  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:400 !important; width:24px !important; height:24px !important; line-height:22px !important; padding:0 !important; border-radius:6px; opacity:.9; }
   .vessel-popup .leaflet-popup-close-button:hover { color:#fff !important; background:rgba(255,255,255,.18); opacity:1; }
   /* Fullscreen map mode */
   /* Trap the map card's own controls (z-400) so they can't rise above the sticky topbar (z-30) */
@@ -144,7 +144,7 @@
   .ds-tab { position:relative; font:inherit; font-size:13px; font-weight:600; padding:8px 18px; background:transparent; border:0; border-radius:9999px; color:#6b7280; cursor:pointer; transition:color 140ms ease; display:inline-flex; align-items:center; justify-content:center; gap:6px; white-space:nowrap; text-align:center; }
   .ds-tab:hover { color:#111827; }
   .ds-tab[aria-selected="true"], .ds-tab[aria-selected="true"]:hover { color:#fff; }
-  .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#2d7ffb; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
+  .ds-tab-pill { position:absolute; top:4px; left:0; height:calc(100% - 8px); background:#1485c5; border-radius:9999px; box-shadow:0 1px 2px rgba(15,23,42,.12); z-index:0; transform:translateX(0) scaleX(1); transform-origin:left center; transition:transform 320ms cubic-bezier(.34,1.2,.64,1), width 320ms cubic-bezier(.34,1.2,.64,1); pointer-events:none; }
   .ds-tab-pill.is-init { transition:none; }
   .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:6px; }
   .ds-tab, .mobile-tab-select { font-family:var(--font-sans,"Inter",system-ui,sans-serif) !important; }
@@ -157,7 +157,7 @@
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 5px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2d7ffb);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 5px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
 
   /* ── DS color conformance overrides ── */
@@ -167,7 +167,7 @@
   .mobile-tab-select{display:none;width:100%;padding:7px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:13px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   @media(max-width:767px){.mobile-tab-select{display:block!important}.tabs-desktop-wrap{display:none!important}}
   /* Folder toggle on expandable rows: only the folder opens/closes the row */
-  .folder-btn { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; margin:-4px -3px -4px -5px; padding:0; border:0; border-radius:5px; background:transparent; cursor:pointer; }
+  .folder-btn { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; margin:-4px -3px -4px -5px; padding:0; border:0; border-radius:6px; background:transparent; cursor:pointer; }
   .folder-btn:hover { background:var(--brand-50,#eff6ff); }
   .folder-btn:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
   /* vessel popup: pagination dots above the button (active = wider brand pill) */
@@ -175,13 +175,13 @@
   .vp-pill { position:relative; width:22px; height:22px; padding:0; border:0; background:transparent; cursor:pointer; }
   .vp-pill::before { content:''; position:absolute; top:50%; left:50%; width:7px; height:7px; border-radius:9999px; background:#d1d5db; transform:translate(-50%,-50%); transition:width .18s ease, background-color .18s ease; }
   .vp-pill:hover::before { background:#9ca3af; }
-  .vp-pill[aria-selected="true"]::before { width:18px; background:var(--brand-600,#2d7ffb); }
+  .vp-pill[aria-selected="true"]::before { width:18px; background:var(--brand-600,#1485c5); }
   .vp-pill:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:-3px; border-radius:9999px; }
   @media (prefers-reduced-motion: reduce) { .vp-pill::before { transition:none; } }
   /* more specific than the chrome's auto-generated dark colours (which turned #d1d5db into #1f2937) */
   html[data-theme="dark"] .leaflet-popup .vp .vp-pill::before { background-color:#6b7280 !important; }
   html[data-theme="dark"] .leaflet-popup .vp .vp-pill:hover::before { background-color:#9ca3af !important; }
-  html[data-theme="dark"] .leaflet-popup .vp .vp-pill[aria-selected="true"]::before { background-color:var(--brand-400,#51a2fc) !important; }
+  html[data-theme="dark"] .leaflet-popup .vp .vp-pill[aria-selected="true"]::before { background-color:var(--brand-400,#1a92d1) !important; }
   html[data-theme="dark"] .vp-pill:focus-visible { outline-color:var(--brand-300,#93c5fd); }
   .vp-grid[hidden] { display:none; }
 </style>
@@ -234,12 +234,12 @@ html[data-theme="dark"] .ds-fdrawer {
   padding: var(--fdrawer-head-pad);
   border-bottom: 1px solid var(--border-subtle);
   font-family: var(--font-display);
-  font-size: 15px; font-weight: 700; color: var(--text-primary);
+  font-size: 14px; font-weight: 700; color: var(--text-primary);
   flex: 0 0 auto;
 }
 .ds-fdrawer-close {
   border: 0; background: none; cursor: pointer;
-  color: var(--text-muted); padding: 5px; border-radius: 7px;
+  color: var(--text-muted); padding: 5px; border-radius: 8px;
   display: inline-flex;
   transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
 }
@@ -268,7 +268,7 @@ html[data-theme="dark"] .ds-fdrawer {
 }
 .ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); }
 .ds-fdrawer-sec-title {
-  font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
   color: var(--text-muted); margin: 0;
   display: flex; align-items: center; gap: 7px;
 }
@@ -289,7 +289,7 @@ html[data-theme="dark"] .ds-fdrawer {
   flex: 1; padding: 5px 8px;
   border: 1px solid var(--border-default); border-radius: var(--radius-sm);
   background: var(--bg-surface);
-  font: inherit; font-size: 11.5px; font-weight: 600; color: var(--text-secondary);
+  font: inherit; font-size: 12px; font-weight: 600; color: var(--text-secondary);
   cursor: pointer;
   transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
 }
@@ -324,18 +324,18 @@ html[data-theme="dark"] .ds-fdrawer {
 .mfd-vessel { flex-shrink:0; transform:rotate(45deg); }   /* same arrowhead as the map's vessel markers */
 .mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
-.mfd-n { font-size:11.5px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
+.mfd-n { font-size:12px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
 .mfd-result { padding:10px var(--fdrawer-pad-x) 0; font-size:12px; color:var(--text-muted); }
 .mfd-btn { display:inline-flex; align-items:center; border-radius:6px; font:inherit; font-size:13px; font-weight:600; cursor:pointer; border:1px solid transparent; }
 .mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
 .mfd-btn--secondary:hover { background:var(--bg-sunken); }
-.mfd-btn--primary { background:var(--brand-600,#2d7ffb); color:#fff; }
-.mfd-btn--primary:hover { background:var(--brand-700,#1f5fc7); }
+.mfd-btn--primary { background:var(--brand-600,#1485c5); color:#fff; }
+.mfd-btn--primary:hover { background:var(--brand-700,#0f6aa0); }
 .mfd-btn:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
 /* active-filter count on the map's Filter button */
 #map-filters-btn { position:relative; }
-#map-filters-btn.is-active { color:var(--brand-600,#2d7ffb); }
-.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#2d7ffb); color:#fff; font-size:10px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
+#map-filters-btn.is-active { color:var(--brand-600,#1485c5); }
+.map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:11px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
 html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 </style>
 </head>
@@ -354,7 +354,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -430,7 +430,7 @@ const EXPOSURE_AGGREGATIONS = [
 ];
 
 const BENCHMARK = [
-  { kind:'Bulk Carrier',     count:'12,483', pct:24.6, color:'#51a2fc' },
+  { kind:'Bulk Carrier',     count:'12,483', pct:24.6, color:'#1a92d1' },
   { kind:'Tanker',           count:'8,021',  pct:17.8, color:'#dc2626' },
   { kind:'Gas Carrier',      count:'3,456',  pct:6.8,  color:'#d97706' },
   { kind:'LNG Carrier',      count:'2,876',  pct:5.7,  color:'#65a30d' },
@@ -455,8 +455,8 @@ const ALERTS = [
 
 /* Vessels on the map — varied types scattered across the globe, oriented by heading. */
 const VESSEL_TYPES = [
-  { k:'Container',         color:'#2d7ffb' },
-  { k:'Bulk Carrier',      color:'#51a2fc' },
+  { k:'Container',         color:'#1485c5' },
+  { k:'Bulk Carrier',      color:'#1a92d1' },
   { k:'Tanker',            color:'#dc2626' },
   { k:'Gas Carrier',       color:'#d97706' },
   { k:'LNG Carrier',       color:'#65a30d' },
@@ -610,20 +610,20 @@ function positionTabPills() {
 }
 
 function PortfolioCard() {
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
-  const sortIco = `<span style="font-size:10px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+  const sortIco = `<span style="font-size:11px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   const statsRow = `
     <div style="padding:10px 12px 0;">
       <div style="display:flex;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;">
         <div style="flex:1;padding:12px 16px;text-align:center;border-right:1px solid #dbeafe;">
           <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Policies</div>
-          <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">4,932</div>
+          <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">4,932</div>
         </div>
         <div style="flex:1;padding:12px 16px;text-align:center;">
           <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
-          <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$605.2B</div>
+          <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$605.2B</div>
         </div>
       </div>
     </div>`;
@@ -715,8 +715,8 @@ function PortfolioCard() {
 }
 
 function RegionsCard() {
-  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
-  const sortIco = `<span style="font-size:10px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
+  const folderIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>`;
+  const sortIco = `<span style="font-size:11px;color:#9ca3af;vertical-align:middle;"> ↕</span>`;
 
   if (state.regionTab === 'Benchmark') {
     const marker = (color) => `<svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" style="transform:rotate(45deg); color:${color};" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg>`;
@@ -761,7 +761,7 @@ function RegionsCard() {
     <div class="flex-1 overflow-y-auto scroll-thin divide-y divide-ink-50">
       ${EXPOSURE_AGGREGATIONS.map((a, ai) => {
         const open = state.expandedAggs.has(ai);
-        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
         return `
         <div>
           <div class="w-full text-left px-3 py-2 flex items-center justify-between gap-4 text-xs">
@@ -799,7 +799,7 @@ function RegionsCard() {
     <div class="flex-1 overflow-y-auto scroll-thin divide-y divide-ink-50">
       ${REGIONS.map((r, ri) => {
         const open = state.expandedRegions.has(ri);
-        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#2d7ffb)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
+        const folderOpenIco = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--brand-600,#1485c5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>`;
         return `
         <div>
           <div class="w-full text-left px-3 py-2 grid grid-cols-[1fr_96px_88px] gap-4 items-center text-xs">
@@ -842,7 +842,7 @@ function BenchmarkCard() {
     <div class="px-4 pt-3 flex justify-center">
       <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 32px;text-align:center;min-width:180px">
         <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">All Vessels</div>
-        <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">1.5%</div>
+        <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">1.5%</div>
       </div>
     </div>
     <div class="flex-1 px-4 py-2 space-y-1.5 overflow-y-auto scroll-thin">
@@ -875,7 +875,7 @@ function AlertsCard() {
             <div class="text-[11px] text-ink-500">${a.kind}</div>
           </div>
         </div>
-        <span class="text-[10px] font-bold tracking-micro px-1.5 py-0.5 rounded ${tagCls(a.tagTone)} shrink-0">${a.tag}</span>
+        <span class="text-[11px] font-bold tracking-micro px-1.5 py-0.5 rounded ${tagCls(a.tagTone)} shrink-0">${a.tag}</span>
       </div>
       <div class="mt-2 space-y-0.5 text-[11px] text-ink-600">
         <div class="flex items-center gap-1.5"><span class="text-ink-400 inline-flex"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h5"/><path d="M17.5 17.5 16 16.3V14"/><circle cx="16" cy="16" r="6"/></svg></span>${a.date}</div>
@@ -944,7 +944,7 @@ function AlertsCard() {
       </div>
       <div class="flex items-start gap-2 flex-1 min-w-0" style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 12px;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-px"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
-        <p class="text-[11.5px] leading-snug text-ink-700" style="text-wrap:pretty">Sanctioned vessels may operate under specific licences or exemptions despite restrictions. Please verify each vessel for current applicable authorisations.</p>
+        <p class="text-[12px] leading-snug text-ink-700" style="text-wrap:pretty">Sanctioned vessels may operate under specific licences or exemptions despite restrictions. Please verify each vessel for current applicable authorisations.</p>
       </div>
     </div>
     <div class="px-3 py-2 grid text-[11px] font-semibold tracking-micro uppercase text-ink-500" style="grid-template-columns:1fr auto auto;gap:0 16px;border-bottom:1px solid #f3f4f6;">
@@ -1167,7 +1167,7 @@ function initMap() {
       const isOn = b.dataset.mapType === type;
       const lbl   = b.querySelector('[data-label]');
       const check = b.querySelector('[data-check]');
-      if (lbl)   { lbl.style.color = isOn ? '#2d7ffb' : '#374151'; lbl.style.fontWeight = isOn ? '600' : '500'; }
+      if (lbl)   { lbl.style.color = isOn ? '#1485c5' : '#374151'; lbl.style.fontWeight = isOn ? '600' : '500'; }
       if (check) { check.style.opacity = isOn ? '1' : '0'; }
     });
   }
@@ -1415,7 +1415,7 @@ function initMap() {
     if (!labelsSw) return;
     const on = !!state.showLabels;
     labelsSw.setAttribute('aria-checked', on ? 'true' : 'false');
-    labelsSw.style.backgroundColor = on ? '#2d7ffb' : '#d1d5db';
+    labelsSw.style.backgroundColor = on ? '#1485c5' : '#d1d5db';
     const knob = labelsSw.querySelector('span');
     if (knob) knob.style.transform = on ? 'translateX(22px)' : 'translateX(2px)';
   }

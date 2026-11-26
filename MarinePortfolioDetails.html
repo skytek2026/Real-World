@@ -13,7 +13,7 @@
     theme: { extend: {
       fontFamily: { sans:['Inter','ui-sans-serif','system-ui','sans-serif'], display:['Exo','Inter','sans-serif'] },
       colors: {
-        brand: {50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
+        brand: {50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},
         ink:   {900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'},
       },
       boxShadow: {
@@ -28,16 +28,16 @@
   h1,h2,h3,h4,h5,h6,.font-display,.tracking-micro { font-family:'Exo','Inter',sans-serif; }
   .tracking-micro { letter-spacing:.08em; }
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
   html::-webkit-scrollbar-track, body::-webkit-scrollbar-track { background:#f3f4f6; }
-  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
-  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
-  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:999px; }
+  html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover { background:#1485c5; }
+  .scroll-thin, .ds-scroll { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   .scroll-thin::-webkit-scrollbar, .ds-scroll::-webkit-scrollbar { width:6px; height:6px; }
   .scroll-thin::-webkit-scrollbar-track, .ds-scroll::-webkit-scrollbar-track { background:#f3f4f6; }
-  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#51a2fc; border-radius:999px; }
-  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#2d7ffb; }
+  .scroll-thin::-webkit-scrollbar-thumb, .ds-scroll::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:999px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover, .ds-scroll::-webkit-scrollbar-thumb:hover { background:#1485c5; }
   .pf-tab-in { animation:pcardIn .22s ease; }
   .pf-stack { flex:1 1 auto; min-height:0; display:grid; }
   .pf-pane { grid-area:1/1; min-width:0; min-height:0; display:flex; flex-direction:column; visibility:hidden; }
@@ -56,11 +56,11 @@
   .pg-table tbody tr:hover td { background:#f9fafb; }
   .pg-table tr.pg-child td:first-child { padding-left:34px; }
   .pg-table tr.pg-child td { background:#fbfcfe; }
-  .pg-name { display:inline-flex; align-items:center; gap:6px; min-width:0; background:none; border:0; padding:0; font:inherit; color:var(--brand-600,#2d7ffb); cursor:pointer; text-decoration:none; text-align:left; }
+  .pg-name { display:inline-flex; align-items:center; gap:6px; min-width:0; background:none; border:0; padding:0; font:inherit; color:var(--brand-600,#1485c5); cursor:pointer; text-decoration:none; text-align:left; }
   .pg-name:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
   .pg-name:focus-visible, .ds-th-sort:focus-visible { outline:0; border-radius:4px; box-shadow:0 0 0 3px rgba(46,134,192,.32); }
   .pg-name svg { flex-shrink:0; }
-  .pg-foot-btn { color:var(--brand-600,#2d7ffb); background:none; border:0; padding:0; cursor:pointer; }
+  .pg-foot-btn { color:var(--brand-600,#1485c5); background:none; border:0; padding:0; cursor:pointer; }
   .pg-foot-btn[disabled] { color:#9ca3af; cursor:not-allowed; }
   .pg-table .ds-th-sort { width:100%; display:inline-flex; align-items:center; gap:6px; padding:9px 12px; background:none; border:0; font:inherit; font-size:11px; font-weight:600; letter-spacing:.02em; color:#6b7280; cursor:pointer; white-space:nowrap; transition:color 120ms ease, background 120ms ease; }
   .pg-table .ds-th-sort:hover { color:#4b5563; background:#f3f4f6; }
@@ -120,9 +120,9 @@
   .pcard-sub { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12.5px; color:#6b7280; }
   .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
-  .pcard-k { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
-  .pcard-v { font-size:13.5px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
-  .pcard-v.is-strong { font-size:15px; font-weight:700; color:#111827; }
+  .pcard-k { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
+  .pcard-v { font-size:13px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+  .pcard-v.is-strong { font-size:14px; font-weight:700; color:#111827; }
   .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
   .pcard-more { display:none; }
   .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e5e7eb; animation:pcardIn .22s ease; }
@@ -177,9 +177,9 @@
   .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 6px;border-radius:6px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:11px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;}
   .ds-card-foot button:hover{background:#eef2f7;color:var(--brand-700,#1d4ed8);}
   /* Risk Score info popups (ported from Vessel Details) */
-  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
+  .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:9px 10px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
-  .rs-info:hover{color:#2d7ffb;}
+  .rs-info:hover{color:#1485c5;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
   .rs-tip.l{left:-6px;}
@@ -188,9 +188,9 @@
   .rs-tip.c::after{left:50%;margin-left:-4.5px;}
   .rs-tip.l::after{left:14px;}
   .rs-tip.r::after{right:14px;}
-  .rs-tip-h{font-size:10.5px;font-weight:800;color:#111827;margin-bottom:6px;}
-  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:10px;}
-  .rs-tip-tbl th{padding:2px 3px;font-size:9px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
+  .rs-tip-h{font-size:11px;font-weight:800;color:#111827;margin-bottom:6px;}
+  .rs-tip-tbl{width:100%;border-collapse:collapse;font-size:11px;}
+  .rs-tip-tbl th{padding:2px 3px;font-size:11px;font-weight:700;color:#6b7280;text-align:right;border-bottom:1px solid #f3f4f6;}
   .rs-tip-tbl th:first-child{text-align:left;}
   .rs-tip-tbl td{padding:2.5px 3px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
@@ -228,7 +228,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="shared/pagination.css" />
@@ -425,7 +425,7 @@ function DonutSVG(score = 100) {
     </div>
     <div style="display:flex;align-items:center;gap:4px;margin-top:-10px;">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${risk.c}" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.8" fill="${risk.c}"/></svg>
-      <span style="font-size:10px;font-weight:700;color:${risk.c};letter-spacing:0.06em;">${risk.label}</span>
+      <span style="font-size:11px;font-weight:700;color:${risk.c};letter-spacing:0.06em;">${risk.label}</span>
     </div>`;
 }
 
@@ -447,7 +447,7 @@ function PanelPortfolioDetails() {
     <div class="pf-stack">${PortfolioGroupsBody()}<div class="pf-pane${pfTab === 'details' ? ' is-on' + (pfAnim ? ' pf-tab-in' : '') : ''}" ${pfTab === 'details' ? '' : 'aria-hidden="true" inert'}>
     <div class="mx-3 mt-3" style="width:fit-content;align-self:center;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:12px 16px;text-align:center;">
       <div style="font-size:11px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
-      <div style="font-size:26px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
+      <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
     </div>
     <div class="flex-1 px-3 py-2 space-y-0">
       ${[
@@ -725,7 +725,7 @@ function PanelRiskBreakdown() {
       2024: { good:18, avg:2, bad:1 },
     };
     const deltaPill = (d, extra='') => { const up = d >= 0, p = yearPill(up ? 60 : 10);
-      return `<div style="background:#eff6ff;color:#2d7ffb;border:1px solid #bfdbfe;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
+      return `<div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
     const donut = (year, score, max, sw, numPx) => {
       const dist = RS_DIST[year], total = RS_BANDS.reduce((t, b) => t + dist[b.k], 0);
       const r = 50 - sw / 2, C = 2 * Math.PI * r, live = RS_BANDS.filter(b => dist[b.k] > 0), gap = live.length > 1 ? 0.9 : 0;
@@ -745,22 +745,22 @@ function PanelRiskBreakdown() {
     let body = `
     <div class="co-rs-body" style="padding:8px 12px 14px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:6px;">
       <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:6px 8px;flex-wrap:wrap;">
-        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
+        <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
-          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#2d7ffb)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
+          <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#1485c5)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
       </div>
       <div class="co-rs-grid" style="display:grid;grid-template-columns:${mpWithTrends ? 'repeat(auto-fit,minmax(180px,1fr))' : '1fr'};gap:8px;">
         <div class="co-rs-gauge${mpWithSanctions ? ' co-rs-gauge--sanc' : ''}" style="position:relative;background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
-        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:10.5px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
+        <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:7px;background:transparent;border:0;cursor:pointer;font-size:11px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
             <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
           </span>
         </button>
-          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
           ${donut(2026, rsScore, 170, 8, 44)}
           ${deltaPill(rsDelta25)}
         </div>
@@ -768,13 +768,13 @@ function PanelRiskBreakdown() {
         <div class="co-rs-years" style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:center;align-content:center;">
           ${[[2025, rs2025, rsDelta2025, 'c'], [2024, rs2024, rsDelta24, 'r']].map(([y, v, d, al]) => `
           <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(y)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:9px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st ' + y + ': ' + v, al)}</div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(y)}<div style="display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st ' + y + ': ' + v, al)}</div></div>
             ${donut(y, v, 104, 9, 24)}
             ${deltaPill(d)}
           </div>`).join('')}
         </div>` : ''}
       </div>
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:11.5px;color:#374151;padding-top:0;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;font-size:12px;color:#374151;padding-top:0;">
         ${RS_BANDS.map(b => `<span style="display:inline-flex;align-items:center;gap:6px;white-space:nowrap;"><span style="width:10px;height:10px;border-radius:2px;background:${b.c};flex-shrink:0;"></span>${b.label}<span style="color:#6b7280;">[${b.range}]</span></span>`).join('')}
       </div>
     </div>`;
@@ -891,8 +891,8 @@ function EnvironmentalRatingContent() {
                     <span class="text-ink-700">${item.label}</span>
                     <span class="${item.label.includes('Attained') ? 'text-red-600 font-semibold' : 'text-ink-900 font-medium'}">${item.value}</span>
                   </div>
-                  ${item.sub ? `<div class="text-[10px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
-                  ${item.sub && item.sub.includes('\n') ? `<div class="text-[10px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
+                  ${item.sub ? `<div class="text-[11px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[0]}</span>${item.pct ? `<span class="font-semibold text-ink-900">${item.pct}</span>` : ''}</div>` : ''}
+                  ${item.sub && item.sub.includes('\n') ? `<div class="text-[11px] text-ink-500 flex justify-between"><span>${item.sub.split('\n')[1]}</span>${item.pct2 ? `<span class="font-semibold text-ink-900">${item.pct2}</span>` : ''}</div>` : ''}
                 </div>
               </div>
             `).join('')}
@@ -925,7 +925,7 @@ function UtilisationContent() {
   return `
   <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:12px;padding:4px 2px;">
     ${cards.map(c => `
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.04)">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.04)">
         <div style="background:${c.accent};color:#fff;text-align:center;padding:8px 10px;font-size:13px;font-weight:700">${c.title}</div>
         <table style="width:100%;border-collapse:collapse;font-size:12.5px">
           <thead>
@@ -1200,7 +1200,7 @@ function PolicyResults() {
               <td style="white-space:nowrap;">${p.ref}</td>
               <td style="font-weight:600;">${p.exp}</td>
               <td>${p.tiv}</td>
-              <td style="color:#6b7280;font-size:11.5px;">${p.period}</td>
+              <td style="color:#6b7280;font-size:12px;">${p.period}</td>
               <td>${p.type}</td>
               <td style="color:#6b7280;">${p.placement}</td>
               <td style="color:#6b7280;">${p.insurer}</td>

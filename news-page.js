@@ -163,7 +163,7 @@
     }
     return `
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px">
-        <span style="font-size:11.5px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.04em">Filtering by</span>
+        <span style="font-size:12px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.04em">Filtering by</span>
         ${chips.join('')}
         <button data-clear="all" style="font-size:12px;color:#2563eb;background:none;border:0;cursor:pointer;font-weight:600;font-family:inherit;padding:0 4px">Clear all</button>
       </div>`;
@@ -405,7 +405,7 @@
 
       <!-- Category dropdown row -->
       <div class="filter-row">
-        <span class="filter-row-label" style="font-size:11.5px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0">Category</span>
+        <span class="filter-row-label" style="font-size:12px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0">Category</span>
         ${CategoryDropdown()}
       </div>
 

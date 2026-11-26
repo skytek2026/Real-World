@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Marine Region Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -13,7 +13,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
+  .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
   #region-map{position:absolute;inset:0}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgba(15,23,42,.08)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#374151!important;line-height:30px!important}
@@ -76,7 +76,7 @@
   /* Policies toolbar + table */
   .pol-toolbar{display:flex;align-items:center;gap:8px;padding:12px 14px;border-bottom:1px solid #f3f4f6;flex-shrink:0;flex-wrap:wrap}
   .pol-search{flex:1;min-width:200px;position:relative}
-  .pol-search input{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px 0 36px;font-size:13.5px;color:#374151;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
+  .pol-search input{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px 0 36px;font-size:13px;color:#374151;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
   .pol-search input:focus{border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .pol-search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#9ca3af;width:15px;height:15px}
   .pol-btn{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:13px;font-weight:600;color:#374151;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s}
@@ -89,7 +89,7 @@
   .pol-tbl th{position:sticky;top:0;z-index:1;background:#fff;padding:10px 16px;font-size:11px;font-weight:600;color:var(--text-muted,#6B7280);text-transform:uppercase;letter-spacing:.04em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;cursor:pointer;user-select:none}
   .pol-tbl th:hover{color:var(--text-primary,#111827)}
   .pol-tbl th .th-in{display:inline-flex;align-items:center;gap:6px}
-  .pol-tbl td{padding:13px 16px;font-size:13.5px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle;white-space:nowrap}
+  .pol-tbl td{padding:13px 16px;font-size:13px;color:#374151;border-bottom:1px solid #f3f4f6;vertical-align:middle;white-space:nowrap}
   .pol-tbl tbody tr:nth-child(even) td{background:#f9fafb}
   .pol-tbl tbody tr:hover td{background:#eff6ff}
   .pol-link{color:var(--brand-600,#2563eb);font-weight:500;cursor:pointer}
@@ -98,21 +98,21 @@
   .pol-flag{display:inline-flex;align-items:center;gap:6px}
   /* Notifications header */
   .notif-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0}
-  .notif-title{font-size:15px;font-weight:700;color:#111827}
-  .notif-tbl td{font-size:13.5px}
+  .notif-title{font-size:14px;font-weight:700;color:#111827}
+  .notif-tbl td{font-size:13px}
   /* Region History */
-  .hist-title{font-size:15px;font-weight:700;color:#111827;padding:14px 16px 4px}
+  .hist-title{font-size:14px;font-weight:700;color:#111827;padding:14px 16px 4px}
   .hist-legend{padding:6px 20px 16px}.hist-legend:empty{display:none}
   .hist-legend-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:4px 12px}
-  .hist-leg-bar{display:flex;align-items:center;gap:10px;font-size:11.5px;color:#6b7280;margin-bottom:6px;min-height:24px}
-  .hist-leg-clear{font:inherit;font-size:11.5px;font-weight:600;color:var(--brand-600,#2563eb);background:none;border:0;cursor:pointer;padding:2px 4px;border-radius:4px}
+  .hist-leg-bar{display:flex;align-items:center;gap:10px;font-size:12px;color:#6b7280;margin-bottom:6px;min-height:24px}
+  .hist-leg-clear{font:inherit;font-size:12px;font-weight:600;color:var(--brand-600,#2563eb);background:none;border:0;cursor:pointer;padding:2px 4px;border-radius:4px}
   .hist-leg-clear:hover{text-decoration:underline}
-  button.hist-leg{font:inherit;font-size:11.5px;background:transparent;border:1px solid transparent;border-radius:6px;padding:4px 6px;cursor:pointer;text-align:left;transition:background .12s,opacity .12s,border-color .12s}
+  button.hist-leg{font:inherit;font-size:12px;background:transparent;border:1px solid transparent;border-radius:6px;padding:4px 6px;cursor:pointer;text-align:left;transition:background .12s,opacity .12s,border-color .12s}
   button.hist-leg:hover{background:#f3f4f6}
-  button.hist-leg.is-on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#bfdbfe);color:#111827;font-weight:600}
+  button.hist-leg.is-on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:#111827;font-weight:600}
   button.hist-leg.is-dim{opacity:.45}
   button.hist-leg:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:1px}
-  .hist-leg{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#374151;min-width:0}
+  .hist-leg{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#374151;min-width:0}
   .hist-leg svg{flex-shrink:0}
   .hist-cb{width:14px;height:14px;flex-shrink:0;border:1px solid #d1d5db;border-radius:4px;background:#fff;display:inline-grid;place-content:center;transition:background .12s,border-color .12s}
   .hist-cb.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
@@ -120,10 +120,10 @@
   button.hist-leg:hover .hist-cb:not(.on){border-color:#9ca3af}
   .hist-leg span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .hist-controls{display:flex;gap:14px;padding:4px 20px 20px;flex-wrap:wrap}
-  .hist-panel{border:1px solid #e5e7eb;border-radius:10px;padding:14px 16px;min-width:200px}
+  .hist-panel{border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;min-width:200px}
   .hist-panel h4{font-size:14px;font-weight:700;color:#111827;margin:0 0 1px}
   .hist-panel .hist-sub{font-size:12px;color:#9ca3af;margin-bottom:10px}
-  .hist-opt{display:flex;align-items:center;gap:9px;font-size:13.5px;color:#374151;padding:5px 0;cursor:pointer;user-select:none}
+  .hist-opt{display:flex;align-items:center;gap:9px;font-size:13px;color:#374151;padding:5px 0;cursor:pointer;user-select:none}
   .hist-radio{width:18px;height:18px;border-radius:50%;border:1.5px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
   .hist-inline{display:flex;flex-wrap:wrap;gap:2px 18px}
   .ds-radio{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid var(--border-strong,#d1d5db);border-radius:50%;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
@@ -131,7 +131,7 @@
   .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
   .ds-radio:focus-visible{outline:none;box-shadow:var(--shadow-focus,0 0 0 3px rgb(45 127 251/.32))}
   .hist-radio.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
-  .hist-check{width:18px;height:18px;border-radius:5px;border:1.5px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
+  .hist-check{width:18px;height:18px;border-radius:6px;border:1.5px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
   .hist-check.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   /* Create Region Report form */
   .rpt-select{appearance:none;-webkit-appearance:none;height:38px;padding:0 34px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:13px;font-family:inherit;cursor:pointer;outline:none;transition:border-color .15s,box-shadow .15s}
@@ -165,7 +165,7 @@
   .port-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .port-popup .leaflet-popup-content { margin:0; width:280px !important; font-family:'Inter',sans-serif; }
   .port-popup .leaflet-popup-tip { background:#fff; }
-  .port-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
+  .port-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
   .port-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; opacity:1; }
   .pp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 14px 10px; }
   .pp-title { font-size:14px; font-weight:700; }
@@ -178,7 +178,7 @@
   .pp-cta { display:block; width:calc(100% - 28px); margin:4px 14px 14px; background:transparent; color:var(--brand-600,#2563eb)!important; border:1px solid transparent; border-radius:var(--radius-md,8px); padding:0 12px; height:32px; line-height:32px; font-weight:500; font-size:13px; cursor:pointer; text-align:center; transition:background .15s; }
   .pp-cta:hover { background:var(--brand-50,#eff6ff); }
   /* Port labels (hover tooltip) — matches Ports page */
-  .port-label { background:#111827 !important; border:0 !important; border-radius:5px !important; color:#fff !important; font-size:11px !important; font-weight:600 !important; padding:3px 7px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
+  .port-label { background:#111827 !important; border:0 !important; border-radius:6px !important; color:#fff !important; font-size:11px !important; font-weight:600 !important; padding:3px 7px !important; white-space:nowrap !important; box-shadow:0 2px 6px rgba(0,0,0,.3) !important; }
   .port-label::before { border-top-color:#111827 !important; }
   /* Vessel markers + hover tooltip + popup — matches Marine Dashboard */
   .vessel-marker { position:relative; cursor:pointer; }
@@ -186,7 +186,7 @@
   .vessel-marker::after { content:''; position:absolute; left:50%; top:50%; width:24px; height:24px; transform:translate(-50%,-50%); border-radius:50%; border:2px solid #fff; box-shadow:0 0 5px rgba(0,0,0,.45); opacity:0; transition:opacity .14s ease; pointer-events:none; }
   .leaflet-marker-icon:hover .vessel-marker::after { opacity:1; }
   .leaflet-marker-icon:hover { z-index:1000 !important; }
-  .vessel-tip.leaflet-tooltip { background:rgba(15,23,42,.93); border:0; border-radius:7px; box-shadow:0 3px 10px rgba(0,0,0,.4); padding:6px 9px; color:#fff; font-family:'Inter',sans-serif; }
+  .vessel-tip.leaflet-tooltip { background:rgba(15,23,42,.93); border:0; border-radius:8px; box-shadow:0 3px 10px rgba(0,0,0,.4); padding:6px 9px; color:#fff; font-family:'Inter',sans-serif; }
   .vessel-tip.leaflet-tooltip-top::before { border-top-color:rgba(15,23,42,.93); }
   .vessel-tip .vtip-row { display:flex; align-items:center; gap:6px; }
   .vessel-tip .vtip-flag { border-radius:2px; box-shadow:0 0 0 1px rgba(255,255,255,.25); flex-shrink:0; }
@@ -195,16 +195,16 @@
   .vessel-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
   .vessel-popup .leaflet-popup-content { margin:0; width:300px !important; font-family:'Inter',sans-serif; }
   .vessel-popup .leaflet-popup-tip { background:#fff; }
-  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:22px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
+  .vessel-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; opacity:.85; }
   .vessel-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; opacity:1; }
   .vp { background:#fff; color:#111827; }
   .vp-header { background:var(--brand-600,#2563eb); color:#fff; padding:12px 14px 10px; }
-  .vp-title { font-weight:800; font-size:15px; letter-spacing:.02em; display:flex; align-items:center; }
-  .vp-subtitle { font-size:11.5px; color:rgba(255,255,255,.85); margin-top:2px; }
+  .vp-title { font-weight:800; font-size:14px; letter-spacing:.02em; display:flex; align-items:center; }
+  .vp-subtitle { font-size:12px; color:rgba(255,255,255,.85); margin-top:2px; }
   .vp-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px 16px; padding:12px 14px; }
   .vp-grid > div { min-width:0; }
   .vp-span { grid-column:1 / -1; }
-  .vp-k { font-size:10.5px; color:#6b7280; }
+  .vp-k { font-size:11px; color:#6b7280; }
   .vp-v { font-size:12.5px; color:#111827; margin-top:1px; font-weight:600; }
   .vp-strong { font-weight:700; color:#111827; }
   .vp-nav { color:#16a34a; font-weight:700; }
@@ -230,7 +230,7 @@
     .mobile-tab-select{display:block!important;}
     .tabs-desktop-wrap{display:none!important;}
   }
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Phones: Totals / Region Details tabs fill the card; exposure rows as cards (all headings kept) */
   .mrd-pf-cards { display:none; }
   @media (max-width:767px) {
@@ -240,10 +240,10 @@
     .mrd-pf-tbl { display:none; }
     .mrd-pf-cards { display:flex; flex-direction:column; gap:10px; padding:12px; max-height:380px; overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:thin; }
   }
-  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
+  .mrd-pf-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; box-shadow:0 1px 2px rgb(15 23 42/.04); }
   .mrd-pf-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
   .mrd-pf-kv .mrd-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
-  .mrd-pf-kv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .mrd-pf-kv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
   .mrd-pf-kv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; }
   .mrd-pf-kv dd strong { font-weight:700; color:#111827; }
   .mrd-pf-name { color:var(--brand-600,#2563eb) !important; font-weight:600; }
@@ -267,7 +267,7 @@ window.PAGE = { id:'regions', title:'Marine Region', crumb: regionName };
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -929,7 +929,7 @@ function Content() {
         </div>
         <div style="padding:12px 16px">
           ${leftTab === 'totals' ? `
-          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:11.5px;font-weight:600;color:#6b7280;margin-bottom:6px;padding-right:4px">
+          <div style="display:flex;justify-content:flex-end;gap:16px;font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;padding-right:4px">
             <span>Above Threshold</span><span>Total</span>
           </div>
           ${[['All Risk','$850M','$5.5B'],['Hull','$520M','$3.7B'],['Cargo','$230M','$1.2B'],['Liability','$100M','$550M']].map(([lbl,thr,tot]) => `
@@ -1008,10 +1008,10 @@ function Content() {
           <!-- Date range -->
           <div style="font-size:12px;color:#6b7280;margin-bottom:6px">Date Range:</div>
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
-            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:7px;padding:0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+            <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
             <span style="font-size:12px;color:#9ca3af">to</span>
             <div style="position:relative;flex:1">
-              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:7px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
+              <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 26px 0 8px;font-size:12.5px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
           </div>
@@ -1022,58 +1022,58 @@ function Content() {
           <!-- Stats grid 4 rows x 3 cols -->
           <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Asset Count</div>
               <span class="spill-gray">${s.avgCount}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Exposure Value</div>
               <span class="spill-blue">${s.avgExp}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily Market Value</div>
               <span class="spill-blue">${s.avgMkt}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Asset Count</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiCountDate}</div>
               <span class="spill-blue">${s.hiCount}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Exposure Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiExpDate}</div>
               <span class="spill-blue">${s.hiExp}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily Market Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.hiMktDate}</div>
               <span class="spill-blue">${s.hiMkt}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:6px">Average Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:6px">Average Daily War Exposure</div>
               <span class="spill-red">${s.warAvg}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Highest Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Highest Daily War Exposure</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warHiDate}</div>
               <span class="spill-red">${s.warHi}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily War Exposure</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily War Exposure</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.warLoDate}</div>
               <span class="spill-red">${s.warLo}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily Asset Count</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Asset Count</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loCountDate}</div>
               <span class="spill-gray">${s.loCount}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily Exposure Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Exposure Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loExpDate}</div>
               <span class="spill-gray">${s.loExp}</span>
             </div>
             <div>
-              <div style="font-size:11.5px;color:#9ca3af;margin-bottom:3px">Lowest Daily Market Value</div>
+              <div style="font-size:12px;color:#9ca3af;margin-bottom:3px">Lowest Daily Market Value</div>
               <div style="font-size:11px;color:#f97316;margin-bottom:5px">${s.loMktDate}</div>
               <span class="spill-gray">${s.loMkt}</span>
             </div>
@@ -1083,11 +1083,11 @@ function Content() {
           <div style="font-size:12.5px;color:#374151;font-weight:500;margin-bottom:6px">Date Range:</div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
             <div style="position:relative;flex:1">
-              <input type="text" value="May 27th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:7px;padding:0 30px 0 10px;font-size:13px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
+              <input type="text" value="May 27th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:8px;padding:0 30px 0 10px;font-size:13px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
               <span style="position:absolute;right:9px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
             <div style="position:relative;flex:1">
-              <input type="text" value="Jun 10th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:7px;padding:0 30px 0 10px;font-size:13px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
+              <input type="text" value="Jun 10th 2026" readonly style="width:100%;height:36px;border:1px solid #e5e7eb;border-radius:8px;padding:0 30px 0 10px;font-size:13px;color:#374151;background:#fff;outline:none;font-family:inherit;cursor:pointer" />
               <span style="position:absolute;right:9px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
           </div>
@@ -1133,7 +1133,7 @@ function Content() {
         <div style="position:absolute;top:12px;right:12px;z-index:400;display:flex;flex-direction:column;gap:6px">
           <div style="position:relative">
             <button id="mrd-layers-btn" class="map-btn" title="Map type">${SC.I.layers}</button>
-            <div id="mrd-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
+            <div id="mrd-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
               ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`
                 <button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:12.5px;color:#374151;text-align:left">
                   <span data-label>${l}</span>
@@ -1145,7 +1145,7 @@ function Content() {
         <!-- Legend -->
         <div style="position:absolute;bottom:16px;left:12px;z-index:400;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:8px 12px;box-shadow:0 2px 6px rgba(15,23,42,.1)">
           <div style="font-size:13px;font-weight:700;color:#111827">Marine Region</div>
-          <div style="font-size:11.5px;color:#6b7280;margin-top:2px" id="mrd-legend-stats">5 Major Ports · 5 Active Vessels</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:2px" id="mrd-legend-stats">5 Major Ports · 5 Active Vessels</div>
         </div>
       </div>` : mapTab === 'policies' ? `
       <div style="display:flex;flex-direction:column;flex:1;min-height:0">

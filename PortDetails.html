@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Port Details — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -21,11 +21,11 @@
   .shadow-card{box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px rgba(15,23,42,.02)}
   .text-brand{color:var(--brand-600,#2563eb)}
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
-  html,body,.scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}
+  html,body,.scroll-thin,.ds-scroll{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}
   html::-webkit-scrollbar,body::-webkit-scrollbar,.scroll-thin::-webkit-scrollbar,.ds-scroll::-webkit-scrollbar{width:6px;height:6px}
   html::-webkit-scrollbar-track,body::-webkit-scrollbar-track,.scroll-thin::-webkit-scrollbar-track,.ds-scroll::-webkit-scrollbar-track{background:#f3f4f6}
-  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,.scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}
-  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,.scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
+  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb,.scroll-thin::-webkit-scrollbar-thumb,.ds-scroll::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}
+  html::-webkit-scrollbar-thumb:hover,body::-webkit-scrollbar-thumb:hover,.scroll-thin::-webkit-scrollbar-thumb:hover,.ds-scroll::-webkit-scrollbar-thumb:hover{background:#1485c5}
   /* Card */
   .card { background:#fff; border-radius:12px; border:1px solid #e5e7eb; box-shadow:0 1px 2px rgba(15,23,42,.08); overflow:hidden; }
   .card-hdr { padding:10px 16px; border-bottom:1px solid #f3f4f6; display:flex; align-items:center; justify-content:space-between; }
@@ -51,9 +51,9 @@
   .stat-cell { padding:10px 14px; font-size:12px; }
   .stat-cell.name { font-weight:600; }
   .stat-cell.val { color:#374151; font-size:12px; }
-  .stat-cell .unit { font-size:10px; color:#9ca3af; display:block; }
+  .stat-cell .unit { font-size:11px; color:#9ca3af; display:block; }
   /* Trends table */
-  .trend-table { width:100%; border-collapse:collapse; font-size:11.5px; table-layout:fixed; }
+  .trend-table { width:100%; border-collapse:collapse; font-size:12px; table-layout:fixed; }
   .trend-table th { padding:8px 10px; font-size:11px; font-weight:600; color:var(--text-muted,#6B7280); text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); text-align:right; white-space:nowrap; }
   .trend-table th:first-child { text-align:left; width:150px; }
   .trend-table td { padding:9px 10px; border-bottom:1px solid #f3f4f6; text-align:right; color:#374151; tabular-nums; white-space:nowrap; }
@@ -72,12 +72,12 @@
   .tr-chart-title { font-size:11px; font-weight:700; color:#111827; padding:2px 10px 8px 10px; }
   .tr-grid { display:grid; grid-template-columns:150px repeat(12, 1fr); grid-template-rows:150px auto; }
   .tr-yaxis { position:relative; height:150px; }
-  .tr-ytick { position:absolute; right:8px; transform:translateY(-50%); font-size:9px; color:#9ca3af; white-space:nowrap; }
+  .tr-ytick { position:absolute; right:8px; transform:translateY(-50%); font-size:11px; color:#9ca3af; white-space:nowrap; }
   .tr-mcell { height:150px; display:flex; align-items:flex-end; justify-content:center; gap:3px;
     border-bottom:1px solid #e5e7eb;
     background-image:repeating-linear-gradient(to top, #f3f4f6 0, #f3f4f6 1px, transparent 1px, transparent 25%); }
   .tr-bar { width:22%; max-width:13px; border-radius:2px 2px 0 0; }
-  .tr-mlabel { text-align:center; font-size:9px; color:#9ca3af; padding-top:5px; }
+  .tr-mlabel { text-align:center; font-size:11px; color:#9ca3af; padding-top:5px; }
   .tr-legend { display:flex; justify-content:center; gap:22px; padding:10px 0 2px; }
   .tr-leg { display:inline-flex; align-items:center; gap:6px; font-size:11px; color:#4b5563; }
   .tr-leg span { width:11px; height:11px; border-radius:2px; }
@@ -122,11 +122,11 @@
     .exposure-inner > div:first-child { border-right: 0 !important; border-bottom: 1px solid #f3f4f6; flex-direction: row !important; flex-wrap: wrap; gap: 12px !important; }
     .exposure-inner > div:first-child > div { flex: 1 1 calc(50% - 6px); min-width: 120px; }
     .card-hdr { flex-wrap: wrap; gap: 8px; row-gap: 6px; }
-    .stab-btn { font-size: 10.5px; padding: 4px 9px; }
+    .stab-btn { font-size: 11px; padding: 4px 9px; }
     /* Prevent horizontal page overflow */
     html, body { overflow-x: hidden; }
   }
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Donut slice separators take the card surface colour in dark mode */
   html[data-theme="dark"] .donut-seg { stroke:#161f2e; }
   /* Vessels & Cargo: totals strip, table (phones: cards) */
@@ -134,14 +134,14 @@
   .pcc-metric { flex:1; min-width:0; padding:10px 8px; text-align:center; }
   .pcc-metric + .pcc-metric { border-left:1px solid var(--brand-100,#dbeafe); }
   .pcc-metric-l { font-size:11px; font-weight:500; color:#6b7280; margin-bottom:4px; }
-  .pcc-metric-v { font-size:22px; font-weight:700; color:var(--brand-600,#2563eb); line-height:1.1; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
+  .pcc-metric-v { font-size:24px; font-weight:700; color:var(--brand-600,#2563eb); line-height:1.1; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
   .pcc-vcards { display:none; }
   .pcc-vtbl th, .pcc-vtbl td { padding-left:10px; padding-right:10px; }
   .pcc-vtbl th { white-space:normal; line-height:1.25; vertical-align:bottom; }
-  .pcc-vcard { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:12px 14px; }
+  .pcc-vcard { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:12px 14px; }
   .pcc-vkv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px 16px; margin:0; }
   .pcc-vkv .pcc-wide { grid-column:1 / -1; padding-bottom:10px; border-bottom:1px solid #f3f4f6; }
-  .pcc-vkv dt { font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .pcc-vkv dt { font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
   .pcc-vkv dd { margin:3px 0 0; font-size:13px; color:#374151; font-variant-numeric:tabular-nums; }
   .pcc-vkv dd strong { font-weight:700; color:#111827; }
   /* switch to cards whenever the card itself is narrow (phones, and the 3-column row at ~1024px) */
@@ -149,7 +149,7 @@
   @container (max-width:420px) {
     .pcc-vtbl { display:none; }
     .pcc-vcards { display:flex; flex-direction:column; gap:10px; padding:4px 12px 12px; }
-    .pcc-metric-v { font-size:18px; }
+    .pcc-metric-v { font-size:20px; }
   }
   html[data-theme="dark"] .pcc-strip { background:#15233c; border-color:#2a374d; }
   html[data-theme="dark"] .pcc-metric + .pcc-metric { border-color:#2a374d; }
@@ -183,7 +183,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 /* Read brand color at render time so JS-driven colors (SVG fills, Leaflet styles) follow the theme. */
@@ -273,7 +273,7 @@ const TERMINALS = [
 /* Design System categorical chart palette (--chart-cat-N), used in legend order;
    Unknown/Other takes the palette's neutral (cat-8) so it doesn't read as a real category. */
 const BERTH_PURPOSE = [
-  { label:'Breakbulk',      color:'#2d7ffb', pct:22 },  /* --chart-cat-1 */
+  { label:'Breakbulk',      color:'#1485c5', pct:22 },  /* --chart-cat-1 */
   { label:'Tender',         color:'#D97706', pct:18 },  /* --chart-cat-2 */
   { label:'Container',      color:'#16A34A', pct:28 },  /* --chart-cat-3 */
   { label:'Unknown/Other',  color:'#4b5563', pct:14 },  /* --chart-cat-8 (neutral) */
@@ -360,7 +360,7 @@ function DonutChart(slices) {
 
 /* ---- Sections ---- */
 function CardExposureSummary() {
-  const pill = v => `<div style="display:inline-block;background:var(--brand-050,#eff6ff);color:var(--brand-600,#2563eb);font-weight:700;font-size:15px;padding:7px 18px;border-radius:8px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">${v}</div>`;
+  const pill = v => `<div style="display:inline-block;background:var(--brand-050,#eff6ff);color:var(--brand-600,#2563eb);font-weight:700;font-size:14px;padding:7px 18px;border-radius:8px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">${v}</div>`;
   return `
   <div class="card">
     <div class="card-hdr"><span class="card-title">Exposure</span></div>
@@ -487,7 +487,7 @@ function CardTrendsSummary() {
     <div class="card-hdr"><span class="card-title">Trends &amp; Statistics</span></div>
     <div style="padding:0;" class="trends-summary-scroll">
       <div class="trends-summary-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:1px solid #f3f4f6;">
-        <div style="padding:8px 14px;font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;"></div>
+        <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;"></div>
         <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#6b7280;text-align:center;">2023</div>
         <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#111827;text-align:center;border-bottom:2px solid var(--brand-600,#2563eb);">2024</div>
         <div style="padding:8px 14px;font-size:11px;font-weight:700;color:#6b7280;text-align:center;">YTD</div>
@@ -587,7 +587,7 @@ function CardTrendsDetail() {
                   ${chevron}
                   <div>
                     <div class="trend-label" style="font-weight:600;font-size:12px;">${r.label}</div>
-                    <div style="font-size:10px;color:#9ca3af;">${r.unit}</div>
+                    <div style="font-size:11px;color:#9ca3af;">${r.unit}</div>
                   </div>
                 </div>
               </td>
@@ -687,11 +687,11 @@ function initMap() {
   L.marker([PORT.lat, PORT.lng], { icon }).bindPopup(`<b>${PORT.name}</b><br>${PORT.country}`).addTo(portMap);
 
   /* Label */
-  const labelIcon = L.divIcon({ className:'', html:`<div style="background:rgba(15,23,42,.65);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap;backdrop-filter:blur(2px);">${PORT.name}</div>`, iconSize:[0,0], iconAnchor:[-14,28] });
+  const labelIcon = L.divIcon({ className:'', html:`<div style="background:rgba(15,23,42,.65);color:#fff;font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap;backdrop-filter:blur(2px);">${PORT.name}</div>`, iconSize:[0,0], iconAnchor:[-14,28] });
   L.marker([PORT.lat, PORT.lng], { icon:labelIcon }).addTo(portMap);
 
   const zin=el.querySelector('.leaflet-control-zoom-in'), zout=el.querySelector('.leaflet-control-zoom-out');
-  if(zin)  zin.innerHTML=`<span style="font-size:18px;line-height:30px;display:block;text-align:center;">+</span>`;
+  if(zin)  zin.innerHTML=`<span style="font-size:20px;line-height:30px;display:block;text-align:center;">+</span>`;
   if(zout) zout.innerHTML=`<span style="font-size:20px;line-height:30px;display:block;text-align:center;">&minus;</span>`;
   if (portMapRO) portMapRO.disconnect();
   if (window.ResizeObserver) { portMapRO = new ResizeObserver(() => portMap && portMap.invalidateSize()); portMapRO.observe(el); }

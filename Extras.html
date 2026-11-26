@@ -5,27 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Extras — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  .scroll-thin{scrollbar-width:thin;scrollbar-color:#51a2fc #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#51a2fc;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#2d7ffb}
-  .extra-card{background:#fff;border-radius:14px;border:1px solid #e8ecf0;padding:20px;display:flex;flex-direction:column;gap:12px;transition:box-shadow .15s,transform .15s;box-shadow:0 1px 2px rgba(15,23,42,.05)}
+  .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}.scroll-thin::-webkit-scrollbar{width:6px;height:6px}.scroll-thin::-webkit-scrollbar-track{background:#f3f4f6}.scroll-thin::-webkit-scrollbar-thumb{background:#1a92d1;border-radius:999px}.scroll-thin::-webkit-scrollbar-thumb:hover{background:#1485c5}
+  .extra-card{background:#fff;border-radius:12px;border:1px solid #e8ecf0;padding:20px;display:flex;flex-direction:column;gap:12px;transition:box-shadow .15s,transform .15s;box-shadow:0 1px 2px rgba(15,23,42,.05)}
   .extra-card:hover{box-shadow:0 4px 16px rgba(15,23,42,.1);transform:translateY(-1px)}
-  .icon-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;flex-shrink:0}
-  .edit-btn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border:1px solid #e5e7eb;border-radius:7px;background:#fff;font-size:12.5px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit;transition:background .1s,border-color .1s,color .1s;width:fit-content}
+  .icon-badge{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;flex-shrink:0}
+  .edit-btn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:12.5px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit;transition:background .1s,border-color .1s,color .1s;width:fit-content}
   .edit-btn:hover{background:#f9fafb;border-color:#d1d5db;color:#374151}
   .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.3);z-index:500;display:flex;align-items:center;justify-content:center;animation:fadein 150ms ease}
   @keyframes fadein{from{opacity:0}to{opacity:1}}
-  .modal-box{background:#fff;border-radius:14px;width:440px;max-width:90vw;box-shadow:0 20px 60px rgba(15,23,42,.2);overflow:hidden;animation:popin 180ms cubic-bezier(.34,1.56,.64,1)}
+  .modal-box{background:#fff;border-radius:12px;width:440px;max-width:90vw;box-shadow:0 20px 60px rgba(15,23,42,.2);overflow:hidden;animation:popin 180ms cubic-bezier(.34,1.56,.64,1)}
   @keyframes popin{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
   .extras-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   @media(max-width:1023px){.extras-grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:599px){.extras-grid{grid-template-columns:1fr;}}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -41,7 +41,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -108,14 +108,14 @@ function renderModal() {
       <div style="padding:20px 24px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:12px">
         <div class="icon-badge" style="background:${card.iconBg};color:${card.iconColor}">${card.icon}</div>
         <div style="flex:1">
-          <div style="font-size:15px;font-weight:700;color:#111827">${card.title}</div>
+          <div style="font-size:14px;font-weight:700;color:#111827">${card.title}</div>
           <div style="font-size:12px;color:#9ca3af;margin-top:1px">Configuration settings</div>
         </div>
-        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:7px;border:0;background:transparent;cursor:pointer;color:#9ca3af" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${X_SVG}</button>
+        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${X_SVG}</button>
       </div>
       <div style="padding:20px 24px">
         <p style="font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:20px">${card.desc}</p>
-        <div style="background:#f9fafb;border:1px solid #f3f4f6;border-radius:10px;padding:14px;margin-bottom:20px">
+        <div style="background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:14px;margin-bottom:20px">
           <div style="font-size:11px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px">Configuration</div>
           <div style="font-size:13px;color:#9ca3af;text-align:center;padding:16px 0">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 1 0-14.14 14.14"/></svg>

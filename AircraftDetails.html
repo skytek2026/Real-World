@@ -6,7 +6,7 @@
 <title>Aircraft Details — Aviation — Real World</title>
 <!-- v2 -->
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',200:'#b8ddf5',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af'},ink:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563',500:'#6b7280',400:'#9ca3af',300:'#d1d5db',200:'#e5e7eb',100:'#f3f4f6',50:'#f9fafb'}}}}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -24,8 +24,8 @@
   .text-brand-600{color:#2563eb}
   .scroll-thin::-webkit-scrollbar{width:5px}
   .scroll-thin::-webkit-scrollbar-track{background:transparent}
-  .scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#51a2fc);border-radius:999px}
-  .scroll-thin::-webkit-scrollbar-thumb:hover{background:var(--brand-600,#2d7ffb)}
+  .scroll-thin::-webkit-scrollbar-thumb{background:var(--brand-400,#1a92d1);border-radius:999px}
+  .scroll-thin::-webkit-scrollbar-thumb:hover{background:var(--brand-600,#1485c5)}
   .tracking-micro{letter-spacing:0.04em}
   /* Map */
   #aircraft-map{position:absolute;inset:0;background:#0b1e2e}
@@ -50,12 +50,12 @@
   .spec-grid{display:grid;grid-template-columns:repeat(3,1fr)}
   .spec-cell{padding:11px 16px;border-bottom:1px solid #f3f4f6}
   .spec-cell:not(:nth-child(3n)){border-right:1px solid #f3f4f6}
-  .spec-label{font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+  .spec-label{font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
   .spec-value{font-size:13px;font-weight:600;color:#111827}
   /* Info grid */
-  .info-label{font-size:10px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+  .info-label{font-size:11px;color:#6b7280;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
   .info-value{font-size:12px;font-weight:600;color:#111827}
-  html { scrollbar-width:thin; scrollbar-color:#51a2fc #f3f4f6; }
+  html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
 <body class="bg-ink-100 text-ink-900 antialiased" data-density="compact">
@@ -73,7 +73,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=19"></script>
+<script src="shared/chrome.js?v=20"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -139,8 +139,8 @@ function CardValue() {
     </div>
     <div class="p-3">
       <div class="rounded-lg bg-blue-50 border border-blue-100 px-3 py-2.5 text-center mb-3">
-        <div class="text-[10px] font-medium text-ink-500 mb-0.5">Est. Market Value</div>
-        <div class="text-[22px] font-bold text-brand-600 leading-none">$106.6M</div>
+        <div class="text-[11px] font-medium text-ink-500 mb-0.5">Est. Market Value</div>
+        <div class="text-[24px] font-bold text-brand-600 leading-none">$106.6M</div>
       </div>
       <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-[11px]">
         <div>
@@ -174,7 +174,7 @@ function CardInfo() {
     </div>
     <div class="p-3">
       <div class="rounded-lg bg-blue-50 border border-blue-100 px-3 py-2 text-center mb-3">
-        <div class="text-[10px] font-semibold text-ink-500 uppercase tracking-micro mb-0.5">Aircraft Type</div>
+        <div class="text-[11px] font-semibold text-ink-500 uppercase tracking-micro mb-0.5">Aircraft Type</div>
         <div class="text-sm font-bold text-brand-600">${AC.type || 'Boeing 777-236(ER)'}</div>
       </div>
       <div class="grid grid-cols-2 gap-x-3 gap-y-2.5 text-[11px]">
@@ -238,7 +238,7 @@ function CardFlights() {
     <div>
       ${RECENT_FLIGHTS.map(f => `
         <div class="px-3 py-2 flex items-center gap-2 hover:bg-ink-50 border-b border-ink-100 last:border-0">
-          <span class="text-white text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 tabular-nums" style="background:${f.color};min-width:38px;text-align:center;">${f.badge}</span>
+          <span class="text-white text-[11px] font-bold px-1.5 py-0.5 rounded shrink-0 tabular-nums" style="background:${f.color};min-width:38px;text-align:center;">${f.badge}</span>
           <div class="flex-1 min-w-0">
             <div class="text-[12px] font-semibold text-ink-900">${f.from} → ${f.to}</div>
             <div class="text-[11px] text-ink-400 tabular-nums">${f.date}</div>
@@ -347,7 +347,7 @@ function SectionMap() {
         <div class="bg-white/95 border border-ink-200 rounded-lg px-3 py-2 shadow-card text-[11px]">
           <div class="font-semibold text-ink-900 mb-1.5">Flight Track</div>
           <div class="flex items-center gap-2 mb-1 text-ink-600">
-            <div style="width:18px;height:2px;background:#10b981;border-radius:1px;flex-shrink:0;"></div>Completed
+            <div style="width:18px;height:2px;background:#10b981;border-radius:2px;flex-shrink:0;"></div>Completed
           </div>
           <div class="flex items-center gap-2 mb-1 text-ink-600">
             <div style="width:18px;height:0;border-top:2px dashed #9ca3af;flex-shrink:0;"></div>Remaining
