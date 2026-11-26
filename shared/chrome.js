@@ -841,6 +841,9 @@ function wireChrome() {
   }
   if (notifBtn) notifBtn.onclick = (e) => { e.stopPropagation(); closeAll(notifPop); notifPop.classList.toggle('hidden'); };
 
+  if (userBtn)  userBtn.onclick  = (e) => { e.stopPropagation(); closeAll(userPop);  userPop.classList.toggle('hidden'); };
+  document.addEventListener('click', () => closeAll());
+
   document.querySelectorAll('[data-tweak-density]').forEach(b => b.onclick = () => {
     TWEAKS.density = b.dataset.tweakDensity; if (window.render) window.render(); applyTweaks(); persistTweaks();
   });
