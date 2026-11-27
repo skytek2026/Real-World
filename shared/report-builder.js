@@ -668,7 +668,7 @@ const CSS = `
 .rb-empty{font-size:12px;color:#9ca3af}
 .rb-title-input{height:32px;min-width:200px;max-width:340px;border:1px solid transparent;border-radius:8px;padding:0 8px;font-family:inherit;font-size:14px;font-weight:700;color:#111827;background:0;outline:none}
 .rb-title-input:hover{background:#f9fafb}
-.rb-title-input:focus{background:#fff;border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.rb-title-input:focus{background:#fff;border-color:var(--brand-600,#1485c5);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
 .rb-type-pill{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 12px;border-radius:9999px;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:12px;font-weight:700}
 .rb-canvas-wrap{overflow:auto;min-height:0;padding:16px 20px 24px}
 .rb-livebar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 16px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:12px}
@@ -713,8 +713,8 @@ const CSS = `
 .rb-step.done{color:#4b5563}
 .rb-step.now{color:#111827;font-weight:600}
 .rb-job{display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 12px;border-radius:999px;background:#fef3c7;border:1px solid #fef3c7;color:#b45309;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
-.rb-overlay{position:fixed;inset:0;background:rgba(15,23,42,.42);display:flex;align-items:center;justify-content:center;padding:20px;z-index:900}
-.rb-modal{width:100%;max-width:520px;background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(15,23,42,.25);overflow:hidden}
+.rb-overlay{position:fixed;inset:0;background:rgba(15,23,42,.38);display:flex;align-items:center;justify-content:center;padding:20px;z-index:900}
+.rb-modal{width:100%;max-width:520px;background:#fff;border-radius:8px;box-shadow:0 32px 64px -16px rgb(15 23 42 / 0.30), 0 16px 32px -8px rgb(15 23 42 / 0.16);overflow:hidden}
 .rb-modal-h{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 16px;border-bottom:1px solid #f3f4f6}
 .rb-modal-b{padding:16px}
 .rb-modal-f{display:flex;justify-content:flex-end;gap:8px;padding:12px 16px;background:#f9fafb;border-top:1px solid #f3f4f6}

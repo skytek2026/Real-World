@@ -1,19 +1,19 @@
 /* ──────────────────────────────────────────────────────────────────
    Shared modal styles. Linked from any page that uses modals/*.js.
    ────────────────────────────────────────────────────────────────── */
-.rw-modal-overlay { position:fixed; inset:0; background:rgba(15,23,42,.45); display:flex; align-items:center; justify-content:center; padding:24px; z-index:9999; opacity:0; animation:rw-modal-fade .12s ease-out forwards; }
+.rw-modal-overlay { position:fixed; inset:0; background:rgba(15,23,42,.38); display:flex; align-items:center; justify-content:center; padding:24px; z-index:9999; opacity:0; animation:rw-modal-fade .12s ease-out forwards; }
 .rw-modal-overlay.is-closing { animation:rw-modal-fade-out .12s ease-in forwards; }
 @keyframes rw-modal-fade     { to { opacity:1; } }
 @keyframes rw-modal-fade-out { to { opacity:0; } }
 
-.rw-modal { background:#fff; border-radius:8px; box-shadow:0 20px 50px rgba(15,23,42,.25); width:100%; max-width:980px; max-height:calc(100vh - 48px); display:flex; flex-direction:column; overflow:hidden; transform:translateY(8px) scale(.99); animation:rw-modal-rise .14s cubic-bezier(.2,.8,.2,1) forwards; }
+.rw-modal { background:#fff; border-radius:8px; box-shadow:0 32px 64px -16px rgb(15 23 42 / 0.30), 0 16px 32px -8px rgb(15 23 42 / 0.16); width:100%; max-width:980px; max-height:calc(100vh - 48px); display:flex; flex-direction:column; overflow:hidden; transform:translateY(8px) scale(.99); animation:rw-modal-rise .14s cubic-bezier(.2,.8,.2,1) forwards; }
 @keyframes rw-modal-rise { to { transform:translateY(0) scale(1); } }
 
 .rw-modal-header        { padding:16px 20px; border-bottom:1px solid #e5e7eb; }
 .rw-modal-header.has-close { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.rw-modal-title         { font-size:14px; font-weight:700; color:#111827; font-family:'Exo','Inter',sans-serif; letter-spacing:.01em; }
+.rw-modal-title         { font-size:16px; line-height:24px; font-weight:600; color:#111827; font-family:'Exo','Inter',sans-serif; letter-spacing:.01em; }
 .rw-modal-body          { padding:20px 24px; overflow-y:auto; flex:1; }
-.rw-modal-section-title { font-size:14px; font-weight:700; color:#111827; padding-top:16px; margin-top:12px; border-top:1px solid #e5e7eb; }
+.rw-modal-section-title { font-size:14px; font-weight:600; color:#111827; padding-top:16px; margin-top:12px; border-top:1px solid #e5e7eb; }
 .rw-modal-footer        { padding:12px 20px; border-top:1px solid #e5e7eb; background:#fff; display:flex; justify-content:flex-end; gap:8px; }
 
 .rw-modal-row    { display:grid; grid-template-columns:160px 1fr; gap:24px; align-items:start; padding:12px 0; }
@@ -28,7 +28,7 @@
 }
 .rw-modal-input:focus,
 .rw-modal-select:focus,
-.rw-modal-textarea:focus { outline:none; border-color:var(--brand-400,#60a5fa); box-shadow:0 0 0 3px rgba(37,99,235,.10); }
+.rw-modal-textarea:focus { outline:none; border-color:var(--brand-600,#1485c5); box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5; }
 
 .rw-modal-input {
   padding-right:32px;
@@ -56,13 +56,14 @@
 }
 .rw-modal-check-row label { font-size:14px; color:var(--brand-600,#2563eb); cursor:pointer; }
 
-.rw-modal-btn          { font:inherit; font-size:14px; font-weight:500; padding:8px 20px; border-radius:4px; cursor:pointer; transition:background 120ms, border-color 120ms, color 120ms; }
+.rw-modal-btn          { font:inherit; font-size:14px; font-weight:500; padding:8px 20px; border-radius:6px; cursor:pointer; transition:background 120ms, border-color 120ms, color 120ms; }
 .rw-modal-btn-cancel   { background:#fff; color:var(--brand-600,#2563eb); border:1px solid var(--brand-300,#93c5fd); }
 .rw-modal-btn-cancel:hover { background:#f0f7ff; }
 .rw-modal-btn-cancel:active { background:var(--brand-100,#dbeafe); border-color:var(--brand-400,#60a5fa); }
 .rw-modal-btn-primary  { background:var(--brand-500,#1a92d1); color:#fff; border:1px solid var(--brand-500,#1a92d1); }
-.rw-modal-btn-primary:hover { background:var(--brand-600,#2563eb); border-color:var(--brand-600,#2563eb); }
-.rw-modal-btn-primary:active { background:var(--brand-700,#1d4ed8); border-color:var(--brand-700,#1d4ed8); }
+.rw-modal-btn-primary:hover { background:var(--brand-600,#1485c5); border-color:var(--brand-600,#1485c5); }
+.rw-modal-btn-primary:active { background:var(--brand-700,#0f6aa0); border-color:var(--brand-700,#0f6aa0); }
+.rw-modal-btn:focus-visible { outline:none; box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5; }   /* DS --shadow-focus */
 
 .rw-modal-close-btn {
   width:24px; height:24px; border:0; border-radius:50%;
