@@ -739,7 +739,12 @@ function applyTweaks() {
     .from-brand-400{--tw-gradient-from:${c[400]}!important}.to-brand-600{--tw-gradient-to:${c[600]}!important}
     .nav-item.is-nav-active,.nav-item.is-nav-active:hover{background:${c[700]}!important;color:#fff!important}   /* DS v4.1.2: same fill as the selected tab */
     .nav-item.is-nav-active .nav-ico{color:#fff!important}
-    .ds-tab-pill{background:${c[700]}!important}   /* DS v4.1.1: white label 5.85:1 (brand-600 was 4.05:1) */
+    /* Every tab variant (ds-tab, Regions rtab, Company Details ra-tab) follows the DS tab spec:
+       brand-700 pill (white label 5.85:1), 13px / 600 labels, text-secondary when not selected. */
+    .ds-tab-pill,.rtab-pill,.ra-pill{background:${c[700]}!important}
+    :root :is(.ds-tab,.rtab,.ra-tab){font-size:13px!important;font-weight:600!important}
+    :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]){color:#4B5563}
+    :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]):hover{color:#111827}
     .asset-pill{background:${c[700]}!important}
     .cat-pill{background:${c[700]}!important}
     .ds-page-btn.is-active{background:${c[700]}!important;border-color:${c[700]}!important}
