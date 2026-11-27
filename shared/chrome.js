@@ -745,6 +745,13 @@ function applyTweaks() {
     :root :is(.ds-tab,.rtab,.ra-tab){font-size:13px!important;font-weight:600!important}
     :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]){color:#4B5563}
     :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]):hover{color:#111827}
+    /* Older page-local tab components: same spec (selected by .active or aria-selected) */
+    :root :is(.seg-tab.active,.cov-tab.active,.cnr-tab.active,.ptab.active,.stab-btn.active,.cd-tab[aria-selected="true"]){background:${c[700]}!important;color:#fff!important}
+    :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.cd-tab,.atab){font-size:13px!important;font-weight:600!important}
+    :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.atab):not(.active),:root .cd-tab:not([aria-selected="true"]){color:#4B5563}
+    :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.atab):not(.active):hover,:root .cd-tab:not([aria-selected="true"]):hover{color:#111827}
+    :root .atab.active{color:${c[700]}!important}
+    :root .atab.active::after{background:${c[700]}!important}
     .asset-pill{background:${c[700]}!important}
     .cat-pill{background:${c[700]}!important}
     .ds-page-btn.is-active{background:${c[700]}!important;border-color:${c[700]}!important}
