@@ -114,7 +114,7 @@ function renderModal() {
         <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#6b7280" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${X_SVG}</button>
       </div>
       <div style="padding:20px 24px">
-        <p style="font-size:14px;color:#6b7280;line-height:1.6;margin-bottom:20px">${card.desc}</p>
+        <p style="font-size:14px;color:#6b7280;margin-bottom:20px">${card.desc}</p>
         <div style="background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:16px;margin-bottom:20px">
           <div style="font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Configuration</div>
           <div style="font-size:14px;color:#6b7280;text-align:center;padding:16px 0">
@@ -136,7 +136,7 @@ function renderContent() {
   return `
   <div class="flex-1 overflow-y-auto scroll-thin px-5 py-5">
     <!-- Subtitle -->
-    <p style="font-size:14px;color:#6b7280;margin-bottom:20px;line-height:1.6">
+    <p style="font-size:14px;color:#6b7280;margin-bottom:20px">
       Additional tools and configuration options for maritime monitoring and compliance management.
     </p>
 
@@ -150,7 +150,7 @@ function renderContent() {
           <h3 style="font-size:14px;font-weight:700;color:#111827;line-height:1.3">${card.title}</h3>
         </div>
         <!-- Description -->
-        <p style="font-size:14px;color:#6b7280;line-height:1.6;flex:1">${card.desc}</p>
+        <p style="font-size:14px;color:#6b7280;flex:1">${card.desc}</p>
         <!-- Edit button -->
         <div>
           <button class="edit-btn" data-card-id="${card.id}">${EDIT_SVG} Edit</button>

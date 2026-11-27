@@ -7,7 +7,7 @@
 .uap-step.is-done{color:#374151}.uap-step.is-done .uap-step-n{border-color:#16a34a;background:#16a34a;color:#fff}
 .uap-step.is-error{color:#b91c1c}.uap-step.is-error .uap-step-n{border-color:#dc2626;background:#dc2626;color:#fff}
 .uap-step-line{flex:1;height:1px;background:#e5e7eb;min-width:16px;max-width:64px}
-.uap-lede{font-size:14px;color:#374151;line-height:1.55;text-wrap:pretty;max-width:62ch}
+.uap-lede{font-size:14px;color:#374151;text-wrap:pretty;max-width:62ch}
 .uap-file{display:flex;align-items:center;gap:12px;border:1px solid #e5e7eb;border-radius:8px;padding:16px 16px;margin-top:16px;flex-wrap:wrap}
 .uap-file-ico{width:40px;height:40px;border-radius:8px;background:#f0fdf4;color:#15803d;display:grid;place-items:center;flex-shrink:0}
 .uap-file-main{flex:1;min-width:180px}

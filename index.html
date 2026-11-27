@@ -104,7 +104,7 @@ function LoginScreen() {
           <img src="images/skytek-realworld-landscape-white.png" alt="Real World" style={{ height: '34px', width: 'auto', display: 'block' }} />
         </div>
         <div className="hidden sm:flex items-center gap-2 text-white/80 text-xs">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a] animate-pulse" />
           <span>All systems operational</span>
         </div>
       </header>
@@ -114,13 +114,13 @@ function LoginScreen() {
         {/* Left — copy + slide indicator */}
         <div className="text-white max-w-xl">
           <div className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 backdrop-blur-md ring-1 ring-white/20 text-xs font-semibold uppercase tracking-[0.2em]">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-400" style={{ background: '#60a5fa' }} />
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-400" style={{ background: '#43a8df' }} />
             <span key={idx} className="kb-fadein">{SLIDES[idx].tag}</span>
           </div>
           <h1
             key={idx}
-            className="mt-6 text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight kb-fadein"
-            style={{ fontFamily: 'Exo, sans-serif', lineHeight: "1.2" }}>
+            className="mt-6 text-[32px] leading-[40px] font-semibold tracking-tight kb-fadein"
+            style={{ fontFamily: 'Exo, sans-serif', lineHeight: '40px' }}>
             
             {SLIDES[idx].title}
           </h1>
@@ -143,7 +143,7 @@ function LoginScreen() {
         <div className="flex lg:justify-end items-start lg:items-center">
           <form
             onSubmit={onSignIn}
-            className="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl ring-1 ring-white/40 p-8">
+            className="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-xl shadow-[0_32px_64px_-16px_rgba(15,23,42,.30),0_16px_32px_-8px_rgba(15,23,42,.16)] ring-1 ring-white/40 p-8">
             
             <div className="flex items-center gap-2 text-ink-500 text-xs font-bold uppercase tracking-[0.18em]">
               <span className="h-px w-6 bg-ink-300" /> Sign in
@@ -159,7 +159,7 @@ function LoginScreen() {
                 <input
                   type="email"
                   defaultValue="paul.kiernan@realworld.com"
-                  className="mt-1 w-full h-11 rounded-lg border border-ink-200 bg-white px-4 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
+                  className="mt-1 w-full h-11 rounded-lg border border-ink-500 bg-white px-4 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
                 
               </label>
               <label className="block">
@@ -170,7 +170,7 @@ function LoginScreen() {
                 <input
                   type="password"
                   defaultValue="••••••••••"
-                  className="mt-1 w-full h-11 rounded-lg border border-ink-200 bg-white px-4 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
+                  className="mt-1 w-full h-11 rounded-lg border border-ink-500 bg-white px-4 text-sm text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
                 
               </label>
 
@@ -183,7 +183,7 @@ function LoginScreen() {
             <button
               type="submit"
               disabled={signing}
-              className={`mt-6 w-full h-11 rounded-lg font-semibold text-white text-sm transition-all flex items-center justify-center gap-2 ${signing ? 'bg-brand-700 cursor-wait' : 'bg-brand-500 hover:bg-brand-600 shadow-lg shadow-brand-600/30'}`}>
+              className={`mt-6 w-full h-11 rounded-lg font-semibold text-white text-sm transition-all flex items-center justify-center gap-2 ${signing ? 'bg-brand-700 cursor-wait' : 'bg-brand-500 hover:bg-brand-600 '}`}>
               
               {signing ?
               <>

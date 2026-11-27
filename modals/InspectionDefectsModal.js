@@ -13,7 +13,7 @@
 .idm .rw-modal-header{align-items:center}
 .idm-x{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:0;border-radius:8px;color:#6b7280;cursor:pointer;flex-shrink:0;transition:background 120ms,color 120ms}
 .idm-x:hover{background:#f3f4f6;color:#111827}
-.idm-x:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#1485c5) 25%,transparent)}
+.idm-x:focus-visible{outline:none;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
 .idm .rw-modal-body{padding:0;display:flex;flex-direction:column;min-height:0}
 .idm-sec{padding:16px 20px}
 .idm-sec + .idm-sec{border-top:1px solid #e5e7eb}
