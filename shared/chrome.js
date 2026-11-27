@@ -1055,3 +1055,128 @@ window.sharedChrome = { Sidebar, Topbar, TweaksPanel, wireChrome, applyTweaks, s
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
+
+/* ---------------------------------------------------------------------------
+   Accessibility pass (Section 508 / WCAG 2.0 A-AA), runtime, no visual change:
+   map markers, tabs, form-field labels, flag alt text, icon-button names,
+   skip link, attribution links, unique pagination labels.
+   --------------------------------------------------------------------------- */
+(function dsA11y() {
+  if (window.__dsA11y) return; window.__dsA11y = true;
+  const css = document.createElement('style');
+  css.textContent = '.ds-skip-link{position:fixed;left:8px;top:-48px;z-index:10000;padding:8px 16px;border-radius:8px;background:#1a92d1;color:#fff;font:600 14px/20px Inter,system-ui,sans-serif;text-decoration:none;transition:top .12s}' +
+    '.ds-skip-link:focus{top:8px;outline:none;box-shadow:0 0 0 2px #FFFFFF,0 0 0 4px #1485C5}' +
+    '.leaflet-control-attribution a{text-decoration:underline}';
+  document.head.appendChild(css);
+  const clean = t => (t || '').replace(/\s+/g, ' ').trim();
+  const strip = h => { const d = document.createElement('div'); d.innerHTML = typeof h === 'string' ? h : (h && h.outerHTML) || ''; return clean(d.textContent).slice(0, 80); };
+  const hasName = el => !!(clean(el.getAttribute('aria-label')) || el.getAttribute('aria-labelledby') || clean(el.getAttribute('title')));
+
+  /* Leaflet: name markers from their title, tooltip or popup (patched as soon as Leaflet loads) */
+  function patchLeaflet() {
+    const L = window.L; if (!L || !L.Marker || L.Marker.prototype.__dsNamed) return !!(L && L.Marker);
+    const P = L.Marker.prototype; P.__dsNamed = true;
+    const name = m => clean(m.options.title || m.options.alt) || (m.getTooltip && m.getTooltip() && strip(m.getTooltip().getContent())) || (m.getPopup && m.getPopup() && strip(m.getPopup().getContent()).split(/(?<=[a-z])(?=[A-Z])/)[0]) || '';
+    const apply = m => { const el = m._icon; if (!el) return; const n = name(m); if (n && (!el.getAttribute('aria-label') || el.dataset.dsAuto)) { el.setAttribute('aria-label', n); el.dataset.dsAuto = '1'; } };
+    const wrap = (k) => { const o = P[k]; if (!o) return; P[k] = function () { const r = o.apply(this, arguments); try { apply(this); } catch (e) {} return r; }; };
+    ['_initIcon', 'bindTooltip', 'bindPopup', 'setTooltipContent', 'setPopupContent'].forEach(wrap);
+    return true;
+  }
+  let tries = 0; const poll = setInterval(() => { if (patchLeaflet() || ++tries > 200) clearInterval(poll); }, 25);
+
+  const ICONS = [ [/M16 2v4|M8 2v4|M3 10h18/, 'Choose date'], [/M21 15v4.*7 10 12 15 17 10|7 10 12 15 17 10/, 'Download'], [/17 8 12 3 7 8/, 'Upload'],
+    [/M18 6 6 18|M18 6L6 18|M6 6l12 12/, 'Close'], [/m15 18-6-6 6-6|15 18 9 12 15 6/, 'Previous'], [/m9 18 6-6-6-6|9 18 15 12 9 6/, 'Next'],
+    [/m21 21-4\.3|21 21-4\.35|M21 21l-4\.35/, 'Search'], [/M12 5v14.*M5 12h14|M5 12h14.*M12 5v14/, 'Add'], [/22 3 2 3 10 12\.46/, 'Filter'],
+    [/M3 6h18/, 'Delete'], [/M23 4v6|M21 12a9 9 0 0 0-9-9|M3 12a9 9 0 0 1 9-9/, 'Refresh'], [/M12 16v-4|M12 8h\.01/, 'Information'],
+    [/M12\.22 2h-\.44|M19\.4 15/, 'Settings'], [/12 2 2 7 12 12 22 7 12 2|m12\.83 2\.18/, 'Map layers'], [/M8 3H5a2 2 0 0 0-2 2v3|M15 3h6v6|M14\.73 2\.038/, 'Full screen'], [/M1 12s4-8 11-8|M2\.062 12\.348/, 'View'], [/M17 3a2\.85|M11 4H4a2 2 0 0 0-2 2v14|m18 2 4 4|M12 20h9/, 'Edit'] ];
+  const KEYS = [[/(^|[-_])fs($|[-_])|fullscreen|expand/i, 'Full screen'], [/prev/i, 'Previous page'], [/next/i, 'Next page'], [/close|dismiss/i, 'Close'], [/more|kebab|dots/i, 'More options'],
+    [/download|export/i, 'Download'], [/search/i, 'Search'], [/filter/i, 'Filters'], [/zoom-?in/i, 'Zoom in'], [/zoom-?out/i, 'Zoom out'], [/settings|gear/i, 'Settings'], [/refresh|reload/i, 'Refresh'], [/date|cal/i, 'Choose date']];
+  function iconName(el) {
+    const ref = (el.id || '') + ' ' + (el.className && el.className.baseVal !== undefined ? '' : el.className || '');
+    for (const [re, n] of KEYS) if (re.test(ref)) return n;
+    const svg = [...el.querySelectorAll('svg *')].map(x => (x.getAttribute('d') || '') + ' ' + (x.getAttribute('points') || '')).join(' ');
+    for (const [re, n] of ICONS) if (re.test(svg)) return n;
+    const lu = el.querySelector('[data-lucide],[class*="lucide-"],i[class*="icon-"]');
+    if (lu) { const k = lu.getAttribute('data-lucide') || (String(lu.className).match(/lucide-([\w-]+)|icon-([\w-]+)/) || [])[1]; if (k) return k.replace(/-/g, ' ').replace(/^./, c => c.toUpperCase()); }
+    return '';
+  }
+  function fieldLabel(el) {
+    if (el.id === 'per-page' || /per-?page/i.test(el.className)) return 'Rows per page';
+    const tr = el.closest('tr');
+    if (el.type === 'checkbox' && tr) { const c = [...tr.cells].map(td => clean(td.innerText)).find(t => t); return c ? 'Select ' + c.slice(0, 40) : (tr.parentElement && tr.parentElement.tagName === 'THEAD' ? 'Select all rows' : 'Select row'); }
+    for (let n = el, d = 0; n && d < 4; n = n.parentElement, d++) {
+      for (let s = n.previousElementSibling, k = 0; s && k < 2; s = s.previousElementSibling, k++) {
+        const t = clean(s.innerText); if (t && t.length <= 40 && !s.querySelector('input,select,textarea,button')) return t.replace(/[:*]\s*$/, '');
+      }
+      if (n !== el && n.matches && n.matches('label,[class*="label"],[class*="field"]')) { const t = clean([...n.childNodes].filter(x => x.nodeType === 3).map(x => x.textContent).join(' ')); if (t && t.length <= 40) return t.replace(/[:*]\s*$/, ''); }
+    }
+    if (el.readOnly && /\d{4}/.test(el.value || '')) { const all = [...document.querySelectorAll('input[readonly]')].filter(i => /\d{4}/.test(i.value || '')); return all.length === 2 ? (all[0] === el ? 'Start date' : 'End date') : 'Date'; }
+    if (el.tagName === 'SELECT') return 'Filter: ' + clean(el.options[0] && el.options[0].text).slice(0, 30);
+    return el.type === 'checkbox' ? 'Select' : 'Value';
+  }
+  const named = el => hasName(el) || (el.id && document.querySelector('label[for="' + CSS.escape(el.id) + '"]')) || el.closest('label') || (el.placeholder && clean(el.placeholder));
+  function fix() {
+    if (!document.body) return;
+    patchLeaflet();
+    /* markers created before the patch, or with no tooltip / popup */
+    document.querySelectorAll('.leaflet-marker-icon[tabindex], .leaflet-marker-icon[role="button"]').forEach(el => {
+      if (hasName(el)) return; const img = el.querySelector('img[alt]'); el.setAttribute('aria-label', clean(el.innerText) || (img && img.alt) || 'Map marker'); el.dataset.dsAuto = '1';
+    });
+    /* tabs */
+    document.querySelectorAll('button[aria-selected]:not([role]), [aria-selected]:not([role]):not(option)').forEach(el => {
+      el.setAttribute('role', 'tab'); const p = el.parentElement; if (p && !p.getAttribute('role')) p.setAttribute('role', 'tablist');
+    });
+    /* form fields */
+    document.querySelectorAll('input:not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="image"]), select, textarea').forEach(el => {
+      if (!named(el)) el.setAttribute('aria-label', fieldLabel(el));
+    });
+    /* flags */
+    let dn = null; try { dn = new Intl.DisplayNames(['en'], { type: 'region' }); } catch (e) {}
+    document.querySelectorAll('img[src*="flags/"]:not([alt])').forEach(img => {
+      const code = (img.getAttribute('src').match(/flags\/([a-z]{2})\./i) || [])[1]; const name = code && dn ? dn.of(code.toUpperCase()) : '';
+      const near = clean(img.parentElement && img.parentElement.innerText).toLowerCase();
+      img.setAttribute('alt', name && !near.includes(name.toLowerCase()) ? name : '');
+    });
+    /* icon-only buttons */
+    document.querySelectorAll('button, [role="button"]:not(.leaflet-marker-icon)').forEach(el => {
+      if (hasName(el) || clean(el.innerText) || el.querySelector('img[alt]:not([alt=""])')) return;
+      let n = iconName(el);
+      if (n && /^(View|Edit|Delete|Download)$/.test(n)) {               /* row actions: say which row */
+        const row = el.closest('tr, li, [class*="row"], .grid, [class*="item"]');
+        const first = row && clean((row.innerText || '').split('\n').find(l => clean(l)));
+        if (first) n += ' ' + first.slice(0, 40);
+      }
+      if (n) el.setAttribute('aria-label', n);
+    });
+    /* aria-label on an element without a role */
+    document.querySelectorAll('span[aria-label]:not([role]), div[aria-label]:not([role]):not([data-ds-scroll])').forEach(el => { if (!el.querySelector('a,button,input,select')) el.setAttribute('role', 'img'); });
+    /* role="menu" without menu items is a filter panel: make it a labelled group */
+    document.querySelectorAll('[role="menu"]').forEach(m => {
+      if (m.querySelector('[role^="menuitem"]')) return;
+      m.setAttribute('role', 'group');
+      if (!hasName(m)) { const h = [...m.querySelectorAll('*')].find(x => clean([...x.childNodes].filter(c => c.nodeType === 3).map(c => c.textContent).join('')) && parseInt(getComputedStyle(x).fontWeight, 10) >= 600); if (h) m.setAttribute('aria-label', clean(h.textContent).slice(0, 40)); }
+    });
+    /* duplicate pagination labels */
+    const navs = [...document.querySelectorAll('nav[aria-label="Pagination"]')];
+    if (navs.length > 1) navs.forEach((n, i) => n.setAttribute('aria-label', 'Pagination ' + (i + 1)));
+    /* skip link to the main content */
+    if (!document.querySelector('.ds-skip-link')) {
+      const main = document.querySelector('main, [role="main"]') || [...document.querySelectorAll('[data-ds-scroll]')].sort((a, b) => b.clientWidth * b.clientHeight - a.clientWidth * a.clientHeight)[0];
+      if (main) {
+        if (!main.id) main.id = 'main-content';
+        if (!main.matches('main,[role="main"]') && !main.getAttribute('role')) main.setAttribute('role', 'main');
+        if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+        const a = document.createElement('a'); a.className = 'ds-skip-link'; a.href = '#' + main.id; a.textContent = 'Skip to main content';
+        document.body.insertBefore(a, document.body.firstChild);
+      }
+    }
+  }
+  let t = 0, last = 0; const idle = window.requestIdleCallback || (fn => setTimeout(fn, 1));
+  const schedule = () => { clearTimeout(t); t = setTimeout(() => idle(() => { last = Date.now(); fix(); }), Math.max(150, 400 - (Date.now() - last))); };
+  const start = () => {
+    schedule();
+    new MutationObserver(recs => { if (recs.some(r => { const n = r.target.nodeType === 1 ? r.target : r.target.parentElement; return n && !n.closest('svg, canvas'); })) schedule(); }).observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('load', schedule); [1000, 2500, 5000].forEach(ms => setTimeout(schedule, ms));
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
