@@ -29,7 +29,7 @@
   .bg-ink-900 { background:#111827; }
   .border-ink-100 { border-color:#f3f4f6; }
   .border-ink-200 { border-color:#e5e7eb; }
-  .shadow-card { box-shadow:0 1px 2px rgba(15,23,42,.08), 0 0 0 1px rgba(15,23,42,.02); }
+  .shadow-card { box-shadow:0 1px 2px rgba(15,23,42,.05), 0 0 0 1px rgba(15,23,42,.02); }
   .text-brand-700 { color:#2563eb; }
   .bg-brand-500 { background:#2563eb; }
   .bg-brand-050 { background:#eff6ff; }
@@ -329,7 +329,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -646,15 +646,15 @@ function AirportCard() {
       ${tabBar}
       <div class="airport-metrics" style="margin:8px 12px 8px;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;display:flex;">
         <div style="flex:1;padding:12px 8px;text-align:center;border-right:1px solid #dbeafe;">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total CHW</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total CHW</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$0</div>
         </div>
         <div style="flex:1;padding:12px 8px;text-align:center;border-right:1px solid #dbeafe;">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total HULLW</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total HULLW</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$56.8M</div>
         </div>
         <div style="flex:1;padding:12px 8px;text-align:center;">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total TLOHW</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total TLOHW</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$86.5M</div>
         </div>
       </div>
@@ -689,15 +689,15 @@ function AirportCard() {
       ${tabBar}
       <div class="airport-metrics" style="margin:8px 12px 8px;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;display:flex;">
         <div style="flex:1;padding:12px 8px;text-align:center;border-right:1px solid #dbeafe;">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total CHW</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total CHW</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$0</div>
         </div>
         <div style="flex:1;padding:12px 8px;text-align:center;border-right:1px solid #dbeafe;">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total HULLW</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total HULLW</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$45.9B</div>
         </div>
         <div style="flex:1;padding:12px 8px;text-align:center;">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total TLOHW</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total TLOHW</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$55.1B</div>
         </div>
       </div>
@@ -728,19 +728,19 @@ function AirportCard() {
     ${tabBar}
     <div class="airport-metrics" style="margin:8px 12px 8px;background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;overflow:hidden;display:flex;">
       <div style="flex:1;padding:12px 8px;text-align:center;border-right:1px solid #dbeafe;">
-        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total</div>
+        <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$287.6B</div>
       </div>
       <div style="flex:1;padding:12px 8px;text-align:center;border-right:1px solid #dbeafe;">
-        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total CHW</div>
+        <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total CHW</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$0</div>
       </div>
       <div style="flex:1;padding:12px 8px;text-align:center;border-right:1px solid #dbeafe;">
-        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total HULLW</div>
+        <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total HULLW</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$159.8B</div>
       </div>
       <div style="flex:1;padding:12px 8px;text-align:center;">
-        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total TLOHW</div>
+        <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total TLOHW</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$191.4B</div>
       </div>
     </div>

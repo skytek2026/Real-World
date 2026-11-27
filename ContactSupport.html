@@ -14,16 +14,16 @@
 html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
 a{color:var(--brand-600,var(--brand-600,#2563eb));text-decoration:none}a:hover{color:var(--brand-700,var(--brand-700,#1d4ed8));text-decoration:underline}
 .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}
-.pcard{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+.pcard{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06)}
 .cs-lbl{display:block;font-size:14px;font-weight:600;color:#374151;margin-bottom:4px}
-.cs-lbl .opt{font-weight:500;color:#9ca3af}
-.cs-lbl .req{color:#dc2626}
+.cs-lbl .opt{font-weight:500;color:#6b7280}
+.cs-lbl .req{color:#b91c1c}
 .pfield{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:14px;color:#111827;background:#f9fafb;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
 textarea.pfield{height:auto;min-height:120px;padding:12px 12px;line-height:1.5;resize:vertical}
 select.pfield{appearance:none;-webkit-appearance:none;padding-right:36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;cursor:pointer}
 .pfield:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#1485c5) 14%,transparent);background-color:#fff}
 .pfield.err{border-color:#fca5a5;background-color:#fef2f2}
-.cs-err{font-size:12px;color:#dc2626;margin-top:4px}
+.cs-err{font-size:12px;color:#b91c1c;margin-top:4px}
 .cs-hint{font-size:12px;color:#6b7280;margin-top:4px}
 .cs-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 16px}
 .cs-full{grid-column:1/-1}
@@ -33,7 +33,7 @@ select.pfield{appearance:none;-webkit-appearance:none;padding-right:36px;backgro
 .cs-seg label:hover{border-color:#d1d5db}
 .cs-seg label:has(input:checked){border-color:var(--brand-600,#2563eb);background:var(--brand-50,#f9fafb);color:#111827}
 .cs-dot{width:8px;height:8px;border-radius:50%}
-.ds-radio,.ds-check{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid #d1d5db;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
+.ds-radio,.ds-check{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid #6B7280;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
 .ds-radio{border-radius:50%}.ds-check{border-radius:4px}
 .ds-radio:checked,.ds-check:checked{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
 .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
@@ -50,7 +50,7 @@ select.pfield{appearance:none;-webkit-appearance:none;padding-right:36px;backgro
 .btn-ghost{height:38px;padding:0 16px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
 .btn-ghost:hover{background:#f3f4f6;text-decoration:none;color:#111827}
 .cs-tech{font-size:12px;color:#4b5563;background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:12px 12px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px}
-.cs-tech dt{color:#9ca3af}
+.cs-tech dt{color:#6b7280}
 .cs-tech dd{overflow-wrap:anywhere}
 @keyframes csSpin{to{transform:rotate(360deg)}}
 .cs-spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:csSpin .7s linear infinite}
@@ -68,7 +68,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 const qp = new URLSearchParams(location.search);
@@ -143,7 +143,7 @@ function FormView() {
           <span style="font-size:14px;color:#374151"><span style="color:var(--brand-700,#0f6aa0);font-weight:600">Choose files</span> or drag screenshots here</span>
         </label>
         ${e.files ? `<div class="cs-err">${e.files}</div>` : ''}
-        ${CS.files.length ? `<div style="display:flex;flex-direction:column;gap:4px;margin-top:8px">${CS.files.map((f, i) => `<div class="cs-file"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span><span style="color:#9ca3af;flex-shrink:0">${(f.size / 1024 / 1024).toFixed(1)} MB</span><button type="button" data-rm="${i}" aria-label="Remove ${esc(f.name)}">${X_ICO}</button></div>`).join('')}</div>` : ''}
+        ${CS.files.length ? `<div style="display:flex;flex-direction:column;gap:4px;margin-top:8px">${CS.files.map((f, i) => `<div class="cs-file"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span><span style="color:#6b7280;flex-shrink:0">${(f.size / 1024 / 1024).toFixed(1)} MB</span><button type="button" data-rm="${i}" aria-label="Remove ${esc(f.name)}">${X_ICO}</button></div>`).join('')}</div>` : ''}
       </div>
       <div class="cs-full">
         <label style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#374151;cursor:pointer"><input type="checkbox" class="ds-check" name="includeTech" ${CS.includeTech ? 'checked' : ''}>Include technical details</label>

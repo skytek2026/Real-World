@@ -38,9 +38,12 @@
       :focus-visible { outline: 2px solid #1485C5; outline-offset: 2px; }   /* DS --shadow-focus: brand-600 ring with a gap, 4.05:1 */
       :root .shadow-card { box-shadow: 0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06) !important; }        /* card-shadow-rest */
       :root .shadow-card-hover { box-shadow: 0 6px 12px -2px rgba(15,23,42,.12), 0 3px 6px -3px rgba(15,23,42,.10) !important; } /* card-shadow-hover */
-      input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([class*="border-0"]):not([class*="border-none"]), select, textarea { border-color: #6B7280; }   /* border-control */
+      :root :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([class*="border-0"]):not([class*="border-none"]), textarea):not(:focus):not([aria-invalid="true"]):not([class*="invalid"]):not([class*="error"]) { border-color: #6B7280 !important; }   /* DS border-control (beats !important class maps and inline borders; not focus / invalid) */
       .bg-ink-100.text-ink-500, .bg-ink-100 > .text-ink-500, [style*="background:#eff6ff"] [style*="color:#6b7280"], [style*="background:#eff6ff"] .text-ink-500 { color: #4B5563 !important; }   /* muted text on grey / tinted surfaces: ink-600 */
       .ds-btn { white-space: nowrap; }
+      :root select:not(:focus):not([class*="border-0"]):not([aria-invalid="true"]):not([class*="invalid"]):not([class*="error"]) { border-color: #6B7280 !important; }   /* DS border-control; beats page-level select borders, not focus styles */
+      .font-mono { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace !important; }   /* DS --font-mono */
+      :is(.bg-brand-50,[class*="bg-[#eff6ff]"],[class*="bg-[#eff8fd]"],[style*="background:#eff6ff"],[style*="background:#eff8fd"],[style*="background: #eff6ff"],[style*="background: #eff8fd"],[class*="bg-blue-50"],[class*="bg-sky-50"]) .text-ink-500 { color: #4B5563 !important; }   /* muted labels on brand tints */
       /* Touch targets: small controls get an invisible 44x44 tap area (marked by markHitTargets) without moving the layout. */
       .rw-hit-rel { position: relative; }
       .rw-hit::after { content: ""; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
@@ -247,7 +250,7 @@ const NOTIFS = [
 function toneClasses(tone) {
   const m = {
     indigo:  { bg:'bg-[#eff6ff]',  text:'text-[#1d4ed8]',  ring:'ring-indigo-100' },
-    emerald: { bg:'bg-[#f0fdf4]', text:'text-[#16a34a]', ring:'ring-emerald-100' },
+    emerald: { bg:'bg-[#f0fdf4]', text:'text-[#15803d]', ring:'ring-emerald-100' },
     amber:   { bg:'bg-amber-50',   text:'text-amber-600',   ring:'ring-amber-100' },
     rose:    { bg:'bg-red-50',    text:'text-red-700',    ring:'ring-red-100' },
     brand:   { bg:'bg-brand-50',   text:'text-brand-700',   ring:'ring-brand-100' },
@@ -492,7 +495,7 @@ function buildDarkCss() {
 
   ${D} .text-ink-900, ${D} .text-ink-800, ${D} .text-gray-900, ${D} .text-gray-800 { color:${tx} !important; }
   ${D} .text-ink-700, ${D} .text-ink-600, ${D} .text-gray-700, ${D} .text-gray-600 { color:${tx2} !important; }
-  ${D} .text-ink-500, ${D} .text-ink-500, ${D} .text-gray-500, ${D} .text-gray-400 { color:${tx3} !important; }
+  ${D} .text-ink-500, ${D} .text-ink-500, ${D} .text-gray-500, ${D} .text-gray-500 { color:${tx3} !important; }
   ${D} .text-ink-300, ${D} .text-gray-300 { color:${tx4} !important; }
 
   ${D} .border-ink-100, ${D} .border-ink-200, ${D} .border-gray-100, ${D} .border-gray-200,
@@ -565,8 +568,8 @@ function buildDarkCss() {
   ${D} [style*="color: #111827"], ${D} [style*="color:#111"] { color:${tx} !important; }
   ${D} [style*="color:#374151"], ${D} [style*="color:#374151"], ${D} [style*="color:#4b5563"],
   ${D} [style*="color:#4b5563"], ${D} [style*="color: #374151"] { color:${tx2} !important; }
-  ${D} [style*="color:#6b7280"], ${D} [style*="color:#6b7280"], ${D} [style*="color:#9ca3af"],
-  ${D} [style*="color:#9ca3af"], ${D} [style*="color:#d1d5db"] { color:${tx3} !important; }
+  ${D} [style*="color:#6b7280"], ${D} [style*="color:#6b7280"], ${D} [style*="color:#6b7280"],
+  ${D} [style*="color:#6b7280"], ${D} [style*="color:#d1d5db"] { color:${tx3} !important; }
 
   /* Inline-hex borders */
   ${D} [style*="border-color:#e5e7eb"], ${D} [style*="border-color:#e5e7eb"], ${D} [style*="border-color:#f3f4f6"],
@@ -704,7 +707,7 @@ function applyTweaks() {
   style.textContent = `
     :root{--brand-50:${c[50]};--brand-100:${c[100]};--brand-200:${c[200]};--brand-300:${c[300]};--brand-400:${c[400]};--brand-500:${c[500]};--brand-600:${c[600]};--brand-700:${c[700]};--brand-800:${c[800]}}
     .bg-brand-50{background-color:${c[50]}!important}.bg-brand-100{background-color:${c[100]}!important}
-    .bg-brand-500{background-color:${c[500]}!important}.bg-brand-500{background-color:${c[600]}!important}
+    .bg-brand-500{background-color:${c[500]}!important}.bg-brand-600{background-color:${c[600]}!important}
     .bg-brand-700{background-color:${c[700]}!important}
     .text-brand-500{color:${c[500]}!important}.text-brand-700{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}.text-brand-800{color:${c[800]||c[700]}!important}.hover\\:text-brand-800:hover{color:${c[800]||c[700]}!important}
     .border-brand-300{border-color:${c[300]}!important}.border-brand-500{border-color:${c[500]}!important}
@@ -742,9 +745,9 @@ function applyTweaks() {
     /* Every tab variant (ds-tab, Regions rtab, Company Details ra-tab) follows the DS tab spec:
        brand-700 pill (white label 5.85:1), 13px / 600 labels, text-secondary when not selected. */
     .ds-tab-pill,.rtab-pill,.ra-pill{background:${c[500]}!important}
-    :root :is(.ds-tab,.rtab,.ra-tab){font-size:13px!important;font-weight:600!important}
-    :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]){color:#4B5563}
-    :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]):hover{color:#111827}
+    :root :is(.ds-tab,.rtab,.ra-tab,.cat-tab){font-size:13px!important;font-weight:600!important}
+    :root :is(.ds-tab,.rtab,.ra-tab,.cat-tab):not([aria-selected="true"]):not(.active){color:#4B5563}
+    :root :is(.ds-tab,.rtab,.ra-tab,.cat-tab):not([aria-selected="true"]):not(.active):hover{color:#111827}
     /* Older page-local tab components: same spec (selected by .active or aria-selected) */
     :root :is(.seg-tab.active,.cov-tab.active,.cnr-tab.active,.ptab.active,.stab-btn.active,.cd-tab[aria-selected="true"]){background:${c[500]}!important;color:#fff!important}
     :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.cd-tab,.atab){font-size:13px!important;font-weight:600!important}

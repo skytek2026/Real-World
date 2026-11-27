@@ -163,7 +163,7 @@
     }
     return `
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px">
-        <span style="font-size:12px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.04em">Filtering by</span>
+        <span style="font-size:12px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.04em">Filtering by</span>
         ${chips.join('')}
         <button data-clear="all" style="font-size:12px;color:#2563eb;background:none;border:0;cursor:pointer;font-weight:600;font-family:inherit;padding:0 4px">Clear all</button>
       </div>`;
@@ -377,7 +377,7 @@
     const list = filtered();
     return `
       <span style="font-size:14px;color:#4b5563"><strong style="color:#111827;font-weight:700">${list.length}</strong> ${list.length === 1 ? 'article' : 'articles'}${state.cat !== 'all' ? ` in <strong style="color:#111827;font-weight:600">${catLabel(state.cat)}</strong>` : ''}</span>
-      <span style="font-size:12px;color:#9ca3af">Updated just now</span>`;
+      <span style="font-size:12px;color:#6b7280">Updated just now</span>`;
   }
 
   function rerender() {
@@ -405,7 +405,7 @@
 
       <!-- Category dropdown row -->
       <div class="filter-row">
-        <span class="filter-row-label" style="font-size:12px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0">Category</span>
+        <span class="filter-row-label" style="font-size:12px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.04em;flex-shrink:0">Category</span>
         ${CategoryDropdown()}
       </div>
 

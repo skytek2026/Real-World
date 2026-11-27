@@ -13,7 +13,7 @@
 <style>
   * { box-sizing:border-box; margin:0; padding:0; }
   html,body { height:100%; font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
-  .text-ink-900{color:#111827}.text-ink-700{color:#374151}.text-ink-600{color:#4b5563}.text-ink-500{color:#6b7280}.text-ink-400{color:#9ca3af}
+  .text-ink-900{color:#111827}.text-ink-700{color:#374151}.text-ink-600{color:#4b5563}.text-ink-500{color:#6b7280}.text-ink-500{color:#6b7280}
   .bg-ink-100{background:#f3f4f6}.bg-ink-50{background:#f9fafb}
   .border-ink-100{border-color:#f3f4f6}.border-ink-200{border-color:#e5e7eb}
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
@@ -89,7 +89,7 @@
   .stat-card .ds-metric-value--warning{color:var(--warning-500,#D97706)}
   .stat-card .ds-metric-value--danger{color:var(--danger-500,#dc2626)}
   .stat-card .stat-desc{font-size:12px;line-height:16px;color:var(--text-secondary,#4B5563)}
-  .row-del-btn:hover{background:#fef2f2 !important;border-color:#dc2626 !important;color:#dc2626 !important;}
+  .row-del-btn:hover{background:#fef2f2 !important;border-color:#dc2626 !important;color:#b91c1c !important;}
   .row-arch-btn:hover{background:#eff6ff !important;border-color:#b8ddf5 !important;color:var(--brand-700,#0f6aa0) !important;}
   /* Skytek secondary buttons — hover / active / focus (DS: white → slate-50 → slate-100) */
   #download-template:hover,#export-excel-btn:hover,#wb-cancel:hover{background:var(--slate-50,#F9FAFB);border-color:var(--border-strong,#D1D5DB);}
@@ -160,12 +160,12 @@
   .cargo-filter-dot{position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--brand-600,#1485c5);border:2px solid #fff;}
   .cargo-filter-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:60;min-width:184px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);padding:8px;}
   .cargo-filter-menu[hidden]{display:none;}
-  .cargo-filter-menu-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;padding:8px 8px 4px;}
+  .cargo-filter-menu-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#6b7280;padding:8px 8px 4px;}
   .cargo-filter-opt{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;height:32px;padding:0 8px;border:0;border-radius:8px;background:transparent;color:#374151;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;text-align:left;}
   .cargo-filter-opt:hover{background:#f3f4f6;}
   .cargo-filter-opt.is-active{color:var(--brand-700,#0f6aa0);font-weight:600;}
   /* Card */
-  .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06)}
   /* ── Cargo map controls (ported from Marine Dashboard) ───────────────── */
   /* Declarations + Clash Alerts: tables on wider screens, one card per row on phones */
   .decl-cards, .clash-cards { display:none; }
@@ -181,7 +181,7 @@
   .decl-kv { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
   .decl-kv--top { grid-template-columns:minmax(0,1fr) auto; margin:0; padding:0; border:0; }
   .decl-kv--top > div:last-child { text-align:right; }
-  .decl-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .decl-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .decl-kv dd { margin:4px 0 0; font-size:14px; color:#374151; overflow-wrap:anywhere; }
   .decl-kv-wide { grid-column:1 / -1; }
   .clash-vessels { line-height:1.75; }
@@ -192,14 +192,14 @@
   .decl-card-detail .cargo-map-wrap { flex:none !important; height:300px !important; }
   @media (prefers-reduced-motion: reduce) { .decl-card--new { animation:none; } }
   .cargo-map-wrap{position:relative;}
-  .cargo-map-wrap .leaflet-control-zoom,.cargo-map-wrap .leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgb(15 23 42 / .08) !important;border-radius:8px !important;overflow:hidden;}
+  .cargo-map-wrap .leaflet-control-zoom,.cargo-map-wrap .leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgb(15 23 42 / .05) !important;border-radius:8px !important;overflow:hidden;}
   .cargo-map-wrap .leaflet-bar a{background:#fff !important;color:#374151 !important;}
   .cargo-map-wrap .leaflet-bar a:hover{background:#f3f4f6 !important;}
   .cargo-map-wrap .leaflet-control-zoom a{display:flex !important;align-items:center;justify-content:center;padding:0 !important;}
   .cargo-map-wrap .leaflet-control-zoom a svg{width:16px;height:16px;}
   .cargo-map-wrap .leaflet-top.leaflet-left{top:56px;left:2px;}
   .cargo-map-wrap .leaflet-top.leaflet-left .leaflet-bar{margin-left:8px !important;}
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;transition:background .15s;}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .05);cursor:pointer;transition:background .15s;}
   .map-btn:hover{background:#f3f4f6;}
   .map-btn svg{width:16px;height:16px;}
   .map-btn-fs{width:32px;height:32px;border-radius:8px !important;}
@@ -343,7 +343,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -512,7 +512,7 @@ function renderHeader() {
   const metricCell = (val, label, color, first) => `
     <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:2px 12px;flex:1;min-width:62px;${first ? '' : 'border-left:1px solid #e6ebf1;'}">
       <span style="font-size:14px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:${color};">${val}</span>
-      <span style="font-size:12px;font-weight:600;line-height:1.2;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;text-align:center;">${label}</span>
+      <span style="font-size:12px;font-weight:600;line-height:1.2;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;text-align:center;">${label}</span>
     </div>`;
   const metricsStrip = (wb, i) => {
     const m = wb.metrics || { completed:0, started:0, pending:0, breaches:0, exposure:'$0' };
@@ -566,7 +566,7 @@ function renderHeader() {
       </div>
       <div style="flex:1;min-width:0;">
         <div style="font-size:14px;font-weight:700;color:#111827;">${st.uploadedFile}</div>
-        <div style="font-size:12px;color:#16a34a;margin-top:1px;">Ready to upload</div>
+        <div style="font-size:12px;color:#15803d;margin-top:1px;">Ready to upload</div>
       </div>
       <button id="confirm-upload" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;background:var(--brand-500,#1a92d1);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -582,18 +582,18 @@ function renderHeader() {
         <div style="font-size:14px;font-weight:600;color:#111827;margin-bottom:4px;">Drag &amp; drop your .xlsx file here</div>
         <div style="font-size:12px;color:#6b7280;">or</div>
       </div>
-      <label id="browse-files-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:32px;padding:0 12px;background:var(--brand-600,#1485c5);border:1px solid var(--brand-600,#1485c5);color:var(--white,#fff);border-radius:var(--radius-md,6px);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
+      <label id="browse-files-btn" style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:32px;padding:0 12px;background:var(--brand-500,#1a92d1);border:1px solid var(--brand-500,#1a92d1);color:var(--white,#fff);border-radius:var(--radius-md,6px);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         Browse files
         <input id="file-input" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" style="display:none;" />
       </label>
-      <div style="font-size:12px;color:#9ca3af;">Supports .xlsx files only</div>
+      <div style="font-size:12px;color:#6b7280;">Supports .xlsx files only</div>
     </div>`}
     </div>
   </div>` : `
   <div class="card cargo-workbook-card" style="display:flex;flex-direction:column;gap:12px;padding:16px 20px;margin-bottom:8px;align-items:stretch;">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <div style="font-size:14px;font-weight:700;color:#111827;">Declarations workbook${wbs.length > 1 ? 's' : ''} <span style="color:#9ca3af;font-weight:600;">(${wbs.length})</span></div>
+      <div style="font-size:14px;font-weight:700;color:#111827;">Declarations workbook${wbs.length > 1 ? 's' : ''} <span style="color:#6b7280;font-weight:600;">(${wbs.length})</span></div>
       <div class="cargo-workbook-btns" style="display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;">
         <button id="upload-another-btn" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;background:#fff;border:1px solid #e5e7eb;color:#374151;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -610,14 +610,14 @@ function renderHeader() {
           <div style="font-size:12px;color:#6b7280;margin-top:1px;">${wb.size || '—'}</div>
         </div>
         ${metricsStrip(wb, i)}
-        <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#16a34a;white-space:nowrap;flex-shrink:0;">
+        <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:#15803d;white-space:nowrap;flex-shrink:0;">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Analysed
         </span>
-        <button data-wb-reanalyse="${i}" title="Re-analyse" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#9ca3af;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#eff6ff';this.style.borderColor='#b8ddf5';this.style.color='var(--brand-600,#1485c5)';" onmouseout="this.style.background='#fff';this.style.borderColor='#e5e7eb';this.style.color='#9ca3af';">
+        <button data-wb-reanalyse="${i}" title="Re-analyse" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#6b7280;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#eff6ff';this.style.borderColor='#b8ddf5';this.style.color='var(--brand-600,#1485c5)';" onmouseout="this.style.background='#fff';this.style.borderColor='#e5e7eb';this.style.color='#9ca3af';">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
         </button>
-        <button data-wb-remove="${i}" title="Remove workbook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#9ca3af;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#fef2f2';this.style.borderColor='#fca5a5';this.style.color='#dc2626';" onmouseout="this.style.background='#fff';this.style.borderColor='#e5e7eb';this.style.color='#9ca3af';">
+        <button data-wb-remove="${i}" title="Remove workbook" style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#6b7280;cursor:pointer;flex-shrink:0;transition:background .15s,color .15s,border-color .15s;" onmouseover="this.style.background='#fef2f2';this.style.borderColor='#fca5a5';this.style.color='#dc2626';" onmouseout="this.style.background='#fff';this.style.borderColor='#e5e7eb';this.style.color='#9ca3af';">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>`).join('')}
@@ -784,15 +784,15 @@ function renderDeclarationsTable() {
             <td style="font-weight:600;"><a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation();" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.name}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:#4b5563;font-variant-numeric:tabular-nums;">${v.imo}</td>
             <td style="font-variant-numeric:tabular-nums;">${v.estLoad}</td>
-            <td style="color:${v.actLoad ? '#d97706' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</td>
+            <td style="color:${v.actLoad ? '#b45309' : '#6b7280'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</td>
             <td><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:#6b7280;">${v.dischDate || '—'}</td>
             <td><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
-            <td style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</td>
-            <td>${v.breachRegion ? `<span style="color:#dc2626;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
-            <td style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</td>
-            <td style="color:${v.breachEnd ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</td>
-            <td style="text-align:center;">${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
+            <td style="color:${v.actDisch ? '#1d4ed8' : '#6b7280'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</td>
+            <td>${v.breachRegion ? `<span style="color:#b91c1c;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#6b7280;">—</span>'}</td>
+            <td style="color:${v.breachStart ? '#b91c1c' : '#6b7280'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</td>
+            <td style="color:${v.breachEnd ? '#b91c1c' : '#6b7280'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</td>
+            <td style="text-align:center;">${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#6b7280;">—</span>'}</td>
           </tr>
           ${expanded && !declIsPhone() ? `
           <tr class="expanded-detail">
@@ -817,15 +817,15 @@ function renderDeclarationsTable() {
         <dl class="decl-kv">
               <div><dt>Vessel IMO</dt><dd style="color:#4b5563;font-variant-numeric:tabular-nums;">${v.imo}</dd></div>
               <div><dt>Est. Load Date</dt><dd style="font-variant-numeric:tabular-nums;">${v.estLoad}</dd></div>
-              <div><dt>Actual Loading Date</dt><dd style="color:${v.actLoad ? '#d97706' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</dd></div>
+              <div><dt>Actual Loading Date</dt><dd style="color:${v.actLoad ? '#b45309' : '#6b7280'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</dd></div>
               <div><dt>Load Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
               <div><dt>Discharge Date</dt><dd style="color:#6b7280;">${v.dischDate || '—'}</dd></div>
               <div><dt>Discharge Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
-              <div><dt>Actual Discharge Date</dt><dd style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</dd></div>
-              <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#dc2626;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
-              <div><dt>Breach Start Date</dt><dd style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</dd></div>
-              <div><dt>Breach End Date</dt><dd style="color:${v.breachEnd ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</dd></div>
-              <div><dt>Days</dt><dd>${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
+              <div><dt>Actual Discharge Date</dt><dd style="color:${v.actDisch ? '#1d4ed8' : '#6b7280'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</dd></div>
+              <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#b91c1c;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#6b7280;">—</span>'}</dd></div>
+              <div><dt>Breach Start Date</dt><dd style="color:${v.breachStart ? '#b91c1c' : '#6b7280'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</dd></div>
+              <div><dt>Breach End Date</dt><dd style="color:${v.breachEnd ? '#b91c1c' : '#6b7280'};font-variant-numeric:tabular-nums;">${v.breachEnd || '—'}</dd></div>
+              <div><dt>Days</dt><dd>${v.days > 0 ? `<span style="background:#fee2e2;color:#b91c1c;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;">${v.days}</span>` : '<span style="color:#6b7280;">—</span>'}</dd></div>
         </dl>
         <button type="button" class="decl-toggle" aria-expanded="${expanded}">
           <span>${expanded ? 'Hide route map' : 'Show route map'}</span>
@@ -856,7 +856,7 @@ function renderClashAlertsTable() {
           <td style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
           <td style="font-variant-numeric:tabular-nums;">${a.date}</td>
           <td style="color:#6b7280;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</td>
-          <td style="font-weight:700;color:#dc2626;">${a.exposure}</td>
+          <td style="font-weight:700;color:#b91c1c;">${a.exposure}</td>
         </tr>`).join('')}
       </tbody>
     </table>
@@ -866,7 +866,7 @@ function renderClashAlertsTable() {
     <article class="decl-card" role="listitem">
       <dl class="decl-kv decl-kv--top">
         <div><dt>Port</dt><dd style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
-        <div><dt>Exposure ($)</dt><dd style="font-weight:700;color:#dc2626;">${a.exposure}</dd></div>
+        <div><dt>Exposure ($)</dt><dd style="font-weight:700;color:#b91c1c;">${a.exposure}</dd></div>
       </dl>
       <dl class="decl-kv">
         <div><dt>Date</dt><dd style="font-variant-numeric:tabular-nums;">${a.date}</dd></div>

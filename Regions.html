@@ -69,7 +69,7 @@
   .rtabs--view .rtab-label{display:inline-flex;align-items:center;gap:4px}
   .rg-filter-btn{width:100%;height:32px;display:flex;align-items:center;gap:8px;padding:0 12px;background:#fff;border:1px solid #e5e7eb;border-radius:var(--radius-md,8px);font-family:inherit;font-size:14px;font-weight:500;color:#374151;cursor:pointer;transition:background .15s,border-color .15s}
   .rg-filter-btn:hover{background:#f9fafb;border-color:#d1d5db}
-  .rg-map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .08);cursor:pointer;transition:background .15s}
+  .rg-map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgb(15 23 42 / .05);cursor:pointer;transition:background .15s}
   .rg-map-btn:hover{background:#f3f4f6}
   .rg-map-btn:active{background:#e5e7eb}
   .rg-map-type-opt:hover{background:#f9fafb}
@@ -80,7 +80,7 @@
   .view-btn:not(.active){background:transparent;color:#6b7280}
   .view-btn:not(.active):hover{color:#111827}
   /* Panel */
-  .info-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(15,23,42,.06)}
+  .info-panel{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;display:flex;flex-direction:column;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06)}
   /* Region rows */
   .r-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #f9fafb;font-size:14px}
   .r-row:last-child{border-bottom:0}
@@ -306,7 +306,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -830,16 +830,16 @@ function PanelMyRegions(d) {
       </div>
     </div>
     ${regionsTab === 'Skytek Regions' ? `
-    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#6b7280;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <span>Name</span><span>Our Exposure</span>
     </div>
     <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px;max-height:392px" class="scroll-thin">
       ${SKYTEK_REGION_LIST.map(r => `<div class="r-row" style="cursor:default">
-        <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" data-region-link="${r.name}">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
+        <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" data-region-link="${r.name}">${r.name} <span style="color:#6b7280;font-weight:400">(${r.count.toLocaleString()})</span></span>
         <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
       </div>`).join('')}
     </div>` : `
-    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#6b7280;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <span>Name</span><span style="text-align:right;margin-left:12px">Threshold / Exposure</span>
     </div>
     <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px;max-height:392px" class="scroll-thin">
@@ -850,7 +850,7 @@ function PanelMyRegions(d) {
           <span style="display:flex;align-items:center;gap:4px;flex-shrink:0">
             ${open && hasSub ? FOLDER_OPEN_SVG : FOLDER_SVG}
           </span>
-          <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
+          <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name} <span style="color:#6b7280;font-weight:400">(${r.count.toLocaleString()})</span></span>
           <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
         </div>
         ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 12px;border-bottom:1px solid #f9fafb;font-size:14px">
@@ -875,7 +875,7 @@ function PanelRealWorldRegions(d) {
     <div style="padding:16px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <div style="font-size:14px;font-weight:700;color:#111827">Real World Regions</div>
     </div>
-    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#9ca3af;border-bottom:1px solid #f3f4f6;flex-shrink:0">
+    <div style="padding:8px 16px;display:flex;justify-content:space-between;font-size:12px;color:#6b7280;border-bottom:1px solid #f3f4f6;flex-shrink:0">
       <span>Name</span><span>Our Exposure</span>
     </div>
     <div style="flex:1;overflow-y:auto;padding:0 16px" class="scroll-thin">
@@ -908,7 +908,7 @@ function PanelStats(d) {
     <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Date Range:</div>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
       <input type="text" value="Dec 1st 2024" readonly style="flex:1;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit;min-width:0" />
-      <span style="font-size:12px;color:#9ca3af;flex-shrink:0">to</span>
+      <span style="font-size:12px;color:#6b7280;flex-shrink:0">to</span>
       <div style="position:relative;flex:1;min-width:0">
         <input type="text" value="Dec 31st 2024" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
         <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
@@ -925,34 +925,34 @@ function PanelStats(d) {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #f3f4f6;border-radius:8px;overflow:hidden;flex-shrink:0">
       <!-- Avg row -->
       <div style="padding:12px 12px;border-right:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Average Daily Exposure Value:</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Average Daily Exposure Value:</div>
         <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px">${s.avgExp}</div>
       </div>
       <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Average Daily Asset Count:</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Average Daily Asset Count:</div>
         <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px">${s.avgA}</div>
       </div>
       <!-- High row -->
       <div style="padding:12px 12px;border-right:1px solid #f3f4f6;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Highest Daily Exposure Value:</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Highest Daily Exposure Value:</div>
         <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.hiExp}</div>
-        <div style="font-size:12px;color:#9ca3af">${s.hiDate}</div>
+        <div style="font-size:12px;color:#6b7280">${s.hiDate}</div>
       </div>
       <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Highest Daily Asset Count:</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Highest Daily Asset Count:</div>
         <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.hiA}</div>
-        <div style="font-size:12px;color:#9ca3af">${s.hiDate}</div>
+        <div style="font-size:12px;color:#6b7280">${s.hiDate}</div>
       </div>
       <!-- Low row -->
       <div style="padding:12px 12px;border-right:1px solid #f3f4f6">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px">Lowest Daily Exposure Value:</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Lowest Daily Exposure Value:</div>
         <div style="display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.loExp}</div>
-        <div style="font-size:12px;color:#9ca3af">${s.loDate}</div>
+        <div style="font-size:12px;color:#6b7280">${s.loDate}</div>
       </div>
       <div style="padding:12px 12px">
-        <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Lowest Daily Asset Count:</div>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px;display:flex;align-items:center;gap:4px">${INFO_SVG}Lowest Daily Asset Count:</div>
         <div style="display:inline-block;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;margin-bottom:4px">${s.loA}</div>
-        <div style="font-size:12px;color:#9ca3af">${s.loDate}</div>
+        <div style="font-size:12px;color:#6b7280">${s.loDate}</div>
       </div>
     </div>
     </div>
@@ -970,7 +970,7 @@ function MapView() {
   return `
   <div id="regions-map" style="position:absolute;inset:0"></div>
   <!-- Fullscreen btn -->
-  <button id="rg-fs-btn" style="position:absolute;top:12px;left:12px;z-index:400;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer" title="Toggle fullscreen">
+  <button id="rg-fs-btn" style="position:absolute;top:12px;left:12px;z-index:400;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.05);cursor:pointer" title="Toggle fullscreen">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
   </button>
   <!-- Top-right controls -->
@@ -1038,7 +1038,7 @@ function Content() {
 
     <!-- Map or List — wrapped in a card with header containing tabs -->
     <div style="padding:0 16px 16px;flex-shrink:0">
-      <div style="height:500px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
+      <div style="height:500px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column">
         <!-- Card header with Map/List toggle -->
         <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px;flex-shrink:0;background:#fff;">
           <div class="rtabs rtabs--view" id="rg-viewtabs" role="tablist">

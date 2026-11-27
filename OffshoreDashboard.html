@@ -29,7 +29,7 @@
   .bg-ink-900 { background:#111827; }
   .border-ink-100 { border-color:#f3f4f6; }
   .border-ink-200 { border-color:#e5e7eb; }
-  .shadow-card { box-shadow:0 1px 2px rgba(15,23,42,.08), 0 0 0 1px rgba(15,23,42,.02); }
+  .shadow-card { box-shadow:0 1px 2px rgba(15,23,42,.05), 0 0 0 1px rgba(15,23,42,.02); }
   .text-brand-700 { color:#2563eb; }
   .bg-brand-500 { background:#2563eb; }
   .bg-brand-050 { background:#eff6ff; }
@@ -298,7 +298,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -506,7 +506,7 @@ function PortfolioCard() {
   const statsCard = `
     <div style="padding:16px 16px 8px;display:flex;justify-content:center;" class="shrink-0">
       <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 28px;text-align:center;min-width:180px;">
-        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Interests</div>
+        <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total Interests</div>
         <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${totalInterests}</div>
       </div>
     </div>`;
@@ -618,7 +618,7 @@ function RegionsCard() {
     ${state.regionsTab === 'Exposure Aggregation' ? `
       <div style="padding:16px 16px 8px;display:flex;justify-content:center;" class="shrink-0">
         <div style="background:#eff6ff;border:1px solid #dbeafe;border-radius:8px;padding:12px 28px;text-align:center;min-width:160px;">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Exposure</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total Exposure</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${EXPOSURE_TOTAL}</div>
         </div>
       </div>

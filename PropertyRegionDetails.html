@@ -51,7 +51,7 @@
   /* Stat pills */
   .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#0f6aa0);font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px;font-variant-numeric:tabular-nums}
   /* Map btn */
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.05);cursor:pointer}
   .map-btn:hover{background:#f3f4f6}
   .leaflet-control-zoom a{display:flex!important;align-items:center;justify-content:center;padding:0!important}
   .leaflet-control-zoom a svg{width:16px;height:16px}
@@ -90,7 +90,7 @@ window.PAGE = { id:'regions', title:'Property Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -235,7 +235,7 @@ function statCell(label, date, value) {
   return `
   <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:4px 0">
     <div style="font-size:12px;font-weight:700;color:#111827">${label}</div>
-    ${date ? `<div style="font-size:12px;color:#d97706;font-weight:600">${date}</div>` : `<div style="height:1px"></div>`}
+    ${date ? `<div style="font-size:12px;color:#b45309;font-weight:600">${date}</div>` : `<div style="height:1px"></div>`}
     <span class="spill-blue">${value}</span>
   </div>`;
 }
@@ -252,7 +252,7 @@ function Content() {
     <div class="prd-top-row">
 
       <!-- LEFT: Details -->
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);display:flex;flex-direction:column">
         <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
           <span style="font-size:14px;font-weight:700;color:#111827">Details</span>
           <div style="display:flex;align-items:center;gap:4px">
@@ -277,7 +277,7 @@ function Content() {
       </div>
 
       <!-- MIDDLE: Region Exposure by Portfolio -->
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
         <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6">
           <span style="font-size:14px;font-weight:700;color:#111827">Region Exposure by Portfolio</span>
         </div>
@@ -310,7 +310,7 @@ function Content() {
       </div>
 
       <!-- RIGHT: Region Summary Statistics / Create Region Report -->
-      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+      <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
         <div style="padding:12px 12px;border-bottom:1px solid #f3f4f6">
           <div class="tabs-desktop-wrap">
             <div class="ds-tabs" id="rtab-tabs" style="width:100%">
@@ -334,7 +334,7 @@ function Content() {
               <input type="text" value="Jan 1st 2025" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
             </div>
-            <span style="font-size:12px;color:#9ca3af;text-align:center">to</span>
+            <span style="font-size:12px;color:#6b7280;text-align:center">to</span>
             <div style="position:relative">
               <input type="text" value="Dec 31st 2025" readonly style="width:100%;height:30px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 8px;font-size:14px;color:#374151;background:#f9fafb;outline:none;font-family:inherit" />
               <span style="position:absolute;right:7px;top:50%;transform:translateY(-50%);display:flex">${CAL_SVG}</span>
@@ -368,13 +368,13 @@ function Content() {
         </div>
         </div>` : `
         <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:24px">
-          <div style="text-align:center;color:#9ca3af;font-size:14px">Report builder coming soon</div>
+          <div style="text-align:center;color:#6b7280;font-size:14px">Report builder coming soon</div>
         </div>`}
       </div>
     </div>
 
     <!-- Bottom: tab bar + map -->
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;min-height:520px">
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);overflow:hidden;display:flex;flex-direction:column;min-height:520px">
       <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0">
         <div class="tabs-desktop-wrap">
           <div class="ds-tabs" id="map-view-tabs">
@@ -405,7 +405,7 @@ function Content() {
           </div>
         </div>
       </div>` : `
-      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#9ca3af;font-size:14px;padding:48px">
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;color:#6b7280;font-size:14px;padding:48px">
         <div style="text-align:center"><div style="font-size:32px;margin-bottom:12px">📋</div>${mapTab.charAt(0).toUpperCase()+mapTab.slice(1)} data coming soon</div>
       </div>`}
     </div>

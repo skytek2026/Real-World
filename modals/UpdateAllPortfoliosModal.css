@@ -1,6 +1,6 @@
 .uap-modal{max-width:720px;transition:max-width .18s ease}
 .uap-modal.is-wide{max-width:1080px}
-.uap-steps{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid #e5e7eb;background:#f9fafb;font-size:12px;color:#6b7280;font-weight:500}
+.uap-steps{display:flex;align-items:center;gap:8px;padding:12px 20px;border-bottom:1px solid #e5e7eb;background:#f9fafb;font-size:12px;color:#4B5563;font-weight:500}
 .uap-step{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .uap-step-n{width:20px;height:20px;border-radius:999px;border:1.5px solid #d1d5db;display:grid;place-items:center;font-size:12px;font-weight:700;background:#fff;color:#6b7280}
 .uap-step.is-active{color:#111827}.uap-step.is-active .uap-step-n{border-color:#2563eb;background:#2563eb;color:#fff}
@@ -47,7 +47,7 @@
 .uap-table tr:last-child td{border-bottom:0}
 .uap-cell{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:600;color:#b91c1c;background:#fef2f2;border:1px solid #fecaca;border-radius:4px;padding:1px 8px;white-space:nowrap}
 .uap-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#111827;overflow-wrap:anywhere}
-.uap-dim{color:#9ca3af;font-style:italic}
+.uap-dim{color:#6b7280;font-style:italic}
 .uap-num{font-variant-numeric:tabular-nums}
 .uap-colname{font-weight:600;color:#111827;white-space:nowrap}
 .uap-foot-left{margin-right:auto;display:flex;align-items:center}
@@ -90,12 +90,12 @@
 }
 
 .uap-confirm{text-align:center;padding:16px 8px 8px;display:flex;flex-direction:column;align-items:center}
-.uap-confirm-ico{width:64px;height:64px;border-radius:999px;background:#f0fdf4;color:#16a34a;display:grid;place-items:center;margin-bottom:12px}
+.uap-confirm-ico{width:64px;height:64px;border-radius:999px;background:#f0fdf4;color:#15803d;display:grid;place-items:center;margin-bottom:12px}
 .uap-confirm-t{font-size:20px;font-weight:700;color:#111827}
 .uap-confirm-s{font-size:14px;color:#4b5563;margin-top:4px;max-width:48ch;text-wrap:pretty}.uap-confirm-s b{color:#111827;font-weight:600;overflow-wrap:anywhere}
 .uap-confirm-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:#e5e7eb;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;margin-top:20px;width:100%}
 .uap-confirm-grid>div{background:#fff;padding:16px 8px;font-size:12px;color:#6b7280;display:flex;flex-direction:column;gap:4px}
-.uap-confirm-grid b{font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums}.uap-confirm-grid b span{font-size:14px;color:#9ca3af;font-weight:600}
+.uap-confirm-grid b{font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums}.uap-confirm-grid b span{font-size:14px;color:#6b7280;font-weight:600}
 @media (max-width:520px){.uap-confirm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .uap-sum{max-height:none}
 .uap-sum-row{display:grid;grid-template-columns:260px minmax(0,1fr) minmax(0,1fr);font-size:14px;border-top:1px solid #f3f4f6}
@@ -103,7 +103,7 @@
 .uap-sum-row .uap-f{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
 .uap-sum-row span.uap-o,.uap-sum-row span.uap-n{padding:1px 4px;border-radius:4px}
 .uap-sum .uap-diff-head{grid-template-columns:260px minmax(0,1fr) minmax(0,1fr)}
-.uap-tag.is-same{background:#f9fafb;border-color:#e5e7eb;color:#6b7280}
+.uap-tag.is-same{background:#f9fafb;border-color:#e5e7eb;color:#4B5563}
 @media (max-width:640px){.uap-sum-row,.uap-sum .uap-diff-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.uap-sum-row>.uap-o{border-left:0}}
 .uap-modal .rw-modal-footer{flex-wrap:wrap}
 .uap-banner.is-warn{background:#fffbeb;border-color:#fef3c7;color:#b45309;margin-top:12px}
@@ -186,7 +186,7 @@
 .uap-gchip.is-out{background:#fef2f2;border-color:#fecaca;color:#991b1b;text-decoration:line-through;text-decoration-color:#fca5a5}
 .uap-gchip.is-in{background:#f0fdf4;border-color:#dcfce7;color:#166534}
 .uap-tag.is-grp{background:#eff6ff;border-color:#dbeafe;color:#9333ea}
-.uap-head-sub{display:block;font-weight:500;font-size:12px;color:#9ca3af;margin-top:1px}
+.uap-head-sub{display:block;font-weight:500;font-size:12px;color:#6b7280;margin-top:1px}
 .uap-etab-n{min-width:20px;height:20px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:700;display:inline-grid;place-items:center;font-variant-numeric:tabular-nums}
 .uap-etab-n.is-bad{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca}
 .uap-etab-n.is-ok{background:#f0fdf4;color:#15803d;border:1px solid #dcfce7}

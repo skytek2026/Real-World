@@ -20,7 +20,7 @@
   .text-ink-700 { color:#374151; }
   .text-ink-600 { color:#4b5563; }
   .text-ink-500 { color:#6b7280; }
-  .text-ink-400 { color:#9ca3af; }
+  .text-ink-500 { color:#6b7280; }
   .text-ink-300 { color:#d1d5db; }
   .text-ink-200 { color:#e5e7eb; }
   .text-ink-100 { color:#f3f4f6; }
@@ -189,7 +189,7 @@
   .trp-btn--sec:hover { background:#f9fafb; border-color:#d1d5db; }
   .trp-btn--pri { background:var(--brand-500,#1a92d1); color:#fff; border-color:var(--brand-500,#1a92d1); }
   .trp-btn--pri:hover:not(:disabled) { background:var(--brand-600,#1485c5); }
-  .trp-btn--pri:disabled { background:#e5e7eb; border-color:#e5e7eb; color:#9ca3af; cursor:not-allowed; }
+  .trp-btn--pri:disabled { background:#e5e7eb; border-color:#e5e7eb; color:#6b7280; cursor:not-allowed; }
   @media (max-width:700px) {
     .trp-body { flex-direction:column; }
     .trp-presets { flex-direction:row; overflow-x:auto; border-right:0; border-bottom:1px solid #f3f4f6; min-width:0; }
@@ -247,7 +247,7 @@
   .sts-kv dd { margin:2px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; min-height:18px; display:flex; align-items:center; }
   .sts-hop { display:flex; gap:8px; margin:8px 0; padding:12px 12px; background:rgb(255 255 255/.7); border:1px solid #e5e7eb; border-radius:8px; }
   .sts-card:not(.sts-card--red):not(.sts-card--orange) .sts-hop { background:#f9fafb; }
-  .sts-hop-icon { padding-top:2px; color:#9ca3af; }
+  .sts-hop-icon { padding-top:2px; color:#6b7280; }
   .sts-kv--hop { flex:1; margin:0; }
   .sts-kv--hop > div:first-child { grid-column:1 / -1; }
   .sts-dur { font-weight:600; color:#111827; }
@@ -262,7 +262,7 @@
   .ra-entity { font-size:14px; line-height:1.35; }
   .ra-kv { display:flex; flex-direction:column; gap:8px; margin:8px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
   .ra-kv--top { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px 20px; margin-top:0; padding-top:0; border-top:0; }
-  .ra-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .ra-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .ra-kv dd { margin:4px 0 0; font-size:14px; line-height:1.45; color:#374151; }
   /* Suspicious Activity: table on wider screens, one card per alert on phones */
   .sa-cards { display:none; }
@@ -275,7 +275,7 @@
   .sa-duration { flex-shrink:0; font-size:12px; font-weight:600; color:#374151; font-variant-numeric:tabular-nums; }
   .sa-region { margin-top:8px; font-size:14px; font-weight:600; color:#111827; }
   .sa-kv { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:8px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
-  .sa-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .sa-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .sa-kv dd { margin:2px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; }
   .sa-desc { margin:8px 0 0; font-size:14px; line-height:1.45; color:#4b5563; }
   /* Casualty Data: table on wider screens, one card per casualty on phones */
@@ -303,7 +303,7 @@
   .sc-card-name { margin-top:4px; font-size:14px; line-height:1.35; }
   .sc-lists { display:grid; grid-template-columns:repeat(auto-fill, minmax(128px, 1fr)); gap:8px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
   .sc-lists > div { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:4px 8px; min-height:24px; }
-  .sc-lists dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; white-space:nowrap; }
+  .sc-lists dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; white-space:nowrap; }
   .sc-lists dd { margin:0; }
   .sc-card-kids { margin-top:12px; display:flex; flex-direction:column; gap:8px; }
   .sc-card-kid { background:var(--brand-50,#eff6ff); border-left:2px solid var(--brand-100,#dbeafe); border-radius:8px; padding:12px 12px; }
@@ -358,7 +358,7 @@
   .insp-date { flex-shrink:0; font-size:12px; color:#6b7280; font-variant-numeric:tabular-nums; padding-top:2px; }
   .insp-country { display:flex; align-items:center; gap:8px; margin-top:4px; font-size:14px; color:#4b5563; }
   .insp-kv { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
-  .insp-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
+  .insp-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .insp-kv dd { margin:2px 0 0; font-size:14px; color:#374151; }
   .defects-link { color:var(--brand-700,#0f6aa0); font-weight:600; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
   .defects-link:hover { color:var(--brand-800,#0d5580); text-decoration-thickness:2px; }
@@ -394,7 +394,7 @@
   .sts-btn { position:relative; display:inline-flex; align-items:center; gap:4px; height:32px; padding:0 12px; font:inherit; font-size:14px; font-weight:500; color:#1f2937; background:#fff; border:1px solid #e5e7eb; border-radius:8px; box-shadow:none; cursor:pointer; white-space:nowrap; }
   .sts-btn:hover:not(:disabled) { background:#f9fafb; border-color:#d1d5db; }
   .sts-btn:focus-visible { outline:none; border-color:#60a5fa; box-shadow:0 0 0 3px rgb(45 127 251/.18); }
-  .sts-btn:disabled { color:#9ca3af; background:#fff; box-shadow:none; cursor:not-allowed; }
+  .sts-btn:disabled { color:#6b7280; background:#fff; box-shadow:none; cursor:not-allowed; }
   .sts-btn .sts-chev { color:#6b7280; transition:transform .15s; }
   .sts-btn.is-open .sts-chev { transform:rotate(180deg); }
   .sts-btn.is-active::after { content:''; position:absolute; top:-1px; right:-1px; width:10px; height:10px; background:#DC2626; border-top-right-radius:8px; clip-path:polygon(0 0,100% 0,100% 100%); }
@@ -524,13 +524,13 @@
   /* ── DS color conformance: override off-palette Tailwind utilities ── */
   .bg-blue-100{background-color:#dbeafe!important}.text-blue-700{color:#1d4ed8!important}
   .bg-blue-600{background-color:#1485c5!important}.text-blue-600{color:#0F6AA0!important}
-  .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}.text-amber-500{color:#d97706!important}
+  .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}.text-amber-500{color:#b45309!important}
   .bg-yellow-100{background-color:#fef3c7!important}.text-yellow-700{color:#b45309!important}
-  .bg-orange-50{background-color:#fffbeb!important}.bg-[#d97706]{background-color:#d97706!important}.text-[#d97706]{color:#d97706!important}.text-orange-600{color:#b45309!important}
+  .bg-orange-50{background-color:#fffbeb!important}.bg-[#d97706]{background-color:#d97706!important}.text-[#b45309]{color:#b45309!important}.text-orange-600{color:#b45309!important}
   .bg-green-50{background-color:#f0fdf4!important}.bg-green-100{background-color:#dcfce7!important}.bg-[#16a34a]{background-color:#16a34a!important}
-  .text-green-700{color:#15803d!important}.text-[#16a34a]{color:#16a34a!important}.border-[#dcfce7]{border-color:#dcfce7!important}
+  .text-green-700{color:#15803d!important}.text-[#15803d]{color:#15803d!important}.border-[#dcfce7]{border-color:#dcfce7!important}
   .bg-red-50{background-color:#fef2f2!important}.bg-red-100{background-color:#fee2e2!important}.bg-[#ea580c]{background-color:#dc2626!important}
-  .text-red-700{color:#b91c1c!important}.text-red-600{color:#dc2626!important}.text-[#ea580c]{color:#dc2626!important}.text-red-400{color:#dc2626!important}
+  .text-red-700{color:#b91c1c!important}.text-red-600{color:#b91c1c!important}.text-[#ea580c]{color:#b91c1c!important}.text-red-400{color:#b91c1c!important}
   .bg-purple-100{background-color:#f3f4f6!important}.text-purple-700{color:#9333ea!important}
   .bg-cyan-100{background-color:#f3f4f6!important}.text-cyan-700{color:#0891b2!important}
   .bg-pink-100{background-color:#f3f4f6!important}.text-pink-700{color:#db2777!important}
@@ -625,11 +625,11 @@
   .trp-switch-wrap { display:flex; flex-direction:column; gap:4px; }
   .trp-switch:disabled { cursor:not-allowed; background:#e5e7eb; }
   .trp-switch:disabled::after { box-shadow:none; }
-  .trp-switch-wrap.is-disabled .trp-switch-l, .trp-switch-wrap.is-disabled .trp-switch-v { color:#9ca3af; }
+  .trp-switch-wrap.is-disabled .trp-switch-l, .trp-switch-wrap.is-disabled .trp-switch-v { color:#6b7280; }
   .trp-switch-note { font-size:12px; line-height:1.35; color:#6b7280; }
   html[data-theme="dark"] .trp-switch:disabled { background:#374151 !important; }
   html[data-theme="dark"] .trp-switch-wrap.is-disabled .trp-switch-l, html[data-theme="dark"] .trp-switch-wrap.is-disabled .trp-switch-v { color:#6b7280 !important; }
-  html[data-theme="dark"] .trp-switch-note { color:#9ca3af !important; }
+  html[data-theme="dark"] .trp-switch-note { color:#6b7280 !important; }
   /* Map menus in dark mode (their inline white is rewritten by script, so the chrome's inline-style match misses it) */
   html[data-theme="dark"] #he-map-events-menu, html[data-theme="dark"] #he-map-regions-menu, html[data-theme="dark"] #he-map-weather-menu, html[data-theme="dark"] #he-vt-map-layers-menu, html[data-theme="dark"] #map-events-menu, html[data-theme="dark"] #map-layers-menu, html[data-theme="dark"] #map-regions-menu, html[data-theme="dark"] #map-weather-menu { background:#161f2e !important; border-color:#2a374d !important; color:#e5e7eb !important; }
   html[data-theme="dark"] #he-map-events-menu *, html[data-theme="dark"] #he-map-regions-menu *, html[data-theme="dark"] #he-map-weather-menu *, html[data-theme="dark"] #he-vt-map-layers-menu *, html[data-theme="dark"] #map-events-menu *, html[data-theme="dark"] #map-layers-menu *, html[data-theme="dark"] #map-regions-menu *, html[data-theme="dark"] #map-weather-menu * { border-color:#2a374d !important; }
@@ -672,7 +672,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -886,9 +886,9 @@ const INSPECTIONS = [
 const SUSPICIOUS_ACTIVITY = [
   { start:'2024-11-04 14:23 UTC', end:'2024-11-04 18:45 UTC', duration:'4h 22m',  alertType:'AIS Silence',              alertColor:'bg-[#DBEAFE] text-[#1D4ED8]',   region:'Sea of Azov and Black Sea', regionFlag:true,  desc:'Vessel AIS signal lost in severe weather zone with 12m waves and 65 knot winds' },
   { start:'2024-11-03 18:42 UTC', end:'2024-11-04 02:15 UTC', duration:'7h 33m',  alertType:'Unusual Movement Patterns', alertColor:'bg-[#FEF3C7] text-[#B45309]', region:'Suez Canal',               regionFlag:false, desc:'Vessel deviating from planned route with erratic course changes' },
-  { start:'2024-11-03 12:30 UTC', end:'2024-11-03 14:18 UTC', duration:'1h 48m',  alertType:'AIS Spoofing',              alertColor:'bg-[#f0e2fc] text-[#1F2937]',region:'Cannes, Nice',             regionFlag:false, desc:'AIS position data inconsistent with satellite tracking information' },
-  { start:'2024-11-02 21:05 UTC', end:'2024-11-03 05:20 UTC', duration:'8h 15m',  alertType:'Drifting',                  alertColor:'bg-[#dcf0f4] text-[#1F2937]',   region:'Gulf of Guinea',           regionFlag:true,  desc:'Vessel stationary for extended period with engines showing minimal power' },
-  { start:'2024-11-01 16:30 UTC', end:'2024-11-01 16:30 UTC', duration:'Ongoing', alertType:'Name/Flag Change',           alertColor:'bg-[#fae1ec] text-[#1F2937]',   region:'Miami',                    regionFlag:false, desc:'Vessel identity changed multiple times in short period' },
+  { start:'2024-11-03 12:30 UTC', end:'2024-11-03 14:18 UTC', duration:'1h 48m',  alertType:'AIS Spoofing',              alertColor:'bg-[#f3e8ff] text-[#1F2937]',region:'Cannes, Nice',             regionFlag:false, desc:'AIS position data inconsistent with satellite tracking information' },
+  { start:'2024-11-02 21:05 UTC', end:'2024-11-03 05:20 UTC', duration:'8h 15m',  alertType:'Drifting',                  alertColor:'bg-[#cffafe] text-[#1F2937]',   region:'Gulf of Guinea',           regionFlag:true,  desc:'Vessel stationary for extended period with engines showing minimal power' },
+  { start:'2024-11-01 16:30 UTC', end:'2024-11-01 16:30 UTC', duration:'Ongoing', alertType:'Name/Flag Change',           alertColor:'bg-[#fce7f3] text-[#1F2937]',   region:'Miami',                    regionFlag:false, desc:'Vessel identity changed multiple times in short period' },
 ];
 
 const STS_DATA = [
@@ -1367,15 +1367,15 @@ function PortCallsCard() {
           </div>
           <div class="space-y-0.5 text-xs text-ink-600">
             <div class="flex items-center justify-center gap-2">
-              <svg class="w-3 h-3 text-ink-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg class="w-3 h-3 text-ink-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               <span>Arr: 2025-12-28 11:00</span>
-              <svg class="w-3 h-3 text-ink-400" style="transform:rotate(90deg);" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10 15v-3"/><path d="M14 15v-3"/><path d="M18 15v-3"/><path d="M2 8V4"/><path d="M22 6H2"/><path d="M22 8V4"/><path d="M6 15v-3"/><rect x="2" y="12" width="20" height="6" rx="1"/></svg>
+              <svg class="w-3 h-3 text-ink-500" style="transform:rotate(90deg);" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10 15v-3"/><path d="M14 15v-3"/><path d="M18 15v-3"/><path d="M2 8V4"/><path d="M22 6H2"/><path d="M22 8V4"/><path d="M6 15v-3"/><rect x="2" y="12" width="20" height="6" rx="1"/></svg>
               <span>12.4m</span>
             </div>
             <div class="flex items-center justify-center gap-2">
-              <svg class="w-3 h-3 text-ink-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+              <svg class="w-3 h-3 text-ink-500" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
               <span>Dep: 2025-12-30 18:30</span>
-              <svg class="w-3 h-3 text-ink-400" style="transform:rotate(90deg);" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10 15v-3"/><path d="M14 15v-3"/><path d="M18 15v-3"/><path d="M2 8V4"/><path d="M22 6H2"/><path d="M22 8V4"/><path d="M6 15v-3"/><rect x="2" y="12" width="20" height="6" rx="1"/></svg>
+              <svg class="w-3 h-3 text-ink-500" style="transform:rotate(90deg);" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M10 15v-3"/><path d="M14 15v-3"/><path d="M18 15v-3"/><path d="M2 8V4"/><path d="M22 6H2"/><path d="M22 8V4"/><path d="M6 15v-3"/><rect x="2" y="12" width="20" height="6" rx="1"/></svg>
               <span>12.2m</span>
             </div>
           </div>
@@ -1605,7 +1605,7 @@ function CasualtyRiskCard() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -1616,7 +1616,7 @@ function CasualtyRiskCard() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -1627,7 +1627,7 @@ function CasualtyRiskCard() {
                 <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -1658,7 +1658,7 @@ function CasualtyRiskCard() {
             <tr style="border-bottom:1px solid #f3f4f6;">
               <td style="padding:8px 4px;color:#374151;font-size:12px;">${r.name}</td>
               <td style="padding:8px 8px;text-align:right;font-weight:600;color:#111827;font-size:12px;">${r.score}</td>
-              <td style="padding:8px 4px;text-align:right;font-weight:600;color:${r.impact > 0 ? '#d97706' : '#9ca3af'};font-size:12px;">${r.impact > 0 ? r.impact.toFixed(2) : '0'}</td>
+              <td style="padding:8px 4px;text-align:right;font-weight:600;color:${r.impact > 0 ? '#b45309' : '#6b7280'};font-size:12px;">${r.impact > 0 ? r.impact.toFixed(2) : '0'}</td>
             </tr>`).join('')}
           </tbody>
         </table>
@@ -1868,7 +1868,7 @@ function CasualtyRiskCardCopy7() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -1879,7 +1879,7 @@ function CasualtyRiskCardCopy7() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -1890,7 +1890,7 @@ function CasualtyRiskCardCopy7() {
                 <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -1921,7 +1921,7 @@ function CasualtyRiskCardCopy7() {
             <tr style="border-bottom:1px solid #f3f4f6;">
               <td style="padding:8px 4px;color:#374151;font-size:12px;">${r.name}</td>
               <td style="padding:8px 8px;text-align:right;font-weight:600;color:#111827;font-size:12px;">${r.score}</td>
-              <td style="padding:8px 4px;text-align:right;font-weight:600;color:${r.impact > 0 ? '#d97706' : '#9ca3af'};font-size:12px;">${r.impact > 0 ? r.impact.toFixed(2) : '0'}</td>
+              <td style="padding:8px 4px;text-align:right;font-weight:600;color:${r.impact > 0 ? '#b45309' : '#6b7280'};font-size:12px;">${r.impact > 0 ? r.impact.toFixed(2) : '0'}</td>
             </tr>`).join('')}
           </tbody>
         </table>
@@ -2059,8 +2059,8 @@ function CasualtyRiskCardCopy8() {
     const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
     const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
     const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
-    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
-    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table><div class="rs-tip-lgd"><div class="rs-tip-lgd-h">Risk level guide</div><div class="rs-tip-lgd-r"><span style="background:#16a34a"></span><b style="color:#16a34a">Good</b><i>0 → 25</i></div><div class="rs-tip-lgd-r"><span style="background:#d97706"></span><b style="color:#d97706">Average</b><i>25+ → 50</i></div><div class="rs-tip-lgd-r"><span style="background:#dc2626"></span><b style="color:#dc2626">Below Avg.</b><i>50+ → 100</i></div></div></div></span>`;
+    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table><div class="rs-tip-lgd"><div class="rs-tip-lgd-h">Risk level guide</div><div class="rs-tip-lgd-r"><span style="background:#16a34a"></span><b style="color:#15803d">Good</b><i>0 → 25</i></div><div class="rs-tip-lgd-r"><span style="background:#d97706"></span><b style="color:#b45309">Average</b><i>25+ → 50</i></div><div class="rs-tip-lgd-r"><span style="background:#dc2626"></span><b style="color:#b91c1c">Below Avg.</b><i>50+ → 100</i></div></div></div></span>`;
     body = `
     <div class="co-rs-body" style="padding:8px 12px 16px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:4px;">
       <div class="co-rs-toggles" style="display:flex;align-items:center;justify-content:space-between;gap:4px 8px;flex-wrap:wrap;">
@@ -2280,7 +2280,7 @@ function CasualtyRiskCardCopy() {
           }).join('');
           const xlabels = pts.map((p,i)=>{ const anc=i===0?'start':i===pts.length-1?'end':'middle'; const xp=i===0?padL:i===pts.length-1?W-padR:x(i); return `<text x="${xp.toFixed(1)}" y="${H-8}" text-anchor="${anc}" font-size="9.5" font-weight="600" fill="#6b7280" font-family="Inter,sans-serif">${p.label}</text>`; }).join('');
           const tipAlign = i => i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
-          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
           const nodes = pts.map((p,i)=>`<div class="rs-node" style="left:${(x(i)/W*100).toFixed(2)}%;top:${(y(p.v)/H*100).toFixed(2)}%;">
             <div class="rs-tip ${tipAlign(i)}">
               <div class="rs-tip-h">${p.label} · Risk Score ${p.v}</div>
@@ -2316,7 +2316,7 @@ function CasualtyRiskCardCopy() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -2327,7 +2327,7 @@ function CasualtyRiskCardCopy() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -2338,7 +2338,7 @@ function CasualtyRiskCardCopy() {
                 <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#dc2626"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -2481,7 +2481,7 @@ function CasualtyRiskCardCopy4() {
             const d = up ? 'M12 5v14M6 11l6-6 6 6' : 'M12 19V5M6 13l6 6 6-6';
             return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${ac}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
           };
-          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
           return `<div style="display:flex;align-items:stretch;flex:1;">` + pts.map((p,i)=>{
             const align = i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
             return `
@@ -2510,7 +2510,7 @@ function CasualtyRiskCardCopy4() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -2521,7 +2521,7 @@ function CasualtyRiskCardCopy4() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -2532,7 +2532,7 @@ function CasualtyRiskCardCopy4() {
                 <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#dc2626"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -2702,7 +2702,7 @@ function CasualtyRiskCardCopy2() {
           }).join('');
           const xlabels = pts.map((p,i)=>{ const anc=i===0?'start':i===pts.length-1?'end':'middle'; const xp=i===0?padL:i===pts.length-1?W-padR:x(i); return `<text x="${xp.toFixed(1)}" y="${H-8}" text-anchor="${anc}" font-size="9.5" font-weight="600" fill="#6b7280" font-family="Inter,sans-serif">${p.label}</text>`; }).join('');
           const tipAlign = i => i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
-          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
           const nodes = pts.map((p,i)=>`<div class="rs-node" style="left:${(x(i)/W*100).toFixed(2)}%;top:${(y(p.v)/H*100).toFixed(2)}%;">
             <div class="rs-tip ${tipAlign(i)}">
               <div class="rs-tip-h">${p.label} · Risk Score ${p.v}</div>
@@ -2738,7 +2738,7 @@ function CasualtyRiskCardCopy2() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -2749,7 +2749,7 @@ function CasualtyRiskCardCopy2() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -2760,7 +2760,7 @@ function CasualtyRiskCardCopy2() {
                 <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#dc2626"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -2927,7 +2927,7 @@ function CasualtyRiskCardCopy5() {
             const d = up ? 'M12 5v14M6 11l6-6 6 6' : 'M12 19V5M6 13l6 6 6-6';
             return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${ac}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
           };
-          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
           return `<div style="display:flex;align-items:stretch;flex:1;">` + pts.map((p,i)=>{
             const align = i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
             return `
@@ -2957,7 +2957,7 @@ function CasualtyRiskCardCopy5() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -2968,7 +2968,7 @@ function CasualtyRiskCardCopy5() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -2979,7 +2979,7 @@ function CasualtyRiskCardCopy5() {
                 <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#dc2626"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -3149,7 +3149,7 @@ function CasualtyRiskCardCopy3() {
           }).join('');
           const xlabels = pts.map((p,i)=>{ const anc=i===0?'start':i===pts.length-1?'end':'middle'; const xp=i===0?padL:i===pts.length-1?W-padR:x(i); return `<text x="${xp.toFixed(1)}" y="${H-8}" text-anchor="${anc}" font-size="9.5" font-weight="600" fill="#6b7280" font-family="Inter,sans-serif">${p.label}</text>`; }).join('');
           const tipAlign = i => i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
-          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
           const nodes = pts.map((p,i)=>`<div class="rs-node" style="left:${(x(i)/W*100).toFixed(2)}%;top:${(y(p.v)/H*100).toFixed(2)}%;">
             <div class="rs-tip ${tipAlign(i)}">
               <div class="rs-tip-h">${p.label} · Risk Score ${p.v}</div>
@@ -3185,7 +3185,7 @@ function CasualtyRiskCardCopy3() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -3196,7 +3196,7 @@ function CasualtyRiskCardCopy3() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -3207,7 +3207,7 @@ function CasualtyRiskCardCopy3() {
                 <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#dc2626"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -3358,7 +3358,7 @@ function CasualtyRiskCardCopy6() {
             const d = up ? 'M12 5v14M6 11l6-6 6 6' : 'M12 19V5M6 13l6 6 6-6';
             return `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${ac}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
           };
-          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+          const factorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
           return `<div style="display:flex;align-items:stretch;flex:1;">` + pts.map((p,i)=>{
             const align = i===0 ? 'l' : i===pts.length-1 ? 'r' : 'c';
             return `
@@ -3387,7 +3387,7 @@ function CasualtyRiskCardCopy6() {
                 <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#16a34a;line-height:1.1;">Good</div>
+                <div style="font-size:12px;font-weight:700;color:#15803d;line-height:1.1;">Good</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">0 → 25</div>
               </div>
             </div>
@@ -3398,7 +3398,7 @@ function CasualtyRiskCardCopy6() {
                 <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="3"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#d97706;line-height:1.1;">Average</div>
+                <div style="font-size:12px;font-weight:700;color:#b45309;line-height:1.1;">Average</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">25+ → 50</div>
               </div>
             </div>
@@ -3409,7 +3409,7 @@ function CasualtyRiskCardCopy6() {
                 <svg width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#dc2626"/></svg>
               </div>
               <div>
-                <div style="font-size:12px;font-weight:700;color:#dc2626;line-height:1.1;white-space:nowrap;">Below Avg.</div>
+                <div style="font-size:12px;font-weight:700;color:#b91c1c;line-height:1.1;white-space:nowrap;">Below Avg.</div>
                 <div style="font-size:12px;color:#6b7280;margin-top:1px;">50+ → 100</div>
               </div>
             </div>
@@ -3430,7 +3430,7 @@ function CasualtyRiskCardCopy6() {
 
 const ASSOC_RISK_COLOR = { Critical:'#dc2626', High:'#d97706', Medium:'#eab308', Low:'#16a34a', Informational:'#d1d5db' };
 
-const ASSOC_ARROW = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400 shrink-0" style="display:inline-block;vertical-align:-2px;"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>';
+const ASSOC_ARROW = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-500 shrink-0" style="display:inline-block;vertical-align:-2px;"><path d="M18 8L22 12L18 16"/><path d="M2 12H22"/></svg>';
 
 const ASSOC_ROLE_OPTS = ['Owner','Registered Owner','Technical Manager','Commercial Manager','Operator','Charterer','Flag State','Classification Society','Associated Vessel','STS Partner','Corporate Relationship'];
 
@@ -3454,7 +3454,7 @@ function InspectionTable() {
   const sortHead = (label) => `
   <button class="inline-flex items-start gap-1 text-left text-xs font-semibold tracking-wider uppercase text-ink-500 hover:text-ink-700">
     <span class="text-left">${label}</span>
-    <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 mt-px text-ink-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
+    <svg viewBox="0 0 24 24" class="h-3 w-3 shrink-0 mt-px text-ink-500" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
   </button>`;
   
   return `
@@ -3648,7 +3648,7 @@ function InspectionTable() {
             const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
             const compBadge = (c) => c === 'sanctioned' ? sanctionBadge : c === 'ok-warn' ? warnBadge : okBadge;
             const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
-            const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
+            const arrowIcon = `<svg class="w-3 h-3 text-ink-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
             return `
             <tr class="border-b border-ink-100 last:border-b-0 ${border}">
               <td class="px-3 py-2">
@@ -3712,7 +3712,7 @@ function InspectionTable() {
             const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
             const compBadge = (c) => c === 'sanctioned' ? sanctionBadge : c === 'ok-warn' ? warnBadge : okBadge;
             const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
-            const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
+            const arrowIcon = `<svg class="w-3 h-3 text-ink-500 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
             const vessel = v => `
           <div class="sts-vessel">
             <div class="sts-vessel-name">${vesselIcon}<span>${v.name}</span></div>
@@ -3876,10 +3876,10 @@ function AssocRoleMenu() {
   return `
   <div class="relative shrink-0" data-assoc-filter-wrap>
     <button data-assoc-filter-btn class="h-8 inline-flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 text-xs font-medium text-ink-800 hover:bg-ink-50">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-ink-500"><path d="M3 6h18M7 12h10M10 18h4"/></svg>
       <span class="text-ink-500">Role</span>
       <span>${summary}</span>
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-ink-400"><path d="m6 9 6 6 6-6"/></svg>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-ink-500"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div data-assoc-filter-menu class="hidden absolute right-0 top-[calc(100%+4px)] z-30 w-[220px] rounded-lg border border-ink-200 bg-white shadow-lg py-1 max-h-[380px] overflow-y-auto scroll-thin">
       <button data-assoc-filter="__all" class="w-full flex items-center gap-2 px-3 py-2 text-left text-xs font-medium text-ink-700 hover:bg-ink-50">${box(all)}<span>All</span></button>
@@ -3988,7 +3988,7 @@ function EnvironmentalRatingCard() {
     <div class="flex items-center justify-between py-2">
       <span class="text-xs text-ink-700">${item.label}</span>
       <div class="flex items-center gap-2">
-        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
+        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
         <span class="px-2 py-0.5 rounded text-xs font-bold ${gradeText(bg) === '#111827' ? 'grade-ink' : 'text-white'}" style="background:${bg}">${item.badge}</span>
       </div>
     </div>`;
@@ -4179,7 +4179,7 @@ function AdditionalDetailsBody() {
   const sortHead = (label) => `
   <button class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-ink-500 hover:text-ink-700 whitespace-nowrap">
     ${label}
-    <svg viewBox="0 0 24 24" class="h-3 w-3 text-ink-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
+    <svg viewBox="0 0 24 24" class="h-3 w-3 text-ink-500" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
   </button>`;
   return `
   <div>
@@ -4225,9 +4225,9 @@ function HistoricalDetailsBody() {
   const sortHead = (label) => `
   <button class="inline-flex items-center gap-1 text-xs font-semibold tracking-wider uppercase text-ink-500 hover:text-ink-700 whitespace-nowrap">
     ${label}
-    <svg viewBox="0 0 24 24" class="h-3 w-3 text-ink-400" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
+    <svg viewBox="0 0 24 24" class="h-3 w-3 text-ink-500" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg>
   </button>`;
-  const arrow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5 inline-block ml-1 align-[-2px] text-[#d97706]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>`;
+  const arrow = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5 inline-block ml-1 align-[-2px] text-[#b45309]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>`;
   const cell = (val, isChanged) => isChanged
     ? `<td class="px-3 py-3 text-orange-600 font-semibold whitespace-nowrap"><span class="inline-flex items-center">${val}${arrow}</span></td>`
     : `<td class="px-3 py-3 text-ink-700 whitespace-nowrap">${val}</td>`;
@@ -4414,16 +4414,16 @@ function VesselTrackingCard() {
       <!-- Timeline overlay -->
       <div class="timeline-overlay">
         <div style="display:flex;align-items:center;gap:8px;">
-          <span id="tl-start" style="font-size:12px;color:#9ca3af;white-space:nowrap;">${state.trackRange.start}</span>
+          <span id="tl-start" style="font-size:12px;color:#6b7280;white-space:nowrap;">${state.trackRange.start}</span>
           <button type="button" class="tl-step" id="timeline-prev" title="Step back 1 hour" aria-label="Move vessel back 1 hour"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
           <div class="timeline-track" id="timeline-slider" role="slider" tabindex="0" aria-label="Track position" aria-valuemin="0" aria-valuemax="100">
             <div class="timeline-fill" id="timeline-fill"></div>
             <div class="timeline-thumb" id="timeline-thumb"></div>
           </div>
           <button type="button" class="tl-step" id="timeline-next" title="Step forward 1 hour" aria-label="Move vessel forward 1 hour"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
-          <span id="tl-end" style="font-size:12px;color:#9ca3af;white-space:nowrap;">${state.trackRange.end}</span>
+          <span id="tl-end" style="font-size:12px;color:#6b7280;white-space:nowrap;">${state.trackRange.end}</span>
         </div>
-        <div id="timeline-timestamp" style="font-size:12px;color:#9ca3af;text-align:center;margin-top:4px;">Tue, 07 Oct 2025 09:00:00 GMT</div>
+        <div id="timeline-timestamp" style="font-size:12px;color:#6b7280;text-align:center;margin-top:4px;">Tue, 07 Oct 2025 09:00:00 GMT</div>
       </div>
     </div>
   </div>`;
@@ -4495,7 +4495,7 @@ function HistoricalEventsCard() {
     <div class="px-4 py-3 border-b border-ink-200" style="display:flex;align-items:center;gap:8px;">
       <div class="relative" style="flex:1;min-width:0;">
         <input type="search" placeholder="Search Historical events..." class="w-full px-3 py-2 pr-8 border border-ink-200 rounded-lg text-xs" />
-        <svg class="w-4 h-4 text-ink-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
+        <svg class="w-4 h-4 text-ink-500 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
       </div>
         <div style="position:relative;">
           <button id="map-events-btn" type="button" class="hist-cal-btn" title="Filter events" aria-label="Filter events" aria-haspopup="true" aria-expanded="false" style="width:auto;padding:0 12px;gap:4px;display:inline-flex;align-items:center;font-size:14px;font-weight:500;">
@@ -4531,12 +4531,12 @@ const _ei = p => `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" st
 var MAP_EVENT_TYPES = [
   { id:'sts',     label:'Ship-To-Ship',            bg:'#dbeafe', fg:'#1d4ed8', icon:_ei('<path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/>') },
   { id:'dark',    label:'Dark Activity',           bg:'#374151', fg:'#ffffff', icon:_ei('<path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/>') },
-  { id:'sog',     label:'Speed Over Ground',       bg:'#fae1ec', fg:'#DB2777', icon:_ei('<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>') },
-  { id:'loiter',  label:'Loitering',               bg:'#e9f2dd', fg:'#65A30D', icon:_ei('<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>') },
+  { id:'sog',     label:'Speed Over Ground',       bg:'#fce7f3', fg:'#DB2777', icon:_ei('<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>') },
+  { id:'loiter',  label:'Loitering',               bg:'#dcfce7', fg:'#65A30D', icon:_ei('<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>') },
   { id:'enter',   label:'Entering Alert',          bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>') },
   { id:'exit',    label:'Exit Alert',              bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>') },
-  { id:'weather', label:'Vessel affected by Weather', bg:'#dcf0f4', fg:'#0891B2', icon:_ei('<path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>') },
-  { id:'ais',     label:'AIS Static Detail Change', bg:'#f0e2fc', fg:'#9333EA', icon:_ei('<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>') },
+  { id:'weather', label:'Vessel affected by Weather', bg:'#cffafe', fg:'#0891B2', icon:_ei('<path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>') },
+  { id:'ais',     label:'AIS Static Detail Change', bg:'#f3e8ff', fg:'#9333EA', icon:_ei('<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>') },
 ];
 var MAP_REGION_GROUPS = [
   { label:'Country EEZ', items:['Greece EEZ','Egypt EEZ','Italy EEZ','Libya EEZ'] },
@@ -5014,7 +5014,7 @@ function initMap() {
   // Vessel marker — stored globally so wireTimeline can move it
   const vesselIcon = L.divIcon({
     className: '',
-    html: `<div class="vd-vessel" style="width:20px;height:20px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));transform-origin:center;"><svg viewBox="0 0 24 24" width="20" height="20" style="color:#dc2626;" fill="currentColor" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg></div>`,
+    html: `<div class="vd-vessel" style="width:20px;height:20px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));transform-origin:center;"><svg viewBox="0 0 24 24" width="20" height="20" style="color:#b91c1c;" fill="currentColor" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg></div>`,
     iconSize: [20, 20],
     iconAnchor: [10, 10],
   });
@@ -5551,16 +5551,16 @@ function VesselTrackingCard() {
       <!-- Timeline overlay -->
       <div class="timeline-overlay">
         <div style="display:flex;align-items:center;gap:8px;">
-          <span id="he-tl-start" style="font-size:12px;color:#9ca3af;white-space:nowrap;">${state.trackRange.start}</span>
+          <span id="he-tl-start" style="font-size:12px;color:#6b7280;white-space:nowrap;">${state.trackRange.start}</span>
           <button type="button" class="tl-step" id="he-timeline-prev" title="Step back 1 hour" aria-label="Move vessel back 1 hour"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
           <div class="timeline-track" id="he-timeline-slider" role="slider" tabindex="0" aria-label="Track position" aria-valuemin="0" aria-valuemax="100">
             <div class="timeline-fill" id="he-timeline-fill"></div>
             <div class="timeline-thumb" id="he-timeline-thumb"></div>
           </div>
           <button type="button" class="tl-step" id="he-timeline-next" title="Step forward 1 hour" aria-label="Move vessel forward 1 hour"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
-          <span id="he-tl-end" style="font-size:12px;color:#9ca3af;white-space:nowrap;">${state.trackRange.end}</span>
+          <span id="he-tl-end" style="font-size:12px;color:#6b7280;white-space:nowrap;">${state.trackRange.end}</span>
         </div>
-        <div id="he-timeline-timestamp" style="font-size:12px;color:#9ca3af;text-align:center;margin-top:4px;">Tue, 07 Oct 2025 09:00:00 GMT</div>
+        <div id="he-timeline-timestamp" style="font-size:12px;color:#6b7280;text-align:center;margin-top:4px;">Tue, 07 Oct 2025 09:00:00 GMT</div>
       </div>
     </div>
   </div>`;
@@ -5639,7 +5639,7 @@ function HistoricalEventsCard() {
     <div class="px-4 py-3 border-b border-ink-200" style="display:flex;align-items:center;gap:8px;">
       <div class="relative" style="flex:1;min-width:0;">
         <input type="search" placeholder="Search Historical events..." class="w-full px-3 py-2 pr-8 border border-ink-200 rounded-lg text-xs" />
-        <svg class="w-4 h-4 text-ink-400 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
+        <svg class="w-4 h-4 text-ink-500 absolute right-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/></svg>
       </div>
     </div>
     <div id="he-hist-list-wrap" class="flex-1 min-h-0 flex flex-col">${HistListHtml()}</div>
@@ -5657,12 +5657,12 @@ const _ei = p => `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" st
 var MAP_EVENT_TYPES = [
   { id:'sts',     label:'Ship-To-Ship',            bg:'#dbeafe', fg:'#1d4ed8', icon:_ei('<path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/>') },
   { id:'dark',    label:'Dark Activity',           bg:'#374151', fg:'#ffffff', icon:_ei('<path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/>') },
-  { id:'sog',     label:'Speed Over Ground',       bg:'#fae1ec', fg:'#DB2777', icon:_ei('<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>') },
-  { id:'loiter',  label:'Loitering',               bg:'#e9f2dd', fg:'#65A30D', icon:_ei('<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>') },
+  { id:'sog',     label:'Speed Over Ground',       bg:'#fce7f3', fg:'#DB2777', icon:_ei('<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>') },
+  { id:'loiter',  label:'Loitering',               bg:'#dcfce7', fg:'#65A30D', icon:_ei('<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>') },
   { id:'enter',   label:'Entering Alert',          bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m10 17 5-5-5-5"/><path d="M15 12H3"/><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>') },
   { id:'exit',    label:'Exit Alert',              bg:'#fee2e2', fg:'#dc2626', icon:_ei('<path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>') },
-  { id:'weather', label:'Vessel affected by Weather', bg:'#dcf0f4', fg:'#0891B2', icon:_ei('<path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>') },
-  { id:'ais',     label:'AIS Static Detail Change', bg:'#f0e2fc', fg:'#9333EA', icon:_ei('<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>') },
+  { id:'weather', label:'Vessel affected by Weather', bg:'#cffafe', fg:'#0891B2', icon:_ei('<path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/>') },
+  { id:'ais',     label:'AIS Static Detail Change', bg:'#f3e8ff', fg:'#9333EA', icon:_ei('<path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/>') },
 ];
 
 var MAP_REGION_GROUPS = [
@@ -6184,7 +6184,7 @@ function initMap() {
   // Vessel marker — stored globally so wireTimeline can move it
   const vesselIcon = L.divIcon({
     className: '',
-    html: `<div class="vd-vessel" style="width:20px;height:20px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));transform-origin:center;"><svg viewBox="0 0 24 24" width="20" height="20" style="color:#dc2626;" fill="currentColor" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg></div>`,
+    html: `<div class="vd-vessel" style="width:20px;height:20px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 1px 3px rgba(0,0,0,.45));transform-origin:center;"><svg viewBox="0 0 24 24" width="20" height="20" style="color:#b91c1c;" fill="currentColor" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"><path d="M12 2 L19 20 L12 16 L5 20 Z"/></svg></div>`,
     iconSize: [20, 20],
     iconAnchor: [10, 10],
   });

@@ -48,9 +48,9 @@
   .btn-gray:hover{background:#f9fafb}
   /* Compliance badge */
   .comp-badge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;white-space:nowrap}
-  .cb-compliant{background:#f0fdf4;color:#16a34a}
-  .cb-minor{background:#fffbeb;color:#d97706}
-  .cb-noncompliant{background:#fef2f2;color:#dc2626}
+  .cb-compliant{background:#f0fdf4;color:#15803d}
+  .cb-minor{background:#fffbeb;color:#b45309}
+  .cb-noncompliant{background:#fef2f2;color:#b91c1c}
   /* Assets table */
   .at-tbl{width:100%;border-collapse:collapse;min-width:540px}
   .at-tbl th{padding:8px 12px;font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;text-align:left;border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB)}
@@ -65,7 +65,7 @@
   .at-link{color:var(--brand-700,#0f6aa0);font-weight:500;text-decoration:none;cursor:pointer}
   .at-link:hover{color:var(--brand-800,#0d5580);text-decoration:underline;text-underline-offset:2px}
   #asset-filter:focus,#psc-sev:focus{border-color:var(--brand-500,#60a5fa);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#1485c5) 18%,transparent)}
-  .search-icon{position:absolute;left:9px;color:#9ca3af;display:flex;pointer-events:none}
+  .search-icon{position:absolute;left:9px;color:#6b7280;display:flex;pointer-events:none}
   /* Pagination */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
@@ -91,7 +91,7 @@
   @media(max-width:639px){.top-row-grid.is-simple{grid-template-columns:1fr}}
   .cd-view-bar{display:flex;justify-content:flex-end;gap:16px;margin:-4px 0 -4px}
   .cd-view-opt{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#374151;cursor:pointer;user-select:none}
-  .ds-radio{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid var(--border-strong,#d1d5db);border-radius:50%;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
+  .ds-radio{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid #6B7280;border-radius:50%;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
   .ds-radio:checked{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
   .ds-radio:focus-visible{outline:none;box-shadow:var(--shadow-focus,0 0 0 3px rgb(45 127 251/.32))}
@@ -112,7 +112,7 @@
   .env-cols > * + * { border-left:1px solid #e5e7eb; }
   @media (max-width:767px) { .env-cols > * { padding:20px 0 0; } .env-cols > *:first-child { padding-top:0; } .env-cols > * + * { border-left:0; border-top:1px solid #e5e7eb; margin-top:20px; } }
   .psc-box { background:#fff; border:1px solid #e5e7eb; border-radius:8px; overflow:hidden; }
-  .psc-head { background:var(--brand-600,#2563eb); color:#fff; text-align:center; font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; padding:8px 12px; letter-spacing:.03em; }
+  .psc-head { background:var(--brand-500,#1a92d1); color:#fff; text-align:center; font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; padding:8px 12px; letter-spacing:.03em; }
   .psc-subhead { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); }
   .psc-subhead span { padding:8px 12px; font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); text-align:center; text-transform:uppercase; letter-spacing:.04em; }
   .psc-subhead span:first-child { text-align:left; color:#6b7280; }
@@ -146,7 +146,7 @@
   .pg-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid #e5e7eb}
   /* Risk Score info popups */
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
-  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#6b7280;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#2563eb;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
@@ -206,7 +206,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script src="shared/regions-history.js"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
@@ -370,9 +370,9 @@ const IC = {
 };
 
 function riskColor(r) {
-  if (r < 40) return '#16a34a';
-  if (r < 75) return '#d97706';
-  return '#dc2626';
+  if (r < 40) return '#15803d';
+  if (r < 75) return '#b45309';
+  return '#b91c1c';
 }
 
 function complianceCls(c) {
@@ -435,9 +435,9 @@ function CardPortCalls() {
       <div class="px-3 pt-3 pb-2 text-xs text-ink-500 border-b border-ink-200 sticky top-0 bg-white" style="z-index:1">Top 10 ports visited by fleet &middot; last 24 months</div>
       ${CO_TOP_PORTS.map((p, i) => `
       <div class="px-3 py-2 border-b border-ink-100 last:border-0 grid grid-cols-[16px_1fr_auto] gap-2 items-center">
-        <span class="text-xs font-semibold text-ink-400 text-right" style="font-variant-numeric:tabular-nums;">${i + 1}</span>
+        <span class="text-xs font-semibold text-ink-500 text-right" style="font-variant-numeric:tabular-nums;">${i + 1}</span>
         <div class="flex flex-col gap-1 min-w-0">
-          <div class="flex items-center gap-1 min-w-0">${fl(p.cc)}<span class="text-xs font-semibold text-ink-900 truncate">${p.port}</span><span class="text-xs text-ink-400 truncate">${p.country}</span></div>
+          <div class="flex items-center gap-1 min-w-0">${fl(p.cc)}<span class="text-xs font-semibold text-ink-900 truncate">${p.port}</span><span class="text-xs text-ink-500 truncate">${p.country}</span></div>
           <div class="h-1 rounded-full bg-ink-100 overflow-hidden"><div class="h-full rounded-full bg-brand-500" style="width:${Math.round(p.calls / max * 100)}%;"></div></div>
           <span class="text-xs text-ink-500">${p.vessels} vessels &middot; last ${p.last}</span>
         </div>
@@ -448,7 +448,7 @@ function CardPortCalls() {
 }
 function CardCompanyDetails() {
   const complianceBadge = sanctioned
-    ? `<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 12px;border-radius:999px;background:#fee2e2;color:#dc2626;font-size:12px;font-weight:700;"><span style="width:6px;height:6px;border-radius:50%;background:#dc2626;"></span>Sanctioned</span>`
+    ? `<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 12px;border-radius:999px;background:#fee2e2;color:#b91c1c;font-size:12px;font-weight:700;"><span style="width:6px;height:6px;border-radius:50%;background:#dc2626;"></span>Sanctioned</span>`
     : `<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 12px;border-radius:999px;background:#dcfce7;color:#15803d;font-size:12px;font-weight:700;"><span style="width:6px;height:6px;border-radius:50%;background:#16a34a;"></span>Compliant</span>`;
   const shieldIco = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/></svg>`;
   const fields = [
@@ -465,7 +465,7 @@ function CardCompanyDetails() {
     <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center">
       ${coSimple() ? '<span style="font-size:14px;font-weight:700;color:#111827">Company Details</span>' : `<div class="cd-tabs" role="tablist">${['Company Details','Company Activity'].map(t => `<button type="button" class="cd-tab" role="tab" aria-selected="${coTopTab===t}" data-co-toptab="${t}">${t}</button>`).join('')}</div>`}
     </div>
-    ${coTopTab === 'Company Activity' && !coSimple() ? `<div class="flex-1 flex flex-col items-center justify-center text-center gap-2 px-6" style="color:#9ca3af">
+    ${coTopTab === 'Company Activity' && !coSimple() ? `<div class="flex-1 flex flex-col items-center justify-center text-center gap-2 px-6" style="color:#6b7280">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
       <div style="font-size:14px;font-weight:600;color:#4b5563">Company Activity</div>
       <div style="font-size:12px">Content coming soon.</div>
@@ -562,7 +562,7 @@ function CardRiskBreakdown() {
     const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
     const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
     const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
-    const rsFactorRows = factors.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsFactorRows = factors.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
     const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
     let body = `
     <div class="co-rs-body" style="padding:8px 12px 16px;flex:1;overflow:visible;display:flex;flex-direction:column;gap:4px;">
@@ -570,7 +570,7 @@ function CardRiskBreakdown() {
         <button data-co-trends class="co-rs-trend" role="switch" aria-checked="${coWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${coWithTrends?'var(--brand-600,#1485c5)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${coWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${coWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s;"></span>
           </span>
         </button>
       </div>
@@ -580,7 +580,7 @@ function CardRiskBreakdown() {
         ${coIsSanctioned ? `<button data-co-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;margin-bottom:4px;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${coWithSanctions?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${coWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${coWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s;"></span>
           </span>
         </button>` : ''}
           <span style="background:#6b7280;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:2px;">2026</span>
@@ -680,7 +680,7 @@ function CardCompliance() {
         ${icon}
       </div>
       <div style="font-size:19px;font-weight:700;color:${circleColor}">${label}</div>
-      <div style="font-size:12px;color:#9ca3af">Updated at: ${updatedDate}</div>
+      <div style="font-size:12px;color:#6b7280">Updated at: ${updatedDate}</div>
     </div>
     <div class="card-foot" style="justify-content:center">
       <button class="foot-link">View Policies</button>
@@ -848,7 +848,7 @@ function CoEnvRating() {
     <div class="flex items-center justify-between py-2">
       <span class="text-xs text-ink-700">${item.label}</span>
       <div class="flex items-center gap-2">
-        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
+        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
         <span class="px-2 py-0.5 rounded text-xs font-bold text-white" style="background:${item.color}">${item.badge}</span>
       </div>
     </div>`;
@@ -1054,7 +1054,7 @@ function CardAssets() {
         </thead>
         <tbody>
           ${pageRows.length === 0
-            ? `<tr><td colspan="7" style="text-align:center;padding:48px;color:#9ca3af;font-size:14px">No assets found.</td></tr>`
+            ? `<tr><td colspan="7" style="text-align:center;padding:48px;color:#6b7280;font-size:14px">No assets found.</td></tr>`
             : pageRows.map(a => `
           <tr>
             <td>${(()=>{

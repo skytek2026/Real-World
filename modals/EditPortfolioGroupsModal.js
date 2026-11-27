@@ -56,7 +56,7 @@
         border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);
       }
       .rw-grp-row label { font-size:14px; color:var(--brand-700,#0f6aa0); cursor:pointer; flex:1; }
-      .rw-grp-empty   { padding:20px; text-align:center; font-size:14px; color:#9ca3af; }
+      .rw-grp-empty   { padding:20px; text-align:center; font-size:14px; color:#6b7280; }
     `;
     document.head.appendChild(s);
   }

@@ -6,6 +6,8 @@
 <title>Nat Cat Events — Real World</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
+const tc = c => ({'#06b6d4':'#0e7490','#eab308':'#a16207','#ea580c':'#c2410c','#ec4899':'#be185d','#db2777':'#be185d','#16a34a':'#15803d','#dc2626':'#b91c1c','#d97706':'#b45309','#f97316':'#c2410c','#43a8df':'#0f6aa0','#1a92d1':'#0f6aa0','#84c5ec':'#0f6aa0','#9ca3af':'#6b7280'}[String(c).toLowerCase()] || c);   // text-safe version of a category colour (markers keep the original)
+
   tailwind.config = {
     theme: {
       extend: {
@@ -56,7 +58,7 @@
   .filt-sel{appearance:none;-webkit-appearance:none;height:32px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#374151;background:#fff;cursor:pointer;font-family:inherit;outline:none;min-width:100px}
   .filt-sel:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
   /* Map btn */
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.05);cursor:pointer}
   .map-btn:hover{background:#f3f4f6}
   .map-btn.is-active{color:var(--brand-700,#0f6aa0);border-color:var(--brand-200,#b8ddf5);background:var(--brand-50,#eff6ff)}
   .nat-labels-menu{position:absolute;top:0;right:calc(100% + 8px);width:260px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.14);padding:12px;z-index:1000}
@@ -95,7 +97,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -168,7 +170,7 @@ function dots(cat, color) {
   const filled = cat;
   return `<div style="display:flex;align-items:center;gap:4px;margin-top:4px">
     ${[1,2,3,4,5].map(i => `<span style="width:8px;height:8px;border-radius:50%;background:${i<=filled?color:'transparent'};border:1.5px solid ${i<=filled?color:'#d1d5db'}"></span>`).join('')}
-    <span style="font-size:12px;font-weight:700;color:${color};margin-left:4px">CAT ${cat}</span>
+    <span style="font-size:12px;font-weight:700;color:${tc(color)};margin-left:4px">CAT ${cat}</span>
   </div>`;
 }
 
@@ -219,13 +221,13 @@ function initMap() {
         <div style="font-size:12px;opacity:.82;margin-top:2px">${e.location}</div>
       </div>
       <div style="padding:12px 16px 8px;font-size:14px;color:#374151">
-        <div style="margin-bottom:4px"><span style="color:#9ca3af">Date: </span>${e.dateStart}${e.dateEnd?` — ${e.dateEnd}`:''}</div>
-        ${e.cat ? `<div style="margin-bottom:4px"><span style="color:#9ca3af">Category: </span><strong style="color:${cfg.color}">CAT ${e.cat}</strong></div>` : ''}
-        <div style="font-size:12px;color:#9ca3af;margin-top:4px">Updated ${e.updated}</div>
+        <div style="margin-bottom:4px"><span style="color:#6b7280">Date: </span>${e.dateStart}${e.dateEnd?` — ${e.dateEnd}`:''}</div>
+        ${e.cat ? `<div style="margin-bottom:4px"><span style="color:#6b7280">Category: </span><strong style="color:${tc(cfg.color)}">CAT ${e.cat}</strong></div>` : ''}
+        <div style="font-size:12px;color:#6b7280;margin-top:4px">Updated ${e.updated}</div>
       </div>
       <div style="padding:4px 16px 16px">
         <button onclick="sessionStorage.setItem('selectedNatCatEvent', JSON.stringify({id:${e.id},name:'${e.name.replace(/'/g,"\\'")}',type:'${e.type}',location:'${e.location.replace(/'/g,"\\'")}',dateStart:'${e.dateStart}',dateEnd:'${e.dateEnd||''}',cat:${e.cat||'null'},updated:'${e.updated}'})); window.location.href='NatCatEventDetails.html'"
-          style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:28px;padding:0 12px;background:transparent;color:${cfg.color};border:0;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s"
+          style="display:inline-flex;align-items:center;justify-content:center;gap:4px;height:28px;padding:0 12px;background:transparent;color:${tc(cfg.color)};border:0;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s"
           onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background='transparent'">
           View Details →
         </button>
@@ -270,7 +272,7 @@ function renderEvents() {
   if (!panel) return;
   const filtered = getFiltered();
   if (filtered.length === 0) {
-    panel.innerHTML = `<div style="padding:32px 16px;text-align:center;color:#9ca3af;font-size:14px">No events match your search.</div>`;
+    panel.innerHTML = `<div style="padding:32px 16px;text-align:center;color:#6b7280;font-size:14px">No events match your search.</div>`;
     return;
   }
   panel.innerHTML = filtered.map(e => {
@@ -280,11 +282,11 @@ function renderEvents() {
       <div style="display:flex;align-items:flex-start;gap:8px">
         ${typeIconCircle(e.type, 34)}
         <div style="flex:1;min-width:0">
-          <div style="font-size:14px;font-weight:600;color:${cfg.color};margin-bottom:2px">${e.name}</div>
+          <div style="font-size:14px;font-weight:600;color:${tc(cfg.color)};margin-bottom:2px">${e.name}</div>
           <div style="font-size:12px;color:#6b7280">${e.location}</div>
           <div style="font-size:12px;color:#6b7280;margin-top:2px">${e.dateStart}${e.dateEnd?` until ${e.dateEnd}`:''}</div>
           ${dots(e.cat, cfg.color)}
-          <div style="font-size:12px;color:#9ca3af;margin-top:4px">Updated ${e.updated}</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">Updated ${e.updated}</div>
         </div>
       </div>
     </div>`;
@@ -325,7 +327,7 @@ window.render = function() {
       <main class="flex-1 overflow-hidden flex gap-3 natcat-main" style="min-height:0;background:#f3f4f6;padding:12px">
 
         <!-- Events card -->
-        <div class="natcat-events-card" style="width:320px;flex-shrink:0;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
+        <div class="natcat-events-card" style="width:320px;flex-shrink:0;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden">
 
           <!-- Header -->
           <div style="padding:16px 16px 12px">
@@ -362,7 +364,7 @@ window.render = function() {
         </div>
 
         <!-- Map card -->
-        <div class="natcat-map-card" style="flex:1;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden;min-width:0">
+        <div class="natcat-map-card" style="flex:1;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);display:flex;flex-direction:column;overflow:hidden;min-width:0">
           <!-- Map title bar -->
           <div style="height:48px;background:#fff;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;padding:0 16px;gap:8px;flex-shrink:0">
             ${BOLT_ICO}
@@ -381,7 +383,7 @@ window.render = function() {
               <div style="position:relative">
                 <button id="nat-layers-btn" class="map-btn" title="Map Type">${LAYERS_ICO}</button>
                 <div id="nat-layers-menu" style="display:none;position:absolute;top:38px;right:0;width:150px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.12);overflow:hidden;z-index:9999">
-                  <div style="padding:8px 12px;font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f3f4f6">Map Type</div>
+                  <div style="padding:8px 12px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #f3f4f6">Map Type</div>
                   ${[['satellite','Satellite','#111827'],['street','Street','#e8e0d4'],['light','Light','#e8e8e8'],['dark','Dark','#1a1a2e']].map(([k,l,c]) =>
                     `<div class="map-type-opt" data-type="${k}" style="padding:8px 12px;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;color:#374151" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background=''"><span style="width:8px;height:8px;border-radius:4px;background:${c};flex-shrink:0"></span>${l}</div>`
                   ).join('')}

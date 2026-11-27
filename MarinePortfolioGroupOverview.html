@@ -35,7 +35,7 @@ a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;bo
 .pgo-row dd{margin:0;font-size:14px;font-weight:600;color:#111827;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
 .pgo-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 12px;border-radius:999px;font-size:12px;font-weight:700}
 .pgo-badge i{width:6px;height:6px;border-radius:50%;background:currentColor}
-.pgo-badge--ok{background:#dcfce7;color:#15803d}.pgo-badge--warn{background:#fef3c7;color:#b45309}.pgo-badge--bad{background:#fee2e2;color:#dc2626}
+.pgo-badge--ok{background:#dcfce7;color:#15803d}.pgo-badge--warn{background:#fef3c7;color:#b45309}.pgo-badge--bad{background:#fee2e2;color:#b91c1c}
 .pgo-flags{display:inline-flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:wrap}
 .pgo-flags img{width:20px;height:14px;border-radius:4px;object-fit:cover;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
 .pgo-more{font-size:12px;font-weight:600;color:#6b7280}
@@ -102,7 +102,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .pcard-sub { display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-size:14px; color:#6b7280; }
   .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
-  .pcard-k { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
+  .pcard-k { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#6b7280; }
   .pcard-v { font-size:14px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
   .pcard-v.is-strong { font-size:14px; font-weight:700; color:#111827; }
   .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
@@ -138,7 +138,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   /* ── Risk Score card (copied from Marine Portfolio Details) ── */
   /* Risk Score info popups (ported from Vessel Details) */
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
-  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#6b7280;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#0F6AA0;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
@@ -184,7 +184,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/marine-asset-details.js"></script>
@@ -281,7 +281,7 @@ function PanelRiskBreakdown() {
     const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
     const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
     const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
-    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#b45309':'#6b7280'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
     const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
     const RS_BANDS = [
       { k:'good', label:'Good',          range:'0 → 25',    c:'#16a34a' },
@@ -306,7 +306,7 @@ function PanelRiskBreakdown() {
         <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="${year} average risk score ${score}; ${RS_BANDS.map(b => b.label + ' ' + dist[b.k]).join(', ')} assets">${segs}</svg>
         <div class="mp-rs-center" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
           ${year === 2026 && mpWithSanctions ? `<span style="font-size:${Math.round(numPx * 0.38)}px;font-weight:700;color:#111827;line-height:1;">Sanctioned</span>` : `<span style="font-size:${numPx}px;font-weight:700;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${score}</span>
-          ${year === 2026 ? '' : `<span style="font-size:${Math.max(10, Math.round(numPx / 3.4))}px;color:#6b7280;margin-top:2px;">Avg Score</span>`}`}
+          ${year === 2026 ? '' : `<span style="font-size:${[11,12,13,14,16].reduce((a,b)=>Math.abs(b-numPx/3.4)<Math.abs(a-numPx/3.4)?b:a)}px;color:#6b7280;margin-top:2px;">Avg Score</span>`}`}
         </div>
       </div>`;
     };
@@ -317,7 +317,7 @@ function PanelRiskBreakdown() {
         <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#1485c5)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s;"></span>
           </span>
         </button>
       </div>
@@ -326,7 +326,7 @@ function PanelRiskBreakdown() {
         <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s;"></span>
           </span>
         </button>
           <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
@@ -421,7 +421,7 @@ function PolicySection() {
       <div class="flex-1"></div>
       <!-- Search -->
       <div class="relative">
-        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-500 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" placeholder="Search" class="pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
       </div>
       <button type="button" class="flex items-center justify-center shrink-0 border border-ink-200 rounded-lg text-ink-600 hover:bg-ink-50 hover:text-ink-900" style="width:32px;height:32px;" title="Reset filters" aria-label="Reset filters">
@@ -444,7 +444,7 @@ function PolicySection() {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>
-      <span class="text-xs text-ink-400">0 selected</span>
+      <span class="text-xs text-ink-500">0 selected</span>
     </div>
     <!-- Table -->
     <div class="overflow-x-auto scroll-thin pol-table-scroll">
@@ -586,7 +586,7 @@ function EnvironmentalRatingContent() {
     <div class="flex items-center justify-between py-2">
       <span class="text-xs text-ink-700">${item.label}</span>
       <div class="flex items-center gap-2">
-        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
+        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
         <span class="px-2 py-0.5 rounded text-xs font-bold text-white" style="background:${item.color}">${item.badge}</span>
       </div>
     </div>`;

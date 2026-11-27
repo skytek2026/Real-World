@@ -21,9 +21,9 @@
   .rs-tbl tr:last-child td{border-bottom:0}
   .rs-tbl tbody tr:hover td{background:#fafafa}
   /* Action buttons */
-  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
+  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#6b7280;transition:background .1s,color .1s}
   .actbtn:hover{background:#f3f4f6;color:#374151}
-  .actbtn.danger:hover{background:#fef2f2;color:#dc2626}
+  .actbtn.danger:hover{background:#fef2f2;color:#b91c1c}
   /* Pagination */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
@@ -53,7 +53,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -144,9 +144,9 @@ function renderModal() {
       <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
         <div>
           <div class="text-base font-bold text-gray-900">Create New Rule Set</div>
-          <div class="text-xs text-gray-400 mt-0.5">Define monitoring rules and target regions</div>
+          <div class="text-xs text-gray-500 mt-0.5">Define monitoring rules and target regions</div>
         </div>
-        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${SVG.x}</button>
+        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#6b7280" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${SVG.x}</button>
       </div>
       <div class="flex-1 overflow-y-auto scroll-thin px-6 py-5" style="display:flex;flex-direction:column;gap:16px">
 
@@ -175,12 +175,12 @@ function renderModal() {
         <div>
           <label class="form-label">Regions</label>
           <input class="form-input" id="form-regions" type="text" placeholder="e.g. Strait of Hormuz, Gulf of Oman, Red Sea" value="${f.regions.replace(/"/g,'&quot;')}" />
-          <div style="font-size:12px;color:#9ca3af;margin-top:4px">Enter comma-separated region names.</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">Enter comma-separated region names.</div>
         </div>
 
         <!-- Preview -->
         <div style="padding:12px;background:#f9fafb;border-radius:8px;border:1px solid #f3f4f6">
-          <div style="font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Preview</div>
+          <div style="font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Preview</div>
           <div style="display:flex;align-items:center;gap:8px">
             ${rowIcon(f.type, f.color)}
             <span style="font-size:14px;font-weight:600;color:#111827">${f.name || 'Rule Set Name'}</span>
@@ -214,14 +214,14 @@ function renderPage() {
 
   <!-- Main card -->
   <div class="flex-1 min-h-0 px-4 pb-4 flex flex-col">
-    <div class="bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden flex-1 min-h-0" style="box-shadow:0 1px 3px rgba(15,23,42,.06)">
+    <div class="bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden flex-1 min-h-0" style="box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06)">
 
       <!-- Card header -->
       <div class="shrink-0 px-5 py-3 border-b border-gray-100 flex items-center gap-3">
         <div class="text-sm font-semibold text-gray-900">Rule Sets</div>
         <div style="flex:1"></div>
         <div style="position:relative">
-          <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none;display:flex">${SVG.search}</span>
+          <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#6b7280;pointer-events:none;display:flex">${SVG.search}</span>
           <input id="rs-search" type="text" placeholder="Filter records"
             value="${ST.query.replace(/"/g,'&quot;')}"
             style="height:32px;width:200px;padding:0 12px 0 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s,background .15s" />
@@ -240,7 +240,7 @@ function renderPage() {
           </thead>
           <tbody>
             ${pageRows.length === 0 ? `
-              <tr><td colspan="3" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:14px">No rule sets match your filter.</td></tr>
+              <tr><td colspan="3" style="text-align:center;padding:64px 0;color:#6b7280;font-size:14px">No rule sets match your filter.</td></tr>
             ` : pageRows.map(rs => `
             <tr>
               <td>

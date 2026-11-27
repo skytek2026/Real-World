@@ -16,7 +16,7 @@
   html, body { height:100%; }
   body { font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
   .text-ink-900 { color:#111827; } .text-ink-800 { color:#1f2937; } .text-ink-700 { color:#374151; }
-  .text-ink-600 { color:#4b5563; } .text-ink-500 { color:#6b7280; } .text-ink-400 { color:#9ca3af; }
+  .text-ink-600 { color:#4b5563; } .text-ink-500 { color:#6b7280; } .text-ink-500 { color:#6b7280; }
   .text-ink-300 { color:#d1d5db; }
   .bg-ink-100 { background:#f3f4f6; } .bg-ink-50 { background:#f9fafb; }
   .border-ink-100 { border-color:#f3f4f6; } .border-ink-200 { border-color:#e5e7eb; }
@@ -38,7 +38,7 @@
   .ds-tab-pill.is-init { transition:none; }
   .ds-tab-label { position:relative; z-index:1; display:inline-flex; align-items:center; gap:8px; }
   /* Cards */
-  .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 1px 3px rgb(15 23 42 / .06); }
+  .card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06); }
   .card-head { display:flex; align-items:center; gap:8px; padding:16px 20px; }
   .card-title { font-family:'Exo','Inter',sans-serif; font-size:14px; font-weight:600; color:#111827; }
   /* DS primary button */
@@ -69,14 +69,14 @@
   /* Search */
   .vh-search { display:flex; align-items:center; gap:8px; height:42px; padding:0 16px; background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; }
   .vh-search input { flex:1; border:0; background:transparent; font:inherit; font-size:14px; color:#111827; outline:none; }
-  .vh-search input::placeholder { color:#9ca3af; }
+  .vh-search input::placeholder { color:#6b7280; }
   /* Map */
   #voyage-map { background:#dbeafe; position:absolute; inset:0; }
   .vh-map-col.is-fullscreen { position:fixed !important; inset:0 !important; z-index:9999 !important; min-height:0 !important; border-radius:0 !important; }
   #voyage-map .leaflet-top.leaflet-left { top:56px; left:2px; }
   #voyage-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
   .leaflet-control-zoom a { width:34px !important; height:34px !important; line-height:34px !important; display:flex !important; align-items:center; justify-content:center; }
-  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42/.08) !important; border-radius:8px !important; overflow:hidden; }
+  .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgb(15 23 42 / .05) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
   .map-btn { width:34px; height:34px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgb(15 23 42/.10); cursor:pointer; }
@@ -132,7 +132,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -433,7 +433,7 @@ function portCallsBody() {
         <tbody>
           ${TOP_PORTS.map((p,i) => `
             <tr>
-              <td class="num text-ink-400">${i+1}</td>
+              <td class="num text-ink-500">${i+1}</td>
               <td><span class="inline-flex items-center gap-2"><span class="text-brand-700 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
               <td><span class="inline-flex items-center gap-2 whitespace-nowrap">${flag(p.cc)}<span class="text-ink-700">${p.country}</span></span></td>
               <td class="num font-semibold text-ink-900">${p.calls}</td>
@@ -521,7 +521,7 @@ function eventsCard() {
     </div>
     <div class="p-5 pb-4">
       <div class="vh-search">
-        <span class="text-ink-400 inline-flex items-center">${svg(IC.search,16)}</span>
+        <span class="text-ink-500 inline-flex items-center">${svg(IC.search,16)}</span>
         <input id="event-search" type="text" placeholder="Search voyage events…" value="${state.search.replace(/"/g,'&quot;')}" />
       </div>
     </div>

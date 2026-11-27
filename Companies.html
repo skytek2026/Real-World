@@ -71,10 +71,10 @@
   .acard-dot { color: #d1d5db; }
   .acard-key { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
   .acard-kv { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  .acard-k { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #9ca3af; }
+  .acard-k { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; }
   .acard-v { font-size: 14px; font-weight: 500; color: #374151; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
   .acard-v.is-strong { font-size: 14px; font-weight: 700; color: #111827; }
-  .acard-v.is-muted { color: #9ca3af; }
+  .acard-v.is-muted { color: #6b7280; }
   .acard-more { display: none; padding-top: 2px; border-top: 1px dashed #e5e7eb; margin-top: 2px; }
   .acard.open .acard-more { display: block; padding-top: 12px; animation: accIn .22s ease; }
   .acard-toggle { align-self: flex-start; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 2px; border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--brand-700,#0f6aa0); }
@@ -90,12 +90,12 @@
   /* Badges */
   .tbadge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;display:inline-block}
   .tb-shipping   {background:var(--brand-50,#eff6ff);color:var(--brand-700,#1d4ed8)}
-  .tb-investment {background:#f0fdf4;color:#16a34a}
-  .tb-energy     {background:#fffbeb;color:#d97706}
+  .tb-investment {background:#f0fdf4;color:#15803d}
+  .tb-energy     {background:#fffbeb;color:#b45309}
   .tb-conglomerate{background:#faf5ff;color:#9333ea}
   .sbadge{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block}
-  .sb-active  {background:#f0fdf4;color:#16a34a}
-  .sb-inactive{background:#fef2f2;color:#dc2626}
+  .sb-active  {background:#f0fdf4;color:#15803d}
+  .sb-inactive{background:#fef2f2;color:#b91c1c}
   /* Services */
   .svc-tag{font-size:12px;font-weight:500;padding:1px 8px;border-radius:4px;background:#f3f4f6;color:#4b5563;display:inline-block;margin:1px 2px 1px 0}
   .svc-more{font-size:12px;font-weight:600;padding:1px 8px;border-radius:4px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8);display:inline-block;margin:1px 0}
@@ -155,21 +155,21 @@
   /* Pagination / action */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
-  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;color:#9ca3af;cursor:pointer;transition:background .1s,color .1s,border-color .1s}
+  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;color:#6b7280;cursor:pointer;transition:background .1s,color .1s,border-color .1s}
   .actbtn:hover{background:#f3f4f6;color:#374151;border-color:#d1d5db}
   /* Company search field: focus ring and dark theme in CSS (no inline style writes) */
   #co-search { background:#fff; }
-  #co-search::placeholder { color:#9ca3af; }
+  #co-search::placeholder { color:#6b7280; }
   #co-search:focus { border-color:var(--brand-300,#93c5fd) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 14%, transparent); }
   html[data-theme="dark"] #co-search { background:#161f2e !important; border-color:#2a374d !important; color:#e7ecf4 !important; }
   html[data-theme="dark"] #co-search::placeholder { color:#7d8aa0; }
   html[data-theme="dark"] #co-search:focus { border-color:var(--brand-400,#60a5fa) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 28%, transparent); }
   /* Risk Score column */
   .co-risk-num { font-weight:700; font-variant-numeric:tabular-nums; }
-  .co-risk-num--good { color:#16A34A; } .co-risk-num--avg { color:#D97706; } .co-risk-num--poor { color:#DC2626; }
+  .co-risk-num--good { color:#15803d; } .co-risk-num--avg { color:#b45309; } .co-risk-num--poor { color:#b91c1c; }
   .co-risk-badge { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700; white-space:nowrap; }
   .co-risk-badge i { width:6px; height:6px; border-radius:50%; background:currentColor; }
-  .co-risk-badge--sanc { background:#fee2e2; color:#dc2626; }
+  .co-risk-badge--sanc { background:#fee2e2; color:#b91c1c; }
   .co-risk-badge--warn { background:#fef3c7; color:#b45309; }
   html[data-theme="dark"] .co-risk-badge--sanc { background:rgba(239,68,68,.16); color:#fca5a5; }
   html[data-theme="dark"] .co-risk-badge--warn { background:rgba(245,158,11,.16); color:#fcd34d; }
@@ -189,7 +189,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -311,10 +311,10 @@ function riskCell(co) {
   return `<span class="co-risk-num co-risk-num--${c}">${n}</span>`;
 }
 function imoCell(co) {
-  return co.type === 'Shipping Company' && co.imo ? co.imo : '<span style="color:#9ca3af">N/A</span>';
+  return co.type === 'Shipping Company' && co.imo ? co.imo : '<span style="color:#6b7280">N/A</span>';
 }
 function renderCoCards(pageRows) {
-  if (!pageRows.length) return '<div class="asset-cards"><div style="text-align:center;padding:48px 16px;color:#9ca3af;font-size:14px">No companies match your current filters.</div></div>';
+  if (!pageRows.length) return '<div class="asset-cards"><div style="text-align:center;padding:48px 16px;color:#6b7280;font-size:14px">No companies match your current filters.</div></div>';
   const kv = rows => rows.map(([k, v, tone]) => `<div class="acard-kv"><span class="acard-k">${k}</span><span class="acard-v${tone ? ' is-' + tone : ''}">${v}</span></div>`).join('');
   return `<div class="asset-cards">${pageRows.map((co, i) => {
     const idx = COMPANIES.indexOf(co);
@@ -360,17 +360,17 @@ function renderPage() {
   return `
   <!-- Table card -->
   <div class="flex-1 min-h-0 p-4 flex flex-col">
-    <div class="bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden flex-1 min-h-0" style="box-shadow:0 1px 3px rgba(15,23,42,.06)">
+    <div class="bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden flex-1 min-h-0" style="box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06)">
 
       <!-- Result count -->
       <div class="shrink-0 px-4 py-3 border-b border-gray-100 flex items-center gap-x-3 gap-y-2 flex-wrap">
         <div style="white-space:nowrap">
           <span class="text-sm font-semibold text-gray-900">Companies</span>
-          <span class="text-sm text-gray-400 ml-1">(${total} result${total !== 1 ? 's' : ''})</span>
+          <span class="text-sm text-gray-500 ml-1">(${total} result${total !== 1 ? 's' : ''})</span>
         </div>
         <div class="co-hdr-tools" style="flex:1;min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:8px">
           <div style="position:relative;flex:1;min-width:0;max-width:400px">
-            <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none;display:flex">${SVG.search}</span>
+            <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#6b7280;pointer-events:none;display:flex">${SVG.search}</span>
             <input id="co-search" type="text" aria-label="Search companies"
               placeholder="Search by company name, headquarters, or registration number"
               value="${ST.query.replace(/"/g, '&quot;')}"
@@ -401,7 +401,7 @@ function renderPage() {
           </thead>
           <tbody>
             ${pageRows.length === 0 ? `
-              <tr><td colspan="12" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:14px">
+              <tr><td colspan="12" style="text-align:center;padding:64px 0;color:#6b7280;font-size:14px">
                 No companies match your current filters.
               </td></tr>
             ` : pageRows.map(co => {

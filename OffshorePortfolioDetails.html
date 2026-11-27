@@ -35,7 +35,7 @@
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb !important;box-shadow:0 1px 2px rgba(15,23,42,.05) !important;border-radius:8px !important;overflow:hidden}
   .leaflet-bar a{background:#fff !important;color:#374151 !important}
   .leaflet-bar a:hover{background:#f3f4f6 !important}
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.05);cursor:pointer}
   .map-btn:hover{background:#f3f4f6}
   .asset-marker-dot{width:12px;height:12px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 4px rgba(0,0,0,.4)}
   /* Phones and tablet portrait: stack the Portfolio Details card above the map */
@@ -73,10 +73,10 @@
   .pcard-sub{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:14px;color:#6b7280}
   .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
-  .pcard-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
+  .pcard-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#6b7280}
   .pcard-v{font-size:14px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
   .pcard-v.is-strong{font-size:14px;font-weight:700;color:#111827}
-  .pcard-v.is-muted{color:#9ca3af}
+  .pcard-v.is-muted{color:#6b7280}
   .pcard-more{display:none}
   .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e5e7eb;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
@@ -89,7 +89,7 @@
   .pol-table td.lnk{color:var(--brand-700,#0f6aa0);font-weight:600;cursor:pointer}
   .pol-table td.lnk:hover{color:var(--brand-800,#0d5580)}
   .pol-table td.type-cell{color:var(--brand-700,#0f6aa0);font-size:12px}
-  .pol-table td.muted{color:#9ca3af}
+  .pol-table td.muted{color:#6b7280}
   .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:4px;vertical-align:middle;opacity:.5}
   .sort-ico svg{width:7px;height:7px}
   /* Select */
@@ -117,7 +117,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -230,7 +230,7 @@ function PanelDetailsContent() {
     <!-- Exposure banner -->
     <div style="display:flex;justify-content:center;padding:16px 16px 8px;">
       <div style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:12px 32px;text-align:center;min-width:180px;">
-        <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
+        <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Our Aggregated Exposure</div>
         <div style="font-size:20px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PF.exposure || '$148.5B'}</div>
       </div>
     </div>
@@ -293,7 +293,7 @@ function PanelGroupsContent() {
 
 function PanelDetails() {
   return `
-  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden flex flex-col" style="box-shadow:0 1px 2px rgba(15,23,42,.07);">
+  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden flex flex-col" style="box-shadow:0 1px 2px rgba(15,23,42,.05);">
     <!-- Tabs -->
     <div class="p-3 border-b border-ink-100">
       <div class="ds-tabs" style="display:flex;" id="pf-tabs">
@@ -315,7 +315,7 @@ function PanelDetails() {
 /* ── Map panel ── */
 function PanelMap() {
   return `
-  <div class="bg-white rounded-xl border border-ink-200 flex flex-col overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.07);">
+  <div class="bg-white rounded-xl border border-ink-200 flex flex-col overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.05);">
     <div class="px-4 py-3 border-b border-ink-100 flex items-center justify-between">
       <span class="text-sm font-bold text-ink-900">Asset Locations</span>
     </div>
@@ -380,13 +380,13 @@ function PanelMap() {
 function PolicyTable() {
   const cols = ['Number','Asset','Type','Policy Ref','Contract Details Ref','Signed Line','Exposure','Year Exposure','Year Total Insured Value','Total Insured Value','Premium Details','Coverage Period','Policy'];
   return `
-  <div class="bg-white rounded-xl border border-ink-200" style="box-shadow:0 1px 2px rgba(15,23,42,.07);overflow:hidden;">
+  <div class="bg-white rounded-xl border border-ink-200" style="box-shadow:0 1px 2px rgba(15,23,42,.05);overflow:hidden;">
     <!-- Header bar -->
     <div class="policy-header flex items-center justify-between px-4 py-3 border-b border-ink-100">
       <span class="text-sm font-bold text-ink-900">Policy Details</span>
       <div class="policy-header-tools flex items-center gap-2">
         <div class="relative">
-          <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-500 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" placeholder="Search" class="policy-search pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
         </div>
         <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-2 text-ink-700 font-semibold hover:bg-ink-50">
@@ -401,7 +401,7 @@ function PolicyTable() {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>
-      <span class="text-xs text-ink-400">0 selected</span>
+      <span class="text-xs text-ink-500">0 selected</span>
     </div>
     <!-- Table -->
     <div class="overflow-x-auto scroll-thin pol-table-scroll">

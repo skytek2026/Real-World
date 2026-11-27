@@ -21,7 +21,7 @@
   .leaflet-control-zoom, .leaflet-bar { border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.05) !important; border-radius:8px !important; overflow:hidden; }
   .leaflet-bar a { background:#fff !important; color:#374151 !important; }
   .leaflet-bar a:hover { background:#f3f4f6 !important; }
-  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgba(15,23,42,.08); cursor:pointer; }
+  .map-btn { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e5e7eb; border-radius:8px; color:#374151; box-shadow:0 1px 2px rgba(15,23,42,.05); cursor:pointer; }
   .map-btn:hover { background:#f3f4f6; }
   .airport-icon { width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:#06b6d4; border:2px solid #fff; border-radius:50%; box-shadow:0 2px 6px rgba(0,0,0,.25); }
   .avia-popup .leaflet-popup-content-wrapper { padding:0; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(15,23,42,.25); }
@@ -29,7 +29,7 @@
   .avia-popup .leaflet-popup-tip { background:#fff; }
   .avia-popup .leaflet-popup-close-button { color:#fff !important; top:8px !important; right:10px !important; font-size:24px !important; font-weight:300 !important; width:24px !important; height:24px !important; line-height:22px !important; border-radius:8px !important; }
   .avia-popup .leaflet-popup-close-button:hover { background:rgba(255,255,255,.2) !important; color:#fff !important; }
-  .text-ink-900{color:#111827}.text-ink-700{color:#374151}.text-ink-600{color:#4b5563}.text-ink-500{color:#6b7280}.text-ink-400{color:#9ca3af}
+  .text-ink-900{color:#111827}.text-ink-700{color:#374151}.text-ink-600{color:#4b5563}.text-ink-500{color:#6b7280}.text-ink-500{color:#6b7280}
   .bg-ink-100{background:#f3f4f6}.bg-ink-50{background:#f9fafb}
   .border-ink-100{border-color:#f3f4f6}.border-ink-200{border-color:#e5e7eb}
   .scroll-thin::-webkit-scrollbar{width:5px;height:5px}
@@ -64,10 +64,10 @@
   .pcard-sub{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:14px;color:#6b7280}
   .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
-  .pcard-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af}
+  .pcard-k{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#6b7280}
   .pcard-v{font-size:14px;font-weight:500;color:#374151;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
   .pcard-v.is-strong{font-size:14px;font-weight:700;color:#111827}
-  .pcard-v.is-mono{font-family:monospace;font-size:12px}
+  .pcard-v.is-mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px}
   .pcard-more{display:none}
   .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e5e7eb;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
@@ -120,7 +120,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/aviation-map.js"></script>
@@ -278,7 +278,7 @@ function PanelDetails() {
     ['Number of Active Policies:',506],
   ];
   return `
-  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.06);display:flex;flex-direction:column;height:100%;">
+  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.05);display:flex;flex-direction:column;height:100%;">
     <div class="px-4 pt-4 pb-2 border-b border-ink-100 shrink-0">
       <div class="text-sm font-bold text-ink-900">Details</div>
     </div>
@@ -309,7 +309,7 @@ function PanelTotals() {
     ['Total loss only hull war exposure:',   '$91.4M'],
   ];
   return `
-  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.06);display:flex;flex-direction:column;height:100%;">
+  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.05);display:flex;flex-direction:column;height:100%;">
     <div class="px-4 pt-4 pb-2 border-b border-ink-100 shrink-0">
       <div class="text-sm font-bold text-ink-900">Totals</div>
     </div>
@@ -347,19 +347,19 @@ function PanelSummaryContent() {
     <div class="px-3 pt-3 pb-3 border-b border-ink-100">
       <div class="stat-cards-row" style="background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;overflow:hidden;display:flex;">
         <div class="stat-card">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Aircraft</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total Aircraft</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">529</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Avg. Cost Of Aircraft</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Avg. Cost Of Aircraft</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$156.8M</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Highest Value Aircraft</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Highest Value Aircraft</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">$284.3M</div>
         </div>
         <div class="stat-card">
-          <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Total Departures 2025</div>
+          <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Total Departures 2025</div>
           <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">142,856</div>
         </div>
       </div>
@@ -370,7 +370,7 @@ function PanelSummaryContent() {
       <div class="flex flex-wrap justify-center gap-x-4 gap-y-1">
         ${fleet.map(f => `
           <span class="flex items-center gap-1 text-xs text-ink-700">
-            ${flag(f.cc)} <span class="font-medium">${f.name}:</span> <span class="tabular-nums">${f.count}</span> <span class="text-ink-400">(${f.pct}%)</span>
+            ${flag(f.cc)} <span class="font-medium">${f.name}:</span> <span class="tabular-nums">${f.count}</span> <span class="text-ink-500">(${f.pct}%)</span>
           </span>`).join('')}
       </div>
     </div>
@@ -425,7 +425,7 @@ function PanelSummary() {
   const isDestinations = summaryTab === 'Destinations';
 
   return `
-  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.06);display:flex;flex-direction:column;height:100%;">
+  <div class="bg-white rounded-xl border border-ink-200 overflow-hidden" style="box-shadow:0 1px 2px rgba(15,23,42,.05);display:flex;flex-direction:column;height:100%;">
     <!-- Tab bar -->
     <div class="px-4 pt-3 pb-3 border-b border-ink-100 flex items-center gap-3">
       <div class="ds-tabs" id="summary-tabs">
@@ -453,7 +453,7 @@ function PolicySection() {
   const totalPages = Math.ceil(TOTAL / policyPerPage);
 
   return `
-  <div class="bg-white rounded-xl border border-ink-200" style="box-shadow:0 1px 2px rgba(15,23,42,.06);overflow:hidden;">
+  <div class="bg-white rounded-xl border border-ink-200" style="box-shadow:0 1px 2px rgba(15,23,42,.05);overflow:hidden;">
     <!-- View switcher + toolbar -->
     <div class="pol-toolbar flex items-center gap-3 px-4 py-3 border-b border-ink-100 flex-wrap">
       <div class="tabs-desktop-wrap">
@@ -478,7 +478,7 @@ function PolicySection() {
       </select>
       <div class="flex-1"></div>
       <div class="relative">
-        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-500 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="text" placeholder="Search" class="pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-blue-400 w-48" />
       </div>
       <button class="pol-edit-cols flex items-center gap-1 text-xs border border-ink-200 rounded-lg px-3 py-2 text-ink-700 font-semibold hover:bg-ink-50">
@@ -622,7 +622,7 @@ function PolicySection() {
                 <td><a href="#" style="color:var(--brand-700,#0f6aa0);text-decoration:none;">${p.airline}</a></td>
                 <td>${flagImg}<span>${p.cc === 'fr' ? 'France' : p.cc === 'nl' ? 'Netherlands' : p.cc.toUpperCase()}</span></td>
                 <td><a href="#" style="color:var(--brand-700,#0f6aa0);text-decoration:none;">${p.reg}</a></td>
-                <td style="font-family:monospace;font-size:12px;">${p.hex}</td>
+                <td style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;">${p.hex}</td>
                 <td>${p.year}</td>
                 <td>${p.hull}</td>
                 <td>${p.type}</td>
@@ -683,7 +683,7 @@ function PolicySection() {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>
-      <span class="text-xs text-ink-400">0 selected</span>
+      <span class="text-xs text-ink-500">0 selected</span>
     </div>
     <!-- Table -->
     <div class="overflow-x-auto scroll-thin pol-table-scroll">

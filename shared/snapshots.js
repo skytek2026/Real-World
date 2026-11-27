@@ -46,7 +46,7 @@ var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.ful
   .snap-tbl .ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}
   .snap-tbl .ds-th--active .ds-th-sort{color:var(--text-primary,#111827)}
   .snap-search{position:relative;width:220px;max-width:100%}
-  .snap-search-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#9ca3af;display:flex;pointer-events:none}
+  .snap-search-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#6b7280;display:flex;pointer-events:none}
   .snap-search input{width:100%;height:32px;padding:0 12px 0 28px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;font:inherit;font-size:14px;color:#111827;outline:0;background:#fff;transition:border-color 140ms,box-shadow 140ms}
   .snap-search input:focus{border-color:var(--brand-400,#43a8df);box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
   @media (max-width:560px){.snap-search{width:100%}}

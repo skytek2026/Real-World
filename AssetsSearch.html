@@ -14,7 +14,7 @@
   html, body { height: 100%; }
   body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
   .text-ink-900 { color: #111827; } .text-ink-700 { color: #374151; } .text-ink-600 { color: #4b5563; }
-  .text-ink-500 { color: #6b7280; } .text-ink-400 { color: #9ca3af; }
+  .text-ink-500 { color: #6b7280; } .text-ink-500 { color: #6b7280; }
   .bg-ink-100  { background: #f3f4f6; } .bg-ink-50 { background: #f9fafb; }
   .border-ink-100 { border-color: #f3f4f6; } .border-ink-200 { border-color: #e5e7eb; }
   .text-brand  { color: var(--brand-700,#0f6aa0); }
@@ -52,7 +52,7 @@
   .search-wrap { position: relative; flex: 1; max-width: 360px; }
   .search-wrap input { width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 12px 8px 32px; font-size: 14px; color: #374151; background: #fff; outline: none; }
   .search-wrap input:focus { border-color: var(--brand-300, #93c5fd); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 12%, transparent); }
-  .search-wrap .search-ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none; }
+  .search-wrap .search-ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #6b7280; pointer-events: none; }
   .filter-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #374151; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
   .filter-btn:hover { border-color: var(--brand-300, #93c5fd); background: #f9fafb; }
   .filter-btn.has-filter::after { content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0; border-top: 9px solid #dc2626; border-left: 9px solid transparent; }
@@ -75,7 +75,7 @@
   .range-pop { min-width: 240px; }
   .range-menu { padding: 8px 8px 8px; }
   .range-vals { font-size: 14px; font-weight: 600; color: #111827; margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
-  .range-vals .rv-sep { color: #9ca3af; }
+  .range-vals .rv-sep { color: #6b7280; }
   .range-track { position: relative; height: 20px; }
   .range-track::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 4px; background: #e5e7eb; border-radius: 999px; }
   .range-track .range-fill { position: absolute; top: 8px; height: 4px; background: var(--brand-600, #2563eb); border-radius: 999px; z-index: 1; }
@@ -84,7 +84,7 @@
   .range-track input[type=range]::-moz-range-track { height: 4px; background: transparent; border-radius: 999px; }
   .range-track input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; box-sizing: border-box; pointer-events: auto; width: 16px; height: 16px; margin-top: 0; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
   .range-track input[type=range]::-moz-range-thumb { box-sizing: border-box; pointer-events: auto; width: 16px; height: 16px; border-radius: 999px; background: #fff; border: 2px solid var(--brand-600, #2563eb); box-shadow: 0 1px 3px rgba(15,23,42,.2); cursor: pointer; }
-  .range-ends { display: flex; justify-content: space-between; font-size: 12px; color: #9ca3af; margin-top: 8px; }
+  .range-ends { display: flex; justify-content: space-between; font-size: 12px; color: #6b7280; margin-top: 8px; }
   /* --- Filter drawer --- */
   .filter-drawer { position: fixed; inset: 0; z-index: 300; visibility: hidden; }
   .filter-drawer.open { visibility: visible; }
@@ -119,10 +119,10 @@
   .acard-dot { color: #d1d5db; }
   .acard-key { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; }
   .acard-kv { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  .acard-k { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #9ca3af; }
+  .acard-k { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6b7280; }
   .acard-v { font-size: 14px; font-weight: 500; color: #374151; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
   .acard-v.is-strong { font-size: 14px; font-weight: 700; color: #111827; }
-  .acard-v.is-muted { color: #9ca3af; }
+  .acard-v.is-muted { color: #6b7280; }
   .acard-more { display: none; padding-top: 2px; border-top: 1px dashed #e5e7eb; margin-top: 2px; }
   .acard.open .acard-more { display: block; padding-top: 12px; animation: accIn .22s ease; }
   .acard-toggle { align-self: flex-start; display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 2px; border: 0; background: none; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--brand-700,#0f6aa0); }
@@ -228,7 +228,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -750,11 +750,11 @@ function tabConfig() {
       { key:null,           label:'MMSI',          sortable:false, td:r => `<td style="color:#6b7280;">${r.mmsi}</td>` },
       { key:'owner',        label:'Owner',         sortable:true,  td:r => `<td>${r.owner ? `<span class="lnk">${r.owner}</span>` : ''}</td>` },
       { key:'lastSeen',     label:'Last Seen',     sortable:true,  td:r => `<td style="color:#6b7280;">${r.lastSeen}</td>` },
-      { key:null,           label:'Est. Value',    sortable:false, td:r => `<td style="font-weight:600;color:${r.estValue.startsWith('$') ? '#111827' : '#9ca3af'};">${r.estValue}</td>` },
+      { key:null,           label:'Est. Value',    sortable:false, td:r => `<td style="font-weight:600;color:${r.estValue.startsWith('$') ? '#111827' : '#6b7280'};">${r.estValue}</td>` },
       { key:'length',       label:'Length',        sortable:true,  td:r => `<td style="tabular-nums;">${r.length}</td>` },
-      { key:'grossTonnage', label:'Gross Tonnage', sortable:true,  td:r => `<td style="tabular-nums;color:${r.grossTonnage === 'N/A' ? '#9ca3af' : '#374151'};">${r.grossTonnage}</td>` },
-      { key:'dwtTonnage',   label:'DWT Tonnage',   sortable:true,  td:r => `<td style="tabular-nums;color:${r.dwtTonnage === 'N/A' ? '#9ca3af' : '#374151'};">${r.dwtTonnage}</td>` },
-      { key:'yob',          label:'YOB',           sortable:true,  td:r => `<td style="tabular-nums;color:${r.yob === null ? '#9ca3af' : '#374151'};">${r.yob || 'N/A'}</td>` },
+      { key:'grossTonnage', label:'Gross Tonnage', sortable:true,  td:r => `<td style="tabular-nums;color:${r.grossTonnage === 'N/A' ? '#6b7280' : '#374151'};">${r.grossTonnage}</td>` },
+      { key:'dwtTonnage',   label:'DWT Tonnage',   sortable:true,  td:r => `<td style="tabular-nums;color:${r.dwtTonnage === 'N/A' ? '#6b7280' : '#374151'};">${r.dwtTonnage}</td>` },
+      { key:'yob',          label:'YOB',           sortable:true,  td:r => `<td style="tabular-nums;color:${r.yob === null ? '#6b7280' : '#374151'};">${r.yob || 'N/A'}</td>` },
     ],
   };
 }
@@ -846,7 +846,7 @@ function renderTable() {
     </div>
 
     <!-- Card -->
-    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(15,23,42,.07);overflow:hidden;">
+    <div style="background:#fff;border-radius:12px;border:1px solid #e5e7eb;box-shadow:0 1px 2px rgba(15,23,42,.05);overflow:hidden;">
       <!-- Card header -->
       <div style="padding:12px 16px;border-bottom:1px solid #e5e7eb;">
         <div class="acard-head-row" style="display:flex;align-items:center;gap:8px;">
@@ -854,7 +854,7 @@ function renderTable() {
           <span style="font-size:14px;font-weight:700;color:#111827;">
             ${tabLabels[currentTab]} Assets
           </span>
-          <span style="font-size:14px;font-weight:400;color:#9ca3af;">(${total} result${total !== 1 ? 's' : ''})</span>
+          <span style="font-size:14px;font-weight:400;color:#6b7280;">(${total} result${total !== 1 ? 's' : ''})</span>
           <div style="margin-left:auto;display:inline-flex;align-items:stretch;gap:8px;">
             <div class="search-wrap">
               <span class="search-ico">

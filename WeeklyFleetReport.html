@@ -41,7 +41,7 @@
   /* Top meta bar */
   .meta-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 24px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
   .meta-item{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#4b5563}
-  .meta-item .lbl{color:#9ca3af;font-weight:500}
+  .meta-item .lbl{color:#6b7280;font-weight:500}
   .meta-item .val{color:#111827;font-weight:600;font-variant-numeric:tabular-nums}
   .meta-actions{display:flex;align-items:center;gap:8px}
   .meta-btn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 16px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:600;color:#374151;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s}
@@ -109,7 +109,7 @@
   /* Risk gauge block (matches VesselDetails page) */
   .vd-body{display:grid;grid-template-columns:260px 1fr;gap:20px;padding:8px 24px 20px;align-items:flex-start}
   .risk-block{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding-top:2px}
-  .risk-label{font-size:12px;font-weight:600;color:#9ca3af;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+  .risk-label{font-size:12px;font-weight:600;color:#6b7280;letter-spacing:.08em;text-transform:uppercase;text-align:center}
   .gauge-card{background:#f9fafb;border-radius:12px;padding:12px 8px 12px;display:flex;flex-direction:column;align-items:center}
   .gauge-card svg.gauge-svg{width:100%;max-width:200px;height:auto;overflow:visible}
   .gauge-pill{display:flex;align-items:center;gap:4px;margin-top:-12px;margin-bottom:2px}
@@ -127,7 +127,7 @@
   /* Property grid */
   .prop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 28px}
   .prop{display:flex;flex-direction:column;gap:4px;min-width:0}
-  .prop .pk{font-size:12px;font-weight:500;color:#9ca3af;letter-spacing:.01em}
+  .prop .pk{font-size:12px;font-weight:500;color:#6b7280;letter-spacing:.01em}
   .prop .pv{font-size:14px;font-weight:600;color:#111827;line-height:1.4;word-break:break-word}
   .prop .pv.flag-val{display:inline-flex;align-items:center;gap:8px}
   .prop .pv.flag-val .flag-img{width:22px;height:16px;object-fit:cover;border:1px solid #e5e7eb;border-radius:4px;display:block;flex-shrink:0}
@@ -138,7 +138,7 @@
   .vd-spec{min-width:0}
   .vd-spec-head{font-size:12px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;padding-bottom:8px;border-bottom:1px solid #e5e7eb}
   .spec-table{width:100%;border-collapse:collapse;font-size:14px}
-  .spec-table th{text-align:left;font-weight:500;color:#9ca3af;font-size:12px;letter-spacing:.01em;padding:8px 12px 8px 0;vertical-align:top;white-space:nowrap;width:1%}
+  .spec-table th{text-align:left;font-weight:500;color:#6b7280;font-size:12px;letter-spacing:.01em;padding:8px 12px 8px 0;vertical-align:top;white-space:nowrap;width:1%}
   .spec-table td{padding:8px 28px 8px 0;color:#111827;font-weight:600;vertical-align:top;line-height:1.4;word-break:break-word}
   .spec-table tr{border-bottom:1px solid #f3f4f6}
   .spec-table tr:last-child{border-bottom:0}
@@ -153,11 +153,11 @@
   .ra-table td{padding:8px 12px;border-bottom:1px solid #f3f4f6;vertical-align:middle;color:#374151}
   .ra-table tr:last-child td{border-bottom:0}
   .ra-table .notif{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#374151;font-weight:500}
-  .ra-table .notif .ni{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:#fef3c7;color:#d97706;flex-shrink:0}
+  .ra-table .notif .ni{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:#fef3c7;color:#b45309;flex-shrink:0}
   .ra-table .notif .ni svg{width:14px;height:14px}
   .ra-table .notif .ni.blue{background:var(--brand-100,#dbeafe);color:var(--brand-700,#0f6aa0)}
-  .ra-table .notif .ni.red{background:#fee2e2;color:#dc2626}
-  .ra-table .notif .ni.amber{background:#fef3c7;color:#d97706}
+  .ra-table .notif .ni.red{background:#fee2e2;color:#b91c1c}
+  .ra-table .notif .ni.amber{background:#fef3c7;color:#b45309}
   .ra-table .date{color:#4b5563;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:12px}
   .ra-table .ra-note{margin-top:4px;display:flex;align-items:flex-start;gap:4px;font-size:12px;font-weight:500;color:#e07d18;line-height:1.45}
   .ra-table .ra-note svg{width:13px;height:13px;flex-shrink:0;margin-top:1px}
@@ -220,7 +220,7 @@
     }
     .v-table td::before, .alert-table td::before, .ra-table td::before {
       content: attr(data-label); display:block; margin-bottom:4px;
-      font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#9ca3af;
+      font-size:12px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:#6b7280;
     }
     /* keep the red flag accent on stacked flagged rows */
     .alert-table tr.at-flagged { border-left:3px solid #dc2626; }
@@ -249,7 +249,7 @@
     /* Vessel Details spec table: stack label-over-value on mobile */
     .spec-table, .spec-table tbody, .spec-table tr, .spec-table th, .spec-table td{display:block;width:auto}
     .spec-table tr{border:0}
-    .spec-table th{padding:8px 0 1px;color:#9ca3af}
+    .spec-table th{padding:8px 0 1px;color:#6b7280}
     .spec-table td{padding:0 0 8px;border-bottom:1px solid #f3f4f6}
     .spec-table tr:last-child td:last-child{border-bottom:0}
   }
@@ -284,7 +284,7 @@
   }/*EDITMODE-END*/;
 </script>
 <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
-<script src="../shared/chrome.js?v=31"></script>
+<script src="../shared/chrome.js?v=34"></script>
 
 <script>
 const SC = window.sharedChrome;

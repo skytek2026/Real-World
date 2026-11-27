@@ -64,9 +64,9 @@ function buildFlightPopupHTML(p) {
     <div style="padding:16px 16px 12px;border-bottom:1px solid #e5e7eb;">
       <div style="display:flex;align-items:flex-start;gap:4px;">
         <div style="flex:0 0 82px;">
-          <div style="font-size:12px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
+          <div style="font-size:12px;color:#6b7280;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.from.name}</div>
           <div style="font-size:24px;font-weight:700;color:#111827;line-height:1.1;">${p.from.code}</div>
-          <div style="font-size:12px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.dep}</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:2px;">${p.date}, ${p.dep}</div>
         </div>
         <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:12px;">
           <div style="display:flex;align-items:center;width:100%;gap:4px;">
@@ -77,9 +77,9 @@ function buildFlightPopupHTML(p) {
           <div style="font-size:12px;color:#6b7280;white-space:nowrap;">${p.duration}</div>
         </div>
         <div style="flex:0 0 82px;text-align:right;">
-          <div style="font-size:12px;color:#9ca3af;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
+          <div style="font-size:12px;color:#6b7280;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;direction:rtl;">${p.to.name}</div>
           <div style="font-size:24px;font-weight:700;color:#111827;line-height:1.1;">${p.to.code}</div>
-          <div style="font-size:12px;color:#9ca3af;margin-top:2px;">${p.date}, ${p.arr}</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:2px;">${p.date}, ${p.arr}</div>
         </div>
       </div>
     </div>

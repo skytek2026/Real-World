@@ -21,9 +21,9 @@
   .adm-tbl tbody tr:hover td{background:#fafafa}
   /* Badges */
   .badge{font-size:12px;font-weight:700;padding:4px 12px;border-radius:8px;display:inline-block}
-  .badge-yes     {background:#dcfce7;color:#16a34a}
-  .badge-active  {background:#dcfce7;color:#16a34a}
-  .badge-inactive{background:#f3f4f6;color:#6b7280}
+  .badge-yes     {background:#dcfce7;color:#15803d}
+  .badge-active  {background:#dcfce7;color:#15803d}
+  .badge-inactive{background:#f3f4f6;color:#4B5563}
   .badge-pending {background:#fffbeb;color:#ea580c}
   /* Tabs */
   .utab{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s}
@@ -40,7 +40,7 @@
   .srch-wrap input{height:34px;padding:0 12px 0 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#374151;outline:none;font-family:inherit;background:#f9fafb;transition:border-color .15s,box-shadow .15s}
   .srch-wrap input:focus{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.12);background:#fff}
   /* Action dots */
-  .dots-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:0;background:transparent;color:#9ca3af;cursor:pointer;font-size:20px;font-weight:700;line-height:1}
+  .dots-btn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;border:0;background:transparent;color:#6b7280;cursor:pointer;font-size:20px;font-weight:700;line-height:1}
   .dots-btn:hover{background:#f3f4f6;color:#374151}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -58,7 +58,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -190,7 +190,7 @@ function userSection() {
         ${USER_ICO} Add Users
       </button>
     </div>
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden">
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);overflow:hidden">
       <!-- Tabs + search -->
       <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <div style="display:flex;gap:4px;flex:1">
@@ -226,7 +226,7 @@ function orgSection() {
         + Create New Organisation
       </button>
     </div>
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);overflow:hidden">
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);overflow:hidden">
       <!-- Header + search -->
       <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
         <span style="font-size:14px;font-weight:600;color:#374151">All Organisations</span>

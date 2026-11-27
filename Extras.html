@@ -41,7 +41,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -109,15 +109,15 @@ function renderModal() {
         <div class="icon-badge" style="background:${card.iconBg};color:${card.iconColor}">${card.icon}</div>
         <div style="flex:1">
           <div style="font-size:14px;font-weight:700;color:#111827">${card.title}</div>
-          <div style="font-size:12px;color:#9ca3af;margin-top:1px">Configuration settings</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:1px">Configuration settings</div>
         </div>
-        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${X_SVG}</button>
+        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#6b7280" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${X_SVG}</button>
       </div>
       <div style="padding:20px 24px">
         <p style="font-size:14px;color:#6b7280;line-height:1.6;margin-bottom:20px">${card.desc}</p>
         <div style="background:#f9fafb;border:1px solid #f3f4f6;border-radius:8px;padding:16px;margin-bottom:20px">
-          <div style="font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Configuration</div>
-          <div style="font-size:14px;color:#9ca3af;text-align:center;padding:16px 0">
+          <div style="font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Configuration</div>
+          <div style="font-size:14px;color:#6b7280;text-align:center;padding:16px 0">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto 8px"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 1 0-14.14 14.14"/></svg>
             Settings for this module are managed in the platform admin panel.
           </div>

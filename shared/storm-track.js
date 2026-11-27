@@ -19,8 +19,8 @@
       .storm-tip .st-k { font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#93c5fd; margin-bottom:2px; }
       .storm-tip .st-k.is-past { color:#d1d5db; }
       .storm-tip .st-r { display:flex; justify-content:space-between; gap:12px; font-variant-numeric:tabular-nums; }
-      .storm-tip .st-r span:first-child { color:#9ca3af; }
-      .storm-legend { background:rgba(255,255,255,.92); backdrop-filter:blur(4px); border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px; box-shadow:0 2px 8px rgba(15,23,42,.1); font-family:Inter,system-ui,sans-serif; }
+      .storm-tip .st-r span:first-child { color:#6b7280; }
+      .storm-legend { background:rgba(255,255,255,.92); backdrop-filter:blur(4px); border:1px solid #e5e7eb; border-radius:8px; padding:12px 16px; box-shadow:0 6px 12px -2px rgba(15,23,42,.12), 0 3px 6px -3px rgba(15,23,42,.10); font-family:Inter,system-ui,sans-serif; }
       .storm-legend .sl-h { font-size:12px; font-weight:700; color:#6b7280; text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
       .storm-legend .sl-rows { display:flex; flex-direction:column; gap:4px; }
       .storm-legend .sl-r { display:flex; align-items:center; gap:8px; font-size:12px; color:#4b5563; white-space:nowrap; }

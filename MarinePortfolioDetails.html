@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script>
+const tc = c => ({'#06b6d4':'#0e7490','#eab308':'#a16207','#ea580c':'#c2410c','#ec4899':'#be185d','#db2777':'#be185d','#16a34a':'#15803d','#dc2626':'#b91c1c','#d97706':'#b45309','#f97316':'#c2410c','#43a8df':'#0f6aa0','#1a92d1':'#0f6aa0','#84c5ec':'#0f6aa0','#9ca3af':'#6b7280'}[String(c).toLowerCase()] || c);   // text-safe version of a category colour (markers keep the original)
+
   tailwind.config = {
     theme: { extend: {
       fontFamily: { sans:['Inter','ui-sans-serif','system-ui','sans-serif'], display:['Exo','Inter','sans-serif'] },
@@ -61,7 +63,7 @@
   .pg-name:focus-visible, .ds-th-sort:focus-visible { outline:0; border-radius:4px; box-shadow:0 0 0 3px rgba(46,134,192,.32); }
   .pg-name svg { flex-shrink:0; }
   .pg-foot-btn { color:var(--brand-700,#0f6aa0); background:none; border:0; padding:0; cursor:pointer; }
-  .pg-foot-btn[disabled] { color:#9ca3af; cursor:not-allowed; }
+  .pg-foot-btn[disabled] { color:#6b7280; cursor:not-allowed; }
   .pg-table .ds-th-sort { width:100%; display:inline-flex; align-items:center; gap:4px; padding:8px 12px; background:none; border:0; font:inherit; font-size:12px; font-weight:600; letter-spacing:.02em; color:#6b7280; cursor:pointer; white-space:nowrap; transition:color 120ms ease, background 120ms ease; }
   .pg-table .ds-th-sort:hover { color:#4b5563; background:#f3f4f6; }
   .pg-table .ds-th-sort .ds-sort-ind, .pg-table .ds-th-sort > svg { display:inline-flex; flex-shrink:0; }
@@ -86,7 +88,7 @@
   .atab:hover:not(.active) { color:#374151; }
   /* PSC stat boxes */
   .psc-box { background:#fff; border:1px solid #e5e7eb; border-radius:8px; overflow:hidden; }
-  .psc-head { background:var(--brand-600,#2563eb); color:#fff; text-align:center; font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; padding:8px 12px; letter-spacing:.03em; }
+  .psc-head { background:var(--brand-500,#1a92d1); color:#fff; text-align:center; font-family:'Exo','Inter',sans-serif; font-weight:700; font-size:14px; padding:8px 12px; letter-spacing:.03em; }
   .psc-subhead { display:grid; grid-template-columns:1fr 1fr 1fr; border-bottom:1px solid var(--border-default,#E5E7EB); background:var(--slate-50,#F9FAFB); }
   .psc-subhead span { padding:8px 12px; font-size:12px; font-weight:600; color:var(--text-muted,#6B7280); text-align:center; text-transform:uppercase; letter-spacing:.04em; }
   .psc-subhead span:first-child { text-align:left; color:#6b7280; }
@@ -120,7 +122,7 @@
   .pcard-sub { display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-size:14px; color:#6b7280; }
   .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
-  .pcard-k { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#9ca3af; }
+  .pcard-k { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#6b7280; }
   .pcard-v { font-size:14px; font-weight:500; color:#374151; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
   .pcard-v.is-strong { font-size:14px; font-weight:700; color:#111827; }
   .pcard-v.is-mono { font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; }
@@ -178,7 +180,7 @@
   .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-800,#0d5580);}
   /* Risk Score info popups (ported from Vessel Details) */
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
-  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
+  .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#6b7280;cursor:pointer;margin-top:1px;}
   .rs-info:hover{color:#0F6AA0;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
@@ -228,7 +230,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="shared/pagination.css" />
@@ -425,7 +427,7 @@ function DonutSVG(score = 100) {
     </div>
     <div style="display:flex;align-items:center;gap:4px;margin-top:-8px;">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="${risk.c}" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r="0.8" fill="${risk.c}"/></svg>
-      <span style="font-size:12px;font-weight:700;color:${risk.c};letter-spacing:0.06em;">${risk.label}</span>
+      <span style="font-size:12px;font-weight:700;color:${tc(risk.c)};letter-spacing:0.06em;">${risk.label}</span>
     </div>`;
 }
 
@@ -434,7 +436,7 @@ function PanelPortfolioDetails() {
   const compStatus = PORTFOLIO.sanctioned ? 'SANCTIONED' : 'OK';
   const compBadge = compStatus === 'OK'
     ? `<span class="pf-ok-badge" style="font-size:12px;font-weight:700;padding:2px 12px;border-radius:999px;background:var(--brand-100,#dbeafe);color:var(--brand-700,#1d4ed8)">OK</span>`
-    : `<span style="font-size:12px;font-weight:700;padding:2px 12px;border-radius:999px;background:#fee2e2;color:#dc2626">SANCTIONED</span>`;
+    : `<span style="font-size:12px;font-weight:700;padding:2px 12px;border-radius:999px;background:#fee2e2;color:#b91c1c">SANCTIONED</span>`;
   return `
   <div class="bg-white rounded-xl border border-ink-200 shadow-card flex flex-col min-w-0 overflow-hidden">
     <div class="p-3 border-b border-ink-100">
@@ -446,7 +448,7 @@ function PanelPortfolioDetails() {
     </div>
     <div class="pf-stack">${PortfolioGroupsBody()}<div class="pf-pane${pfTab === 'details' ? ' is-on' + (pfAnim ? ' pf-tab-in' : '') : ''}" ${pfTab === 'details' ? '' : 'aria-hidden="true" inert'}>
     <div class="mx-3 mt-3" style="width:fit-content;align-self:center;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-100,#dbeafe);border-radius:8px;padding:12px 16px;text-align:center;">
-      <div style="font-size:12px;font-weight:500;color:#6b7280;margin-bottom:4px;">Our Aggregated Exposure</div>
+      <div style="font-size:12px;font-weight:500;color:#4B5563;margin-bottom:4px;">Our Aggregated Exposure</div>
       <div style="font-size:24px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1;">${PORTFOLIO.exposure || '$24.4B'}</div>
     </div>
     <div class="flex-1 px-3 py-2 space-y-0">
@@ -538,23 +540,23 @@ function ActivityGrid() {
       <div>
         <div class="text-xs text-ink-500 mb-1">Day with Max. No. of Ships in Region:</div>
         <span class="stat-badge blue">34</span>
-        <div class="text-xs text-ink-400 mt-1">Dec 15th 2024</div>
+        <div class="text-xs text-ink-500 mt-1">Dec 15th 2024</div>
       </div>
       <div>
         <div class="text-xs text-ink-500 mb-1">Day with Min. No. of Ships in Region:</div>
         <span class="stat-badge blue">7</span>
-        <div class="text-xs text-ink-400 mt-1">Dec 25th 2024</div>
+        <div class="text-xs text-ink-500 mt-1">Dec 25th 2024</div>
       </div>
       <!-- Row 3 -->
       <div>
         <div class="text-xs text-ink-500 mb-1">Max. Exposure:</div>
         <span class="stat-badge blue">$1.8B</span>
-        <div class="text-xs text-ink-400 mt-1">Dec 18th 2024</div>
+        <div class="text-xs text-ink-500 mt-1">Dec 18th 2024</div>
       </div>
       <div>
         <div class="text-xs text-ink-500 mb-1">Min Exposure:</div>
         <span class="stat-badge blue">$198.3M</span>
-        <div class="text-xs text-ink-400 mt-1">Dec 25th 2024</div>
+        <div class="text-xs text-ink-500 mt-1">Dec 25th 2024</div>
       </div>
       <!-- Row 4 -->
       <div>
@@ -595,7 +597,7 @@ let raPage = 1, raPer = 10;
 function RiskAssocContent() {
   const pages = Math.max(1, Math.ceil(RA_ROWS.length / raPer)); raPage = Math.min(raPage, pages);
   const from = (raPage - 1) * raPer, slice = RA_ROWS.slice(from, from + raPer);
-  const arrow = '<span class="text-ink-400 mx-1" aria-hidden="true">⟶</span>';
+  const arrow = '<span class="text-ink-500 mx-1" aria-hidden="true">⟶</span>';
   const th = t => `<th class="px-3 py-2 text-left text-xs font-semibold tracking-wider uppercase text-ink-500">${t}</th>`;
   return `<div style="margin:-12px;">
   <div class="scroll-thin" style="overflow-x:auto;">
@@ -712,7 +714,7 @@ function PanelRiskBreakdown() {
     const fillTipA = gAngle(Math.min(rsScore, GAUGE_MAX));
     const fillTipB = gAngle(Math.max(0, Math.min(rsScore, GAUGE_MAX) - GAUGE_MAX * 0.08));
     const glowPath = rsScore > 0 ? `<path d="${arcD(fillTipB, fillTipA, R)}" fill="none" stroke="${glowColor}" stroke-width="${SW + 8}" stroke-linecap="round" opacity="0.3"/>` : '';
-    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${r.impact>0?'#d97706':'#9ca3af'}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
+    const rsFactorRows = RS_FACTORS.map(r => `<tr><td>${r.name}</td><td>${r.score}</td><td style="color:${tc(r.impact>0?'#b45309':'#6b7280')}">${r.impact>0?r.impact.toFixed(2):'0'}</td></tr>`).join('');
     const rsInfoIcon = (title, align='c') => `<span class="rs-info"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><div class="rs-tip ${align}"><div class="rs-tip-h">${title}</div><table class="rs-tip-tbl"><thead><tr><th>Risk Factor</th><th>Score</th><th>Impact</th></tr></thead><tbody>${rsFactorRows}</tbody></table></div></span>`;
     const RS_BANDS = [
       { k:'good', label:'Good',          range:'0 → 25',    c:'#16a34a' },
@@ -737,7 +739,7 @@ function PanelRiskBreakdown() {
         <svg viewBox="0 0 100 100" style="width:100%;height:100%;overflow:visible;transform:rotate(-90deg);" role="img" aria-label="${year} average risk score ${score}; ${RS_BANDS.map(b => b.label + ' ' + dist[b.k]).join(', ')} assets">${segs}</svg>
         <div class="mp-rs-center" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
           ${year === 2026 && mpWithSanctions ? `<span style="font-size:${Math.round(numPx * 0.38)}px;font-weight:700;color:#111827;line-height:1;">Sanctioned</span>` : `<span style="font-size:${numPx}px;font-weight:700;color:#111827;line-height:1;font-variant-numeric:tabular-nums;">${score}</span>
-          ${year === 2026 ? '' : `<span style="font-size:${Math.max(10, Math.round(numPx / 3.4))}px;color:#6b7280;margin-top:2px;">Avg Score</span>`}`}
+          ${year === 2026 ? '' : `<span style="font-size:${[11,12,13,14,16].reduce((a,b)=>Math.abs(b-numPx/3.4)<Math.abs(a-numPx/3.4)?b:a)}px;color:#6b7280;margin-top:2px;">Avg Score</span>`}`}
         </div>
       </div>`;
     };
@@ -748,7 +750,7 @@ function PanelRiskBreakdown() {
         <button data-mp-trends class="co-rs-trend" role="switch" aria-checked="${mpWithTrends}" style="white-space:nowrap;margin-left:auto;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Trends
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithTrends?'var(--brand-600,#1485c5)':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${mpWithTrends?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s;"></span>
           </span>
         </button>
       </div>
@@ -757,7 +759,7 @@ function PanelRiskBreakdown() {
         <button data-mp-sanctions class="co-rs-sanc" style="align-self:flex-end;max-width:100%;white-space:normal;text-align:right;line-height:1.2;display:flex;align-items:center;gap:8px;background:transparent;border:0;cursor:pointer;font-size:12px;font-weight:600;color:#4b5563;font-family:inherit;padding:0;">
           With Sanctions
           <span style="position:relative;height:18px;width:32px;border-radius:999px;background:${mpWithSanctions?'#dc2626':'#d1d5db'};transition:background .15s;display:inline-block;flex-shrink:0;">
-            <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s;"></span>
+            <span style="position:absolute;top:2px;${mpWithSanctions?'left:16px':'left:2px'};height:14px;width:14px;border-radius:999px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s;"></span>
           </span>
         </button>
           <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">${yearPillTag(2026)}<div style="display:flex;align-items:center;justify-content:center;gap:4px;font-size:12px;color:#6b7280;line-height:1.4;white-space:nowrap;"><span>Risk Score</span>${rsInfoIcon('Risk score as at Jan 1st 2026: ' + rsScore)}</div></div>
@@ -797,7 +799,7 @@ function PanelCompliance() {
       </div>
       <div>
         <div class="text-2xl font-bold text-green-600 font-display text-center">OK</div>
-        <div class="text-xs text-ink-400 text-center mt-0.5">Updated at: 2025-07-22</div>
+        <div class="text-xs text-ink-500 text-center mt-0.5">Updated at: 2025-07-22</div>
       </div>
     </div>
     <div class="ds-card-foot ds-card-foot--start mt-auto">
@@ -850,7 +852,7 @@ function EnvironmentalRatingContent() {
     <div class="flex items-center justify-between py-2">
       <span class="text-xs text-ink-700">${item.label}</span>
       <div class="flex items-center gap-2">
-        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
+        ${item.icon ? `<svg class="w-3.5 h-3.5 text-ink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>` : ''}
         <span class="px-2 py-0.5 rounded text-xs font-bold text-white" style="background:${item.color}">${item.badge}</span>
       </div>
     </div>`;
@@ -956,7 +958,7 @@ function analysisContentFor(tab) {
   if (tab === 'Portfolio Casualties')     return CasualtiesContent();
   if (tab === 'Regions History')        return VoyagesContent();
   if (tab === 'Ship-To-Ship')             return `<div style="margin:-12px;overflow-x:auto;" class="scroll-thin">${window.STS.StsContent()}</div>`;
-  return `<div class="py-8 text-center text-ink-400 text-sm">${tab} — coming soon</div>`;
+  return `<div class="py-8 text-center text-ink-500 text-sm">${tab} — coming soon</div>`;
 }
 
 const CASUALTIES = [
@@ -1291,7 +1293,7 @@ function PolicySection() {
       <div class="flex-1"></div>
       <!-- Search -->
       <div class="relative">
-        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-400 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-500 pointer-events-none" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <input type="search" id="pol-search" value="${esc(policyQuery)}" placeholder="Search" aria-label="Search policies by Asset ID, Asset Name or Policy Ref" aria-controls="pol-results" autocomplete="off" class="pl-7 pr-3 py-2 text-xs border border-ink-200 rounded-lg focus:outline-none focus:border-brand-400 w-44" />
       </div>
       <button type="button" id="pol-reset" class="flex items-center justify-center shrink-0 border border-ink-200 rounded-lg text-ink-600 hover:bg-ink-50 hover:text-ink-900" style="width:32px;height:32px;" title="Reset filters" aria-label="Reset filters">
@@ -1314,7 +1316,7 @@ function PolicySection() {
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
         Delete
       </button>
-      <span class="text-xs text-ink-400">0 selected</span>
+      <span class="text-xs text-ink-500">0 selected</span>
     </div>
     <!-- Table -->
     <div id="pol-results">${PolicyResults()}</div>

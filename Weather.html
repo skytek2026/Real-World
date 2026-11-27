@@ -44,7 +44,7 @@
   .ds-tab-label{position:relative;z-index:1;display:inline-flex;align-items:center;gap:4px}
 
   /* Map controls */
-  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer}
+  .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.05);cursor:pointer}
   .map-btn:hover{background:#f3f4f6}
   /* Position the Leaflet zoom bar below the fullscreen button, left-aligned with it (matches Marine Dashboard) */
   #weather-map .leaflet-top.leaflet-left{top:56px;left:2px}
@@ -82,7 +82,7 @@
   .wx-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:12px 0 0;padding-top:12px;border-top:1px solid #f3f4f6}
   .wx-kv--top{grid-template-columns:minmax(0,1fr) auto;margin:0;padding:0;border:0}
   .wx-kv--top > div:last-child{text-align:right}
-  .wx-kv dt{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9ca3af}
+  .wx-kv dt{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#6b7280}
   .wx-kv dd{margin:4px 0 0;font-size:14px;color:#374151}
   .wx-kv-wide{grid-column:1 / -1}
   .wx-link{font-weight:600;color:var(--brand-700,#0f6aa0);text-decoration:none}.wx-link:hover{color:var(--brand-800,#0d5580);text-decoration:underline;text-underline-offset:2px}.wx-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;border-radius:4px}
@@ -103,7 +103,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <script src="shared/storm-track.js?v=5"></script>
 <script>
 const SC = window.sharedChrome;
@@ -435,7 +435,7 @@ function ListView() {
           <td style="font-variant-numeric:tabular-nums;font-weight:500">${s.wind} km/h</td>
           <td style="font-variant-numeric:tabular-nums">${s.pressure} hPa</td>
           <td>${s.movement}</td>
-          <td><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0fdf4;color:#16a34a">Active</span></td>
+          <td><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0fdf4;color:#15803d">Active</span></td>
         </tr>`).join('')}
       </tbody>
     </table>
@@ -449,7 +449,7 @@ function ListView() {
               <a href="WeatherEventDetails.html" class="wx-link" data-storm-id="${s.id}">${s.name}</a>
             </span>
           </dd></div>
-          <div><dt>Status</dt><dd><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0fdf4;color:#16a34a">Active</span></dd></div>
+          <div><dt>Status</dt><dd><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0fdf4;color:#15803d">Active</span></dd></div>
         </dl>
         <dl class="wx-kv">
           <div><dt>Type</dt><dd>${s.type}</dd></div>
@@ -472,7 +472,7 @@ document.addEventListener('click', e => {
 function Content() {
   return `
   <div class="flex-1 overflow-hidden px-4 py-4" style="display:flex;flex-direction:column">
-    <div class="bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden flex-1" style="box-shadow:0 1px 2px rgba(15,23,42,.06)">
+    <div class="bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden flex-1" style="box-shadow:0 1px 2px rgba(15,23,42,.05)">
       <div class="shrink-0 px-4 py-3 flex items-center gap-3 border-b border-gray-100">
         <div class="ds-tabs" id="view-tabs">
           <span class="ds-tab-pill is-init" data-tab-pill></span>

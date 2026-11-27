@@ -254,7 +254,7 @@ function listView() {
     (!q || r.name.toLowerCase().includes(q) || r.scope.toLowerCase().includes(q) || r.owner.toLowerCase().includes(q)) &&
     (S.fType === 'All' || typeName(r.type) === S.fType) &&
     (S.fStatus === 'All' || r.status === S.fStatus));
-  const th = (label, align = 'left') => `<th style="text-align:${align};padding:12px 16px;font-size:12px;font-weight:600;color:#6B7280;text-transform:uppercase;letter-spacing:.04em;background:#F9FAFB;white-space:nowrap">${label}</th>`;
+  const th = (label, align = 'left') => `<th style="text-align:${align};padding:12px 16px;font-size:12px;font-weight:600;color:#4B5563;text-transform:uppercase;letter-spacing:.04em;background:#F9FAFB;white-space:nowrap">${label}</th>`;
   return `
   <div class="rb-root scroll-thin" style="flex:1;min-height:0;overflow:auto;background:#f9fafb">
     <div style="padding:16px 20px;background:#fff;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
@@ -277,14 +277,14 @@ function listView() {
     <div style="padding:16px 20px 4px">
       <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:8px">
         <div style="font-size:14px;font-weight:700;color:#111827">Start from a template</div>
-        <div style="font-size:12px;color:#9ca3af">Pre-configured for common insurance use cases</div>
+        <div style="font-size:12px;color:#6b7280">Pre-configured for common insurance use cases</div>
       </div>
       <div class="rb-tpl-grid">
         ${TEMPLATES.map(t => `
           <button class="rb-tpl" data-tpl="${t.id}">
             <span style="display:flex;align-items:center;gap:8px;color:var(--brand-700,#0f6aa0)">${ic(t.icon, 15)}<span style="font-size:14px;font-weight:700;color:#111827">${t.name}</span></span>
             <span style="font-size:12px;color:#6b7280;line-height:1.45">${t.desc}</span>
-            <span style="font-size:12px;font-weight:600;color:#9ca3af">${t.sections.length} sections · ${t.metrics.length} metrics</span>
+            <span style="font-size:12px;font-weight:600;color:#6b7280">${t.sections.length} sections · ${t.metrics.length} metrics</span>
           </button>`).join('')}
       </div>
     </div>
@@ -293,7 +293,7 @@ function listView() {
       <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden">
         <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;gap:8px">
           <div style="font-size:14px;font-weight:700;color:#111827">Saved reports</div>
-          <div style="font-size:12px;color:#9ca3af">${rows.length} of ${S.reports.length}</div>
+          <div style="font-size:12px;color:#6b7280">${rows.length} of ${S.reports.length}</div>
         </div>
         <div style="overflow:auto" class="scroll-thin">
           <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:940px">
@@ -301,7 +301,7 @@ function listView() {
               ${th('Report Name')}${th('Type')}${th('Scope')}${th('Owner')}${th('Last Modified')}${th('Last Generated')}${th('Status')}${th('Actions', 'right')}
             </tr></thead>
             <tbody>
-              ${rows.length === 0 ? `<tr><td colspan="8" style="padding:44px;text-align:center;color:#9ca3af">No reports match your filters.</td></tr>` : rows.map(r => `
+              ${rows.length === 0 ? `<tr><td colspan="8" style="padding:44px;text-align:center;color:#6b7280">No reports match your filters.</td></tr>` : rows.map(r => `
                 <tr style="border-bottom:1px solid #f3f4f6">
                   <td style="padding:12px 16px"><button class="rb-link" data-open="${r.id}">${ic('FileText', 14, 'var(--brand-600,#2563eb)')}<span>${r.name}</span></button></td>
                   <td style="padding:12px 16px;color:#4b5563;white-space:nowrap">${typeName(r.type)}</td>
@@ -526,7 +526,7 @@ function builderView() {
         <div class="rb-livebar">
           ${[['Matching assets', fmtN(t.assets)], ['Total exposure', fmtM(t.exp)], ['Portfolios', fmtN(t.pfCnt)], ['Sections', String(d.sections.length)]].map(([l, v]) => `
             <div class="rb-live"><span>${l}</span><strong>${v}</strong></div>`).join('')}
-          <span style="margin-left:auto;font-size:12px;color:#9ca3af">${t.source} · matching this configuration</span>
+          <span style="margin-left:auto;font-size:12px;color:#6b7280">${t.source} · matching this configuration</span>
         </div>
         <div class="rb-page">
           <div class="rb-page-head">
@@ -534,7 +534,7 @@ function builderView() {
               <div style="font-size:16px;font-weight:700;color:#111827;letter-spacing:-.01em">${d.name}</div>
               <div style="font-size:12px;color:#6b7280;margin-top:4px">${typeName(d.type)} report · ${scopeSummary()} · ${d.scope.from} → ${d.scope.to}</div>
             </div>
-            <div style="font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em">Skytek RealWorld</div>
+            <div style="font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.06em">Skytek RealWorld</div>
           </div>
           <div class="rb-note">${ic('Info', 14, '#6b7280')}<span><strong>Structure only.</strong> Charts, tables and maps are populated when the report is generated — aggregation across ${fmtN(t.assets)} assets runs as a background job.</span></div>
           ${d.sections.length === 0
@@ -577,7 +577,7 @@ function genOverlay() {
       <div class="rb-steps">
         ${GEN_STEPS.map((s, i) => `<div class="rb-step${i < g.step ? ' done' : i === g.step ? ' now' : ''}">${i < g.step ? ic('Check', 12, '#16a34a', 3) : i === g.step ? ic('Loader', 12, 'var(--brand-600,#2563eb)') : ic('Circle', 12, '#d1d5db')}<span>${s}</span></div>`).join('')}
       </div>
-      <div style="margin-top:12px;font-size:12px;color:#9ca3af">You can leave this running — the report appears in Saved reports when it completes.</div>
+      <div style="margin-top:12px;font-size:12px;color:#6b7280">You can leave this running — the report appears in Saved reports when it completes.</div>
     </div>
     <div class="rb-modal-f">${btn('Run in background', 'Minimize2', 'genbg')}${btn('Cancel job', '', 'gencancel')}</div>` : `
     <div class="rb-modal-b">
@@ -614,7 +614,7 @@ const CSS = `
 .rb-btn-primary:hover{background:var(--brand-700,#1d4ed8)}
 .rb-icon-btn{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#4b5563;cursor:pointer}
 .rb-icon-btn:hover{background:#f9fafb;border-color:#d1d5db}
-.rb-icon-btn.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626}
+.rb-icon-btn.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#b91c1c}
 .rb-link{display:inline-flex;align-items:center;gap:8px;background:0;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--brand-700,#0f6aa0);cursor:pointer}
 .rb-link:hover span{text-decoration:underline}
 .rb-search{width:100%;height:34px;padding:0 12px 0 36px;border:1px solid #e5e7eb;border-radius:9999px;font-family:inherit;font-size:14px;color:#374151;background:#f9fafb;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
@@ -635,13 +635,13 @@ const CSS = `
 .rb-panel-h span{flex:1}
 .rb-panel-h:hover{background:#f9fafb}
 .rb-panel-b{padding:2px 16px 16px;display:flex;flex-direction:column;gap:12px}
-.rb-field-label{font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.rb-field-label{font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
 .rb-list{max-height:172px;overflow:auto;border:1px solid #e5e7eb;border-radius:8px}
 .rb-opt{width:100%;display:flex;align-items:center;gap:8px;padding:8px 12px;background:0;border:0;border-bottom:1px solid #f3f4f6;font-family:inherit;font-size:14px;color:#374151;cursor:pointer;text-align:left}
 .rb-opt:last-child{border-bottom:0}
 .rb-opt:hover{background:#f9fafb}
 .rb-opt span:nth-child(2){flex:1}
-.rb-opt-meta{font-size:12px;font-weight:600;color:#9ca3af;font-variant-numeric:tabular-nums}
+.rb-opt-meta{font-size:12px;font-weight:600;color:#6b7280;font-variant-numeric:tabular-nums}
 .rb-cb{width:16px;height:16px;border-radius:4px;border:1.5px solid #d1d5db;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .rb-cb.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
 .rb-input{flex:1;min-width:0;height:32px;border:1px solid #e5e7eb;border-radius:8px;padding:0 8px;font-family:inherit;font-size:14px;color:#374151;background:#f9fafb;outline:none}
@@ -656,7 +656,7 @@ const CSS = `
 .rb-mini:hover{background:#f3f4f6}
 .rb-mini.on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-700,#0f6aa0)}
 .rb-mini:disabled{opacity:.35;cursor:not-allowed}
-.rb-mini.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626}
+.rb-mini.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#b91c1c}
 .rb-sec{border-radius:8px}
 .rb-sec.open{border:1px solid var(--brand-200,#b8ddf5);background:var(--brand-50,#eff6ff)}
 .rb-sec.open .rb-order-row{border-color:transparent;background:transparent}
@@ -665,7 +665,7 @@ const CSS = `
 .rb-cfg-label{font-size:12px;font-weight:600;color:#4b5563;min-width:88px}
 .rb-chip-add{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 12px;border:1px dashed #d1d5db;border-radius:9999px;background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:#4b5563;cursor:pointer}
 .rb-chip-add:hover{border-color:var(--brand-400,#60a5fa);color:var(--brand-800,#0d5580);background:var(--brand-50,#eff6ff)}
-.rb-empty{font-size:12px;color:#9ca3af}
+.rb-empty{font-size:12px;color:#6b7280}
 .rb-title-input{height:32px;min-width:200px;max-width:340px;border:1px solid transparent;border-radius:8px;padding:0 8px;font-family:inherit;font-size:14px;font-weight:700;color:#111827;background:0;outline:none}
 .rb-title-input:hover{background:#f9fafb}
 .rb-title-input:focus{background:#fff;border-color:var(--brand-600,#1485c5);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
@@ -673,30 +673,30 @@ const CSS = `
 .rb-canvas-wrap{overflow:auto;min-height:0;padding:16px 20px 24px}
 .rb-livebar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 16px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;margin-bottom:12px}
 .rb-live{display:flex;flex-direction:column;gap:1px}
-.rb-live span{font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em}
+.rb-live span{font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em}
 .rb-live strong{font-size:14px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums}
-.rb-page{max-width:820px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06);padding:24px 28px 28px}
+.rb-page{max-width:820px;margin:0 auto;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06);padding:24px 28px 28px}
 .rb-page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:16px;border-bottom:2px solid #111827;margin-bottom:4px}
 .rb-pv-sec{padding:16px 0;border-bottom:1px solid #f3f4f6}
 .rb-pv-sec:last-child{border-bottom:0;padding-bottom:0}
-.rb-pv-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.rb-pv-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
 .rb-pv-p{font-size:14px;line-height:1.6;color:#374151;margin-bottom:8px;text-wrap:pretty}
 .rb-pv-p strong{color:#111827;font-weight:700}
 .rb-pv-hl{display:flex;flex-direction:column;gap:4px;padding:12px 12px;background:#f9fafb;border-radius:8px}
 .rb-pv-hl span{display:flex;align-items:center;gap:2px;font-size:12px;color:#4b5563}
 .rb-pv-tile{display:flex;flex-direction:column;gap:4px;padding:12px 12px;background:#f9fafb;border:1px solid #eef2f6;border-radius:8px}
-.rb-pv-tile span{font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em}
+.rb-pv-tile span{font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
 .rb-pv-tile strong{font-size:16px;font-weight:700;color:#111827;font-variant-numeric:tabular-nums}
-.rb-note{display:flex;align-items:flex-start;gap:8px;padding:12px 12px;margin:12px 0 4px;background:#f9fafb;border:1px solid #eef2f6;border-radius:8px;font-size:12px;line-height:1.5;color:#6b7280}
+.rb-note{display:flex;align-items:flex-start;gap:8px;padding:12px 12px;margin:12px 0 4px;background:#f9fafb;border:1px solid #eef2f6;border-radius:8px;font-size:12px;line-height:1.5;color:#4B5563}
 .rb-note strong{color:#374151;font-weight:700}
 .rb-ol{display:flex;align-items:flex-start;gap:12px;padding:16px 0;border-bottom:1px solid #f3f4f6}
 .rb-ol:last-child{border-bottom:0;padding-bottom:2px}
-.rb-ol-num{width:22px;height:22px;flex-shrink:0;border-radius:8px;background:#f3f4f6;color:#6b7280;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.rb-ol-num{width:22px;height:22px;flex-shrink:0;border-radius:8px;background:#f3f4f6;color:#4B5563;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
 .rb-ol-main{flex:1;min-width:0}
 .rb-ol-t{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#111827}
 .rb-ol-d{font-size:12px;color:#6b7280;margin-top:4px;line-height:1.45;text-wrap:pretty}
 .rb-ol-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
-.rb-ol-chip{font-size:12px;color:#6b7280;background:#f9fafb;border:1px solid #eef2f6;border-radius:999px;padding:2px 8px}
+.rb-ol-chip{font-size:12px;color:#4B5563;background:#f9fafb;border:1px solid #eef2f6;border-radius:999px;padding:2px 8px}
 .rb-ol-chip strong{color:#374151;font-weight:700}
 .rb-ol-skel{width:172px;flex-shrink:0;display:flex;flex-direction:column;gap:4px}
 .rb-sk{display:flex;flex-direction:column;gap:4px}
@@ -709,7 +709,7 @@ const CSS = `
 .rb-prog{height:6px;border-radius:999px;background:#f3f4f6;overflow:hidden;margin:12px 0 12px}
 .rb-prog span{display:block;height:100%;border-radius:999px;background:var(--brand-600,#2563eb);transition:width .5s ease}
 .rb-steps{display:flex;flex-direction:column;gap:8px}
-.rb-step{display:flex;align-items:center;gap:8px;font-size:12px;color:#9ca3af}
+.rb-step{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b7280}
 .rb-step.done{color:#4b5563}
 .rb-step.now{color:#111827;font-weight:600}
 .rb-job{display:inline-flex;align-items:center;gap:8px;height:26px;padding:0 12px;border-radius:999px;background:#fef3c7;border:1px solid #fef3c7;color:#b45309;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}

@@ -21,13 +21,13 @@
   .org-tbl tbody tr:hover td{background:#fafafa}
   /* Status badges */
   .sbadge{font-size:12px;font-weight:500;padding:4px 12px;border-radius:8px;display:inline-block;white-space:nowrap}
-  .sb-active  {background:#f0fdf4;color:#16a34a}
+  .sb-active  {background:#f0fdf4;color:#15803d}
   .sb-pending {background:#fffbeb;color:#ca8a04}
-  .sb-inactive{background:#fef2f2;color:#dc2626}
+  .sb-inactive{background:#fef2f2;color:#b91c1c}
   /* Access chips */
   .chip{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;margin:1px 2px 1px 0;white-space:nowrap}
   .chip-ports  {background:#eff6ff;color:#2563eb;border:1px solid #b8ddf5}
-  .chip-weather{background:#f0fdf4;color:#16a34a;border:1px solid #86efac}
+  .chip-weather{background:#f0fdf4;color:#15803d;border:1px solid #86efac}
   .chip-risk   {background:#fffbeb;color:#c2410c;border:1px solid #fdba74}
   /* Header controls */
   .hbtn{display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#374151;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .1s,border-color .1s}
@@ -37,9 +37,9 @@
   .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:170px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
   .fdrop-item{padding:8px 12px;font-size:14px;color:#374151;cursor:pointer}.fdrop-item:hover{background:#f9fafb}.fdrop-item.fsel{color:var(--brand-700,#0f6aa0);font-weight:600;background:var(--brand-50)}
   /* Action buttons */
-  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s}
+  .actbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#6b7280;transition:background .1s,color .1s}
   .actbtn:hover{background:#f3f4f6;color:#374151}
-  .actbtn.danger:hover{background:#fef2f2;color:#dc2626}
+  .actbtn.danger:hover{background:#fef2f2;color:#b91c1c}
   /* Pagination */
   .pgbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#374151;cursor:pointer;transition:background .1s}
   .pgbtn:hover:not([disabled]){background:#f3f4f6}.pgbtn[disabled]{opacity:.4;cursor:not-allowed}
@@ -75,7 +75,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=31"></script>
+<script src="shared/chrome.js?v=34"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -172,9 +172,9 @@ function renderModal() {
       <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
         <div>
           <div class="text-base font-bold text-gray-900">Create New Organisation</div>
-          <div class="text-xs text-gray-400 mt-0.5">Set up a new client organisation on Real World</div>
+          <div class="text-xs text-gray-500 mt-0.5">Set up a new client organisation on Real World</div>
         </div>
-        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#9ca3af;transition:background .1s,color .1s" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${SVG.x}</button>
+        <button id="modal-close" style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:0;background:transparent;cursor:pointer;color:#6b7280;transition:background .1s,color .1s" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">${SVG.x}</button>
       </div>
 
       <!-- Body -->
@@ -190,7 +190,7 @@ function renderModal() {
         <div>
           <label class="form-label">Slug</label>
           <input class="form-input" id="form-slug" type="text" placeholder="auto-generated from name" value="${f.slug.replace(/"/g, '&quot;')}" style="color:#6b7280" />
-          <div style="font-size:12px;color:#9ca3af;margin-top:4px">Used in URLs and API references.</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px">Used in URLs and API references.</div>
         </div>
 
         <!-- Currency + Locale -->
@@ -272,18 +272,18 @@ function renderPage() {
 
   return `
   <!-- White card -->
-  <div class="flex-1 min-h-0 m-4 bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden" style="box-shadow:0 1px 3px rgba(15,23,42,.06)">
+  <div class="flex-1 min-h-0 m-4 bg-white rounded-xl border border-gray-200 flex flex-col overflow-hidden" style="box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06)">
 
     <!-- Header row -->
     <div class="shrink-0 px-5 py-3 border-b border-gray-100 flex items-center gap-3 flex-wrap">
       <div class="text-sm font-semibold text-gray-900">
-        Organisations <span class="font-normal text-gray-400">(${total})</span>
+        Organisations <span class="font-normal text-gray-500">(${total})</span>
       </div>
       <div style="flex:1;min-width:16px"></div>
 
       <!-- Search -->
       <div style="position:relative">
-        <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#9ca3af;pointer-events:none;display:flex">${SVG.search}</span>
+        <span style="position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#6b7280;pointer-events:none;display:flex">${SVG.search}</span>
         <input id="org-search" type="text" placeholder="Search organisations..."
           value="${ST.query.replace(/"/g, '&quot;')}"
           style="height:34px;width:210px;padding:0 12px 0 32px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s" />
@@ -336,12 +336,12 @@ function renderPage() {
         </thead>
         <tbody>
           ${pageRows.length === 0 ? `
-            <tr><td colspan="8" style="text-align:center;padding:64px 0;color:#9ca3af;font-size:14px">No organisations match your search.</td></tr>
+            <tr><td colspan="8" style="text-align:center;padding:64px 0;color:#6b7280;font-size:14px">No organisations match your search.</td></tr>
           ` : pageRows.map(o => `
           <tr>
             <td>
               <div style="font-size:14px;font-weight:600;color:#111827">${o.name}</div>
-              <div style="font-size:12px;color:#9ca3af;margin-top:2px">${o.slug} · ${o.currency} · ${o.locale}</div>
+              <div style="font-size:12px;color:#6b7280;margin-top:2px">${o.slug} · ${o.currency} · ${o.locale}</div>
             </td>
             <td style="color:#6b7280">${o.email}</td>
             <td>${statusBadge(o.status)}</td>
