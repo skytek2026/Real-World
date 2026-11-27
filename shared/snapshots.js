@@ -22,7 +22,7 @@ var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.ful
   .ds-toast-desc{font-size:12px;color:var(--text-secondary,#4b5563);margin-top:1px}
   .ds-toast-dismiss{display:inline-grid;place-content:center;width:24px;height:24px;border:0;background:transparent;border-radius:8px;color:var(--text-muted,#6b7280);cursor:pointer;transition:background 140ms,color 140ms}
   .ds-toast-dismiss:hover{background:var(--slate-100,#f3f4f6);color:var(--text-primary,#111827)}
-  .ds-toast-dismiss:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .ds-toast-dismiss:focus-visible{outline:0;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .ds-toast--info{border-left-color:var(--info-500,#2563eb)}.ds-toast--info .ds-toast-icon{color:var(--info-700,#1d4ed8)}
   .ds-toast--success{border-left-color:var(--success-500,#16a34a)}.ds-toast--success .ds-toast-icon{color:var(--success-700,#15803d)}
   .ds-toast--danger{border-left-color:var(--danger-500,#dc2626)}.ds-toast--danger .ds-toast-icon{color:var(--danger-700,#b91c1c)}
@@ -43,12 +43,12 @@ var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.ful
   .snap-tbl .ds-th--sortable{padding:0}
   .snap-tbl .ds-th-sort{width:100%;display:inline-flex;align-items:center;gap:4px;font:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:8px 12px;background:transparent;border:0;cursor:pointer;text-align:left;white-space:nowrap;transition:color .12s ease,background .12s ease}
   .snap-tbl .ds-th-sort:hover{color:var(--text-secondary,#4B5563);background:var(--slate-100,#F3F4F6)}
-  .snap-tbl .ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}
+  .snap-tbl .ds-th-sort:focus-visible{outline:0;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .snap-tbl .ds-th--active .ds-th-sort{color:var(--text-primary,#111827)}
   .snap-search{position:relative;width:220px;max-width:100%}
   .snap-search-ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:#6b7280;display:flex;pointer-events:none}
   .snap-search input{width:100%;height:32px;padding:0 12px 0 28px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;font:inherit;font-size:14px;color:#111827;outline:0;background:#fff;transition:border-color 140ms,box-shadow 140ms}
-  .snap-search input:focus{border-color:var(--brand-400,#43a8df);box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .snap-search input:focus{border-color:var(--brand-600,#1485c5);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   @media (max-width:560px){.snap-search{width:100%}}
   .snap-hdr{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid #e5e7eb}
   .snap-create{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--border-subtle,#f3f4f6);background:var(--slate-50,#f9fafb)}
@@ -58,21 +58,21 @@ var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.ful
   .snap-date input{width:100%;height:34px;padding:0 40px 0 12px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;background:#fff;font:inherit;font-size:14px;color:var(--text-primary,#111827);outline:0;font-variant-numeric:tabular-nums;transition:border-color 140ms cubic-bezier(.16,1,.3,1),box-shadow 140ms cubic-bezier(.16,1,.3,1)}
   .snap-date input::placeholder{color:var(--text-muted,#9ca3af)}
   .snap-date input:hover{border-color:var(--border-strong,#d1d5db)}
-  .snap-date input:focus{border-color:var(--brand-400,#43a8df);box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .snap-date input:focus{border-color:var(--brand-600,#1485c5);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .snap-date input[aria-invalid="true"]{border-color:var(--danger-500,#dc2626)}
   .snap-cal-btn{position:absolute;right:3px;top:3px;width:28px;height:28px;display:inline-grid;place-items:center;border:0;border-radius:8px;background:transparent;color:var(--brand-700,#0f6aa0);cursor:pointer;transition:background 140ms}
   .snap-cal-btn:hover,.snap-cal-btn[aria-expanded="true"]{background:var(--brand-050,#eff6ff)}
-  .snap-cal-btn:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .snap-cal-btn:focus-visible{outline:0;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .snap-hint{position:absolute;left:0;top:calc(100% - 16px);font-size:12px;line-height:16px;color:var(--text-muted,#6b7280);white-space:nowrap}
   .snap-hint.is-err{color:var(--danger-700,#b91c1c)}
   .snap-btn{display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;border:1px solid var(--brand-600,#1485c5);border-radius:8px;background:var(--brand-600,#1485c5);color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer;margin-top:20px;white-space:nowrap;transition:background 140ms cubic-bezier(.16,1,.3,1),border-color 140ms cubic-bezier(.16,1,.3,1)}
   .snap-btn:hover:not([disabled]){background:var(--brand-500,#1a92d1);border-color:var(--brand-500,#1a92d1)}
-  .snap-btn:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .snap-btn:focus-visible{outline:0;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .snap-btn[disabled]{background:var(--slate-200,#e5e7eb);border-color:var(--slate-200,#e5e7eb);color:var(--slate-400,#9ca3af);cursor:not-allowed}
   .snap-dl{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 12px;border:1px solid var(--border-default,#e5e7eb);border-radius:8px;background:#fff;color:var(--slate-800,#1f2937);font:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;box-shadow:0 1px 2px rgb(15 23 42/.05);transition:background 140ms cubic-bezier(.16,1,.3,1),border-color 140ms cubic-bezier(.16,1,.3,1),color 140ms}
   .snap-dl svg{color:var(--brand-700,#0f6aa0)}
   .snap-dl:hover:not([disabled]){background:var(--slate-50,#f9fafb);border-color:var(--border-strong,#d1d5db)}
-  .snap-dl:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .snap-dl:focus-visible{outline:0;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .snap-dl[disabled]{opacity:.6;cursor:progress}
   .snap-acts{display:inline-flex;align-items:center;gap:4px;justify-content:flex-end}
   /* DS Icon-only button: .ds-btn.ds-btn--secondary.ds-btn--icon (32px square, radius-md, 14px glyph, no shadow) */
@@ -80,7 +80,7 @@ var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.ful
   .snap-ibtn svg,.snap-del svg{width:14px;height:14px}
   .snap-ibtn:hover:not([disabled]),.snap-del:hover:not([disabled]){background:var(--slate-50,#f9fafb);border-color:var(--border-strong,#d1d5db)}
   .snap-ibtn:active:not([disabled]),.snap-del:active:not([disabled]){background:var(--slate-100,#f3f4f6)}
-  .snap-ibtn:focus-visible,.snap-del:focus-visible{box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .snap-ibtn:focus-visible,.snap-del:focus-visible{box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .snap-ibtn[disabled],.snap-del[disabled]{color:var(--slate-400,#9ca3af);background:var(--slate-50,#f9fafb);cursor:not-allowed}
   .snap-ibtn.is-busy svg{animation:snap-pulse .9s ease-in-out infinite}
   @keyframes snap-pulse{50%{opacity:.35}}
@@ -133,7 +133,7 @@ var __XLSX_SRC__ = (function(){ try { return new URL('../vendor/sheetjs/xlsx.ful
   .ds-datepicker-cell.is-selected::after{background:#fff}
   .ds-datepicker-cell.is-taken:not(.is-selected){color:var(--text-muted,#6b7280);text-decoration:line-through}
   .ds-datepicker-cell:disabled{color:var(--text-disabled,#d1d5db);cursor:not-allowed}
-  .ds-datepicker-cell:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32))}
+  .ds-datepicker-cell:focus-visible{outline:0;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .ds-datepicker-foot{margin-top:8px;padding-top:12px;border-top:1px solid var(--border-subtle,#f3f4f6);display:flex;justify-content:space-between;gap:8px}
   .ds-datepicker-foot button{border:0;background:transparent;font:inherit;font-size:12px;font-weight:600;color:var(--brand-700,#0f6aa0);cursor:pointer;padding:4px 8px;border-radius:8px}
   .ds-datepicker-foot button:hover{background:var(--brand-050,#eff6ff)}

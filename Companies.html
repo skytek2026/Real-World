@@ -46,7 +46,7 @@
   .ds-th--sortable{padding:0 !important}
   .ds-th-sort{width:100%;display:inline-flex;align-items:center;gap:4px;font:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted,#6B7280);padding:8px 12px;background:transparent;border:0;cursor:pointer;text-align:left;white-space:nowrap;transition:color .12s ease,background .12s ease}
   .ds-th-sort:hover{color:var(--text-secondary,#4B5563);background:var(--slate-100,#F3F4F6)}
-  .ds-th-sort:focus-visible{outline:0;box-shadow:var(--shadow-focus,0 0 0 3px rgba(45,127,251,.32))}
+  .ds-th-sort:focus-visible{outline:0;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#111827)}
   .ds-th--active .ds-th-sort svg{color:var(--brand-700,#0f6aa0) !important}
   @media (prefers-reduced-motion:reduce){.ds-th-sort{transition:none}}
@@ -160,7 +160,7 @@
   /* Company search field: focus ring and dark theme in CSS (no inline style writes) */
   #co-search { background:#fff; }
   #co-search::placeholder { color:#6b7280; }
-  #co-search:focus { border-color:var(--brand-300,#93c5fd) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 14%, transparent); }
+  #co-search:focus { border-color:var(--brand-600,#1485c5) !important; box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5; }
   html[data-theme="dark"] #co-search { background:#161f2e !important; border-color:#2a374d !important; color:#e7ecf4 !important; }
   html[data-theme="dark"] #co-search::placeholder { color:#7d8aa0; }
   html[data-theme="dark"] #co-search:focus { border-color:var(--brand-400,#60a5fa) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 28%, transparent); }
@@ -189,7 +189,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=36"></script>
+<script src="shared/chrome.js?v=37"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>

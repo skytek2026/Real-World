@@ -614,11 +614,11 @@ const CSS = `
 .rb-btn-primary:hover{background:var(--brand-700,#1d4ed8)}
 .rb-icon-btn{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#4b5563;cursor:pointer}
 .rb-icon-btn:hover{background:#f9fafb;border-color:#d1d5db}
-.rb-icon-btn.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#b91c1c}
+.rb-icon-btn.rb-danger:hover{background:#fef2f2;border-color:#fee2e2;color:#b91c1c}
 .rb-link{display:inline-flex;align-items:center;gap:8px;background:0;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--brand-700,#0f6aa0);cursor:pointer}
 .rb-link:hover span{text-decoration:underline}
 .rb-search{width:100%;height:34px;padding:0 12px 0 36px;border:1px solid #e5e7eb;border-radius:9999px;font-family:inherit;font-size:14px;color:#374151;background:#f9fafb;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
-.rb-search:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12);background:#fff}
+.rb-search:focus{border-color:var(--brand-600,#1485c5);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5;background:#fff}
 .rb-select{height:34px;border:1px solid #e5e7eb;border-radius:8px;padding:0 28px 0 12px;font-family:inherit;font-size:14px;font-weight:600;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 10px center;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none}
 .rb-tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:8px}
 .rb-tpl{display:flex;flex-direction:column;gap:4px;align-items:flex-start;text-align:left;padding:12px 16px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;cursor:pointer;font-family:inherit;transition:border-color .15s,box-shadow .15s}
@@ -656,7 +656,7 @@ const CSS = `
 .rb-mini:hover{background:#f3f4f6}
 .rb-mini.on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-700,#0f6aa0)}
 .rb-mini:disabled{opacity:.35;cursor:not-allowed}
-.rb-mini.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#b91c1c}
+.rb-mini.rb-danger:hover{background:#fef2f2;border-color:#fee2e2;color:#b91c1c}
 .rb-sec{border-radius:8px}
 .rb-sec.open{border:1px solid var(--brand-200,#b8ddf5);background:var(--brand-50,#eff6ff)}
 .rb-sec.open .rb-order-row{border-color:transparent;background:transparent}

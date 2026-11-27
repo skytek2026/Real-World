@@ -20,14 +20,14 @@
 .uap-rules ul{display:grid;gap:4px;padding-left:20px;font-size:14px;color:#4b5563;line-height:1.5}
 .uap-rules b{color:#111827;font-weight:600}
 .uap-drop{border:1.5px dashed #d1d5db;border-radius:8px;padding:36px 20px;text-align:center;cursor:pointer;background:#f9fafb;display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:16px;transition:border-color .12s,background .12s}
-.uap-drop:hover,.uap-drop.is-over{border-color:#60a5fa;background:#eff6ff}
+.uap-drop:hover,.uap-drop.is-over{border-color:#43a8df;background:#eff6ff}
 .uap-drop-ico{width:44px;height:44px;border-radius:999px;background:#dbeafe;color:#2563eb;display:grid;place-items:center}
 .uap-drop-t{font-size:14px;font-weight:600;color:#111827}.uap-drop-t u{color:#2563eb;text-decoration:none}
 .uap-drop-s{font-size:12px;color:#6b7280}
 .uap-demo{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:#6b7280}
 .uap-chip{font:inherit;font-size:12px;border:1px solid #e5e7eb;background:#fff;border-radius:999px;padding:4px 12px;color:#374151;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
-.uap-chip:hover{border-color:#93c5fd;color:#1d4ed8}
-.uap-chip.is-on{background:#eff6ff;border-color:#93c5fd;color:#1d4ed8;font-weight:600}
+.uap-chip:hover{border-color:#84c5ec;color:#1d4ed8}
+.uap-chip.is-on{background:#eff6ff;border-color:#84c5ec;color:#1d4ed8;font-weight:600}
 .uap-chip-n{font-variant-numeric:tabular-nums;color:#6b7280;font-weight:600}.uap-chip.is-on .uap-chip-n{color:#1d4ed8}
 @keyframes uap-spin{to{transform:rotate(360deg)}}
 .uap-banner{display:flex;gap:12px;align-items:flex-start;border-radius:8px;padding:16px 16px;border:1px solid}
@@ -143,7 +143,7 @@
 .uap-was-v{font-variant-numeric:tabular-nums;color:#111827;font-weight:600}
 .uap-cf-opts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;padding:12px 16px 16px}
 .uap-opt{font:inherit;text-align:left;display:flex;gap:8px;align-items:flex-start;padding:12px 12px;border:1.5px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer;transition:border-color .12s,background .12s}
-.uap-opt:hover{border-color:#93c5fd}
+.uap-opt:hover{border-color:#84c5ec}
 .uap-opt.is-on{border-color:#2563eb;background:#eff6ff}
 .uap-opt-radio{width:16px;height:16px;border-radius:999px;border:1.5px solid #d1d5db;flex-shrink:0;margin-top:1px;position:relative;background:#fff}
 .uap-opt.is-on .uap-opt-radio{border-color:#2563eb}.uap-opt.is-on .uap-opt-radio::after{content:'';position:absolute;inset:3px;border-radius:999px;background:#2563eb}

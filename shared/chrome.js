@@ -478,7 +478,7 @@ function buildDarkCss() {
   ${D}::-webkit-scrollbar-thumb, ${D} body::-webkit-scrollbar-thumb, ${D} *::-webkit-scrollbar-thumb,
   ${D} .scroll-thin::-webkit-scrollbar-thumb, ${D} .ds-scroll::-webkit-scrollbar-thumb { background:#3a4a66 !important; border-radius:999px; }
   ${D}::-webkit-scrollbar-thumb:hover, ${D} body::-webkit-scrollbar-thumb:hover, ${D} *::-webkit-scrollbar-thumb:hover,
-  ${D} .scroll-thin::-webkit-scrollbar-thumb:hover, ${D} .ds-scroll::-webkit-scrollbar-thumb:hover { background:#4a5d80 !important; }
+  ${D} .scroll-thin::-webkit-scrollbar-thumb:hover, ${D} .ds-scroll::-webkit-scrollbar-thumb:hover { background:#6b7280 !important; }
   ${D}::-webkit-scrollbar-track, ${D} body::-webkit-scrollbar-track, ${D} *::-webkit-scrollbar-track,
   ${D} .scroll-thin::-webkit-scrollbar-track, ${D} .ds-scroll::-webkit-scrollbar-track { background:transparent !important; }
   ${D}, ${D} body, ${D} .scroll-thin, ${D} .ds-scroll { scrollbar-color:#3a4a66 transparent !important; }

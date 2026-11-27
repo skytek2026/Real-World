@@ -29,7 +29,7 @@
         font:inherit; font-size:14px; color:#111827; background:#fff;
         transition:border-color 120ms, box-shadow 120ms;
       }
-      .rw-grp-search:focus { outline:none; border-color:var(--brand-400,#60a5fa); box-shadow:0 0 0 3px rgba(37,99,235,.10); }
+      .rw-grp-search:focus { outline:none; border-color:var(--brand-600,#1485c5); box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5; }
       .rw-grp-list {
         margin-top:8px; max-height:280px; overflow-y:auto;
         border:1px solid #e5e7eb; border-radius:4px; background:#fff;

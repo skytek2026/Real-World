@@ -72,7 +72,7 @@
   .pf-tbl th{padding:8px 12px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
   .pf-tbl td{padding:8px 12px;font-size:14px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
   .pf-tbl tr:last-child td{border-bottom:0}
-  .pf-tbl tbody tr:hover td{background:#fafafa}
+  .pf-tbl tbody tr:hover td{background:#f9fafb}
   /* Map btn */
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.05);cursor:pointer}
   .map-btn:hover{background:#f3f4f6}
@@ -87,7 +87,7 @@
   /* Card tab dropdown — used in place of pill tabs */
   .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 16px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;}
   .tab-dd:hover{border-color:#d1d5db;}
-  .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
+  .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5;}
   .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   /* Phones and tablet portrait: stack the three top-row cards full width (same as Marine Region Details) */
   @media(max-width:1023px){
@@ -142,7 +142,7 @@ window.PAGE = { id:'regions', title:'Offshore Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=36"></script>
+<script src="shared/chrome.js?v=37"></script>
 <script>
 const SC = window.sharedChrome;
 

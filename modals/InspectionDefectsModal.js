@@ -45,7 +45,7 @@
 .idm-pager button:hover:not(:disabled){background:#f9fafb;border-color:#d1d5db}
 .idm-pager button.is-cur{background:var(--brand-600,#1485c5);border-color:var(--brand-600,#1485c5);color:#fff;font-weight:600}
 .idm-pager button:disabled{color:#d1d5db;cursor:not-allowed}
-.idm-pager button:focus-visible,.idm-size select:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#1485c5) 25%,transparent)}
+.idm-pager button:focus-visible,.idm-size select:focus-visible{outline:none;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
 .idm-empty{padding:24px;text-align:center;color:#6b7280;font-size:14px}
 @media (max-width:640px){
 .rw-modal-overlay:has(.idm){padding:0;align-items:stretch}

@@ -72,12 +72,12 @@
   .pf-tbl th{padding:8px 12px;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);text-align:left;border-bottom:1px solid #f3f4f6;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
   .pf-tbl td{padding:8px 12px;font-size:14px;color:#374151;border-bottom:1px solid #f9fafb;vertical-align:middle}
   .pf-tbl tr:last-child td{border-bottom:0}
-  .pf-tbl tbody tr:hover td{background:#fafafa}
+  .pf-tbl tbody tr:hover td{background:#f9fafb}
   /* Policies toolbar + table */
   .pol-toolbar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #f3f4f6;flex-shrink:0;flex-wrap:wrap}
   .pol-search{flex:1;min-width:200px;position:relative}
   .pol-search input{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px 0 36px;font-size:14px;color:#374151;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
-  .pol-search input:focus{border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+  .pol-search input:focus{border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .pol-search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#6b7280;width:15px;height:15px}
   .pol-btn{display:inline-flex;align-items:center;gap:4px;height:38px;padding:0 16px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:600;color:#374151;font-family:inherit;cursor:pointer;white-space:nowrap;transition:background .15s,border-color .15s}
   .pol-btn:hover{background:#f9fafb;border-color:#d1d5db}
@@ -129,14 +129,14 @@
   .ds-radio{appearance:none;-webkit-appearance:none;width:16px;height:16px;margin:0;border:1px solid var(--border-strong,#d1d5db);border-radius:50%;background:#fff;display:inline-grid;place-content:center;cursor:pointer;transition:background .12s,border-color .12s;flex-shrink:0}
   .ds-radio:checked{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   .ds-radio:checked::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
-  .ds-radio:focus-visible{outline:none;box-shadow:var(--shadow-focus,0 0 0 3px rgb(45 127 251/.32))}
+  .ds-radio:focus-visible{outline:none;box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .hist-radio.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   .hist-check{width:18px;height:18px;border-radius:8px;border:1.5px solid #d1d5db;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:background .15s,border-color .15s}
   .hist-check.on{background:var(--brand-600,#2563eb);border-color:var(--brand-600,#2563eb)}
   /* Create Region Report form */
   .rpt-select{appearance:none;-webkit-appearance:none;height:38px;padding:0 36px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#374151;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:13px;font-family:inherit;cursor:pointer;outline:none;transition:border-color .15s,box-shadow .15s}
   .rpt-select:hover{border-color:#d1d5db}
-  .rpt-select:focus{border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+  .rpt-select:focus{border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   /* DS button + card footer (mirrors design-system styles.css) */
   .ds-btn{font-family:inherit;font-size:14px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:4px;padding:0 12px;height:32px;border-radius:8px;border:1px solid transparent;cursor:pointer;white-space:nowrap;text-decoration:none;outline:0;transition:background .15s,border-color .15s,color .15s,box-shadow .15s}
   .ds-btn svg{width:14px;height:14px}
@@ -217,7 +217,7 @@
   /* Card tab dropdown — used in place of pill tabs */
   .tab-dd{display:inline-block;min-width:240px;max-width:100%;padding:8px 36px 8px 16px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-weight:600;color:#111827;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;background-size:12px;font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none;transition:border-color .15s,box-shadow .15s;}
   .tab-dd:hover{border-color:#d1d5db;}
-  .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 3px rgba(37,99,235,.15);}
+  .tab-dd:focus{outline:none;border-color:var(--brand-600,#2563eb);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5;}
   .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
   /* Phones and tablet portrait: stack the three top-row cards full width */
   @media(max-width:1023px){
@@ -267,7 +267,7 @@ window.PAGE = { id:'regions', title:'Marine Region', crumb: regionName };
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/highcharts@11.4.8/highcharts.js"></script>
-<script src="shared/chrome.js?v=36"></script>
+<script src="shared/chrome.js?v=37"></script>
 <script>
 const SC = window.sharedChrome;
 

@@ -58,7 +58,7 @@
 
 .rw-modal-btn          { font:inherit; font-size:14px; font-weight:500; padding:8px 20px; border-radius:6px; cursor:pointer; transition:background 120ms, border-color 120ms, color 120ms; }
 .rw-modal-btn-cancel   { background:#fff; color:var(--brand-600,#2563eb); border:1px solid var(--brand-300,#93c5fd); }
-.rw-modal-btn-cancel:hover { background:#f0f7ff; }
+.rw-modal-btn-cancel:hover { background:#eff8fd; }
 .rw-modal-btn-cancel:active { background:var(--brand-100,#dbeafe); border-color:var(--brand-400,#60a5fa); }
 .rw-modal-btn-primary  { background:var(--brand-500,#1a92d1); color:#fff; border:1px solid var(--brand-500,#1a92d1); }
 .rw-modal-btn-primary:hover { background:var(--brand-600,#1485c5); border-color:var(--brand-600,#1485c5); }
@@ -72,7 +72,7 @@
   transition:background 120ms;
 }
 .rw-modal-close-btn:hover { background:#111827; }
-.rw-modal-close-btn:active { background:#020617; }
+.rw-modal-close-btn:active { background:#0b1220; }
 .rw-modal-close-btn svg   { width:11px; height:11px; }
 
 @media (max-width: 640px) {
