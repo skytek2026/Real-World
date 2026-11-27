@@ -53,12 +53,12 @@
   /* Legacy pill tabs (kept for any leftover usage) */
   .ptabs{display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px;position:relative}
   .ptab{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:9999px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;white-space:nowrap}
-  .ptab.active{background:var(--brand-600,#2563eb);color:#fff}
+  .ptab.active{background:var(--brand-500,#1a92d1);color:#fff}
   .ptab:not(.active){background:transparent;color:#6b7280}
   .ptab:not(.active):hover{color:#111827}
   /* Segment tabs (equal width, no pill container) */
   .seg-tab{flex:1;padding:8px 4px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
-  .seg-tab.active{background:var(--brand-600,#2563eb);color:#fff}
+  .seg-tab.active{background:var(--brand-500,#1a92d1);color:#fff}
   .seg-tab:not(.active):hover{color:#374151}
   /* Stat pills */
   .spill-gray{display:inline-block;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 12px;border-radius:8px}
@@ -104,7 +104,7 @@
   .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Phones: Totals / Region Details tabs fill the card; exposure rows as cards (all headings kept) */
@@ -142,7 +142,7 @@ window.PAGE = { id:'regions', title:'Offshore Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -234,7 +234,7 @@ function initMap() {
   const regionAssets    = 1247;
   const regionPopupHTML = `
     <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
-      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
+      <div style="background:var(--brand-500,#1a92d1);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
         <span style="width:11px;height:11px;border-radius:50%;background:${regionDotColor};flex-shrink:0;border:1.5px solid rgba(255,255,255,.5)"></span>
         <span style="font-size:14px;font-weight:700;flex:1">${regionName}</span>
       </div>
@@ -279,7 +279,7 @@ function initMap() {
     const portRiskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#9333ea'}[p.risk] || '#6b7280';
     const portPopupHTML = `
       <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
-        <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
+        <div style="background:var(--brand-500,#1a92d1);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
           <span style="width:11px;height:11px;border-radius:50%;background:#fff;flex-shrink:0;border:1.5px solid rgba(255,255,255,.5);display:inline-flex;align-items:center;justify-content:center">
             <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           </span>

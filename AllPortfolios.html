@@ -88,7 +88,7 @@
   .porto-table tbody tr:hover td:first-child { background:#f9fafb; }
   .porto-table .group-child td:first-child { background:var(--brand-50,#eff6ff); }
   .porto-table .group-child:hover td:first-child { background:var(--brand-100,#dbeafe) !important; }
-  .uap-primary:hover { background:var(--brand-700,#1d4ed8) !important; }
+  .uap-primary:hover { background:var(--brand-600,#1485c5) !important; }
   .porto-name { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; display:flex; align-items:flex-start; gap:8px; line-height:18px; }
   .porto-name svg { width:14px; height:14px; flex-shrink:0; margin-top:2px; }
   a.porto-name { text-decoration:none; }
@@ -128,7 +128,7 @@
   /* Action btns */
   .action-btn { width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border-radius:8px; border:0; background:transparent; color:#9ca3af; cursor:pointer; }
   .action-btn:hover { background:#f3f4f6; color:#374151; }
-  .action-btn.is-edit { color:var(--brand-600,#2563eb); }
+  .action-btn.is-edit { color:var(--brand-600,#1485c5); }
   .action-btn.is-edit:hover { background:var(--brand-50,#eff6ff); color:var(--brand-700,#1d4ed8); }
   .action-btn.is-delete { color:#dc2626; }
   .action-btn.is-delete:hover { background:#fef2f2; color:#b91c1c; }
@@ -162,7 +162,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <link rel="stylesheet" href="modals/modal-base.css" />
 <script src="modals/EditPortfolioModal.js"></script>
 <script src="modals/EditPortfolioGroupsModal.js"></script>
@@ -526,7 +526,7 @@ function Content() {
   <div class="flex-1 flex flex-col overflow-hidden">
     <!-- Top bar with Add button -->
     <div class="flex items-center justify-end gap-2 px-6 py-3 ap-actions">
-      <button class="inline-flex items-center gap-2 bg-brand-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors uap-primary" style="background:var(--brand-600,#2563eb);">
+      <button class="inline-flex items-center gap-2 bg-brand-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors uap-primary" style="background:var(--brand-600,#2563eb);">
         ${PLUS_ICO} Add Portfolio
       </button>
       <button data-uap-open class="inline-flex items-center gap-2 bg-white text-gray-700 text-sm font-semibold px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">

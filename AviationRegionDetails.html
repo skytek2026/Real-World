@@ -68,7 +68,7 @@
   .spill-gray{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 8px;border-radius:8px;font-variant-numeric:tabular-nums}   /* icon beside the number (svg is display:block) */
   /* Coverage tabs */
   .cov-tab{flex:1;padding:8px 8px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280;white-space:nowrap}
-  .cov-tab.active{background:var(--brand-600,#2563eb);color:#fff}
+  .cov-tab.active{background:var(--brand-500,#1a92d1);color:#fff}
   .cov-tab:not(.active):hover{color:#374151}
   /* Layout */
   .ard-top-row{display:grid;grid-template-columns:260px minmax(0,1.4fr) minmax(0,1.2fr);gap:12px;margin-bottom:12px;height:440px}
@@ -98,7 +98,7 @@
   .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Phones: portfolio tables as cards (all headings kept); lists scroll inside their card */
@@ -136,7 +136,7 @@ window.PAGE = { id:'regions', title:'Aviation Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -281,7 +281,7 @@ function initMap() {
     });
     const popupHTML = `
       <div style="font-family:'Inter',sans-serif;width:240px;border-radius:12px;overflow:hidden">
-        <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px"><span style="font-size:14px;font-weight:700">${a.name} (${a.code})</span></div>
+        <div style="background:var(--brand-500,#1a92d1);color:#fff;padding:12px 16px"><span style="font-size:14px;font-weight:700">${a.name} (${a.code})</span></div>
         <div style="background:#fff;padding:16px">
           <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#6b7280;font-size:14px">Aircraft on Ground:</span><span style="font-weight:700;color:#111827;font-size:14px">${a.aog}</span></div>
           <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#6b7280;font-size:14px">Total Hull:</span><span style="font-weight:700;color:#111827;font-size:14px">${a.hull}</span></div>

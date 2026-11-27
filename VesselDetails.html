@@ -31,7 +31,7 @@
   .border-ink-200 { border-color:#e5e7eb; }
   .shadow-card { box-shadow:0 2px 4px 0 rgb(15 23 42 / 0.08), 0 1px 2px 0 rgb(15 23 42 / 0.06); }
   .text-brand-600 { color:#1485c5; }
-  .bg-brand-600 { background:#1485c5; }
+  .bg-brand-500 { background:#1485c5; }
   .bg-brand-050 { background:#eff6ff; }
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
   html::-webkit-scrollbar, body::-webkit-scrollbar { width:6px; height:6px; }
@@ -187,8 +187,8 @@
   .trp-btn { height:32px; padding:0 16px; font:inherit; font-size:14px; font-weight:600; border-radius:8px; cursor:pointer; border:1px solid transparent; }
   .trp-btn--sec { background:#fff; color:#1f2937; border-color:#e5e7eb; box-shadow:none; }
   .trp-btn--sec:hover { background:#f9fafb; border-color:#d1d5db; }
-  .trp-btn--pri { background:var(--brand-600,#1485c5); color:#fff; border-color:var(--brand-600,#1485c5); }
-  .trp-btn--pri:hover:not(:disabled) { background:var(--brand-700,#1d6ae5); }
+  .trp-btn--pri { background:var(--brand-500,#1a92d1); color:#fff; border-color:var(--brand-500,#1a92d1); }
+  .trp-btn--pri:hover:not(:disabled) { background:var(--brand-600,#1485c5); }
   .trp-btn--pri:disabled { background:#e5e7eb; border-color:#e5e7eb; color:#9ca3af; cursor:not-allowed; }
   @media (max-width:700px) {
     .trp-body { flex-direction:column; }
@@ -408,8 +408,8 @@
   .sts-ibtn{width:32px;padding:0;justify-content:center;color:#4b5563}
   .sts-ibtn.has-active::after{display:none}
   .sts-ibtn .ds-fdrawer-dot{position:absolute;top:5px;right:5px}
-  .sts-btn--primary{background:var(--brand-600,#1485c5);border-color:var(--brand-600,#1485c5);color:#fff}
-  .sts-btn--primary:hover:not(:disabled){background:var(--brand-700,#1d6ae5)!important;border-color:var(--brand-700,#1d6ae5)!important}
+  .sts-btn--primary{background:var(--brand-500,#1a92d1);border-color:var(--brand-500,#1a92d1);color:#fff}
+  .sts-btn--primary:hover:not(:disabled){background:var(--brand-600,#1485c5)!important;border-color:var(--brand-600,#1485c5)!important}
   .env-period-sel.is-set { color:#1485c5; border-color:#b8ddf5; background:#eff6ff; }
   .rg-head { padding-right:8px; }
   .rg-toggle { width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; color:#6b7280; border-radius:8px; cursor:pointer; flex-shrink:0; transition:transform .15s; }
@@ -672,7 +672,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -1346,7 +1346,7 @@ function PortCallsCard() {
         <span class="text-xs font-semibold text-ink-500 text-right" style="font-variant-numeric:tabular-nums;">${i+1}</span>
         <div class="flex flex-col gap-1 min-w-0">
           <div class="flex items-center gap-1 min-w-0">${flag(p.cc)}<span class="text-xs font-semibold text-ink-900 truncate">${p.port}</span><span class="text-xs text-ink-500 truncate">${p.country}</span></div>
-          <div class="h-1 rounded-full bg-ink-100 overflow-hidden"><div class="h-full rounded-full bg-brand-600" style="width:${Math.round(p.calls/TOP_PORT_MAX*100)}%;"></div></div>
+          <div class="h-1 rounded-full bg-ink-100 overflow-hidden"><div class="h-full rounded-full bg-brand-500" style="width:${Math.round(p.calls/TOP_PORT_MAX*100)}%;"></div></div>
           <span class="text-xs text-ink-500">${p.days} days in port &middot; last ${p.last}</span>
         </div>
         <span class="text-xs font-semibold text-ink-800 whitespace-nowrap" style="font-variant-numeric:tabular-nums;">${p.calls} calls</span>
@@ -3871,7 +3871,7 @@ function AssocRoleMenu() {
   const all = ASSOC_ROLE_OPTS.every(o => sel.includes(o));
   const summary = all ? 'All roles' : sel.length === 0 ? 'None' : sel.length === 1 ? sel[0] : `${sel.length} selected`;
   const box = on => on
-    ? '<span class="w-3.5 h-3.5 rounded-[4px] bg-brand-600 inline-flex items-center justify-center shrink-0"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>'
+    ? '<span class="w-3.5 h-3.5 rounded-[4px] bg-brand-500 inline-flex items-center justify-center shrink-0"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>'
     : '<span class="w-3.5 h-3.5 rounded-[4px] border border-ink-300 bg-white inline-flex shrink-0"></span>';
   return `
   <div class="relative shrink-0" data-assoc-filter-wrap>

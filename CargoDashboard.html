@@ -101,7 +101,7 @@
   html[data-theme="dark"] #upload-card-toggle{color:#c0c9d8!important}
   html[data-theme="dark"] #download-template:hover,html[data-theme="dark"] #export-excel-btn:hover,html[data-theme="dark"] #wb-cancel:hover{background:#1f2937!important;border-color:#34435c!important}
   html[data-theme="dark"] #download-template:active,html[data-theme="dark"] #export-excel-btn:active,html[data-theme="dark"] #wb-cancel:active{background:#243048!important}
-  html[data-theme="dark"] #upload-card-toggle:hover{background:color-mix(in srgb,var(--brand-500,#1a92d1) 18%,transparent)!important;border-color:color-mix(in srgb,var(--brand-500,#1a92d1) 45%,transparent)!important;color:var(--brand-300,#93c5fd)!important}
+  html[data-theme="dark"] #upload-card-toggle:hover{background:color-mix(in srgb,var(--brand-500,#1a92d1) 18%,transparent)!important;border-color:color-mix(in srgb,var(--brand-600,#1485c5) 45%,transparent)!important;color:var(--brand-300,#93c5fd)!important}
   /* Skytek primary buttons — hover / active / focus (DS: brand-600 → brand-500 → #0f6aa0) */
   #browse-files-btn:hover,#confirm-upload:hover,#wb-save:hover{background:var(--brand-500,#1a92d1);border-color:var(--brand-500,#1a92d1);}
   #browse-files-btn:active,#confirm-upload:active,#wb-save:active{background:#0f6aa0;border-color:#0f6aa0;}
@@ -343,7 +343,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -568,7 +568,7 @@ function renderHeader() {
         <div style="font-size:14px;font-weight:700;color:#111827;">${st.uploadedFile}</div>
         <div style="font-size:12px;color:#16a34a;margin-top:1px;">Ready to upload</div>
       </div>
-      <button id="confirm-upload" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;background:var(--brand-600,#1485c5);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">
+      <button id="confirm-upload" style="display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 16px;background:var(--brand-500,#1a92d1);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         Upload
       </button>
@@ -628,7 +628,7 @@ function renderHeader() {
     </div>
     <div class="cargo-wb-footer" style="display:flex;align-items:center;justify-content:flex-end;gap:8px;padding-top:12px;border-top:1px solid #f3f4f6;">
       <button id="wb-cancel" style="height:36px;padding:0 20px;border:1px solid var(--border-default,#E5E7EB);border-radius:8px;background:var(--white,#fff);color:var(--slate-800,#1F2937);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;">Cancel</button>
-      <button id="wb-save" style="display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 20px;background:var(--brand-600,#1485c5);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
+      <button id="wb-save" style="display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 20px;background:var(--brand-500,#1a92d1);color:#fff;border:0;border-radius:8px;transition:background .14s ease,border-color .14s ease,box-shadow .14s ease;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
         Save To Declarations
       </button>

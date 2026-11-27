@@ -53,7 +53,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -189,7 +189,7 @@ function renderModal() {
       </div>
       <div class="shrink-0 px-6 py-4 border-t border-gray-100 flex items-center gap-3">
         <button id="modal-cancel" style="flex:1;height:36px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;font-size:14px;font-weight:500;color:#4b5563;cursor:pointer;font-family:inherit" onmouseover="this.style.background='#f9fafb'" onmouseout="this.style.background='#fff'">Cancel</button>
-        <button id="modal-create" style="flex:1;height:36px;border-radius:8px;border:0;background:var(--brand-600);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">Create Rule Set</button>
+        <button id="modal-create" style="flex:1;height:36px;border-radius:8px;border:0;background:var(--brand-500,#1a92d1);color:#fff;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">Create Rule Set</button>
       </div>
     </div>
   </div>`;
@@ -207,7 +207,7 @@ function renderPage() {
   return `
   <!-- Create button row -->
   <div class="shrink-0 px-4 pt-4 pb-3 flex justify-end">
-    <button id="create-rs-btn" style="display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 16px;border-radius:8px;background:var(--brand-600);color:#fff;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">
+    <button id="create-rs-btn" style="display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 16px;border-radius:8px;background:var(--brand-500,#1a92d1);color:#fff;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .15s" onmouseover="this.style.background='var(--brand-700)'" onmouseout="this.style.background='var(--brand-600)'">
       ${SVG.plus} Create New Rule Set
     </button>
   </div>

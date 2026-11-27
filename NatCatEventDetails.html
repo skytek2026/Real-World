@@ -34,7 +34,7 @@
   /* Map btn */
   .map-btn{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#374151;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer;transition:background .1s}
   .map-btn:hover{background:#f3f4f6}
-  .map-btn.is-active{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-600,#2563eb)}
+  .map-btn.is-active{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-600,#1485c5)}
   /* Affected properties list */
   .prop-row{display:flex;align-items:flex-start;gap:8px;width:100%;padding:12px 16px;background:transparent;border:0;border-bottom:1px solid #f3f4f6;cursor:pointer;text-align:left;transition:background .1s;font-family:inherit;}
   .prop-row:hover{background:#f9fafb;}
@@ -65,17 +65,17 @@
   .filter-opt{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;background:#fff;border:0;cursor:pointer;text-align:left;font-family:inherit}
   .filter-opt:hover{background:#f9fafb}
   .filter-opt .radio{width:14px;height:14px;border-radius:50%;border:1.5px solid #d1d5db;flex-shrink:0;position:relative;transition:border-color .15s}
-  .filter-opt.is-on .radio{border-color:var(--brand-600,#2563eb)}
+  .filter-opt.is-on .radio{border-color:var(--brand-600,#1485c5)}
   .filter-opt.is-on .radio::after{content:'';position:absolute;inset:2px;border-radius:50%;background:var(--brand-600,#2563eb)}
   .filter-opt .opt-title{font-size:14px;font-weight:600;color:#111827;line-height:1.2;display:block}
   .filter-opt.is-on .opt-title{color:var(--brand-700,#1d4ed8)}
   .filter-opt .opt-sub{font-size:12px;color:#6b7280;margin-top:2px;font-variant-numeric:tabular-nums;display:block}
   /* Global view btn */
-  .global-view-btn{display:flex;width:100%;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border:1.5px solid var(--brand-600,#2563eb);border-radius:8px;background:#fff;color:var(--brand-600,#2563eb);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+  .global-view-btn{display:flex;width:100%;align-items:center;justify-content:center;gap:4px;padding:8px 16px;border:1.5px solid var(--brand-600,#1485c5);border-radius:8px;background:#fff;color:var(--brand-600,#1485c5);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
   .global-view-btn:hover{background:var(--brand-50,#eff6ff)}
   /* Download btn */
-  .download-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 16px;background:var(--brand-600,#2563eb);color:#fff;border:0;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
-  .download-btn:hover{background:var(--brand-700,#1d4ed8)}
+  .download-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 16px;background:var(--brand-500,#1a92d1);color:#fff;border:0;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+  .download-btn:hover{background:var(--brand-600,#1485c5)}
 
   /* Before/after property popup */
   .ba-popup .leaflet-popup-content-wrapper{padding:0;overflow:hidden;border-radius:12px;box-shadow:0 12px 32px -8px rgba(15,23,42,.35)}
@@ -117,7 +117,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <script>
 const SC = window.sharedChrome;
 

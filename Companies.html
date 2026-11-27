@@ -149,7 +149,7 @@
   .drawer-foot .filter-btn:disabled { opacity: .45; cursor: default; pointer-events: none; }
   /* Filter bar */
   .fbtn{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#374151;cursor:pointer;white-space:nowrap;transition:background .1s,border-color .1s;font-family:inherit}
-  .fbtn:hover{background:#f9fafb;border-color:#d1d5db}.fbtn.factive{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-600,#2563eb)}
+  .fbtn:hover{background:#f9fafb;border-color:#d1d5db}.fbtn.factive{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-600,#1485c5)}
   .fdrop{position:absolute;top:calc(100% + 5px);left:0;min-width:180px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:9999;overflow:hidden}
   .fdrop-item{padding:8px 12px;font-size:12px;color:#374151;cursor:pointer;display:flex;align-items:center;gap:8px}.fdrop-item:hover{background:#f9fafb}.fdrop-item.fsel{color:var(--brand-600,#2563eb);font-weight:600;background:var(--brand-50,#eff6ff)}
   /* Pagination / action */
@@ -160,10 +160,10 @@
   /* Company search field: focus ring and dark theme in CSS (no inline style writes) */
   #co-search { background:#fff; }
   #co-search::placeholder { color:#9ca3af; }
-  #co-search:focus { border-color:var(--brand-300,#93c5fd) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#1a92d1) 14%, transparent); }
+  #co-search:focus { border-color:var(--brand-300,#93c5fd) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 14%, transparent); }
   html[data-theme="dark"] #co-search { background:#161f2e !important; border-color:#2a374d !important; color:#e7ecf4 !important; }
   html[data-theme="dark"] #co-search::placeholder { color:#7d8aa0; }
-  html[data-theme="dark"] #co-search:focus { border-color:var(--brand-400,#60a5fa) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#1a92d1) 28%, transparent); }
+  html[data-theme="dark"] #co-search:focus { border-color:var(--brand-400,#60a5fa) !important; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 28%, transparent); }
   /* Risk Score column */
   .co-risk-num { font-weight:700; font-variant-numeric:tabular-nums; }
   .co-risk-num--good { color:#16A34A; } .co-risk-num--avg { color:#D97706; } .co-risk-num--poor { color:#DC2626; }
@@ -189,7 +189,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>

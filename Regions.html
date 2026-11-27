@@ -58,7 +58,7 @@
   .rtab:hover{color:#111827}
   .rtab[aria-selected="true"]{color:#fff}
   .rtab-label{position:relative;z-index:1;white-space:nowrap}
-  .rtab[aria-selected="true"]{background:var(--brand-700,#0f6aa0)}
+  .rtab[aria-selected="true"]{background:var(--brand-500,#1a92d1)}
   .rtabs{align-items:stretch}
   .rtab-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);background:var(--brand-600,#2563eb);border-radius:9999px;box-shadow:0 1px 2px rgba(15,23,42,.12);z-index:0;transition:transform 320ms cubic-bezier(.34,1.2,.64,1),width 320ms cubic-bezier(.34,1.2,.64,1);pointer-events:none}
   .rtab-pill.is-init{transition:none}
@@ -76,7 +76,7 @@
   /* View toggle */
   .view-toggle{display:inline-flex;gap:4px;padding:4px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:9999px}
   .view-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;font-size:14px;font-weight:600;border:0;cursor:pointer;font-family:inherit;transition:background 150ms,color 150ms;border-radius:9999px}
-  .view-btn.active{background:var(--brand-600,#2563eb);color:#fff}
+  .view-btn.active{background:var(--brand-500,#1a92d1);color:#fff}
   .view-btn:not(.active){background:transparent;color:#6b7280}
   .view-btn:not(.active):hover{color:#111827}
   /* Panel */
@@ -86,7 +86,7 @@
   .r-row:last-child{border-bottom:0}
   /* Coverage tabs */
   .cov-tab{flex:1;padding:8px 8px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280}
-  .cov-tab.active{background:var(--brand-600,#2563eb);color:#fff}
+  .cov-tab.active{background:var(--brand-500,#1a92d1);color:#fff}
   .cov-tab:not(.active):hover{color:#374151}
   /* Stats table */
   .rg-tbl{width:100%;border-collapse:collapse}
@@ -111,7 +111,7 @@
   .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#2563eb);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
   .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
@@ -282,8 +282,8 @@ html[data-theme="dark"] .rf-row--sub .rf-name { color:var(--brand-300,#93c5fd); 
 .mfd-btn { display:inline-flex; align-items:center; border-radius:8px; font:inherit; font-size:14px; font-weight:600; cursor:pointer; border:1px solid transparent; }
 .mfd-btn--secondary { background:var(--bg-surface); border-color:var(--border-default); color:var(--text-primary); }
 .mfd-btn--secondary:hover { background:var(--bg-sunken); }
-.mfd-btn--primary { background:var(--brand-600,#1485c5); color:#fff; }
-.mfd-btn--primary:hover { background:var(--brand-700,#0f6aa0); }
+.mfd-btn--primary { background:var(--brand-500,#1a92d1); color:#fff; }
+.mfd-btn--primary:hover { background:var(--brand-600,#1485c5); }
 .mfd-btn:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
 /* active-filter count on the map's Filter button */
 #map-filters-btn { position:relative; }
@@ -306,7 +306,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -776,7 +776,7 @@ function initMap() {
     const riskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#9333ea'}[r.risk]||'#6b7280';
     const popupHTML = `
     <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
-      <div style="background:var(--brand-600,#2563eb);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
+      <div style="background:var(--brand-500,#1a92d1);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">
         <span style="width:11px;height:11px;border-radius:50%;background:${r.color};flex-shrink:0;border:1.5px solid rgba(255,255,255,.5)"></span>
         <span style="font-size:14px;font-weight:700;flex:1">${r.name}</span>
       </div>

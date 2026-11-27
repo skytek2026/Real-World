@@ -406,7 +406,7 @@ function TweaksPanel() {
       </label>
       <label class="flex items-center justify-between gap-2">
         <span class="text-xs text-ink-700">Expanded sidebar</span>
-        <button data-tweak-toggle="sidebarExpanded" class="relative h-5 w-9 rounded-full ${TWEAKS.sidebarExpanded?'bg-brand-600':'bg-ink-300'}">
+        <button data-tweak-toggle="sidebarExpanded" class="relative h-5 w-9 rounded-full ${TWEAKS.sidebarExpanded?'bg-brand-500':'bg-ink-300'}">
           <span class="absolute top-0.5 ${TWEAKS.sidebarExpanded?'left-4':'left-0.5'} h-4 w-4 rounded-full bg-white shadow transition-all"></span>
         </button>
       </label>
@@ -704,7 +704,7 @@ function applyTweaks() {
   style.textContent = `
     :root{--brand-50:${c[50]};--brand-100:${c[100]};--brand-200:${c[200]};--brand-300:${c[300]};--brand-400:${c[400]};--brand-500:${c[500]};--brand-600:${c[600]};--brand-700:${c[700]};--brand-800:${c[800]}}
     .bg-brand-50{background-color:${c[50]}!important}.bg-brand-100{background-color:${c[100]}!important}
-    .bg-brand-500{background-color:${c[500]}!important}.bg-brand-600{background-color:${c[600]}!important}
+    .bg-brand-500{background-color:${c[500]}!important}.bg-brand-500{background-color:${c[600]}!important}
     .bg-brand-700{background-color:${c[700]}!important}
     .text-brand-500{color:${c[500]}!important}.text-brand-600{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
     .border-brand-300{border-color:${c[300]}!important}.border-brand-500{border-color:${c[500]}!important}
@@ -737,24 +737,24 @@ function applyTweaks() {
     .hover\\:text-brand-700:hover{color:${c[700]}!important}
     .via-brand-400{--tw-gradient-stops:var(--tw-gradient-from),${c[400]},var(--tw-gradient-to,transparent)!important}
     .from-brand-400{--tw-gradient-from:${c[400]}!important}.to-brand-600{--tw-gradient-to:${c[600]}!important}
-    .nav-item.is-nav-active,.nav-item.is-nav-active:hover{background:${c[700]}!important;color:#fff!important}   /* DS v4.1.2: same fill as the selected tab */
+    .nav-item.is-nav-active,.nav-item.is-nav-active:hover{background:${c[500]}!important;color:#fff!important}   /* DS v4.2.0: brand-500 selected fill (by decision; white 3.46:1) */
     .nav-item.is-nav-active .nav-ico{color:#fff!important}
     /* Every tab variant (ds-tab, Regions rtab, Company Details ra-tab) follows the DS tab spec:
        brand-700 pill (white label 5.85:1), 13px / 600 labels, text-secondary when not selected. */
-    .ds-tab-pill,.rtab-pill,.ra-pill{background:${c[700]}!important}
+    .ds-tab-pill,.rtab-pill,.ra-pill{background:${c[500]}!important}
     :root :is(.ds-tab,.rtab,.ra-tab){font-size:13px!important;font-weight:600!important}
     :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]){color:#4B5563}
     :root :is(.ds-tab,.rtab,.ra-tab):not([aria-selected="true"]):hover{color:#111827}
     /* Older page-local tab components: same spec (selected by .active or aria-selected) */
-    :root :is(.seg-tab.active,.cov-tab.active,.cnr-tab.active,.ptab.active,.stab-btn.active,.cd-tab[aria-selected="true"]){background:${c[700]}!important;color:#fff!important}
+    :root :is(.seg-tab.active,.cov-tab.active,.cnr-tab.active,.ptab.active,.stab-btn.active,.cd-tab[aria-selected="true"]){background:${c[500]}!important;color:#fff!important}
     :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.cd-tab,.atab){font-size:13px!important;font-weight:600!important}
     :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.atab):not(.active),:root .cd-tab:not([aria-selected="true"]){color:#4B5563}
     :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.atab):not(.active):hover,:root .cd-tab:not([aria-selected="true"]):hover{color:#111827}
-    :root .atab.active{color:${c[700]}!important}
-    :root .atab.active::after{background:${c[700]}!important}
-    .asset-pill{background:${c[700]}!important}
-    .cat-pill{background:${c[700]}!important}
-    .ds-page-btn.is-active{background:${c[700]}!important;border-color:${c[700]}!important}
+    :root .atab.active{color:${c[500]}!important}
+    :root .atab.active::after{background:${c[500]}!important}
+    .asset-pill{background:${c[500]}!important}
+    .cat-pill{background:${c[500]}!important}
+    .ds-page-btn.is-active{background:${c[500]}!important;border-color:${c[500]}!important}
     .topbar-brand-link{color:${c[700]};transition:color 120ms}
     .topbar-brand-link:hover{color:${c[800] || c[700]}}
   `;

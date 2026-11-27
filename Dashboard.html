@@ -62,8 +62,8 @@
      classes inside dynamically-rendered template strings. */
   .dashboard-tile:hover,
   .quick-tile:hover {
-    background:var(--brand-700) !important;   /* DS v4.1.2: white text on brand-700 (5.85:1) */
-    border-color:var(--brand-700) !important;
+    background:var(--brand-500) !important;   /* DS v4.2.0: brand-500 (by decision) */
+    border-color:var(--brand-500) !important;
   }
   .dashboard-tile:hover *,
   .quick-tile:hover *,
@@ -78,7 +78,7 @@
   }
   /* ── Dashboard live search ── */
   .dash-search-field { height:46px; transition:border-color .15s, box-shadow .15s; }
-  .dash-search-field:focus-within { border-color:var(--brand-300,#93c5fd); box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-500,#1a92d1) 16%, transparent); }
+  .dash-search-field:focus-within { border-color:var(--brand-300,#93c5fd); box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 16%, transparent); }
   .dash-search-field input { flex:1; min-width:0; height:100%; border:0; outline:0; background:transparent; font:inherit; font-size:14px; color:#111827; }
   .dash-search-field input::placeholder { color:#6b7280; }
   .dash-search-field input::-webkit-search-cancel-button { cursor:pointer; }
@@ -122,7 +122,7 @@
   }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=29"></script>
+<script src="shared/chrome.js?v=30"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
