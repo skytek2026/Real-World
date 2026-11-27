@@ -22,13 +22,13 @@
   /* Status badges */
   .sbadge{font-size:12px;font-weight:500;padding:4px 12px;border-radius:8px;display:inline-block;white-space:nowrap}
   .sb-active  {background:#f0fdf4;color:#15803d}
-  .sb-pending {background:#fffbeb;color:#ca8a04}
+  .sb-pending {background:#fffbeb;color:#b45309}
   .sb-inactive{background:#fef2f2;color:#b91c1c}
   /* Access chips */
   .chip{font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;margin:1px 2px 1px 0;white-space:nowrap}
   .chip-ports  {background:#eff6ff;color:#2563eb;border:1px solid #b8ddf5}
   .chip-weather{background:#f0fdf4;color:#15803d;border:1px solid #86efac}
-  .chip-risk   {background:#fffbeb;color:#c2410c;border:1px solid #fdba74}
+  .chip-risk   {background:#fffbeb;color:#c2410c;border:1px solid var(--border-warning,rgba(217,119,6,.2))}
   /* Header controls */
   .hbtn{display:inline-flex;align-items:center;gap:4px;height:34px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;font-size:14px;font-weight:500;color:#374151;cursor:pointer;white-space:nowrap;font-family:inherit;transition:background .1s,border-color .1s}
   .hbtn:hover{background:#f9fafb;border-color:#d1d5db}
@@ -50,15 +50,15 @@
   @keyframes slidein{from{transform:translateX(100%)}to{transform:translateX(0)}}
   .form-label{font-size:12px;font-weight:700;color:#6b7280;margin-bottom:4px;display:block;text-transform:uppercase;letter-spacing:.04em}
   .form-input{width:100%;height:36px;padding:0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s;background:#fff}
-  .form-input:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
+  .form-input:focus{border-color:var(--brand-600,#1485c5);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .form-select{width:100%;height:36px;padding:0 28px 0 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;color:#111827;outline:none;font-family:inherit;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer}
-  .form-select:focus{border-color:var(--brand-300);box-shadow:0 0 0 3px var(--brand-100)}
+  .form-select:focus{border-color:var(--brand-600,#1485c5);box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5}
   .access-row{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e5e7eb;border-radius:8px;cursor:pointer;transition:background .1s,border-color .1s;margin-bottom:4px}
   .access-row:last-child{margin-bottom:0}
   .access-row:hover{background:#f9fafb}
   .access-row.checked-ports   {background:#eff6ff;border-color:#b8ddf5}
   .access-row.checked-weather {background:#f0fdf4;border-color:#86efac}
-  .access-row.checked-risk    {background:#fffbeb;border-color:#fdba74}
+  .access-row.checked-risk    {background:#fffbeb;border-color:var(--border-warning,rgba(217,119,6,.2))}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
