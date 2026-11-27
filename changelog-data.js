@@ -38,6 +38,160 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.2.4",
+    "dateISO": "2026-11-27T18:00:00Z",
+    "date": "27/11/2026",
+    "time": "18:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Documentation",
+    "impact": "Patch",
+    "summary": "Documentation tidy-up: chapter numbering, links between component overviews and full specs, the local z-index rule, and the last browser-default margins.",
+    "changes": [
+      "Export & reports is chapter 16 (was 16a, with no 16). [DS9]",
+      "Buttons and Inputs overviews (07 · Components) link to their full specifications (07a, 07b); each full spec names its overview, so the pair reads as overview + spec rather than duplication. [DS9]",
+      "Z-index: local stacking (−1 to 60) is allowed only inside one component or the documentation chrome, never across components; Leaflet panes keep Leaflet’s own values. Stated in the Token index (--z-base) and on the z-index block in styles.css. [DS10]",
+      "Margins: the Layout chapter’s mock ‘Dashboard’ heading and a Filters chapter paragraph no longer use browser em-based margins; Leaflet controls in map demos sit 12px from the edge (was Leaflet’s 10px). [DS12]",
+      "Bundle rebuilt from the changed sources."
+    ],
+    "reason": "Close review items DS9, DS10 and DS12.",
+    "affected": [
+      "Documentation",
+      "Token index",
+      "Maps"
+    ]
+  },
+  {
+    "version": "v4.2.3",
+    "dateISO": "2026-11-27T17:00:00Z",
+    "date": "27/11/2026",
+    "time": "17:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Other",
+    "impact": "Patch",
+    "summary": "Generated copies brought up to date: component bundle rebuilt, manifest regenerated, Figma pages on the current stylesheet.",
+    "changes": [
+      "_ds_bundle.js rebuilt from the 35 current sources (was built at v4.1.0; changelog-data.js and section-buttons-deep.jsx had changed since). Runs with no errors. [DS4]",
+      "_ds_manifest.json regenerated from styles.css: 242 tokens, 0 differences (--shadow-focus now the solid brand-600 ring); 18 components. [DS5]",
+      "figma/*.html (7 pages) load styles.css?v=39 (was v=36). [DS6]"
+    ],
+    "reason": "Close review items DS4, DS5 and DS6.",
+    "affected": [
+      "Bundle",
+      "Manifest",
+      "Figma export"
+    ]
+  },
+  {
+    "version": "v4.2.2",
+    "dateISO": "2026-11-27T16:00:00Z",
+    "date": "27/11/2026",
+    "time": "16:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Token",
+    "impact": "Patch",
+    "summary": "tokens.css regenerated from tokens.json: the old sky brand, the dark-theme block and the pre-v4 type values are gone.",
+    "changes": [
+      "tokens.css was a pre-v4.0.0 snapshot: sky brand ramp (#2D7FFB …), sky text-link and chart colours, a dark-theme block, Open Sans / Lato stacks and ratio line heights.",
+      "Regenerated in the page's own format from tokens.json: 180 tokens (colour, shadow, spacing, radius, z-index), the font families, woff2 @font-face rules and the type classes; one Light theme.",
+      "Verified: no sky values; all 139 colour tokens resolve to the same colours as styles.css. Component previews (which load tokens.css) now show the azure brand.",
+      "Closes review item DS2."
+    ],
+    "reason": "The page only rebuilds tokens.css after a token edit in the page; the stale file still carried the retired sky brand.",
+    "affected": [
+      "Tokens",
+      "Component previews"
+    ]
+  },
+  {
+    "version": "v4.2.1",
+    "dateISO": "2026-11-27T15:00:00Z",
+    "date": "27/11/2026",
+    "time": "15:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Component",
+    "impact": "Patch",
+    "summary": "Modal primary action follows the v4.2.0 primary fill (brand-500, hover brand-600); review items F1 and F2 confirmed closed.",
+    "changes": [
+      "--rw-modal-primary: brand-700 → brand-500; --rw-modal-primary-hover: brand-800 → brand-600 (same as .ds-btn--primary).",
+      "F1 (modal on tokens): title 16 / 600, --scrim 0.38, --card-shadow-modal, --shadow-focus, --radius-lg and --z-modal confirmed; Real World’s product modals (modal-base.css, report builder, side drawers) aligned in commit to follow.",
+      "F2 (undefined tokens): 0 references to undefined tokens in styles.css and rw-modal.css."
+    ],
+    "reason": "Keep the modal’s primary button identical to the system’s primary button after v4.2.0.",
+    "affected": [
+      "Modal"
+    ]
+  },
+  {
+    "version": "v4.2.0",
+    "dateISO": "2026-11-27T13:00:00Z",
+    "date": "27/11/2026",
+    "time": "13:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Color",
+    "impact": "Minor",
+    "summary": "Selected and primary fills use brand-500 (#1A92D1) instead of brand-700, by product decision. Known accessibility exception: white text on brand-500 is 3.46:1.",
+    "changes": [
+      "Primary button: rest brand-500, hover brand-600, pressed brand-700 (was brand-700 / 800 / 800).",
+      "Selected fills on brand-500: tab pill, sidebar selected item, pagination current page, vessel-popup header, token filter pill, current step, date-picker range ends.",
+      "Unchanged: text links stay brand-700; focus rings and non-text marks stay brand-600.",
+      "Known exception, deliberate: white 13–14px labels on brand-500 are 3.46:1, below WCAG AA (4.5:1). This reverses the v4.1.0–v4.1.2 contrast fix for fills; flagged in the brand-500 usage note so it is not 'fixed' back by mistake.",
+      "Real World applies the same change (commit 119bb9d)."
+    ],
+    "reason": "Product decision: a lighter selected and primary blue across tabs, buttons and navigation.",
+    "affected": [
+      "Buttons",
+      "Tabs",
+      "Sidebar",
+      "Pagination",
+      "Date & time pickers",
+      "Steps",
+      "Color"
+    ]
+  },
+  {
+    "version": "v4.1.2",
+    "dateISO": "2026-11-27T11:00:00Z",
+    "date": "27/11/2026",
+    "time": "11:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Component",
+    "impact": "Patch",
+    "summary": "Selected states share one fill: the sidebar's selected item now matches the selected tab (brand-700, white text), and every white-on-brand fill uses brand-700.",
+    "changes": [
+      "Sidebar: `.ds-sidebar-item.is-active` is a filled brand-700 item with white 600 text (was a brand-050 tint with brand-600 text, 3.87:1), the same fill as `.ds-tab-pill`, matching the Real World navigation.",
+      "White text on brand fills moved from brand-600 (4.05:1) to brand-700 (5.85:1): pagination current page, vessel-popup header, token filter pill, current step number, date-picker range ends.",
+      "Documentation navigation: selected link text brand-700 on its tint (was brand-600).",
+      "Non-text brand marks (checked checkbox / radio, switch, pulse and today dots) stay brand-600 (3:1 is enough for non-text)."
+    ],
+    "reason": "The product's sidebar (brand-600) and the tabs (brand-700) showed two different selected blues; brand-600 behind white text fails WCAG AA.",
+    "affected": [
+      "Sidebar",
+      "Tabs",
+      "Pagination",
+      "Date & time pickers",
+      "Steps",
+      "Token index"
+    ]
+  },
+  {
+    "version": "v4.1.1",
+    "dateISO": "2026-11-27T10:00:00Z",
+    "date": "27/11/2026",
+    "time": "10:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Patch",
+    "summary": "Pill tabs: the selected pill uses brand-700 so its white label passes AA (5.85:1; brand-600 was 4.05:1).",
+    "changes": [
+      "`.ds-tab-pill` background: --brand-600 → --brand-700 (found while checking the Real World dashboards against v4.1.0).",
+      "Real World applies the same change through its shared chrome (commit 5533d43)."
+    ],
+    "reason": "White 14px / 600 labels on brand-600 fail WCAG AA; v4.1.0 fixed primary buttons but missed the tab pill.",
+    "affected": [
+      "Tabs"
+    ]
+  },
+  {
     "version": "v4.1.0",
     "dateISO": "2026-11-26T22:30:00Z",
     "date": "26/11/2026",

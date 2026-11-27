@@ -113,7 +113,7 @@ const TOKEN_CATALOG = [
   ["--ease-in-out",    "motion", "cubic-bezier(0.4, 0, 0.2, 1)",      "Reversible transitions"],
   ["--ease-emphasis",  "motion", "cubic-bezier(0.34, 1.2, 0.64, 1)",  "Tab pill, selection: overshoots slightly"],
   // Z-index
-  ["--z-base",    "z-index", "1",    "Default stacking"],
+  ["--z-base",    "z-index", "1",    "Default stacking. Local stacking (−1 to 60) is allowed only inside one component or the documentation chrome, never across components; Leaflet panes keep Leaflet’s own values (e.g. 400). Everything that overlays other UI uses the scale below."],
   ["--z-sticky",  "z-index", "100",  "Sticky headers, scrolling chrome"],
   ["--z-overlay", "z-index", "1000", "Overlays and scrims under a modal"],
   ["--z-popover", "z-index", "1050", "Popovers, dropdowns, menus"],

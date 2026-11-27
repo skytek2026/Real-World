@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"9ca96293eb36","changelog-data.js":"69ef88b3a338","charts-lib.jsx":"6a3a60cadc96","components/rw-modal-demos.js":"a130d20bcbcf","components/rw-modal.js":"709b3a438084","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"59b36990bbd7","section-asset-identity.jsx":"e0bdab7e84f8","section-buttons-deep.jsx":"c295386cb90d","section-charts.jsx":"4a5977c9a9fe","section-components.jsx":"e743c29c1bcd","section-darkmode.jsx":"3109b1c10786","section-data-primitives.jsx":"edd2d8944fdf","section-datetime.jsx":"a329650a75d9","section-domain.jsx":"92e6350f508f","section-elevation-usage.jsx":"c3361c793f5a","section-elevation.jsx":"e525e864d3cf","section-event-log.jsx":"4ad80e17ff76","section-export.jsx":"fbd1ee63701c","section-filterdrawer.jsx":"aa6f9021f8e5","section-forms-deep.jsx":"170993d158da","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"a478007e894c","section-foundations2.jsx":"c17afc5cb004","section-handoff.jsx":"cc7a7ffeda6b","section-layout-interaction-a11y.jsx":"82fe464ef264","section-modal.jsx":"bb426cbae39a","section-popover.jsx":"c905cb937328","section-states.jsx":"00b1a8e312a5","section-stewardship.jsx":"ac2cb87fdcd8","section-toast.jsx":"c9521a6fd1bf","section-token-index.jsx":"8e015ccc70aa","section-tooltips.jsx":"d0858c9779c4","section-voice.jsx":"5d962bf45f24","tweaks-panel.jsx":"70278aba6f3e"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"fcaffef33d74","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"6522c385a748","section-charts.jsx":"18175ef42442","section-components.jsx":"1758cc00e609","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"a23eb8d25cd5","section-foundations2.jsx":"39f7fad0c7b8","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"77862651f27b","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"d9cc67312d64","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -365,7 +365,7 @@ const AfterTable = ({
 const UnverifBanner = () => /*#__PURE__*/React.createElement("div", {
   className: "ds-alert ds-alert--unverif",
   style: {
-    margin: "12px 14px 0"
+    margin: "12px 12px 0"
   },
   role: "status"
 }, /*#__PURE__*/React.createElement("span", {
@@ -390,7 +390,7 @@ const UnverifBanner = () => /*#__PURE__*/React.createElement("div", {
   onClick: e => e.preventDefault(),
   style: {
     color: "var(--unverif-700)",
-    marginLeft: 6,
+    marginLeft: 4,
     fontWeight: 600
   }
 }, "How is this resolved? \u2192"))));
@@ -521,21 +521,21 @@ const Page = () => {
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 6
+      marginBottom: 4
     }
   }, "Ok"), /*#__PURE__*/React.createElement(StatusCell, {
     status: "ok"
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 6
+      marginBottom: 4
     }
   }, "Sanctioned"), /*#__PURE__*/React.createElement(StatusCell, {
     status: "sanctioned"
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 6
+      marginBottom: 4
     }
   }, "Unverifiable ", /*#__PURE__*/React.createElement("span", {
     style: {
@@ -576,11 +576,11 @@ const Page = () => {
     className: "audit-pane__pill"
   }, "Before"), "Unknown subjects pass as Ok"), /*#__PURE__*/React.createElement(MockFrame, null, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "0 14px"
+      padding: "0 16px"
     }
   }, /*#__PURE__*/React.createElement(BeforeTable, null))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "12px 14px",
+      padding: "12px 16px",
       background: "var(--danger-050)",
       borderTop: "1px solid var(--danger-100)",
       color: "var(--danger-700)",
@@ -596,13 +596,13 @@ const Page = () => {
   }, "After"), "Unverifiable subjects are surfaced as a distinct state"), /*#__PURE__*/React.createElement(MockFrame, null, tweaks.showBanner && /*#__PURE__*/React.createElement(UnverifBanner, null), /*#__PURE__*/React.createElement("div", {
     className: afterClass,
     style: {
-      padding: "0 14px"
+      padding: "0 16px"
     }
   }, /*#__PURE__*/React.createElement(AfterTable, {
     treatment: tweaks.treatment
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "12px 14px",
+      padding: "12px 16px",
       background: "var(--success-050)",
       borderTop: "1px solid var(--success-100)",
       color: "var(--success-700)",
@@ -648,7 +648,7 @@ const Page = () => {
   }, /*#__PURE__*/React.createElement(SmallScoreCallout, null), /*#__PURE__*/React.createElement("div", {
     className: "ds-card",
     style: {
-      padding: 14
+      padding: 16
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
@@ -773,319 +773,909 @@ try { (() => {
    }
    ============================================================================ */
 
-window.CHANGELOG_ENTRIES = [{
-  version: "v3.3.2",
-  dateISO: "2026-09-21T22:10:00Z",
-  date: "21/09/2026",
-  time: "22:10 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Reconciled the Filter drawer chapter with the shipped Drawer primitive. The filter drawer is a composed story of Drawer, not a standalone component as the spec previously implied.",
-  changes: ["Replaced the invented standalone FilterDrawer API (sections / value / onChange / title / width props) with the real composition: Drawer, DrawerTrigger, DrawerContent, DrawerClose, DrawerHeader, DrawerBody, DrawerFooter, DrawerTitle, DrawerDescription on @base-ui/react.", "Documented the Drawer props the pattern relies on: open / onOpenChange / defaultOpen, modal (backdrop + scroll-lock + focus-trap) and showClose (header ✕), plus the DrawerClose wrapper that gives Done its close behaviour.", "Recorded that DrawerFooter is a consumer-provided slot with no default close, so the Reset / Done pair is this pattern's contribution rather than a Drawer default.", "Changed the footer from two equal-width flex:1 buttons to justify-between (Reset left, Done right), matching the shipped Filters story.", "Added a note on the tension between live apply and modal: the scroll-lock means the filtered table cannot be scrolled while the drawer is open, which is an accepted trade and not a reason to disable modal.", "Kept the three-state list model and FilterSection types as the pattern's own state contract, explicitly separate from the presentation-only Drawer.", "New 'Spec vs. current build' subsection recording four divergences: footer layout, standalone-vs-composed framing, the 360px token against Drawer's 400/560/720 width scale, and the optional DrawerDescription slot.", "Renumbered the subsequent subsections."],
-  reason: "The documented API did not match what developers import; it described a component that does not exist. Teams following it would have built a second drawer implementation in parallel with the shared primitive.",
-  affected: ["Filter drawer", "styles.css"]
-}, {
-  version: "v3.3.1",
-  dateISO: "2026-09-21T21:30:00Z",
-  date: "21/09/2026",
-  time: "21:30 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Reconciled the Tooltip chapter's developer API with the shipped Base UI component, which uses a compound export pattern and different prop names than the spec previously documented.",
-  changes: ["Replaced the invented single-element API (label / placement / delayIn / delayOut / kbd / hideArrow) with the real compound API: Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, built on @base-ui/react.", "Corrected prop names and defaults to match the build: side (default bottom, was documented as placement defaulting to top), sideOffset (6), delay / closeDelay (0 / 0) on TooltipTrigger, open / onOpenChange on Tooltip.", "Documented the align prop (start / center / end), which was missing entirely from the spec.", "Added a full prop table listing each prop, which slot it belongs on, its type and default.", "Added worked examples for every documented story: basic, placement, rich content, per-trigger delay, controlled mode and the disabled-trigger wrapper.", "Noted that Base UI collision handling is enabled by default, so side is a preference rather than a guarantee.", "New 'Spec vs. current build' subsection recording four open divergences: no arrow rendered, 6px vs 8px offset, 0/0 vs 400/100 default delay, and fade+zoom vs fade+travel enter motion.", "Renumbered the subsequent subsections and updated the placement guidance to lead with bottom."],
-  reason: "The documented API did not match what developers actually import. Prop names, defaults and the component shape were all different, so the code samples could not be copied into a real project, and the align prop was undocumented.",
-  affected: ["Tooltips"]
-}, {
-  version: "v3.3.0",
-  dateISO: "2026-09-21T15:30:00Z",
-  date: "21/09/2026",
-  time: "15:30 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Added a Filter drawer chapter documenting the right-edge filtering sheet shipped on Assets Search, and built .ds-fdrawer as a tokenized component with single-open accordion sections and live-apply behaviour.",
-  changes: ["New 'Filter drawer' section (07h): anatomy, accordion behaviour, live apply, section types (list / range / category), range-slider detail, trigger & responsive behaviour, React API, accessibility, edge cases, do's & don'ts, and a token table.", "Live working demo built on the real .ds-fdrawer CSS — accordion, checkbox lists, range section, active dots, disabled Reset states, ESC and scrim dismissal.", "New .ds-fdrawer component: -scrim, -panel, -head, -close, -body, -section (+.is-open), -acc-head, -acc-chev, -sec-title, -dot, -acc-body, -acts, -act, -list, -item, -foot.", "Added filter-drawer tokens: --fdrawer-width (360px), -max-width, -scrim, -shadow, -pad-x, -head-pad, -slide, -slide-ease, -scrim-motion, -acc-motion, -list-max, plus --z-drawer (1080).", "Documented the three-state list model (unfiltered / subset / explicitly-none) that the implementation encodes with an FNONE sentinel — an empty set cannot distinguish 'all' from 'none'.", "Documented the live-apply cycle including the scroll-position restore, page-1 reset, and the rule that the dismiss button is 'Done', never 'Apply'.", "Recorded the range-slider contract: bounds derived per tab, dual stacked inputs, clamp on input / commit on change, full-range deletes the filter, and repaint-on-expand.", "Source colours mapped onto semantic tokens so the drawer themes in dark mode; the source implementation hard-codes #fff, #f1f5f9 and #64748b."],
-  reason: "The filter drawer is the canonical filtering surface on Assets Search and the pattern for any dense data view, but existed only as page-local CSS and JS with no spec. Teams rebuilding it were missing the non-obvious rules — single-open accordion, live apply, the three-state selection model and the scroll-restore.",
-  affected: ["Filter drawer", "Overlays", "styles.css", "Skytek Design System.html"]
-}, {
-  version: "v3.2.0",
-  dateISO: "2026-09-21T14:40:00Z",
-  date: "21/09/2026",
-  time: "14:40 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Promoted Popovers out of the shared Overlays block into their own chapter with a full developer specification, and built .ds-popover as a real tokenized component with head/body/foot regions, a menu variant, placements, arrow and enter/exit motion.",
-  changes: ["New 'Popovers' section (07g): anatomy, variants & sizes, placement & collision, the focus and dismissal model, React API, raw markup/CSS contract, accessibility, surface-selection guidance, edge cases, do's & don'ts, and a token table.", "Live click-to-open demos (filter form, row-action menu, info, confirm, four placements) built on the real .ds-popover CSS, with outside-click, ESC, focus-in and focus-return implemented.", "New .ds-popover component: --sm/--md/--lg/--auto widths, four placement classes with a border-matched arrow, data-state fade + 4px travel + 0.98 scale, .ds-popover-head/-title/-desc/-close/-body/-foot (+--split), .ds-popover-menu/-item (+--danger)/-sep, and .ds-popover-anchor.", "Added popover tokens: --popover-bg/-border/-radius/-shadow/-pad/-gap/-width-sm/-md/-lg/-max-height/-arrow/-offset/-motion/-ease, plus --z-popover (1050, above page, below modal).", "Documented the non-modal contract explicitly: aria-modal=\"false\", no focus trap, no inert background, focus returns to trigger — plus the disabled auto-apply rule for form popovers.", "Replaced the old inline hard-coded popover mock in Overlays (white background, fixed px offsets) which did not theme in dark mode.", "Overlays block retitled 'Modals & Drawers' and now cross-links to both the Tooltip and Popover chapters."],
-  reason: "Popovers existed only as a hard-coded inline mock inside Overlays with no API, focus model, placement rules or accessibility guidance — and the mock's hard-coded white background broke in dark mode. Developers needed an implementable contract and a clear boundary against tooltips, modals and drawers.",
-  affected: ["Popovers", "Overlays", "Tooltips", "styles.css", "Skytek Design System.html"]
-}, {
-  version: "v3.1.0",
-  dateISO: "2026-09-21T11:20:00Z",
-  date: "21/09/2026",
-  time: "11:20 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Promoted Tooltips out of the shared Overlays block into their own chapter with a full developer specification, and rebuilt .ds-tooltip as a tokenized component with placements, an arrow, rich/kbd variants and enter/exit motion.",
-  changes: ["New 'Tooltips' section (07f) covering anatomy, placement & collision behaviour, timing and the delay group, the React API, the raw markup/CSS contract, accessibility, surface-selection guidance, edge cases, do's & don'ts, and a token table.", "Live hover/focus demos built on the real .ds-tooltip CSS so docs and component cannot drift.", "Rebuilt .ds-tooltip: four placement classes with a rotated-square arrow, data-state driven fade + 4px travel, .ds-tooltip--rich (title + body), .ds-tooltip--no-arrow, .ds-tooltip-kbd shortcut chip and .ds-tooltip-anchor wrapper.", "Added tooltip tokens: --tooltip-bg/-fg/-max-width/-radius/-pad-y/-pad-x/-font-size/-arrow/-offset/-shadow/-delay-in/-delay-out/-motion/-ease, plus --z-tooltip (1300, above modal and toast).", "Tooltip now themes correctly in dark mode — the inverse surface flips light, so the label flips to --text-inverse; previously it hard-coded slate-900/white.", "Documented WCAG 2.2 1.4.13 requirements (dismissible, hoverable, persistent) and the disabled-trigger wrapper pattern.", "Overlays block retitled 'Modals, Drawers, Popovers' and now cross-links to the tooltip chapter.", "Fixed a stale Toast lead that still described a top-center region; toasts are bottom-right."],
-  reason: "Tooltips were a single preview tile inside Overlays with no API, timing, placement or accessibility guidance, and the CSS hard-coded its colours so it broke in dark mode. Developers needed an implementable contract.",
-  affected: ["Tooltips", "Overlays", "Toast & snackbar", "styles.css", "Skytek Design System.html"]
-}, {
-  version: "v3.0.0",
-  dateISO: "2026-09-11T00:00:00Z",
-  date: "11/09/2026",
-  time: "00:00 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Breaking",
-  summary: "Rebuilt the Toast / Snackbar component to match Sonner (shadcn/ui), the implementation our developers ship, and moved the region from top-center to bottom-right. Visual styling is unchanged; placement, stacking and motion are new.",
-  changes: ["Anchor moved from fixed top-center to fixed bottom-right (--toast-inset from the bottom and right edges).", "Sonner stacking model: toasts are absolutely positioned on a shared anchor and offset by transform. Collapsed by default — newest is the front toast at full scale, older ones peek above it offset by --toast-stack-offset (14px) and scaled down --toast-stack-scale (0.05) per step.", "Expand on hover/focus: the stack expands to real measured heights (via ResizeObserver) with --toast-gap between toasts, and pauses every countdown in the stack rather than just the hovered toast.", "Swipe to dismiss: drag right or down past --toast-swipe-thresh (45px) to commit; short of it the toast springs back. The 24px × close button is retained so dismissal never depends on the gesture.", "Motion replaced keyframe animations with state-driven transitions so interrupted animations retarget instead of restarting. Enter rises from translateY(100%) over --toast-anim (400ms) on Sonner's spring cubic-bezier(.21,1.02,.73,1); exit drops and fades over --toast-anim-exit (200ms) on cubic-bezier(.06,.71,.55,1).", "New tokens: --toast-stack-offset, --toast-stack-scale, --toast-swipe-thresh, --toast-anim, --toast-anim-exit, --toast-ease-spring, --toast-ease-exit.", "New state contract on each toast: data-mounted, data-removed, data-swiping, data-swipe-out, data-visible, data-front, plus --y / --scale / --sx / --sy offsets.", "Added .ds-toast--static for documentation/anatomy figures that render outside the stack.", "Docs: new 'Developer setup · Sonner' section with the exact <Toaster> props and class-name map, a new 'Motion' spec table, and rewritten Placement & stacking, Live behavior, Tokens and Accessibility content.", "Mobile: below 640px the region spans the bottom gutter-to-gutter instead of the top.", "MIGRATION — placement: toasts now appear bottom-right. Any product that reserved space or positioned UI around a top-center toast needs a visual QA pass; views with a fixed bottom action bar should raise --toast-inset above that bar.", "MIGRATION — removed the .ds-toast.is-entering / .is-leaving classes and the @keyframes ds-toast-in / ds-toast-out. Style enter/exit via the data-mounted / data-removed attributes instead.", "MIGRATION — .ds-toast is now position:absolute within .ds-toast-region. Rendering one outside the region (docs, tests) requires the new .ds-toast--static class.", "Not breaking: the toast() / useToast() API, tone names, durations and all existing visual tokens are unchanged."],
-  reason: "Developers are building the Toast with Sonner via shadcn/ui, so the design system had to describe the component they actually ship rather than a divergent in-house spec. Bottom-right is the Sonner default and keeps confirmations clear of the top-left primary navigation.",
-  affected: ["Toast", "Snackbar", "styles.css", "section-toast.jsx"]
-}, {
-  version: "v2.4.0",
-  dateISO: "2026-07-26T00:00:00Z",
-  date: "26/07/2026",
-  time: "00:00 UTC",
-  category: "Pattern",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Added a Responsive data tables → cards pattern: wide list tables now collapse into a stacked card list on small screens instead of becoming horizontal scrollers, with the 3–5 decision-driving fields surfaced and the remainder behind a per-row Show more disclosure.",
-  changes: ["New .ds-table-cards / .ds-rcard* CSS layer in styles.css: card shell, title + subline + badge header, 2-column label-over-value key grid, is-strong / is-muted / is-mono value tones, dashed-rule disclosure region and a 44px Show more toggle with rotating chevron.", "Breakpoint contract: .ds-table-scroll hides and .ds-table-cards shows at max-width 767px (860px for full-page asset tables via .ds-table-cards--wide); both markups always render so there is no second data path.", "Edit Columns (.ds-edit-columns) is hidden on mobile — cards define their own field order, so column toggles carry no meaning there.", "Card values wrap rather than truncate (overflow-wrap:anywhere); numeric values stay tabular-nums so stacked cards still align.", "Disclosure animates with a 220ms fade-and-rise (dsRcardIn) matching the accordion motion already used by the filter drawer; honours prefers-reduced-motion.", "Built entirely on semantic tokens, so the pattern themes correctly in both light and dark; the toggle gets a standard focus ring.", "New 'Responsive tables → cards' subsection in the Filters, search & bulk actions chapter with a live card demo, anatomy breakdown, rule table and markup sample.", "Applied across the platform: Assets search (Marine, Property, Aviation, Offshore) and the 14-column policies table on Marine Portfolio Details."],
-  reason: "Horizontally scrolling a 14-column table on a phone hides most of the data behind a gesture users do not discover, and column-hiding controls just trade one loss for another. Re-projecting each row as a card keeps every field reachable, restores a real visual hierarchy at small sizes, and gives every list surface in the platform one consistent mobile behaviour.",
-  affected: ["Data Primitives Pattern", "Assets Search", "Marine Portfolio Details", "Tokens / styles.css"]
-}, {
-  version: "v2.3.0",
-  dateISO: "2026-07-06T10:00:00Z",
-  date: "06/07/2026",
-  time: "10:00 UTC",
-  category: "Token",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Added a full Dark Mode theme built on the existing semantic tokens, a live sidebar Light/Dark toggle that flips the entire spec in place, and a new Dark mode foundations chapter. No components were duplicated — Light and Dark are documented side by side throughout.",
-  changes: ["New [data-theme=\"dark\"] token layer in styles.css: re-points all semantic surface/border/text tokens, elevation shadows and the focus ring. Primitives (brand/slate/status hues + --white) stay fixed.", "Added --white-fixed primitive for true-white foregrounds on colored fills, so surfaces can theme without breaking on-brand text.", "Dark surface ramp derived from the slate scale: bg-app #0B1220 → surface #121A2A → raised #1B2536; text primary #F3F4F6, secondary #9CA3AF, muted #828C9C (all ≥ AA).", "Large-area status tints (-050) go dark; small status chips (-100) stay light so they pop. Neutral surface primitives (slate-50/100/150/200) re-point in dark so legacy inline previews flip too.", "Live theme toggle in the sidebar (role=switch), persisted to localStorage['skytek-theme'] and applied pre-paint to prevent a light flash; first visit follows prefers-color-scheme. Added to the Changelog page too.", "New 'Dark mode' foundations chapter: principles, theme architecture, semantic token Light/Dark tables, primitive-vs-semantic, dark elevation, icons & imagery, WCAG AA contrast table, and do's & don'ts.", "Color chapter's semantic token table now shows Light and Dark values side by side.", "Updated the Handoff dark-mode code sample from a 'future' note to the shipped implementation."],
-  reason: "Operators run long, dim-room and night shifts; a first-class dark theme reduces glare while preserving identical information hierarchy, density and meaning. Building on semantic tokens means every current and future component supports both themes with no duplication.",
-  affected: ["Foundations / Dark mode", "Foundations / Color", "Handoff", "styles.css", "Skytek Design System.html", "Changelog", "Theme architecture"]
-}, {
-  version: "v2.2.1",
-  dateISO: "2026-06-26T13:10:00Z",
-  date: "26/06/2026",
-  time: "13:10 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Fixed the sidebar version label, which was hardcoded to 'v1.0' and never reflected the actual design system version.",
-  changes: ["Bound the sidebar 'Design System' label to the latest changelog entry's version instead of a static 'v1.0' string."],
-  reason: "The navigation showed a stale 'v1.0' regardless of the real version, making it impossible to tell which version was in view.",
-  affected: ["Skytek Design System.html", "Sidebar navigation"]
-}, {
-  version: "v2.2.0",
-  dateISO: "2026-06-26T12:50:00Z",
-  date: "26/06/2026",
-  time: "12:50 UTC",
-  category: "Token",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Added a themed, cross-browser scrollbar treatment — a 6px thin bar with a brand-blue thumb on a light-grey track — applied to the page root and any .ds-scroll / [data-scroll] container, plus a documented Scrollbars subsection under Motion.",
-  changes: ["New scrollbar tokens: --scrollbar-size (6px), --scrollbar-track (--slate-100), --scrollbar-thumb (--brand-500), --scrollbar-thumb-hover (--brand-600).", "Firefox support via scrollbar-width:thin + scrollbar-color; WebKit/Blink support via ::-webkit-scrollbar rules honoring the exact 6px width.", "Opt-in .ds-scroll class and [data-scroll] attribute for inner scroll containers (tables, panels, popovers).", "Added a Scrollbars subsection to the Motion foundations page with a live demo, token table, code sample, and a 'don't hide scrollbars' rule."],
-  reason: "Default OS scrollbars looked foreign inside dense data regions; a consistent themed bar ties scroll affordances to the product and matches the requested visual (theme thumb, light-grey track, 6px).",
-  affected: ["Foundations / Motion", "styles.css", "Scrollbars"]
-}, {
-  version: "v2.1.5",
-  dateISO: "2026-06-25T00:05:00Z",
-  date: "25/06/2026",
-  time: "00:05 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Documentation Only",
-  summary: "Added an Upload icon to the Icon Inventory canonical alias map.",
-  changes: ["Added the 'upload' alias (Lucide Upload) for import-data / attach-file / upload-report actions, placed alphabetically."],
-  reason: "The inventory had a download glyph but no matching upload glyph for import flows.",
-  affected: ["Icon Inventory", "Iconography"]
-}, {
-  version: "v2.1.4",
-  dateISO: "2026-06-25T00:00:00Z",
-  date: "25/06/2026",
-  time: "00:00 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Documentation Only",
-  summary: "Added a Download icon to the Icon Inventory canonical alias map and sorted the entire list alphabetically by alias.",
-  changes: ["Added the 'download' alias (Lucide Download) for export / save-file / download-report actions.", "Reordered all canonical alias entries to be alphabetical by alias for easier scanning."],
-  reason: "The inventory lacked a download glyph and its previous arbitrary order made specific aliases hard to find.",
-  affected: ["Icon Inventory", "Iconography"]
-}, {
-  version: "v2.1.3",
-  dateISO: "2026-06-17T09:30:00Z",
-  date: "17/06/2026",
-  time: "09:30 UTC",
-  category: "Token",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Replaced the badges' hard-coded rgba border colors with new tokenized status-border tokens.",
-  changes: ["Introduced --border-info, --border-success, --border-warning and --border-danger, each derived from its status-500 color via color-mix at low alpha.", "Repointed the info, success, warning and danger badge borders from raw rgba(...) values to the new tokens.", "Documented the four tokens in the Color section and the Token index."],
-  reason: "Badge borders used custom rgba literals instead of system colors; tokenizing them keeps the borders consistent and themeable.",
-  affected: ["Badges & Status", "Design Tokens", "Token index", "Color"]
-}, {
-  version: "v2.1.2",
-  dateISO: "2026-06-15T16:55:00Z",
-  date: "15/06/2026",
-  time: "16:55 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Documentation Only",
-  summary: "Synced the Color section with the Token index so every documented color token now has a swatch.",
-  changes: ["Added missing palette swatches: --brand-700, --slate-150, --success-050, --warning-050, --danger-800, --danger-050 and --info-050.", "Added the missing semantic tokens --bg-raised and --text-inverse to the semantic surface/border/text list.", "No new tokens were created — all already existed in styles.css; they were simply not shown in the Color section."],
-  reason: "The Color section was missing colors that the Token index already documented, leaving the two references inconsistent.",
-  affected: ["Color", "Token index"]
-}, {
-  version: "v2.1.1",
-  dateISO: "2026-06-15T16:20:00Z",
-  date: "15/06/2026",
-  time: "16:20 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Documentation Only",
-  summary: "Added rem values alongside the existing pixel values in the Typography and Spacing sections.",
-  changes: ["Typography specimens now list size/line-height in both px and rem (e.g. 32px / 40px and 2rem / 2.5rem), assuming a 16px root.", "The Spacing scale now shows each step in both px and rem (e.g. 16px · 1rem).", "Pixel values are unchanged — rem is shown as an additional reference."],
-  reason: "Give engineers the rem equivalents for relative sizing without losing the pixel values the team designs in.",
-  affected: ["Typography", "Spacing"]
-}, {
-  version: "v2.1.0",
-  dateISO: "2026-06-15T15:40:00Z",
-  date: "15/06/2026",
-  time: "15:40 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Flattened secondary and icon-only buttons, removed all hard-coded button colors, and gave every button variant a pressed (active) state.",
-  changes: ["Removed the drop shadow from .ds-btn--secondary and .ds-btn--icon.", "Replaced the hard-coded #1f5fc7 in the primary active state with a new --brand-700 token (also fixed the same literal in the Buttons full-spec demo and token table).", "Switched the danger button's text from the `white` keyword to var(--white).", "Added :active (pressed) states to the danger and link variants — every variant now has one.", "Added --brand-700 (#1f5fc7) and --danger-800 (#991B1B) to the color tokens and the Token index."],
-  reason: "Flatten low-emphasis buttons for a calmer surface, keep every button color fully tokenized (no raw hex), and give all variants consistent press feedback.",
-  affected: ["Buttons", "Buttons — full spec", "Design Tokens", "Token index"]
-}, {
-  version: "v2.0.0",
-  dateISO: "2026-06-15T15:10:00Z",
-  date: "15/06/2026",
-  time: "15:10 UTC",
-  category: "Token",
-  updatedBy: "Claude",
-  impact: "Breaking",
-  summary: "Removed the 2px spacing step (--space-1) and renumbered the entire spacing scale down by one into a contiguous 4-pt scale.",
-  changes: ["Removed --space-1 (2px) from the spacing scale.", "Renumbered every remaining step down by one: --space-2→--space-1, --space-3→--space-2, … --space-10→--space-9, --space-12→--space-10, --space-16→--space-11.", "Repointed internal usages so visual spacing is unchanged (the density .gap-density rule now uses --space-4 / --space-3).", "Updated the Spacing foundations section and the Token index to match the new numbering."],
-  reason: "The 2px step was too fine to be useful and encouraged off-grid hairline spacing; collapsing it yields a cleaner, contiguous scale aligned to the 4-pt grid.",
-  affected: ["Spacing", "Design Tokens", "Token index", "Density"]
-}, {
-  version: "v1.3.0",
-  dateISO: "2026-06-15T14:32:00Z",
-  date: "15/06/2026",
-  time: "14:32 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Added a living Changelog page that records every change made to the design system.",
-  changes: ["Created a dedicated Changelog page with reverse-chronological timeline of entries.", "Added search across all fields plus filters for date range, category, version and impact level.", "Established an append protocol so every future change auto-records a dated, versioned entry.", "Linked the Changelog from the main specification navigation."],
-  reason: "Give the team a single, auditable record of how the system evolves over time and make change history discoverable.",
-  affected: ["Documentation", "Navigation"]
-}, {
-  version: "v1.2.1",
-  dateISO: "2026-06-15T09:05:00Z",
-  date: "15/06/2026",
-  time: "09:05 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Fixed the Card footer so its background follows the card's rounded bottom corners.",
-  changes: ["Rounded the bottom-left and bottom-right corners of .ds-card-foot to match --radius-lg.", "Added overflow: hidden to .ds-card so footer fills clip cleanly to the card shape.", "Verified box-shadows are unaffected since they render outside the box."],
-  reason: "The footer's slate background was poking past the card's rounded corners with small square nubs.",
-  affected: ["Cards", "Card Footer"]
-}, {
-  version: "v1.2.0",
-  dateISO: "2026-06-14T11:30:00Z",
-  date: "14/06/2026",
-  time: "11:30 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Defined Card footers in the design system, including footers with action buttons.",
-  changes: ["Added .ds-card-foot with --start and --between alignment modifiers.", "Locked all card-footer buttons to ghost (tertiary) style in ALL CAPS via CSS.", "Documented the rule in the Cards component spec and demonstrated all three footer patterns."],
-  reason: "Card footers were used but undocumented; footer actions needed a consistent low-emphasis treatment.",
-  affected: ["Cards", "Card Footer", "Buttons"]
-}, {
-  version: "v1.1.4",
-  dateISO: "2026-06-13T16:10:00Z",
-  date: "13/06/2026",
-  time: "16:10 UTC",
-  category: "Asset",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Updated two icon names in the iconography inventory to their canonical Lucide names.",
-  changes: ["Renamed AlertTriangle to TriangleAlert.", "Renamed HelpCircle to CircleHelp."],
-  reason: "Lucide deprecated the old names; aligning the inventory with current Lucide avoids confusion in handoff.",
-  affected: ["Iconography"]
-}, {
-  version: "v1.1.3",
-  dateISO: "2026-06-13T15:45:00Z",
-  date: "13/06/2026",
-  time: "15:45 UTC",
-  category: "Component",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Iconography inventory now renders icons from the live Lucide library instead of a partial shim.",
-  changes: ["Loaded lucide@0.469.0 and rendered each inventory entry from its real glyph node.", "Removed the generic 'tag' fallback that affected roughly half the inventory.", "Updated the caption to reflect that icons render from the live library."],
-  reason: "About 22 of 44 icons fell back to an identical generic glyph because the offline shim only defined ~20 icons.",
-  affected: ["Iconography"]
-}, {
-  version: "v1.1.2",
-  dateISO: "2026-06-12T10:20:00Z",
-  date: "12/06/2026",
-  time: "10:20 UTC",
-  category: "Documentation",
-  updatedBy: "Claude",
-  impact: "Documentation Only",
-  summary: "Corrected typography documentation to show Exo as the display and heading typeface.",
-  changes: ["Updated Display and H1–H4 specimen labels from Inter to Exo.", "Revised the Typography section intro to read: Exo for display & headings, Inter for body & UI, JetBrains Mono for codes."],
-  reason: "The specimens use var(--font-display) which resolves to Exo, but were mislabelled as Inter.",
-  affected: ["Typography"]
-}, {
-  version: "v1.1.1",
-  dateISO: "2026-06-09T11:02:00Z",
-  date: "09/06/2026",
-  time: "11:02 UTC",
-  category: "Brand",
-  updatedBy: "Claude",
-  impact: "Patch",
-  summary: "Self-hosted JetBrains Mono from uploaded font files.",
-  changes: ["Added @font-face rules for JetBrains Mono (upright + italic, variable weight).", "Pointed --font-mono at the self-hosted family."],
-  reason: "Replace CDN delivery with self-hosted brand fonts for reliability and offline rendering.",
-  affected: ["Typography", "Design Tokens"]
-}, {
-  version: "v1.1.0",
-  dateISO: "2026-06-09T09:14:00Z",
-  date: "09/06/2026",
-  time: "09:14 UTC",
-  category: "Brand",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Self-hosted the Inter typeface from uploaded font files.",
-  changes: ["Added @font-face rules for Inter (upright + italic, variable weight/optical size).", "Switched the --font-sans family over from the CDN stylesheet to the self-hosted files."],
-  reason: "Self-host brand fonts to guarantee consistent rendering independent of external CDNs.",
-  affected: ["Typography", "Design Tokens"]
-}, {
-  version: "v1.0.0",
-  dateISO: "2026-04-28T09:00:00Z",
-  date: "28/04/2026",
-  time: "09:00 UTC",
-  category: "Other",
-  updatedBy: "Claude",
-  impact: "Minor",
-  summary: "Initial release of the Skytek Design System specification.",
-  changes: ["Published foundations: color, typography, spacing, radius, elevation, iconography, density, motion and the token index.", "Published the component system, patterns, domain primitives and engineering handoff chapters."],
-  reason: "Establish the canonical reference for everything visual and interactive in the Skytek React app.",
-  affected: ["Foundations", "Components", "Patterns", "Domain primitives", "Handoff"]
-}];
+window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.2.4",
+    "dateISO": "2026-11-27T18:00:00Z",
+    "date": "27/11/2026",
+    "time": "18:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Documentation",
+    "impact": "Patch",
+    "summary": "Documentation tidy-up: chapter numbering, links between component overviews and full specs, the local z-index rule, and the last browser-default margins.",
+    "changes": [
+      "Export & reports is chapter 16 (was 16a, with no 16). [DS9]",
+      "Buttons and Inputs overviews (07 · Components) link to their full specifications (07a, 07b); each full spec names its overview, so the pair reads as overview + spec rather than duplication. [DS9]",
+      "Z-index: local stacking (−1 to 60) is allowed only inside one component or the documentation chrome, never across components; Leaflet panes keep Leaflet’s own values. Stated in the Token index (--z-base) and on the z-index block in styles.css. [DS10]",
+      "Margins: the Layout chapter’s mock ‘Dashboard’ heading and a Filters chapter paragraph no longer use browser em-based margins; Leaflet controls in map demos sit 12px from the edge (was Leaflet’s 10px). [DS12]",
+      "Bundle rebuilt from the changed sources."
+    ],
+    "reason": "Close review items DS9, DS10 and DS12.",
+    "affected": [
+      "Documentation",
+      "Token index",
+      "Maps"
+    ]
+  },
+  {
+    "version": "v4.2.3",
+    "dateISO": "2026-11-27T17:00:00Z",
+    "date": "27/11/2026",
+    "time": "17:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Other",
+    "impact": "Patch",
+    "summary": "Generated copies brought up to date: component bundle rebuilt, manifest regenerated, Figma pages on the current stylesheet.",
+    "changes": [
+      "_ds_bundle.js rebuilt from the 35 current sources (was built at v4.1.0; changelog-data.js and section-buttons-deep.jsx had changed since). Runs with no errors. [DS4]",
+      "_ds_manifest.json regenerated from styles.css: 242 tokens, 0 differences (--shadow-focus now the solid brand-600 ring); 18 components. [DS5]",
+      "figma/*.html (7 pages) load styles.css?v=39 (was v=36). [DS6]"
+    ],
+    "reason": "Close review items DS4, DS5 and DS6.",
+    "affected": [
+      "Bundle",
+      "Manifest",
+      "Figma export"
+    ]
+  },
+  {
+    "version": "v4.2.2",
+    "dateISO": "2026-11-27T16:00:00Z",
+    "date": "27/11/2026",
+    "time": "16:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Token",
+    "impact": "Patch",
+    "summary": "tokens.css regenerated from tokens.json: the old sky brand, the dark-theme block and the pre-v4 type values are gone.",
+    "changes": [
+      "tokens.css was a pre-v4.0.0 snapshot: sky brand ramp (#2D7FFB …), sky text-link and chart colours, a dark-theme block, Open Sans / Lato stacks and ratio line heights.",
+      "Regenerated in the page's own format from tokens.json: 180 tokens (colour, shadow, spacing, radius, z-index), the font families, woff2 @font-face rules and the type classes; one Light theme.",
+      "Verified: no sky values; all 139 colour tokens resolve to the same colours as styles.css. Component previews (which load tokens.css) now show the azure brand.",
+      "Closes review item DS2."
+    ],
+    "reason": "The page only rebuilds tokens.css after a token edit in the page; the stale file still carried the retired sky brand.",
+    "affected": [
+      "Tokens",
+      "Component previews"
+    ]
+  },
+  {
+    "version": "v4.2.1",
+    "dateISO": "2026-11-27T15:00:00Z",
+    "date": "27/11/2026",
+    "time": "15:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Component",
+    "impact": "Patch",
+    "summary": "Modal primary action follows the v4.2.0 primary fill (brand-500, hover brand-600); review items F1 and F2 confirmed closed.",
+    "changes": [
+      "--rw-modal-primary: brand-700 → brand-500; --rw-modal-primary-hover: brand-800 → brand-600 (same as .ds-btn--primary).",
+      "F1 (modal on tokens): title 16 / 600, --scrim 0.38, --card-shadow-modal, --shadow-focus, --radius-lg and --z-modal confirmed; Real World’s product modals (modal-base.css, report builder, side drawers) aligned in commit to follow.",
+      "F2 (undefined tokens): 0 references to undefined tokens in styles.css and rw-modal.css."
+    ],
+    "reason": "Keep the modal’s primary button identical to the system’s primary button after v4.2.0.",
+    "affected": [
+      "Modal"
+    ]
+  },
+  {
+    "version": "v4.2.0",
+    "dateISO": "2026-11-27T13:00:00Z",
+    "date": "27/11/2026",
+    "time": "13:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Color",
+    "impact": "Minor",
+    "summary": "Selected and primary fills use brand-500 (#1A92D1) instead of brand-700, by product decision. Known accessibility exception: white text on brand-500 is 3.46:1.",
+    "changes": [
+      "Primary button: rest brand-500, hover brand-600, pressed brand-700 (was brand-700 / 800 / 800).",
+      "Selected fills on brand-500: tab pill, sidebar selected item, pagination current page, vessel-popup header, token filter pill, current step, date-picker range ends.",
+      "Unchanged: text links stay brand-700; focus rings and non-text marks stay brand-600.",
+      "Known exception, deliberate: white 13–14px labels on brand-500 are 3.46:1, below WCAG AA (4.5:1). This reverses the v4.1.0–v4.1.2 contrast fix for fills; flagged in the brand-500 usage note so it is not 'fixed' back by mistake.",
+      "Real World applies the same change (commit 119bb9d)."
+    ],
+    "reason": "Product decision: a lighter selected and primary blue across tabs, buttons and navigation.",
+    "affected": [
+      "Buttons",
+      "Tabs",
+      "Sidebar",
+      "Pagination",
+      "Date & time pickers",
+      "Steps",
+      "Color"
+    ]
+  },
+  {
+    "version": "v4.1.2",
+    "dateISO": "2026-11-27T11:00:00Z",
+    "date": "27/11/2026",
+    "time": "11:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Component",
+    "impact": "Patch",
+    "summary": "Selected states share one fill: the sidebar's selected item now matches the selected tab (brand-700, white text), and every white-on-brand fill uses brand-700.",
+    "changes": [
+      "Sidebar: `.ds-sidebar-item.is-active` is a filled brand-700 item with white 600 text (was a brand-050 tint with brand-600 text, 3.87:1), the same fill as `.ds-tab-pill`, matching the Real World navigation.",
+      "White text on brand fills moved from brand-600 (4.05:1) to brand-700 (5.85:1): pagination current page, vessel-popup header, token filter pill, current step number, date-picker range ends.",
+      "Documentation navigation: selected link text brand-700 on its tint (was brand-600).",
+      "Non-text brand marks (checked checkbox / radio, switch, pulse and today dots) stay brand-600 (3:1 is enough for non-text)."
+    ],
+    "reason": "The product's sidebar (brand-600) and the tabs (brand-700) showed two different selected blues; brand-600 behind white text fails WCAG AA.",
+    "affected": [
+      "Sidebar",
+      "Tabs",
+      "Pagination",
+      "Date & time pickers",
+      "Steps",
+      "Token index"
+    ]
+  },
+  {
+    "version": "v4.1.1",
+    "dateISO": "2026-11-27T10:00:00Z",
+    "date": "27/11/2026",
+    "time": "10:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Patch",
+    "summary": "Pill tabs: the selected pill uses brand-700 so its white label passes AA (5.85:1; brand-600 was 4.05:1).",
+    "changes": [
+      "`.ds-tab-pill` background: --brand-600 → --brand-700 (found while checking the Real World dashboards against v4.1.0).",
+      "Real World applies the same change through its shared chrome (commit 5533d43)."
+    ],
+    "reason": "White 14px / 600 labels on brand-600 fail WCAG AA; v4.1.0 fixed primary buttons but missed the tab pill.",
+    "affected": [
+      "Tabs"
+    ]
+  },
+  {
+    "version": "v4.1.0",
+    "dateISO": "2026-11-26T22:30:00Z",
+    "date": "26/11/2026",
+    "time": "22:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Minor",
+    "summary": "Fixes from the v4.0.3 consistency review: contrast at token level, one stylesheet source for values, a complete Token index, a tokenised modal, map glyph tokens, single woff2 fonts, and regenerated bundle, manifest and Figma export.",
+    "changes": [
+      "Primary buttons rest on brand-700 (white 5.85:1) and darken to brand-800 on hover / press (was brand-600 → lighter brand-500). [D2]",
+      "One solid focus ring, --shadow-focus: 2px white gap + 2px brand-600 (was a 32% wash of the old navy #2E86C0, 1.48:1); --shadow-focus-danger for invalid / destructive; the modal uses both. [D3]",
+      "New --border-control (slate-500, 4.83:1) for input, select, checkbox and radio boundaries; --bg-muted → slate-050 (muted text 4.63:1); ratings B and D take dark text; unverif-700 → #57534E (6.31:1); completed steps on success-700. [D4]",
+      "Accessibility chapter: 24px minimum (2.5.8, AA), 44px on touch (2.5.5, AAA); ds-btn--lg (40px) extends its hit area on touch. [D5]",
+      "Type classes use the documented pixel line heights (display 40, h1 32, h2 28, h3 24, h4 20, body 20, body-sm 18). [B1] 11px is allowed only for uppercase overlines and badges. [B2] Open Sans and Lato removed from the stacks. [B4]",
+      "Fonts: one source per family, self-hosted woff2 (2.31 MB → 0.94 MB) with TTF fallback; Google Fonts and the page's base64 Exo removed. [B5]",
+      "Shadows: --shadow-xs has its own value; the Foundations table reads live values from styles.css. [C1] Spacing: 401 values now use var(--space-*). [C2] Motion: drawer and toast durations and the modal easing use the motion tokens. [C4]",
+      "Layering docs: overlay, popover, toast and tooltip order corrected. [C3] Tokens consolidated into one :root block. [G2] The Token index adds any uncatalogued token from styles.css: 287 of 287. [G1]",
+      "Colour chapter intro updated; info sharing the brand's blue family, rating D and chart categories 2–3 documented as deliberate exceptions. [A3, A4, A5] slate-50 renamed slate-050 (old name kept as an alias); event and chart values reference ramp tokens. [A6, A7]",
+      "Footer reads the current version from the changelog; the Changelog page shows the logo. [G3] docs/index.html redirect fixed. [H6] --danger-600 / --success-600 references fixed. [F2] Leftover dark rule removed. [N5]",
+      "Modal: title 16px / 600 (as H3), shared --scrim (0.38, also used by the filter drawer), --card-shadow-modal, brand-700 / 800 primary. [F1]",
+      "Map glyph palette and shadows are tokens (--glyph-amber / cyan / pink / orange, --glyph-shadow*, --glyph-ring, --glyph-cluster-shadow) with the Real World values. [N2] Tab pill shadow tokenised.",
+      "Regenerated: _ds_bundle.js from current sources (35 files, 0 errors; dark-mode chapter dropped), _ds_manifest.json (240 tokens, 18 components), the Figma export (type, spacing, radius, shadows from tokens; styles.css?v current). [H1, H2, H5, B3] tokens.json updated to match. [N1]",
+      "The two token proposals are recorded in PROPOSALS.md as not adopted, with their conflicts and the v5.0.0 decision. [N3]"
+    ],
+    "reason": "Close the findings of the 26 Nov consistency review.",
+    "affected": [
+      "Buttons",
+      "Inputs & forms",
+      "Focus",
+      "Modal",
+      "Typography",
+      "Fonts",
+      "Shadows",
+      "Spacing",
+      "Motion",
+      "Token index",
+      "Maps",
+      "Figma export",
+      "Bundle",
+      "Manifest"
+    ]
+  },
+  {
+    "version": "v4.0.3",
+    "dateISO": "2026-11-26T19:30:00Z",
+    "date": "26/11/2026",
+    "time": "19:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Component",
+    "impact": "Patch",
+    "summary": "Every component and chapter now uses the system's own tokens for colour, type, spacing, radius and fonts. An audit of all 35 chapters went from 9,378 off-token values to only the documented exceptions.",
+    "changes": [
+      "Spacing: component and chapter padding, margins and gaps snapped to the 4px grid (379 values, incl. React style numbers; ties round up for padding, down for gaps / margins). Browser defaults the components relied on are reset: button padding (date-picker cells, map buttons, chip close, filter-tree toggle) and checkbox / radio margins.",
+      "Toast: --toast-pad-x 14px -> 16px (right 16, left 16 + 4px tone bar).",
+      "Type: font sizes onto the type scale (82 values: 11.5 -> 12, 10.5 / 10 / 9 -> 11, 13.5 -> 14 …); keyboard keys use --font-mono; map demo buttons inherit Inter (were Arial).",
+      "Radii: 3px / 5px / 7px / 10px / 14px onto the radius scale (11 values; checkboxes, legend swatches).",
+      "Colour: code-block toolbars and the modal use the system slates (#e5e7eb, #111827, #6b7280; were Tailwind slates); pressed Primary / Destructive in the Buttons spec use brand-800 / danger-800 (were #0B3A5A / #9F1F1F); leftover sky alpha -> azure; unstyled links use text-link (were browser blue); section rules use border-default.",
+      "Modal: --rw-modal-radius -> --radius-lg, control radius -> --radius-md, z-index -> --z-modal (were 12px, 6px, 9999); its guideline note updated.",
+      "Density chapter: demo and token matrix now match the component CSS (compact rows 8px, sidebar 8 / 4px) and name the right tokens (16px = --space-4, 12px = --space-3).",
+      "Documented exceptions (unchanged): map chapter marker colours and shadows (they specify the Real World map glyphs), the macOS window dots in mock-ups, the export chapter's paper miniature, the phone mock-up bezel, and the tab pill shadow (the component's own style)."
+    ],
+    "reason": "Components must use the design system's own tokens; an audit found widespread off-grid spacing, off-scale type and radii, browser-default styles and a few non-token colours.",
+    "affected": [
+      "All Components",
+      "Buttons",
+      "Toast",
+      "Modal",
+      "Date & time pickers",
+      "Filter drawer",
+      "Density",
+      "Code blocks"
+    ]
+  },
+  {
+    "version": "v4.0.2",
+    "dateISO": "2026-11-26T17:45:00Z",
+    "date": "26/11/2026",
+    "time": "17:45 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Patch",
+    "summary": "Real World platform layout and type migration: 4px spacing grid, a 12px type floor, the new radius scale, consolidated fonts and touch targets that meet WCAG 2.2 AA. Design-system tokens unchanged.",
+    "changes": [
+      "Spacing: every padding, margin and gap snapped to the 4px grid (2,559 values and 302 Tailwind half steps; ties round up for padding, down for gaps and margins).",
+      "Type: nothing below 12px (1,546 runs, some at 7px); 13px and 12.5px data figures moved to 14px; font weight 800 mapped to 700; text-xs line-height 16px -> 18px (1.5).",
+      "Radii: 2px -> 4px and 6px -> 8px; rounded-sm / md / 3xl classes moved onto the scale.",
+      "Fonts: one request per page, Exo and Inter at 400-700 (the unused 800 weight dropped).",
+      "Touch devices: form fields at 16px (no iOS Safari zoom); controls under 44x44 get an invisible 44x44 tap area without moving the layout; checkboxes and radios at least 24px; selects at least 44px tall.",
+      "Measured on 43 pages at 390px touch: tap targets under 24px 253 -> 0, under 44px 1,756 -> 79; form fields under 16px 97 -> 0; text under 12px 1,546 -> 6.",
+      "Not yet done (decision pending): raising remaining 12px text to 14px, Exo on all card titles, and renaming the design-system spacing / radius tokens (would be v5.0.0).",
+      "Source: skytek2026/Real-World commit 4d81e6a; token package skytek-layout-system (layout-tokens.json, layout.css, layout.ts)."
+    ],
+    "reason": "Apply the layout and type audit: off-grid spacing, text below legibility, iOS input zoom and undersized touch targets across the platform.",
+    "affected": [
+      "Real World platform",
+      "Spacing",
+      "Typography",
+      "Radius",
+      "Touch targets",
+      "Accessibility"
+    ]
+  },
+  {
+    "version": "v4.0.1",
+    "dateISO": "2026-11-26T15:30:00Z",
+    "date": "26/11/2026",
+    "time": "15:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Other",
+    "impact": "Patch",
+    "summary": "Real World platform aligned to v4.0.0: one theme (Light, azure brand), no theme selector and no dark mode. Design-system tokens unchanged.",
+    "changes": [
+      "Profile page: the Theme selector (Light / Sky / Dark) is removed; the header's dark-mode toggle is removed.",
+      "Every user gets the Light theme with the azure brand ramp (brand-600 #1485c5); a previously stored Dark or Sky choice is reset to Light.",
+      "The design-system canvas (bg-canvas #F5F7FA) and Exo headings now apply on every page.",
+      "Platform conformance pass: the old sky brand (#2d7ffb and its tints) replaced by the azure ramp on every page; font sizes and corner radii moved onto the design-system scales; Leaflet map controls use Inter.",
+      "Fix: the header's profile menu, broken by the toggle removal, restored.",
+      "Source: skytek2026/Real-World commits e63ea74 and b4bf7cc."
+    ],
+    "reason": "Bring the Real World platform in line with design system v4.0.0 (single brand scheme, no dark mode) until themes are introduced.",
+    "affected": [
+      "Real World platform",
+      "Brand",
+      "Dark mode",
+      "Typography",
+      "Radius"
+    ]
+  },
+  {
+    "version": "v4.0.0",
+    "dateISO": "2026-11-26T12:00:00Z",
+    "date": "26/11/2026",
+    "time": "12:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Token",
+    "impact": "Breaking",
+    "summary": "The azure ramp (formerly 'Brand · Light theme') is now the only brand colour scheme, and the dark theme is removed so developers work with one Light theme.",
+    "changes": [
+      "Brand: brand-050 … brand-800 are the azure ramp (#eff8fd … #0d5580), adding brand-200 and brand-800; the sky ramp (#2d7ffb …) and the separate --azure-* scale are removed.",
+      "text-link now uses brand-700 (#0f6aa0, 5.85:1 on white); brand-500 fails as text on white (3.46:1).",
+      "Contrast note: white on brand-600 (#1485c5) is 4.05:1, AA for large text and UI only; noted on brand-600 and text-on-brand.",
+      "Chart palette follows the brand: chart-cat-1 = brand-600; the sequential ramp chart-seq-1 … 7 = brand-050, 100, 200, 300, 400, 600, 800.",
+      "Dark theme removed: tokens.json has one Light theme (26 colour and the shadow dark values dropped); styles.css loses its [data-theme=\"dark\"] rules and the theme toggle; the Dark mode chapter, its navigation entry and the sidebar toggle are removed.",
+      "Docs updated: Color foundations (one Brand scale, semantic table with one value column), Token index, Code view (Token / Value / Note), Elevation usage, Hand-off, Popover, Tooltips, the README and six component guidelines."
+    ],
+    "reason": "Simplify the design system for developers: one brand scheme (the Real World platform's azure) as the default until other themes are introduced, and no dark theme to maintain.",
+    "affected": [
+      "Color Foundations",
+      "Brand",
+      "Tokens",
+      "Dark mode",
+      "Code view",
+      "All Components"
+    ]
+  },
+  {
+    version: "v3.6.2",
+    dateISO: "2026-11-25T09:48:00Z",
+    date: "25/11/2026",
+    time: "09:48 UTC",
+    updatedBy: "Claude",
+    category: "Documentation",
+    impact: "Documentation Only",
+    summary: "Finished setting up the design system in the standard Design System format: a token file, a brand-book README, a cover and 17 component cards, built from the current styles.css without changing it.",
+    changes: [
+      "New tokens.json: 131 colours with light and dark values, 12 type styles, spacing, radius, 7 shadows and z-index, each with a usage note; failing contrast pairs are noted on their tokens.",
+      "New tokens.css generated from tokens.json; styles.css stays the stylesheet the specification loads, unchanged.",
+      "README rewritten as a brand book (principles, voice, colour, type, space, motion, icons, logo, components); the migration notes section was removed and 'Keeping the preview in sync' kept as written.",
+      "New component cards with live previews and guidelines: Button, Input, Badge, Alert, Card, MetricStrip, Table, Tabs, Pagination, Skeleton, EmptyState, Modal, Toast, Tooltip, Popover, FilterDrawer, DatePicker; plus a cover.",
+      "Removed the migration's records (manifest.json and migration-map.json)."
+    ],
+    reason: "The migrated system had editing off, no tokens and no component cards, so tools building slides or designs from it could not read its values.",
+    affected: ["Design system setup", "README", "Tokens", "Component cards"]
+  },
+  {
+    version: "v3.6.1",
+    dateISO: "2026-11-13T16:12:00Z",
+    date: "13/11/2026",
+    time: "16:12 UTC",
+    updatedBy: "Claude",
+    category: "Documentation",
+    impact: "Documentation Only",
+    summary: "Documented how the published preview of the design system is kept in sync with this system.",
+    changes: [
+      "README: new 'Keeping the preview in sync' section naming this system (X7ZFac…) as the source of truth and the published preview (16mvJy…) that must always match it.",
+      "Steps: change here first with a changelog entry, bump ?v= on every page that loads a changed file, save with the index last, rebuild and republish the preview, check its changelog.",
+      "Records how the preview is built (pre-compiled JSX, jsDelivr instead of unpkg, built-in styles, flags and changelog) and its known limits on hosted pages."
+    ],
+    reason: "The preview is a copy of this system and must stay identical to it; writing the procedure into the README means any future session that works on the design system follows it.",
+    affected: ["README", "Published preview", "Changelog"]
+  },
+  {
+    version: "v3.6.0",
+    dateISO: "2026-11-13T15:37:00Z",
+    date: "13/11/2026",
+    time: "15:37 UTC",
+    updatedBy: "Claude",
+    category: "Pattern",
+    impact: "Minor",
+    summary: "Added Grouped options to the Filter drawer: a section type for two-level vocabularies, with main options and sub-options and tri-state (partly selected) parent checkboxes.",
+    changes: [
+      "Filter drawer · Section types: new 'Grouped' type; its All row stands in for the Reset / Unselect all toolbar.",
+      "New part 06 'Grouped options detail' with a live demo and rules: structure, tri-state parents (input.indeterminate, derived from children), toggling a parent, collapse chevron, selection model, live apply and reset, accessibility.",
+      "Selection model: store the excluded sub-options, so nothing excluded means unfiltered and options that appear later arrive checked; keeps the unfiltered / subset / none model.",
+      "New .ds-fdrawer-tree-* classes in styles.css (rows, tri-state checkboxes, sunken sub-panel on --bg-muted, sub-option names in --text-link, swatch, collapse toggle), light and dark through existing tokens; reduced motion respected.",
+      "Later parts of the chapter renumbered 07–13."
+    ],
+    reason: "Hierarchical filters (region groups → regions) shipped on the Real World Regions map had no documented pattern; documenting it keeps future grouped filters consistent across products.",
+    affected: ["Filter drawer", "Section types", "styles.css"]
+  },
+  {
+    version: "v3.5.0",
+    dateISO: "2026-10-30T10:08:00Z",
+    date: "30/10/2026",
+    time: "10:08 UTC",
+    updatedBy: "Claude",
+    category: "Documentation",
+    impact: "Minor",
+    summary: "Added a Developer · Code view chapter so developers can browse and copy the source behind the spec and the design tokens as CSS.",
+    changes: [
+      "New 'Developer' group in the sidebar with a 'Code view' chapter (17).",
+      "Source files tab: filterable file list (page, styles, vanilla JS components, JSX sections, data), syntax-highlighted viewer, Copy file and Open raw.",
+      "Tokens as CSS tab: every :root token from styles.css with light and dark values, swatches and notes; copy :root, the dark theme, or both; click a token to copy var(--name).",
+      "Files are read live from the page, so the view never drifts from what is shipped."
+    ],
+    reason: "Give designers and developers one place: the interactive spec for design, plus the code behind it for engineering.",
+    affected: ["Code view", "Sidebar navigation", "Engineering handoff"]
+  },
+  {
+    version: "v3.4.0",
+    dateISO: "2026-10-09T14:38:00Z",
+    date: "09/10/2026",
+    time: "14:38 UTC",
+    updatedBy: "Claude",
+    category: "Token",
+    impact: "Minor",
+    summary: "Added the Real World platform's Light theme blues (the 'azure' ramp, 050–800) to the Color foundations.",
+    changes: [
+      "New 'Brand · Light theme (Real World platform)' scale in Foundations › Color with nine swatches: 050 #eff8fd, 100 #dceffb, 200 #b8ddf5, 300 #84c5ec, 400 #43a8df, 500 #1a92d1, 600 #1485c5, 700 #0f6aa0, 800 #0d5580.",
+      "Documented as --azure-* primitives; the platform writes these to --brand-* when the Light theme is active.",
+      "Caption notes the source (skytek2026/Real-World shared/chrome.js, THEME_ACCENT.light → azure) and step usage."
+    ],
+    reason: "Bring the Light theme palette used in the Real World platform into the design system so designers can reference it.",
+    affected: ["Color foundations", "Brand tokens"]
+  },
+  {
+    version: "v3.3.3",
+    dateISO: "2026-10-08T12:00:00Z",
+    date: "08/10/2026",
+    time: "12:00 UTC",
+    updatedBy: "Claude",
+    category: "Brand",
+    impact: "Patch",
+    summary: "Replaced the placeholder 'S' brand mark in the documentation sidebar with the official Skytek landscape logo, with a dedicated dark-mode variant.",
+    changes: [
+      "Added assets/skytek-logo.png (trimmed, 600px wide) from the supplied landscape colour logo.",
+      "Added assets/skytek-logo-dark.png: navy wordmark and tagline recoloured to white for legibility on dark surfaces; blue squares unchanged.",
+      "Sidebar brand block now stacks: logo on top, 'Design System' + version and the Light/Dark toggle on the row below.",
+      "Logo swaps automatically with [data-theme=\"dark\"]; max width 168px."
+    ],
+    reason: "Use the official brand logo in the documentation chrome instead of a placeholder mark, legible in both themes.",
+    affected: ["Sidebar navigation", "Theme toggle", "Brand assets"]
+  },
+  {
+    version: "v3.3.2",
+    dateISO: "2026-09-21T22:10:00Z",
+    date: "21/09/2026",
+    time: "22:10 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Reconciled the Filter drawer chapter with the shipped Drawer primitive. The filter drawer is a composed story of Drawer, not a standalone component as the spec previously implied.",
+    changes: [
+      "Replaced the invented standalone FilterDrawer API (sections / value / onChange / title / width props) with the real composition: Drawer, DrawerTrigger, DrawerContent, DrawerClose, DrawerHeader, DrawerBody, DrawerFooter, DrawerTitle, DrawerDescription on @base-ui/react.",
+      "Documented the Drawer props the pattern relies on: open / onOpenChange / defaultOpen, modal (backdrop + scroll-lock + focus-trap) and showClose (header ✕), plus the DrawerClose wrapper that gives Done its close behaviour.",
+      "Recorded that DrawerFooter is a consumer-provided slot with no default close, so the Reset / Done pair is this pattern's contribution rather than a Drawer default.",
+      "Changed the footer from two equal-width flex:1 buttons to justify-between (Reset left, Done right), matching the shipped Filters story.",
+      "Added a note on the tension between live apply and modal: the scroll-lock means the filtered table cannot be scrolled while the drawer is open, which is an accepted trade and not a reason to disable modal.",
+      "Kept the three-state list model and FilterSection types as the pattern's own state contract, explicitly separate from the presentation-only Drawer.",
+      "New 'Spec vs. current build' subsection recording four divergences: footer layout, standalone-vs-composed framing, the 360px token against Drawer's 400/560/720 width scale, and the optional DrawerDescription slot.",
+      "Renumbered the subsequent subsections."
+    ],
+    reason: "The documented API did not match what developers import; it described a component that does not exist. Teams following it would have built a second drawer implementation in parallel with the shared primitive.",
+    affected: ["Filter drawer", "styles.css"]
+  },
+  {
+    version: "v3.3.1",
+    dateISO: "2026-09-21T21:30:00Z",
+    date: "21/09/2026",
+    time: "21:30 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Reconciled the Tooltip chapter's developer API with the shipped Base UI component, which uses a compound export pattern and different prop names than the spec previously documented.",
+    changes: [
+      "Replaced the invented single-element API (label / placement / delayIn / delayOut / kbd / hideArrow) with the real compound API: Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, built on @base-ui/react.",
+      "Corrected prop names and defaults to match the build: side (default bottom, was documented as placement defaulting to top), sideOffset (6), delay / closeDelay (0 / 0) on TooltipTrigger, open / onOpenChange on Tooltip.",
+      "Documented the align prop (start / center / end), which was missing entirely from the spec.",
+      "Added a full prop table listing each prop, which slot it belongs on, its type and default.",
+      "Added worked examples for every documented story: basic, placement, rich content, per-trigger delay, controlled mode and the disabled-trigger wrapper.",
+      "Noted that Base UI collision handling is enabled by default, so side is a preference rather than a guarantee.",
+      "New 'Spec vs. current build' subsection recording four open divergences: no arrow rendered, 6px vs 8px offset, 0/0 vs 400/100 default delay, and fade+zoom vs fade+travel enter motion.",
+      "Renumbered the subsequent subsections and updated the placement guidance to lead with bottom."
+    ],
+    reason: "The documented API did not match what developers actually import. Prop names, defaults and the component shape were all different, so the code samples could not be copied into a real project, and the align prop was undocumented.",
+    affected: ["Tooltips"]
+  },
+  {
+    version: "v3.3.0",
+    dateISO: "2026-09-21T15:30:00Z",
+    date: "21/09/2026",
+    time: "15:30 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Added a Filter drawer chapter documenting the right-edge filtering sheet shipped on Assets Search, and built .ds-fdrawer as a tokenized component with single-open accordion sections and live-apply behaviour.",
+    changes: [
+      "New 'Filter drawer' section (07h): anatomy, accordion behaviour, live apply, section types (list / range / category), range-slider detail, trigger & responsive behaviour, React API, accessibility, edge cases, do's & don'ts, and a token table.",
+      "Live working demo built on the real .ds-fdrawer CSS — accordion, checkbox lists, range section, active dots, disabled Reset states, ESC and scrim dismissal.",
+      "New .ds-fdrawer component: -scrim, -panel, -head, -close, -body, -section (+.is-open), -acc-head, -acc-chev, -sec-title, -dot, -acc-body, -acts, -act, -list, -item, -foot.",
+      "Added filter-drawer tokens: --fdrawer-width (360px), -max-width, -scrim, -shadow, -pad-x, -head-pad, -slide, -slide-ease, -scrim-motion, -acc-motion, -list-max, plus --z-drawer (1080).",
+      "Documented the three-state list model (unfiltered / subset / explicitly-none) that the implementation encodes with an FNONE sentinel — an empty set cannot distinguish 'all' from 'none'.",
+      "Documented the live-apply cycle including the scroll-position restore, page-1 reset, and the rule that the dismiss button is 'Done', never 'Apply'.",
+      "Recorded the range-slider contract: bounds derived per tab, dual stacked inputs, clamp on input / commit on change, full-range deletes the filter, and repaint-on-expand.",
+      "Source colours mapped onto semantic tokens so the drawer themes in dark mode; the source implementation hard-codes #fff, #f1f5f9 and #64748b."
+    ],
+    reason: "The filter drawer is the canonical filtering surface on Assets Search and the pattern for any dense data view, but existed only as page-local CSS and JS with no spec. Teams rebuilding it were missing the non-obvious rules — single-open accordion, live apply, the three-state selection model and the scroll-restore.",
+    affected: ["Filter drawer", "Overlays", "styles.css", "Skytek Design System.html"]
+  },
+  {
+    version: "v3.2.0",
+    dateISO: "2026-09-21T14:40:00Z",
+    date: "21/09/2026",
+    time: "14:40 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Promoted Popovers out of the shared Overlays block into their own chapter with a full developer specification, and built .ds-popover as a real tokenized component with head/body/foot regions, a menu variant, placements, arrow and enter/exit motion.",
+    changes: [
+      "New 'Popovers' section (07g): anatomy, variants & sizes, placement & collision, the focus and dismissal model, React API, raw markup/CSS contract, accessibility, surface-selection guidance, edge cases, do's & don'ts, and a token table.",
+      "Live click-to-open demos (filter form, row-action menu, info, confirm, four placements) built on the real .ds-popover CSS, with outside-click, ESC, focus-in and focus-return implemented.",
+      "New .ds-popover component: --sm/--md/--lg/--auto widths, four placement classes with a border-matched arrow, data-state fade + 4px travel + 0.98 scale, .ds-popover-head/-title/-desc/-close/-body/-foot (+--split), .ds-popover-menu/-item (+--danger)/-sep, and .ds-popover-anchor.",
+      "Added popover tokens: --popover-bg/-border/-radius/-shadow/-pad/-gap/-width-sm/-md/-lg/-max-height/-arrow/-offset/-motion/-ease, plus --z-popover (1050, above page, below modal).",
+      "Documented the non-modal contract explicitly: aria-modal=\"false\", no focus trap, no inert background, focus returns to trigger — plus the disabled auto-apply rule for form popovers.",
+      "Replaced the old inline hard-coded popover mock in Overlays (white background, fixed px offsets) which did not theme in dark mode.",
+      "Overlays block retitled 'Modals & Drawers' and now cross-links to both the Tooltip and Popover chapters."
+    ],
+    reason: "Popovers existed only as a hard-coded inline mock inside Overlays with no API, focus model, placement rules or accessibility guidance — and the mock's hard-coded white background broke in dark mode. Developers needed an implementable contract and a clear boundary against tooltips, modals and drawers.",
+    affected: ["Popovers", "Overlays", "Tooltips", "styles.css", "Skytek Design System.html"]
+  },
+  {
+    version: "v3.1.0",
+    dateISO: "2026-09-21T11:20:00Z",
+    date: "21/09/2026",
+    time: "11:20 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Promoted Tooltips out of the shared Overlays block into their own chapter with a full developer specification, and rebuilt .ds-tooltip as a tokenized component with placements, an arrow, rich/kbd variants and enter/exit motion.",
+    changes: [
+      "New 'Tooltips' section (07f) covering anatomy, placement & collision behaviour, timing and the delay group, the React API, the raw markup/CSS contract, accessibility, surface-selection guidance, edge cases, do's & don'ts, and a token table.",
+      "Live hover/focus demos built on the real .ds-tooltip CSS so docs and component cannot drift.",
+      "Rebuilt .ds-tooltip: four placement classes with a rotated-square arrow, data-state driven fade + 4px travel, .ds-tooltip--rich (title + body), .ds-tooltip--no-arrow, .ds-tooltip-kbd shortcut chip and .ds-tooltip-anchor wrapper.",
+      "Added tooltip tokens: --tooltip-bg/-fg/-max-width/-radius/-pad-y/-pad-x/-font-size/-arrow/-offset/-shadow/-delay-in/-delay-out/-motion/-ease, plus --z-tooltip (1300, above modal and toast).",
+      "Tooltip now themes correctly in dark mode — the inverse surface flips light, so the label flips to --text-inverse; previously it hard-coded slate-900/white.",
+      "Documented WCAG 2.2 1.4.13 requirements (dismissible, hoverable, persistent) and the disabled-trigger wrapper pattern.",
+      "Overlays block retitled 'Modals, Drawers, Popovers' and now cross-links to the tooltip chapter.",
+      "Fixed a stale Toast lead that still described a top-center region; toasts are bottom-right."
+    ],
+    reason: "Tooltips were a single preview tile inside Overlays with no API, timing, placement or accessibility guidance, and the CSS hard-coded its colours so it broke in dark mode. Developers needed an implementable contract.",
+    affected: ["Tooltips", "Overlays", "Toast & snackbar", "styles.css", "Skytek Design System.html"]
+  },
+  {
+    version: "v3.0.0",
+    dateISO: "2026-09-11T00:00:00Z",
+    date: "11/09/2026",
+    time: "00:00 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Breaking",
+    summary: "Rebuilt the Toast / Snackbar component to match Sonner (shadcn/ui), the implementation our developers ship, and moved the region from top-center to bottom-right. Visual styling is unchanged; placement, stacking and motion are new.",
+    changes: [
+      "Anchor moved from fixed top-center to fixed bottom-right (--toast-inset from the bottom and right edges).",
+      "Sonner stacking model: toasts are absolutely positioned on a shared anchor and offset by transform. Collapsed by default — newest is the front toast at full scale, older ones peek above it offset by --toast-stack-offset (14px) and scaled down --toast-stack-scale (0.05) per step.",
+      "Expand on hover/focus: the stack expands to real measured heights (via ResizeObserver) with --toast-gap between toasts, and pauses every countdown in the stack rather than just the hovered toast.",
+      "Swipe to dismiss: drag right or down past --toast-swipe-thresh (45px) to commit; short of it the toast springs back. The 24px × close button is retained so dismissal never depends on the gesture.",
+      "Motion replaced keyframe animations with state-driven transitions so interrupted animations retarget instead of restarting. Enter rises from translateY(100%) over --toast-anim (400ms) on Sonner's spring cubic-bezier(.21,1.02,.73,1); exit drops and fades over --toast-anim-exit (200ms) on cubic-bezier(.06,.71,.55,1).",
+      "New tokens: --toast-stack-offset, --toast-stack-scale, --toast-swipe-thresh, --toast-anim, --toast-anim-exit, --toast-ease-spring, --toast-ease-exit.",
+      "New state contract on each toast: data-mounted, data-removed, data-swiping, data-swipe-out, data-visible, data-front, plus --y / --scale / --sx / --sy offsets.",
+      "Added .ds-toast--static for documentation/anatomy figures that render outside the stack.",
+      "Docs: new 'Developer setup · Sonner' section with the exact <Toaster> props and class-name map, a new 'Motion' spec table, and rewritten Placement & stacking, Live behavior, Tokens and Accessibility content.",
+      "Mobile: below 640px the region spans the bottom gutter-to-gutter instead of the top.",
+      "MIGRATION — placement: toasts now appear bottom-right. Any product that reserved space or positioned UI around a top-center toast needs a visual QA pass; views with a fixed bottom action bar should raise --toast-inset above that bar.",
+      "MIGRATION — removed the .ds-toast.is-entering / .is-leaving classes and the @keyframes ds-toast-in / ds-toast-out. Style enter/exit via the data-mounted / data-removed attributes instead.",
+      "MIGRATION — .ds-toast is now position:absolute within .ds-toast-region. Rendering one outside the region (docs, tests) requires the new .ds-toast--static class.",
+      "Not breaking: the toast() / useToast() API, tone names, durations and all existing visual tokens are unchanged."
+    ],
+    reason: "Developers are building the Toast with Sonner via shadcn/ui, so the design system had to describe the component they actually ship rather than a divergent in-house spec. Bottom-right is the Sonner default and keeps confirmations clear of the top-left primary navigation.",
+    affected: ["Toast", "Snackbar", "styles.css", "section-toast.jsx"]
+  },
+  {
+    version: "v2.4.0",
+    dateISO: "2026-07-26T00:00:00Z",
+    date: "26/07/2026",
+    time: "00:00 UTC",
+    category: "Pattern",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Added a Responsive data tables → cards pattern: wide list tables now collapse into a stacked card list on small screens instead of becoming horizontal scrollers, with the 3–5 decision-driving fields surfaced and the remainder behind a per-row Show more disclosure.",
+    changes: [
+      "New .ds-table-cards / .ds-rcard* CSS layer in styles.css: card shell, title + subline + badge header, 2-column label-over-value key grid, is-strong / is-muted / is-mono value tones, dashed-rule disclosure region and a 44px Show more toggle with rotating chevron.",
+      "Breakpoint contract: .ds-table-scroll hides and .ds-table-cards shows at max-width 767px (860px for full-page asset tables via .ds-table-cards--wide); both markups always render so there is no second data path.",
+      "Edit Columns (.ds-edit-columns) is hidden on mobile — cards define their own field order, so column toggles carry no meaning there.",
+      "Card values wrap rather than truncate (overflow-wrap:anywhere); numeric values stay tabular-nums so stacked cards still align.",
+      "Disclosure animates with a 220ms fade-and-rise (dsRcardIn) matching the accordion motion already used by the filter drawer; honours prefers-reduced-motion.",
+      "Built entirely on semantic tokens, so the pattern themes correctly in both light and dark; the toggle gets a standard focus ring.",
+      "New 'Responsive tables → cards' subsection in the Filters, search & bulk actions chapter with a live card demo, anatomy breakdown, rule table and markup sample.",
+      "Applied across the platform: Assets search (Marine, Property, Aviation, Offshore) and the 14-column policies table on Marine Portfolio Details."
+    ],
+    reason: "Horizontally scrolling a 14-column table on a phone hides most of the data behind a gesture users do not discover, and column-hiding controls just trade one loss for another. Re-projecting each row as a card keeps every field reachable, restores a real visual hierarchy at small sizes, and gives every list surface in the platform one consistent mobile behaviour.",
+    affected: ["Data Primitives Pattern", "Assets Search", "Marine Portfolio Details", "Tokens / styles.css"]
+  },
+  {
+    version: "v2.3.0",
+    dateISO: "2026-07-06T10:00:00Z",
+    date: "06/07/2026",
+    time: "10:00 UTC",
+    category: "Token",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Added a full Dark Mode theme built on the existing semantic tokens, a live sidebar Light/Dark toggle that flips the entire spec in place, and a new Dark mode foundations chapter. No components were duplicated — Light and Dark are documented side by side throughout.",
+    changes: [
+      "New [data-theme=\"dark\"] token layer in styles.css: re-points all semantic surface/border/text tokens, elevation shadows and the focus ring. Primitives (brand/slate/status hues + --white) stay fixed.",
+      "Added --white-fixed primitive for true-white foregrounds on colored fills, so surfaces can theme without breaking on-brand text.",
+      "Dark surface ramp derived from the slate scale: bg-app #0B1220 → surface #121A2A → raised #1B2536; text primary #F3F4F6, secondary #9CA3AF, muted #828C9C (all ≥ AA).",
+      "Large-area status tints (-050) go dark; small status chips (-100) stay light so they pop. Neutral surface primitives (slate-50/100/150/200) re-point in dark so legacy inline previews flip too.",
+      "Live theme toggle in the sidebar (role=switch), persisted to localStorage['skytek-theme'] and applied pre-paint to prevent a light flash; first visit follows prefers-color-scheme. Added to the Changelog page too.",
+      "New 'Dark mode' foundations chapter: principles, theme architecture, semantic token Light/Dark tables, primitive-vs-semantic, dark elevation, icons & imagery, WCAG AA contrast table, and do's & don'ts.",
+      "Color chapter's semantic token table now shows Light and Dark values side by side.",
+      "Updated the Handoff dark-mode code sample from a 'future' note to the shipped implementation."
+    ],
+    reason: "Operators run long, dim-room and night shifts; a first-class dark theme reduces glare while preserving identical information hierarchy, density and meaning. Building on semantic tokens means every current and future component supports both themes with no duplication.",
+    affected: ["Foundations / Dark mode", "Foundations / Color", "Handoff", "styles.css", "Skytek Design System.html", "Changelog", "Theme architecture"]
+  },
+  {
+    version: "v2.2.1",
+    dateISO: "2026-06-26T13:10:00Z",
+    date: "26/06/2026",
+    time: "13:10 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Fixed the sidebar version label, which was hardcoded to 'v1.0' and never reflected the actual design system version.",
+    changes: [
+      "Bound the sidebar 'Design System' label to the latest changelog entry's version instead of a static 'v1.0' string."
+    ],
+    reason: "The navigation showed a stale 'v1.0' regardless of the real version, making it impossible to tell which version was in view.",
+    affected: ["Skytek Design System.html", "Sidebar navigation"]
+  },
+  {
+    version: "v2.2.0",
+    dateISO: "2026-06-26T12:50:00Z",
+    date: "26/06/2026",
+    time: "12:50 UTC",
+    category: "Token",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Added a themed, cross-browser scrollbar treatment — a 6px thin bar with a brand-blue thumb on a light-grey track — applied to the page root and any .ds-scroll / [data-scroll] container, plus a documented Scrollbars subsection under Motion.",
+    changes: [
+      "New scrollbar tokens: --scrollbar-size (6px), --scrollbar-track (--slate-100), --scrollbar-thumb (--brand-500), --scrollbar-thumb-hover (--brand-600).",
+      "Firefox support via scrollbar-width:thin + scrollbar-color; WebKit/Blink support via ::-webkit-scrollbar rules honoring the exact 6px width.",
+      "Opt-in .ds-scroll class and [data-scroll] attribute for inner scroll containers (tables, panels, popovers).",
+      "Added a Scrollbars subsection to the Motion foundations page with a live demo, token table, code sample, and a 'don't hide scrollbars' rule."
+    ],
+    reason: "Default OS scrollbars looked foreign inside dense data regions; a consistent themed bar ties scroll affordances to the product and matches the requested visual (theme thumb, light-grey track, 6px).",
+    affected: ["Foundations / Motion", "styles.css", "Scrollbars"]
+  },
+  {
+    version: "v2.1.5",
+    dateISO: "2026-06-25T00:05:00Z",
+    date: "25/06/2026",
+    time: "00:05 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Documentation Only",
+    summary: "Added an Upload icon to the Icon Inventory canonical alias map.",
+    changes: [
+      "Added the 'upload' alias (Lucide Upload) for import-data / attach-file / upload-report actions, placed alphabetically."
+    ],
+    reason: "The inventory had a download glyph but no matching upload glyph for import flows.",
+    affected: ["Icon Inventory", "Iconography"]
+  },
+  {
+    version: "v2.1.4",
+    dateISO: "2026-06-25T00:00:00Z",
+    date: "25/06/2026",
+    time: "00:00 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Documentation Only",
+    summary: "Added a Download icon to the Icon Inventory canonical alias map and sorted the entire list alphabetically by alias.",
+    changes: [
+      "Added the 'download' alias (Lucide Download) for export / save-file / download-report actions.",
+      "Reordered all canonical alias entries to be alphabetical by alias for easier scanning."
+    ],
+    reason: "The inventory lacked a download glyph and its previous arbitrary order made specific aliases hard to find.",
+    affected: ["Icon Inventory", "Iconography"]
+  },
+  {
+    version: "v2.1.3",
+    dateISO: "2026-06-17T09:30:00Z",
+    date: "17/06/2026",
+    time: "09:30 UTC",
+    category: "Token",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Replaced the badges' hard-coded rgba border colors with new tokenized status-border tokens.",
+    changes: [
+      "Introduced --border-info, --border-success, --border-warning and --border-danger, each derived from its status-500 color via color-mix at low alpha.",
+      "Repointed the info, success, warning and danger badge borders from raw rgba(...) values to the new tokens.",
+      "Documented the four tokens in the Color section and the Token index."
+    ],
+    reason: "Badge borders used custom rgba literals instead of system colors; tokenizing them keeps the borders consistent and themeable.",
+    affected: ["Badges & Status", "Design Tokens", "Token index", "Color"]
+  },
+  {
+    version: "v2.1.2",
+    dateISO: "2026-06-15T16:55:00Z",
+    date: "15/06/2026",
+    time: "16:55 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Documentation Only",
+    summary: "Synced the Color section with the Token index so every documented color token now has a swatch.",
+    changes: [
+      "Added missing palette swatches: --brand-700, --slate-150, --success-050, --warning-050, --danger-800, --danger-050 and --info-050.",
+      "Added the missing semantic tokens --bg-raised and --text-inverse to the semantic surface/border/text list.",
+      "No new tokens were created — all already existed in styles.css; they were simply not shown in the Color section."
+    ],
+    reason: "The Color section was missing colors that the Token index already documented, leaving the two references inconsistent.",
+    affected: ["Color", "Token index"]
+  },
+  {
+    version: "v2.1.1",
+    dateISO: "2026-06-15T16:20:00Z",
+    date: "15/06/2026",
+    time: "16:20 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Documentation Only",
+    summary: "Added rem values alongside the existing pixel values in the Typography and Spacing sections.",
+    changes: [
+      "Typography specimens now list size/line-height in both px and rem (e.g. 32px / 40px and 2rem / 2.5rem), assuming a 16px root.",
+      "The Spacing scale now shows each step in both px and rem (e.g. 16px · 1rem).",
+      "Pixel values are unchanged — rem is shown as an additional reference."
+    ],
+    reason: "Give engineers the rem equivalents for relative sizing without losing the pixel values the team designs in.",
+    affected: ["Typography", "Spacing"]
+  },
+  {
+    version: "v2.1.0",
+    dateISO: "2026-06-15T15:40:00Z",
+    date: "15/06/2026",
+    time: "15:40 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Flattened secondary and icon-only buttons, removed all hard-coded button colors, and gave every button variant a pressed (active) state.",
+    changes: [
+      "Removed the drop shadow from .ds-btn--secondary and .ds-btn--icon.",
+      "Replaced the hard-coded #1f5fc7 in the primary active state with a new --brand-700 token (also fixed the same literal in the Buttons full-spec demo and token table).",
+      "Switched the danger button's text from the `white` keyword to var(--white).",
+      "Added :active (pressed) states to the danger and link variants — every variant now has one.",
+      "Added --brand-700 (#1f5fc7) and --danger-800 (#991B1B) to the color tokens and the Token index."
+    ],
+    reason: "Flatten low-emphasis buttons for a calmer surface, keep every button color fully tokenized (no raw hex), and give all variants consistent press feedback.",
+    affected: ["Buttons", "Buttons — full spec", "Design Tokens", "Token index"]
+  },
+  {
+    version: "v2.0.0",
+    dateISO: "2026-06-15T15:10:00Z",
+    date: "15/06/2026",
+    time: "15:10 UTC",
+    category: "Token",
+    updatedBy: "Claude",
+    impact: "Breaking",
+    summary: "Removed the 2px spacing step (--space-1) and renumbered the entire spacing scale down by one into a contiguous 4-pt scale.",
+    changes: [
+      "Removed --space-1 (2px) from the spacing scale.",
+      "Renumbered every remaining step down by one: --space-2→--space-1, --space-3→--space-2, … --space-10→--space-9, --space-12→--space-10, --space-16→--space-11.",
+      "Repointed internal usages so visual spacing is unchanged (the density .gap-density rule now uses --space-4 / --space-3).",
+      "Updated the Spacing foundations section and the Token index to match the new numbering."
+    ],
+    reason: "The 2px step was too fine to be useful and encouraged off-grid hairline spacing; collapsing it yields a cleaner, contiguous scale aligned to the 4-pt grid.",
+    affected: ["Spacing", "Design Tokens", "Token index", "Density"]
+  },
+  {
+    version: "v1.3.0",
+    dateISO: "2026-06-15T14:32:00Z",
+    date: "15/06/2026",
+    time: "14:32 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Added a living Changelog page that records every change made to the design system.",
+    changes: [
+      "Created a dedicated Changelog page with reverse-chronological timeline of entries.",
+      "Added search across all fields plus filters for date range, category, version and impact level.",
+      "Established an append protocol so every future change auto-records a dated, versioned entry.",
+      "Linked the Changelog from the main specification navigation."
+    ],
+    reason: "Give the team a single, auditable record of how the system evolves over time and make change history discoverable.",
+    affected: ["Documentation", "Navigation"]
+  },
+  {
+    version: "v1.2.1",
+    dateISO: "2026-06-15T09:05:00Z",
+    date: "15/06/2026",
+    time: "09:05 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Fixed the Card footer so its background follows the card's rounded bottom corners.",
+    changes: [
+      "Rounded the bottom-left and bottom-right corners of .ds-card-foot to match --radius-lg.",
+      "Added overflow: hidden to .ds-card so footer fills clip cleanly to the card shape.",
+      "Verified box-shadows are unaffected since they render outside the box."
+    ],
+    reason: "The footer's slate background was poking past the card's rounded corners with small square nubs.",
+    affected: ["Cards", "Card Footer"]
+  },
+  {
+    version: "v1.2.0",
+    dateISO: "2026-06-14T11:30:00Z",
+    date: "14/06/2026",
+    time: "11:30 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Defined Card footers in the design system, including footers with action buttons.",
+    changes: [
+      "Added .ds-card-foot with --start and --between alignment modifiers.",
+      "Locked all card-footer buttons to ghost (tertiary) style in ALL CAPS via CSS.",
+      "Documented the rule in the Cards component spec and demonstrated all three footer patterns."
+    ],
+    reason: "Card footers were used but undocumented; footer actions needed a consistent low-emphasis treatment.",
+    affected: ["Cards", "Card Footer", "Buttons"]
+  },
+  {
+    version: "v1.1.4",
+    dateISO: "2026-06-13T16:10:00Z",
+    date: "13/06/2026",
+    time: "16:10 UTC",
+    category: "Asset",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Updated two icon names in the iconography inventory to their canonical Lucide names.",
+    changes: [
+      "Renamed AlertTriangle to TriangleAlert.",
+      "Renamed HelpCircle to CircleHelp."
+    ],
+    reason: "Lucide deprecated the old names; aligning the inventory with current Lucide avoids confusion in handoff.",
+    affected: ["Iconography"]
+  },
+  {
+    version: "v1.1.3",
+    dateISO: "2026-06-13T15:45:00Z",
+    date: "13/06/2026",
+    time: "15:45 UTC",
+    category: "Component",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Iconography inventory now renders icons from the live Lucide library instead of a partial shim.",
+    changes: [
+      "Loaded lucide@0.469.0 and rendered each inventory entry from its real glyph node.",
+      "Removed the generic 'tag' fallback that affected roughly half the inventory.",
+      "Updated the caption to reflect that icons render from the live library."
+    ],
+    reason: "About 22 of 44 icons fell back to an identical generic glyph because the offline shim only defined ~20 icons.",
+    affected: ["Iconography"]
+  },
+  {
+    version: "v1.1.2",
+    dateISO: "2026-06-12T10:20:00Z",
+    date: "12/06/2026",
+    time: "10:20 UTC",
+    category: "Documentation",
+    updatedBy: "Claude",
+    impact: "Documentation Only",
+    summary: "Corrected typography documentation to show Exo as the display and heading typeface.",
+    changes: [
+      "Updated Display and H1–H4 specimen labels from Inter to Exo.",
+      "Revised the Typography section intro to read: Exo for display & headings, Inter for body & UI, JetBrains Mono for codes."
+    ],
+    reason: "The specimens use var(--font-display) which resolves to Exo, but were mislabelled as Inter.",
+    affected: ["Typography"]
+  },
+  {
+    version: "v1.1.1",
+    dateISO: "2026-06-09T11:02:00Z",
+    date: "09/06/2026",
+    time: "11:02 UTC",
+    category: "Brand",
+    updatedBy: "Claude",
+    impact: "Patch",
+    summary: "Self-hosted JetBrains Mono from uploaded font files.",
+    changes: [
+      "Added @font-face rules for JetBrains Mono (upright + italic, variable weight).",
+      "Pointed --font-mono at the self-hosted family."
+    ],
+    reason: "Replace CDN delivery with self-hosted brand fonts for reliability and offline rendering.",
+    affected: ["Typography", "Design Tokens"]
+  },
+  {
+    version: "v1.1.0",
+    dateISO: "2026-06-09T09:14:00Z",
+    date: "09/06/2026",
+    time: "09:14 UTC",
+    category: "Brand",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Self-hosted the Inter typeface from uploaded font files.",
+    changes: [
+      "Added @font-face rules for Inter (upright + italic, variable weight/optical size).",
+      "Switched the --font-sans family over from the CDN stylesheet to the self-hosted files."
+    ],
+    reason: "Self-host brand fonts to guarantee consistent rendering independent of external CDNs.",
+    affected: ["Typography", "Design Tokens"]
+  },
+  {
+    version: "v1.0.0",
+    dateISO: "2026-04-28T09:00:00Z",
+    date: "28/04/2026",
+    time: "09:00 UTC",
+    category: "Other",
+    updatedBy: "Claude",
+    impact: "Minor",
+    summary: "Initial release of the Skytek Design System specification.",
+    changes: [
+      "Published foundations: color, typography, spacing, radius, elevation, iconography, density, motion and the token index.",
+      "Published the component system, patterns, domain primitives and engineering handoff chapters."
+    ],
+    reason: "Establish the canonical reference for everything visual and interactive in the Skytek React app.",
+    affected: ["Foundations", "Components", "Patterns", "Domain primitives", "Handoff"]
+  }
+];
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "changelog-data.js", error: String((e && e.message) || e) }); }
 
 // charts-lib.jsx
@@ -1194,7 +1784,7 @@ const Legend = ({
   className: "cx-legend-sw",
   style: {
     background: it.color,
-    borderRadius: it.shape === "line" ? 2 : 3,
+    borderRadius: it.shape === "line" ? 2 : 4,
     height: it.shape === "line" ? 3 : 10
   }
 }), /*#__PURE__*/React.createElement("span", {
@@ -1877,9 +2467,20 @@ try { (() => {
     if (document.getElementById('rw-modal-demo-style')) return;
     var s = document.createElement('style');
     s.id = 'rw-modal-demo-style';
-    s.textContent = '.demo-twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}' + '.demo-formgrid{display:grid;gap:12px;align-content:start;}' + '.demo-field{display:grid;grid-template-columns:140px 1fr;gap:14px;align-items:center;}' + '.demo-field-label{font-size:13px;color:#334155;}' + '.demo-field-control{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:7px 10px;font:inherit;font-size:13px;color:#0f172a;background:#fff;transition:border-color 120ms,box-shadow 120ms;}' + '.demo-field-control:focus{outline:0;border-color:#8ec5fd;box-shadow:0 0 0 3px rgba(37,99,235,.12);}' + ".demo-field-select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:28px;background:#fff url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\") no-repeat right 10px center;}" + '.demo-map{min-height:360px;border:1px solid #e2e8f0;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(45,127,251,0.05),rgba(45,127,251,0.02)),repeating-linear-gradient(45deg,#f3f4f6 0 10px,#e6ecf3 10px 20px);}' + '.demo-map-cap{font-family:monospace;font-size:11px;color:#64748b;background:rgba(255,255,255,0.8);padding:4px 10px;border-radius:6px;}' + '@media (max-width:768px){.demo-twocol{grid-template-columns:1fr;}.demo-map{min-height:220px;}.demo-field{grid-template-columns:1fr;gap:4px;}}';
+    s.textContent =
+      '.demo-twocol{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}' +
+      '.demo-formgrid{display:grid;gap:12px;align-content:start;}' +
+      '.demo-field{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center;}' +
+      '.demo-field-label{font-size:13px;color:#334155;}' +
+      '.demo-field-control{width:100%;border:1px solid #d1d5db;border-radius:6px;padding:8px 12px;font:inherit;font-size:13px;color:#111827;background:#fff;transition:border-color 120ms,box-shadow 120ms;}' +
+      '.demo-field-control:focus{outline:0;border-color:#43a8df;box-shadow:0 0 0 3px rgba(20,133,197,.12);}' +
+      ".demo-field-select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:28px;background:#fff url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E\") no-repeat right 10px center;}" +
+      '.demo-map{min-height:360px;border:1px solid #e5e7eb;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(20, 133, 197,0.05),rgba(20, 133, 197,0.02)),repeating-linear-gradient(45deg,#eef2f7 0 10px,#e6ecf3 10px 20px);}' +
+      '.demo-map-cap{font-family:monospace;font-size:11px;color:#6b7280;background:rgba(255,255,255,0.8);padding:4px 12px;border-radius:6px;}' +
+      '@media (max-width:768px){.demo-twocol{grid-template-columns:1fr;}.demo-map{min-height:220px;}.demo-field{grid-template-columns:1fr;gap:4px;}}';
     document.head.appendChild(s);
   }
+
   function field(label, id, value, opts) {
     opts = opts || {};
     var wrap = document.createElement('div');
@@ -1895,8 +2496,7 @@ try { (() => {
       input.className = 'demo-field-control demo-field-select';
       opts.options.forEach(function (o) {
         var op = document.createElement('option');
-        op.value = o;
-        op.textContent = o || '—';
+        op.value = o; op.textContent = o || '—';
         if (o === value) op.selected = true;
         input.appendChild(op);
       });
@@ -1913,34 +2513,21 @@ try { (() => {
 
   /* ── Size variants ────────────────────────────────────────────────── */
   function openSize(size) {
-    var labels = {
-      sm: 'Small',
-      md: 'Medium',
-      lg: 'Large',
-      xl: 'Extra-large',
-      full: 'Full-bleed'
-    };
+    var labels = { sm: 'Small', md: 'Medium', lg: 'Large', xl: 'Extra-large', full: 'Full-bleed' };
     RWModal.open({
       size: size,
       title: labels[size] + ' dialog',
       subtitle: 'size="' + size + '"',
       body: function (b) {
         var p = document.createElement('p');
-        p.style.cssText = 'margin:0;font-size:13.5px;line-height:1.6;color:#475569;';
+        p.style.cssText = 'margin:0;font-size:14px;line-height:1.6;color:#475569;';
         p.innerHTML = 'This is the <strong>' + labels[size] + '</strong> container width. The same header, body, and footer slots scale across every size — only <code style="font-family:monospace;">--rw-modal-w-' + size + '</code> changes. Tab through the buttons below: focus is trapped inside this dialog, and Escape closes it.';
         b.appendChild(p);
       },
-      footer: [{
-        label: 'Cancel',
-        variant: 'secondary',
-        closeOnClick: true
-      }, {
-        label: 'Got it',
-        variant: 'primary',
-        onClick: function (m) {
-          m.close();
-        }
-      }]
+      footer: [
+        { label: 'Cancel', variant: 'secondary', closeOnClick: true },
+        { label: 'Got it', variant: 'primary', onClick: function (m) { m.close(); } }
+      ]
     });
   }
 
@@ -1954,11 +2541,7 @@ try { (() => {
         for (var i = 1; i <= 12; i++) {
           var h = document.createElement('div');
           h.className = 'rw-modal-section-title';
-          if (i === 1) {
-            h.style.borderTop = '0';
-            h.style.marginTop = '0';
-            h.style.paddingTop = '0';
-          }
+          if (i === 1) { h.style.borderTop = '0'; h.style.marginTop = '0'; h.style.paddingTop = '0'; }
           h.textContent = 'Clause ' + i;
           b.appendChild(h);
           var p = document.createElement('p');
@@ -1967,17 +2550,10 @@ try { (() => {
           b.appendChild(p);
         }
       },
-      footer: [{
-        label: 'Decline',
-        variant: 'ghost',
-        closeOnClick: true
-      }, {
-        label: 'Accept',
-        variant: 'primary',
-        onClick: function (m) {
-          m.close();
-        }
-      }]
+      footer: [
+        { label: 'Decline', variant: 'ghost', closeOnClick: true },
+        { label: 'Accept', variant: 'primary', onClick: function (m) { m.close(); } }
+      ]
     });
   }
 
@@ -1990,17 +2566,13 @@ try { (() => {
       closeOnOverlayClick: closeOnOverlay,
       body: function (b) {
         var p = document.createElement('p');
-        p.style.cssText = 'margin:0;font-size:13.5px;line-height:1.6;color:#475569;';
-        p.textContent = closeOnOverlay ? 'Click anywhere on the dimmed backdrop to dismiss. Good for non-destructive, low-stakes dialogs.' : 'Clicking the backdrop does nothing — the user must choose an explicit action. Use this for forms with unsaved input or destructive confirmations.';
+        p.style.cssText = 'margin:0;font-size:14px;line-height:1.6;color:#475569;';
+        p.textContent = closeOnOverlay
+          ? 'Click anywhere on the dimmed backdrop to dismiss. Good for non-destructive, low-stakes dialogs.'
+          : 'Clicking the backdrop does nothing — the user must choose an explicit action. Use this for forms with unsaved input or destructive confirmations.';
         b.appendChild(p);
       },
-      footer: [{
-        label: 'Close',
-        variant: 'primary',
-        onClick: function (m) {
-          m.close();
-        }
-      }]
+      footer: [{ label: 'Close', variant: 'primary', onClick: function (m) { m.close(); } }]
     });
   }
 
@@ -2014,18 +2586,7 @@ try { (() => {
       danger: true,
       closeOnOverlayClick: false
     }).then(function (ok) {
-      if (ok) RWModal.open({
-        size: 'sm',
-        title: 'Deleted',
-        body: '<p style="margin:0;font-size:13.5px;color:#475569;">Portfolio removed.</p>',
-        footer: [{
-          label: 'OK',
-          variant: 'primary',
-          onClick: function (m) {
-            m.close();
-          }
-        }]
-      });
+      if (ok) RWModal.open({ size: 'sm', title: 'Deleted', body: '<p style="margin:0;font-size:14px;color:#475569;">Portfolio removed.</p>', footer: [{ label: 'OK', variant: 'primary', onClick: function (m) { m.close(); } }] });
     });
   }
 
@@ -2033,6 +2594,7 @@ try { (() => {
   function openAddPort() {
     ensureDemoStyles();
     var COUNTRIES = ['', 'Ireland', 'United Kingdom', 'Netherlands', 'Germany', 'France', 'Spain', 'Norway', 'United States', 'Singapore', 'Other'];
+
     RWModal.open({
       size: 'xl',
       title: 'Add a new Port',
@@ -2042,79 +2604,48 @@ try { (() => {
       body: function (b) {
         var two = document.createElement('div');
         two.className = 'demo-twocol';
+
         var grid = document.createElement('div');
         grid.className = 'demo-formgrid';
         grid.appendChild(field('Name', 'ap2-name', 'Dublin Port'));
         grid.appendChild(field('LOCODE', 'ap2-locode', 'IEDUB'));
         grid.appendChild(field('GlobalPortID', 'ap2-gpid', ''));
         grid.appendChild(field('WorldPortNumber', 'ap2-wpn', ''));
-        grid.appendChild(field('Country', 'ap2-country', 'Ireland', {
-          select: true,
-          options: COUNTRIES
-        }));
+        grid.appendChild(field('Country', 'ap2-country', 'Ireland', { select: true, options: COUNTRIES }));
         grid.appendChild(field('Lat', 'ap2-lat', '53.353584'));
         grid.appendChild(field('Lng', 'ap2-lng', '-6.251495'));
         two.appendChild(grid);
+
         var mapWrap = document.createElement('div');
         mapWrap.className = 'demo-map';
         mapWrap.innerHTML = '<span class="demo-map-cap">Leaflet map mounts into the body slot — unchanged</span>';
         two.appendChild(mapWrap);
+
         b.appendChild(two);
       },
-      footer: [{
-        label: 'Cancel',
-        variant: 'secondary',
-        closeOnClick: true
-      }, {
-        label: 'Save',
-        variant: 'primary',
-        onClick: function (m) {
+      footer: [
+        { label: 'Cancel', variant: 'secondary', closeOnClick: true },
+        { label: 'Save', variant: 'primary', onClick: function (m) {
           var name = m.query('#ap2-name').value;
           m.close();
-          RWModal.open({
-            size: 'sm',
-            title: 'Port saved',
-            body: '<p style="margin:0;font-size:13.5px;color:#475569;">“' + name + '” was added to the registry.</p>',
-            footer: [{
-              label: 'Done',
-              variant: 'primary',
-              onClick: function (x) {
-                x.close();
-              }
-            }]
-          });
-        }
-      }]
+          RWModal.open({ size: 'sm', title: 'Port saved', body: '<p style="margin:0;font-size:14px;color:#475569;">“' + name + '” was added to the registry.</p>', footer: [{ label: 'Done', variant: 'primary', onClick: function (x) { x.close(); } }] });
+        } }
+      ]
     });
   }
 
   /* ── Composed-from-parts demo (low-level API) ─────────────────────── */
   function openComposed() {
     var P = RWModal.parts;
-    var overlay = P.Overlay({
-      labelledby: 'composed-title'
-    });
-    var container = P.Container({
-      size: 'md'
-    });
-    container.appendChild(P.Header({
-      title: 'Assembled by hand',
-      titleId: 'composed-title',
-      subtitle: 'Built from RWModal.parts.*'
-    }));
-    container.appendChild(P.Body('<p style="margin:0;font-size:13.5px;line-height:1.6;color:#475569;">This dialog was composed slot-by-slot with <code style="font-family:monospace;">Overlay → Container → Header → Body → Footer</code>, then wired with <code style="font-family:monospace;">RWModal.mount()</code> for focus-trapping and dismissal. Same primitives the high-level <code style="font-family:monospace;">open()</code> uses internally.</p>'));
-    container.appendChild(P.Footer([{
-      label: 'Close',
-      variant: 'primary',
-      onClick: function (m) {
-        m.close();
-      }
-    }]));
+    var overlay = P.Overlay({ labelledby: 'composed-title' });
+    var container = P.Container({ size: 'md' });
+    container.appendChild(P.Header({ title: 'Assembled by hand', titleId: 'composed-title', subtitle: 'Built from RWModal.parts.*' }));
+    container.appendChild(P.Body('<p style="margin:0;font-size:14px;line-height:1.6;color:#475569;">This dialog was composed slot-by-slot with <code style="font-family:monospace;">Overlay → Container → Header → Body → Footer</code>, then wired with <code style="font-family:monospace;">RWModal.mount()</code> for focus-trapping and dismissal. Same primitives the high-level <code style="font-family:monospace;">open()</code> uses internally.</p>'));
+    container.appendChild(P.Footer([
+      { label: 'Close', variant: 'primary', onClick: function (m) { m.close(); } }
+    ]));
     overlay.appendChild(container);
-    RWModal.mount(overlay, {
-      closeOnOverlayClick: true,
-      closeOnEsc: true
-    });
+    RWModal.mount(overlay, { closeOnOverlayClick: true, closeOnEsc: true });
   }
 
   // Expose to the page
@@ -2127,6 +2658,7 @@ try { (() => {
     openComposed: openComposed
   };
 })();
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/rw-modal-demos.js", error: String((e && e.message) || e) }); }
 
 // components/rw-modal.js
@@ -2173,63 +2705,54 @@ try { (() => {
 (function () {
   'use strict';
 
-  var SIZES = {
-    sm: 'rw-modal--sm',
-    md: 'rw-modal--md',
-    lg: 'rw-modal--lg',
-    xl: 'rw-modal--xl',
-    full: 'rw-modal--full'
-  };
-  var FOCUSABLE = ['a[href]', 'button:not([disabled])', 'textarea:not([disabled])', 'input:not([disabled]):not([type="hidden"])', 'select:not([disabled])', '[tabindex]:not([tabindex="-1"])'].join(',');
+  var SIZES = { sm: 'rw-modal--sm', md: 'rw-modal--md', lg: 'rw-modal--lg', xl: 'rw-modal--xl', full: 'rw-modal--full' };
+  var FOCUSABLE = [
+    'a[href]', 'button:not([disabled])', 'textarea:not([disabled])',
+    'input:not([disabled]):not([type="hidden"])', 'select:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(',');
+
   var uid = 0;
   var openCount = 0;
-  var CLOSE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">' + '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+  var CLOSE_SVG =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">' +
+    '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
 
   /* ── tiny DOM helpers ───────────────────────────────────────────────── */
   function el(tag, cls, attrs) {
     var n = document.createElement(tag);
     if (cls) n.className = cls;
-    if (attrs) for (var k in attrs) {
-      if (attrs[k] != null) n.setAttribute(k, attrs[k]);
-    }
+    if (attrs) for (var k in attrs) { if (attrs[k] != null) n.setAttribute(k, attrs[k]); }
     return n;
   }
   function fill(node, content) {
     if (content == null || content === false) return;
-    if (typeof content === 'string') node.innerHTML = content;else if (content instanceof Node) node.appendChild(content);else if (typeof content === 'function') {
+    if (typeof content === 'string') node.innerHTML = content;
+    else if (content instanceof Node) node.appendChild(content);
+    else if (typeof content === 'function') {
       var r = content(node);
       if (r != null && r !== node) fill(node, r);
     }
   }
   function ensureRoot() {
     var root = document.getElementById('rw-modal-root');
-    if (!root) {
-      root = el('div', null, {
-        id: 'rw-modal-root'
-      });
-      document.body.appendChild(root);
-    }
+    if (!root) { root = el('div', null, { id: 'rw-modal-root' }); document.body.appendChild(root); }
     return root;
   }
   function lockScroll(lock) {
-    if (lock) {
-      openCount++;
-      document.documentElement.classList.add('rw-modal-open');
-    } else {
-      openCount = Math.max(0, openCount - 1);
-      if (!openCount) document.documentElement.classList.remove('rw-modal-open');
-    }
+    if (lock) { openCount++; document.documentElement.classList.add('rw-modal-open'); }
+    else { openCount = Math.max(0, openCount - 1); if (!openCount) document.documentElement.classList.remove('rw-modal-open'); }
   }
 
   /* ── sub-component builders (the five slots) ────────────────────────── */
   var parts = {
     Overlay: function (opts) {
       opts = opts || {};
-      var o = el('div', 'rw-modal-overlay' + (opts.align === 'top' ? ' rw-modal-overlay--top' : ''), {
-        role: 'dialog',
-        'aria-modal': 'true'
-      });
-      if (opts.labelledby) o.setAttribute('aria-labelledby', opts.labelledby);else if (opts.ariaLabel) o.setAttribute('aria-label', opts.ariaLabel);
+      var o = el('div', 'rw-modal-overlay' + (opts.align === 'top' ? ' rw-modal-overlay--top' : ''),
+        { role: 'dialog', 'aria-modal': 'true' });
+      if (opts.labelledby) o.setAttribute('aria-labelledby', opts.labelledby);
+      else if (opts.ariaLabel) o.setAttribute('aria-label', opts.ariaLabel);
       return o;
     },
     Container: function (opts) {
@@ -2243,9 +2766,7 @@ try { (() => {
       var h = el('div', 'rw-modal-header' + (hasClose ? '' : ' rw-modal-header--plain'));
       var titles = el('div', 'rw-modal-titles');
       if (opts.title) {
-        var t = el('h2', 'rw-modal-title', {
-          id: opts.titleId
-        });
+        var t = el('h2', 'rw-modal-title', { id: opts.titleId });
         t.textContent = opts.title;
         titles.appendChild(t);
       }
@@ -2256,11 +2777,7 @@ try { (() => {
       }
       h.appendChild(titles);
       if (hasClose) {
-        var btn = el('button', 'rw-modal-close-btn', {
-          type: 'button',
-          'aria-label': opts.closeLabel || 'Close dialog',
-          'data-rw-close': ''
-        });
+        var btn = el('button', 'rw-modal-close-btn', { type: 'button', 'aria-label': opts.closeLabel || 'Close dialog', 'data-rw-close': '' });
         btn.innerHTML = CLOSE_SVG;
         h.appendChild(btn);
       }
@@ -2275,22 +2792,19 @@ try { (() => {
     Footer: function (items, opts) {
       opts = opts || {};
       var f = el('div', 'rw-modal-footer' + (opts.layout ? ' rw-modal-footer--' + opts.layout : ''));
-      if (Array.isArray(items)) items.forEach(function (cfg) {
-        f.appendChild(parts.Button(cfg));
-      });else fill(f, items);
+      if (Array.isArray(items)) items.forEach(function (cfg) { f.appendChild(parts.Button(cfg)); });
+      else fill(f, items);
       return f;
     },
     Button: function (cfg) {
       cfg = cfg || {};
       var variant = cfg.variant || 'secondary';
-      var b = el('button', 'rw-modal-btn rw-modal-btn--' + variant, {
-        type: 'button'
-      });
+      var b = el('button', 'rw-modal-btn rw-modal-btn--' + variant, { type: 'button' });
       if (cfg.id) b.id = cfg.id;
       if (cfg.disabled) b.disabled = true;
       if (cfg.autoFocus) b.setAttribute('data-rw-autofocus', '');
       b.textContent = cfg.label || '';
-      b._rwCfg = cfg; // consumed by mount() for click wiring
+      b._rwCfg = cfg;   // consumed by mount() for click wiring
       return b;
     }
   };
@@ -2302,43 +2816,28 @@ try { (() => {
     var previouslyFocused = document.activeElement;
     var modal = overlay.querySelector('.rw-modal') || overlay;
     var closed = false;
+
     var instance = {
       el: overlay,
       modal: modal,
-      query: function (sel) {
-        return overlay.querySelector(sel);
-      },
-      queryAll: function (sel) {
-        return Array.prototype.slice.call(overlay.querySelectorAll(sel));
-      },
+      query: function (sel) { return overlay.querySelector(sel); },
+      queryAll: function (sel) { return Array.prototype.slice.call(overlay.querySelectorAll(sel)); },
       close: doClose
     };
+
     function focusables() {
-      return Array.prototype.slice.call(modal.querySelectorAll(FOCUSABLE)).filter(function (n) {
-        return n.offsetParent !== null || n === document.activeElement;
-      });
+      return Array.prototype.slice.call(modal.querySelectorAll(FOCUSABLE))
+        .filter(function (n) { return n.offsetParent !== null || n === document.activeElement; });
     }
+
     function onKeydown(e) {
-      if (e.key === 'Escape' && opts.closeOnEsc !== false) {
-        e.stopPropagation();
-        doClose();
-        return;
-      }
+      if (e.key === 'Escape' && opts.closeOnEsc !== false) { e.stopPropagation(); doClose(); return; }
       if (e.key !== 'Tab') return;
       var f = focusables();
-      if (!f.length) {
-        e.preventDefault();
-        return;
-      }
-      var first = f[0],
-        last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+      if (!f.length) { e.preventDefault(); return; }
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
 
     // If focus somehow escapes the dialog, pull it back in (true trap).
@@ -2348,9 +2847,11 @@ try { (() => {
         if (f.length) f[0].focus();
       }
     }
+
     function onOverlayClick(e) {
       if (e.target === overlay && opts.closeOnOverlayClick !== false) doClose();
     }
+
     function doClose() {
       if (closed) return;
       closed = true;
@@ -2367,17 +2868,13 @@ try { (() => {
     }
 
     // Wire close affordances
-    overlay.addEventListener('mousedown', function (e) {
-      instance._downTarget = e.target;
-    });
+    overlay.addEventListener('mousedown', function (e) { instance._downTarget = e.target; });
     overlay.addEventListener('click', function (e) {
       // Only dismiss when both press and release happen on the scrim (prevents
       // accidental close when a drag starts inside the modal and ends on scrim).
       if (instance._downTarget === overlay) onOverlayClick(e);
     });
-    instance.queryAll('[data-rw-close]').forEach(function (b) {
-      b.addEventListener('click', doClose);
-    });
+    instance.queryAll('[data-rw-close]').forEach(function (b) { b.addEventListener('click', doClose); });
 
     // Wire footer button configs
     instance.queryAll('.rw-modal-btn').forEach(function (b) {
@@ -2387,12 +2884,14 @@ try { (() => {
         // Run the handler; if it returns false, keep the modal open
         // (e.g. validation failed). Otherwise close unless closeOnClick:false.
         var keepOpen = false;
-        if (typeof cfg.onClick === 'function') keepOpen = cfg.onClick(instance) === false;
+        if (typeof cfg.onClick === 'function') keepOpen = (cfg.onClick(instance) === false);
         if (!keepOpen && cfg.closeOnClick !== false) doClose();
       });
     });
+
     document.addEventListener('keydown', onKeydown, true);
     document.addEventListener('focusin', onFocusIn, true);
+
     root.appendChild(overlay);
     lockScroll(true);
 
@@ -2405,16 +2904,16 @@ try { (() => {
       }
       if (!target) target = overlay.querySelector('[data-rw-autofocus]');
       if (!target) {
-        var f = focusables().filter(function (n) {
-          return !n.hasAttribute('data-rw-close');
-        });
+        var f = focusables().filter(function (n) { return !n.hasAttribute('data-rw-close'); });
         target = f[0] || overlay.querySelector('.rw-modal-close-btn') || modal;
       }
       if (target && typeof target.focus === 'function') target.focus();
       if (typeof opts.onOpen === 'function') opts.onOpen(instance);
     }, 30);
+
     return instance;
   }
+
   function prefersReducedMotion() {
     return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
@@ -2422,17 +2921,15 @@ try { (() => {
   /* ── open(): the high-level convenience that assembles the slots ────── */
   function open(config) {
     config = config || {};
-    var id = 'rw-modal-' + ++uid;
+    var id = 'rw-modal-' + (++uid);
     var titleId = id + '-title';
+
     var overlay = parts.Overlay({
       align: config.align,
       labelledby: config.title ? titleId : null,
       ariaLabel: config.ariaLabel
     });
-    var container = parts.Container({
-      size: config.size,
-      className: config.className
-    });
+    var container = parts.Container({ size: config.size, className: config.className });
 
     // Header (skip entirely if no title and explicitly no close button)
     if (config.title || config.subtitle || config.closeButton !== false) {
@@ -2444,15 +2941,15 @@ try { (() => {
         closeLabel: config.closeLabel
       }));
     }
-    container.appendChild(parts.Body(config.body, {
-      className: config.bodyClassName
-    }));
+
+    container.appendChild(parts.Body(config.body, { className: config.bodyClassName }));
+
     if (config.footer !== false && config.footer != null) {
-      container.appendChild(parts.Footer(config.footer, {
-        layout: config.footerLayout
-      }));
+      container.appendChild(parts.Footer(config.footer, { layout: config.footerLayout }));
     }
+
     overlay.appendChild(container);
+
     return mount(overlay, {
       closeOnOverlayClick: config.closeOnOverlayClick,
       closeOnEsc: config.closeOnEsc,
@@ -2468,7 +2965,7 @@ try { (() => {
     return new Promise(function (resolve) {
       var body = el('div');
       var p = el('p', null);
-      p.style.cssText = 'margin:0;font-size:13.5px;line-height:1.55;color:var(--rw-modal-text-muted);';
+      p.style.cssText = 'margin:0;font-size:14px;line-height:1.55;color:var(--rw-modal-text-muted);';
       p.textContent = config.message || '';
       body.appendChild(p);
       var m = open({
@@ -2476,46 +2973,26 @@ try { (() => {
         title: config.title || 'Are you sure?',
         body: body,
         closeOnOverlayClick: config.closeOnOverlayClick !== false,
-        footer: [{
-          label: config.cancelLabel || 'Cancel',
-          variant: 'secondary',
-          onClick: function () {
-            resolve(false);
-          },
-          closeOnClick: true
-        }, {
-          label: config.confirmLabel || 'Confirm',
-          variant: config.danger ? 'danger' : 'primary',
-          onClick: function (inst) {
-            resolve(true);
-            inst.close();
-          }
-        }],
-        onClose: function () {
-          resolve(false);
-        }
+        footer: [
+          { label: config.cancelLabel || 'Cancel', variant: 'secondary', onClick: function () { resolve(false); }, closeOnClick: true },
+          { label: config.confirmLabel || 'Confirm', variant: config.danger ? 'danger' : 'primary',
+            onClick: function (inst) { resolve(true); inst.close(); } }
+        ],
+        onClose: function () { resolve(false); }
       });
       return m;
     });
   }
+
   function closeAll() {
-    Array.prototype.slice.call(document.querySelectorAll('#rw-modal-root .rw-modal-overlay')).forEach(function (o) {
-      o.classList.add('is-closing');
-      setTimeout(function () {
-        o.remove();
-      }, 140);
-    });
-    openCount = 0;
-    document.documentElement.classList.remove('rw-modal-open');
+    Array.prototype.slice.call(document.querySelectorAll('#rw-modal-root .rw-modal-overlay'))
+      .forEach(function (o) { o.classList.add('is-closing'); setTimeout(function () { o.remove(); }, 140); });
+    openCount = 0; document.documentElement.classList.remove('rw-modal-open');
   }
-  window.RWModal = {
-    open: open,
-    confirm: confirm,
-    mount: mount,
-    parts: parts,
-    closeAll: closeAll
-  };
+
+  window.RWModal = { open: open, confirm: confirm, mount: mount, parts: parts, closeAll: closeAll };
 })();
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/rw-modal.js", error: String((e && e.message) || e) }); }
 
 // copy-utilities.js
@@ -2542,7 +3019,7 @@ try { (() => {
         await navigator.clipboard.writeText(text);
         return true;
       }
-    } catch (_) {/* fall through */}
+    } catch (_) { /* fall through */ }
     // Fallback for non-secure contexts / older browsers
     const ta = document.createElement("textarea");
     ta.value = text;
@@ -2553,11 +3030,7 @@ try { (() => {
     document.body.appendChild(ta);
     ta.select();
     let ok = false;
-    try {
-      ok = document.execCommand("copy");
-    } catch (_) {
-      ok = false;
-    }
+    try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
     document.body.removeChild(ta);
     return ok;
   }
@@ -2574,13 +3047,11 @@ try { (() => {
     }
     liveRegion.textContent = "";
     // Re-set on next tick so SRs re-announce identical messages
-    setTimeout(() => {
-      liveRegion.textContent = msg;
-    }, 30);
+    setTimeout(() => { liveRegion.textContent = msg; }, 30);
   }
 
   /* -------- icons (inline SVG strings) -------- */
-  const ICON_COPY = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>`;
+  const ICON_COPY  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>`;
   const ICON_CHECK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>`;
 
   /* -------- flash a button into "copied" state -------- */
@@ -2605,17 +3076,14 @@ try { (() => {
     if (/^\s*</.test(text)) return "html";
     return "code";
   }
-  const COPY_LABEL_BY_LANG = {
-    css: "Copy CSS",
-    tsx: "Copy code",
-    html: "Copy HTML",
-    code: "Copy"
-  };
+
+  const COPY_LABEL_BY_LANG = { css: "Copy CSS", tsx: "Copy code", html: "Copy HTML", code: "Copy" };
 
   /* -------- enhance a <pre class="code"> block -------- */
   function enhanceCodeBlock(pre) {
     if (pre.dataset.copyEnhanced) return;
     pre.dataset.copyEnhanced = "1";
+
     const raw = pre.textContent || "";
     const lang = detectLang(raw);
     const label = COPY_LABEL_BY_LANG[lang] || "Copy";
@@ -2625,6 +3093,7 @@ try { (() => {
     wrap.className = "ds-code-wrap";
     pre.parentNode.insertBefore(wrap, pre);
     wrap.appendChild(pre);
+
     const toolbar = document.createElement("div");
     toolbar.className = "ds-code-toolbar";
     toolbar.innerHTML = `
@@ -2634,7 +3103,8 @@ try { (() => {
       </button>
     `;
     wrap.appendChild(toolbar);
-    toolbar.querySelector("[data-copy-code]").addEventListener("click", async e => {
+
+    toolbar.querySelector("[data-copy-code]").addEventListener("click", async (e) => {
       const btn = e.currentTarget;
       const ok = await writeClipboard(raw.replace(/\n+$/, ""));
       if (ok) {
@@ -2658,13 +3128,15 @@ try { (() => {
     wrap.className = "ds-token-copy-wrap";
     codeEl.parentNode.insertBefore(wrap, codeEl);
     wrap.appendChild(codeEl);
+
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "ds-token-copy-chip";
     btn.setAttribute("aria-label", `Copy token ${codeEl.textContent.trim()}`);
     btn.innerHTML = ICON_COPY;
     wrap.appendChild(btn);
-    btn.addEventListener("click", async e => {
+
+    btn.addEventListener("click", async (e) => {
       e.stopPropagation();
       const token = codeEl.textContent.trim();
       const ok = await writeClipboard(token);
@@ -2687,7 +3159,7 @@ try { (() => {
         announce(`${val} copied`);
       }
     });
-    el.addEventListener("keydown", e => {
+    el.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         el.click();
@@ -2700,8 +3172,8 @@ try { (() => {
   /* -------- collect DS class names used inside a node -------- */
   function collectClasses(root) {
     const out = new Set();
-    root.querySelectorAll("[class]").forEach(el => {
-      el.classList.forEach(c => {
+    root.querySelectorAll("[class]").forEach((el) => {
+      el.classList.forEach((c) => {
         if (/^(ds-|t-|panel|swatch|token-row|grid-|row|col|callout|surface|spec-)/.test(c)) {
           out.add(c);
         }
@@ -2717,17 +3189,13 @@ try { (() => {
     const seen = new Set();
     for (const sheet of Array.from(document.styleSheets)) {
       let rules;
-      try {
-        rules = sheet.cssRules;
-      } catch (_) {
-        continue;
-      } // cross-origin guard
+      try { rules = sheet.cssRules; } catch (_) { continue; } // cross-origin guard
       if (!rules) continue;
       for (const rule of Array.from(rules)) {
         if (!rule.selectorText || !rule.cssText) continue;
         // match if selector mentions any of our classes
         const sel = rule.selectorText;
-        const hit = wanted.some(c => sel.indexOf("." + c) !== -1);
+        const hit = wanted.some((c) => sel.indexOf("." + c) !== -1);
         if (hit && !seen.has(rule.cssText)) {
           seen.add(rule.cssText);
           lines.push(rule.cssText);
@@ -2741,7 +3209,7 @@ try { (() => {
   function collectTokens(root) {
     const tokens = new Set();
     // Explicit code.inline references
-    root.querySelectorAll("code.inline, code").forEach(c => {
+    root.querySelectorAll("code.inline, code").forEach((c) => {
       const t = (c.textContent || "").trim();
       if (/^--[a-z][a-z0-9-]+$/i.test(t)) tokens.add(t);
     });
@@ -2764,8 +3232,8 @@ try { (() => {
   function serializePreview(body) {
     // Strip React-injected attributes that aren't useful in copied output
     const clone = body.cloneNode(true);
-    clone.querySelectorAll("*").forEach(el => {
-      [...el.attributes].forEach(a => {
+    clone.querySelectorAll("*").forEach((el) => {
+      [...el.attributes].forEach((a) => {
         if (/^(data-react|data-reactroot|data-cc-id|data-dm-ref|data-copy-enhanced)/.test(a.name)) {
           el.removeAttribute(a.name);
         }
@@ -2776,30 +3244,30 @@ try { (() => {
       }
     });
     // Unwrap our injected wrappers
-    clone.querySelectorAll(".ds-code-wrap").forEach(w => {
+    clone.querySelectorAll(".ds-code-wrap").forEach((w) => {
       const pre = w.querySelector("pre.code");
       if (pre) w.replaceWith(pre);
     });
-    clone.querySelectorAll(".ds-token-copy-wrap").forEach(w => {
+    clone.querySelectorAll(".ds-token-copy-wrap").forEach((w) => {
       const code = w.querySelector("code");
       if (code) w.replaceWith(code);
     });
     // Pretty-print: 2-space indented
     return formatHtml(clone.innerHTML);
   }
+
   function formatHtml(html) {
     // very lightweight pretty-printer
-    const VOID = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"]);
-    let out = "",
-      indent = 0;
+    const VOID = new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]);
+    let out = "", indent = 0;
     const tokens = html.replace(/>\s+</g, "><").split(/(<[^>]+>)/g).filter(Boolean);
     for (const t of tokens) {
       if (t.startsWith("</")) {
         indent = Math.max(indent - 1, 0);
         out += "  ".repeat(indent) + t + "\n";
-      } else if (t.startsWith("<") && !t.startsWith("<!")) {
+      } else if (t.startsWith("<") && !t.startsWith("<!") ) {
         const tag = t.match(/^<\s*([a-z0-9-]+)/i);
-        const selfClose = t.endsWith("/>") || tag && VOID.has(tag[1].toLowerCase());
+        const selfClose = t.endsWith("/>") || (tag && VOID.has(tag[1].toLowerCase()));
         out += "  ".repeat(indent) + t + "\n";
         if (!selfClose) indent += 1;
       } else {
@@ -2820,13 +3288,17 @@ try { (() => {
     if (!panel.closest(".subsection")) return;
     // Skip if this panel only contains a single pre.code (it already has its own toolbar)
     if (body.querySelector(":scope > pre.code") && body.children.length === 1) return;
+
     panel.dataset.copyEnhanced = "1";
+
     const tokens = collectTokens(body);
     const classes = collectClasses(body);
+
     const toolbar = document.createElement("div");
     toolbar.className = "ds-panel-copy-toolbar";
     toolbar.setAttribute("role", "group");
     toolbar.setAttribute("aria-label", "Copy implementation");
+
     const mkBtn = (label, action, ariaLabel) => {
       const b = document.createElement("button");
       b.type = "button";
@@ -2847,12 +3319,16 @@ try { (() => {
       });
       return b;
     };
+
     toolbar.appendChild(mkBtn("Copy code", () => serializePreview(body), "Copy markup for this component"));
     toolbar.appendChild(mkBtn("Copy CSS", () => extractCss(classes), "Copy CSS rules for this component"));
     if (tokens.size > 0) {
       const label = `Copy tokens (${tokens.size})`;
       toolbar.appendChild(mkBtn(label, () => {
-        return Array.from(tokens).sort().map(t => `${t}: ${resolveToken(t)};`).join("\n");
+        return Array.from(tokens)
+          .sort()
+          .map((t) => `${t}: ${resolveToken(t)};`)
+          .join("\n");
       }, "Copy design tokens used by this component"));
     }
 
@@ -2871,25 +3347,24 @@ try { (() => {
   /* -------- boot + observe -------- */
   function boot() {
     scan(document.body);
-    const obs = new MutationObserver(mutations => {
+    const obs = new MutationObserver((mutations) => {
       for (const m of mutations) {
-        m.addedNodes.forEach(node => {
+        m.addedNodes.forEach((node) => {
           if (node.nodeType !== 1) return;
           scan(node);
         });
       }
     });
-    obs.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
+    obs.observe(document.body, { childList: true, subtree: true });
   }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);
   } else {
     boot();
   }
 })();
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "copy-utilities.js", error: String((e && e.message) || e) }); }
 
 // icons.jsx
@@ -2998,8 +3473,8 @@ const ApplyHeader = ({
   className: "t-overline"
 }, "What changes"), /*#__PURE__*/React.createElement("ul", {
   style: {
-    margin: "6px 0 0",
-    paddingLeft: 18,
+    margin: "4px 0 0",
+    paddingLeft: 20,
     fontSize: 12.5,
     color: "var(--text-secondary)",
     lineHeight: 1.55
@@ -3015,8 +3490,8 @@ const ApplyHeader = ({
   className: "t-overline"
 }, "Why"), /*#__PURE__*/React.createElement("ul", {
   style: {
-    margin: "6px 0 0",
-    paddingLeft: 18,
+    margin: "4px 0 0",
+    paddingLeft: 20,
     fontSize: 12.5,
     color: "var(--text-secondary)",
     lineHeight: 1.55
@@ -3068,13 +3543,13 @@ const ProductShell = ({
   className: "ds-sidebar",
   style: {
     width: "100%",
-    padding: "10px 0",
+    padding: "12px 0",
     height: "100%",
     overflow: "hidden"
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
-    padding: "0 14px 10px",
+    padding: "0 16px 12px",
     display: "flex",
     alignItems: "center",
     gap: 8,
@@ -3094,8 +3569,8 @@ const ProductShell = ({
   }
 }, "Skytek")), /*#__PURE__*/React.createElement("div", {
   style: {
-    padding: "10px 0 4px 18px",
-    fontSize: 10,
+    padding: "12px 0 4px 20px",
+    fontSize: 11,
     color: "var(--text-muted)",
     textTransform: "uppercase",
     letterSpacing: "0.06em"
@@ -3173,7 +3648,7 @@ const ProductShell = ({
   style: {
     width: 24,
     height: 24,
-    fontSize: 10
+    fontSize: 11
   }
 }, "JL")), /*#__PURE__*/React.createElement("div", {
   style: {
@@ -3183,8 +3658,8 @@ const ProductShell = ({
   style: {
     padding: "12px 20px 0",
     display: "flex",
-    gap: 6,
-    fontSize: 11.5,
+    gap: 4,
+    fontSize: 12,
     color: "var(--text-muted)"
   }
 }, breadcrumb), /*#__PURE__*/React.createElement("div", {
@@ -3270,7 +3745,7 @@ const ApplyDashboard = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
-    padding: "10px 14px",
+    padding: "12px 16px",
     borderBottom: "1px solid var(--border-subtle)",
     display: "flex",
     alignItems: "center"
@@ -3309,7 +3784,7 @@ const ApplyDashboard = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
-    padding: "10px 14px",
+    padding: "12px 16px",
     borderBottom: "1px solid var(--border-subtle)"
   }
 }, /*#__PURE__*/React.createElement("h3", {
@@ -3318,8 +3793,8 @@ const ApplyDashboard = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   key: i,
   style: {
     display: "flex",
-    gap: 10,
-    padding: "10px 14px",
+    gap: 8,
+    padding: "12px 16px",
     borderTop: i ? "1px solid var(--border-subtle)" : 0,
     alignItems: "flex-start"
   }
@@ -3370,7 +3845,7 @@ const ApplyTable = () => /*#__PURE__*/React.createElement(React.Fragment, null, 
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
-    padding: 10,
+    padding: 12,
     borderBottom: "1px solid var(--border-subtle)",
     display: "flex",
     gap: 8,
@@ -3479,7 +3954,7 @@ const ApplyTable = () => /*#__PURE__*/React.createElement(React.Fragment, null, 
   d: I.more
 }))))))), /*#__PURE__*/React.createElement("div", {
   style: {
-    padding: 10,
+    padding: 12,
     borderTop: "1px solid var(--border-subtle)",
     display: "flex",
     alignItems: "center",
@@ -3558,7 +4033,7 @@ const ApplyDetail = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   style: {
     display: "grid",
     gridTemplateColumns: "160px 1fr 160px 1fr",
-    gap: "10px 16px",
+    gap: "8px 16px",
     fontSize: 13
   }
 }, [["IMO", "9472183"], ["MMSI", "248901000"], ["Flag", "Malta"], ["Type", "Bulk carrier"], ["Built", "2018"], ["DWT", "82,400 t"], ["Operator", "Aegean Maritime"], ["Class", "DNV"]].map(([k, v], i) => /*#__PURE__*/React.createElement(React.Fragment, {
@@ -3580,7 +4055,7 @@ const ApplyDetail = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "ds-card-body",
   style: {
     display: "grid",
-    gap: 10
+    gap: 8
   }
 }, [["PSC compliance", "94%", 94], ["Sanctions risk", "Low", 10], ["Voyage risk", "Medium", 55]].map(([k, v, p], i) => /*#__PURE__*/React.createElement("div", {
   key: i
@@ -3740,7 +4215,7 @@ const ApplyForm = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
 }, /*#__PURE__*/React.createElement("label", {
   className: "row",
   style: {
-    gap: 6,
+    gap: 4,
     fontSize: 13
   }
 }, /*#__PURE__*/React.createElement("input", {
@@ -3751,7 +4226,7 @@ const ApplyForm = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
 }), " Hull & Machinery"), /*#__PURE__*/React.createElement("label", {
   className: "row",
   style: {
-    gap: 6,
+    gap: 4,
     fontSize: 13
   }
 }, /*#__PURE__*/React.createElement("input", {
@@ -3761,7 +4236,7 @@ const ApplyForm = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
 }), " P&I"), /*#__PURE__*/React.createElement("label", {
   className: "row",
   style: {
-    gap: 6,
+    gap: 4,
     fontSize: 13
   }
 }, /*#__PURE__*/React.createElement("input", {
@@ -3962,7 +4437,7 @@ const FlagSection = () => /*#__PURE__*/React.createElement("div", {
   className: "t-caption",
   style: {
     marginTop: 12,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "One helper, two sizes, retina by default. Modules never hand-build the ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -4063,7 +4538,7 @@ const OffshoreGlyph = ({
     borderRadius: "50%",
     background: color,
     border: "2px solid #fff",
-    boxShadow: "0 1px 3px rgba(0,0,0,.3)"
+    boxShadow: "var(--glyph-shadow-sm)"
   }
 }));
 const IdentityBlock = ({
@@ -4118,7 +4593,7 @@ const IdentitySection = () => /*#__PURE__*/React.createElement("div", {
   }
 }, /*#__PURE__*/React.createElement(IdentityBlock, {
   glyph: /*#__PURE__*/React.createElement(VesselGlyph, {
-    color: "#ea580c",
+    color: "#ef4444",
     heading: 120
   }),
   name: "FRESH BREEZE",
@@ -4185,7 +4660,7 @@ const StatusSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     display: "flex",
     flexDirection: "column",
-    gap: 10
+    gap: 8
   }
 }, /*#__PURE__*/React.createElement("div", {
   className: "status-row"
@@ -4218,7 +4693,7 @@ const StatusSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     display: "flex",
     flexDirection: "column",
-    gap: 10
+    gap: 8
   }
 }, /*#__PURE__*/React.createElement("div", {
   className: "status-row"
@@ -4251,7 +4726,7 @@ const StatusSection = () => /*#__PURE__*/React.createElement("div", {
 }, "Unverifiable \u2260 Clear. A subject that couldn't be screened must look different from one that passed."))), /*#__PURE__*/React.createElement("div", {
   className: "callout warn",
   style: {
-    marginTop: 14
+    marginTop: 12
   }
 }, /*#__PURE__*/React.createElement("strong", null, "One dimension, one channel."), " A sanctioned vessel that is also operational shows ", /*#__PURE__*/React.createElement("em", null, "both"), " a danger compliance badge and a success operational badge; it is never rendered in a single blended color. Operators must be able to read each question separately."));
 
@@ -4488,8 +4963,8 @@ const STATE_DEFS = [{
   label: "Hover",
   trigger: ":hover",
   style: {
-    background: "var(--brand-500)",
-    borderColor: "var(--brand-500)"
+    background: "var(--brand-600)",
+    borderColor: "var(--brand-600)"
   }
 }, {
   key: "focus",
@@ -4516,7 +4991,7 @@ const STATE_DEFS = [{
 const BS_STATES_CSS = `
 .bs-states kbd.bs-kbd {
   font-family: var(--font-mono); font-size: 11px; line-height: 1;
-  padding: 2px 5px; border-radius: 4px;
+  padding: 2px 4px; border-radius: 4px;
   background: var(--slate-100); border: 1px solid var(--border-default);
   border-bottom-width: 2px; color: var(--text-secondary);
 }
@@ -4548,46 +5023,46 @@ const BS_STATES_CSS = `
 }
 .bs-corner, .bs-colhead, .bs-rowhead, .bs-cell { background: var(--bg-surface); }
 .bs-corner {
-  display: flex; align-items: flex-end; padding: 12px 14px;
-  background: var(--slate-50);
+  display: flex; align-items: flex-end; padding: 12px 16px;
+  background: var(--slate-050);
 }
 .bs-colhead {
-  padding: 12px 14px; background: var(--slate-50);
+  padding: 12px 16px; background: var(--slate-050);
   display: flex; flex-direction: column; gap: 4px;
 }
 .bs-colhead.is-focus, .bs-cell.is-focus { background: var(--brand-050); }
 .bs-colhead-name {
   font-size: 12px; font-weight: 700; color: var(--text-primary);
-  letter-spacing: 0.01em; display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.01em; display: flex; align-items: center; gap: 4px;
 }
 .bs-wcag {
-  font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
   letter-spacing: 0.06em; color: var(--brand-600);
   background: var(--white); border: 1px solid var(--brand-100);
-  padding: 1px 4px; border-radius: 3px;
+  padding: 1px 4px; border-radius: 4px;
 }
-.bs-trigger { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); }
+.bs-trigger { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
 .bs-rowhead {
-  display: flex; flex-direction: column; gap: 3px; justify-content: center;
-  padding: 0 14px; background: var(--slate-50);
+  display: flex; flex-direction: column; gap: 4px; justify-content: center;
+  padding: 0 16px; background: var(--slate-050);
 }
 .bs-size-name { font-size: 13px; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
 .bs-def {
-  font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
   color: var(--brand-600); background: var(--brand-050);
-  border: 1px solid var(--brand-100); padding: 1px 5px; border-radius: 3px;
+  border: 1px solid var(--brand-100); padding: 1px 4px; border-radius: 4px;
 }
 .bs-size-h { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
-.bs-cell { display: flex; align-items: center; justify-content: center; padding: 26px 14px; }
+.bs-cell { display: flex; align-items: center; justify-content: center; padding: 28px 16px; }
 
 /* Loading strip */
 .bs-loading-strip {
   display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
-  margin-top: 16px; padding: 18px 24px;
+  margin-top: 16px; padding: 20px 24px;
   border: 1px solid var(--border-default); border-radius: var(--radius-lg);
   background: var(--bg-surface);
 }
-.bs-loading-copy { display: flex; align-items: flex-start; gap: 14px; }
+.bs-loading-copy { display: flex; align-items: flex-start; gap: 12px; }
 .bs-loading-stage { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .bs-spinner {
   display: inline-block; width: 12px; height: 12px; border-radius: 50%;
@@ -4605,7 +5080,7 @@ const BS_STATES_CSS = `
   margin-top: 16px;
 }
 .bs-focus-demo {
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 12px;
   padding: 24px; border: 1px solid var(--border-default); border-radius: var(--radius-lg);
   background: var(--bg-surface);
 }
@@ -4622,7 +5097,7 @@ const BS_STATES_CSS = `
 }
 .bs-focus-row {
   display: grid; grid-template-columns: 116px 1fr; gap: 16px; align-items: center;
-  padding: 12px 18px; border-top: 1px solid var(--border-subtle);
+  padding: 12px 20px; border-top: 1px solid var(--border-subtle);
 }
 .bs-focus-row:first-child { border-top: 0; }
 .bs-focus-k { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
@@ -4648,7 +5123,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   name: "Primary",
   cls: "ds-btn--primary",
   purpose: "Most important action on the surface. One per view.",
-  token: "--brand-600 → --brand-500"
+  token: "--brand-500 → --brand-600"
 }, {
   name: "Secondary",
   cls: "ds-btn--secondary",
@@ -4897,7 +5372,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }), "Saving\u2026")))), /*#__PURE__*/React.createElement("h4", {
   className: "t-h4",
   style: {
-    margin: "28px 0 10px"
+    margin: "28px 0 8px"
   }
 }, "State specification"), /*#__PURE__*/React.createElement("div", {
   className: "panel",
@@ -4937,9 +5412,9 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, ":hover")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Fill lightens one step; cursor \u2192 pointer."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "Fill darkens one step; cursor \u2192 pointer."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--brand-500")), /*#__PURE__*/React.createElement("td", {
+}, "--brand-600")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
 }, "Never the sole signal: paired with focus + active.")), /*#__PURE__*/React.createElement("tr", {
   className: "bs-row-focus"
@@ -5052,7 +5527,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     top: -44,
     left: "50%",
     transform: "translateX(-50%)",
-    fontSize: 10,
+    fontSize: 11,
     color: "var(--brand-600)",
     whiteSpace: "nowrap"
   }
@@ -5061,7 +5536,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     position: "absolute",
     bottom: -22,
     left: 14,
-    fontSize: 10,
+    fontSize: 11,
     color: "var(--brand-600)"
   }
 }, "\u2461 Leading icon"), /*#__PURE__*/React.createElement("div", {
@@ -5070,7 +5545,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     bottom: -22,
     left: "50%",
     transform: "translateX(-50%)",
-    fontSize: 10,
+    fontSize: 11,
     color: "var(--brand-600)"
   }
 }, "\u2462 Label"), /*#__PURE__*/React.createElement("div", {
@@ -5078,7 +5553,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     position: "absolute",
     bottom: -22,
     right: 14,
-    fontSize: 10,
+    fontSize: 11,
     color: "var(--brand-600)"
   }
 }, "\u2463 Trailing icon"))), /*#__PURE__*/React.createElement("table", {
@@ -5215,13 +5690,13 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   }
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Variant"), /*#__PURE__*/React.createElement("th", null, "Background"), /*#__PURE__*/React.createElement("th", null, "Text"), /*#__PURE__*/React.createElement("th", null, "Border"), /*#__PURE__*/React.createElement("th", null, "Hover bg"), /*#__PURE__*/React.createElement("th", null, "Focus ring"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Primary")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--brand-600")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "--brand-500")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--white")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--brand-600")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
-  className: "inline"
 }, "--brand-500")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--brand-600")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--shadow-focus"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Secondary")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -5231,7 +5706,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, "--border-default")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--slate-50")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "--slate-050")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--shadow-focus"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Ghost")), /*#__PURE__*/React.createElement("td", null, "transparent"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -5371,7 +5846,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     background: "var(--brand-500)",
     borderColor: "var(--brand-500)"
   } : v.variant === "Secondary" ? {
-    background: "var(--slate-50)",
+    background: "var(--slate-050)",
     borderColor: "var(--border-strong)"
   } : v.variant === "Ghost" ? {
     background: "var(--slate-100)"
@@ -5397,15 +5872,15 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("button", {
   className: `ds-btn ${v.cls} ${s.cls}`,
   style: v.variant === "Primary" ? {
-    background: "#0B3A5A",
-    borderColor: "#0B3A5A"
+    background: "#0D5580",
+    borderColor: "#0D5580"
   } : v.variant === "Secondary" ? {
     background: "var(--slate-100)"
   } : v.variant === "Ghost" ? {
     background: "var(--slate-150)"
   } : {
-    background: "#9F1F1F",
-    borderColor: "#9F1F1F"
+    background: "#991B1B",
+    borderColor: "#991B1B"
   }
 }, "Action")), /*#__PURE__*/React.createElement("div", {
   style: {
@@ -5430,7 +5905,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.7,
     color: "var(--text-secondary)"
@@ -5444,7 +5919,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.7,
     color: "var(--text-secondary)"
@@ -5490,7 +5965,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, "Behavior expectations"), /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.7,
     color: "var(--text-secondary)"
@@ -5767,7 +6242,7 @@ const DonutDemo = () => {
       }
     }, /*#__PURE__*/React.createElement("span", {
       style: {
-        fontSize: 26,
+        fontSize: 24,
         fontWeight: 700,
         fontFamily: "var(--font-display)",
         color: "var(--brand-600)"
@@ -5775,7 +6250,7 @@ const DonutDemo = () => {
     }, "72%"), /*#__PURE__*/React.createElement("span", {
       className: "t-caption",
       style: {
-        fontSize: 10.5
+        fontSize: 11
       }
     }, "monitored")),
     title: "Center-label slot",
@@ -5949,7 +6424,7 @@ export interface ChartBaseProps<T> {
   className: "subsection-desc",
   style: {
     marginTop: 16,
-    marginBottom: 10
+    marginBottom: 8
   }
 }, "A composite chart, live and responsive, drag the window or collapse the panel to watch it reflow, rotate tight labels, and re-tick:"), /*#__PURE__*/React.createElement("div", {
   className: "panel",
@@ -6446,15 +6921,15 @@ export function DonutChart({ data, variant = 'donut', innerRatio = 0.62, centerL
 const CHART_CSS = `
 .cx-host { position: relative; }
 .cx-frame { margin: 0; }
-.cx-frame-title { display: block; margin-bottom: 10px; }
+.cx-frame-title { display: block; margin-bottom: 8px; }
 .cx-frame-cap { margin-top: 8px; }
 .cx-plotwrap { display: flex; flex-direction: column; }
 .cx-plotwrap.is-right { flex-direction: row; align-items: center; gap: 20px; }
 .cx-plot { position: relative; width: 100%; }
 .cx-plotwrap.is-right .cx-plot { flex: 1; min-width: 0; }
 .cx-svg { display: block; overflow: visible; }
-.cx-axis-lbl { font-size: 10px; fill: var(--chart-axis-label); font-family: var(--font-mono); }
-.cx-cat-lbl { font-size: 10.5px; fill: var(--chart-axis-label); font-family: var(--font-sans); }
+.cx-axis-lbl { font-size: 11px; fill: var(--chart-axis-label); font-family: var(--font-mono); }
+.cx-cat-lbl { font-size: 11px; fill: var(--chart-axis-label); font-family: var(--font-sans); }
 .cx-bar { transition: opacity 120ms; outline: none; cursor: pointer; }
 .cx-bar:hover, .cx-bar:focus-visible { opacity: .82; }
 .cx-bar:focus-visible { stroke: var(--text-primary); stroke-width: 2; }
@@ -6465,17 +6940,17 @@ const CHART_CSS = `
 .cx-arc:hover, .cx-arc:focus-visible { opacity: .85; }
 .cx-arc:focus-visible { stroke: var(--text-primary); stroke-width: 2.5; }
 .cx-center { display: flex; align-items: center; justify-content: center; height: 100%; text-align: center; }
-.cx-center-val { font-size: 22px; font-weight: 700; fill: var(--text-primary); font-family: var(--font-display); }
+.cx-center-val { font-size: 24px; font-weight: 700; fill: var(--text-primary); font-family: var(--font-display); }
 .cx-center-lbl { font-size: 11px; fill: var(--text-muted); font-family: var(--font-sans); text-transform: uppercase; letter-spacing: .06em; }
 /* legend */
 .cx-legend { list-style: none; margin: 12px 0 0; padding: 0; display: flex; gap: 8px 16px; flex-wrap: wrap; }
 .cx-legend--right { flex-direction: column; margin: 0; gap: 8px; min-width: 130px; flex-shrink: 0; }
-.cx-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-secondary); }
+.cx-legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-secondary); }
 .cx-legend-sw { width: 10px; flex-shrink: 0; display: inline-block; }
 .cx-legend--right .cx-legend-lbl { flex: 1; }
 .cx-legend-val { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 /* tooltip */
-.cx-tip { position: absolute; transform: translate(-50%, -100%); background: var(--bg-inverse); color: var(--text-inverse); border-radius: 6px; padding: 8px 10px; font-size: 12px; box-shadow: var(--card-shadow-hover); pointer-events: none; z-index: 6; white-space: nowrap; min-width: 120px; }
+.cx-tip { position: absolute; transform: translate(-50%, -100%); background: var(--bg-inverse); color: var(--text-inverse); border-radius: 6px; padding: 8px 12px; font-size: 12px; box-shadow: var(--card-shadow-hover); pointer-events: none; z-index: 6; white-space: nowrap; min-width: 120px; }
 .cx-tip-title { font-weight: 600; margin-bottom: 4px; }
 .cx-tip-row { display: flex; align-items: center; gap: 8px; line-height: 1.6; }
 .cx-tip-sw { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
@@ -6488,14 +6963,14 @@ const CHART_CSS = `
 .cx-empty-dash { font-size: 40px; color: var(--text-disabled); line-height: 1; }
 /* segmented control + demo head + steps */
 .cx-demo-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-.cx-seg { display: inline-flex; gap: 2px; padding: 3px; background: var(--slate-100); border: 1px solid var(--border-subtle); border-radius: 8px; }
-.cx-seg-btn { font: inherit; font-size: 12px; font-weight: 600; padding: 5px 12px; border: 0; background: transparent; border-radius: 6px; color: var(--text-secondary); cursor: pointer; transition: background 120ms, color 120ms; }
+.cx-seg { display: inline-flex; gap: 2px; padding: 4px; background: var(--slate-100); border: 1px solid var(--border-subtle); border-radius: 8px; }
+.cx-seg-btn { font: inherit; font-size: 12px; font-weight: 600; padding: 4px 12px; border: 0; background: transparent; border-radius: 6px; color: var(--text-secondary); cursor: pointer; transition: background 120ms, color 120ms; }
 .cx-seg-btn:hover { color: var(--text-primary); }
 .cx-seg-btn.is-active { background: var(--bg-surface); color: var(--brand-600); box-shadow: var(--card-shadow-rest); }
 .cx-seg-btn:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
-.cx-steps { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 13.5px; line-height: 1.55; color: var(--text-secondary); }
+.cx-steps { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
 .cx-steps strong { color: var(--text-primary); }
-.ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 5px; border-radius: 4px; background: var(--slate-100); border: 1px solid var(--border-default); border-bottom-width: 2px; color: var(--text-secondary); }
+.ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 4px; border-radius: 4px; background: var(--slate-100); border: 1px solid var(--border-default); border-bottom-width: 2px; color: var(--text-secondary); }
 @media (max-width: 720px) {
   .cx-plotwrap.is-right { flex-direction: column; align-items: stretch; }
   .cx-legend--right { flex-direction: row; flex-wrap: wrap; }
@@ -6576,7 +7051,9 @@ const ComponentBlock = ({
 const ButtonsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   id: "c-buttons",
   name: "Buttons",
-  purpose: "Trigger actions. One primary per surface; secondary actions are quieter; destructive actions use the danger variant only when the action cannot be undone safely.",
+  purpose: /*#__PURE__*/React.createElement(React.Fragment, null, "Trigger actions. One primary per surface; secondary actions are quieter; destructive actions use the danger variant only when the action cannot be undone safely. ", /*#__PURE__*/React.createElement("a", {
+    href: "#c-buttons-deep"
+  }, "Full specification: 07a \xB7 Buttons"), "."),
   variants: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "primary"), " \xB7 ", /*#__PURE__*/React.createElement("code", {
@@ -6657,7 +7134,9 @@ const ButtonsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 const FormsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   id: "c-forms",
   name: "Inputs, Selects, Textareas",
-  purpose: "All text input controls share one shell so they can be combined inside FormField groups.",
+  purpose: /*#__PURE__*/React.createElement(React.Fragment, null, "All text input controls share one shell so they can be combined inside FormField groups. ", /*#__PURE__*/React.createElement("a", {
+    href: "#c-forms-deep"
+  }, "Full specification: 07b \xB7 Forms"), "."),
   variants: /*#__PURE__*/React.createElement(React.Fragment, null, "text \xB7 select \xB7 textarea \xB7 search \xB7 number \xB7 password"),
   states: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 hover \xB7 focus \xB7 disabled \xB7 readonly \xB7 invalid \xB7 with prefix / suffix"),
   rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Height ", /*#__PURE__*/React.createElement("code", {
@@ -6779,7 +7258,7 @@ const FormsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }, /*#__PURE__*/React.createElement("label", {
   className: "row",
   style: {
-    gap: 6,
+    gap: 4,
     fontSize: 13
   }
 }, /*#__PURE__*/React.createElement("input", {
@@ -6789,7 +7268,7 @@ const FormsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }), " Active"), /*#__PURE__*/React.createElement("label", {
   className: "row",
   style: {
-    gap: 6,
+    gap: 4,
     fontSize: 13
   }
 }, /*#__PURE__*/React.createElement("input", {
@@ -6798,7 +7277,7 @@ const FormsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }), " Archived"), /*#__PURE__*/React.createElement("label", {
   className: "row",
   style: {
-    gap: 6,
+    gap: 4,
     fontSize: 13
   }
 }, /*#__PURE__*/React.createElement("input", {
@@ -6809,7 +7288,7 @@ const FormsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }), " Daily"), /*#__PURE__*/React.createElement("label", {
   className: "row",
   style: {
-    gap: 6,
+    gap: 4,
     fontSize: 13
   }
 }, /*#__PURE__*/React.createElement("input", {
@@ -7009,8 +7488,8 @@ const CardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   style: {
     display: "flex",
     alignItems: "center",
-    gap: 10,
-    padding: "10px 16px",
+    gap: 8,
+    padding: "12px 16px",
     borderTop: i ? "1px solid var(--border-subtle)" : 0,
     fontSize: 13
   }
@@ -7019,7 +7498,7 @@ const CardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   style: {
     width: 22,
     height: 22,
-    fontSize: 10
+    fontSize: 11
   }
 }, "JL"), /*#__PURE__*/React.createElement("span", {
   style: {
@@ -7260,10 +7739,10 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
   }
 }, "23"), /*#__PURE__*/React.createElement("div", {
   style: {
-    marginTop: 6,
+    marginTop: 4,
     display: "flex",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "ds-badge ds-badge--danger"
@@ -7286,7 +7765,7 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
   }
 }, "$605.2B"), /*#__PURE__*/React.createElement("div", {
   style: {
-    marginTop: 6
+    marginTop: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
@@ -7304,7 +7783,7 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
   style: {
     display: "flex",
     alignItems: "baseline",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "ds-metric-value ds-metric-value--success",
@@ -7313,7 +7792,7 @@ const MetricCardsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, 
   }
 }, "94", /*#__PURE__*/React.createElement("span", {
   style: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 500
   }
 }, "%")), /*#__PURE__*/React.createElement("span", {
@@ -7568,7 +8047,7 @@ const TablesBlock = () => {
     style: {
       padding: "8px 12px",
       borderTop: "1px solid var(--border-subtle)",
-      background: "var(--slate-50)"
+      background: "var(--slate-050)"
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "t-caption"
@@ -7590,7 +8069,7 @@ const NavTabsBlock = () => {
       padding: "16px 20px 0",
       display: "flex",
       alignItems: "center",
-      gap: 6,
+      gap: 4,
       fontSize: 12,
       color: "var(--text-muted)"
     }
@@ -7741,7 +8220,7 @@ const OverlayBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   style: {
     padding: "12px 20px",
     borderTop: "1px solid var(--border-subtle)",
-    background: "var(--slate-50)",
+    background: "var(--slate-050)",
     display: "flex",
     justifyContent: "flex-end",
     gap: 8
@@ -8036,7 +8515,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   style: {
     display: "flex",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, "Rows per page", /*#__PURE__*/React.createElement("select", {
   className: "ds-input",
@@ -8134,7 +8613,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "0 18px",
+    padding: "0 20px",
     fontSize: 11,
     fontWeight: 600
   }
@@ -8150,13 +8629,13 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     background: "var(--bg-app)",
     padding: "12px 16px",
     display: "grid",
-    gap: 10
+    gap: 8
   }
 }, [["M/V Stratos", "Panama · medium"], ["M/V Oceanus", "Liberia · high"], ["M/V Nereid", "Malta · low"]].map(([v, m]) => /*#__PURE__*/React.createElement("div", {
   key: v,
   className: "ds-card",
   style: {
-    padding: "10px 12px"
+    padding: "12px 12px"
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
@@ -8171,11 +8650,11 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }, m)))), /*#__PURE__*/React.createElement("div", {
   style: {
     borderTop: "1px solid var(--border-subtle)",
-    background: "var(--slate-50)",
+    background: "var(--slate-050)",
     padding: "12px 16px",
     display: "flex",
     flexDirection: "column",
-    gap: 10
+    gap: 8
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
@@ -8259,7 +8738,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "0 18px",
+    padding: "0 20px",
     fontSize: 11,
     fontWeight: 600
   }
@@ -8275,13 +8754,13 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     background: "var(--bg-app)",
     padding: "12px 16px",
     display: "grid",
-    gap: 10
+    gap: 8
   }
 }, [["M/V Stratos", "Panama · medium"], ["M/V Oceanus", "Liberia · high"], ["M/V Nereid", "Malta · low"]].map(([v, m]) => /*#__PURE__*/React.createElement("div", {
   key: v,
   className: "ds-card",
   style: {
-    padding: "10px 12px"
+    padding: "12px 12px"
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
@@ -8296,8 +8775,8 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }, m)))), /*#__PURE__*/React.createElement("div", {
   style: {
     borderTop: "1px solid var(--border-subtle)",
-    background: "var(--slate-50)",
-    padding: "10px 8px",
+    background: "var(--slate-050)",
+    padding: "12px 8px",
     display: "flex",
     flexDirection: "column",
     gap: 8
@@ -8393,7 +8872,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   size: 12
 }))), /*#__PURE__*/React.createElement("div", {
   style: {
-    fontSize: 10,
+    fontSize: 11,
     color: "var(--danger-600)",
     textAlign: "center",
     marginTop: 2
@@ -8409,7 +8888,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     background: "var(--success-050)",
     border: "1px solid var(--success-100)",
     borderRadius: "var(--radius-md)",
-    padding: "14px 16px"
+    padding: "16px 16px"
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
@@ -8423,7 +8902,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }, "Include on mobile"), /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.65,
     color: "var(--text-primary)"
@@ -8435,7 +8914,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
     background: "var(--danger-050)",
     border: "1px solid var(--danger-100)",
     borderRadius: "var(--radius-md)",
-    padding: "14px 16px"
+    padding: "16px 16px"
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
@@ -8449,7 +8928,7 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }, "Drop on mobile"), /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.65,
     color: "var(--text-primary)"
@@ -8473,679 +8952,6 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 const ComponentsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ButtonsBlock, null), /*#__PURE__*/React.createElement(FormsBlock, null), /*#__PURE__*/React.createElement(BadgesBlock, null), /*#__PURE__*/React.createElement(AlertsBlock, null), /*#__PURE__*/React.createElement(CardsBlock, null), /*#__PURE__*/React.createElement(MetricCardsBlock, null), /*#__PURE__*/React.createElement(TablesBlock, null), /*#__PURE__*/React.createElement(NavTabsBlock, null), /*#__PURE__*/React.createElement(OverlayBlock, null), /*#__PURE__*/React.createElement(LoadingBlock, null), /*#__PURE__*/React.createElement(PaginationBlock, null));
 window.ComponentsSection = ComponentsSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-components.jsx", error: String((e && e.message) || e) }); }
-
-// section-darkmode.jsx
-try { (() => {
-/* Section: Dark mode: principles, theme architecture, tokens (L/D),
-   elevation, icons & imagery, accessibility, do's & don'ts.
-   Consumes only semantic tokens so it flips with the page theme. */
-
-/* A swatch that renders the LIVE value of a token inside a forced theme
-   scope, so the same token shows its light and dark result side by side
-   regardless of the page's current theme. */
-const DMChip = ({
-  theme,
-  token,
-  h = 40
-}) => /*#__PURE__*/React.createElement("div", {
-  "data-theme": theme,
-  style: {
-    flex: 1,
-    height: h,
-    borderRadius: 8,
-    background: `var(${token})`,
-    border: "1px solid var(--border-default)"
-  }
-});
-const DMTokenRow = ({
-  token,
-  role,
-  light,
-  dark
-}) => /*#__PURE__*/React.createElement("div", {
-  className: "token-row",
-  style: {
-    gridTemplateColumns: "230px 1fr 128px 128px"
-  }
-}, /*#__PURE__*/React.createElement("code", null, token), /*#__PURE__*/React.createElement("span", {
-  style: {
-    color: "var(--text-secondary)"
-  }
-}, role), /*#__PURE__*/React.createElement("span", {
-  style: {
-    display: "flex",
-    alignItems: "center",
-    gap: 8
-  }
-}, /*#__PURE__*/React.createElement("span", {
-  className: "swatch-mini",
-  style: {
-    background: light,
-    flexShrink: 0
-  }
-}), /*#__PURE__*/React.createElement("span", {
-  className: "t-mono",
-  style: {
-    color: "var(--text-muted)",
-    fontSize: 10.5
-  }
-}, light)), /*#__PURE__*/React.createElement("span", {
-  style: {
-    display: "flex",
-    alignItems: "center",
-    gap: 8
-  }
-}, /*#__PURE__*/React.createElement("span", {
-  className: "swatch-mini",
-  style: {
-    background: dark,
-    flexShrink: 0,
-    borderColor: "rgba(255,255,255,.14)"
-  }
-}), /*#__PURE__*/React.createElement("span", {
-  className: "t-mono",
-  style: {
-    color: "var(--text-muted)",
-    fontSize: 10.5
-  }
-}, dark)));
-const DMSemanticRoleTable = () => {
-  const rows = [["Background", "--bg-app", "Page / app canvas", "#F9FAFB", "#0B1220"], ["Surface", "--bg-surface", "Cards, panels, modals", "#FFFFFF", "#121A2A"], ["Surface (raised)", "--bg-raised", "Popovers, dropdowns, menus", "#FFFFFF", "#1B2536"], ["Text", "--text-primary", "Body & headings", "#111827", "#F3F4F6"], ["Text (secondary)", "--text-secondary", "Supporting copy", "#4B5563", "#9CA3AF"], ["Border", "--border-default", "Cards, inputs, dividers", "#E5E7EB", "#2B3854"], ["Icon", "currentColor", "Inherits text role (see Icons)", "#4B5563", "#9CA3AF"], ["Focus", "--shadow-focus", "3px keyboard focus ring", "brand 32%", "brand-400 45%"], ["Success", "--success-500", "Positive status / confirm", "#16A34A", "#16A34A"], ["Warning", "--warning-500", "Caution / needs attention", "#D97706", "#D97706"], ["Error", "--danger-500", "Destructive / failure", "#DC2626", "#DC2626"], ["Info", "--info-500", "Neutral information", "#2563EB", "#2563EB"]];
-  return /*#__PURE__*/React.createElement("div", {
-    className: "panel"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "token-row",
-    style: {
-      gridTemplateColumns: "160px 200px 1fr 110px 110px",
-      background: "var(--bg-sunken)"
-    }
-  }, ["Role", "Token", "Purpose", "Light", "Dark"].map(h => /*#__PURE__*/React.createElement("span", {
-    key: h,
-    className: "t-label",
-    style: {
-      color: "var(--text-muted)"
-    }
-  }, h))), rows.map(([role, token, purpose, light, dark]) => /*#__PURE__*/React.createElement("div", {
-    key: role,
-    className: "token-row",
-    style: {
-      gridTemplateColumns: "160px 200px 1fr 110px 110px"
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontWeight: 600,
-      fontSize: 13
-    }
-  }, role), /*#__PURE__*/React.createElement("code", {
-    style: {
-      fontSize: 11
-    }
-  }, token), /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: "var(--text-secondary)",
-      fontSize: 12.5
-    }
-  }, purpose), /*#__PURE__*/React.createElement("span", {
-    className: "t-mono",
-    style: {
-      color: "var(--text-muted)",
-      fontSize: 10.5
-    }
-  }, light), /*#__PURE__*/React.createElement("span", {
-    className: "t-mono",
-    style: {
-      color: "var(--text-muted)",
-      fontSize: 10.5
-    }
-  }, dark))));
-};
-
-/* Side-by-side live preview of a mini UI in both themes. */
-const DMPreviewCard = ({
-  theme,
-  label
-}) => /*#__PURE__*/React.createElement("div", {
-  style: {
-    flex: 1,
-    minWidth: 0
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "t-label",
-  style: {
-    marginBottom: 8
-  }
-}, label), /*#__PURE__*/React.createElement("div", {
-  "data-theme": theme,
-  style: {
-    background: "var(--bg-app)",
-    border: "1px solid var(--border-default)",
-    borderRadius: "var(--radius-lg)",
-    padding: 16,
-    display: "flex",
-    flexDirection: "column",
-    gap: 12
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  style: {
-    background: "var(--bg-surface)",
-    border: "1px solid var(--border-default)",
-    borderRadius: "var(--radius-md)",
-    padding: 14,
-    boxShadow: "var(--card-shadow-rest)"
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  style: {
-    fontFamily: "var(--font-display)",
-    fontWeight: 600,
-    fontSize: 15,
-    color: "var(--text-primary)"
-  }
-}, "Vessel \xB7 Northern Star"), /*#__PURE__*/React.createElement("div", {
-  style: {
-    fontSize: 12.5,
-    color: "var(--text-secondary)",
-    marginTop: 2
-  }
-}, "IMO 9432120 \xB7 en route to Rotterdam"), /*#__PURE__*/React.createElement("div", {
-  style: {
-    display: "flex",
-    gap: 8,
-    marginTop: 12
-  }
-}, /*#__PURE__*/React.createElement("button", {
-  style: {
-    border: 0,
-    borderRadius: "var(--radius-md)",
-    padding: "7px 14px",
-    fontWeight: 600,
-    fontSize: 12.5,
-    background: "var(--brand-600)",
-    color: "var(--white-fixed)",
-    cursor: "default"
-  }
-}, "Track"), /*#__PURE__*/React.createElement("button", {
-  style: {
-    borderRadius: "var(--radius-md)",
-    padding: "7px 14px",
-    fontWeight: 600,
-    fontSize: 12.5,
-    background: "var(--bg-surface)",
-    color: "var(--text-secondary)",
-    border: "1px solid var(--border-strong)",
-    cursor: "default"
-  }
-}, "Details"))), /*#__PURE__*/React.createElement("div", {
-  style: {
-    borderLeft: "3px solid var(--warning-500)",
-    background: "var(--warning-050)",
-    borderRadius: "var(--radius-md)",
-    padding: "10px 12px",
-    fontSize: 12.5,
-    color: "var(--text-primary)"
-  }
-}, /*#__PURE__*/React.createElement("strong", null, "Sanction check pending"), ", re-run before departure."), /*#__PURE__*/React.createElement("div", {
-  style: {
-    display: "flex",
-    gap: 6
-  }
-}, /*#__PURE__*/React.createElement("span", {
-  style: {
-    fontSize: 11,
-    fontWeight: 600,
-    padding: "3px 8px",
-    borderRadius: 999,
-    background: "var(--success-100)",
-    color: "var(--success-700)"
-  }
-}, "Verified"), /*#__PURE__*/React.createElement("span", {
-  style: {
-    fontSize: 11,
-    fontWeight: 600,
-    padding: "3px 8px",
-    borderRadius: 999,
-    background: "var(--danger-100)",
-    color: "var(--danger-700)"
-  }
-}, "High risk"), /*#__PURE__*/React.createElement("span", {
-  style: {
-    fontSize: 11,
-    fontWeight: 600,
-    padding: "3px 8px",
-    borderRadius: 999,
-    background: "var(--info-100)",
-    color: "var(--info-700)"
-  }
-}, "AIS live"))));
-const DoDont = ({
-  items
-}) => /*#__PURE__*/React.createElement("div", {
-  className: "grid-2",
-  style: {
-    gap: 16
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel",
-  style: {
-    borderTop: "3px solid var(--success-500)"
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", {
-  style: {
-    color: "var(--success-700)"
-  }
-}, "\u2713 Do")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16,
-    display: "flex",
-    flexDirection: "column",
-    gap: 10
-  }
-}, items.do.map((t, i) => /*#__PURE__*/React.createElement("div", {
-  key: i,
-  style: {
-    fontSize: 13,
-    color: "var(--text-secondary)",
-    lineHeight: 1.5
-  }
-}, t)))), /*#__PURE__*/React.createElement("div", {
-  className: "panel",
-  style: {
-    borderTop: "3px solid var(--danger-500)"
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", {
-  style: {
-    color: "var(--danger-700)"
-  }
-}, "\u2717 Don't")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16,
-    display: "flex",
-    flexDirection: "column",
-    gap: 10
-  }
-}, items.dont.map((t, i) => /*#__PURE__*/React.createElement("div", {
-  key: i,
-  style: {
-    fontSize: 13,
-    color: "var(--text-secondary)",
-    lineHeight: 1.5
-  }
-}, t)))));
-const DarkModeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Principles"), /*#__PURE__*/React.createElement("p", {
-  className: "subsection-desc"
-}, "Dark mode is a first-class theme, not an inversion. Operators run Skytek for long shifts in dim ops rooms and at night; the dark theme reduces glare while preserving the exact same information hierarchy, density and meaning as light. It is built entirely on the existing semantic tokens: no component is redrawn and no layout changes."), /*#__PURE__*/React.createElement("div", {
-  className: "grid-2",
-  style: {
-    gap: 16
-  }
-}, [["01", "Semantics flip, meaning doesn't", "A success is green and a danger is red in both themes. Only surface, text and border tokens re-point, status hues, spacing, type and layout are identical."], ["02", "Elevation by lightness, not just shadow", "On dark, higher surfaces get lighter, shadows read weakly on dark backgrounds, so a raised card is a lighter slate, reinforced by a deeper shadow."], ["03", "Never pure black or pure white", "The darkest surface is #0B1220 (slate-950), the brightest text is #F3F4F6. Full-contrast black/white causes halation and eye strain on OLED."], ["04", "Contrast is the floor, comfort is the goal", "Every text pairing clears WCAG 2.2 AA (≥4.5:1 body, ≥3:1 large/UI). Large tinted fills go dark; small status chips stay light so they pop."]].map(([n, h, p]) => /*#__PURE__*/React.createElement("div", {
-  key: n,
-  className: "principle"
-}, /*#__PURE__*/React.createElement("span", {
-  className: "num"
-}, n), /*#__PURE__*/React.createElement("h4", null, h), /*#__PURE__*/React.createElement("p", null, p))))), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Light & dark, side by side"), /*#__PURE__*/React.createElement("p", {
-  className: "subsection-desc"
-}, "The same markup and the same tokens, rendered in each theme. This is not two designs; it is one component reading ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--bg-surface"), ", ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--text-primary"), ",", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--border-default"), " and friends."), /*#__PURE__*/React.createElement("div", {
-  style: {
-    display: "flex",
-    gap: 20,
-    flexWrap: "wrap"
-  }
-}, /*#__PURE__*/React.createElement(DMPreviewCard, {
-  theme: "light",
-  label: "Light"
-}), /*#__PURE__*/React.createElement(DMPreviewCard, {
-  theme: "dark",
-  label: "Dark"
-}))), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Theme architecture"), /*#__PURE__*/React.createElement("p", {
-  className: "subsection-desc"
-}, "Themes are a two-layer token model. ", /*#__PURE__*/React.createElement("strong", null, "Primitives"), " are the raw palette (brand, slate, status hues, plus a fixed ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--white"), "); these never change between themes.", /*#__PURE__*/React.createElement("strong", null, " Semantic tokens"), " are role-based aliases (", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--bg-surface"), ",", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--text-primary"), "\u2026) that components consume. Dark mode re-points only the semantic layer under a ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "[data-theme=\"dark\"]"), " selector on", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "<html>"), "."), /*#__PURE__*/React.createElement("pre", {
-  className: "code"
-}, `:root {
-  /* primitives: fixed in every theme */
-  --slate-900: #111827;
-  --brand-600: #2d7ffb;
-  --white: #FFFFFF;
-
-  /* semantics, light values */
-  --bg-surface:   var(--white);
-  --text-primary: var(--slate-900);
-  --border-default: var(--slate-200);
-}
-
-[data-theme="dark"] {
-  color-scheme: dark;
-  /* only the SEMANTIC layer is re-pointed */
-  --bg-surface:   #121A2A;
-  --text-primary: #F3F4F6;
-  --border-default: #2B3854;
-}
-
-/* Components never hard-code a colour; they read the role: */
-.card { background: var(--bg-surface); color: var(--text-primary); }`), /*#__PURE__*/React.createElement("div", {
-  className: "grid-2",
-  style: {
-    gap: 16,
-    marginTop: 16
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", null, "Switching themes")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16,
-    fontSize: 13,
-    color: "var(--text-secondary)",
-    lineHeight: 1.6
-  }
-}, /*#__PURE__*/React.createElement("p", {
-  style: {
-    margin: "0 0 10px"
-  }
-}, "One attribute drives everything:"), /*#__PURE__*/React.createElement("pre", {
-  className: "code",
-  style: {
-    fontSize: 11.5
-  }
-}, `// set
-document.documentElement
-  .setAttribute('data-theme','dark');
-// clear (back to light)
-document.documentElement
-  .removeAttribute('data-theme');`), /*#__PURE__*/React.createElement("p", {
-  style: {
-    margin: "10px 0 0"
-  }
-}, "Because tokens cascade, the switch is instant and global. No component re-mounts, no state is lost, and scroll position and open menus are preserved. A scoped transition on surface/border/text colours makes the change feel smooth rather than abrupt."))), /*#__PURE__*/React.createElement("div", {
-  className: "panel"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", null, "Persistence & default")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16,
-    fontSize: 13,
-    color: "var(--text-secondary)",
-    lineHeight: 1.6
-  }
-}, /*#__PURE__*/React.createElement("p", {
-  style: {
-    margin: "0 0 10px"
-  }
-}, "The chosen theme is stored in ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "localStorage['skytek-theme']"), " and re-applied before first paint by a tiny inline script in ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "<head>"), ", so there is no light flash on reload."), /*#__PURE__*/React.createElement("p", {
-  style: {
-    margin: 0
-  }
-}, "On a first visit with no stored choice, the theme follows the OS via", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "prefers-color-scheme"), ". The sidebar toggle overrides it and remembers."))))), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Semantic colour tokens \xB7 Light / Dark"), /*#__PURE__*/React.createElement("p", {
-  className: "subsection-desc"
-}, "The role-based tokens every component consumes, with both theme values. Status hues (", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "-500"), ") are identical across themes, only their large-area tint backgrounds shift. Full surface/border/text table lives in the ", /*#__PURE__*/React.createElement("a", {
-  href: "#color"
-}, "Color"), " chapter."), /*#__PURE__*/React.createElement(DMSemanticRoleTable, null)), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Primitive vs. semantic"), /*#__PURE__*/React.createElement("div", {
-  className: "grid-2",
-  style: {
-    gap: 16
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", null, "Primitive: fixed"), /*#__PURE__*/React.createElement("span", {
-  className: "meta"
-}, "never themed")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16
-  }
-}, /*#__PURE__*/React.createElement("p", {
-  style: {
-    margin: "0 0 12px",
-    fontSize: 13,
-    color: "var(--text-secondary)"
-  }
-}, "The raw ramp. Same hex in light and dark. Documented in Color. Consume a primitive directly only inside another token definition, never in a component."), /*#__PURE__*/React.createElement("div", {
-  style: {
-    display: "flex",
-    gap: 6
-  }
-}, ["--brand-600", "--slate-900", "--success-500", "--danger-500"].map(t => /*#__PURE__*/React.createElement("div", {
-  key: t,
-  style: {
-    flex: 1,
-    textAlign: "center"
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  style: {
-    height: 34,
-    borderRadius: 6,
-    background: `var(${t})`,
-    border: "1px solid var(--border-default)"
-  }
-}), /*#__PURE__*/React.createElement("code", {
-  style: {
-    fontSize: 9.5,
-    display: "block",
-    marginTop: 4
-  }
-}, t.replace("--", ""))))))), /*#__PURE__*/React.createElement("div", {
-  className: "panel"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", null, "Semantic: themed"), /*#__PURE__*/React.createElement("span", {
-  className: "meta"
-}, "re-points in dark")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16
-  }
-}, /*#__PURE__*/React.createElement("p", {
-  style: {
-    margin: "0 0 12px",
-    fontSize: 13,
-    color: "var(--text-secondary)"
-  }
-}, "Role aliases. Different value per theme (shown light | dark). This is the only vocabulary a component should use."), ["--bg-surface", "--text-primary", "--border-default"].map(t => /*#__PURE__*/React.createElement("div", {
-  key: t,
-  style: {
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    marginBottom: 8
-  }
-}, /*#__PURE__*/React.createElement("code", {
-  style: {
-    fontSize: 11,
-    width: 140,
-    flexShrink: 0
-  }
-}, t.replace("--", "")), /*#__PURE__*/React.createElement(DMChip, {
-  theme: "light",
-  token: t,
-  h: 26
-}), /*#__PURE__*/React.createElement(DMChip, {
-  theme: "dark",
-  token: t,
-  h: 26
-}))))))), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Elevation on dark"), /*#__PURE__*/React.createElement("p", {
-  className: "subsection-desc"
-}, "On light, elevation is carried mostly by shadow. On dark, shadows are near-invisible, so depth is carried primarily by ", /*#__PURE__*/React.createElement("strong", null, "surface lightness"), ", each step up the stack is a lighter slate, and reinforced by a deeper, blacker shadow."), /*#__PURE__*/React.createElement("div", {
-  "data-theme": "dark",
-  style: {
-    background: "var(--bg-app)",
-    borderRadius: "var(--radius-lg)",
-    padding: 28,
-    display: "flex",
-    gap: 16,
-    flexWrap: "wrap",
-    alignItems: "flex-end"
-  }
-}, [["--bg-app", "App", "#0B1220", "flat"], ["--bg-surface", "Surface", "#121A2A", "rest"], ["--bg-raised", "Raised", "#1B2536", "hover"], ["--bg-raised", "Overlay", "#1B2536", "modal"]].map(([tok, label, hex, sh], i) => /*#__PURE__*/React.createElement("div", {
-  key: label,
-  style: {
-    flex: 1,
-    minWidth: 120,
-    height: 90 + i * 8,
-    borderRadius: "var(--radius-md)",
-    background: `var(${tok})`,
-    border: "1px solid var(--border-default)",
-    boxShadow: `var(--card-shadow-${sh})`,
-    padding: 12,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end"
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  style: {
-    fontSize: 12.5,
-    fontWeight: 600,
-    color: "var(--text-primary)"
-  }
-}, label), /*#__PURE__*/React.createElement("div", {
-  className: "t-mono",
-  style: {
-    fontSize: 10.5,
-    color: "var(--text-muted)"
-  }
-}, hex)))), /*#__PURE__*/React.createElement("div", {
-  className: "callout",
-  style: {
-    marginTop: 12
-  }
-}, /*#__PURE__*/React.createElement("strong", null, "Rule:"), " a raised element must be at least one surface step lighter than what it sits on. Do not rely on shadow alone to separate an overlay from the page in dark mode.")), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Icons & imagery"), /*#__PURE__*/React.createElement("div", {
-  className: "grid-2",
-  style: {
-    gap: 16
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", null, "Icons")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16,
-    fontSize: 13,
-    color: "var(--text-secondary)",
-    lineHeight: 1.65
-  }
-}, /*#__PURE__*/React.createElement("ul", {
-  style: {
-    margin: 0,
-    paddingLeft: 18
-  }
-}, /*#__PURE__*/React.createElement("li", null, "Icons use ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "currentColor"), " and inherit the surrounding text role, so they re-theme for free. Never hard-code an icon fill."), /*#__PURE__*/React.createElement("li", null, "Default icon colour is ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--text-secondary"), "; muted/decorative icons use ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--text-muted"), "."), /*#__PURE__*/React.createElement("li", null, "On dark, drop icon opacity slightly (\u2248 0.9) only for large decorative glyphs; functional icons stay at full strength for legibility."), /*#__PURE__*/React.createElement("li", null, "Status icons keep their status hue in both themes.")))), /*#__PURE__*/React.createElement("div", {
-  className: "panel"
-}, /*#__PURE__*/React.createElement("div", {
-  className: "panel-head"
-}, /*#__PURE__*/React.createElement("h4", null, "Logos, illustrations & images")), /*#__PURE__*/React.createElement("div", {
-  style: {
-    padding: 16,
-    fontSize: 13,
-    color: "var(--text-secondary)",
-    lineHeight: 1.65
-  }
-}, /*#__PURE__*/React.createElement("ul", {
-  style: {
-    margin: 0,
-    paddingLeft: 18
-  }
-}, /*#__PURE__*/React.createElement("li", null, "Supply a light-on-dark logo lockup for dark mode; never invert the brand mark automatically."), /*#__PURE__*/React.createElement("li", null, "Photographic imagery (satellite, maps) is theme-agnostic, frame it with a ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--border-default"), " hairline so its edges read on dark."), /*#__PURE__*/React.createElement("li", null, "Map tiles switch to the dark Carto base in dark mode; overlays keep their data colours."), /*#__PURE__*/React.createElement("li", null, "Empty-state illustrations use ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--text-muted"), " / ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--border-strong"), " line work so they adapt without a second asset."), /*#__PURE__*/React.createElement("li", null, "Screenshots of light UI get a subtle border and are never placed full-bleed on a dark surface.")))))), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Accessibility"), /*#__PURE__*/React.createElement("p", {
-  className: "subsection-desc"
-}, "Dark mode meets the same WCAG 2.2 AA floor as light, verified for every semantic pairing."), /*#__PURE__*/React.createElement("table", {
-  className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Pairing"), /*#__PURE__*/React.createElement("th", null, "Dark values"), /*#__PURE__*/React.createElement("th", null, "Contrast"), /*#__PURE__*/React.createElement("th", null, "Requirement"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Primary text on app bg"), /*#__PURE__*/React.createElement("td", null, "#F3F4F6 on #0B1220"), /*#__PURE__*/React.createElement("td", null, "~15.8 : 1"), /*#__PURE__*/React.createElement("td", null, "AA / AAA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Primary text on surface"), /*#__PURE__*/React.createElement("td", null, "#F3F4F6 on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~14.1 : 1"), /*#__PURE__*/React.createElement("td", null, "AA / AAA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Secondary text on surface"), /*#__PURE__*/React.createElement("td", null, "#9CA3AF on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~6.4 : 1"), /*#__PURE__*/React.createElement("td", null, "AA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Muted text on surface"), /*#__PURE__*/React.createElement("td", null, "#828C9C on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~4.9 : 1"), /*#__PURE__*/React.createElement("td", null, "AA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Link on surface"), /*#__PURE__*/React.createElement("td", null, "#8EC5FD on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~8.7 : 1"), /*#__PURE__*/React.createElement("td", null, "AA \u2713")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Default border on surface"), /*#__PURE__*/React.createElement("td", null, "#2B3854 on #121A2A"), /*#__PURE__*/React.createElement("td", null, "~1.6 : 1"), /*#__PURE__*/React.createElement("td", null, "Non-text \u2713")))), /*#__PURE__*/React.createElement("div", {
-  className: "grid-2",
-  style: {
-    gap: 16,
-    marginTop: 16
-  }
-}, /*#__PURE__*/React.createElement("div", {
-  className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "Focus & keyboard."), " The focus ring brightens to a 3px ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "brand-400"), "glow at 45% on dark (vs 32% on light) so it stays visible against darker surfaces. Focus order, ESC-to-close, return-focus and every keyboard model are unchanged, theme never affects behaviour."), /*#__PURE__*/React.createElement("div", {
-  className: "callout warn"
-}, /*#__PURE__*/React.createElement("strong", null, "Dark-specific watch-outs."), " Halation (light text bleeding on pure-black) is avoided by capping text at #F3F4F6 and bg at #0B1220. Never place saturated pure-hue text (e.g. #DC2626) as body copy on dark, use the token role, which pairs tinted fills with light text."))), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Do & don't"), /*#__PURE__*/React.createElement(DoDont, {
-  items: {
-    do: ["Consume semantic tokens (--bg-surface, --text-primary) in every component so both themes work for free.", "Signal elevation with a lighter surface step first, shadow second.", "Keep status hues constant; let their tint backgrounds adapt.", "Test every new component in both themes before merge.", "Provide a dark logo lockup and let icons inherit currentColor."],
-    dont: ["Hard-code hex or a raw --slate-* / #fff in a component; it won't flip and breaks the theme.", "Invert the entire UI or the brand mark programmatically.", "Use pure #000 surfaces or #FFF text; they cause halation and glare.", "Rely on shadow alone to lift an overlay off a dark page.", "Drop below AA contrast to make dark 'look sleeker'."]
-  }
-})), /*#__PURE__*/React.createElement("div", {
-  className: "callout"
-}, /*#__PURE__*/React.createElement("strong", null, "The dark-mode test:"), " toggle the theme and read the screen. If any element disappears, glows, or loses meaning, it is hard-coding a colour instead of consuming a token, fix the token reference, not the theme."));
-window.DarkModeSection = DarkModeSection;
-})(); } catch (e) { __ds_ns.__errors.push({ path: "section-darkmode.jsx", error: String((e && e.message) || e) }); }
 
 // section-data-primitives.jsx
 try { (() => {
@@ -9295,7 +9101,7 @@ const SavedViewsDemo = () => /*#__PURE__*/React.createElement("div", {
 }, name), /*#__PURE__*/React.createElement("div", {
   className: "t-caption",
   style: {
-    fontSize: 11.5
+    fontSize: 12
   }
 }, descr)), badge === "current" && /*#__PURE__*/React.createElement("span", {
   className: "ds-badge ds-badge--info"
@@ -9434,7 +9240,7 @@ const FilterRulesDoDont = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Show ", /*#__PURE__*/React.createElement("strong", null, "active filter counts"), ", \"412 of 5,983 vessels\"."), /*#__PURE__*/React.createElement("li", null, "Persist state in the URL. The back button works."), /*#__PURE__*/React.createElement("li", null, "Reset is a single click, never bury it in a menu."), /*#__PURE__*/React.createElement("li", null, "Show ", /*#__PURE__*/React.createElement("strong", null, "option counts"), " on facets so users see \"Tanker (412)\" not just \"Tanker\"."), /*#__PURE__*/React.createElement("li", null, "Default sort is stable across filter changes.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -9458,7 +9264,7 @@ const FilterRulesDoDont = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Auto-apply filters as the user types in the facet search, debounce or wait for Apply."), /*#__PURE__*/React.createElement("li", null, "Hide the active filters in a panel. Chips are always visible."), /*#__PURE__*/React.createElement("li", null, "Reset selection on filter change. A user filtering down their selection expects it to persist."), /*#__PURE__*/React.createElement("li", null, "Show empty facets (\"Gas Carrier (0)\"): collapse to \"no matches\"."), /*#__PURE__*/React.createElement("li", null, "Mix AND/OR semantics without telling the user. Within a facet = OR; across facets = AND.")))));
 const BulkActionRules = () => /*#__PURE__*/React.createElement("table", {
@@ -9726,7 +9532,7 @@ const ResponsiveTableSection = () => /*#__PURE__*/React.createElement("div", {
   style: {
     marginTop: 8
   }
-}, "Toggle the disclosure. Themes with light/dark automatically.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+}, "Toggle the disclosure. It uses the semantic tokens, so it follows the theme automatically.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
   className: "t-label",
   style: {
     marginBottom: 8
@@ -9833,7 +9639,8 @@ const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragm
 }, "Counts & ordering"), /*#__PURE__*/React.createElement("p", {
   className: "t-body-sm",
   style: {
-    color: "var(--text-secondary)"
+    color: "var(--text-secondary)",
+    margin: "12px 0"
   }
 }, /*#__PURE__*/React.createElement("strong", null, "Counts"), " reflect the result set after ", /*#__PURE__*/React.createElement("em", null, "all other filters"), " are applied, so a user filtering by Liberia sees the number of Tankers under the Liberia filter, not the global count.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("strong", null, "Ordering"), ": checked items first (stable order), then unchecked sorted by count descending. New facet sessions reset to count order.")))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -10148,7 +9955,7 @@ const DatePickerRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Dates are stored as ", /*#__PURE__*/React.createElement("code", null, "UTC"), ". The picker's labels are in the user's zone but the wire value is UTC."), /*#__PURE__*/React.createElement("li", null, "The \"Today\" preset uses the user's local midnight, not UTC midnight."), /*#__PURE__*/React.createElement("li", null, "Picker footer always shows the wire value: ", /*#__PURE__*/React.createElement("code", null, "2026-04-28T00:00Z \u2192 2026-04-28T23:59Z"), "."), /*#__PURE__*/React.createElement("li", null, "Time-of-day pickers default to UTC unless the field is explicitly local (vessel ETA at port).")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -10166,7 +9973,7 @@ const DatePickerRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("code", null, "minDate"), " / ", /*#__PURE__*/React.createElement("code", null, "maxDate"), " disable cells; never hide them."), /*#__PURE__*/React.createElement("li", null, "Disabled cells get a tooltip on hover: \"No data before 1 Jan 2024.\""), /*#__PURE__*/React.createElement("li", null, "Max range (e.g. 90 days) shows a banner when exceeded, never silently clamps."), /*#__PURE__*/React.createElement("li", null, "Weekend / holiday styling is opt-in per surface, not a default.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -10184,7 +9991,7 @@ const DatePickerRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("kbd", null, "\u2191\u2193\u2190\u2192"), " move by day \xB7 ", /*#__PURE__*/React.createElement("kbd", null, "PgUp/PgDn"), " by month \xB7 ", /*#__PURE__*/React.createElement("kbd", null, "Shift+PgUp/PgDn"), " by year"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("kbd", null, "Home/End"), " jump to start/end of week"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("kbd", null, "Enter"), " commits the focused cell; ", /*#__PURE__*/React.createElement("kbd", null, "Esc"), " closes without committing"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("kbd", null, "Tab"), " moves focus from grid \u2192 presets \u2192 footer \u2192 close button")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -10202,7 +10009,7 @@ const DatePickerRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Range picker opens at the month containing the current ", /*#__PURE__*/React.createElement("em", null, "start"), "."), /*#__PURE__*/React.createElement("li", null, "If no value, open at the current month."), /*#__PURE__*/React.createElement("li", null, "Two months for range, one for single date. No three-month layouts."), /*#__PURE__*/React.createElement("li", null, "Presets sit on the left, calendar(s) on the right. Mobile collapses to one column.")))));
 const DatePickerApi = () => /*#__PURE__*/React.createElement("pre", {
@@ -10323,7 +10130,7 @@ try { (() => {
    ============================================================ */
 
 const CategoricalPalette = () => {
-  const cats = [["--chart-cat-1", "#2d7ffb", "Series 1"], ["--chart-cat-2", "#D97706", "Series 2"], ["--chart-cat-3", "#16A34A", "Series 3"], ["--chart-cat-4", "#9333EA", "Series 4"], ["--chart-cat-5", "#DB2777", "Series 5"], ["--chart-cat-6", "#0891B2", "Series 6"], ["--chart-cat-7", "#65A30D", "Series 7"], ["--chart-cat-8", "#475569", "Series 8"]];
+  const cats = [["--chart-cat-1", "#1485c5", "Series 1"], ["--chart-cat-2", "#D97706", "Series 2"], ["--chart-cat-3", "#16A34A", "Series 3"], ["--chart-cat-4", "#9333EA", "Series 4"], ["--chart-cat-5", "#DB2777", "Series 5"], ["--chart-cat-6", "#0891B2", "Series 6"], ["--chart-cat-7", "#65A30D", "Series 7"], ["--chart-cat-8", "#475569", "Series 8"]];
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "chart-palette"
   }, cats.map(([t, v]) => /*#__PURE__*/React.createElement("div", {
@@ -10350,7 +10157,7 @@ const SequentialRamp = ({
 }) => /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
   className: "t-label",
   style: {
-    marginBottom: 6
+    marginBottom: 4
   }
 }, title), /*#__PURE__*/React.createElement("div", {
   className: "chart-ramp"
@@ -10597,7 +10404,7 @@ const DemoSparklines = () => {
   }, /*#__PURE__*/React.createElement("span", {
     className: "t-numeric",
     style: {
-      fontSize: 18,
+      fontSize: 20,
       fontWeight: 700
     }
   }, r.value), /*#__PURE__*/React.createElement("span", {
@@ -10697,7 +10504,7 @@ const DataVizSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
@@ -10783,19 +10590,19 @@ const VESSEL_TYPE_PALETTE = [{
   color: "#2563eb"
 }, {
   k: "Bulk Carrier",
-  color: "#1a92d1"
+  color: "#3b82f6"
 }, {
   k: "Tanker",
-  color: "#ea580c"
+  color: "#ef4444"
 }, {
   k: "Gas Carrier",
-  color: "#d97706"
+  color: "#f97316"
 }, {
   k: "LNG Carrier",
   color: "#eab308"
 }, {
   k: "General Cargo",
-  color: "#16a34a"
+  color: "#22c55e"
 }, {
   k: "Refrigerated Cargo",
   color: "#06b6d4"
@@ -10804,13 +10611,13 @@ const VESSEL_TYPE_PALETTE = [{
   color: "#ec4899"
 }, {
   k: "Vehicle Carrier",
-  color: "#9333ea"
+  color: "#8b5cf6"
 }, {
   k: "Yacht",
-  color: "#eab308"
+  color: "#f59e0b"
 }];
 const TileProviders = () => {
-  const rows = [["Satellite", "default", "Esri World Imagery", "server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", "#111827"], ["Street View", "", "OpenStreetMap", "{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", "#e2e8f0"], ["Dark Mode", "", "CartoDB Dark Matter", "{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", "#0b0f1a"], ["Light Mode", "", "CartoDB Positron", "{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", "#f1f5f9"]];
+  const rows = [["Satellite", "default", "Esri World Imagery", "server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", "#0b1e2e"], ["Street View", "", "OpenStreetMap", "{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", "#e5e7eb"], ["Dark Mode", "", "CartoDB Dark Matter", "{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", "#0b0f1a"], ["Light Mode", "", "CartoDB Positron", "{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", "#f1f5f9"]];
   return /*#__PURE__*/React.createElement("table", {
     className: "spec-table"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Layer"), /*#__PURE__*/React.createElement("th", null), /*#__PURE__*/React.createElement("th", null, "Provider"), /*#__PURE__*/React.createElement("th", null, "Tile URL template"), /*#__PURE__*/React.createElement("th", null, "Fallback bg"))), /*#__PURE__*/React.createElement("tbody", null, rows.map(([name, def, prov, url, bg]) => /*#__PURE__*/React.createElement("tr", {
@@ -10830,7 +10637,7 @@ const TileProviders = () => {
     style: {
       display: "inline-flex",
       alignItems: "center",
-      gap: 6
+      gap: 4
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "swatch-mini",
@@ -10941,21 +10748,21 @@ const LiveLeafletMap = () => {
     }, {
       name: "MIRAMAR",
       type: "Tanker",
-      color: "#ea580c",
+      color: "#ef4444",
       lat: 25,
       lng: 55,
       heading: 160
     }, {
       name: "SOUTHERN CROSS",
       type: "Bulk Carrier",
-      color: "#1a92d1",
+      color: "#3b82f6",
       lat: -25,
       lng: 30,
       heading: 320
     }, {
       name: "GULF VOYAGER",
       type: "Tanker",
-      color: "#ea580c",
+      color: "#ef4444",
       lat: 28,
       lng: -90,
       heading: 90
@@ -10969,14 +10776,14 @@ const LiveLeafletMap = () => {
     }, {
       name: "ARCTIC WIND",
       type: "Gas Carrier",
-      color: "#d97706",
+      color: "#f97316",
       lat: 62,
       lng: -160,
       heading: 200
     }, {
       name: "BLUE HORIZON",
       type: "General Cargo",
-      color: "#16a34a",
+      color: "#22c55e",
       lat: -10,
       lng: 100,
       heading: 270
@@ -10990,7 +10797,7 @@ const LiveLeafletMap = () => {
     }, {
       name: "SEASPRITE",
       type: "Yacht",
-      color: "#eab308",
+      color: "#f59e0b",
       lat: 38,
       lng: 18,
       heading: 120
@@ -11373,7 +11180,7 @@ const AirportPin = ({
     borderRadius: 8,
     background: "var(--brand-600)",
     border: "2px solid #fff",
-    boxShadow: "0 2px 6px rgba(0,0,0,.28)",
+    boxShadow: "var(--glyph-shadow)",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -11395,7 +11202,7 @@ const OffshoreDot = ({
     display: "inline-flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 3
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   style: {
@@ -11404,15 +11211,15 @@ const OffshoreDot = ({
     borderRadius: "50%",
     background: color,
     border: "2px solid #fff",
-    boxShadow: "0 2px 4px rgba(0,0,0,.3)"
+    boxShadow: "var(--glyph-shadow-sm)"
   }
 }), label && /*#__PURE__*/React.createElement("span", {
   style: {
     background: "#1e293b",
     color: "#fff",
-    padding: "2px 6px",
+    padding: "2px 8px",
     borderRadius: 4,
-    fontSize: 10,
+    fontSize: 11,
     fontWeight: 600,
     whiteSpace: "nowrap"
   }
@@ -11430,7 +11237,7 @@ const PropertyPin = ({
     borderRadius: 8,
     background: color,
     border: "2px solid #fff",
-    boxShadow: "0 2px 6px rgba(0,0,0,.28)",
+    boxShadow: "var(--glyph-shadow)",
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -11459,31 +11266,31 @@ const PropertyPin = ({
 }));
 const OFFSHORE_ASSETS = [{
   k: "Oil Rig",
-  color: "#ea580c"
+  color: "#ef4444"
 }, {
   k: "Platform",
   color: "#06b6d4"
 }, {
   k: "Windfarm",
-  color: "#16a34a"
+  color: "#10b981"
 }, {
   k: "Floating Storage (FSO)",
-  color: "#9333ea"
+  color: "#8b5cf6"
 }, {
   k: "Fixed Platform",
   color: "#ec4899"
 }, {
   k: "Jack-Up Drilling Unit",
-  color: "#eab308"
+  color: "#f59e0b"
 }, {
   k: "Mobile Drilling (MODU)",
-  color: "#1a92d1"
+  color: "#3b82f6"
 }, {
   k: "Mobile Production (MOPU)",
   color: "#ea580c"
 }, {
   k: "Single Point Mooring (SPM)",
-  color: "#43a8df"
+  color: "#0ea5e9"
 }, {
   k: "Subsea",
   color: "#14b8a6"
@@ -11542,7 +11349,7 @@ const MapsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
       crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>`)), /*#__PURE__*/React.createElement("div", {
+        crossorigin=""><\/script>`)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -11559,7 +11366,7 @@ const MapsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "t-caption",
   style: {
     marginTop: 12,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "The ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -11568,9 +11375,9 @@ const MapsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, `// app/ui/Map/tiles.ts
 export const TILES = {
   satellite: { url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-               attr: 'Tiles © Esri', bg: '#111827' },
+               attr: 'Tiles © Esri', bg: '#0b1e2e' },
   street:    { url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-               attr: '© OpenStreetMap contributors', bg: '#e2e8f0' },
+               attr: '© OpenStreetMap contributors', bg: '#e5e7eb' },
   dark:      { url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
                attr: '© OpenStreetMap contributors © CARTO', bg: '#0b0f1a' },
   light:     { url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
@@ -11617,7 +11424,7 @@ export const TILES = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement(VesselTeardropGlyph, {
   color: "#2563eb",
@@ -11643,7 +11450,7 @@ export const TILES = {
   className: "t-caption",
   style: {
     marginTop: 12,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "Canonical factory: every vessel marker in the product is built this way:"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
@@ -11781,7 +11588,7 @@ export function vesselLabelIcon(name: string) {
 }, g.sub), /*#__PURE__*/React.createElement("span", {
   className: "ds-badge ds-badge--neutral",
   style: {
-    fontSize: 10
+    fontSize: 11
   }
 }, g.domain)))), /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
@@ -11804,7 +11611,7 @@ export function vesselLabelIcon(name: string) {
 }, /*#__PURE__*/React.createElement("div", {
   style: {
     display: "flex",
-    gap: 18,
+    gap: 16,
     alignItems: "center",
     justifyContent: "space-around"
   }
@@ -11814,7 +11621,7 @@ export function vesselLabelIcon(name: string) {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement(AircraftGlyph, {
   heading: h,
@@ -11858,7 +11665,7 @@ export function vesselLabelIcon(name: string) {
     borderRadius: "50%",
     background: a.color,
     border: "1.5px solid #fff",
-    boxShadow: "0 1px 2px rgba(0,0,0,.25)",
+    boxShadow: "var(--glyph-shadow-xs)",
     flexShrink: 0
   }
 }), a.k)))), /*#__PURE__*/React.createElement("div", {
@@ -11885,7 +11692,7 @@ export function vesselLabelIcon(name: string) {
   style: {
     display: "flex",
     alignItems: "center",
-    gap: 10
+    gap: 8
   }
 }, /*#__PURE__*/React.createElement(PropertyPin, {
   color: c.color,
@@ -11900,7 +11707,7 @@ export function vesselLabelIcon(name: string) {
   style: {
     display: "flex",
     alignItems: "center",
-    gap: 10,
+    gap: 8,
     marginLeft: "auto"
   }
 }, /*#__PURE__*/React.createElement(PropertyPin, {
@@ -11920,7 +11727,7 @@ export function vesselLabelIcon(name: string) {
   className: "t-caption",
   style: {
     marginTop: 12,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "Each domain ships one ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -11986,7 +11793,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     display: "inline-flex"
   }
 }, /*#__PURE__*/React.createElement(VesselTeardropGlyph, {
-  color: "#ea580c",
+  color: "#ef4444",
   heading: 0,
   size: 28
 }), /*#__PURE__*/React.createElement("span", {
@@ -12033,7 +11840,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     gap: 16
   }
 }, /*#__PURE__*/React.createElement(VesselTeardropGlyph, {
-  color: "#991b1b",
+  color: "#7c2d12",
   heading: 0,
   size: 28
 }), /*#__PURE__*/React.createElement("div", {
@@ -12057,7 +11864,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
   className: "t-caption",
   style: {
     marginTop: 12,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "Render with ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -12115,7 +11922,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
 }, ".is-selected"), ", which keeps the ring on while the popup is open. The ring is the one selection affordance across every domain; it never recolors or resizes the glyph itself."), /*#__PURE__*/React.createElement(SelectionStates, null), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
-    marginTop: 14,
+    marginTop: 12,
     alignItems: "flex-start"
   }
 }, /*#__PURE__*/React.createElement("div", {
@@ -12142,7 +11949,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "map-cluster map-cluster--sm"
@@ -12153,7 +11960,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "map-cluster map-cluster--md"
@@ -12164,7 +11971,7 @@ export const propertyIcon = (color: string, glyph: string, alert = false) => L.d
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "map-cluster map-cluster--lg"
@@ -12546,7 +12353,7 @@ const ElevationUsage = () => /*#__PURE__*/React.createElement(React.Fragment, nu
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.6,
     color: "var(--text-secondary)"
@@ -12568,7 +12375,7 @@ const ElevationUsage = () => /*#__PURE__*/React.createElement(React.Fragment, nu
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.6,
     color: "var(--text-secondary)"
@@ -12682,7 +12489,7 @@ const ElevationUsage = () => /*#__PURE__*/React.createElement(React.Fragment, nu
 }, /*#__PURE__*/React.createElement("div", {
   className: "t-label",
   style: {
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "Risk grade"), /*#__PURE__*/React.createElement("select", {
   className: "ds-input ds-select",
@@ -12733,7 +12540,7 @@ const ElevationUsage = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   style: {
     padding: "8px 16px",
     borderTop: "1px solid var(--border-subtle)",
-    background: "var(--slate-50)",
+    background: "var(--slate-050)",
     display: "flex",
     justifyContent: "flex-end",
     gap: 8
@@ -12803,22 +12610,7 @@ const ElevationUsage = () => /*#__PURE__*/React.createElement(React.Fragment, nu
     marginBottom: 4,
     color: "var(--text-primary)"
   }
-}, "Use only high elevation everywhere"), "Level 5 should be modal-only, not your default card shadow."))))), /*#__PURE__*/React.createElement("div", {
-  className: "subsection"
-}, /*#__PURE__*/React.createElement("h3", {
-  className: "subsection-title"
-}, "Dark theme support"), /*#__PURE__*/React.createElement("p", {
-  className: "subsection-desc"
-}, "Elevation tokens are semantics-first. Dark mode only changes the token values, not the component structure."), /*#__PURE__*/React.createElement("pre", {
-  className: "code"
-}, `/* In tokens.css or as a CSS class */
-[data-theme="dark"] {
-  --card-shadow-rest:   0 1px 3px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.18);
-  --card-shadow-hover:  0 4px 12px rgba(0, 0, 0, 0.32), 0 2px 4px rgba(0, 0, 0, 0.24);
-  --card-shadow-active: 0 8px 20px rgba(0, 0, 0, 0.40), 0 4px 8px rgba(0, 0, 0, 0.28);
-  --card-shadow-raised: 0 12px 28px rgba(0, 0, 0, 0.48), 0 6px 12px rgba(0, 0, 0, 0.32);
-  --card-shadow-modal:  0 20px 48px rgba(0, 0, 0, 0.56), 0 8px 16px rgba(0, 0, 0, 0.36);
-}`)));
+}, "Use only high elevation everywhere"), "Level 5 should be modal-only, not your default card shadow."))))));
 Object.assign(window, {
   ElevationUsage
 });
@@ -12941,7 +12733,7 @@ const ElevationScale = () => {
   }, l.tailwind)), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
     className: "t-mono",
     style: {
-      fontSize: 10,
+      fontSize: 11,
       color: "var(--text-muted)"
     }
   }, l.hex === "none" ? "none" : l.hex.substring(0, 30) + "…")), /*#__PURE__*/React.createElement("td", {
@@ -13276,7 +13068,7 @@ const TimelineRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Absolute UTC time on every event row."), /*#__PURE__*/React.createElement("li", null, "Day header is local-to-user (e.g. \"Today\", \"Yesterday\", \"27 Apr 2026\")."), /*#__PURE__*/React.createElement("li", null, "Relative time (\"2 min ago\") only appears on the top-of-feed item or in a hover tooltip, never as the only timestamp."), /*#__PURE__*/React.createElement("li", null, "Live feeds show a tick indicator next to the day header that updates every 60 s.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -13294,7 +13086,7 @@ const TimelineRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Empty state: \"No activity in this range.\" Single line, no illustration."), /*#__PURE__*/React.createElement("li", null, "Loading: 3 skeleton rows; never a centered spinner over an existing feed."), /*#__PURE__*/React.createElement("li", null, "Error: a danger banner above the rail, \"Couldn't load activity. Retry.\" Don't blank the existing rows."), /*#__PURE__*/React.createElement("li", null, "End-of-feed: a muted \"Beginning of history\" line with the earliest known date.")))));
 const EventApiSpec = () => /*#__PURE__*/React.createElement("pre", {
@@ -13389,14 +13181,14 @@ const CoverPagePreview = () => /*#__PURE__*/React.createElement("div", {
   className: "mark"
 }, "S"), /*#__PURE__*/React.createElement("span", null, "Skytek")), /*#__PURE__*/React.createElement("div", {
   style: {
-    marginTop: 18
+    marginTop: 16
   }
 }, /*#__PURE__*/React.createElement("div", {
   className: "t-overline",
   style: {
     color: "rgba(255,255,255,.7)",
     fontSize: 8,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "QUARTERLY EXPOSURE REPORT"), /*#__PURE__*/React.createElement("h1", null, "Black Sea Portfolio"), /*#__PURE__*/React.createElement("div", {
   style: {
@@ -13408,11 +13200,11 @@ const CoverPagePreview = () => /*#__PURE__*/React.createElement("div", {
   className: "meta"
 }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Prepared for")), /*#__PURE__*/React.createElement("div", null, "Maeve Daly \xB7 Lead Underwriter"), /*#__PURE__*/React.createElement("div", {
   style: {
-    marginTop: 6
+    marginTop: 4
   }
 }, /*#__PURE__*/React.createElement("strong", null, "Issued")), /*#__PURE__*/React.createElement("div", null, "28 April 2026 \xB7 14:32 UTC"), /*#__PURE__*/React.createElement("div", {
   style: {
-    marginTop: 6
+    marginTop: 4
   }
 }, /*#__PURE__*/React.createElement("strong", null, "Reference")), /*#__PURE__*/React.createElement("div", null, "SKY-RPT-2026-Q1-BSP-0142")));
 const BodyPagePreview = ({
@@ -13466,7 +13258,7 @@ const ClassificationStrip = () => /*#__PURE__*/React.createElement("div", {
   style: {
     display: "inline-flex",
     alignItems: "center",
-    padding: "4px 10px",
+    padding: "4px 12px",
     background: bg,
     color: fg,
     borderRadius: "var(--radius-sm)",
@@ -13494,7 +13286,7 @@ const WatermarkRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "DRAFT"), " \xB7 slate-400, 12% opacity, \u221222\xB0 rotation, repeats on every body page"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "CONFIDENTIAL"), " \xB7 danger-700, 12% opacity, applied automatically to classification \u2265 Confidential"), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "SAMPLE"), " \xB7 brand-600, 14% opacity, applied to anonymized exports for sales")), /*#__PURE__*/React.createElement("p", {
   style: {
@@ -13657,6 +13449,7 @@ window.ExportSection = ExportSection;
 
 // section-filterdrawer.jsx
 try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 /* Section: Filter drawer (full specification)
    Documents the drawer shipped on Assets Search: right-edge sheet,
    single-open accordion sections, live-apply filtering.
@@ -13836,7 +13629,7 @@ const FilterDrawerDemo = ({
         fontSize: 13,
         fontWeight: 600,
         color: "var(--text-primary)",
-        marginBottom: 10
+        marginBottom: 8
       }
     }, r[0].toLocaleString(), " ", /*#__PURE__*/React.createElement("span", {
       style: {
@@ -13861,7 +13654,7 @@ const FilterDrawerDemo = ({
         justifyContent: "space-between",
         fontSize: 11,
         color: "var(--text-muted)",
-        marginTop: 6
+        marginTop: 4
       }
     }, /*#__PURE__*/React.createElement("span", null, s.lo.toLocaleString()), /*#__PURE__*/React.createElement("span", null, s.hi.toLocaleString()))) : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "ds-fdrawer-acts"
@@ -13899,6 +13692,129 @@ const FilterDrawerDemo = ({
     className: "ds-btn ds-btn--primary",
     onClick: () => setOpen(false)
   }, "Done")))));
+};
+
+/* Grouped options (main / sub) demo — uses the real .ds-fdrawer-tree CSS. Selection is stored as the
+   UNchecked leaves, so "nothing excluded" = unfiltered and new leaves arrive checked. */
+const FD_TREE_GROUPS = [{
+  name: "Country EEZ",
+  items: [["Ireland", "#1485c5"], ["Israel EEZ", "#0d9488"], ["Singapore", "#7c3aed"]]
+}, {
+  name: "High Risk Areas",
+  items: [["Gulf of Guinea [JWC]", "#f97316"], ["Lebanon [JWC]", "#dc2626"], ["Libya [JWC]", "#dc2626"], ["Syria [JWC]", "#dc2626"], ["Venezuela [JWC]", "#f97316"]]
+}];
+const FdTriBox = ({
+  checked,
+  mixed,
+  onChange,
+  label
+}) => /*#__PURE__*/React.createElement("input", {
+  type: "checkbox",
+  checked: checked,
+  "aria-label": label,
+  ref: el => {
+    if (el) el.indeterminate = mixed;
+  },
+  onChange: onChange
+});
+const FilterDrawerTreeDemo = () => {
+  const [excluded, setExcluded] = React.useState(() => new Set(["Libya [JWC]", "Syria [JWC]"]));
+  const [collapsed, setCollapsed] = React.useState(() => new Set());
+  const leaves = g => g.items.map(([n]) => n);
+  const all = FD_TREE_GROUPS.flatMap(leaves);
+  const tri = keys => {
+    const on = keys.filter(k => !excluded.has(k)).length;
+    return {
+      checked: on === keys.length,
+      mixed: on > 0 && on < keys.length
+    };
+  };
+  const setKeys = (keys, on) => setExcluded(prev => {
+    const n = new Set(prev);
+    keys.forEach(k => on ? n.delete(k) : n.add(k));
+    return n;
+  });
+  const shown = all.filter(k => !excluded.has(k)).length;
+  const sAll = tri(all);
+  return /*#__PURE__*/React.createElement("div", {
+    className: "fd-tree-demo"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "fd-tree-demo-result",
+    "aria-live": "polite"
+  }, "Showing ", shown, " of ", all.length, " regions"), /*#__PURE__*/React.createElement("div", {
+    className: "ds-fdrawer-tree",
+    role: "group",
+    "aria-label": "Regions"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "ds-fdrawer-tree-row ds-fdrawer-tree-row--all"
+  }, /*#__PURE__*/React.createElement(FdTriBox, _extends({}, sAll, {
+    label: "All",
+    onChange: e => setKeys(all, e.target.checked)
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "ds-fdrawer-tree-name"
+  }, "All")), FD_TREE_GROUPS.map((g, gi) => {
+    const open = !collapsed.has(g.name),
+      s = tri(leaves(g));
+    return /*#__PURE__*/React.createElement("div", {
+      key: g.name,
+      className: "ds-fdrawer-tree-group" + (open ? " is-open" : "")
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "ds-fdrawer-tree-row ds-fdrawer-tree-row--group"
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "ds-fdrawer-tree-check"
+    }, /*#__PURE__*/React.createElement(FdTriBox, _extends({}, s, {
+      label: g.name,
+      onChange: e => setKeys(leaves(g), e.target.checked)
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "ds-fdrawer-tree-name"
+    }, g.name), /*#__PURE__*/React.createElement("span", {
+      className: "ds-fdrawer-tree-n"
+    }, g.items.length)), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "ds-fdrawer-tree-toggle",
+      "aria-expanded": open,
+      "aria-controls": "fd-tree-sub-" + gi,
+      "aria-label": (open ? "Collapse " : "Expand ") + g.name,
+      onClick: () => setCollapsed(prev => {
+        const n = new Set(prev);
+        n.has(g.name) ? n.delete(g.name) : n.add(g.name);
+        return n;
+      })
+    }, /*#__PURE__*/React.createElement("svg", {
+      width: "14",
+      height: "14",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true"
+    }, /*#__PURE__*/React.createElement("path", {
+      d: "m6 9 6 6 6-6"
+    })))), /*#__PURE__*/React.createElement("div", {
+      className: "ds-fdrawer-tree-sub",
+      id: "fd-tree-sub-" + gi,
+      role: "group",
+      "aria-label": g.name,
+      hidden: !open
+    }, g.items.map(([n, c]) => /*#__PURE__*/React.createElement("label", {
+      key: n,
+      className: "ds-fdrawer-tree-row ds-fdrawer-tree-row--sub"
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "checkbox",
+      checked: !excluded.has(n),
+      onChange: e => setKeys([n], e.target.checked)
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "ds-fdrawer-tree-swatch",
+      style: {
+        background: c
+      },
+      "aria-hidden": "true"
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "ds-fdrawer-tree-name"
+    }, n)))));
+  })));
 };
 const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -14059,7 +13975,7 @@ const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, 
 }, /*#__PURE__*/React.createElement("ol", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Mutate the filter state."), /*#__PURE__*/React.createElement("li", null, "Reset to page 1: the old page number is meaningless against a new result set."), /*#__PURE__*/React.createElement("li", null, "Re-render the table."), /*#__PURE__*/React.createElement("li", null, "Re-render the drawer body so counts, dots and disabled states refresh."), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Restore the body's scroll position"), ", the re-render would otherwise jump the user to the top mid-interaction.")))), /*#__PURE__*/React.createElement("div", {
   className: "panel"
@@ -14115,7 +14031,11 @@ const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, 
   className: "t-caption"
 }, /*#__PURE__*/React.createElement("em", null, "Reset"), " \xB7 ", /*#__PURE__*/React.createElement("em", null, "Unselect all")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Same as List, but options are derived from the data (Owner, Operator, Manufacturer) rather than a fixed vocabulary.")))), /*#__PURE__*/React.createElement("div", {
+}, "Same as List, but options are derived from the data (Owner, Operator, Manufacturer) rather than a fixed vocabulary.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Grouped")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "An ", /*#__PURE__*/React.createElement("em", null, "All"), " row (replaces the toolbar)"), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Main options, each with a tri-state checkbox, a count and a collapse chevron, over their sub-options on a sunken panel. For hierarchical vocabularies (region groups \u2192 regions). See ", /*#__PURE__*/React.createElement("em", null, "Grouped options detail"), ".")))), /*#__PURE__*/React.createElement("div", {
   className: "callout warn",
   style: {
     marginTop: 12
@@ -14174,9 +14094,54 @@ const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, 
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
-}, /*#__PURE__*/React.createElement("span", null, "Trigger & responsive behaviour"), /*#__PURE__*/React.createElement("span", {
+}, /*#__PURE__*/React.createElement("span", null, "Grouped options detail"), /*#__PURE__*/React.createElement("span", {
   className: "ord"
 }, "06")), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc"
+}, "A section whose options form a two-level hierarchy: ", /*#__PURE__*/React.createElement("em", null, "main options"), " (groups) with ", /*#__PURE__*/React.createElement("em", null, "sub-options"), ". Use it when the vocabulary is naturally grouped and people filter at both levels, for example region groups and their regions. Keep it to two levels; a flat ", /*#__PURE__*/React.createElement("em", null, "List"), " stays the default."), /*#__PURE__*/React.createElement("div", {
+  className: "fd-tree-demo-wrap"
+}, /*#__PURE__*/React.createElement(FilterDrawerTreeDemo, null)), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 180
+  }
+}, "Aspect"), /*#__PURE__*/React.createElement("th", null, "Behaviour"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Structure")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "An ", /*#__PURE__*/React.createElement("em", null, "All"), " row, then each main option as a row (checkbox, name, sub-option count, chevron) above its sub-options on a sunken panel (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--bg-muted"), ", 8px radius, 4px inset). Sub-option rows may carry a leading swatch (the item's map colour) and use the link colour.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Tri-state parents")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, /*#__PURE__*/React.createElement("em", null, "All"), " and each main option are ", /*#__PURE__*/React.createElement("em", null, "checked"), " when every sub-option below is, ", /*#__PURE__*/React.createElement("em", null, "unchecked"), " when none are, and ", /*#__PURE__*/React.createElement("em", null, "partly selected"), " otherwise: ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "input.indeterminate = true"), ", shown as a dash. Parents are always derived from their children, never stored.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Toggling a parent")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Checking a parent (including from partly selected) checks all its sub-options; unchecking it unchecks them all. ", /*#__PURE__*/React.createElement("em", null, "All"), " does the same for every option.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Collapse")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "The chevron collapses or expands one main option's list (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-expanded"), ", rotated -90\xB0 when collapsed); all start expanded. Collapsing never changes the selection.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Selection model")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Store the ", /*#__PURE__*/React.createElement("em", null, "excluded"), " sub-options, not the included ones. Nothing excluded = unfiltered (no active dot); options that appear later (another tab's data) arrive checked; ", /*#__PURE__*/React.createElement("em", null, "none"), " is every option excluded, so the three-state model above still holds.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Live apply & reset")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "As for every section: each change applies immediately and the result line updates. The footer ", /*#__PURE__*/React.createElement("em", null, "Reset"), " clears all exclusions; the ", /*#__PURE__*/React.createElement("em", null, "All"), " row stands in for the section toolbar (", /*#__PURE__*/React.createElement("em", null, "Reset"), " / ", /*#__PURE__*/React.createElement("em", null, "Unselect all"), "), so don't show both.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Accessibility")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Native checkboxes (the indeterminate state is announced as \"mixed\"), each sub-list a ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "role=\"group\""), " labelled by its main option, the chevron a real button with ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-controls"), " and an ", /*#__PURE__*/React.createElement("em", null, "Expand / Collapse <name>"), " label, 34px rows.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Shipped on")), /*#__PURE__*/React.createElement("td", {
+  className: "t-caption"
+}, "Real World \xB7 Regions map filter (main options: ", /*#__PURE__*/React.createElement("em", null, "My Monitored Regions"), ", ", /*#__PURE__*/React.createElement("em", null, "Skytek Regions"), "; sub-options: each region drawn on the map), November 2026."))))), /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, /*#__PURE__*/React.createElement("span", null, "Trigger & responsive behaviour"), /*#__PURE__*/React.createElement("span", {
+  className: "ord"
+}, "07")), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
 }, "On wide viewports the filters live inline in the toolbar as individual dropdown buttons; the drawer is the", /*#__PURE__*/React.createElement("strong", null, " compact-viewport form of the same filter set"), ", opened from a single icon button. Both write to the same state."), /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
@@ -14208,12 +14173,12 @@ const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, 
     position: "relative",
     height: 430,
     overflow: "hidden",
-    padding: "22px 24px"
+    padding: "24px 24px"
   }
 }, /*#__PURE__*/React.createElement("div", {
   style: {
     display: "flex",
-    gap: 30,
+    gap: 28,
     flexWrap: "wrap",
     alignItems: "flex-start"
   }
@@ -14257,7 +14222,7 @@ const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, 
 }, "Icon-only, 2 filters active"))), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
-    marginTop: 14,
+    marginTop: 12,
     maxWidth: 420
   }
 }, "Each trigger opens the same drawer. The third starts with two filters applied, so it shows the corner dot and announces ", /*#__PURE__*/React.createElement("code", {
@@ -14312,7 +14277,7 @@ const FilterDrawerSpec = () => /*#__PURE__*/React.createElement(React.Fragment, 
   className: "subsection-title"
 }, /*#__PURE__*/React.createElement("span", null, "Developer API"), /*#__PURE__*/React.createElement("span", {
   className: "ord"
-}, "07")), /*#__PURE__*/React.createElement("p", {
+}, "08")), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
 }, "The filter drawer is ", /*#__PURE__*/React.createElement("strong", null, "not its own component"), ". It is the ", /*#__PURE__*/React.createElement("em", null, "Filters"), " story of the shared", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -14478,7 +14443,7 @@ interface FilterOption {
   className: "subsection-title"
 }, /*#__PURE__*/React.createElement("span", null, "Spec vs. current build"), /*#__PURE__*/React.createElement("span", {
   className: "ord"
-}, "08")), /*#__PURE__*/React.createElement("p", {
+}, "09")), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
 }, "Where this specification and the shipped ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -14538,7 +14503,7 @@ interface FilterOption {
   className: "subsection-title"
 }, /*#__PURE__*/React.createElement("span", null, "Accessibility"), /*#__PURE__*/React.createElement("span", {
   className: "ord"
-}, "09")), /*#__PURE__*/React.createElement("table", {
+}, "10")), /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
   style: {
@@ -14584,7 +14549,7 @@ interface FilterOption {
   className: "subsection-title"
 }, /*#__PURE__*/React.createElement("span", null, "Edge cases"), /*#__PURE__*/React.createElement("span", {
   className: "ord"
-}, "10")), /*#__PURE__*/React.createElement("table", {
+}, "11")), /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
   style: {
@@ -14614,7 +14579,7 @@ interface FilterOption {
   className: "subsection-title"
 }, /*#__PURE__*/React.createElement("span", null, "Do & don't"), /*#__PURE__*/React.createElement("span", {
   className: "ord"
-}, "11")), /*#__PURE__*/React.createElement("div", {
+}, "12")), /*#__PURE__*/React.createElement("div", {
   className: "grid-2",
   style: {
     gap: 16
@@ -14637,7 +14602,7 @@ interface FilterOption {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     color: "var(--text-secondary)",
     lineHeight: 1.7
@@ -14660,7 +14625,7 @@ interface FilterOption {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     color: "var(--text-secondary)",
     lineHeight: 1.7
@@ -14673,7 +14638,7 @@ interface FilterOption {
   className: "subsection-title"
 }, /*#__PURE__*/React.createElement("span", null, "Tokens"), /*#__PURE__*/React.createElement("span", {
   className: "ord"
-}, "12")), /*#__PURE__*/React.createElement("div", {
+}, "13")), /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, [["--fdrawer-width", "360px", "Panel width"], ["--fdrawer-max-width", "92vw", "Compact-viewport cap"], ["--fdrawer-scrim", "rgba(15,23,42,.38)", "Backdrop"], ["--fdrawer-shadow", "-10px 0 30px rgba(15,23,42,.16)", "Panel edge shadow"], ["--fdrawer-pad-x", "18px", "Body / footer side padding"], ["--fdrawer-head-pad", "16px 20px", "Header padding"], ["--fdrawer-slide", "300ms", "Panel slide duration"], ["--fdrawer-slide-ease", "cubic-bezier(.4,0,.2,1)", "Panel slide easing"], ["--fdrawer-scrim-motion", "250ms", "Scrim fade"], ["--fdrawer-acc-motion", "220ms", "Accordion body enter"], ["--fdrawer-list-max", "210px", "Option-list cap when not filling"], ["--z-drawer", "1080", "Below modal, above popover"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
   key: t,
@@ -14705,7 +14670,7 @@ const FormAnatomyDemo = () => /*#__PURE__*/React.createElement("div", {
   style: {
     display: "flex",
     flexDirection: "column",
-    gap: 10
+    gap: 8
   }
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-field"
@@ -14729,7 +14694,7 @@ const FormAnatomyDemo = () => /*#__PURE__*/React.createElement("div", {
 }, "7 digits, no prefix. We'll validate against the IHS Maritime registry."))), /*#__PURE__*/React.createElement("ol", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 12.5,
     lineHeight: 1.65,
     color: "var(--text-secondary)"
@@ -14799,7 +14764,7 @@ const FieldStatesDemo = () => /*#__PURE__*/React.createElement("div", {
   defaultValue: "IMO 9234567",
   readOnly: true,
   style: {
-    background: "var(--slate-50)",
+    background: "var(--slate-050)",
     color: "var(--text-primary)"
   }
 }), /*#__PURE__*/React.createElement("div", {
@@ -14999,7 +14964,7 @@ const FieldGroupDemo = () => /*#__PURE__*/React.createElement("fieldset", {
   }
 }, /*#__PURE__*/React.createElement("legend", {
   style: {
-    padding: "0 6px",
+    padding: "0 8px",
     fontSize: 12,
     fontWeight: 700,
     color: "var(--text-secondary)",
@@ -15333,7 +15298,7 @@ const ColorSwatch = ({
   style: {
     background: value,
     color: fg,
-    padding: "8px 10px",
+    padding: "8px 12px",
     display: "flex",
     alignItems: "flex-end"
   }
@@ -15358,7 +15323,7 @@ const ColorScale = ({
 }, /*#__PURE__*/React.createElement("div", {
   className: "t-label",
   style: {
-    marginBottom: 10
+    marginBottom: 8
   }
 }, title), /*#__PURE__*/React.createElement("div", {
   className: "grid-6"
@@ -15366,37 +15331,49 @@ const ColorScale = ({
   key: it.token
 }, it)))));
 const ColorSection = () => {
+  /* Brand: the azure ramp (Real World platform). Contrast on white: 800 7.99, 700 5.85, 600 4.05,
+     500 3.46 (non-text only below 600). */
   const brand = [{
+    name: "800",
+    token: "--brand-800",
+    value: "#0d5580"
+  }, {
     name: "700",
     token: "--brand-700",
-    value: "#1f5fc7"
+    value: "#0f6aa0"
   }, {
     name: "600",
     token: "--brand-600",
-    value: "#2d7ffb"
+    value: "#1485c5"
   }, {
     name: "500",
     token: "--brand-500",
-    value: "#51a2fc"
+    value: "#1a92d1"
   }, {
     name: "400",
     token: "--brand-400",
-    value: "#8ec5fd"
+    value: "#43a8df",
+    fg: "#0d5580"
   }, {
     name: "300",
     token: "--brand-300",
-    value: "#bfdbfe",
-    fg: "#2d7ffb"
+    value: "#84c5ec",
+    fg: "#0d5580"
+  }, {
+    name: "200",
+    token: "--brand-200",
+    value: "#b8ddf5",
+    fg: "#0d5580"
   }, {
     name: "100",
     token: "--brand-100",
-    value: "#dbeafe",
-    fg: "#2d7ffb"
+    value: "#dceffb",
+    fg: "#0d5580"
   }, {
     name: "050",
     token: "--brand-050",
-    value: "#eff6ff",
-    fg: "#2d7ffb"
+    value: "#eff8fd",
+    fg: "#0d5580"
   }];
   const slate = [{
     name: "950",
@@ -15448,7 +15425,7 @@ const ColorSection = () => {
     fg: "#111827"
   }, {
     name: "50",
-    token: "--slate-50",
+    token: "--slate-050",
     value: "#F9FAFB",
     fg: "#111827"
   }, {
@@ -15557,10 +15534,10 @@ const ColorSection = () => {
     value: "#C0392B"
   }];
   const semantic = [
-  // [token, role, lightValue, darkValue]
-  ["--bg-app", "Page background", "#F9FAFB", "#0B1220"], ["--bg-canvas", "Map / dashboard canvas", "#F5F7FA", "#0D1524"], ["--bg-surface", "Cards, modals, panels", "#FFFFFF", "#121A2A"], ["--bg-raised", "Elevated surfaces", "#FFFFFF", "#1B2536"], ["--bg-sunken", "Form rows, inset blocks", "#F9FAFB", "#0B1220"], ["--bg-muted", "Disabled, placeholders", "#F3F4F6", "#1B2536"], ["--bg-inverse", "Dark surfaces, tooltips", "#111827", "#E5E7EB"], ["--border-subtle", "Internal dividers", "#ECEEF2", "#1F2A3C"], ["--border-default", "Cards, inputs, buttons", "#E5E7EB", "#2B3854"], ["--border-strong", "Hover, emphasized", "#D1D5DB", "#3A4A66"], ["--border-info", "Info badge / alert border", "color-mix(in srgb, var(--info-500) 18%, transparent)", "color-mix(in srgb, var(--info-500) 18%, transparent)"], ["--border-success", "Success badge / alert border", "color-mix(in srgb, var(--success-500) 18%, transparent)", "color-mix(in srgb, var(--success-500) 18%, transparent)"], ["--border-warning", "Warning badge / alert border", "color-mix(in srgb, var(--warning-500) 20%, transparent)", "color-mix(in srgb, var(--warning-500) 20%, transparent)"], ["--border-danger", "Danger badge / alert border", "color-mix(in srgb, var(--danger-500) 18%, transparent)", "color-mix(in srgb, var(--danger-500) 18%, transparent)"], ["--text-primary", "Body, headings", "#111827", "#F3F4F6"], ["--text-secondary", "Supporting copy", "#4B5563", "#9CA3AF"], ["--text-muted", "Help, captions, meta", "#6B7280", "#828C9C"], ["--text-disabled", "Disabled controls", "#9CA3AF", "#4B5563"], ["--text-inverse", "On dark surfaces", "#FFFFFF", "#0B1220"], ["--text-link", "Inline links", "#51a2fc", "#8EC5FD"], ["--text-on-brand", "On primary buttons", "#FFFFFF", "#FFFFFF"]];
+  // [token, role, value]
+  ["--bg-app", "Page background", "#F9FAFB"], ["--bg-canvas", "Map / dashboard canvas", "#F5F7FA"], ["--bg-surface", "Cards, modals, panels", "#FFFFFF"], ["--bg-raised", "Elevated surfaces", "#FFFFFF"], ["--bg-sunken", "Form rows, inset blocks", "#F9FAFB"], ["--bg-muted", "Disabled, placeholders", "#F3F4F6"], ["--bg-inverse", "Dark surfaces, tooltips", "#111827"], ["--border-subtle", "Internal dividers", "#ECEEF2"], ["--border-default", "Cards, inputs, buttons", "#E5E7EB"], ["--border-strong", "Hover, emphasized", "#D1D5DB"], ["--border-info", "Info badge / alert border", "color-mix(in srgb, var(--info-500) 18%, transparent)"], ["--border-success", "Success badge / alert border", "color-mix(in srgb, var(--success-500) 18%, transparent)"], ["--border-warning", "Warning badge / alert border", "color-mix(in srgb, var(--warning-500) 20%, transparent)"], ["--border-danger", "Danger badge / alert border", "color-mix(in srgb, var(--danger-500) 18%, transparent)"], ["--text-primary", "Body, headings", "#111827"], ["--text-secondary", "Supporting copy", "#4B5563"], ["--text-muted", "Help, captions, meta", "#6B7280"], ["--text-disabled", "Disabled controls", "#9CA3AF"], ["--text-inverse", "On inverse (slate-900) surfaces", "#FFFFFF"], ["--text-link", "Inline links", "#0f6aa0"], ["--text-on-brand", "On primary buttons", "#FFFFFF"]];
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ColorScale, {
-    title: "Brand \xB7 for primary actions, links and focus states only",
+    title: "Brand \xB7 azure \xB7 for primary actions, links and focus states only",
     items: brand
   }), /*#__PURE__*/React.createElement(ColorScale, {
     title: "Slate \xB7 neutral UI palette",
@@ -15573,7 +15550,7 @@ const ColorSection = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 10
+      marginBottom: 8
     }
   }, "Risk rating scale (preserved from product)"), /*#__PURE__*/React.createElement("div", {
     className: "grid-6"
@@ -15591,14 +15568,14 @@ const ColorSection = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 10
+      marginBottom: 8
     }
-  }, "Semantic surface, border & text tokens \xB7 Light / Dark"), /*#__PURE__*/React.createElement("div", {
+  }, "Semantic surface, border & text tokens"), /*#__PURE__*/React.createElement("div", {
     className: "panel"
   }, /*#__PURE__*/React.createElement("div", {
     className: "token-row",
     style: {
-      gridTemplateColumns: "220px 1fr 118px 118px",
+      gridTemplateColumns: "220px 1fr 160px",
       background: "var(--bg-sunken)"
     }
   }, /*#__PURE__*/React.createElement("span", {
@@ -15616,16 +15593,11 @@ const ColorSection = () => {
     style: {
       color: "var(--text-muted)"
     }
-  }, "Light"), /*#__PURE__*/React.createElement("span", {
-    className: "t-label",
-    style: {
-      color: "var(--text-muted)"
-    }
-  }, "Dark")), semantic.map(([t, role, light, dark]) => /*#__PURE__*/React.createElement("div", {
+  }, "Value")), semantic.map(([t, role, light]) => /*#__PURE__*/React.createElement("div", {
     key: t,
     className: "token-row",
     style: {
-      gridTemplateColumns: "220px 1fr 118px 118px"
+      gridTemplateColumns: "220px 1fr 160px"
     }
   }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -15648,53 +15620,26 @@ const ColorSection = () => {
     className: "t-mono",
     style: {
       color: "var(--text-muted)",
-      fontSize: 10.5,
+      fontSize: 11,
       overflow: "hidden",
       textOverflow: "ellipsis",
       whiteSpace: "nowrap"
     }
-  }, light.startsWith("#") ? light : "mix")), /*#__PURE__*/React.createElement("span", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 8,
-      minWidth: 0
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "swatch-mini",
-    style: {
-      background: dark,
-      flexShrink: 0,
-      borderColor: "rgba(255,255,255,.14)"
-    }
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "t-mono",
-    style: {
-      color: "var(--text-muted)",
-      fontSize: 10.5,
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-      whiteSpace: "nowrap"
-    }
-  }, dark.startsWith("#") ? dark : "mix"))))), /*#__PURE__*/React.createElement("p", {
+  }, light.startsWith("#") ? light : "mix"))))), /*#__PURE__*/React.createElement("p", {
     className: "t-caption",
     style: {
       marginTop: 8
     }
-  }, "Primitives (brand / slate / status hues above) never change between themes, only these semantic aliases are re-pointed under ", /*#__PURE__*/React.createElement("code", {
-    className: "inline"
-  }, "[data-theme=\"dark\"]"), ". Toggle the theme in the sidebar to see the whole spec flip. Full rationale in the ", /*#__PURE__*/React.createElement("a", {
-    href: "#darkmode"
-  }, "Dark mode"), " chapter.")), /*#__PURE__*/React.createElement("div", {
+  }, "Components use these semantic aliases, never the primitives above directly, so a future theme only re-points the aliases.")), /*#__PURE__*/React.createElement("div", {
     className: "subsection"
   }, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 10
+      marginBottom: 8
     }
   }, "Usage rules"), /*#__PURE__*/React.createElement("table", {
     className: "spec-table"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Why"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Brand color is reserved for primary CTAs, selected nav, links, and focus rings."), /*#__PURE__*/React.createElement("td", null, "Prevents brand from competing with status colors during incidents.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors never carry decorative weight (e.g. success-100 is not a \"nice green tint\")."), /*#__PURE__*/React.createElement("td", null, "So users learn that any colored badge / row tint ", /*#__PURE__*/React.createElement("em", null, "means"), " something.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text is always ", /*#__PURE__*/React.createElement("code", null, "--text-primary"), " on light surfaces. Never < 4.5:1 contrast."), /*#__PURE__*/React.createElement("td", null, "WCAG AA on all dense table content.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Backgrounds use only the four ", /*#__PURE__*/React.createElement("code", null, "--bg-*"), " tokens. No raw hex in modules."), /*#__PURE__*/React.createElement("td", null, "Single source of truth; easier to dark-mode later.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "The legacy ", /*#__PURE__*/React.createElement("code", null, "react-light-blue / react-dark-blue"), " map to ", /*#__PURE__*/React.createElement("code", null, "--brand-300 / --brand-600"), "."), /*#__PURE__*/React.createElement("td", null, "Source compatibility during migration."))))));
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Why"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Info shares the brand's blue family on purpose: it marks neutral system information, never an action. Always pair info with its icon and a word, and never use info for buttons or links."), /*#__PURE__*/React.createElement("td", null, "Keeps info readable without adding a sixth hue; the icon and label carry the meaning, not the colour.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Brand color is reserved for primary CTAs, selected nav, links, and focus rings."), /*#__PURE__*/React.createElement("td", null, "Prevents brand from competing with status colors during incidents.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors never carry decorative weight (e.g. success-100 is not a \"nice green tint\"). Two documented exceptions: the locked A\u2013E rating scale (rating D shares warning-500), and chart categories 2\u20133, which reuse warning-500 and success-500 as categorical hues."), /*#__PURE__*/React.createElement("td", null, "So users learn that any colored badge / row tint ", /*#__PURE__*/React.createElement("em", null, "means"), " something.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text is always ", /*#__PURE__*/React.createElement("code", null, "--text-primary"), " on light surfaces. Never < 4.5:1 contrast."), /*#__PURE__*/React.createElement("td", null, "WCAG AA on all dense table content.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Backgrounds use only the four ", /*#__PURE__*/React.createElement("code", null, "--bg-*"), " tokens. No raw hex in modules."), /*#__PURE__*/React.createElement("td", null, "Single source of truth; a future theme only re-points the aliases.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "The legacy ", /*#__PURE__*/React.createElement("code", null, "react-light-blue / react-dark-blue"), " map to ", /*#__PURE__*/React.createElement("code", null, "--brand-300 / --brand-600"), "."), /*#__PURE__*/React.createElement("td", null, "Source compatibility during migration."))))));
 };
 const toRem = px => parseFloat((parseFloat(px) / 16).toFixed(4));
 const TypeSpecimen = ({
@@ -15736,7 +15681,7 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("div", {
   className: "t-label",
   style: {
-    marginBottom: 10
+    marginBottom: 8
   }
 }, "Type roles"), /*#__PURE__*/React.createElement("div", {
   className: "panel"
@@ -15833,19 +15778,21 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("div", {
   className: "t-label",
   style: {
-    marginBottom: 10
+    marginBottom: 8
   }
 }, "Rationale"), /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     color: "var(--text-secondary)",
     lineHeight: 1.65
   }
 }, /*#__PURE__*/React.createElement("li", null, "Consolidate Lato + Open Sans \u2192 ", /*#__PURE__*/React.createElement("strong", null, "Inter"), ": better screen rendering at 12\u201314px, true tabular-nums, matches B2B SaaS conventions (Linear / Stripe / Vercel)."), /*#__PURE__*/React.createElement("li", null, "Reduce 6 H-styles + 5 body sizes \u2192 ", /*#__PURE__*/React.createElement("strong", null, "5 heading roles + 3 body roles + 2 utility"), ". Maps cleanly to product usage."), /*#__PURE__*/React.createElement("li", null, "Always use ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "tabular-nums"), " on numeric table cells, IMO codes, coordinates, timestamps."), /*#__PURE__*/React.createElement("li", null, "Never use sizes < 12px in production UI. ", /*#__PURE__*/React.createElement("code", {
+}, "tabular-nums"), " on numeric table cells, IMO codes, coordinates, timestamps."), /*#__PURE__*/React.createElement("li", null, "Never use sizes < 12px for running text. The one exception is 11px uppercase labels: ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "t-overline"), " and badges, at weight 600 with added letter-spacing. ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "10px"), " body (legacy ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -15892,7 +15839,7 @@ const RadiusShadowSection = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 10
+      marginBottom: 8
     }
   }, "Radius scale"), /*#__PURE__*/React.createElement("div", {
     className: "panel"
@@ -15923,42 +15870,45 @@ const RadiusShadowSection = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "t-label",
     style: {
-      marginBottom: 10
+      marginBottom: 8
     }
   }, "Elevation"), /*#__PURE__*/React.createElement("div", {
     className: "panel"
-  }, shadows.map(([t, use, raw]) => /*#__PURE__*/React.createElement("div", {
-    key: t,
-    className: "token-row",
-    style: {
-      gridTemplateColumns: "180px 1fr 80px"
-    }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("div", {
-    className: "t-caption",
-    style: {
-      marginTop: 2
-    }
-  }, use)), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      justifyContent: "center"
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      width: 80,
-      height: 60,
-      background: "white",
-      border: "1px solid var(--border-default)",
-      borderRadius: 6,
-      boxShadow: `var(${t})`
-    }
-  })), /*#__PURE__*/React.createElement("span", {
-    className: "t-mono",
-    style: {
-      color: "var(--text-muted)",
-      fontSize: 10
-    }
-  }, raw)))), /*#__PURE__*/React.createElement("div", {
+  }, shadows.map(([t, use, raw0]) => {
+    const raw = typeof getComputedStyle !== "undefined" && getComputedStyle(document.documentElement).getPropertyValue(t).trim() || raw0;
+    return /*#__PURE__*/React.createElement("div", {
+      key: t,
+      className: "token-row",
+      style: {
+        gridTemplateColumns: "180px 1fr 80px"
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("div", {
+      className: "t-caption",
+      style: {
+        marginTop: 2
+      }
+    }, use)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 80,
+        height: 60,
+        background: "white",
+        border: "1px solid var(--border-default)",
+        borderRadius: 6,
+        boxShadow: `var(${t})`
+      }
+    })), /*#__PURE__*/React.createElement("span", {
+      className: "t-mono",
+      style: {
+        color: "var(--text-muted)",
+        fontSize: 11
+      }
+    }, raw));
+  })), /*#__PURE__*/React.createElement("div", {
     className: "callout",
     style: {
       marginTop: 16
@@ -16137,7 +16087,7 @@ const StrokeRules = () => /*#__PURE__*/React.createElement("div", {
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, "Icons inside a label use ", /*#__PURE__*/React.createElement("code", null, "display: inline-flex"), " + ", /*#__PURE__*/React.createElement("code", null, "gap: 6px"), " with the parent: never margins. Vertically centered to the cap-height, not the baseline.")));
+}, "Icons inside a label use ", /*#__PURE__*/React.createElement("code", null, "display: inline-flex"), " + ", /*#__PURE__*/React.createElement("code", null, "gap: 4px"), " with the parent: never margins. Vertically centered to the cap-height, not the baseline.")));
 const A11yIconRules = () => /*#__PURE__*/React.createElement("div", {
   className: "grid-2"
 }, /*#__PURE__*/React.createElement("div", {
@@ -16248,7 +16198,7 @@ const IconographySection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, "lucide@0.469.0"), " as its canonical icon library. Pinned, loaded as the UMD bundle, and resolved through a thin alias map. No second icon library ships with the product. New icons either come from Lucide or go through an RFC."), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `<!-- Load order: before chrome.js, after Tailwind -->
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"><\/script>
 
 // app/ui/icons/lucide.ts: single source of truth for aliases + sizes
 export const LUCIDE_NAMES = {
@@ -16324,7 +16274,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
   style: {
     display: "flex",
     alignItems: "center",
-    gap: 10,
+    gap: 8,
     padding: "8px 12px",
     borderTop: "1px solid var(--border-subtle)"
   }
@@ -16336,7 +16286,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
     alignItems: "center",
     justifyContent: "center",
     color: "var(--slate-700)",
-    background: "var(--slate-50)",
+    background: "var(--slate-050)",
     borderRadius: "var(--radius-sm)",
     flexShrink: 0
   }
@@ -16398,7 +16348,7 @@ const DensityComparison = () => {
   }, /*#__PURE__*/React.createElement("div", {
     className: "ds-density-head",
     style: {
-      padding: density === "compact" ? "10px 14px" : "14px 16px"
+      padding: density === "compact" ? "12px 16px" : "16px 16px"
     }
   }, /*#__PURE__*/React.createElement("strong", {
     style: {
@@ -16423,12 +16373,12 @@ const DensityComparison = () => {
   }, "Speed"), /*#__PURE__*/React.createElement("th", null, "Heading"), /*#__PURE__*/React.createElement("th", null, "Status"))), /*#__PURE__*/React.createElement("tbody", null, rows.map(r => /*#__PURE__*/React.createElement("tr", {
     key: r[0],
     style: {
-      "--row-pad": density === "compact" ? "5px 12px" : "12px 12px"
+      "--row-pad": density === "compact" ? "8px 12px" : "12px 12px"
     }
   }, r.map((c, i) => /*#__PURE__*/React.createElement("td", {
     key: i,
     style: {
-      padding: density === "compact" ? "5px 12px" : "12px 12px",
+      padding: density === "compact" ? "8px 12px" : "12px 12px",
       fontSize: density === "compact" ? 12 : 13
     },
     className: i === 3 ? "num" : ""
@@ -16452,7 +16402,7 @@ const DensityComparison = () => {
 };
 const DensityTokenMatrix = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Element"), /*#__PURE__*/React.createElement("th", null, "Comfortable"), /*#__PURE__*/React.createElement("th", null, "Compact"), /*#__PURE__*/React.createElement("th", null, "How it's wired"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Row padding (table, list)"), /*#__PURE__*/React.createElement("td", null, "12 px y"), /*#__PURE__*/React.createElement("td", null, "5\u20136 px y"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ".ds-table.is-comfy"), " / ", /*#__PURE__*/React.createElement("code", null, ".ds-table.is-compact"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body font size"), /*#__PURE__*/React.createElement("td", null, "13 px"), /*#__PURE__*/React.createElement("td", null, "12.5 px"), /*#__PURE__*/React.createElement("td", null, "Inherited via row class")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Card padding"), /*#__PURE__*/React.createElement("td", null, "16 px"), /*#__PURE__*/React.createElement("td", null, "12 px"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "[data-density=\"compact\"] .ds-card-body"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Gap between siblings"), /*#__PURE__*/React.createElement("td", null, "16 px (", /*#__PURE__*/React.createElement("code", null, "--space-5"), ")"), /*#__PURE__*/React.createElement("td", null, "12 px (", /*#__PURE__*/React.createElement("code", null, "--space-4"), ")"), /*#__PURE__*/React.createElement("td", null, "Utility ", /*#__PURE__*/React.createElement("code", null, ".gap-density"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Section vertical padding"), /*#__PURE__*/React.createElement("td", null, "20 px"), /*#__PURE__*/React.createElement("td", null, "12 px"), /*#__PURE__*/React.createElement("td", null, "Utility ", /*#__PURE__*/React.createElement("code", null, ".py-density"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Sidebar nav item"), /*#__PURE__*/React.createElement("td", null, "10 px y"), /*#__PURE__*/React.createElement("td", null, "6 px y"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "[data-density] .ds-sidebar-item"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Form field height"), /*#__PURE__*/React.createElement("td", null, "32 px (md)"), /*#__PURE__*/React.createElement("td", null, "28 px (sm)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-input"), " + size class")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Button default size"), /*#__PURE__*/React.createElement("td", null, "md (32 px)"), /*#__PURE__*/React.createElement("td", null, "sm (28 px)"), /*#__PURE__*/React.createElement("td", null, "Component sets default from density context"))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Element"), /*#__PURE__*/React.createElement("th", null, "Comfortable"), /*#__PURE__*/React.createElement("th", null, "Compact"), /*#__PURE__*/React.createElement("th", null, "How it's wired"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Row padding (table, list)"), /*#__PURE__*/React.createElement("td", null, "12 px y"), /*#__PURE__*/React.createElement("td", null, "8 px y"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ".ds-table.is-comfy"), " / ", /*#__PURE__*/React.createElement("code", null, ".ds-table.is-compact"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body font size"), /*#__PURE__*/React.createElement("td", null, "13 px"), /*#__PURE__*/React.createElement("td", null, "12.5 px"), /*#__PURE__*/React.createElement("td", null, "Inherited via row class")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Card padding"), /*#__PURE__*/React.createElement("td", null, "16 px"), /*#__PURE__*/React.createElement("td", null, "12 px"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "[data-density=\"compact\"] .ds-card-body"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Gap between siblings"), /*#__PURE__*/React.createElement("td", null, "16 px (", /*#__PURE__*/React.createElement("code", null, "--space-4"), ")"), /*#__PURE__*/React.createElement("td", null, "12 px (", /*#__PURE__*/React.createElement("code", null, "--space-3"), ")"), /*#__PURE__*/React.createElement("td", null, "Utility ", /*#__PURE__*/React.createElement("code", null, ".gap-density"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Section vertical padding"), /*#__PURE__*/React.createElement("td", null, "20 px"), /*#__PURE__*/React.createElement("td", null, "12 px"), /*#__PURE__*/React.createElement("td", null, "Utility ", /*#__PURE__*/React.createElement("code", null, ".py-density"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Sidebar nav item"), /*#__PURE__*/React.createElement("td", null, "8 px y"), /*#__PURE__*/React.createElement("td", null, "4 px y"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "[data-density] .ds-sidebar-item"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Form field height"), /*#__PURE__*/React.createElement("td", null, "32 px (md)"), /*#__PURE__*/React.createElement("td", null, "28 px (sm)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-input"), " + size class")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Button default size"), /*#__PURE__*/React.createElement("td", null, "md (32 px)"), /*#__PURE__*/React.createElement("td", null, "sm (28 px)"), /*#__PURE__*/React.createElement("td", null, "Component sets default from density context"))));
 const DensityDefaults = () => /*#__PURE__*/React.createElement("div", {
   className: "panel"
 }, [["Surface", "Default density", "Why"]].map(() => null), [["Dashboards (Marine, Aviation, etc.)", "comfortable", "Information-light tiles; visual hierarchy comes from whitespace."], ["Detail pages (Vessel, Aircraft, Port)", "comfortable", "Reading mode: operators dwell on individual records."], ["List + search (Assets, Companies)", "compact", "Operator scans 50+ rows; row count beats whitespace."], ["Tables inside cards (alerts, history)", "compact", "Local density: table compresses without affecting outer card."], ["Map popovers", "compact", "Constrained 300 px width; every line counts."], ["Reports & exports", "comfortable", "Print medium; whitespace reads as quality."], ["Modals & overlays", "comfortable", "Single task focus."]].map(([s, d, w]) => /*#__PURE__*/React.createElement("div", {
@@ -16717,7 +16667,7 @@ const MotionRules = () => /*#__PURE__*/React.createElement("div", {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Data values. A KPI counter never animates from 0 to the real number."), /*#__PURE__*/React.createElement("li", null, "Map basemap. Tile fade is the library default; we don't add to it."), /*#__PURE__*/React.createElement("li", null, "Page-level layout (sidebar collapse is the only exception)."), /*#__PURE__*/React.createElement("li", null, "Alert glyphs. A live alert pulses; it doesn't slide into view."), /*#__PURE__*/React.createElement("li", null, "Anything during a print or PDF export.")))));
 const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -16788,7 +16738,7 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, cp), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
-    marginTop: 6,
+    marginTop: 4,
     marginBottom: 0
   }
 }, where)))))), /*#__PURE__*/React.createElement("div", {
@@ -16857,14 +16807,14 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
     background: "var(--white)",
     border: "1px solid var(--border-default)",
     borderRadius: "var(--radius-md)",
-    padding: "8px 14px"
+    padding: "8px 16px"
   }
 }, Array.from({
   length: 24
 }).map((_, i) => /*#__PURE__*/React.createElement("div", {
   key: i,
   style: {
-    padding: "7px 0",
+    padding: "8px 0",
     borderBottom: i < 23 ? "1px solid var(--border-subtle)" : "none",
     fontSize: 13,
     color: "var(--text-secondary)",
@@ -16880,7 +16830,7 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, (12 + i * 0.3).toFixed(1), " kn")))), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
   style: {
-    marginTop: 6
+    marginTop: 4
   }
 }, "Scroll the panel: thumb is ", /*#__PURE__*/React.createElement("code", {
   style: {
@@ -16984,7 +16934,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Code blocks"), ", top-right toolbar with language pill + Copy button, on every ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -17005,7 +16955,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "Preserves source whitespace & indentation (raw ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -17015,7 +16965,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   className: "t-caption",
   style: {
     marginTop: 16,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "Try it: hover any token to see the chip:"), /*#__PURE__*/React.createElement("div", {
   className: "panel"
@@ -17029,7 +16979,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   style: {
     color: "var(--text-muted)"
   }
-}, "#2d7ffb"), /*#__PURE__*/React.createElement("span", {
+}, "#1485c5"), /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
 }, "Primary action / key headings")), /*#__PURE__*/React.createElement("div", {
   className: "token-row",
@@ -17059,7 +17009,7 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   className: "t-caption",
   style: {
     marginTop: 16,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "API: opt-in copy for arbitrary nodes:"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
@@ -17075,12 +17025,12 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   className: "t-caption",
   style: {
     marginTop: 16,
-    marginBottom: 6
+    marginBottom: 4
   }
 }, "Integration: single script, zero refactor:"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `<!-- In your shell HTML, after the docs render -->
-<script src="copy-utilities.js" defer></script>
+<script src="copy-utilities.js" defer><\/script>
 
 /* The module:
    1. Scans the DOM on load
@@ -17146,13 +17096,6 @@ const HandoffSection = () => /*#__PURE__*/React.createElement(React.Fragment, nu
   --bg-surface: #FFFFFF;
   --text-primary: var(--slate-900);
   --border-default: var(--slate-200);
-}
-
-/* dark mode swaps semantics only, see the Dark mode chapter */
-[data-theme="dark"] {
-  --bg-surface: #121A2A;
-  --text-primary: #F3F4F6;
-  --border-default: #2B3854;
 }`)), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
@@ -17259,7 +17202,7 @@ export default {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.6,
     color: "var(--text-secondary)"
@@ -17281,12 +17224,12 @@ export default {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     lineHeight: 1.6,
     color: "var(--text-secondary)"
   }
-}, /*#__PURE__*/React.createElement("li", null, "Highcharts theme: wrap charts to consume tokens."), /*#__PURE__*/React.createElement("li", null, "Leaflet map controls: match Button system."), /*#__PURE__*/React.createElement("li", null, "DataTable virtualization & column-resize ergonomics."), /*#__PURE__*/React.createElement("li", null, "Dark mode (semantic-only swap; the architecture supports it)."), /*#__PURE__*/React.createElement("li", null, "Removing styled-components entirely (after module sweep).")))))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("li", null, "Highcharts theme: wrap charts to consume tokens."), /*#__PURE__*/React.createElement("li", null, "Leaflet map controls: match Button system."), /*#__PURE__*/React.createElement("li", null, "DataTable virtualization & column-resize ergonomics."), /*#__PURE__*/React.createElement("li", null, "Removing styled-components entirely (after module sweep).")))))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -17380,7 +17323,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, "Skytek")), /*#__PURE__*/React.createElement("div", {
   style: {
     padding: "12px 0 4px 20px",
-    fontSize: 10,
+    fontSize: 11,
     color: "var(--text-muted)",
     textTransform: "uppercase",
     letterSpacing: "0.06em"
@@ -17408,7 +17351,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }), " Portfolios"), /*#__PURE__*/React.createElement("div", {
   style: {
     padding: "12px 0 4px 20px",
-    fontSize: 10,
+    fontSize: 11,
     color: "var(--text-muted)",
     textTransform: "uppercase",
     letterSpacing: "0.06em"
@@ -17468,7 +17411,10 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
     overflow: "hidden"
   }
 }, /*#__PURE__*/React.createElement("h2", {
-  className: "t-h1"
+  className: "t-h1",
+  style: {
+    margin: 0
+  }
 }, "Dashboard"), /*#__PURE__*/React.createElement("p", {
   className: "t-caption"
 }, "Page content scrolls inside this region only."), /*#__PURE__*/React.createElement("div", {
@@ -17495,7 +17441,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
     padding: "12px 20px",
     display: "flex",
     alignItems: "center",
-    gap: 6,
+    gap: 4,
     fontSize: 12,
     color: "var(--text-muted)"
   }
@@ -17521,7 +17467,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, "Atlantic Hull 2026"), /*#__PURE__*/React.createElement("div", {
   className: "row",
   style: {
-    marginTop: 6
+    marginTop: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "ds-badge ds-badge--success ds-badge--dot"
@@ -17644,7 +17590,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, /*#__PURE__*/React.createElement("strong", null, "Rule:"), " Labels above fields. Two-column only when fields are short and naturally paired (codes, dates, currencies). Long fields (descriptions, notes) span full width.")));
 const InteractionSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "State"), /*#__PURE__*/React.createElement("th", null, "Visual change"), /*#__PURE__*/React.createElement("th", null, "Token"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Hover")), /*#__PURE__*/React.createElement("td", null, "Background steps one shade up. No size or border-width change."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-fast (140ms)"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active / Pressed")), /*#__PURE__*/React.createElement("td", null, "Background steps one shade darker. Visual stays inside element bounds."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-instant (80ms)"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Focus-visible")), /*#__PURE__*/React.createElement("td", null, "3px ring at ", /*#__PURE__*/React.createElement("code", null, "rgba(46,134,192,0.32)"), ". Always visible on keyboard navigation."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--shadow-focus"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Disabled")), /*#__PURE__*/React.createElement("td", null, "Background ", /*#__PURE__*/React.createElement("code", null, "--slate-50"), ", text ", /*#__PURE__*/React.createElement("code", null, "--text-disabled"), ", no hover. Cursor not-allowed."), /*#__PURE__*/React.createElement("td", null, "\u2014")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Loading")), /*#__PURE__*/React.createElement("td", null, "Inline spinner inside button; outer chrome unchanged. For pages: skeleton frames (no spinner)."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-base"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error")), /*#__PURE__*/React.createElement("td", null, "Border ", /*#__PURE__*/React.createElement("code", null, "--danger-500"), ", message below field. No shake."), /*#__PURE__*/React.createElement("td", null, "\u2014")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Success (transient)")), /*#__PURE__*/React.createElement("td", null, "Toast top-center, 4s. Inline rows tint ", /*#__PURE__*/React.createElement("code", null, "--success-050"), " for 1.5s."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-slow"))))), /*#__PURE__*/React.createElement("div", {
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "State"), /*#__PURE__*/React.createElement("th", null, "Visual change"), /*#__PURE__*/React.createElement("th", null, "Token"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Hover")), /*#__PURE__*/React.createElement("td", null, "Background steps one shade up. No size or border-width change."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-fast (140ms)"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Active / Pressed")), /*#__PURE__*/React.createElement("td", null, "Background steps one shade darker. Visual stays inside element bounds."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-instant (80ms)"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Focus-visible")), /*#__PURE__*/React.createElement("td", null, "3px ring at ", /*#__PURE__*/React.createElement("code", null, "rgba(46,134,192,0.32)"), ". Always visible on keyboard navigation."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--shadow-focus"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Disabled")), /*#__PURE__*/React.createElement("td", null, "Background ", /*#__PURE__*/React.createElement("code", null, "--slate-050"), ", text ", /*#__PURE__*/React.createElement("code", null, "--text-disabled"), ", no hover. Cursor not-allowed."), /*#__PURE__*/React.createElement("td", null, "\u2014")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Loading")), /*#__PURE__*/React.createElement("td", null, "Inline spinner inside button; outer chrome unchanged. For pages: skeleton frames (no spinner)."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-base"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Error")), /*#__PURE__*/React.createElement("td", null, "Border ", /*#__PURE__*/React.createElement("code", null, "--danger-500"), ", message below field. No shake."), /*#__PURE__*/React.createElement("td", null, "\u2014")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Success (transient)")), /*#__PURE__*/React.createElement("td", null, "Toast top-center, 4s. Inline rows tint ", /*#__PURE__*/React.createElement("code", null, "--success-050"), " for 1.5s."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-slow"))))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -17657,7 +17603,7 @@ const InteractionSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Token"), /*#__PURE__*/React.createElement("th", null, "Duration"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-instant")), /*#__PURE__*/React.createElement("td", null, "80ms"), /*#__PURE__*/React.createElement("td", null, "Pressed states, checkbox toggles")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-fast")), /*#__PURE__*/React.createElement("td", null, "140ms"), /*#__PURE__*/React.createElement("td", null, "Hover, focus, button color change")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-base")), /*#__PURE__*/React.createElement("td", null, "200ms"), /*#__PURE__*/React.createElement("td", null, "Tooltips, popovers, expand/collapse")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-slow")), /*#__PURE__*/React.createElement("td", null, "320ms"), /*#__PURE__*/React.createElement("td", null, "Drawer / modal enter & exit"))))));
 const A11ySection = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified: see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets \u2265 44 \xD7 44px on mobile."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.5)"), /*#__PURE__*/React.createElement("td", null, "Use ", /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " on mobile breakpoints; row hit areas span the full row.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon, never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified: see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets at least 24 \xD7 24px everywhere; 44 \xD7 44px on touch screens."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.8, 24px); 2.5.5 (44px) is AAA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " is 40px: on touch, extend its hit area to 44px with padding or an invisible hit area; row hit areas span the full row.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon, never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
 window.LayoutSection = LayoutSection;
 window.InteractionSection = InteractionSection;
 window.A11ySection = A11ySection;
@@ -18157,7 +18103,7 @@ const ModalSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null, /
 }, "Install"), /*#__PURE__*/React.createElement("pre", {
   className: "code"
 }, `<link rel="stylesheet" href="components/rw-modal.css">
-<script src="components/rw-modal.js"></script>`), /*#__PURE__*/React.createElement("h4", {
+<script src="components/rw-modal.js"><\/script>`), /*#__PURE__*/React.createElement("h4", {
   className: "t-h4",
   style: {
     margin: "24px 0 8px"
@@ -18200,8 +18146,8 @@ RWModal.mount(overlay, { closeOnOverlayClick: true, closeOnEsc: true });`), /*#_
   className: "code"
 }, `const ok = await RWModal.confirm({ title: 'Delete?', message: 'Cannot be undone.', danger: true });
 
-:root { --rw-modal-radius: 8px; --rw-modal-primary: #15803d; --rw-modal-w-md: 560px; }`)), /*#__PURE__*/React.createElement("style", null, `
-      .ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 5px; border-radius: 4px;
+:root { --rw-modal-radius: 8px; --rw-modal-primary: #0f766e; --rw-modal-w-md: 560px; }`)), /*#__PURE__*/React.createElement("style", null, `
+      .ms-kbd { font-family: var(--font-mono); font-size: 11px; line-height: 1; padding: 2px 4px; border-radius: 4px;
         background: var(--slate-100); border: 1px solid var(--border-default); border-bottom-width: 2px; color: var(--text-secondary); }
       .ms-demo-row { display: flex; flex-wrap: wrap; gap: 28px; }
       .ms-demo-grp { display: flex; flex-direction: column; gap: 8px; }
@@ -18561,7 +18507,7 @@ const PopoverSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "inline"
 }, "--radius-lg"), ", ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--card-shadow-raised"), ". Border ", /*#__PURE__*/React.createElement("em", null, "and"), " shadow: the border is what separates it from the page in dark mode.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "--card-shadow-raised"), ". Border ", /*#__PURE__*/React.createElement("em", null, "and"), " shadow: the border separates it from the page, the shadow lifts it.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "-head")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
@@ -18730,7 +18676,7 @@ const PopoverSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "On open, focus moves to the ", /*#__PURE__*/React.createElement("strong", null, "first focusable element"), ", or the panel itself (", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -18968,7 +18914,7 @@ interface PopoverProps {
   className: "t-caption"
 }, "Transition drops to 1ms and the travel/scale is removed.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Contrast")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
-}, "Panel border carries the edge in both themes; on dark the raised surface is one step lighter than the page rather than relying on shadow."))))), /*#__PURE__*/React.createElement("div", {
+}, "The panel border carries the edge; the shadow adds lift."))))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
 }, /*#__PURE__*/React.createElement("h3", {
   className: "subsection-title"
@@ -19067,7 +19013,7 @@ interface PopoverProps {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     color: "var(--text-secondary)",
     lineHeight: 1.7
@@ -19090,7 +19036,7 @@ interface PopoverProps {
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     color: "var(--text-secondary)",
     lineHeight: 1.7
@@ -19105,7 +19051,7 @@ interface PopoverProps {
   className: "ord"
 }, "11")), /*#__PURE__*/React.createElement("div", {
   className: "panel"
-}, [["--popover-bg", "var(--bg-raised)", "Panel fill: one step above the page"], ["--popover-border", "var(--border-default)", "Edge, carries separation in dark"], ["--popover-radius", "var(--radius-lg)", "Corner radius"], ["--popover-shadow", "var(--card-shadow-raised)", "Elevation"], ["--popover-pad", "14px", "Head / body / foot padding"], ["--popover-gap", "10px", "Body flex gap"], ["--popover-width-sm", "240px", "Menu, info, confirm"], ["--popover-width-md", "300px", "Default: forms"], ["--popover-width-lg", "380px", "Rich preview cards"], ["--popover-max-height", "420px", "Body scroll threshold"], ["--popover-arrow", "6px", "Half the arrow square"], ["--popover-offset", "8px", "Gap from trigger"], ["--popover-motion", "var(--motion-fast)", "Transition duration"], ["--popover-ease", "var(--ease-emphasis)", "Enter easing"], ["--z-popover", "1050", "Above page, below modal"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
+}, [["--popover-bg", "var(--bg-raised)", "Panel fill: one step above the page"], ["--popover-border", "var(--border-default)", "Edge; carries separation from the page"], ["--popover-radius", "var(--radius-lg)", "Corner radius"], ["--popover-shadow", "var(--card-shadow-raised)", "Elevation"], ["--popover-pad", "14px", "Head / body / foot padding"], ["--popover-gap", "10px", "Body flex gap"], ["--popover-width-sm", "240px", "Menu, info, confirm"], ["--popover-width-md", "300px", "Default: forms"], ["--popover-width-lg", "380px", "Rich preview cards"], ["--popover-max-height", "420px", "Body scroll threshold"], ["--popover-arrow", "6px", "Half the arrow square"], ["--popover-offset", "8px", "Gap from trigger"], ["--popover-motion", "var(--motion-fast)", "Transition duration"], ["--popover-ease", "var(--ease-emphasis)", "Enter easing"], ["--z-popover", "1050", "Above page, below modal"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
   key: t,
   className: "token-row",
   style: {
@@ -19365,7 +19311,7 @@ const LoadingStatesDemo = () => /*#__PURE__*/React.createElement("div", {
     flex: 1,
     display: "flex",
     flexDirection: "column",
-    gap: 6
+    gap: 4
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "ds-skel-block",
@@ -19397,7 +19343,7 @@ const LoadingStatesDemo = () => /*#__PURE__*/React.createElement("div", {
   style: {
     display: "flex",
     flexDirection: "column",
-    gap: 10
+    gap: 8
   }
 }, /*#__PURE__*/React.createElement("span", {
   className: "ds-skel-block",
@@ -19443,7 +19389,7 @@ const LoadingStatesDemo = () => /*#__PURE__*/React.createElement("div", {
   }
 }), /*#__PURE__*/React.createElement("span", {
   style: {
-    marginLeft: 10,
+    marginLeft: 8,
     fontSize: 13,
     color: "var(--text-secondary)"
   }
@@ -19455,7 +19401,7 @@ const StateChoiceFlow = () => /*#__PURE__*/React.createElement("div", {
   className: "callout"
 }, /*#__PURE__*/React.createElement("strong", null, "Picking the right state: decision flow:"), /*#__PURE__*/React.createElement("ol", {
   style: {
-    margin: "8px 0 0 18px",
+    margin: "8px 0 0 16px",
     padding: 0,
     lineHeight: 1.7,
     fontSize: 13
@@ -19604,7 +19550,7 @@ const SemVerCard = ({
 }, kind === "major" ? "MAJOR · X.0.0" : kind === "minor" ? "MINOR · 1.X.0" : "PATCH · 1.0.X"), /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, examples.map((e, i) => /*#__PURE__*/React.createElement("li", {
   key: i
@@ -19727,7 +19673,7 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "One ", /*#__PURE__*/React.createElement("strong", null, "minor"), " cycle of warning (e.g. 1.4 \u2192 1.5)."), /*#__PURE__*/React.createElement("li", null, "Removed in the next ", /*#__PURE__*/React.createElement("strong", null, "major"), ". Never sooner."), /*#__PURE__*/React.createElement("li", null, "Codemod ships in the same release that marks the deprecation.")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -19745,7 +19691,7 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("code", null, "@deprecated"), " JSDoc on the export (TS surfaces it in autocomplete)."), /*#__PURE__*/React.createElement("li", null, "Runtime ", /*#__PURE__*/React.createElement("code", null, "console.warn"), " on first use in dev, once per session."), /*#__PURE__*/React.createElement("li", null, "Status pill in Storybook + this spec table flips to ", /*#__PURE__*/React.createElement("span", {
   className: "steward-status steward-status--deprecated"
@@ -19808,7 +19754,7 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     color: "var(--text-secondary)"
   }
 }, /*#__PURE__*/React.createElement("li", null, "Can it be built by composing existing primitives?"), /*#__PURE__*/React.createElement("li", null, "Does it appear in \u2265 2 modules, or is it a one-off?"), /*#__PURE__*/React.createElement("li", null, "Does it duplicate a Highcharts / Leaflet / radix-ui feature?"), /*#__PURE__*/React.createElement("li", null, "Will a designer commit to owning its Story canon?")), /*#__PURE__*/React.createElement("p", {
@@ -19833,7 +19779,7 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     color: "var(--text-secondary)"
   }
 }, /*#__PURE__*/React.createElement("li", null, "RFC merged (if API change)."), /*#__PURE__*/React.createElement("li", null, "Storybook story per variant \xD7 size \xD7 state."), /*#__PURE__*/React.createElement("li", null, "axe passes \xB7 keyboard happy path works."), /*#__PURE__*/React.createElement("li", null, "Tokens only: no raw hex, no magic ", /*#__PURE__*/React.createElement("code", null, "px"), " outside the scale."), /*#__PURE__*/React.createElement("li", null, "Bundle size delta \u2264 budget."), /*#__PURE__*/React.createElement("li", null, "Changelog label set (", /*#__PURE__*/React.createElement("code", null, "type:breaking"), " / ", /*#__PURE__*/React.createElement("code", null, "feature"), " / ", /*#__PURE__*/React.createElement("code", null, "fix"), ")."), /*#__PURE__*/React.createElement("li", null, "Codemod added if deprecating anything.")))))), /*#__PURE__*/React.createElement("div", {
@@ -21092,10 +21038,10 @@ toast('23 vessels archived', {
         .ts-demo-grp { display: flex; flex-direction: column; gap: 8px; }
         .dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .dodont > div { border: 1px solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; padding: 0; }
-        .dd-head { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 16px; }
+        .dd-head { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 16px; }
         .dd-do   { background: var(--success-050); color: var(--success-700); }
         .dd-dont { background: var(--danger-050); color: var(--danger-700); }
-        .dd-list { margin: 0; padding: 12px 16px 14px 32px; font-size: 13px; line-height: 1.6; color: var(--text-primary); }
+        .dd-list { margin: 0; padding: 12px 16px 16px 32px; font-size: 13px; line-height: 1.6; color: var(--text-primary); }
         .dd-list li { margin-bottom: 4px; }
         @media (max-width: 720px) { .dodont { grid-template-columns: 1fr; } }
       `));
@@ -21112,19 +21058,19 @@ try { (() => {
 const TOKEN_CATALOG = [
 // [name, type, value, where]
 // Color · Brand
-["--brand-700", "color", "#1f5fc7", "Pressed / active state (buttons, links)"], ["--brand-600", "color", "#2d7ffb", "Primary action, key headings, link hover"], ["--brand-500", "color", "#51a2fc", "Hover/highlight, default link"], ["--brand-400", "color", "#8ec5fd", "Accent, focus rings"], ["--brand-300", "color", "#bfdbfe", "Decorative, subtle accent"], ["--brand-100", "color", "#dbeafe", "Tint backgrounds"], ["--brand-050", "color", "#eff6ff", "Lightest brand tint"],
+["--brand-800", "color", "#0d5580", "Primary hover / pressed; text on brand tints (7.99:1)"], ["--brand-700", "color", "#0f6aa0", "Primary button fill; links (5.85:1 on white)"], ["--brand-600", "color", "#1485c5", "Focus ring, selected states, large text / UI (4.05:1)"], ["--brand-500", "color", "#1a92d1", "Hover / highlight (non-text on white)"], ["--brand-400", "color", "#43a8df", "Accent, non-text marks"], ["--brand-300", "color", "#84c5ec", "Decorative, subtle accent"], ["--brand-200", "color", "#b8ddf5", "Light tint, selected-row borders"], ["--brand-100", "color", "#dceffb", "Tint backgrounds"], ["--brand-050", "color", "#eff8fd", "Lightest brand tint"],
 // Color · Slate
-["--slate-950", "color", "#0B1220", "Deepest text, dark surface base"], ["--slate-900", "color", "#111827", "Primary text"], ["--slate-800", "color", "#1F2937", "Dark surface variant"], ["--slate-700", "color", "#374151", "Secondary text on white"], ["--slate-600", "color", "#4B5563", "Secondary text mapping"], ["--slate-500", "color", "#6B7280", "Muted text"], ["--slate-400", "color", "#9CA3AF", "Disabled text, placeholders"], ["--slate-300", "color", "#D1D5DB", "Strong borders"], ["--slate-200", "color", "#E5E7EB", "Default borders"], ["--slate-150", "color", "#ECEEF2", "Subtle borders"], ["--slate-100", "color", "#F3F4F6", "Muted surfaces"], ["--slate-50", "color", "#F9FAFB", "App background, sunken rows"], ["--white", "color", "#FFFFFF", "Cards, modals, raised surfaces"],
+["--slate-950", "color", "#0B1220", "Deepest text, dark surface base"], ["--slate-900", "color", "#111827", "Primary text"], ["--slate-800", "color", "#1F2937", "Dark surface variant"], ["--slate-700", "color", "#374151", "Secondary text on white"], ["--slate-600", "color", "#4B5563", "Secondary text mapping"], ["--slate-500", "color", "#6B7280", "Muted text"], ["--slate-400", "color", "#9CA3AF", "Disabled text, placeholders"], ["--slate-300", "color", "#D1D5DB", "Strong borders"], ["--slate-200", "color", "#E5E7EB", "Default borders"], ["--slate-150", "color", "#ECEEF2", "Subtle borders"], ["--slate-100", "color", "#F3F4F6", "Muted surfaces"], ["--slate-050", "color", "#F9FAFB", "App background, muted surfaces, sunken rows"], ["--white", "color", "#FFFFFF", "Cards, modals, raised surfaces"],
 // Color · Status
 ["--success-700", "color", "#15803D", "Success text, success badges"], ["--success-500", "color", "#16A34A", "Success fill, OK glyph border"], ["--success-100", "color", "#DCFCE7", "Success badge bg"], ["--success-050", "color", "#F0FDF4", "Success alert bg"], ["--warning-700", "color", "#B45309", "Warning text, warning badges"], ["--warning-500", "color", "#D97706", "Warning fill, alert glyph border"], ["--warning-100", "color", "#FEF3C7", "Warning badge bg"], ["--warning-050", "color", "#FFFBEB", "Warning alert bg"], ["--danger-800", "color", "#991B1B", "Danger button pressed / active state"], ["--danger-700", "color", "#B91C1C", "Danger text, danger badges"], ["--danger-500", "color", "#DC2626", "Danger fill, danger glyph border"], ["--danger-100", "color", "#FEE2E2", "Danger badge bg"], ["--danger-050", "color", "#FEF2F2", "Danger alert bg"], ["--info-700", "color", "#1D4ED8", "Info text, info badges"], ["--info-500", "color", "#2563EB", "Info fill"], ["--info-100", "color", "#DBEAFE", "Info badge bg"], ["--info-050", "color", "#EFF6FF", "Info alert bg"],
 // Color · Rating (locked)
 ["--rating-a", "color", "#2E7D4F", "Risk rating A (best). Locked: domain semantic."], ["--rating-b", "color", "#6FA84A", "Risk rating B"], ["--rating-c", "color", "#C9A227", "Risk rating C"], ["--rating-d", "color", "#D97706", "Risk rating D"], ["--rating-e", "color", "#C0392B", "Risk rating E (worst)"],
 // Semantic · surfaces
-["--bg-app", "semantic", "var(--slate-50)", "Default page background"], ["--bg-canvas", "semantic", "#F5F7FA", "Map / dashboard canvas"], ["--bg-surface", "semantic", "var(--white)", "Cards, modals, panels"], ["--bg-raised", "semantic", "var(--white)", "Elevated surfaces"], ["--bg-sunken", "semantic", "var(--slate-50)", "Form rows, inset blocks"], ["--bg-muted", "semantic", "var(--slate-100)", "Disabled, placeholders"], ["--bg-inverse", "semantic", "var(--slate-900)", "Dark surfaces, tooltips"], ["--border-subtle", "semantic", "var(--slate-150)", "Internal dividers"], ["--border-default", "semantic", "var(--slate-200)", "Cards, inputs, buttons"], ["--border-strong", "semantic", "var(--slate-300)", "Hover, emphasized"], ["--border-info", "semantic", "color-mix(in srgb, var(--info-500) 18%, transparent)", "Info badge / alert border"], ["--border-success", "semantic", "color-mix(in srgb, var(--success-500) 18%, transparent)", "Success badge / alert border"], ["--border-warning", "semantic", "color-mix(in srgb, var(--warning-500) 20%, transparent)", "Warning badge / alert border"], ["--border-danger", "semantic", "color-mix(in srgb, var(--danger-500) 18%, transparent)", "Danger badge / alert border"],
+["--bg-app", "semantic", "var(--slate-050)", "Default page background"], ["--bg-canvas", "semantic", "#F5F7FA", "Map / dashboard canvas"], ["--bg-surface", "semantic", "var(--white)", "Cards, modals, panels"], ["--bg-raised", "semantic", "var(--white)", "Elevated surfaces"], ["--bg-sunken", "semantic", "var(--slate-050)", "Form rows, inset blocks"], ["--bg-muted", "semantic", "var(--slate-100)", "Disabled, placeholders"], ["--bg-inverse", "semantic", "var(--slate-900)", "Dark surfaces, tooltips"], ["--border-subtle", "semantic", "var(--slate-150)", "Internal dividers"], ["--border-default", "semantic", "var(--slate-200)", "Cards, inputs, buttons"], ["--border-strong", "semantic", "var(--slate-300)", "Hover, emphasized"], ["--border-info", "semantic", "color-mix(in srgb, var(--info-500) 18%, transparent)", "Info badge / alert border"], ["--border-success", "semantic", "color-mix(in srgb, var(--success-500) 18%, transparent)", "Success badge / alert border"], ["--border-warning", "semantic", "color-mix(in srgb, var(--warning-500) 20%, transparent)", "Warning badge / alert border"], ["--border-danger", "semantic", "color-mix(in srgb, var(--danger-500) 18%, transparent)", "Danger badge / alert border"],
 // Semantic · text
 ["--text-primary", "semantic", "var(--slate-900)", "Body, headings"], ["--text-secondary", "semantic", "var(--slate-600)", "Supporting copy"], ["--text-muted", "semantic", "var(--slate-500)", "Help, captions, meta"], ["--text-disabled", "semantic", "var(--slate-400)", "Disabled controls"], ["--text-inverse", "semantic", "var(--white)", "On dark surfaces"], ["--text-link", "semantic", "var(--brand-500)", "Inline links"], ["--text-on-brand", "semantic", "var(--white)", "On primary buttons"],
 // Type
-["--font-sans", "type", "Inter · system-ui", "Default body family"], ["--font-display", "type", "Exo · Inter · Lato · system-ui", "Headings, titles"], ["--font-mono", "type", "JetBrains Mono · SF Mono", "Code, numbers, tokens"],
+["--font-sans", "type", "Inter · Open Sans · system-ui", "Default body family"], ["--font-display", "type", "Exo · Inter · Lato · system-ui", "Headings, titles"], ["--font-mono", "type", "JetBrains Mono · SF Mono", "Code, numbers, tokens"],
 // Spacing
 ["--space-0", "spacing", "0", "Zero rail"], ["--space-1", "spacing", "4px", "Tight inline gap"], ["--space-2", "spacing", "8px", "Default inline gap"], ["--space-3", "spacing", "12px", "Compact group gap"], ["--space-4", "spacing", "16px", "Default group gap (sibling default)"], ["--space-5", "spacing", "20px", "Section interior"], ["--space-6", "spacing", "24px", "Card / panel padding"], ["--space-7", "spacing", "32px", "Major break between content blocks"], ["--space-8", "spacing", "40px", "Hero / module padding"], ["--space-9", "spacing", "48px", "Page section padding (small viewport)"], ["--space-10", "spacing", "64px", "Page section padding (default)"], ["--space-11", "spacing", "96px", "Empty-state padding, marketing hero"],
 // Radius
@@ -21134,11 +21080,11 @@ const TOKEN_CATALOG = [
 // Motion
 ["--motion-instant", "motion", "80ms", "Microinteraction: button press, switch tick"], ["--motion-fast", "motion", "140ms", "Hover, focus, color transitions"], ["--motion-base", "motion", "200ms", "Component-level: dropdown, popover, tab"], ["--motion-slow", "motion", "320ms", "Layout: modal mount, drawer, page reveal"], ["--ease-out", "motion", "cubic-bezier(0.16, 1, 0.3, 1)", "Default: enters, reveals"], ["--ease-in-out", "motion", "cubic-bezier(0.4, 0, 0.2, 1)", "Reversible transitions"], ["--ease-emphasis", "motion", "cubic-bezier(0.34, 1.2, 0.64, 1)", "Tab pill, selection: overshoots slightly"],
 // Z-index
-["--z-base", "z-index", "1", "Default stacking"], ["--z-sticky", "z-index", "100", "Sticky headers, scrolling chrome"], ["--z-overlay", "z-index", "1000", "Popovers, dropdowns"], ["--z-modal", "z-index", "1100", "Modals"], ["--z-toast", "z-index", "1200", "Toasts (always on top)"],
+["--z-base", "z-index", "1", "Default stacking. Local stacking (−1 to 60) is allowed only inside one component or the documentation chrome, never across components; Leaflet panes keep Leaflet’s own values (e.g. 400). Everything that overlays other UI uses the scale below."], ["--z-sticky", "z-index", "100", "Sticky headers, scrolling chrome"], ["--z-overlay", "z-index", "1000", "Overlays and scrims under a modal"], ["--z-popover", "z-index", "1050", "Popovers, dropdowns, menus"], ["--z-modal", "z-index", "1100", "Modals"], ["--z-toast", "z-index", "1200", "Toasts: above modals"], ["--z-tooltip", "z-index", "1300", "Tooltips: the top layer"],
 // Chart palette · categorical
-["--chart-cat-1", "chart", "#2d7ffb", "Series 1: primary blue"], ["--chart-cat-2", "chart", "#D97706", "Series 2: amber"], ["--chart-cat-3", "chart", "#16A34A", "Series 3: green"], ["--chart-cat-4", "chart", "#9333EA", "Series 4: purple"], ["--chart-cat-5", "chart", "#DB2777", "Series 5: pink"], ["--chart-cat-6", "chart", "#0891B2", "Series 6: cyan"], ["--chart-cat-7", "chart", "#65A30D", "Series 7: lime"], ["--chart-cat-8", "chart", "#475569", "Series 8: slate"],
+["--chart-cat-1", "chart", "#1485c5", "Series 1: brand blue"], ["--chart-cat-2", "chart", "#D97706", "Series 2: amber"], ["--chart-cat-3", "chart", "#16A34A", "Series 3: green"], ["--chart-cat-4", "chart", "#9333EA", "Series 4: purple"], ["--chart-cat-5", "chart", "#DB2777", "Series 5: pink"], ["--chart-cat-6", "chart", "#0891B2", "Series 6: cyan"], ["--chart-cat-7", "chart", "#65A30D", "Series 7: lime"], ["--chart-cat-8", "chart", "#475569", "Series 8: slate"],
 // Chart · sequential
-["--chart-seq-1", "chart", "#eff6ff", "Sequential ramp · low"], ["--chart-seq-2", "chart", "#dbeafe", "Sequential ramp"], ["--chart-seq-3", "chart", "#bfdbfe", "Sequential ramp"], ["--chart-seq-4", "chart", "#8ec5fd", "Sequential ramp"], ["--chart-seq-5", "chart", "#51a2fc", "Sequential ramp"], ["--chart-seq-6", "chart", "#2d7ffb", "Sequential ramp"], ["--chart-seq-7", "chart", "#1d4ed8", "Sequential ramp · high"],
+["--chart-seq-1", "chart", "#eff8fd", "Sequential ramp · low"], ["--chart-seq-2", "chart", "#dceffb", "Sequential ramp"], ["--chart-seq-3", "chart", "#b8ddf5", "Sequential ramp"], ["--chart-seq-4", "chart", "#84c5ec", "Sequential ramp"], ["--chart-seq-5", "chart", "#43a8df", "Sequential ramp"], ["--chart-seq-6", "chart", "#1485c5", "Sequential ramp"], ["--chart-seq-7", "chart", "#0d5580", "Sequential ramp · high"],
 // Chart · divergent
 ["--chart-div-neg-3", "chart", "#B91C1C", "Divergent · −high"], ["--chart-div-neg-2", "chart", "#DC2626", "Divergent · −med"], ["--chart-div-neg-1", "chart", "#FCA5A5", "Divergent · −low"], ["--chart-div-zero", "chart", "#F3F4F6", "Divergent · zero"], ["--chart-div-pos-1", "chart", "#86EFAC", "Divergent · +low"], ["--chart-div-pos-2", "chart", "#16A34A", "Divergent · +med"], ["--chart-div-pos-3", "chart", "#15803D", "Divergent · +high"],
 // Chart · structure
@@ -21261,7 +21207,7 @@ const TokenPreview = ({
     return /*#__PURE__*/React.createElement("span", {
       className: "t-mono",
       style: {
-        fontSize: 10,
+        fontSize: 11,
         color: "var(--brand-600)"
       }
     }, "\u0192");
@@ -21322,12 +21268,42 @@ const TokenIndexToolbar = ({
 }, g.label, /*#__PURE__*/React.createElement("span", {
   className: "count"
 }, counts[g.key] || 0)))));
+
+/* Any custom property declared on :root that the catalogue above does not describe is added from the live
+   stylesheet, so the index always lists every token (descriptions only for catalogued ones). */
+const TOKEN_TYPE_OF = n => /^--(brand|slate|success|warning|danger|info|white|rating|unverif|event|glyph)/.test(n) ? "color" : /^--(bg|text|border|focus)/.test(n) ? "semantic" : /^--(font|t-)/.test(n) ? "type" : /^--space/.test(n) ? "spacing" : /^--radius/.test(n) ? "radius" : /shadow/.test(n) ? "shadow" : /^--(motion|ease)|-motion$|-anim$|-delay/.test(n) ? "motion" : /^--z-/.test(n) ? "z-index" : /^--chart/.test(n) ? "chart" : /^--map/.test(n) ? "map" : "semantic";
+const liveTokens = () => {
+  const known = new Set(TOKEN_CATALOG.map(r => r[0]));
+  const out = [];
+  const seen = new Set();
+  try {
+    for (const sheet of Array.from(document.styleSheets)) {
+      let rules;
+      try {
+        rules = sheet.cssRules;
+      } catch (e) {
+        continue;
+      }
+      for (const r of Array.from(rules || [])) {
+        if (r.selectorText !== ":root" || !r.style) continue;
+        for (const prop of Array.from(r.style)) {
+          if (!prop.startsWith("--") || known.has(prop) || seen.has(prop)) continue;
+          seen.add(prop);
+          const v = getComputedStyle(document.documentElement).getPropertyValue(prop).trim() || r.style.getPropertyValue(prop).trim();
+          out.push([prop, TOKEN_TYPE_OF(prop), v, "From styles.css"]);
+        }
+      }
+    }
+  } catch (e) {}
+  return out;
+};
 const TokenIndexSection = () => {
+  const ALL_TOKENS = React.useMemo(() => TOKEN_CATALOG.concat(liveTokens()), []);
   const [query, setQuery] = React.useState("");
   const [group, setGroup] = React.useState("all");
   const matches = React.useMemo(() => {
     const q = query.trim().toLowerCase();
-    return TOKEN_CATALOG.filter(([name, type, value, where]) => {
+    return ALL_TOKENS.filter(([name, type, value, where]) => {
       if (group !== "all" && type !== group) return false;
       if (!q) return true;
       return name.toLowerCase().includes(q) || value.toLowerCase().includes(q) || where.toLowerCase().includes(q);
@@ -21335,9 +21311,9 @@ const TokenIndexSection = () => {
   }, [query, group]);
   const counts = React.useMemo(() => {
     const c = {
-      all: TOKEN_CATALOG.length
+      all: ALL_TOKENS.length
     };
-    TOKEN_CATALOG.forEach(([, type]) => {
+    ALL_TOKENS.forEach(([, type]) => {
       c[type] = (c[type] || 0) + 1;
     });
     return c;
@@ -21728,7 +21704,7 @@ const TooltipSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("strong", null, "Opens"), " on ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -22099,9 +22075,7 @@ const TooltipSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "t-caption"
 }, "White on ", /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--bg-inverse"), " \u2248 16.1:1 in light. In dark the inverse surface becomes light, so the label flips to ", /*#__PURE__*/React.createElement("code", {
-  className: "inline"
-}, "--text-inverse"), " (\u2248 14.8:1).")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Reduced motion")), /*#__PURE__*/React.createElement("td", {
+}, "--bg-inverse"), " \u2248 16.1:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Reduced motion")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
 }, /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -22216,7 +22190,7 @@ const TooltipSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     color: "var(--text-secondary)",
     lineHeight: 1.7
@@ -22241,7 +22215,7 @@ const TooltipSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18,
+    paddingLeft: 20,
     fontSize: 13,
     color: "var(--text-secondary)",
     lineHeight: 1.7
@@ -22254,7 +22228,7 @@ const TooltipSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "ord"
 }, "11")), /*#__PURE__*/React.createElement("div", {
   className: "panel"
-}, [["--tooltip-bg", "var(--bg-inverse)", "Container fill: flips with theme"], ["--tooltip-fg", "var(--white-fixed)", "Label colour (→ --text-inverse in dark)"], ["--tooltip-max-width", "240px", "Wrap boundary"], ["--tooltip-pad-y / -x", "6px / 8px", "Container padding"], ["--tooltip-font-size", "12px", "Label size"], ["--tooltip-radius", "var(--radius-sm)", "Corner radius"], ["--tooltip-arrow", "5px", "Half the arrow square"], ["--tooltip-offset", "8px", "Gap from trigger"], ["--tooltip-shadow", "var(--shadow-md)", "Elevation"], ["--tooltip-delay-in", "400ms", "Pointer rest before open"], ["--tooltip-delay-out", "100ms", "Close grace period"], ["--tooltip-motion", "var(--motion-fast)", "Transition duration"], ["--z-tooltip", "1300", "Above modal and toast"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
+}, [["--tooltip-bg", "var(--bg-inverse)", "Container fill: flips with theme"], ["--tooltip-fg", "var(--white-fixed)", "Label colour"], ["--tooltip-max-width", "240px", "Wrap boundary"], ["--tooltip-pad-y / -x", "6px / 8px", "Container padding"], ["--tooltip-font-size", "12px", "Label size"], ["--tooltip-radius", "var(--radius-sm)", "Corner radius"], ["--tooltip-arrow", "5px", "Half the arrow square"], ["--tooltip-offset", "8px", "Gap from trigger"], ["--tooltip-shadow", "var(--shadow-md)", "Elevation"], ["--tooltip-delay-in", "400ms", "Pointer rest before open"], ["--tooltip-delay-out", "100ms", "Close grace period"], ["--tooltip-motion", "var(--motion-fast)", "Transition duration"], ["--z-tooltip", "1300", "Above modal and toast"]].map(([t, v, r]) => /*#__PURE__*/React.createElement("div", {
   key: t,
   className: "token-row",
   style: {
@@ -22443,7 +22417,7 @@ const CaseRules = () => /*#__PURE__*/React.createElement("div", {
 }, "Everything operator-facing: buttons, menu items, page titles, section headings, form labels, empty states, error copy."), /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "\"Add vessel to portfolio\", not \"Add Vessel To Portfolio\""), /*#__PURE__*/React.createElement("li", null, "\"Sanctioned vessels\", proper-noun \"Sanctioned\" stays cap"), /*#__PURE__*/React.createElement("li", null, "\"Last seen\", not \"Last Seen\"")))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card"
@@ -22465,7 +22439,7 @@ const CaseRules = () => /*#__PURE__*/React.createElement("div", {
 }, "Product names, module names, exported reports, formal documents."), /*#__PURE__*/React.createElement("ul", {
   style: {
     margin: 0,
-    paddingLeft: 18
+    paddingLeft: 20
   }
 }, /*#__PURE__*/React.createElement("li", null, "\"Skytek Real World\", \"Marine Dashboard\""), /*#__PURE__*/React.createElement("li", null, "\"Q1 2026 Sanctions Exposure Report\""), /*#__PURE__*/React.createElement("li", null, "\"OFAC SDN List\", \"Marshall Islands Flag Authority\"")))));
 const NumberStyle = () => /*#__PURE__*/React.createElement("table", {
@@ -22573,16 +22547,16 @@ const __TWEAKS_STYLE = `
     max-height:calc(100vh - 32px);display:flex;flex-direction:column;
     background:rgba(250,249,247,.78);color:#29261b;
     -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
-    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    border:.5px solid rgba(255,255,255,.6);border-radius:12px;
     box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
     font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
   .twk-hd{display:flex;align-items:center;justify-content:space-between;
-    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+    padding:12px 8px 12px 16px;cursor:move;user-select:none}
   .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
   .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
     width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
   .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
-  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+  .twk-body{padding:2px 16px 16px;display:flex;flex-direction:column;gap:8px;
     overflow-y:auto;overflow-x:hidden;min-height:0;
     scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
   .twk-body::-webkit-scrollbar{width:8px}
@@ -22591,26 +22565,26 @@ const __TWEAKS_STYLE = `
     border:2px solid transparent;background-clip:content-box}
   .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
     border:2px solid transparent;background-clip:content-box}
-  .twk-row{display:flex;flex-direction:column;gap:5px}
-  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-row{display:flex;flex-direction:column;gap:4px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
   .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
     color:rgba(41,38,27,.72)}
   .twk-lbl>span:first-child{font-weight:500}
   .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
 
-  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:12px 0 0}
   .twk-sect:first-child{padding-top:0}
 
   .twk-field{appearance:none;width:100%;height:26px;padding:0 8px;
-    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:8px;
     background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
   .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
-  select.twk-field{padding-right:22px;
+  select.twk-field{padding-right:24px;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
     background-repeat:no-repeat;background-position:right 8px center}
 
-  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:4px 0;
     border-radius:999px;background:rgba(0,0,0,.12);outline:none}
   .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
     width:14px;height:14px;border-radius:50%;background:#fff;
@@ -22626,28 +22600,28 @@ const __TWEAKS_STYLE = `
   .twk-seg.dragging .twk-seg-thumb{transition:none}
   .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
     background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
-    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    border-radius:6px;cursor:default;padding:4px 8px;line-height:1.2;
     overflow-wrap:anywhere}
 
   .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
-    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding: 0}
   .twk-toggle[data-on="1"]{background:#34c759}
   .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
     background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
   .twk-toggle[data-on="1"] i{transform:translateX(14px)}
 
   .twk-num{display:flex;align-items:center;height:26px;padding:0 0 0 8px;
-    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+    border:.5px solid rgba(0,0,0,.1);border-radius:8px;background:rgba(255,255,255,.6)}
   .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
     user-select:none;padding-right:8px}
   .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
     font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
     outline:none;color:inherit;-moz-appearance:textfield}
   .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
-    -webkit-appearance:none;margin:0}
+    -webkit-appearance:none;margin: 0}
   .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
 
-  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:8px;
     background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
   .twk-btn:hover{background:rgba(0,0,0,.88)}
   .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
@@ -22656,7 +22630,7 @@ const __TWEAKS_STYLE = `
   .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
     border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
     background:transparent;flex-shrink:0}
-  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding: 0}
   .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
   .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
 `;

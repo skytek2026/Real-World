@@ -33,7 +33,7 @@ const LayoutSection = () => (
               <span className="ds-avatar">JL</span>
             </div>
             <div style={{ padding: 24, overflow: "hidden" }}>
-              <h2 className="t-h1">Dashboard</h2>
+              <h2 className="t-h1" style={{ margin: 0 }}>Dashboard</h2>
               <p className="t-caption">Page content scrolls inside this region only.</p>
               <div className="grid-3" style={{ marginTop: 16 }}>
                 {[0,1,2].map(i => <div key={i} className="ds-card" style={{ height: 100 }} />)}

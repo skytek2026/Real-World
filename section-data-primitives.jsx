@@ -538,7 +538,7 @@ const DataPrimitivesSection = () => (
         <FacetDropdownDemo />
         <div>
           <h4 style={{ fontSize: 13, marginTop: 0 }}>Counts &amp; ordering</h4>
-          <p className="t-body-sm" style={{ color: "var(--text-secondary)" }}>
+          <p className="t-body-sm" style={{ color: "var(--text-secondary)", margin: "12px 0" }}>
             <strong>Counts</strong> reflect the result set after <em>all other filters</em> are applied, so a user filtering by Liberia sees the number of Tankers under the Liberia filter, not the global count.
             <br/><br/>
             <strong>Ordering</strong>: checked items first (stable order), then unchecked sorted by count descending. New facet sessions reset to count order.

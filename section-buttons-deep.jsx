@@ -9,7 +9,7 @@ const SIZE_DEFS = [
 
 const STATE_DEFS = [
   { key: "default",  label: "Default",  trigger: "rest",            style: {} },
-  { key: "hover",    label: "Hover",    trigger: ":hover",          style: { background: "var(--brand-800)", borderColor: "var(--brand-800)" } },
+  { key: "hover",    label: "Hover",    trigger: ":hover",          style: { background: "var(--brand-600)", borderColor: "var(--brand-600)" } },
   { key: "focus",    label: "Focus",    trigger: ":focus-visible",  style: { boxShadow: "var(--shadow-focus)" }, focus: true },
   { key: "active",   label: "Active",   trigger: ":active",         style: { background: "var(--brand-700)", borderColor: "var(--brand-700)" } },
   { key: "disabled", label: "Disabled", trigger: "[disabled]",      disabled: true },
@@ -145,7 +145,7 @@ const ButtonsDeep = () => (
       
       <div style={{ display: "grid", gap: 12 }}>
         {[
-          { name: "Primary", cls: "ds-btn--primary", purpose: "Most important action on the surface. One per view.", token: "--brand-700 → --brand-800" },
+          { name: "Primary", cls: "ds-btn--primary", purpose: "Most important action on the surface. One per view.", token: "--brand-500 → --brand-600" },
           { name: "Secondary", cls: "ds-btn--secondary", purpose: "Supporting actions. Cancel, alternative paths, secondary CTAs.", token: "--white + --border-default" },
           { name: "Tertiary / Ghost", cls: "ds-btn--ghost", purpose: "Lowest emphasis. Toolbars, table row actions, dense surfaces.", token: "transparent + hover --slate-100" },
           { name: "Destructive", cls: "ds-btn--danger", purpose: "Irreversible or data-loss actions. Always confirmed via modal.", token: "--danger-500 → --danger-700" },
@@ -350,7 +350,7 @@ const ButtonsDeep = () => (
               <td><strong>Hover</strong></td>
               <td><code className="inline">:hover</code></td>
               <td className="t-caption">Fill darkens one step; cursor → pointer.</td>
-              <td><code className="inline">--brand-800</code></td>
+              <td><code className="inline">--brand-600</code></td>
               <td className="t-caption">Never the sole signal: paired with focus + active.</td>
             </tr>
             <tr className="bs-row-focus">
@@ -516,10 +516,10 @@ const ButtonsDeep = () => (
           <tbody>
             <tr>
               <td><strong>Primary</strong></td>
-              <td><code className="inline">--brand-700</code></td>
+              <td><code className="inline">--brand-500</code></td>
               <td><code className="inline">--white</code></td>
-              <td><code className="inline">--brand-700</code></td>
-              <td><code className="inline">--brand-800</code></td>
+              <td><code className="inline">--brand-500</code></td>
+              <td><code className="inline">--brand-600</code></td>
               <td><code className="inline">--shadow-focus</code></td>
             </tr>
             <tr>

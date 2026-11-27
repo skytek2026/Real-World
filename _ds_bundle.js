@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"3b507defeaf9","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"fa40cad247df","section-charts.jsx":"18175ef42442","section-components.jsx":"1d06f90f1892","section-data-primitives.jsx":"d16fcbbe1fe3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"a23eb8d25cd5","section-foundations2.jsx":"39f7fad0c7b8","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"9088b9c813cc","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"6aebf7f6b842","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"fcaffef33d74","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"6522c385a748","section-charts.jsx":"18175ef42442","section-components.jsx":"1758cc00e609","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"a23eb8d25cd5","section-foundations2.jsx":"39f7fad0c7b8","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"77862651f27b","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"d9cc67312d64","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,203 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.2.4",
+    "dateISO": "2026-11-27T18:00:00Z",
+    "date": "27/11/2026",
+    "time": "18:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Documentation",
+    "impact": "Patch",
+    "summary": "Documentation tidy-up: chapter numbering, links between component overviews and full specs, the local z-index rule, and the last browser-default margins.",
+    "changes": [
+      "Export & reports is chapter 16 (was 16a, with no 16). [DS9]",
+      "Buttons and Inputs overviews (07 · Components) link to their full specifications (07a, 07b); each full spec names its overview, so the pair reads as overview + spec rather than duplication. [DS9]",
+      "Z-index: local stacking (−1 to 60) is allowed only inside one component or the documentation chrome, never across components; Leaflet panes keep Leaflet’s own values. Stated in the Token index (--z-base) and on the z-index block in styles.css. [DS10]",
+      "Margins: the Layout chapter’s mock ‘Dashboard’ heading and a Filters chapter paragraph no longer use browser em-based margins; Leaflet controls in map demos sit 12px from the edge (was Leaflet’s 10px). [DS12]",
+      "Bundle rebuilt from the changed sources."
+    ],
+    "reason": "Close review items DS9, DS10 and DS12.",
+    "affected": [
+      "Documentation",
+      "Token index",
+      "Maps"
+    ]
+  },
+  {
+    "version": "v4.2.3",
+    "dateISO": "2026-11-27T17:00:00Z",
+    "date": "27/11/2026",
+    "time": "17:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Other",
+    "impact": "Patch",
+    "summary": "Generated copies brought up to date: component bundle rebuilt, manifest regenerated, Figma pages on the current stylesheet.",
+    "changes": [
+      "_ds_bundle.js rebuilt from the 35 current sources (was built at v4.1.0; changelog-data.js and section-buttons-deep.jsx had changed since). Runs with no errors. [DS4]",
+      "_ds_manifest.json regenerated from styles.css: 242 tokens, 0 differences (--shadow-focus now the solid brand-600 ring); 18 components. [DS5]",
+      "figma/*.html (7 pages) load styles.css?v=39 (was v=36). [DS6]"
+    ],
+    "reason": "Close review items DS4, DS5 and DS6.",
+    "affected": [
+      "Bundle",
+      "Manifest",
+      "Figma export"
+    ]
+  },
+  {
+    "version": "v4.2.2",
+    "dateISO": "2026-11-27T16:00:00Z",
+    "date": "27/11/2026",
+    "time": "16:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Token",
+    "impact": "Patch",
+    "summary": "tokens.css regenerated from tokens.json: the old sky brand, the dark-theme block and the pre-v4 type values are gone.",
+    "changes": [
+      "tokens.css was a pre-v4.0.0 snapshot: sky brand ramp (#2D7FFB …), sky text-link and chart colours, a dark-theme block, Open Sans / Lato stacks and ratio line heights.",
+      "Regenerated in the page's own format from tokens.json: 180 tokens (colour, shadow, spacing, radius, z-index), the font families, woff2 @font-face rules and the type classes; one Light theme.",
+      "Verified: no sky values; all 139 colour tokens resolve to the same colours as styles.css. Component previews (which load tokens.css) now show the azure brand.",
+      "Closes review item DS2."
+    ],
+    "reason": "The page only rebuilds tokens.css after a token edit in the page; the stale file still carried the retired sky brand.",
+    "affected": [
+      "Tokens",
+      "Component previews"
+    ]
+  },
+  {
+    "version": "v4.2.1",
+    "dateISO": "2026-11-27T15:00:00Z",
+    "date": "27/11/2026",
+    "time": "15:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Component",
+    "impact": "Patch",
+    "summary": "Modal primary action follows the v4.2.0 primary fill (brand-500, hover brand-600); review items F1 and F2 confirmed closed.",
+    "changes": [
+      "--rw-modal-primary: brand-700 → brand-500; --rw-modal-primary-hover: brand-800 → brand-600 (same as .ds-btn--primary).",
+      "F1 (modal on tokens): title 16 / 600, --scrim 0.38, --card-shadow-modal, --shadow-focus, --radius-lg and --z-modal confirmed; Real World’s product modals (modal-base.css, report builder, side drawers) aligned in commit to follow.",
+      "F2 (undefined tokens): 0 references to undefined tokens in styles.css and rw-modal.css."
+    ],
+    "reason": "Keep the modal’s primary button identical to the system’s primary button after v4.2.0.",
+    "affected": [
+      "Modal"
+    ]
+  },
+  {
+    "version": "v4.2.0",
+    "dateISO": "2026-11-27T13:00:00Z",
+    "date": "27/11/2026",
+    "time": "13:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Color",
+    "impact": "Minor",
+    "summary": "Selected and primary fills use brand-500 (#1A92D1) instead of brand-700, by product decision. Known accessibility exception: white text on brand-500 is 3.46:1.",
+    "changes": [
+      "Primary button: rest brand-500, hover brand-600, pressed brand-700 (was brand-700 / 800 / 800).",
+      "Selected fills on brand-500: tab pill, sidebar selected item, pagination current page, vessel-popup header, token filter pill, current step, date-picker range ends.",
+      "Unchanged: text links stay brand-700; focus rings and non-text marks stay brand-600.",
+      "Known exception, deliberate: white 13–14px labels on brand-500 are 3.46:1, below WCAG AA (4.5:1). This reverses the v4.1.0–v4.1.2 contrast fix for fills; flagged in the brand-500 usage note so it is not 'fixed' back by mistake.",
+      "Real World applies the same change (commit 119bb9d)."
+    ],
+    "reason": "Product decision: a lighter selected and primary blue across tabs, buttons and navigation.",
+    "affected": [
+      "Buttons",
+      "Tabs",
+      "Sidebar",
+      "Pagination",
+      "Date & time pickers",
+      "Steps",
+      "Color"
+    ]
+  },
+  {
+    "version": "v4.1.2",
+    "dateISO": "2026-11-27T11:00:00Z",
+    "date": "27/11/2026",
+    "time": "11:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Component",
+    "impact": "Patch",
+    "summary": "Selected states share one fill: the sidebar's selected item now matches the selected tab (brand-700, white text), and every white-on-brand fill uses brand-700.",
+    "changes": [
+      "Sidebar: `.ds-sidebar-item.is-active` is a filled brand-700 item with white 600 text (was a brand-050 tint with brand-600 text, 3.87:1), the same fill as `.ds-tab-pill`, matching the Real World navigation.",
+      "White text on brand fills moved from brand-600 (4.05:1) to brand-700 (5.85:1): pagination current page, vessel-popup header, token filter pill, current step number, date-picker range ends.",
+      "Documentation navigation: selected link text brand-700 on its tint (was brand-600).",
+      "Non-text brand marks (checked checkbox / radio, switch, pulse and today dots) stay brand-600 (3:1 is enough for non-text)."
+    ],
+    "reason": "The product's sidebar (brand-600) and the tabs (brand-700) showed two different selected blues; brand-600 behind white text fails WCAG AA.",
+    "affected": [
+      "Sidebar",
+      "Tabs",
+      "Pagination",
+      "Date & time pickers",
+      "Steps",
+      "Token index"
+    ]
+  },
+  {
+    "version": "v4.1.1",
+    "dateISO": "2026-11-27T10:00:00Z",
+    "date": "27/11/2026",
+    "time": "10:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Patch",
+    "summary": "Pill tabs: the selected pill uses brand-700 so its white label passes AA (5.85:1; brand-600 was 4.05:1).",
+    "changes": [
+      "`.ds-tab-pill` background: --brand-600 → --brand-700 (found while checking the Real World dashboards against v4.1.0).",
+      "Real World applies the same change through its shared chrome (commit 5533d43)."
+    ],
+    "reason": "White 14px / 600 labels on brand-600 fail WCAG AA; v4.1.0 fixed primary buttons but missed the tab pill.",
+    "affected": [
+      "Tabs"
+    ]
+  },
+  {
+    "version": "v4.1.0",
+    "dateISO": "2026-11-26T22:30:00Z",
+    "date": "26/11/2026",
+    "time": "22:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Minor",
+    "summary": "Fixes from the v4.0.3 consistency review: contrast at token level, one stylesheet source for values, a complete Token index, a tokenised modal, map glyph tokens, single woff2 fonts, and regenerated bundle, manifest and Figma export.",
+    "changes": [
+      "Primary buttons rest on brand-700 (white 5.85:1) and darken to brand-800 on hover / press (was brand-600 → lighter brand-500). [D2]",
+      "One solid focus ring, --shadow-focus: 2px white gap + 2px brand-600 (was a 32% wash of the old navy #2E86C0, 1.48:1); --shadow-focus-danger for invalid / destructive; the modal uses both. [D3]",
+      "New --border-control (slate-500, 4.83:1) for input, select, checkbox and radio boundaries; --bg-muted → slate-050 (muted text 4.63:1); ratings B and D take dark text; unverif-700 → #57534E (6.31:1); completed steps on success-700. [D4]",
+      "Accessibility chapter: 24px minimum (2.5.8, AA), 44px on touch (2.5.5, AAA); ds-btn--lg (40px) extends its hit area on touch. [D5]",
+      "Type classes use the documented pixel line heights (display 40, h1 32, h2 28, h3 24, h4 20, body 20, body-sm 18). [B1] 11px is allowed only for uppercase overlines and badges. [B2] Open Sans and Lato removed from the stacks. [B4]",
+      "Fonts: one source per family, self-hosted woff2 (2.31 MB → 0.94 MB) with TTF fallback; Google Fonts and the page's base64 Exo removed. [B5]",
+      "Shadows: --shadow-xs has its own value; the Foundations table reads live values from styles.css. [C1] Spacing: 401 values now use var(--space-*). [C2] Motion: drawer and toast durations and the modal easing use the motion tokens. [C4]",
+      "Layering docs: overlay, popover, toast and tooltip order corrected. [C3] Tokens consolidated into one :root block. [G2] The Token index adds any uncatalogued token from styles.css: 287 of 287. [G1]",
+      "Colour chapter intro updated; info sharing the brand's blue family, rating D and chart categories 2–3 documented as deliberate exceptions. [A3, A4, A5] slate-50 renamed slate-050 (old name kept as an alias); event and chart values reference ramp tokens. [A6, A7]",
+      "Footer reads the current version from the changelog; the Changelog page shows the logo. [G3] docs/index.html redirect fixed. [H6] --danger-600 / --success-600 references fixed. [F2] Leftover dark rule removed. [N5]",
+      "Modal: title 16px / 600 (as H3), shared --scrim (0.38, also used by the filter drawer), --card-shadow-modal, brand-700 / 800 primary. [F1]",
+      "Map glyph palette and shadows are tokens (--glyph-amber / cyan / pink / orange, --glyph-shadow*, --glyph-ring, --glyph-cluster-shadow) with the Real World values. [N2] Tab pill shadow tokenised.",
+      "Regenerated: _ds_bundle.js from current sources (35 files, 0 errors; dark-mode chapter dropped), _ds_manifest.json (240 tokens, 18 components), the Figma export (type, spacing, radius, shadows from tokens; styles.css?v current). [H1, H2, H5, B3] tokens.json updated to match. [N1]",
+      "The two token proposals are recorded in PROPOSALS.md as not adopted, with their conflicts and the v5.0.0 decision. [N3]"
+    ],
+    "reason": "Close the findings of the 26 Nov consistency review.",
+    "affected": [
+      "Buttons",
+      "Inputs & forms",
+      "Focus",
+      "Modal",
+      "Typography",
+      "Fonts",
+      "Shadows",
+      "Spacing",
+      "Motion",
+      "Token index",
+      "Maps",
+      "Figma export",
+      "Bundle",
+      "Manifest"
+    ]
+  },
   {
     "version": "v4.0.3",
     "dateISO": "2026-11-26T19:30:00Z",
@@ -4766,8 +4963,8 @@ const STATE_DEFS = [{
   label: "Hover",
   trigger: ":hover",
   style: {
-    background: "var(--brand-800)",
-    borderColor: "var(--brand-800)"
+    background: "var(--brand-600)",
+    borderColor: "var(--brand-600)"
   }
 }, {
   key: "focus",
@@ -4926,7 +5123,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   name: "Primary",
   cls: "ds-btn--primary",
   purpose: "Most important action on the surface. One per view.",
-  token: "--brand-700 → --brand-800"
+  token: "--brand-500 → --brand-600"
 }, {
   name: "Secondary",
   cls: "ds-btn--secondary",
@@ -5217,7 +5414,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "t-caption"
 }, "Fill darkens one step; cursor \u2192 pointer."), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--brand-800")), /*#__PURE__*/React.createElement("td", {
+}, "--brand-600")), /*#__PURE__*/React.createElement("td", {
   className: "t-caption"
 }, "Never the sole signal: paired with focus + active.")), /*#__PURE__*/React.createElement("tr", {
   className: "bs-row-focus"
@@ -5493,13 +5690,13 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   }
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Variant"), /*#__PURE__*/React.createElement("th", null, "Background"), /*#__PURE__*/React.createElement("th", null, "Text"), /*#__PURE__*/React.createElement("th", null, "Border"), /*#__PURE__*/React.createElement("th", null, "Hover bg"), /*#__PURE__*/React.createElement("th", null, "Focus ring"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Primary")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--brand-700")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "--brand-500")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--white")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--brand-700")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "--brand-500")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
-}, "--brand-800")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+}, "--brand-600")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
 }, "--shadow-focus"))), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Secondary")), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
   className: "inline"
@@ -6854,7 +7051,9 @@ const ComponentBlock = ({
 const ButtonsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   id: "c-buttons",
   name: "Buttons",
-  purpose: "Trigger actions. One primary per surface; secondary actions are quieter; destructive actions use the danger variant only when the action cannot be undone safely.",
+  purpose: /*#__PURE__*/React.createElement(React.Fragment, null, "Trigger actions. One primary per surface; secondary actions are quieter; destructive actions use the danger variant only when the action cannot be undone safely. ", /*#__PURE__*/React.createElement("a", {
+    href: "#c-buttons-deep"
+  }, "Full specification: 07a \xB7 Buttons"), "."),
   variants: /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("code", {
     className: "inline"
   }, "primary"), " \xB7 ", /*#__PURE__*/React.createElement("code", {
@@ -6935,7 +7134,9 @@ const ButtonsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 const FormsBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
   id: "c-forms",
   name: "Inputs, Selects, Textareas",
-  purpose: "All text input controls share one shell so they can be combined inside FormField groups.",
+  purpose: /*#__PURE__*/React.createElement(React.Fragment, null, "All text input controls share one shell so they can be combined inside FormField groups. ", /*#__PURE__*/React.createElement("a", {
+    href: "#c-forms-deep"
+  }, "Full specification: 07b \xB7 Forms"), "."),
   variants: /*#__PURE__*/React.createElement(React.Fragment, null, "text \xB7 select \xB7 textarea \xB7 search \xB7 number \xB7 password"),
   states: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 hover \xB7 focus \xB7 disabled \xB7 readonly \xB7 invalid \xB7 with prefix / suffix"),
   rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Height ", /*#__PURE__*/React.createElement("code", {
@@ -9438,7 +9639,8 @@ const DataPrimitivesSection = () => /*#__PURE__*/React.createElement(React.Fragm
 }, "Counts & ordering"), /*#__PURE__*/React.createElement("p", {
   className: "t-body-sm",
   style: {
-    color: "var(--text-secondary)"
+    color: "var(--text-secondary)",
+    margin: "12px 0"
   }
 }, /*#__PURE__*/React.createElement("strong", null, "Counts"), " reflect the result set after ", /*#__PURE__*/React.createElement("em", null, "all other filters"), " are applied, so a user filtering by Liberia sees the number of Tankers under the Liberia filter, not the global count.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("strong", null, "Ordering"), ": checked items first (stable order), then unchecked sorted by count descending. New facet sessions reset to count order.")))), /*#__PURE__*/React.createElement("div", {
   className: "subsection"
@@ -17209,7 +17411,10 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
     overflow: "hidden"
   }
 }, /*#__PURE__*/React.createElement("h2", {
-  className: "t-h1"
+  className: "t-h1",
+  style: {
+    margin: 0
+  }
 }, "Dashboard"), /*#__PURE__*/React.createElement("p", {
   className: "t-caption"
 }, "Page content scrolls inside this region only."), /*#__PURE__*/React.createElement("div", {
@@ -20875,7 +21080,7 @@ const TOKEN_CATALOG = [
 // Motion
 ["--motion-instant", "motion", "80ms", "Microinteraction: button press, switch tick"], ["--motion-fast", "motion", "140ms", "Hover, focus, color transitions"], ["--motion-base", "motion", "200ms", "Component-level: dropdown, popover, tab"], ["--motion-slow", "motion", "320ms", "Layout: modal mount, drawer, page reveal"], ["--ease-out", "motion", "cubic-bezier(0.16, 1, 0.3, 1)", "Default: enters, reveals"], ["--ease-in-out", "motion", "cubic-bezier(0.4, 0, 0.2, 1)", "Reversible transitions"], ["--ease-emphasis", "motion", "cubic-bezier(0.34, 1.2, 0.64, 1)", "Tab pill, selection: overshoots slightly"],
 // Z-index
-["--z-base", "z-index", "1", "Default stacking"], ["--z-sticky", "z-index", "100", "Sticky headers, scrolling chrome"], ["--z-overlay", "z-index", "1000", "Overlays and scrims under a modal"], ["--z-popover", "z-index", "1050", "Popovers, dropdowns, menus"], ["--z-modal", "z-index", "1100", "Modals"], ["--z-toast", "z-index", "1200", "Toasts: above modals"], ["--z-tooltip", "z-index", "1300", "Tooltips: the top layer"],
+["--z-base", "z-index", "1", "Default stacking. Local stacking (−1 to 60) is allowed only inside one component or the documentation chrome, never across components; Leaflet panes keep Leaflet’s own values (e.g. 400). Everything that overlays other UI uses the scale below."], ["--z-sticky", "z-index", "100", "Sticky headers, scrolling chrome"], ["--z-overlay", "z-index", "1000", "Overlays and scrims under a modal"], ["--z-popover", "z-index", "1050", "Popovers, dropdowns, menus"], ["--z-modal", "z-index", "1100", "Modals"], ["--z-toast", "z-index", "1200", "Toasts: above modals"], ["--z-tooltip", "z-index", "1300", "Tooltips: the top layer"],
 // Chart palette · categorical
 ["--chart-cat-1", "chart", "#1485c5", "Series 1: brand blue"], ["--chart-cat-2", "chart", "#D97706", "Series 2: amber"], ["--chart-cat-3", "chart", "#16A34A", "Series 3: green"], ["--chart-cat-4", "chart", "#9333EA", "Series 4: purple"], ["--chart-cat-5", "chart", "#DB2777", "Series 5: pink"], ["--chart-cat-6", "chart", "#0891B2", "Series 6: cyan"], ["--chart-cat-7", "chart", "#65A30D", "Series 7: lime"], ["--chart-cat-8", "chart", "#475569", "Series 8: slate"],
 // Chart · sequential

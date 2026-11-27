@@ -30,7 +30,7 @@ const ButtonsBlock = () => (
   <ComponentBlock
     id="c-buttons"
     name="Buttons"
-    purpose="Trigger actions. One primary per surface; secondary actions are quieter; destructive actions use the danger variant only when the action cannot be undone safely."
+    purpose={<>Trigger actions. One primary per surface; secondary actions are quieter; destructive actions use the danger variant only when the action cannot be undone safely. <a href="#c-buttons-deep">Full specification: 07a · Buttons</a>.</>}
     variants={<><code className="inline">primary</code> · <code className="inline">secondary</code> · <code className="inline">ghost</code> · <code className="inline">danger</code> · <code className="inline">link</code></>}
     states={<>default · hover · active · disabled · loading · focus-visible</>}
     rules={<>Heights snap to <code className="inline">24 / 28 / 32 / 40px</code>. Icon-only buttons are square. Never stack &gt; 3 buttons in a row, collapse into a menu.</>}
@@ -68,7 +68,7 @@ const FormsBlock = () => (
   <ComponentBlock
     id="c-forms"
     name="Inputs, Selects, Textareas"
-    purpose="All text input controls share one shell so they can be combined inside FormField groups."
+    purpose={<>All text input controls share one shell so they can be combined inside FormField groups. <a href="#c-forms-deep">Full specification: 07b · Forms</a>.</>}
     variants={<>text · select · textarea · search · number · password</>}
     states={<>default · hover · focus · disabled · readonly · invalid · with prefix / suffix</>}
     rules={<>Height <code className="inline">32px</code> default; <code className="inline">40px</code> for primary forms. Always paired with a Label and optional Help text. Errors appear below the field, never as a tooltip.</>}
