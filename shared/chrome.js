@@ -965,3 +965,93 @@ function sparkline(series, { w=120, h=28, color='currentColor', fill=true } = {}
   </svg>`;
 }
 window.sharedChrome = { Sidebar, Topbar, TweaksPanel, wireChrome, applyTweaks, setTheme, getTheme, I, sparkline, toneClasses, NAV };
+
+/* ---------------------------------------------------------------------------
+   Skytek DS v4.4.0, Scrolling & overflow: applied to every scroll area at runtime.
+   - one-axis scroll areas get .ds-scroll-y / .ds-scroll-x (contained overscroll,
+     stable gutter, focus ring); two-axis areas keep their overflow and get
+     containment + the focus ring via [data-ds-scroll]
+   - areas with nothing focusable inside become keyboard-reachable (WCAG 2.1.1):
+     tabindex="0", role="region", aria-label from the nearest heading
+   - while a modal or full drawer is open, the page's scroll areas get
+     .ds-scroll-lock (no background scrolling, no layout shift)
+   --------------------------------------------------------------------------- */
+(function dsScrollRegions() {
+  if (window.__dsScrollRegions) return; window.__dsScrollRegions = true;
+  const SKIP = '.leaflet-container, select, textarea, input, [contenteditable="true"], svg, canvas';
+  const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]), [contenteditable="true"]';
+  const OVERLAY = '.rw-modal-overlay, .rb-overlay, .modal-bg, [role="dialog"][aria-modal="true"], .drawer-overlay.open, .drawer-overlay.is-open';
+  const style = document.createElement('style');
+  style.textContent = '[data-ds-scroll]{overscroll-behavior:contain}[data-ds-scroll]:focus-visible{outline:none;box-shadow:0 0 0 2px #FFFFFF,0 0 0 4px #1485C5}';
+  document.head.appendChild(style);
+  const scrolls = v => v === 'auto' || v === 'scroll';
+  const HEAD = 'h1,h2,h3,h4,h5,[class*="title"],[class*="heading"],[class*="card-hd"],[class*="card-head"],[class*="panel-head"],[class*="section-label"],legend,caption,th';
+  const clean = t => (t || '').replace(/\s+/g, ' ').trim().slice(0, 60);
+  function labelFor(el) {
+    if (el.getAttribute('aria-label') || el.getAttribute('aria-labelledby')) return null;
+    const first = el.querySelector('caption, thead th, h1, h2, h3, h4');
+    let text = '';
+    for (let n = el, depth = 0; n && n !== document.body && depth < 6 && !text; n = n.parentElement, depth++) {
+      if (n !== el && n.getAttribute && n.getAttribute('aria-label')) { text = clean(n.getAttribute('aria-label')); break; }
+      for (let sib = n.previousElementSibling, k = 0; sib && k < 3 && !text; sib = sib.previousElementSibling, k++) {
+        const h = sib.matches(HEAD) ? sib : sib.querySelector(HEAD);
+        if (h && clean(h.textContent)) { text = clean(h.textContent); break; }
+        for (const c of [sib, ...sib.querySelectorAll('*')]) {          /* card headers: first short bold text */
+          const own = [...c.childNodes].filter(x => x.nodeType === 3).map(x => x.textContent).join(' ').trim();
+          if (own.length >= 2 && own.length <= 60 && /[A-Za-z]*[a-z][A-Za-z]{2,}/.test(own) && parseInt(getComputedStyle(c).fontWeight, 10) >= 600) { text = clean(own); break; }
+        }
+      }
+    }
+    if (!text && first && clean(first.textContent)) text = clean(first.textContent) + ' list';
+    text = text || 'Scrollable content';
+    const taken = new Set([...document.querySelectorAll('[role="region"][aria-label], section[aria-label], aside[aria-label], nav[aria-label], [role="navigation"][aria-label], [role="complementary"][aria-label], main[aria-label]')]
+      .filter(x => x !== el).map(x => x.getAttribute('aria-label')));
+    let out = text, k = 1;
+    if (taken.has(out)) out = text + ' panel';
+    while (taken.has(out)) { k++; out = text + ' ' + k; }
+    return out;
+  }
+  function enhance() {
+    const els = document.body ? document.body.querySelectorAll('*') : [];
+    for (const el of els) {
+      if (el.matches(SKIP) || el.closest('.leaflet-container')) continue;
+      const cs = getComputedStyle(el);
+      const sy = scrolls(cs.overflowY) && el.scrollHeight > el.clientHeight + 1;
+      const sx = scrolls(cs.overflowX) && el.scrollWidth > el.clientWidth + 1;
+      if (!sy && !sx) continue;
+      if (!el.hasAttribute('data-ds-scroll')) {
+        el.setAttribute('data-ds-scroll', sy && sx ? 'xy' : sy ? 'y' : 'x');
+        if (sy && !sx) el.classList.add('ds-scroll-y');
+        else if (sx && !sy) el.classList.add('ds-scroll-x');
+      }
+      if (!el.querySelector(FOCUSABLE) && !el.hasAttribute('tabindex')) {
+        el.setAttribute('tabindex', '0');
+        if (!el.getAttribute('role')) el.setAttribute('role', 'region');
+        const lab = labelFor(el); if (lab) el.setAttribute('aria-label', lab);
+      }
+    }
+  }
+  let locked = [];
+  function lockState() {
+    const open = [...document.querySelectorAll(OVERLAY)].some(o => { const r = o.getBoundingClientRect(); const c = getComputedStyle(o); return r.width > 0 && r.height > 0 && c.display !== 'none' && c.visibility !== 'hidden'; });
+    if (open && !locked.length) {
+      const roots = [document.documentElement, ...[...document.querySelectorAll('[data-ds-scroll]')].filter(e => !e.closest(OVERLAY) && e.clientHeight > window.innerHeight * 0.5)];
+      roots.forEach(e => e.classList.add('ds-scroll-lock')); locked = roots;
+    } else if (!open && locked.length) {
+      locked.forEach(e => e.classList.remove('ds-scroll-lock')); locked = [];
+    }
+  }
+  let t = 0, last = 0;
+  const idle = window.requestIdleCallback || (fn => setTimeout(fn, 1));
+  const run = () => { last = Date.now(); enhance(); lockState(); };
+  const schedule = () => { clearTimeout(t); t = setTimeout(() => idle(run), Math.max(120, 400 - (Date.now() - last))); };
+  const relevant = recs => recs.some(r => { const n = r.target.nodeType === 1 ? r.target : r.target.parentElement; return n && !n.closest('.leaflet-container, svg, canvas'); });
+  const start = () => {
+    schedule();
+    new MutationObserver(recs => { if (relevant(recs)) schedule(); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden', 'open'] });
+    window.addEventListener('resize', schedule);
+    window.addEventListener('load', schedule);
+    [1000, 2500, 5000, 10000].forEach(ms => setTimeout(schedule, ms));   /* areas that become scrollable after images / layout settle */
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
