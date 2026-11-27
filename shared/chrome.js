@@ -41,6 +41,20 @@
       :root :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([class*="border-0"]):not([class*="border-none"]), textarea):not(:focus):not([aria-invalid="true"]):not([class*="invalid"]):not([class*="error"]) { border-color: #6B7280 !important; }   /* DS border-control (beats !important class maps and inline borders; not focus / invalid) */
       .bg-ink-100.text-ink-500, .bg-ink-100 > .text-ink-500, [style*="background:#eff6ff"] [style*="color:#6b7280"], [style*="background:#eff6ff"] .text-ink-500 { color: #4B5563 !important; }   /* muted text on grey / tinted surfaces: ink-600 */
       .ds-btn { white-space: nowrap; }
+      /* DS v4.4.0 Scrolling & overflow */
+      :root { --scrollbar-size:6px; --scrollbar-thumb:#1a92d1; --scrollbar-thumb-hover:#1485c5; --scrollbar-track:#f3f4f6; --scroll-offset:64px; }
+      html { scroll-padding-top: var(--scroll-offset); }
+      .ds-scroll-y { overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; scrollbar-gutter:stable; }
+      .ds-scroll-x { overflow-x:auto; overflow-y:hidden; overscroll-behavior-x:contain; }
+      .ds-scroll-y, .ds-scroll-x { scrollbar-width:thin; scrollbar-color:var(--scrollbar-thumb) var(--scrollbar-track); }
+      .ds-scroll-y::-webkit-scrollbar, .ds-scroll-x::-webkit-scrollbar { width:var(--scrollbar-size); height:var(--scrollbar-size); }
+      .ds-scroll-y::-webkit-scrollbar-track, .ds-scroll-x::-webkit-scrollbar-track { background:var(--scrollbar-track); border-radius:9999px; }
+      .ds-scroll-y::-webkit-scrollbar-thumb, .ds-scroll-x::-webkit-scrollbar-thumb { background:var(--scrollbar-thumb); border-radius:9999px; }
+      .ds-scroll-y::-webkit-scrollbar-thumb:hover, .ds-scroll-x::-webkit-scrollbar-thumb:hover { background:var(--scrollbar-thumb-hover); }
+      .ds-scroll-y:focus-visible, .ds-scroll-x:focus-visible { outline:none; box-shadow:0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5; }
+      .ds-scroll-fade-x { -webkit-mask-image:linear-gradient(to right,transparent,#000 16px,#000 calc(100% - 16px),transparent); mask-image:linear-gradient(to right,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+      .ds-scroll-fade-y { -webkit-mask-image:linear-gradient(to bottom,transparent,#000 16px,#000 calc(100% - 16px),transparent); mask-image:linear-gradient(to bottom,transparent,#000 16px,#000 calc(100% - 16px),transparent); }
+      .ds-scroll-lock { overflow:hidden !important; scrollbar-gutter:stable; }
       /* DS type scale line heights: 11/14, 12/16, 13/18, 14/20, then +8px (16/24, 20/28, 24/32, 32/40).
          Zero specificity: replaces inherited line heights (Tailwind's base 1.5) but never a line height a
          component or page sets deliberately. */
@@ -476,12 +490,12 @@ function buildDarkCss() {
   /* Scrollbars — cover root (html/body), universal descendants, and the
      DS scrollbar classes; pages style these brand-blue in light mode. */
   ${D}::-webkit-scrollbar-thumb, ${D} body::-webkit-scrollbar-thumb, ${D} *::-webkit-scrollbar-thumb,
-  ${D} .scroll-thin::-webkit-scrollbar-thumb, ${D} .ds-scroll::-webkit-scrollbar-thumb { background:#3a4a66 !important; border-radius:999px; }
+  ${D} .scroll-thin::-webkit-scrollbar-thumb, ${D} .ds-scroll::-webkit-scrollbar-thumb { background:var(--scrollbar-thumb,#1a92d1) !important; border-radius:999px; }
   ${D}::-webkit-scrollbar-thumb:hover, ${D} body::-webkit-scrollbar-thumb:hover, ${D} *::-webkit-scrollbar-thumb:hover,
-  ${D} .scroll-thin::-webkit-scrollbar-thumb:hover, ${D} .ds-scroll::-webkit-scrollbar-thumb:hover { background:#6b7280 !important; }
+  ${D} .scroll-thin::-webkit-scrollbar-thumb:hover, ${D} .ds-scroll::-webkit-scrollbar-thumb:hover { background:var(--scrollbar-thumb-hover,#1485c5) !important; }
   ${D}::-webkit-scrollbar-track, ${D} body::-webkit-scrollbar-track, ${D} *::-webkit-scrollbar-track,
-  ${D} .scroll-thin::-webkit-scrollbar-track, ${D} .ds-scroll::-webkit-scrollbar-track { background:transparent !important; }
-  ${D}, ${D} body, ${D} .scroll-thin, ${D} .ds-scroll { scrollbar-color:#3a4a66 transparent !important; }
+  ${D} .scroll-thin::-webkit-scrollbar-track, ${D} .ds-scroll::-webkit-scrollbar-track { background:var(--scrollbar-track,#f3f4f6) !important; }
+  ${D}, ${D} body, ${D} .scroll-thin, ${D} .ds-scroll { scrollbar-color:var(--scrollbar-thumb,#1a92d1) var(--scrollbar-track,#f3f4f6) !important; }
 
   /* Pastel brand/info strips (blue-tinted, not grayscale — scanner skips them) */
   ${D} [style*="background:#eff6ff"], ${D} [style*="background:#EFF6FF"], ${D} [style*="background:#e0f2fe"],
@@ -738,8 +752,8 @@ function applyTweaks() {
     .co-rs-gauge.co-rs-gauge--still{transition:none}
     .co-rs-gauge.co-rs-gauge--sanc, html[data-theme="dark"] .co-rs-gauge.co-rs-gauge--sanc{border-color:#dc2626!important}
     @media (prefers-reduced-motion: reduce){.co-rs-gauge{transition:none}}
-    html:not([data-theme="dark"]), html:not([data-theme="dark"]) body, html:not([data-theme="dark"]) *{scrollbar-color:${c[400]} #f3f4f6!important}
-    html:not([data-theme="dark"])::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb{background:${c[400]}!important;border-radius:999px}
+    html:not([data-theme="dark"]), html:not([data-theme="dark"]) body, html:not([data-theme="dark"]) *{scrollbar-color:${c[500]} #f3f4f6!important}
+    html:not([data-theme="dark"])::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb{background:${c[500]}!important;border-radius:999px}
     html:not([data-theme="dark"])::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) body::-webkit-scrollbar-thumb:hover, html:not([data-theme="dark"]) *::-webkit-scrollbar-thumb:hover{background:${c[600]}!important}
     html:not([data-theme="dark"])::-webkit-scrollbar-track, html:not([data-theme="dark"]) body::-webkit-scrollbar-track, html:not([data-theme="dark"]) *::-webkit-scrollbar-track{background:#f3f4f6!important}
     .hover\\:bg-brand-600:hover{background-color:${c[600]}!important}.hover\\:border-brand-300:hover{border-color:${c[300]}!important}

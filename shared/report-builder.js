@@ -628,7 +628,7 @@ const CSS = `
 .rb-type:hover{border-color:var(--brand-300,#93c5fd);box-shadow:0 4px 14px rgba(37,99,235,.1)}
 .rb-type-ico{width:34px;height:34px;border-radius:8px;background:var(--brand-50,#eff6ff);display:flex;align-items:center;justify-content:center}
 .rb-body{flex:1;min-height:0;display:grid;grid-template-columns:352px minmax(0,1fr)}
-@supports (-moz-appearance:none){.rb-body,.rb-rail,.rb-canvas-wrap,.rb-list{scrollbar-width:thin;scrollbar-color:#d1d5db transparent}}
+@supports (-moz-appearance:none){.rb-body,.rb-rail,.rb-canvas-wrap,.rb-list{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}}
 .rb-rail{border-right:1px solid #e5e7eb;background:#fff;overflow:auto;min-height:0}
 .rb-panel{border-bottom:1px solid #f3f4f6}
 .rb-panel-h{width:100%;display:flex;align-items:center;gap:8px;padding:12px 16px;background:0;border:0;font-family:inherit;font-size:14px;font-weight:700;color:#111827;cursor:pointer;text-align:left}

@@ -34,8 +34,8 @@
         margin-top:8px; max-height:280px; overflow-y:auto;
         border:1px solid #e5e7eb; border-radius:4px; background:#fff;
       }
-      .rw-grp-list::-webkit-scrollbar { width:8px; }
-      .rw-grp-list::-webkit-scrollbar-thumb { background:var(--brand-300,#93c5fd); border-radius:4px; }
+      .rw-grp-list::-webkit-scrollbar { width:6px; }
+      .rw-grp-list::-webkit-scrollbar-thumb { background:#1a92d1; border-radius:4px; }
       .rw-grp-row {
         display:flex; align-items:center; gap:8px;
         padding:12px 12px; border-bottom:1px solid #f3f4f6;
