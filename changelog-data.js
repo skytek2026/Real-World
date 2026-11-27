@@ -38,6 +38,32 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.3.0",
+    "dateISO": "2026-11-27T21:00:00Z",
+    "date": "27/11/2026",
+    "time": "21:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Token",
+    "impact": "Minor",
+    "summary": "Decision on the token proposals (DS7): four non-breaking pieces of the layout package adopted; the colour package parked; the rest declined.",
+    "changes": [
+      "New touch-target tokens: --hit-min (44px) and --hit-comfortable (48px); the icon-button hit area uses --hit-min.",
+      "New semantic spacing on the existing scale: --gutter-page (space-6), --padding-card (space-4), --gap-stack (space-4), --gap-inline (space-2). Shown in the Spacing chapter.",
+      "New type role t-figure (Inter 14 / 20, weight 500, tabular figures) for KPIs, prices and table figures; .t-numeric stays the modifier for other sizes.",
+      "Form fields (.ds-input, .ds-select) are 16px on touch screens so iOS Safari does not zoom; documented in Accessibility.",
+      "PROPOSALS.md is now a decision record: colour package parked until themes return (would reverse the brand-500 decision and rename the ramp); radius renames, Tailwind-numbered spacing and 16 / 14px body text declined.",
+      "No existing token renamed or changed. Closes review item DS7."
+    ],
+    "reason": "Decision on DS7 (adopt the useful, non-breaking parts; keep one source of truth).",
+    "affected": [
+      "Tokens",
+      "Spacing",
+      "Typography",
+      "Accessibility",
+      "Inputs & forms"
+    ]
+  },
+  {
     "version": "v4.2.4",
     "dateISO": "2026-11-27T18:00:00Z",
     "date": "27/11/2026",

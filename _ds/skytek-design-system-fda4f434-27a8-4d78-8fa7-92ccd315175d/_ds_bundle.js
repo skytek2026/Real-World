@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"fcaffef33d74","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"6522c385a748","section-charts.jsx":"18175ef42442","section-components.jsx":"1758cc00e609","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"a23eb8d25cd5","section-foundations2.jsx":"39f7fad0c7b8","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"77862651f27b","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"d9cc67312d64","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"b3a4355cf86a","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"6522c385a748","section-charts.jsx":"18175ef42442","section-components.jsx":"1758cc00e609","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"39f7fad0c7b8","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"c3c08e761160","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"d9cc67312d64","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,32 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.3.0",
+    "dateISO": "2026-11-27T21:00:00Z",
+    "date": "27/11/2026",
+    "time": "21:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Token",
+    "impact": "Minor",
+    "summary": "Decision on the token proposals (DS7): four non-breaking pieces of the layout package adopted; the colour package parked; the rest declined.",
+    "changes": [
+      "New touch-target tokens: --hit-min (44px) and --hit-comfortable (48px); the icon-button hit area uses --hit-min.",
+      "New semantic spacing on the existing scale: --gutter-page (space-6), --padding-card (space-4), --gap-stack (space-4), --gap-inline (space-2). Shown in the Spacing chapter.",
+      "New type role t-figure (Inter 14 / 20, weight 500, tabular figures) for KPIs, prices and table figures; .t-numeric stays the modifier for other sizes.",
+      "Form fields (.ds-input, .ds-select) are 16px on touch screens so iOS Safari does not zoom; documented in Accessibility.",
+      "PROPOSALS.md is now a decision record: colour package parked until themes return (would reverse the brand-500 decision and rename the ramp); radius renames, Tailwind-numbered spacing and 16 / 14px body text declined.",
+      "No existing token renamed or changed. Closes review item DS7."
+    ],
+    "reason": "Decision on DS7 (adopt the useful, non-breaking parts; keep one source of truth).",
+    "affected": [
+      "Tokens",
+      "Spacing",
+      "Typography",
+      "Accessibility",
+      "Inputs & forms"
+    ]
+  },
   {
     "version": "v4.2.4",
     "dateISO": "2026-11-27T18:00:00Z",
@@ -15766,6 +15792,14 @@ const TypeSection = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   size: "11",
   lh: "14"
 }), /*#__PURE__*/React.createElement(TypeSpecimen, {
+  cls: "t-figure",
+  label: "Figure",
+  role: "KPIs, prices, timers, table figures: tabular (aligned) digits. Add .t-numeric at other sizes.",
+  family: "Inter",
+  weight: "500",
+  size: "14",
+  lh: "20"
+}), /*#__PURE__*/React.createElement(TypeSpecimen, {
   cls: "t-mono",
   label: "Mono",
   role: "IMO, MMSI, codes, IDs, JSON.",
@@ -15817,6 +15851,37 @@ const SpacingSection = () => {
       color: "var(--text-muted)"
     }
   }, "\xB7 ", toRem(v), "rem")), /*#__PURE__*/React.createElement("div", {
+    className: "preview"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "var(--brand-300)",
+      height: 12,
+      width: v,
+      borderRadius: 2
+    }
+  })), /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: "var(--text-secondary)"
+    }
+  }, use))), /*#__PURE__*/React.createElement("div", {
+    className: "panel-head",
+    style: {
+      borderTop: "1px solid var(--border-subtle)"
+    }
+  }, /*#__PURE__*/React.createElement("h4", null, "Semantic spacing and touch targets"), /*#__PURE__*/React.createElement("span", {
+    className: "meta"
+  }, "v4.3.0 \xB7 named uses of the scale")), [["--gutter-page", 24, "Horizontal page padding (space-6)"], ["--padding-card", 16, "Inner padding of cards, panels, sheets (space-4)"], ["--gap-stack", 16, "Vertical gap between blocks in a column (space-4)"], ["--gap-inline", 8, "Gap between items in a row: icon + label, chips, buttons (space-2)"], ["--hit-min", 44, "Minimum touch target on touch screens; small controls extend their hit area to it"], ["--hit-comfortable", 48, "Primary actions on touch screens"]].map(([t, v, use]) => /*#__PURE__*/React.createElement("div", {
+    key: t,
+    className: "token-row",
+    style: {
+      gridTemplateColumns: "180px 120px 120px 1fr"
+    }
+  }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
+    className: "t-mono",
+    style: {
+      color: "var(--text-secondary)"
+    }
+  }, v, "px"), /*#__PURE__*/React.createElement("div", {
     className: "preview"
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -17603,7 +17668,7 @@ const InteractionSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Token"), /*#__PURE__*/React.createElement("th", null, "Duration"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-instant")), /*#__PURE__*/React.createElement("td", null, "80ms"), /*#__PURE__*/React.createElement("td", null, "Pressed states, checkbox toggles")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-fast")), /*#__PURE__*/React.createElement("td", null, "140ms"), /*#__PURE__*/React.createElement("td", null, "Hover, focus, button color change")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-base")), /*#__PURE__*/React.createElement("td", null, "200ms"), /*#__PURE__*/React.createElement("td", null, "Tooltips, popovers, expand/collapse")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-slow")), /*#__PURE__*/React.createElement("td", null, "320ms"), /*#__PURE__*/React.createElement("td", null, "Drawer / modal enter & exit"))))));
 const A11ySection = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified: see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets at least 24 \xD7 24px everywhere; 44 \xD7 44px on touch screens."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.8, 24px); 2.5.5 (44px) is AAA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " is 40px: on touch, extend its hit area to 44px with padding or an invisible hit area; row hit areas span the full row.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon, never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified: see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets at least 24 \xD7 24px everywhere; 44 \xD7 44px on touch screens."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.8, 24px); 2.5.5 (44px) is AAA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " is 40px: on touch, extend its hit area to ", /*#__PURE__*/React.createElement("code", null, "--hit-min"), " (44px) with padding or an invisible hit area; primary actions use ", /*#__PURE__*/React.createElement("code", null, "--hit-comfortable"), " (48px); row hit areas span the full row. Form fields are 16px on touch screens so iOS does not zoom.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon, never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
 window.LayoutSection = LayoutSection;
 window.InteractionSection = InteractionSection;
 window.A11ySection = A11ySection;

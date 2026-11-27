@@ -702,6 +702,42 @@
       "definedIn": "styles.css"
     },
     {
+      "name": "--gutter-page",
+      "value": "24px",
+      "kind": "length",
+      "definedIn": "styles.css"
+    },
+    {
+      "name": "--padding-card",
+      "value": "16px",
+      "kind": "length",
+      "definedIn": "styles.css"
+    },
+    {
+      "name": "--gap-stack",
+      "value": "16px",
+      "kind": "length",
+      "definedIn": "styles.css"
+    },
+    {
+      "name": "--gap-inline",
+      "value": "8px",
+      "kind": "length",
+      "definedIn": "styles.css"
+    },
+    {
+      "name": "--hit-min",
+      "value": "44px",
+      "kind": "length",
+      "definedIn": "styles.css"
+    },
+    {
+      "name": "--hit-comfortable",
+      "value": "48px",
+      "kind": "length",
+      "definedIn": "styles.css"
+    },
+    {
       "name": "--radius-xs",
       "value": "2px",
       "kind": "radius",

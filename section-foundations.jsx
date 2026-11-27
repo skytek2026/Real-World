@@ -190,6 +190,7 @@ const TypeSection = () => (
         <TypeSpecimen cls="t-caption" label="Caption"   role="Help, meta, captions."                    family="Inter" weight="400" size="12" lh="16" />
         <TypeSpecimen cls="t-label"   label="Label"     role="Field labels, table headers."             family="Inter" weight="600" size="12" lh="16" />
         <TypeSpecimen cls="t-overline" label="Overline" role="Section eyebrows, status group titles."   family="Inter" weight="600" size="11" lh="14" />
+        <TypeSpecimen cls="t-figure"  label="Figure"    role="KPIs, prices, timers, table figures: tabular (aligned) digits. Add .t-numeric at other sizes." family="Inter" weight="500" size="14" lh="20" />
         <TypeSpecimen cls="t-mono"    label="Mono"      role="IMO, MMSI, codes, IDs, JSON."             family="JetBrains Mono" weight="400" size="12.5" lh="18" />
       </div>
     </div>
@@ -229,6 +230,19 @@ const SpacingSection = () => {
           <div className="preview">
             <div style={{ background: "var(--brand-300)", height: 12, width: v, borderRadius: 2 }} />
           </div>
+          <span style={{ color: "var(--text-secondary)" }}>{use}</span>
+        </div>
+      ))}
+      <div className="panel-head" style={{ borderTop: "1px solid var(--border-subtle)" }}>
+        <h4>Semantic spacing and touch targets</h4>
+        <span className="meta">v4.3.0 · named uses of the scale</span>
+      </div>
+      {[["--gutter-page", 24, "Horizontal page padding (space-6)"], ["--padding-card", 16, "Inner padding of cards, panels, sheets (space-4)"], ["--gap-stack", 16, "Vertical gap between blocks in a column (space-4)"], ["--gap-inline", 8, "Gap between items in a row: icon + label, chips, buttons (space-2)"],
+        ["--hit-min", 44, "Minimum touch target on touch screens; small controls extend their hit area to it"], ["--hit-comfortable", 48, "Primary actions on touch screens"]].map(([t, v, use]) => (
+        <div key={t} className="token-row" style={{ gridTemplateColumns: "180px 120px 120px 1fr" }}>
+          <code>{t}</code>
+          <span className="t-mono" style={{ color: "var(--text-secondary)" }}>{v}px</span>
+          <div className="preview"><div style={{ background: "var(--brand-300)", height: 12, width: v, borderRadius: 2 }} /></div>
           <span style={{ color: "var(--text-secondary)" }}>{use}</span>
         </div>
       ))}
