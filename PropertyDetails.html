@@ -44,7 +44,7 @@
   .pi-cell { padding:8px 16px; background:#fff; min-width:0; }
   .pi-cell.pi-full { grid-column:1/-1; }
   .pi-label { font-size:12px; color:#6b7280; font-weight:600; display:flex; align-items:center; gap:4px; margin-bottom:2px; white-space:nowrap; }
-  .pi-value { font-size:14px; font-weight:700; color:#111827; line-height:1.35; overflow-wrap:break-word; }
+  .pi-value { font-size:14px; font-weight:700; color:#111827; overflow-wrap:break-word; }
   @container (max-width:340px) { .pi-grid { grid-template-columns:1fr; } }
   .pi-value.muted { color:#6b7280; font-weight:500; }
   /* Map */
@@ -116,7 +116,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=34"></script>
+<script src="shared/chrome.js?v=36"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;
@@ -375,7 +375,7 @@ function CardWeatherRisk() {
       </div>
 
       <!-- Forecast narrative -->
-      <div style="font-size:12px;color:#4b5563;line-height:1.55;margin-bottom:12px">
+      <div style="font-size:12px;color:#4b5563;5;margin-bottom:12px">
         ${alert.narrative}
       </div>
 

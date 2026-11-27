@@ -64,7 +64,7 @@
   .rcat-headtext{min-width:0}
   .rcat-title{font-family:'Exo','Inter',sans-serif;font-size:14.5px;font-weight:700;line-height:1.25;margin:1px 0 0}
   .rcat-n{opacity:.75}
-  .rcat-desc{font-size:12px;color:#6b7280;line-height:1.5;margin:4px 0 0;text-wrap:pretty}
+  .rcat-desc{font-size:12px;color:#6b7280;margin:4px 0 0;text-wrap:pretty}
   .rcat-count{flex-shrink:0;min-width:24px;height:22px;padding:0 8px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
   .rcat-list{display:flex;flex-direction:column;gap:0;border:1px solid #e5e7eb;border-radius:11px;overflow:hidden}
   .rcat-row{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;width:100%;padding:12px 12px;background:#fff;border:0;border-bottom:1px solid #f3f4f6;font-family:inherit;font-size:14px;font-weight:600;color:#111827;text-align:left;cursor:pointer;transition:background .14s,box-shadow .14s;min-height:44px}
@@ -209,7 +209,7 @@
   #cnr-host .cnr-spinner{width:20px;height:20px;border-radius:9999px;border:2.5px solid rgba(45,127,251,.25);border-top-color:var(--brand-600,#1485c5);animation:cnrspin .7s linear infinite}
   @keyframes cnrspin{to{transform:rotate(360deg)}}
   #cnr-host .cnr-status-t{font-size:14px;font-weight:700;color:#111827}
-  #cnr-host .cnr-status-d{font-size:14px;color:#6b7280;line-height:1.5;max-width:400px;text-wrap:pretty}
+  #cnr-host .cnr-status-d{font-size:14px;color:#6b7280;max-width:400px;text-wrap:pretty}
   #cnr-host .cnr-note{display:flex;align-items:center;gap:8px;margin-top:4px;padding:12px 12px;background:var(--brand-50,#eff6ff);border:1px solid var(--brand-200,#b8ddf5);border-radius:8px;font-size:12px;color:#374151;text-align:left}
   #cnr-host .cnr-note svg{color:var(--brand-700,#0f6aa0);flex-shrink:0}
   #cnr-host .cnr-note strong{color:#111827}
@@ -278,7 +278,7 @@
   .chat-input:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
   .chip{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 16px;font-size:14px;font-weight:600;color:#111827;cursor:pointer;text-align:left;font-family:inherit;transition:border-color .15s,box-shadow .15s,background .1s}
   .chip:hover{border-color:var(--brand-300,#93c5fd);box-shadow:0 2px 8px rgba(37,99,235,.12);background:#fafafe}
-  .bubble-user{background:var(--brand-600,#2563eb);color:#fff;border-radius:16px 16px 4px 16px;padding:12px 16px;font-size:14px;max-width:480px;margin-left:auto;line-height:1.5}
+  .bubble-user{background:var(--brand-600,#2563eb);color:#fff;border-radius:16px 16px 4px 16px;padding:12px 16px;font-size:14px;max-width:480px;margin-left:auto;}
   .bubble-ai{background:#fff;border:1px solid #e5e7eb;border-radius:16px 16px 16px 4px;padding:12px 16px;font-size:14px;color:#111827;line-height:1.6;box-shadow:0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06)}
   .bubble-ai p{margin-bottom:8px}.bubble-ai p:last-child{margin-bottom:0}
   .bubble-ai ul{margin:4px 0 4px 16px;list-style:disc}.bubble-ai li{margin-bottom:4px}
@@ -383,7 +383,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=34"></script>
+<script src="shared/chrome.js?v=36"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/report-builder.js?v=12"></script>

@@ -81,7 +81,7 @@
   /* Portfolio stat cards — Skytek DS "Individual stat cards" pattern */
   .stat-card{background:var(--bg-surface,#fff);border:1px solid var(--border-subtle,#ECEEF2);border-radius:var(--radius-lg,8px);display:flex;flex-direction:column;min-width:0}
   .stat-card .ds-card-head{padding:12px 16px;border-bottom:1px solid var(--border-subtle,#ECEEF2);display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px}
-  .stat-card .ds-card-title{font-family:'Exo',var(--font-display,sans-serif);font-size:14px;font-weight:600;line-height:1.25;margin:0;color:var(--text-primary,#111827)}
+  .stat-card .ds-card-title{font-family:'Exo',var(--font-display,sans-serif);font-size:14px;font-weight:600;margin:0;color:var(--text-primary,#111827)}
   .stat-card .ds-card-body{padding:16px;display:flex;flex-direction:column;gap:8px}
   .stat-card .ds-metric-value{font-family:'Exo',var(--font-display,sans-serif);font-size:32px;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--brand-700,#0f6aa0)}
   .stat-card .ds-metric-value--neutral{color:var(--text-primary,#111827)}
@@ -254,7 +254,7 @@
   .ds-toast-region{position:fixed;top:var(--toast-inset);left:50%;transform:translateX(-50%);z-index:var(--z-toast);display:flex;flex-direction:column;align-items:center;gap:var(--toast-gap);width:var(--toast-width);max-width:calc(100vw - 32px);pointer-events:none;}
   .ds-toast{position:relative;pointer-events:auto;display:grid;grid-template-columns:auto 1fr auto;align-items:start;column-gap:8px;padding:var(--toast-pad-y) var(--toast-pad-x);padding-left:calc(var(--toast-pad-x) + var(--toast-accent));background:var(--white);border:1px solid var(--border-default);border-left:var(--toast-accent) solid var(--slate-400);border-radius:var(--toast-radius);box-shadow:var(--toast-shadow);overflow:hidden;}
   .ds-toast-icon{width:18px;height:18px;margin-top:1px;color:var(--text-muted);flex-shrink:0;}
-  .ds-toast-body{min-width:0;font-size:14px;line-height:1.45;}
+  .ds-toast-body{min-width:0;font-size:14px;}
   .ds-toast-title{font-weight:600;color:var(--text-primary);}
   .ds-toast-desc{font-size:12px;color:var(--text-secondary);margin-top:1px;}
   .ds-toast-actions{display:flex;align-items:center;gap:4px;margin-top:8px;}
@@ -343,7 +343,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=34"></script>
+<script src="shared/chrome.js?v=36"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>

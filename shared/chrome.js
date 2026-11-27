@@ -33,7 +33,7 @@
         input[type="checkbox"], input[type="radio"] { min-width: 24px; min-height: 24px; }
         select { min-height: 44px; }
       }
-      /* Tailwind's text-xs is 12px on a 16px line (1.33): use 1.5 unless a page sets its own leading-* */
+      /* DS type scale: 12px text on a 16px line (t-caption) */
       /* Skytek DS v4.1.0 */
       :focus-visible { outline: 2px solid #1485C5; outline-offset: 2px; }   /* DS --shadow-focus: brand-600 ring with a gap, 4.05:1 */
       :root .shadow-card { box-shadow: 0 2px 4px 0 rgba(15,23,42,.08), 0 1px 2px 0 rgba(15,23,42,.06) !important; }        /* card-shadow-rest */
@@ -41,6 +41,12 @@
       :root :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([class*="border-0"]):not([class*="border-none"]), textarea):not(:focus):not([aria-invalid="true"]):not([class*="invalid"]):not([class*="error"]) { border-color: #6B7280 !important; }   /* DS border-control (beats !important class maps and inline borders; not focus / invalid) */
       .bg-ink-100.text-ink-500, .bg-ink-100 > .text-ink-500, [style*="background:#eff6ff"] [style*="color:#6b7280"], [style*="background:#eff6ff"] .text-ink-500 { color: #4B5563 !important; }   /* muted text on grey / tinted surfaces: ink-600 */
       .ds-btn { white-space: nowrap; }
+      /* DS type scale line heights: 11/14, 12/16, 13/18, 14/20, then +8px (16/24, 20/28, 24/32, 32/40).
+         Zero specificity: replaces inherited line heights (Tailwind's base 1.5) but never a line height a
+         component or page sets deliberately. */
+      :where(body *) { line-height: calc(1em + min(8px, 1em - 8px)); }
+      :root :is(.leading-normal, .leading-snug, .leading-relaxed, .leading-loose) { line-height: calc(1em + min(8px, 1em - 8px)) !important; }
+      :root :is(button, input, select, textarea, .ds-badge, .ds-btn, .ds-card-title) { line-height: calc(1em + min(8px, 1em - 8px)); }   /* controls and DS components follow the type scale (they set no line height of their own) */
       :root select:not(:focus):not([class*="border-0"]):not([aria-invalid="true"]):not([class*="invalid"]):not([class*="error"]) { border-color: #6B7280 !important; }   /* DS border-control; beats page-level select borders, not focus styles */
       .font-mono { font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace !important; }   /* DS --font-mono */
       :is(.bg-brand-50,[class*="bg-[#eff6ff]"],[class*="bg-[#eff8fd]"],[style*="background:#eff6ff"],[style*="background:#eff8fd"],[style*="background: #eff6ff"],[style*="background: #eff8fd"],[class*="bg-blue-50"],[class*="bg-sky-50"]) .text-ink-500 { color: #4B5563 !important; }   /* muted labels on brand tints */

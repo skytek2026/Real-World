@@ -19,7 +19,7 @@ a{color:var(--brand-600,var(--brand-600,#2563eb));text-decoration:none}a:hover{c
 .cs-lbl .opt{font-weight:500;color:#6b7280}
 .cs-lbl .req{color:#b91c1c}
 .pfield{width:100%;height:38px;border:1px solid #e5e7eb;border-radius:8px;padding:0 12px;font-size:14px;color:#111827;background:#f9fafb;font-family:inherit;outline:none;transition:border-color .15s,box-shadow .15s}
-textarea.pfield{height:auto;min-height:120px;padding:12px 12px;line-height:1.5;resize:vertical}
+textarea.pfield{height:auto;min-height:120px;padding:12px 12px;resize:vertical}
 select.pfield{appearance:none;-webkit-appearance:none;padding-right:36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;cursor:pointer}
 .pfield:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#1485c5) 14%,transparent);background-color:#fff}
 .pfield.err{border-color:#fca5a5;background-color:#fef2f2}
@@ -68,7 +68,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=34"></script>
+<script src="shared/chrome.js?v=36"></script>
 <script>
 const SC = window.sharedChrome;
 const qp = new URLSearchParams(location.search);
@@ -162,7 +162,7 @@ function DoneView() {
   <div class="pcard" style="text-align:center;padding:40px 24px">
     <div style="width:56px;height:56px;border-radius:50%;background:#dcfce7;display:flex;align-items:center;justify-content:center;margin:0 auto 12px">${OK_ICO}</div>
     <h1 style="font-size:20px;font-weight:700;color:#111827">Thanks, we’ve got it</h1>
-    <p style="font-size:14px;color:#4b5563;margin-top:4px;line-height:1.5;text-wrap:pretty">Your reference is <b style="color:#111827">${CS.ref}</b>. We’ll reply to <b style="color:#111827">${esc(CS.email)}</b>, usually within one working day.</p>
+    <p style="font-size:14px;color:#4b5563;margin-top:4px;text-wrap:pretty">Your reference is <b style="color:#111827">${CS.ref}</b>. We’ll reply to <b style="color:#111827">${esc(CS.email)}</b>, usually within one working day.</p>
     <div style="display:flex;justify-content:center;gap:8px;margin-top:20px;flex-wrap:wrap">
       <button type="button" class="btn-ghost" id="cs-again">Send another</button>
       ${fromFile ? `<a class="btn-primary" style="text-decoration:none" href="${esc(fromFile)}">Back to ${esc(fromTitle || 'page')}</a>` : `<a class="btn-primary" style="text-decoration:none" href="Dashboard.html">Go to Dashboard</a>`}

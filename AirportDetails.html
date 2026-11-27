@@ -147,7 +147,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=34"></script>
+<script src="shared/chrome.js?v=36"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -571,11 +571,11 @@ function CardGeneralInfo() {
               <div style="display:flex;flex-wrap:wrap;gap:4px;">
                 ${t.airlines.map(a => `<span style="background:#f3f4f6;border-radius:999px;padding:2px 8px;font-size:12px;font-weight:500;color:#4b5563;">${a}</span>`).join('')}
               </div>
-              ${t.note ? `<div class="text-xs text-ink-500 mt-1" style="line-height:1.4;">${t.note}</div>` : ''}
+              ${t.note ? `<div class="text-xs text-ink-500 mt-1" style="">${t.note}</div>` : ''}
             </div>
           </div>`).join('')}
         </div>
-        ${TI.note ? `<div class="text-xs text-ink-500 mt-3" style="line-height:1.45;">${TI.note}</div>` : ''}
+        ${TI.note ? `<div class="text-xs text-ink-500 mt-3" style="5;">${TI.note}</div>` : ''}
         ` : `<div class="text-xs text-ink-500">Information not available for this airport.</div>`}
       </div>
     </div>
@@ -976,7 +976,7 @@ async function loadWeather() {
       + '<div style="color:' + (day ? '#1485c5' : '#4b5563') + ';flex-shrink:0;">' + wxIcon(c.weather_code, day, 36) + '</div>'
       + '<div style="min-width:0;">'
       + '<div style="font-size:24px;font-weight:700;color:#111827;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;">' + (temp != null ? temp + '&deg;C' : '-') + '</div>'
-      + '<div style="font-size:12px;color:#4b5563;line-height:1.4;margin-top:4px;text-wrap:pretty;">' + (WX_CODES[c.weather_code] || '-')
+      + '<div style="font-size:12px;color:#4b5563;margin-top:4px;text-wrap:pretty;">' + (WX_CODES[c.weather_code] || '-')
       + (c.apparent_temperature != null ? ' &middot; feels ' + Math.round(c.apparent_temperature) + '&deg;' : '') + '</div></div></div>'
       + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 8px;margin-top:8px;">'
       + stat('Wind', spd != null ? spd + ' kt ' + windDir(dir || 0) : '-')

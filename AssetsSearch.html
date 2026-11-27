@@ -42,7 +42,7 @@
   .asset-pill.is-init { transition: none; }
   /* Mobile tabs dropdown */
   .asset-tabs-dd { display: none; width: 100%; max-width: 320px; height: 40px; padding: 0 36px 0 16px; border: 1px solid #e5e7eb; border-radius: 999px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center; box-shadow: 0 1px 3px rgba(15,23,42,.08); font: inherit; font-size: 14px; font-weight: 600; color: #111827; appearance: none; -webkit-appearance: none; cursor: pointer; outline: none; text-align: center; text-align-last: center; }
-  .asset-tabs-dd:focus { border-color: var(--brand-300, #93c5fd); box-shadow: 0 1px 3px rgba(15,23,42,.08), 0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 12%, transparent); }
+  .asset-tabs-dd:focus { border-color: var(--brand-600, #1485c5); box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5; }   /* DS focus ring */
   @media (max-width: 640px) {
     .asset-tabs { display: none !important; }
     .asset-tabs-dd { display: block !important; }
@@ -51,7 +51,7 @@
   /* --- Search & filter bar --- */
   .search-wrap { position: relative; flex: 1; max-width: 360px; }
   .search-wrap input { width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 12px 8px 32px; font-size: 14px; color: #374151; background: #fff; outline: none; }
-  .search-wrap input:focus { border-color: var(--brand-300, #93c5fd); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 12%, transparent); }
+  .search-wrap input:focus { border-color: var(--brand-600, #1485c5); box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #1485C5; }   /* DS focus ring */
   .search-wrap .search-ico { position: absolute; left: 9px; top: 50%; transform: translateY(-50%); color: #6b7280; pointer-events: none; }
   .filter-btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; font-size: 12px; font-weight: 500; color: #374151; cursor: pointer; white-space: nowrap; transition: border-color 120ms, background 120ms; }
   .filter-btn:hover { border-color: var(--brand-300, #93c5fd); background: #f9fafb; }
@@ -228,7 +228,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=34"></script>
+<script src="shared/chrome.js?v=36"></script>
 <script>
 const SC = window.sharedChrome;
 
