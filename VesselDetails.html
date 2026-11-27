@@ -79,10 +79,6 @@
   .rs-tip-tbl td{padding:4px 4px;color:#374151;text-align:right;}
   .rs-tip-tbl td:first-child{text-align:left;color:#111827;}
   .voyage-tabs .ds-tabs{width:100%;min-width:0;}
-  .voyage-tabs .ds-tab{font-size:12px !important;padding:4px 4px !important;min-width:0 !important;white-space:normal !important;overflow-wrap:break-word;line-height:1.15;text-align:center;justify-content:center;}
-  .voyage-tabs .ds-tab-label{font-size:12px !important;justify-content:center;text-align:center;white-space:normal !important;}
-  @media (min-width:1280px){.voyage-tabs .ds-tab,.voyage-tabs .ds-tab-label{font-size:12px !important;}.voyage-tabs .ds-tab{padding:8px 12px !important;line-height:1.2;}}
-  .voyage-tabs .ds-tab-label{justify-content:center;text-align:center;}
   .rs-tip-lgd{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:8px;border-top:1px solid #f3f4f6;}
   .rs-tip-lgd-h{font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;}
   .rs-tip-lgd-r{display:flex;align-items:center;gap:4px;font-size:12px;color:#374151;}
@@ -1015,7 +1011,7 @@ function tabs(tabs, active, attr, stretch = false) {
     ${tabs.map(t => {
       const upArrow = `<svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5M5 12l7-7 7 7"/></svg>`;
       const downArrow = `<svg width="9" height="9" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12l7 7 7-7"/></svg>`;
-      const scoreBadge = t.scoreBadge ? `<span class="ml-1 inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-xs font-bold ${t.scoreBadge.tone.bg} ${t.scoreBadge.tone.text}">${t.scoreBadge.value}${t.scoreBadge.up ? upArrow : downArrow}</span>` : '';
+      const scoreBadge = t.scoreBadge ? `<span class="ml-1 inline-flex items-center gap-0.5 rounded-full font-bold ${t.scoreBadge.tone.bg} ${t.scoreBadge.tone.text}" style="font-size:11px;line-height:14px;padding:2px 6px;">${t.scoreBadge.value}${t.scoreBadge.up ? upArrow : downArrow}</span>` : '';
       const iBadge = t.badge ? `<span class="ml-1 inline-flex items-center justify-center text-xs font-bold text-white rounded-full" style="width:14px;height:14px;flex-shrink:0;background:#B45309;">${t.badge}</span>` : '';
       const iconHtml = t.icon ? `<span class="inline-flex items-center" style="width:14px;height:14px;flex-shrink:0;">${SC.I[t.icon]}</span>` : '';
       return `
