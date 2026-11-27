@@ -591,7 +591,7 @@ body {
 .app-nav-changelog:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
 .app-nav-changelog svg { color: var(--text-muted); flex: 0 0 auto; }
 .app-nav-changelog.has-unseen { border-color: var(--brand-300); background: var(--brand-050); color: var(--brand-700); }
-.app-nav-changelog.has-unseen svg { color: var(--brand-500); }
+.app-nav-changelog.has-unseen svg { color: var(--brand-700); }
 
 /* Pulsating "unseen updates" indicator */
 .cl-pulse { position: relative; width: 9px; height: 9px; flex: 0 0 auto; }
@@ -622,7 +622,7 @@ body {
 .section + .section { padding-top: 56px; }
 .section-eyebrow {
   font-size: 12px; font-weight: 600;
-  color: var(--brand-500); text-transform: uppercase;
+  color: var(--brand-700); text-transform: uppercase;
   letter-spacing: 0.08em; margin-bottom: var(--space-2);
 }
 .section-title { margin: 0 0 var(--space-2); }
@@ -712,7 +712,7 @@ section[id] h4:not([class]) { margin-block: var(--space-4) var(--space-2); }
   font-size: 13px;
 }
 .token-row:first-child { border-top: 0; }
-.token-row code { font-family: var(--font-mono); font-size: 12px; color: var(--brand-600); }
+.token-row code { font-family: var(--font-mono); font-size: 12px; color: var(--brand-700); }
 .token-row .preview { display: flex; align-items: center; }
 
 /* ===== Inline code / tags ===== */
@@ -723,7 +723,7 @@ code.inline {
   border: 1px solid var(--border-subtle);
   padding: 1px var(--space-2);
   border-radius: 4px;
-  color: var(--brand-600);
+  color: var(--brand-700);
 }
 
 pre.code {
@@ -822,7 +822,7 @@ pre.code .n { color: #FDA4AF; }
 }
 .ds-token-copy-chip:hover {
   background: var(--slate-100);
-  color: var(--brand-600);
+  color: var(--brand-700);
   border-color: var(--border-subtle);
 }
 .ds-token-copy-chip:focus-visible {
@@ -895,7 +895,7 @@ pre.code .n { color: #FDA4AF; }
 }
 .principle h4 { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
 .principle p { margin: 0; color: var(--text-secondary); font-size: 13px; line-height: 1.5; }
-.principle .tag { font-size: 11px; color: var(--brand-600); font-weight: 600; }
+.principle .tag { font-size: 11px; color: var(--brand-700); font-weight: 600; }
 
 /* ===== Do / Don't ===== */
 .dodont {
@@ -952,7 +952,7 @@ pre.code .n { color: #FDA4AF; }
   vertical-align: top;
 }
 .spec-table tr:last-child td { border-bottom: 0; }
-.spec-table code { font-family: var(--font-mono); font-size: 12px; color: var(--brand-600); }
+.spec-table code { font-family: var(--font-mono); font-size: 12px; color: var(--brand-700); }
 
 /* ===== Component primitives the spec demos use ===== */
 /* (These are the actual design system components, not just stylesheet decoration.) */
@@ -990,8 +990,8 @@ pre.code .n { color: #FDA4AF; }
 .ds-btn--secondary[disabled] { color: var(--slate-400); background: var(--slate-050); }
 
 .ds-btn--ghost { background: transparent; color: var(--text-link); }
-.ds-btn--ghost:hover { background: var(--slate-100); color: var(--brand-600); }
-.ds-btn--ghost:active { background: var(--slate-150); color: var(--brand-600); }
+.ds-btn--ghost:hover { background: var(--slate-100); color: var(--brand-700); }
+.ds-btn--ghost:active { background: var(--slate-150); color: var(--brand-700); }
 .ds-btn--ghost[disabled] { color: var(--slate-400); }
 
 .ds-btn--danger { background: var(--danger-500); color: var(--white); border-color: var(--danger-500); }
@@ -999,7 +999,7 @@ pre.code .n { color: #FDA4AF; }
 .ds-btn--danger:active { background: var(--danger-800); border-color: var(--danger-800); }
 
 .ds-btn--link { background: transparent; color: var(--text-link); padding: 0; height: auto; border: 0; }
-.ds-btn--link:hover { color: var(--brand-600); text-decoration: underline; }
+.ds-btn--link:hover { color: var(--brand-700); text-decoration: underline; }
 .ds-btn--link:active { color: var(--brand-700); text-decoration: underline; }
 
 .ds-btn--xs { height: 24px; font-size: 12px; padding: 0 var(--space-2); gap: var(--space-1); }
@@ -1271,12 +1271,12 @@ pre.code .n { color: #FDA4AF; }
 .ds-th-sort:hover .ds-sort-ind { opacity: 0.7; }
 .ds-th--active .ds-th-sort,
 .ds-th--active .ds-th-sort:hover { color: var(--text-primary); }
-.ds-th--active .ds-sort-ind { opacity: 1; color: var(--brand-600); }
+.ds-th--active .ds-sort-ind { opacity: 1; color: var(--brand-700); }
 .ds-th-sort .ds-sort-rank {
-  font-size: 11px; font-weight: 700; color: var(--brand-600);
+  font-size: 11px; font-weight: 700; color: var(--brand-700);
   font-variant-numeric: tabular-nums; margin-left: -2px;
 }
-.inline-ico { vertical-align: -2px; color: var(--brand-600); }
+.inline-ico { vertical-align: -2px; color: var(--brand-700); }
 
 /* Alert / banner */
 .ds-alert {
@@ -1515,7 +1515,7 @@ pre.code .n { color: #FDA4AF; }
   font-size: 24px;
   font-weight: 700;
   line-height: 1;
-  color: var(--brand-600);
+  color: var(--brand-700);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
 }
@@ -1581,7 +1581,7 @@ pre.code .n { color: #FDA4AF; }
 .ds-avatar {
   width: 28px; height: 28px; border-radius: 50%;
   display: inline-grid; place-items: center;
-  background: var(--brand-100); color: var(--brand-600);
+  background: var(--brand-100); color: var(--brand-700);
   font-size: 11px; font-weight: 600;
 }
 
@@ -1872,8 +1872,8 @@ pre.code .n { color: #FDA4AF; }
   display: flex; align-items: center; gap: var(--space-2);
 }
 /* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
-.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
-.ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
+.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-700); }
+.ds-fdrawer-acc-chev { color: var(--brand-700); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
 .ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); }
 
 /* Active-filter marker */
@@ -2314,7 +2314,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
   display: block;
   width: calc(100% - 28px);
   margin: var(--space-1) var(--space-3) var(--space-3);
-  background: var(--white); color: var(--brand-600);
+  background: var(--white); color: var(--brand-700);
   border: 1.5px solid var(--brand-600);
   border-radius: var(--radius-lg);
   padding: var(--space-3) var(--space-3);
@@ -2391,7 +2391,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
   border-radius: 50%;
   background: rgba(20, 133, 197, 0.18);
   border: 2px solid var(--brand-600);
-  color: var(--brand-600);
+  color: var(--brand-700);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   font-size: 12px;
@@ -2548,7 +2548,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
 }
 .ds-chip-x:hover { background: var(--slate-100); color: var(--text-primary); }
 .ds-chip--filter { background: var(--brand-050); border-color: rgba(20, 133, 197,.25); }
-.ds-chip--filter .chip-label { color: var(--brand-600); }
+.ds-chip--filter .chip-label { color: var(--brand-700); }
 
 .ds-filter-trigger {
   display: inline-flex; align-items: center; gap: var(--space-1);
@@ -2560,7 +2560,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
   color: var(--text-secondary);
   cursor: pointer;
 }
-.ds-filter-trigger:hover { background: var(--slate-050); border-color: var(--brand-400); color: var(--brand-600); }
+.ds-filter-trigger:hover { background: var(--slate-050); border-color: var(--brand-400); color: var(--brand-700); }
 
 /* Faceted dropdown */
 .ds-facet {
@@ -2684,7 +2684,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
   color: var(--slate-500);
   box-shadow: 0 0 0 4px var(--bg-app);
 }
-.ds-event-glyph--brand   { border-color: var(--brand-500); color: var(--brand-600); }
+.ds-event-glyph--brand   { border-color: var(--brand-500); color: var(--brand-700); }
 .ds-event-glyph--success { border-color: var(--success-500); color: var(--success-700); }
 .ds-event-glyph--warning { border-color: var(--warning-500); color: var(--warning-700); }
 .ds-event-glyph--danger  { border-color: var(--danger-500); color: var(--danger-700); }
@@ -2988,7 +2988,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
 .ds-token-list-row:first-child { border-top: 0; }
 .ds-token-list-row code {
   font-family: var(--font-mono); font-size: 12px;
-  color: var(--brand-600);
+  color: var(--brand-700);
 }
 .ds-token-list-row .value {
   font-family: var(--font-mono); font-size: 12px;
@@ -3245,7 +3245,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
 .ds-datepicker-cell.is-range-end::after { background: var(--white); }
 .ds-datepicker-cell.is-in-range {
   background: var(--brand-050);
-  color: var(--brand-600);
+  color: var(--brand-700);
   border-radius: 0;
 }
 .ds-datepicker-cell.is-range-start { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
@@ -3276,7 +3276,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
 }
 .ds-date-preset:hover { background: var(--slate-100); color: var(--text-primary); }
 .ds-date-preset.is-active {
-  background: var(--brand-050); color: var(--brand-600); font-weight: 600;
+  background: var(--brand-050); color: var(--brand-700); font-weight: 600;
 }
 
 .ds-date-range-wrap {
@@ -3306,7 +3306,7 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
   outline: 0;
   color: var(--text-primary);
 }
-.ds-time-picker .seg.is-focus { background: var(--brand-050); color: var(--brand-600); border-radius: 2px; }
+.ds-time-picker .seg.is-focus { background: var(--brand-050); color: var(--brand-700); border-radius: 2px; }
 .ds-time-picker .sep { color: var(--text-muted); }
 .ds-time-picker .zone {
   margin-left: var(--space-1); padding-left: var(--space-2);

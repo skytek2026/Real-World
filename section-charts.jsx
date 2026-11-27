@@ -98,7 +98,7 @@ const DonutDemo = () => {
           <Donut variant="donut" data={DONUT_DATA} formatValue={nf} legendPlacement="right" legend={false}
             centerSlot={
               <div style={{ display: "grid", gap: 2 }}>
-                <span style={{ fontSize: 24, fontWeight: 700, fontFamily: "var(--font-display)", color: "var(--brand-600)" }}>72%</span>
+                <span style={{ fontSize: 24, fontWeight: 700, fontFamily: "var(--font-display)", color: "var(--brand-700)" }}>72%</span>
                 <span className="t-caption" style={{ fontSize: 11 }}>monitored</span>
               </div>
             }

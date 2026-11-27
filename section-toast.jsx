@@ -226,6 +226,7 @@ const ToastRegion = ({ toasts, onClose, inline }) => {
 
   const region = (
     <div
+      role="region"
       className={`ds-toast-region ${inline ? "is-inline" : ""}`}
       aria-label="Notifications"
       data-expanded={expanded}
@@ -297,7 +298,7 @@ const ToastSpec = () => {
       <ToastRegion toasts={toasts} onClose={close} />
 
       <div className="callout" style={{ marginBottom: 24 }}>
-        <strong>Implementation parity.</strong> This component matches <a href="https://ui.shadcn.com/docs/components/radix/sonner" target="_blank" rel="noreferrer" style={{ color: "var(--brand-600)", fontWeight: 600 }}>shadcn/ui · Sonner</a>, the library our developers ship. The Skytek styling (tone bar, icon, timer bar, tokens) is unchanged, what is aligned is the <strong>behaviour</strong>: bottom-right anchor, collapsed stack that expands on hover/focus, swipe-to-dismiss, and Sonner's spring easings. Design in Figma against this spec; build with <code className="inline">sonner</code> configured as documented below.
+        <strong>Implementation parity.</strong> This component matches <a href="https://ui.shadcn.com/docs/components/radix/sonner" target="_blank" rel="noreferrer" style={{ color: "var(--brand-700)", fontWeight: 600 }}>shadcn/ui · Sonner</a>, the library our developers ship. The Skytek styling (tone bar, icon, timer bar, tokens) is unchanged, what is aligned is the <strong>behaviour</strong>: bottom-right anchor, collapsed stack that expands on hover/focus, swipe-to-dismiss, and Sonner's spring easings. Design in Figma against this spec; build with <code className="inline">sonner</code> configured as documented below.
       </div>
 
       {/* alias note */}
@@ -306,7 +307,7 @@ const ToastSpec = () => {
         (<code className="inline">useToast()</code>), the z-index token (<code className="inline">--z-toast</code>),
         and the Figma frame. <strong>“Snackbar”</strong> is an accepted alias for the same component; prefer
         “Toast” in specs and PRs so search stays consistent. A toast is <em>transient</em> feedback that confirms an
-        action just happened; it is not the <a href="#c-alerts" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Alert</a> (persistent, in-surface) and not a <a href="#c-modal" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Modal</a> (blocking).
+        action just happened; it is not the <a href="#c-alerts" style={{ color: "var(--brand-700)", fontWeight: 600 }}>Alert</a> (persistent, in-surface) and not a <a href="#c-modal" style={{ color: "var(--brand-700)", fontWeight: 600 }}>Modal</a> (blocking).
       </div>
 
       {/* ====== LIVE DEMOS ====== */}
@@ -350,8 +351,8 @@ const ToastSpec = () => {
             <tbody>
               <tr><td>Confirm an action that just succeeded</td><td><strong>Toast</strong></td><td className="t-caption">Transient, non-blocking, self-dismissing. “Policy saved.”</td></tr>
               <tr><td>Offer to reverse a just-done action</td><td><strong>Toast + Undo</strong></td><td className="t-caption">8 s window; the only action a toast should carry.</td></tr>
-              <tr><td>Persistent condition on the current surface</td><td><a href="#c-alerts" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Alert / banner</a></td><td className="t-caption">Stays until resolved; lives in the layout, not over it.</td></tr>
-              <tr><td>A decision that blocks progress</td><td><a href="#c-modal" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Modal</a></td><td className="t-caption">Requires focus + an explicit choice.</td></tr>
+              <tr><td>Persistent condition on the current surface</td><td><a href="#c-alerts" style={{ color: "var(--brand-700)", fontWeight: 600 }}>Alert / banner</a></td><td className="t-caption">Stays until resolved; lives in the layout, not over it.</td></tr>
+              <tr><td>A decision that blocks progress</td><td><a href="#c-modal" style={{ color: "var(--brand-700)", fontWeight: 600 }}>Modal</a></td><td className="t-caption">Requires focus + an explicit choice.</td></tr>
               <tr><td>Field-level validation error</td><td>Inline message</td><td className="t-caption">Lives under the field: never a toast.</td></tr>
             </tbody>
           </table>

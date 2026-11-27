@@ -292,7 +292,7 @@ Highcharts.setOptions(skytekChartTheme);`}</pre>
     </div>
 
     <div className="callout" style={{ marginTop: 12 }}>
-      <strong>Composite charts →</strong> the ready-made <a href="#charts" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Bar, Line &amp; Donut components</a> assemble these tokens and primitives into product-ready charts with built-in states and accessibility.
+      <strong>Composite charts →</strong> the ready-made <a href="#charts" style={{ color: "var(--brand-700)", fontWeight: 600 }}>Bar, Line &amp; Donut components</a> assemble these tokens and primitives into product-ready charts with built-in states and accessibility.
     </div>
   </>
 );

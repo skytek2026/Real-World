@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"8ccb92d90905","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"6522c385a748","section-charts.jsx":"18175ef42442","section-components.jsx":"1758cc00e609","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"3b1c2cb8fe3e","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"c3c08e761160","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"d9cc67312d64","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"c82bea1ad30c","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"9bd622491ae9","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"8618928fd0a1","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"c3c08e761160","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,29 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.4.1",
+    "dateISO": "2026-11-28T00:30:00Z",
+    "date": "28/11/2026",
+    "time": "00:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Patch",
+    "summary": "Documentation accessibility (Section 508 review): brand-coloured text moves to the link colour; ARIA fixes in the docs.",
+    "changes": [
+      "Text coloured brand-600 / brand-500 in the documentation (chapter eyebrows, inline code, token names, values) -> brand-700, the --text-link colour (5.85:1). Borders, fills, focus rings and the primary / selected fills (DS1) are unchanged.",
+      "Buttons full spec: the state matrix used ARIA table roles without rows; now a labelled group.",
+      "Toast region gets role=\"region\" for its aria-label.",
+      "Tab demos use role=\"tablist\" / role=\"tab\" with aria-selected."
+    ],
+    "reason": "Section 508 review: 1.4.3 contrast in the docs (brand text) and 4.1.2 / 1.3.1 ARIA findings.",
+    "affected": [
+      "Documentation",
+      "Buttons",
+      "Toast",
+      "Tabs"
+    ]
+  },
   {
     "version": "v4.4.0",
     "dateISO": "2026-11-27T23:00:00Z",
@@ -3507,7 +3530,7 @@ const ApplyHeader = ({
 }, /*#__PURE__*/React.createElement("div", {
   className: "t-overline",
   style: {
-    color: "var(--brand-500)"
+    color: "var(--brand-700)"
   }
 }, "Surface"), /*#__PURE__*/React.createElement("div", {
   className: "t-h3",
@@ -4054,17 +4077,22 @@ const ApplyDetail = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   }), " Flag"))
 }, /*#__PURE__*/React.createElement("div", {
   className: "ds-tabs",
+  role: "tablist",
   style: {
     marginBottom: 12
   }
 }, /*#__PURE__*/React.createElement("button", {
+  role: "tab",
   className: "ds-tab",
   "aria-selected": "true"
 }, "Overview"), /*#__PURE__*/React.createElement("button", {
+  role: "tab",
   className: "ds-tab"
 }, "Voyages"), /*#__PURE__*/React.createElement("button", {
+  role: "tab",
   className: "ds-tab"
 }, "Casualties"), /*#__PURE__*/React.createElement("button", {
+  role: "tab",
   className: "ds-tab"
 }, "Compliance")), /*#__PURE__*/React.createElement("div", {
   style: {
@@ -5304,7 +5332,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("div", {
   className: "t-overline",
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, "Live specimen"), /*#__PURE__*/React.createElement("p", {
   className: "t-caption",
@@ -5337,11 +5365,10 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "bs-matrix-wrap"
 }, /*#__PURE__*/React.createElement("div", {
   className: "bs-matrix",
-  role: "table",
+  role: "group",
   "aria-label": "Button states by size"
 }, /*#__PURE__*/React.createElement("div", {
-  className: "bs-corner",
-  role: "columnheader"
+  className: "bs-corner"
 }, /*#__PURE__*/React.createElement("span", {
   className: "t-overline",
   style: {
@@ -5349,8 +5376,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   }
 }, "Size \u2572 State")), STATE_DEFS.map(st => /*#__PURE__*/React.createElement("div", {
   key: st.key,
-  className: `bs-colhead${st.focus ? " is-focus" : ""}`,
-  role: "columnheader"
+  className: `bs-colhead${st.focus ? " is-focus" : ""}`
 }, /*#__PURE__*/React.createElement("div", {
   className: "bs-colhead-name"
 }, st.label, st.focus && /*#__PURE__*/React.createElement("span", {
@@ -5360,8 +5386,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, st.trigger))), SIZE_DEFS.map(sz => /*#__PURE__*/React.createElement(React.Fragment, {
   key: sz.key
 }, /*#__PURE__*/React.createElement("div", {
-  className: "bs-rowhead",
-  role: "rowheader"
+  className: "bs-rowhead"
 }, /*#__PURE__*/React.createElement("span", {
   className: "bs-size-name"
 }, sz.label, sz.def && /*#__PURE__*/React.createElement("span", {
@@ -5370,8 +5395,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
   className: "bs-size-h"
 }, sz.h)), STATE_DEFS.map(st => /*#__PURE__*/React.createElement("div", {
   key: st.key,
-  className: `bs-cell${st.focus ? " is-focus" : ""}`,
-  role: "cell"
+  className: `bs-cell${st.focus ? " is-focus" : ""}`
 }, /*#__PURE__*/React.createElement("button", {
   className: `ds-btn ds-btn--primary ${sz.cls}`,
   style: st.style,
@@ -5503,7 +5527,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("span", {
   className: "t-overline",
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, "Keyboard focus"), /*#__PURE__*/React.createElement("div", {
   className: "bs-focus-stage"
@@ -5578,7 +5602,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     left: "50%",
     transform: "translateX(-50%)",
     fontSize: 11,
-    color: "var(--brand-600)",
+    color: "var(--brand-700)",
     whiteSpace: "nowrap"
   }
 }, "\u2460 Container"), /*#__PURE__*/React.createElement("div", {
@@ -5587,7 +5611,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     bottom: -22,
     left: 14,
     fontSize: 11,
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, "\u2461 Leading icon"), /*#__PURE__*/React.createElement("div", {
   style: {
@@ -5596,7 +5620,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     left: "50%",
     transform: "translateX(-50%)",
     fontSize: 11,
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, "\u2462 Label"), /*#__PURE__*/React.createElement("div", {
   style: {
@@ -5604,7 +5628,7 @@ const ButtonsDeep = () => /*#__PURE__*/React.createElement(React.Fragment, null,
     bottom: -22,
     right: 14,
     fontSize: 11,
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, "\u2463 Trailing icon"))), /*#__PURE__*/React.createElement("table", {
   className: "spec-table",
@@ -6295,7 +6319,7 @@ const DonutDemo = () => {
         fontSize: 24,
         fontWeight: 700,
         fontFamily: "var(--font-display)",
-        color: "var(--brand-600)"
+        color: "var(--brand-700)"
       }
     }, "72%"), /*#__PURE__*/React.createElement("span", {
       className: "t-caption",
@@ -8167,12 +8191,14 @@ const NavTabsBlock = () => {
     d: I.flag
   }), " Flag for review")), /*#__PURE__*/React.createElement("div", {
     className: "ds-tabs",
+    role: "tablist",
     style: {
       margin: "0 20px 16px"
     }
   }, tabs.map(tab => {
     const isActive = activeTab === tab;
     return /*#__PURE__*/React.createElement("button", {
+      role: "tab",
       key: tab,
       className: "ds-tab",
       "aria-selected": isActive,
@@ -8319,7 +8345,7 @@ const OverlayBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }, /*#__PURE__*/React.createElement("strong", null, "Modals are a standardized component."), " See the live, tokenized ", /*#__PURE__*/React.createElement("a", {
   href: "#c-modal",
   style: {
-    color: "var(--brand-600)",
+    color: "var(--brand-700)",
     fontWeight: 600
   }
 }, "Modal: full specification"), " for the production API, slots, sizes and accessibility."));
@@ -10625,7 +10651,7 @@ Highcharts.setOptions(skytekChartTheme);`)), /*#__PURE__*/React.createElement("d
 }, /*#__PURE__*/React.createElement("strong", null, "Composite charts \u2192"), " the ready-made ", /*#__PURE__*/React.createElement("a", {
   href: "#charts",
   style: {
-    color: "var(--brand-600)",
+    color: "var(--brand-700)",
     fontWeight: 600
   }
 }, "Bar, Line & Donut components"), " assemble these tokens and primitives into product-ready charts with built-in states and accessibility."));
@@ -14699,7 +14725,7 @@ interface FilterOption {
 }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
   className: "t-mono",
   style: {
-    color: "var(--brand-600)",
+    color: "var(--brand-700)",
     fontSize: 11
   }
 }, v), /*#__PURE__*/React.createElement("span", {
@@ -16394,7 +16420,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
   }
 }, /*#__PURE__*/React.createElement("code", {
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, alias)), /*#__PURE__*/React.createElement("div", {
   className: "t-caption",
@@ -16691,7 +16717,7 @@ const MotionDurationDemo = () => {
     }), /*#__PURE__*/React.createElement("style", null, `@keyframes motion-slide-${dur} { to { transform: translateX(0); } }`)), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("code", {
       style: {
         fontSize: 11,
-        color: "var(--brand-600)"
+        color: "var(--brand-700)"
       }
     }, token), /*#__PURE__*/React.createElement("div", {
       className: "t-mono",
@@ -16788,7 +16814,7 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, /*#__PURE__*/React.createElement("code", null, token), /*#__PURE__*/React.createElement("span", {
   className: "t-mono",
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, ms), /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
@@ -16809,7 +16835,7 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   className: "ds-card-title"
 }, /*#__PURE__*/React.createElement("code", {
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, token))), /*#__PURE__*/React.createElement("div", {
   className: "ds-card-body"
@@ -16945,7 +16971,7 @@ const MotionSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, /*#__PURE__*/React.createElement("code", null, token), /*#__PURE__*/React.createElement("span", {
   className: "t-mono",
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, val), /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
@@ -19270,7 +19296,7 @@ interface PopoverProps {
 }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
   className: "t-mono",
   style: {
-    color: "var(--brand-600)",
+    color: "var(--brand-700)",
     fontSize: 11
   }
 }, v), /*#__PURE__*/React.createElement("span", {
@@ -19783,7 +19809,7 @@ const PerformanceBudgets = () => /*#__PURE__*/React.createElement("div", {
 }, k), /*#__PURE__*/React.createElement("span", {
   className: "t-mono",
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, v), /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
@@ -20011,7 +20037,7 @@ const StewardshipSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, k), /*#__PURE__*/React.createElement("span", {
   className: "t-caption",
   style: {
-    color: "var(--brand-600)"
+    color: "var(--brand-700)"
   }
 }, c), /*#__PURE__*/React.createElement("span", {
   style: {
@@ -20338,6 +20364,7 @@ const ToastRegion = ({
     };
   });
   const region = /*#__PURE__*/React.createElement("div", {
+    role: "region",
     className: `ds-toast-region ${inline ? "is-inline" : ""}`,
     "aria-label": "Notifications",
     "data-expanded": expanded,
@@ -20448,7 +20475,7 @@ const ToastSpec = () => {
     target: "_blank",
     rel: "noreferrer",
     style: {
-      color: "var(--brand-600)",
+      color: "var(--brand-700)",
       fontWeight: 600
     }
   }, "shadcn/ui \xB7 Sonner"), ", the library our developers ship. The Skytek styling (tone bar, icon, timer bar, tokens) is unchanged, what is aligned is the ", /*#__PURE__*/React.createElement("strong", null, "behaviour"), ": bottom-right anchor, collapsed stack that expands on hover/focus, swipe-to-dismiss, and Sonner's spring easings. Design in Figma against this spec; build with ", /*#__PURE__*/React.createElement("code", {
@@ -20465,13 +20492,13 @@ const ToastSpec = () => {
   }, "--z-toast"), "), and the Figma frame. ", /*#__PURE__*/React.createElement("strong", null, "\u201CSnackbar\u201D"), " is an accepted alias for the same component; prefer \u201CToast\u201D in specs and PRs so search stays consistent. A toast is ", /*#__PURE__*/React.createElement("em", null, "transient"), " feedback that confirms an action just happened; it is not the ", /*#__PURE__*/React.createElement("a", {
     href: "#c-alerts",
     style: {
-      color: "var(--brand-600)",
+      color: "var(--brand-700)",
       fontWeight: 600
     }
   }, "Alert"), " (persistent, in-surface) and not a ", /*#__PURE__*/React.createElement("a", {
     href: "#c-modal",
     style: {
-      color: "var(--brand-600)",
+      color: "var(--brand-700)",
       fontWeight: 600
     }
   }, "Modal"), " (blocking)."), /*#__PURE__*/React.createElement("div", {
@@ -20588,7 +20615,7 @@ const ToastSpec = () => {
   }, "8 s window; the only action a toast should carry.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Persistent condition on the current surface"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
     href: "#c-alerts",
     style: {
-      color: "var(--brand-600)",
+      color: "var(--brand-700)",
       fontWeight: 600
     }
   }, "Alert / banner")), /*#__PURE__*/React.createElement("td", {
@@ -20596,7 +20623,7 @@ const ToastSpec = () => {
   }, "Stays until resolved; lives in the layout, not over it.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "A decision that blocks progress"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("a", {
     href: "#c-modal",
     style: {
-      color: "var(--brand-600)",
+      color: "var(--brand-700)",
       fontWeight: 600
     }
   }, "Modal")), /*#__PURE__*/React.createElement("td", {
@@ -21418,7 +21445,7 @@ const TokenPreview = ({
       className: "t-mono",
       style: {
         fontSize: 11,
-        color: "var(--brand-600)"
+        color: "var(--brand-700)"
       }
     }, "\u0192");
   }
@@ -21427,7 +21454,7 @@ const TokenPreview = ({
       className: "t-mono",
       style: {
         fontSize: 11,
-        color: "var(--brand-600)"
+        color: "var(--brand-700)"
       }
     }, value);
   }
@@ -22447,7 +22474,7 @@ const TooltipSpec = () => /*#__PURE__*/React.createElement(React.Fragment, null,
 }, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
   className: "t-mono",
   style: {
-    color: "var(--brand-600)",
+    color: "var(--brand-700)",
     fontSize: 11
   }
 }, v), /*#__PURE__*/React.createElement("span", {

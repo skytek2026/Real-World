@@ -274,7 +274,7 @@ export const I = new Proxy({} as Record<keyof typeof LUCIDE_NAMES, string>, {
                 <LuReal name={lucide} size={16}/>
               </span>
               <div style={{ minWidth: 0, flex: 1 }}>
-                <div style={{ fontSize: 12.5, fontWeight: 600 }}><code style={{ color: "var(--brand-600)" }}>{alias}</code></div>
+                <div style={{ fontSize: 12.5, fontWeight: 600 }}><code style={{ color: "var(--brand-700)" }}>{alias}</code></div>
                 <div className="t-caption" style={{ fontSize: 11 }}>{lucide} · {use}</div>
               </div>
             </div>
@@ -524,7 +524,7 @@ const MotionDurationDemo = () => {
                 <style>{`@keyframes motion-slide-${dur} { to { transform: translateX(0); } }`}</style>
               </div>
               <div>
-                <code style={{ fontSize: 11, color: "var(--brand-600)" }}>{token}</code>
+                <code style={{ fontSize: 11, color: "var(--brand-700)" }}>{token}</code>
                 <div className="t-mono" style={{ fontSize: 11, color: "var(--text-muted)" }}>{ms}</div>
               </div>
             </div>
@@ -620,7 +620,7 @@ const MotionSection = () => (
         {DURATION_TOKENS.map(([token, ms, where]) => (
           <div key={token} className="token-row" style={{ gridTemplateColumns: "180px 90px 1fr" }}>
             <code>{token}</code>
-            <span className="t-mono" style={{ color: "var(--brand-600)" }}>{ms}</span>
+            <span className="t-mono" style={{ color: "var(--brand-700)" }}>{ms}</span>
             <span className="t-caption">{where}</span>
           </div>
         ))}
@@ -634,7 +634,7 @@ const MotionSection = () => (
       <div className="grid-3">
         {EASING_TOKENS.map(([token, cp, where]) => (
           <div key={token} className="ds-card">
-            <div className="ds-card-head"><h3 className="ds-card-title"><code style={{ color: "var(--brand-600)" }}>{token}</code></h3></div>
+            <div className="ds-card-head"><h3 className="ds-card-title"><code style={{ color: "var(--brand-700)" }}>{token}</code></h3></div>
             <div className="ds-card-body">
               <EasingCurve name={token} cp={cp} color={token.includes("emphasis") ? "var(--chart-cat-2)" : "var(--brand-600)"} />
               <div className="t-mono" style={{ fontSize: 11, color: "var(--text-muted)", marginTop: 8 }}>{cp}</div>
@@ -708,7 +708,7 @@ const MotionSection = () => (
             ].map(([token, val, where]) => (
               <div key={token} className="token-row" style={{ gridTemplateColumns: "200px 110px 1fr" }}>
                 <code>{token}</code>
-                <span className="t-mono" style={{ color: "var(--brand-600)" }}>{val}</span>
+                <span className="t-mono" style={{ color: "var(--brand-700)" }}>{val}</span>
                 <span className="t-caption">{where}</span>
               </div>
             ))}

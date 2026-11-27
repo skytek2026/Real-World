@@ -38,6 +38,29 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.4.1",
+    "dateISO": "2026-11-28T00:30:00Z",
+    "date": "28/11/2026",
+    "time": "00:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Accessibility",
+    "impact": "Patch",
+    "summary": "Documentation accessibility (Section 508 review): brand-coloured text moves to the link colour; ARIA fixes in the docs.",
+    "changes": [
+      "Text coloured brand-600 / brand-500 in the documentation (chapter eyebrows, inline code, token names, values) -> brand-700, the --text-link colour (5.85:1). Borders, fills, focus rings and the primary / selected fills (DS1) are unchanged.",
+      "Buttons full spec: the state matrix used ARIA table roles without rows; now a labelled group.",
+      "Toast region gets role=\"region\" for its aria-label.",
+      "Tab demos use role=\"tablist\" / role=\"tab\" with aria-selected."
+    ],
+    "reason": "Section 508 review: 1.4.3 contrast in the docs (brand text) and 4.1.2 / 1.3.1 ARIA findings.",
+    "affected": [
+      "Documentation",
+      "Buttons",
+      "Toast",
+      "Tabs"
+    ]
+  },
+  {
     "version": "v4.4.0",
     "dateISO": "2026-11-27T23:00:00Z",
     "date": "27/11/2026",

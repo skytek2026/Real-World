@@ -209,10 +209,10 @@ const TokenPreview = ({ type, value }) => {
         </span>
       );
     }
-    return <span className="t-mono" style={{ fontSize: 11, color: "var(--brand-600)" }}>ƒ</span>;
+    return <span className="t-mono" style={{ fontSize: 11, color: "var(--brand-700)" }}>ƒ</span>;
   }
   if (type === "z-index") {
-    return <span className="t-mono" style={{ fontSize: 11, color: "var(--brand-600)" }}>{value}</span>;
+    return <span className="t-mono" style={{ fontSize: 11, color: "var(--brand-700)" }}>{value}</span>;
   }
   if (type === "type") {
     return <span style={{ fontFamily: value.split(" ")[0], fontSize: 13, fontWeight: 600 }}>Aa</span>;

@@ -415,7 +415,7 @@ const TooltipSpec = () => (
         ].map(([t, v, r]) => (
           <div key={t} className="token-row" style={{ gridTemplateColumns: "230px 190px 1fr" }}>
             <code>{t}</code>
-            <span className="t-mono" style={{ color: "var(--brand-600)", fontSize: 11 }}>{v}</span>
+            <span className="t-mono" style={{ color: "var(--brand-700)", fontSize: 11 }}>{v}</span>
             <span className="t-caption">{r}</span>
           </div>
         ))}

@@ -3,7 +3,7 @@
 const ApplyHeader = ({ name, what, why }) => (
   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 12 }}>
     <div className="ds-card" style={{ padding: 12 }}>
-      <div className="t-overline" style={{ color: "var(--brand-500)" }}>Surface</div>
+      <div className="t-overline" style={{ color: "var(--brand-700)" }}>Surface</div>
       <div className="t-h3" style={{ marginTop: 4 }}>{name}</div>
     </div>
     <div className="ds-card" style={{ padding: 12 }}>
@@ -257,11 +257,11 @@ const ApplyDetail = () => (
           <button className="ds-btn ds-btn--primary ds-btn--sm"><Icon d={I.flag}/> Flag</button>
         </>}
       >
-        <div className="ds-tabs" style={{ marginBottom: 12 }}>
-          <button className="ds-tab" aria-selected="true">Overview</button>
-          <button className="ds-tab">Voyages</button>
-          <button className="ds-tab">Casualties</button>
-          <button className="ds-tab">Compliance</button>
+        <div className="ds-tabs" role="tablist" style={{ marginBottom: 12 }}>
+          <button role="tab" className="ds-tab" aria-selected="true">Overview</button>
+          <button role="tab" className="ds-tab">Voyages</button>
+          <button role="tab" className="ds-tab">Casualties</button>
+          <button role="tab" className="ds-tab">Compliance</button>
         </div>
         <div style={{ display:"grid", gridTemplateColumns:"1fr 320px", gap: 12 }}>
           <div className="ds-card">

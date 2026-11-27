@@ -149,7 +149,7 @@ const PerformanceBudgets = () => (
     ].map(([k, v, d]) => (
       <div key={k} className="token-row" style={{ gridTemplateColumns: "260px 140px 1fr" }}>
         <strong style={{ fontSize: 13 }}>{k}</strong>
-        <span className="t-mono" style={{ color: "var(--brand-600)" }}>{v}</span>
+        <span className="t-mono" style={{ color: "var(--brand-700)" }}>{v}</span>
         <span className="t-caption">{d}</span>
       </div>
     ))}
@@ -340,7 +340,7 @@ const StewardshipSection = () => (
         ].map(([k, c, d]) => (
           <div key={k} className="token-row" style={{ gridTemplateColumns: "120px 140px 1fr" }}>
             <strong style={{ fontSize: 13 }}>{k}</strong>
-            <span className="t-caption" style={{ color: "var(--brand-600)" }}>{c}</span>
+            <span className="t-caption" style={{ color: "var(--brand-700)" }}>{c}</span>
             <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>{d}</span>
           </div>
         ))}

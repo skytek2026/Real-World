@@ -245,7 +245,7 @@ const ButtonsDeep = () => (
       {/* Live specimen: the real component, not a mockup */}
       <div className="bs-live">
         <div className="bs-live-copy">
-          <div className="t-overline" style={{ color: "var(--brand-600)" }}>Live specimen</div>
+          <div className="t-overline" style={{ color: "var(--brand-700)" }}>Live specimen</div>
           <p className="t-caption" style={{ margin: "4px 0 0" }}>Hover, press, or press <kbd className="bs-kbd">Tab</kbd> to focus; this is the production component reacting in real time, not a static example.</p>
         </div>
         <div className="bs-live-stage">
@@ -260,13 +260,13 @@ const ButtonsDeep = () => (
           <span className="meta">Figma: <code className="inline" style={{ fontSize: 11 }}>Button / Primary / [Size] / [State]</code></span>
         </div>
         <div className="bs-matrix-wrap">
-          <div className="bs-matrix" role="table" aria-label="Button states by size">
+          <div className="bs-matrix" role="group" aria-label="Button states by size">
             {/* Header row */}
-            <div className="bs-corner" role="columnheader">
+            <div className="bs-corner">
               <span className="t-overline" style={{ color: "var(--text-muted)" }}>Size ╲ State</span>
             </div>
             {STATE_DEFS.map(st => (
-              <div key={st.key} className={`bs-colhead${st.focus ? " is-focus" : ""}`} role="columnheader">
+              <div key={st.key} className={`bs-colhead${st.focus ? " is-focus" : ""}`}>
                 <div className="bs-colhead-name">
                   {st.label}
                   {st.focus && <span className="bs-wcag">WCAG</span>}
@@ -278,12 +278,12 @@ const ButtonsDeep = () => (
             {/* Size rows */}
             {SIZE_DEFS.map(sz => (
               <React.Fragment key={sz.key}>
-                <div className="bs-rowhead" role="rowheader">
+                <div className="bs-rowhead">
                   <span className="bs-size-name">{sz.label}{sz.def && <span className="bs-def">default</span>}</span>
                   <code className="bs-size-h">{sz.h}</code>
                 </div>
                 {STATE_DEFS.map(st => (
-                  <div key={st.key} className={`bs-cell${st.focus ? " is-focus" : ""}`} role="cell">
+                  <div key={st.key} className={`bs-cell${st.focus ? " is-focus" : ""}`}>
                     <button
                       className={`ds-btn ds-btn--primary ${sz.cls}`}
                       style={st.style}
@@ -381,7 +381,7 @@ const ButtonsDeep = () => (
       {/* Focus accessibility spotlight */}
       <div className="bs-focus-spot">
         <div className="bs-focus-demo">
-          <span className="t-overline" style={{ color: "var(--brand-600)" }}>Keyboard focus</span>
+          <span className="t-overline" style={{ color: "var(--brand-700)" }}>Keyboard focus</span>
           <div className="bs-focus-stage">
             <button className="ds-btn ds-btn--primary ds-btn--lg" style={{ boxShadow: "var(--shadow-focus)" }} tabIndex={-1} aria-hidden="true"><Icon d={I.check} /> Save changes</button>
           </div>
@@ -421,10 +421,10 @@ const ButtonsDeep = () => (
           </button>
           {/* Annotations */}
           <div style={{ position: "absolute", top: -28, left: -8, right: -8, height: 1, borderTop: "1px dashed var(--brand-500)" }} />
-          <div style={{ position: "absolute", top: -44, left: "50%", transform: "translateX(-50%)", fontSize: 11, color: "var(--brand-600)", whiteSpace: "nowrap" }}>① Container</div>
-          <div style={{ position: "absolute", bottom: -22, left: 14, fontSize: 11, color: "var(--brand-600)" }}>② Leading icon</div>
-          <div style={{ position: "absolute", bottom: -22, left: "50%", transform: "translateX(-50%)", fontSize: 11, color: "var(--brand-600)" }}>③ Label</div>
-          <div style={{ position: "absolute", bottom: -22, right: 14, fontSize: 11, color: "var(--brand-600)" }}>④ Trailing icon</div>
+          <div style={{ position: "absolute", top: -44, left: "50%", transform: "translateX(-50%)", fontSize: 11, color: "var(--brand-700)", whiteSpace: "nowrap" }}>① Container</div>
+          <div style={{ position: "absolute", bottom: -22, left: 14, fontSize: 11, color: "var(--brand-700)" }}>② Leading icon</div>
+          <div style={{ position: "absolute", bottom: -22, left: "50%", transform: "translateX(-50%)", fontSize: 11, color: "var(--brand-700)" }}>③ Label</div>
+          <div style={{ position: "absolute", bottom: -22, right: 14, fontSize: 11, color: "var(--brand-700)" }}>④ Trailing icon</div>
         </div>
       </div>
 

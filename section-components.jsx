@@ -532,11 +532,11 @@ const NavTabsBlock = () => {
         <button className="ds-btn ds-btn--secondary"><Icon d={I.download} /> Export PDF</button>
         <button className="ds-btn ds-btn--primary"><Icon d={I.flag} /> Flag for review</button>
       </div>
-      <div className="ds-tabs" style={{ margin: "0 20px 16px" }}>
+      <div className="ds-tabs" role="tablist" style={{ margin: "0 20px 16px" }}>
         {tabs.map(tab => {
           const isActive = activeTab === tab;
           return (
-            <button
+            <button role="tab"
               key={tab}
               className="ds-tab"
               aria-selected={isActive}
@@ -597,7 +597,7 @@ const OverlayBlock = () => (
       </div>
     </div>
     <div className="callout" style={{ marginTop: 16 }}>
-      <strong>Modals are a standardized component.</strong> See the live, tokenized <a href="#c-modal" style={{ color: "var(--brand-600)", fontWeight: 600 }}>Modal: full specification</a> for the production API, slots, sizes and accessibility.
+      <strong>Modals are a standardized component.</strong> See the live, tokenized <a href="#c-modal" style={{ color: "var(--brand-700)", fontWeight: 600 }}>Modal: full specification</a> for the production API, slots, sizes and accessibility.
     </div>
   </ComponentBlock>
 );
