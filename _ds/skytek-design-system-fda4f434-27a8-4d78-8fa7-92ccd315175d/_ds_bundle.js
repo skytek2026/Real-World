@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"b3a4355cf86a","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"6522c385a748","section-charts.jsx":"18175ef42442","section-components.jsx":"1758cc00e609","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"39f7fad0c7b8","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"c3c08e761160","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"d9cc67312d64","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"8ccb92d90905","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"6c10dad7acac","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"6522c385a748","section-charts.jsx":"18175ef42442","section-components.jsx":"1758cc00e609","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"cd95680cd005","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"1f3c22017385","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"3b1c2cb8fe3e","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"c3c08e761160","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"b99205143a94","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"522bdd880791","section-toast.jsx":"48fbe565fe28","section-token-index.jsx":"d9cc67312d64","section-tooltips.jsx":"6823532a56c6","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,30 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.4.0",
+    "dateISO": "2026-11-27T23:00:00Z",
+    "date": "27/11/2026",
+    "time": "23:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Foundations",
+    "impact": "Minor",
+    "summary": "Scrolling & overflow defined: scroll-region classes, behaviour rules and two tokens, alongside the existing scrollbar skin.",
+    "changes": [
+      "The scrollbar skin (6px, brand-500 thumb, brand-600 hover, slate-100 track) was already defined; --scrollbar-size is now also in tokens.json.",
+      "New scroll-region classes: .ds-scroll-y (vertical: overflow auto, contained overscroll, stable gutter) and .ds-scroll-x (horizontal: wide tables, code, charts); both include the skin and show the focus ring when focused.",
+      "New helpers: .ds-scroll-fade-x / -y (edge fade hinting at off-screen content) and .ds-scroll-lock (page scroll root while a modal or drawer is open).",
+      "New token --scroll-offset (64px = top bar 48px + 16px), used as scroll-padding-top on the page root.",
+      "Rules documented (Motion chapter, ‘Scrolling & overflow’): one scroller per view; overflow auto, never scroll; overflow hidden only to clip decoration; no sideways page scroll (1.4.10); contain nested scrolling; lock the page under overlays; stable gutters; maximum heights; keyboard access for scroll regions (2.1.1); clear the sticky header; show there is more; smooth scrolling only for in-page jumps; native touch scrolling.",
+      ".ds-scroll is unchanged (skin only), so nothing existing changes behaviour."
+    ],
+    "reason": "Scrollbar style, behaviour and overflow rules were not defined beyond the skin.",
+    "affected": [
+      "Foundations",
+      "Layout",
+      "Tokens"
+    ]
+  },
   {
     "version": "v4.3.0",
     "dateISO": "2026-11-27T21:00:00Z",
@@ -16958,6 +16982,127 @@ html, .ds-scroll, [data-scroll] {
     marginTop: 12
   }
 }, /*#__PURE__*/React.createElement("strong", null, "Don't hide scrollbars."), " Operators need to know how much more is below the fold during an incident. Style the bar: never set ", /*#__PURE__*/React.createElement("code", null, "scrollbar-width: none"), " or ", /*#__PURE__*/React.createElement("code", null, "::-webkit-scrollbar { display:none }"), " on data regions.")), /*#__PURE__*/React.createElement("div", {
+  className: "subsection",
+  id: "scrolling"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Scrolling & overflow"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc",
+  style: {
+    maxWidth: 820
+  }
+}, "How content scrolls, which element scrolls, and when overflow may be hidden (v4.4.0).", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll"), " is the scrollbar skin only; scroll ", /*#__PURE__*/React.createElement("strong", null, "regions"), " use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll-y"), " or", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll-x"), ", which include the skin and add the behaviour below."), /*#__PURE__*/React.createElement("div", {
+  className: "grid-2",
+  style: {
+    gap: 24,
+    alignItems: "start"
+  }
+}, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  className: "t-label",
+  style: {
+    marginBottom: 8
+  }
+}, "Live: ", /*#__PURE__*/React.createElement("code", {
+  style: {
+    fontSize: 11
+  }
+}, ".ds-scroll-x .ds-scroll-fade-x")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-scroll-x ds-scroll-fade-x",
+  tabIndex: 0,
+  role: "region",
+  "aria-label": "Example wide table",
+  style: {
+    border: "1px solid var(--border-default)",
+    borderRadius: "var(--radius-md)",
+    background: "var(--white)"
+  }
+}, /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    minWidth: 960,
+    border: 0
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, ["Vessel", "IMO", "Flag", "Type", "Built", "GT", "DWT", "Status"].map(h => /*#__PURE__*/React.createElement("th", {
+  key: h
+}, h)))), /*#__PURE__*/React.createElement("tbody", null, [0, 1, 2].map(r => /*#__PURE__*/React.createElement("tr", {
+  key: r
+}, ["Atlantic Star", "9307243", "Cyprus", "Container", "2006", "54,214", "66,940", "Active"].map((v, i) => /*#__PURE__*/React.createElement("td", {
+  key: i
+}, v))))))), /*#__PURE__*/React.createElement("p", {
+  className: "t-caption",
+  style: {
+    marginTop: 4
+  }
+}, "Tab to the table and use the arrow keys; the edges fade while more content sits off-screen.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  className: "t-label",
+  style: {
+    marginBottom: 8
+  }
+}, "Tokens"), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, [["--scrollbar-size", "6px", "Bar thickness"], ["--scroll-offset", "64px", "Top bar (48) + 16: scroll-padding for anchors and focus"], ["--popover-max-height", "—", "Menus and popovers scroll inside this height"]].map(([t, v, w]) => /*#__PURE__*/React.createElement("div", {
+  key: t,
+  className: "token-row",
+  style: {
+    gridTemplateColumns: "200px 80px 1fr"
+  }
+}, /*#__PURE__*/React.createElement("code", null, t), /*#__PURE__*/React.createElement("span", {
+  className: "t-mono",
+  style: {
+    color: "var(--brand-700)"
+  }
+}, v), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, w)))))), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table",
+  style: {
+    marginTop: 16
+  }
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 190
+  }
+}, "Rule"), /*#__PURE__*/React.createElement("th", null, "Do"), /*#__PURE__*/React.createElement("th", {
+  style: {
+    width: 230
+  }
+}, "Why"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "One scroller per view")), /*#__PURE__*/React.createElement("td", null, "The app shell never scrolls; the content region does. Nest a scroll region only for a list, table or panel with its own fixed height."), /*#__PURE__*/React.createElement("td", null, "Predictable wheel and touch behaviour.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "overflow: auto")), /*#__PURE__*/React.createElement("td", null, "Use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "auto"), ", never ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "scroll"), " (permanent empty bars)."), /*#__PURE__*/React.createElement("td", null, "Bars appear only when needed.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "overflow: hidden")), /*#__PURE__*/React.createElement("td", null, "Only to clip decoration (rounded corners, images, animations) or truncated text with an ellipsis and a full-text tooltip. Never to hide content a user needs."), /*#__PURE__*/React.createElement("td", null, "Hidden content is lost content.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "No sideways page scroll")), /*#__PURE__*/React.createElement("td", null, "The page never scrolls horizontally down to 320px wide. Wide tables, code and charts scroll inside ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll-x"), ", with a ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "min-width"), " on the table and the first column sticky where it helps."), /*#__PURE__*/React.createElement("td", null, "WCAG 1.4.10 Reflow.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Contain nested scrolling")), /*#__PURE__*/React.createElement("td", null, "Modals, drawers, popovers, menus and side panels use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "overscroll-behavior: contain"), " (built into ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll-y"), ")."), /*#__PURE__*/React.createElement("td", null, "Reaching the end of a list never scrolls the page behind it.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Lock the page under overlays")), /*#__PURE__*/React.createElement("td", null, "While a modal or full drawer is open, add ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll-lock"), " to the page scroll root; remove it on close and restore the scroll position."), /*#__PURE__*/React.createElement("td", null, "The background stays put; no layout shift.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Stable gutters")), /*#__PURE__*/React.createElement("td", null, "Scroll regions reserve the bar\u2019s space (", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "scrollbar-gutter: stable"), ")."), /*#__PURE__*/React.createElement("td", null, "Content does not jump when the list grows.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Maximum heights")), /*#__PURE__*/React.createElement("td", null, "Menus, dropdowns and popovers scroll inside ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "--popover-max-height"), "; modal bodies scroll between a fixed header and footer; drawers keep a sticky header and action bar."), /*#__PURE__*/React.createElement("td", null, "Actions stay reachable.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Keyboard access")), /*#__PURE__*/React.createElement("td", null, "A scroll region without focusable content gets ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "tabindex=\"0\""), ", ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "role=\"region\""), " and an ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "aria-label"), "; it shows the focus ring."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.1.1 Keyboard.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Clear the sticky header")), /*#__PURE__*/React.createElement("td", null, "The page root has ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "scroll-padding-top: var(--scroll-offset)"), "; anchors and focused fields land below the top bar."), /*#__PURE__*/React.createElement("td", null, "Nothing hides under the header.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Show there is more")), /*#__PURE__*/React.createElement("td", null, "Horizontal tab strips and tables that overflow use ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-scroll-fade-x"), " (or arrows). Never hide a scrollbar without such a hint."), /*#__PURE__*/React.createElement("td", null, "Off-screen content is discoverable.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Smooth scrolling")), /*#__PURE__*/React.createElement("td", null, "Only for in-page jumps (back to top, anchor links), and never under ", /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "Motion budget.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "Touch")), /*#__PURE__*/React.createElement("td", null, "Use the platform\u2019s momentum scrolling; do not restyle or hide touch scrollbars."), /*#__PURE__*/React.createElement("td", null, "Native feel on mobile."))))), /*#__PURE__*/React.createElement("div", {
   className: "callout"
 }, /*#__PURE__*/React.createElement("strong", null, "The motion test:"), " if removing an animation makes the UI ", /*#__PURE__*/React.createElement("em", null, "worse"), ", keep it. If removing it makes the UI ", /*#__PURE__*/React.createElement("em", null, "faster"), ", it was decoration. Default to the second."));
 window.IconographySection = IconographySection;

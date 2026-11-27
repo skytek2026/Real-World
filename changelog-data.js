@@ -38,6 +38,30 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.4.0",
+    "dateISO": "2026-11-27T23:00:00Z",
+    "date": "27/11/2026",
+    "time": "23:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Foundations",
+    "impact": "Minor",
+    "summary": "Scrolling & overflow defined: scroll-region classes, behaviour rules and two tokens, alongside the existing scrollbar skin.",
+    "changes": [
+      "The scrollbar skin (6px, brand-500 thumb, brand-600 hover, slate-100 track) was already defined; --scrollbar-size is now also in tokens.json.",
+      "New scroll-region classes: .ds-scroll-y (vertical: overflow auto, contained overscroll, stable gutter) and .ds-scroll-x (horizontal: wide tables, code, charts); both include the skin and show the focus ring when focused.",
+      "New helpers: .ds-scroll-fade-x / -y (edge fade hinting at off-screen content) and .ds-scroll-lock (page scroll root while a modal or drawer is open).",
+      "New token --scroll-offset (64px = top bar 48px + 16px), used as scroll-padding-top on the page root.",
+      "Rules documented (Motion chapter, ‘Scrolling & overflow’): one scroller per view; overflow auto, never scroll; overflow hidden only to clip decoration; no sideways page scroll (1.4.10); contain nested scrolling; lock the page under overlays; stable gutters; maximum heights; keyboard access for scroll regions (2.1.1); clear the sticky header; show there is more; smooth scrolling only for in-page jumps; native touch scrolling.",
+      ".ds-scroll is unchanged (skin only), so nothing existing changes behaviour."
+    ],
+    "reason": "Scrollbar style, behaviour and overflow rules were not defined beyond the skin.",
+    "affected": [
+      "Foundations",
+      "Layout",
+      "Tokens"
+    ]
+  },
+  {
     "version": "v4.3.0",
     "dateISO": "2026-11-27T21:00:00Z",
     "date": "27/11/2026",

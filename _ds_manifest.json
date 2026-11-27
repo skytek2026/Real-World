@@ -1332,6 +1332,12 @@
       "definedIn": "styles.css"
     },
     {
+      "name": "--scroll-offset",
+      "value": "64px",
+      "kind": "length",
+      "definedIn": "styles.css"
+    },
+    {
       "name": "--chart-cat-1",
       "value": "#1485c5",
       "kind": "color",

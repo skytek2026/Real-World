@@ -743,6 +743,53 @@ html, .ds-scroll, [data-scroll] {
       </div>
     </div>
 
+    <div className="subsection" id="scrolling">
+      <h3 className="subsection-title">Scrolling &amp; overflow</h3>
+      <p className="subsection-desc" style={{ maxWidth: 820 }}>
+        How content scrolls, which element scrolls, and when overflow may be hidden (v4.4.0).
+        <code className="inline">.ds-scroll</code> is the scrollbar skin only; scroll <strong>regions</strong> use <code className="inline">.ds-scroll-y</code> or
+        <code className="inline">.ds-scroll-x</code>, which include the skin and add the behaviour below.
+      </p>
+      <div className="grid-2" style={{ gap: 24, alignItems: "start" }}>
+        <div>
+          <div className="t-label" style={{ marginBottom: 8 }}>Live: <code style={{ fontSize: 11 }}>.ds-scroll-x .ds-scroll-fade-x</code></div>
+          <div className="ds-scroll-x ds-scroll-fade-x" tabIndex={0} role="region" aria-label="Example wide table" style={{ border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", background: "var(--white)" }}>
+            <table className="spec-table" style={{ minWidth: 960, border: 0 }}>
+              <thead><tr>{["Vessel","IMO","Flag","Type","Built","GT","DWT","Status"].map(h => <th key={h}>{h}</th>)}</tr></thead>
+              <tbody>{[0,1,2].map(r => <tr key={r}>{["Atlantic Star","9307243","Cyprus","Container","2006","54,214","66,940","Active"].map((v,i) => <td key={i}>{v}</td>)}</tr>)}</tbody>
+            </table>
+          </div>
+          <p className="t-caption" style={{ marginTop: 4 }}>Tab to the table and use the arrow keys; the edges fade while more content sits off-screen.</p>
+        </div>
+        <div>
+          <div className="t-label" style={{ marginBottom: 8 }}>Tokens</div>
+          <div className="panel">
+            {[["--scrollbar-size","6px","Bar thickness"],["--scroll-offset","64px","Top bar (48) + 16: scroll-padding for anchors and focus"],["--popover-max-height","—","Menus and popovers scroll inside this height"]].map(([t, v, w]) => (
+              <div key={t} className="token-row" style={{ gridTemplateColumns: "200px 80px 1fr" }}><code>{t}</code><span className="t-mono" style={{ color: "var(--brand-700)" }}>{v}</span><span className="t-caption">{w}</span></div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <table className="spec-table" style={{ marginTop: 16 }}>
+        <thead><tr><th style={{ width: 190 }}>Rule</th><th>Do</th><th style={{ width: 230 }}>Why</th></tr></thead>
+        <tbody>
+          <tr><td><strong>One scroller per view</strong></td><td>The app shell never scrolls; the content region does. Nest a scroll region only for a list, table or panel with its own fixed height.</td><td>Predictable wheel and touch behaviour.</td></tr>
+          <tr><td><strong>overflow: auto</strong></td><td>Use <code className="inline">auto</code>, never <code className="inline">scroll</code> (permanent empty bars).</td><td>Bars appear only when needed.</td></tr>
+          <tr><td><strong>overflow: hidden</strong></td><td>Only to clip decoration (rounded corners, images, animations) or truncated text with an ellipsis and a full-text tooltip. Never to hide content a user needs.</td><td>Hidden content is lost content.</td></tr>
+          <tr><td><strong>No sideways page scroll</strong></td><td>The page never scrolls horizontally down to 320px wide. Wide tables, code and charts scroll inside <code className="inline">.ds-scroll-x</code>, with a <code className="inline">min-width</code> on the table and the first column sticky where it helps.</td><td>WCAG 1.4.10 Reflow.</td></tr>
+          <tr><td><strong>Contain nested scrolling</strong></td><td>Modals, drawers, popovers, menus and side panels use <code className="inline">overscroll-behavior: contain</code> (built into <code className="inline">.ds-scroll-y</code>).</td><td>Reaching the end of a list never scrolls the page behind it.</td></tr>
+          <tr><td><strong>Lock the page under overlays</strong></td><td>While a modal or full drawer is open, add <code className="inline">.ds-scroll-lock</code> to the page scroll root; remove it on close and restore the scroll position.</td><td>The background stays put; no layout shift.</td></tr>
+          <tr><td><strong>Stable gutters</strong></td><td>Scroll regions reserve the bar’s space (<code className="inline">scrollbar-gutter: stable</code>).</td><td>Content does not jump when the list grows.</td></tr>
+          <tr><td><strong>Maximum heights</strong></td><td>Menus, dropdowns and popovers scroll inside <code className="inline">--popover-max-height</code>; modal bodies scroll between a fixed header and footer; drawers keep a sticky header and action bar.</td><td>Actions stay reachable.</td></tr>
+          <tr><td><strong>Keyboard access</strong></td><td>A scroll region without focusable content gets <code className="inline">tabindex="0"</code>, <code className="inline">role="region"</code> and an <code className="inline">aria-label</code>; it shows the focus ring.</td><td>WCAG 2.1.1 Keyboard.</td></tr>
+          <tr><td><strong>Clear the sticky header</strong></td><td>The page root has <code className="inline">scroll-padding-top: var(--scroll-offset)</code>; anchors and focused fields land below the top bar.</td><td>Nothing hides under the header.</td></tr>
+          <tr><td><strong>Show there is more</strong></td><td>Horizontal tab strips and tables that overflow use <code className="inline">.ds-scroll-fade-x</code> (or arrows). Never hide a scrollbar without such a hint.</td><td>Off-screen content is discoverable.</td></tr>
+          <tr><td><strong>Smooth scrolling</strong></td><td>Only for in-page jumps (back to top, anchor links), and never under <code className="inline">prefers-reduced-motion</code>.</td><td>Motion budget.</td></tr>
+          <tr><td><strong>Touch</strong></td><td>Use the platform’s momentum scrolling; do not restyle or hide touch scrollbars.</td><td>Native feel on mobile.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <div className="callout">
       <strong>The motion test:</strong> if removing an animation makes the UI <em>worse</em>, keep it. If removing it makes the UI <em>faster</em>, it was decoration. Default to the second.
     </div>
