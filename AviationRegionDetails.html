@@ -64,7 +64,7 @@
   .airport-card div:has(> .pf-tbl){overflow-x:auto!important}
   .airport-card:hover{border-color:#d1d5db;box-shadow:0 2px 8px rgba(15,23,42,.05)}
   /* Stat pills */
-  .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb);font-size:14px;font-weight:700;padding:4px 8px;border-radius:8px;font-variant-numeric:tabular-nums}
+  .spill-blue{display:inline-block;background:var(--brand-50,#eff6ff);color:var(--brand-700,#0f6aa0);font-size:14px;font-weight:700;padding:4px 8px;border-radius:8px;font-variant-numeric:tabular-nums}
   .spill-gray{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;background:#f3f4f6;color:#374151;font-size:14px;font-weight:700;padding:4px 8px;border-radius:8px;font-variant-numeric:tabular-nums}   /* icon beside the number (svg is display:block) */
   /* Coverage tabs */
   .cov-tab{flex:1;padding:8px 8px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .15s,color .15s;border-radius:9999px;background:transparent;color:#6b7280;white-space:nowrap}
@@ -98,8 +98,8 @@
   .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
-  .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-700,#0f6aa0);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-800,#0d5580);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
   /* Phones: portfolio tables as cards (all headings kept); lists scroll inside their card */
   .ard-mcards { display:none; }
@@ -113,7 +113,7 @@
   .ard-mkv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
   .ard-mkv dd { margin:4px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; }
   .ard-mkv dd strong { font-weight:700; color:#111827; }
-  .ard-name { display:inline-flex; align-items:center; gap:4px; color:var(--brand-600,#2563eb); font-weight:600; }
+  .ard-name { display:inline-flex; align-items:center; gap:4px; color:var(--brand-700,#0f6aa0); font-weight:600; }
   html[data-theme="dark"] .ard-mcard { background:#161f2e; border-color:#2a374d; }
   html[data-theme="dark"] .ard-mkv .ard-wide { border-color:#1f2a3d; }
   html[data-theme="dark"] .ard-mkv dd { color:#c0c9d8; }
@@ -136,7 +136,7 @@ window.PAGE = { id:'regions', title:'Aviation Region', crumb: regionName };
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -286,7 +286,7 @@ function initMap() {
           <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#6b7280;font-size:14px">Aircraft on Ground:</span><span style="font-weight:700;color:#111827;font-size:14px">${a.aog}</span></div>
           <div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="color:#6b7280;font-size:14px">Total Hull:</span><span style="font-weight:700;color:#111827;font-size:14px">${a.hull}</span></div>
           <div style="display:flex;justify-content:space-between"><span style="color:#6b7280;font-size:14px">CHW:</span><span style="font-weight:700;color:#111827;font-size:14px">${a.chw}</span></div>
-          <button class="ard-pp-cta" style="display:block;width:100%;margin-top:12px;height:32px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--brand-600,#2563eb);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Details</button>
+          <button class="ard-pp-cta" style="display:block;width:100%;margin-top:12px;height:32px;border:1px solid transparent;border-radius:8px;background:transparent;color:var(--brand-700,#0f6aa0);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Details</button>
         </div>
       </div>`;
     L.marker(a.coord,{icon, autoPanOnFocus:false})   // focus mustn't pan the map under the pointer
@@ -375,7 +375,7 @@ function alertCard(al) {
       <span style="margin-left:auto;font-size:12px;font-weight:600;padding:4px 12px;border:1px solid;border-radius:8px;${statusStyle};flex-shrink:0">${al.status}</span>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-top:12px">
-      <div><div style="font-size:12px;color:#6b7280;margin-bottom:2px">Aircraft:</div><div style="font-size:14px;font-weight:600;color:var(--brand-600,#2563eb)">${al.aircraft}</div></div>
+      <div><div style="font-size:12px;color:#6b7280;margin-bottom:2px">Aircraft:</div><div style="font-size:14px;font-weight:600;color:var(--brand-700,#0f6aa0)">${al.aircraft}</div></div>
       <div><div style="font-size:12px;color:#6b7280;margin-bottom:2px">Call Sign:</div><div style="font-size:14px;font-weight:600;color:#111827;letter-spacing:.02em">${al.callsign}</div></div>
       <div><div style="font-size:12px;color:#6b7280;margin-bottom:2px">Entry Date/Time:</div><div style="font-size:14px;font-weight:600;color:#111827">${al.entry}</div></div>
       <div><div style="font-size:12px;color:#6b7280;margin-bottom:2px">Exit Date/Time:</div><div style="font-size:14px;font-weight:600;color:#111827">${al.exit}</div></div>
@@ -411,7 +411,7 @@ function airportRow(a) {
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span>Total TLOHW:</span><span class="spill-blue">${a.tlohw}</span></div>
     </div>
     <div style="margin-top:12px;border-top:1px solid #f3f4f6;padding-top:12px">
-      <button type="button" data-airport-toggle="${a.code}" aria-expanded="${open}" style="display:inline-flex;align-items:center;gap:4px;background:transparent;border:0;padding:4px 0;cursor:pointer;color:var(--brand-600,#2563eb);font:inherit;font-size:14px;font-weight:600">Portfolios<span style="display:inline-flex;transform:${open?'rotate(180deg)':'rotate(0)'};transition:transform .15s">${CHEV_ICO}</span></button>
+      <button type="button" data-airport-toggle="${a.code}" aria-expanded="${open}" style="display:inline-flex;align-items:center;gap:4px;background:transparent;border:0;padding:4px 0;cursor:pointer;color:var(--brand-700,#0f6aa0);font:inherit;font-size:14px;font-weight:600">Portfolios<span style="display:inline-flex;transform:${open?'rotate(180deg)':'rotate(0)'};transition:transform .15s">${CHEV_ICO}</span></button>
     </div>
     ${open ? `
     <div style="margin-top:8px">
@@ -426,7 +426,7 @@ function airportRow(a) {
           </tr></thead>
           <tbody>
             ${AIRPORT_PORTFOLIOS.map(p => `<tr>
-              <td><span style="display:inline-flex;align-items:center;gap:4px;color:var(--brand-600,#2563eb);font-weight:500;cursor:pointer">${BRIEF_ICO}${p.name}</span></td>
+              <td><span style="display:inline-flex;align-items:center;gap:4px;color:var(--brand-700,#0f6aa0);font-weight:500;cursor:pointer">${BRIEF_ICO}${p.name}</span></td>
               <td style="text-align:right;font-weight:600">${p.hull}</td>
               <td style="text-align:right">${p.chw}</td>
               <td style="text-align:right">${p.hullw}</td>
@@ -469,11 +469,11 @@ function Content() {
             <span style="color:#111827;font-weight:600;font-size:14px;min-width:56px;text-align:right;margin-left:16px">${r.tot}</span>
           </div>`).join('')}` : `
           <div style="font-size:14px;color:#6b7280;padding:8px 0;display:flex;flex-direction:column;gap:8px">
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Region Type:</span><span style="color:#111827;font-weight:600">${REGION_INFO.type}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Created at:</span><span style="color:#111827;font-weight:600">${REGION_INFO.created}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Airports:</span><span style="color:#111827;font-weight:600">${REGION_INFO.airports}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Active Policies:</span><span style="color:#111827;font-weight:600">${REGION_INFO.policies}</span></div>
-            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-600,#2563eb);font-weight:500">Countries:</span><span style="color:#111827;font-weight:600">${REGION_INFO.countries}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-700,#0f6aa0);font-weight:500">Region Type:</span><span style="color:#111827;font-weight:600">${REGION_INFO.type}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-700,#0f6aa0);font-weight:500">Created at:</span><span style="color:#111827;font-weight:600">${REGION_INFO.created}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-700,#0f6aa0);font-weight:500">Airports:</span><span style="color:#111827;font-weight:600">${REGION_INFO.airports}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-700,#0f6aa0);font-weight:500">Active Policies:</span><span style="color:#111827;font-weight:600">${REGION_INFO.policies}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--brand-700,#0f6aa0);font-weight:500">Countries:</span><span style="color:#111827;font-weight:600">${REGION_INFO.countries}</span></div>
           </div>`}
         </div>
       </div>
@@ -495,7 +495,7 @@ function Content() {
             </tr></thead>
             <tbody>
               ${PORTFOLIOS.map(p => `<tr>
-                <td style="color:var(--brand-600,#2563eb);font-weight:500;cursor:pointer">${p.name}</td>
+                <td style="color:var(--brand-700,#0f6aa0);font-weight:500;cursor:pointer">${p.name}</td>
                 <td style="font-weight:600">${p.total}</td>
                 <td>${p.chw}</td>
                 <td>${p.hullw}</td>
@@ -612,7 +612,7 @@ function Content() {
             <div style="position:relative">
               <button id="ard-layers-btn" class="map-btn" title="Map type">${SC.I.layers}</button>
               <div id="ard-layers-menu" class="hidden" style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 4px 12px rgba(15,23,42,.14);overflow:hidden;padding:4px 0">
-                ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`<button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:14px;color:#374151;text-align:left"><span data-label>${l}</span><span data-check style="display:flex;color:var(--brand-600,#2563eb);opacity:0">${SC.I.check}</span></button>`).join('')}
+                ${[['satellite','Satellite'],['street','Street View'],['dark','Dark Mode'],['light','Light Mode']].map(([k,l])=>`<button data-map-type="${k}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-size:14px;color:#374151;text-align:left"><span data-label>${l}</span><span data-check style="display:flex;color:var(--brand-700,#0f6aa0);opacity:0">${SC.I.check}</span></button>`).join('')}
               </div>
             </div>
           </div>

@@ -22,8 +22,8 @@
 .idm-dl > div{min-width:0}
 .idm-dl dt{color:#6b7280;font-size:12px;margin-bottom:2px}
 .idm-dl dd{margin:0;color:#111827;font-weight:500;overflow-wrap:anywhere}
-.idm-dl a{color:var(--brand-600,#1485c5);text-decoration:underline;text-underline-offset:2px}
-.idm-dl a:hover{color:var(--brand-700,#1d6ae5)}
+.idm-dl a{color:var(--brand-700,#0f6aa0);text-decoration:underline;text-underline-offset:2px}
+.idm-dl a:hover{color:var(--brand-800,#0d5580)}
 .idm-tw{border:1px solid #e5e7eb;border-radius:8px;overflow:auto}
 .idm-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
 .idm-t th{position:sticky;top:0;background:#f9fafb;text-align:left;font-weight:600;color:#4b5563;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:0;border-bottom:1px solid #e5e7eb;white-space:nowrap}
@@ -31,7 +31,7 @@
 .idm-t th button:hover{color:#111827}
 .idm-t th button:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:-2px}
 .idm-t th .ar{color:#d1d5db;display:inline-flex}
-.idm-t th[aria-sort="ascending"] .ar,.idm-t th[aria-sort="descending"] .ar{color:var(--brand-600,#1485c5)}
+.idm-t th[aria-sort="ascending"] .ar,.idm-t th[aria-sort="descending"] .ar{color:var(--brand-700,#0f6aa0)}
 .idm-t td{padding:8px 12px;border-bottom:1px solid #f3f4f6;color:#111827;vertical-align:top;text-wrap:pretty}
 .idm-t tr:last-child td{border-bottom:0}
 .idm-t tbody tr:nth-child(even){background:#f9fafb}

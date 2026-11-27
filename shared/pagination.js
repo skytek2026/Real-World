@@ -83,7 +83,7 @@
       <div class="ds-pagination-wrap">
         <div class="ds-pagination-summary">
           <span>${summaryShort || summary}</span>
-          ${totalPages > 10 ? `<button class="ds-page-jump-link" data-jump style="background:none;border:0;padding:0;color:var(--brand-600,#2563eb);font-size:12px;font-weight:600;cursor:pointer;">Jump to page…</button>` : ''}
+          ${totalPages > 10 ? `<button class="ds-page-jump-link" data-jump style="background:none;border:0;padding:0;color:var(--brand-700,#0f6aa0);font-size:12px;font-weight:600;cursor:pointer;">Jump to page…</button>` : ''}
         </div>
         <span class="ds-pagination-desktop-summary" style="font-size:14px;color:#6b7280;">${summary}</span>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">

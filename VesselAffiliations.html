@@ -30,7 +30,7 @@
   .border-ink-100 { border-color:#f3f4f6; }
   .border-ink-200 { border-color:#e5e7eb; }
   .shadow-card { box-shadow:0 2px 4px 0 rgb(15 23 42 / 0.08), 0 1px 2px 0 rgb(15 23 42 / 0.06); }
-  .text-brand-600 { color:#1485c5; }
+  .text-brand-700 { color:#0F6AA0; }
   .bg-brand-500 { background:#1485c5; }
   .bg-brand-050 { background:#eff6ff; }
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
@@ -51,7 +51,7 @@
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s ease;pointer-events:none;z-index:40;}
   .rs-node:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
-  .rs-info:hover{color:#1485c5;}
+  .rs-info:hover{color:#0F6AA0;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
   .rs-tip.l{left:-6px;}
@@ -116,12 +116,12 @@
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#0f6aa0);}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-700,#0f6aa0);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-800,#0d5580);}
 
   /* ── DS color conformance: override off-palette Tailwind utilities ── */
   .bg-blue-100{background-color:#dbeafe!important}.text-blue-700{color:#1d4ed8!important}
-  .bg-blue-600{background-color:#1485c5!important}.text-blue-600{color:#1485c5!important}
+  .bg-blue-600{background-color:#1485c5!important}.text-blue-600{color:#0F6AA0!important}
   .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}.text-amber-500{color:#d97706!important}
   .bg-yellow-100{background-color:#fef3c7!important}.text-yellow-700{color:#b45309!important}
   .bg-orange-50{background-color:#fffbeb!important}.bg-[#d97706]{background-color:#d97706!important}.text-[#d97706]{color:#d97706!important}.text-orange-600{color:#b45309!important}
@@ -148,7 +148,7 @@
   }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -313,7 +313,7 @@ function OwnershipCard() {
                 <tbody>
                   ${e.fleet.map(v => `
                   <tr class="border-b border-ink-100 last:border-0 hover:bg-brand-50">
-                    <td class="px-3 py-2"><a href="VesselDetails.html" class="font-semibold text-brand-600 hover:underline">${v.name}</a></td>
+                    <td class="px-3 py-2"><a href="VesselDetails.html" class="font-semibold text-brand-700 hover:underline">${v.name}</a></td>
                     <td class="px-3 py-2 font-mono text-ink-700">${v.imo}</td>
                     <td class="px-3 py-2 text-ink-700">${v.type}</td>
                     <td class="px-3 py-2 text-ink-700">${v.flag}</td>
@@ -349,7 +349,7 @@ function Content() {
         const href = 'VesselDetails.html';
         const label = 'BACK TO VESSEL';
         return `
-      <a href="${href}" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+      <a href="${href}" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         ${label}
       </a>`;

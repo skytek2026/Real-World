@@ -111,8 +111,8 @@
   .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-start;align-items:center;gap:8px;flex-shrink:0;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--end{justify-content:flex-end;}
   .ds-card-foot--center{justify-content:center;}
-  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
-  .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
+  .ds-foot-btn{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-700,#0f6aa0);transition:background .15s,color .15s;white-space:nowrap;text-decoration:none;}
+  .ds-foot-btn:hover{background:#f3f4f6;color:var(--brand-800,#0d5580);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 
@@ -203,8 +203,8 @@ html[data-theme="dark"] .ds-fdrawer {
   display: flex; align-items: center; gap: 8px;
 }
 /* Collapsed headers read as brand-blue affordances; the open one goes quiet. */
-.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); }
-.ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
+.ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-700,#0f6aa0); }
+.ds-fdrawer-acc-chev { color: var(--brand-700,#0f6aa0); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; }
 .ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); }
 /* Active-filter marker */
 .ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; }
@@ -223,7 +223,7 @@ html[data-theme="dark"] .ds-fdrawer {
   cursor: pointer;
   transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
 }
-.ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); }
+.ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-800,#0d5580); }
 .ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
 /* Option list. Capped when collapsed-ish; the open section lets it fill. */
 .ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; }
@@ -270,11 +270,11 @@ html[data-theme="dark"] .ds-fdrawer {
 .rf-sub { margin:2px 0 4px 0; padding:4px; background:var(--bg-muted); border-radius:8px; }
 .rf-sub[hidden] { display:none; }
 .rf-row--sub:hover { background:var(--bg-surface); }
-.rf-row--sub .rf-name { color:var(--brand-600,#1485c5); }
+.rf-row--sub .rf-name { color:var(--brand-700,#0f6aa0); }
 html[data-theme="dark"] .rf-row--sub .rf-name { color:var(--brand-300,#93c5fd); }
 .rf-swatch { width:10px; height:10px; border-radius:50%; border:1.5px solid #fff; box-shadow:0 0 0 1px rgba(15,23,42,.15); flex-shrink:0; }
 #rg-filter-btn { position:relative; }
-#rg-filter-btn.is-active { color:var(--brand-600,#1485c5); }
+#rg-filter-btn.is-active { color:var(--brand-700,#0f6aa0); }
 .mfd-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
 .mfd-label { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; }
 .mfd-n { font-size:12px; font-weight:600; color:var(--text-muted); font-variant-numeric:tabular-nums; }
@@ -287,7 +287,7 @@ html[data-theme="dark"] .rf-row--sub .rf-name { color:var(--brand-300,#93c5fd); 
 .mfd-btn:focus-visible { outline:0; box-shadow:var(--shadow-focus); }
 /* active-filter count on the map's Filter button */
 #map-filters-btn { position:relative; }
-#map-filters-btn.is-active { color:var(--brand-600,#1485c5); }
+#map-filters-btn.is-active { color:var(--brand-700,#0f6aa0); }
 .map-filter-count { position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 4px; border-radius:9999px; background:var(--brand-600,#1485c5); color:#fff; font-size:12px; font-weight:700; line-height:16px; text-align:center; box-shadow:0 0 0 2px #fff; }
 html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 </style>
@@ -306,7 +306,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -793,7 +793,7 @@ function initMap() {
           <span style="color:#6b7280;font-size:14px">Risk Level:</span>
           <span style="font-weight:700;font-size:14px;color:${riskColor}">${r.risk}</span>
         </div>
-        <button onclick="window.__regionGo('${r.name.replace(/'/g,"\\'")}')" style="width:100%;padding:0 12px;height:32px;border:1px solid transparent;border-radius:var(--radius-md,8px);background:transparent;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Regional Details</button>
+        <button onclick="window.__regionGo('${r.name.replace(/'/g,"\\'")}')" style="width:100%;padding:0 12px;height:32px;border:1px solid transparent;border-radius:var(--radius-md,8px);background:transparent;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;cursor:pointer;font-family:inherit;transition:background .1s" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'">View Regional Details</button>
       </div>
     </div>`;
 
@@ -835,7 +835,7 @@ function PanelMyRegions(d) {
     </div>
     <div style="flex:1;min-height:0;overflow-y:auto;padding:0 16px;max-height:392px" class="scroll-thin">
       ${SKYTEK_REGION_LIST.map(r => `<div class="r-row" style="cursor:default">
-        <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" data-region-link="${r.name}">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
+        <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" data-region-link="${r.name}">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
         <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
       </div>`).join('')}
     </div>` : `
@@ -850,12 +850,12 @@ function PanelMyRegions(d) {
           <span style="display:flex;align-items:center;gap:4px;flex-shrink:0">
             ${open && hasSub ? FOLDER_OPEN_SVG : FOLDER_SVG}
           </span>
-          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
+          <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${r.name} <span style="color:#9ca3af;font-weight:400">(${r.count.toLocaleString()})</span></span>
           <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
         </div>
         ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 12px;border-bottom:1px solid #f9fafb;font-size:14px">
           <span style="width:12px;height:1px;background:#e5e7eb;flex-shrink:0"></span>
-          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
+          <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
           <span style="color:#6b7280;font-variant-numeric:tabular-nums;font-size:12px">${s.exposure}</span>
         </div>`).join('') : ''}`;
       }).join('')}
@@ -886,12 +886,12 @@ function PanelRealWorldRegions(d) {
           <span style="display:flex;align-items:center;gap:4px;flex-shrink:0">
             ${open && hasSub ? FOLDER_OPEN_SVG : FOLDER_SVG}
           </span>
-          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis">${r.name}</span>
+          <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;font-size:14px;min-width:0;overflow:hidden;text-overflow:ellipsis">${r.name}</span>
           <span style="color:#374151;font-weight:600;font-variant-numeric:tabular-nums;flex-shrink:0;margin-left:8px">${r.exposure}</span>
         </div>
         ${open && hasSub ? r.sub.map(s => `<div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 12px;border-bottom:1px solid #f9fafb;font-size:14px">
           <span style="width:12px;height:1px;background:#e5e7eb;flex-shrink:0"></span>
-          <span style="flex:1;color:var(--brand-600,#2563eb);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
+          <span style="flex:1;color:var(--brand-700,#0f6aa0);font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;cursor:pointer" data-region-link="${s.name.replace(/"/g,'&quot;')}">${s.name}</span>
           <span style="color:#6b7280;font-variant-numeric:tabular-nums;font-size:12px">${s.exposure}</span>
         </div>`).join('') : ''}`;
       }).join('')}
@@ -978,7 +978,7 @@ function MapView() {
     <div style="position:relative">
       <button id="rg-layers-btn" class="rg-map-btn" title="Layers">${LAYERS_ICO}</button>
       ${rLayersOpen ? `<div style="position:absolute;top:0;right:calc(100% + 8px);width:160px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.12);overflow:hidden;padding:4px 0;z-index:9999">
-        ${LAYER_OPTS.map(([k,l]) => `<button data-map-type="${k}" class="rg-map-type-opt" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;font-size:14px;font-weight:${rMapType===k?'600':'400'};color:${rMapType===k?'#111827':'#374151'};background:transparent;border:0;cursor:pointer;text-align:left;font-family:inherit"><span>${l}</span><span style="color:var(--brand-600,#2563eb);opacity:${rMapType===k?'1':'0'};display:flex">${CHECK_ICO}</span></button>`).join('')}
+        ${LAYER_OPTS.map(([k,l]) => `<button data-map-type="${k}" class="rg-map-type-opt" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;font-size:14px;font-weight:${rMapType===k?'600':'400'};color:${rMapType===k?'#111827':'#374151'};background:transparent;border:0;cursor:pointer;text-align:left;font-family:inherit"><span>${l}</span><span style="color:var(--brand-700,#0f6aa0);opacity:${rMapType===k?'1':'0'};display:flex">${CHECK_ICO}</span></button>`).join('')}
       </div>` : ''}
     </div>
     <div style="position:relative">

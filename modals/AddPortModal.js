@@ -76,7 +76,7 @@
       .rw-ap-layers-menu.hidden { display:none; }
       .rw-ap-layer-opt { width:100%; display:flex; align-items:center; justify-content:space-between; padding:8px 12px; font-size:14px; color:#374151; background:transparent; border:0; cursor:pointer; text-align:left; }
       .rw-ap-layer-opt:hover { background:#f3f4f6; }
-      .rw-ap-layer-opt[aria-selected="true"] { color:var(--brand-600,#2563eb); font-weight:600; }
+      .rw-ap-layer-opt[aria-selected="true"] { color:var(--brand-700,#0f6aa0); font-weight:600; }
       .rw-ap-map .leaflet-bar { margin:0 !important; border:1px solid #e5e7eb !important; box-shadow:0 1px 2px rgba(15,23,42,.08) !important; border-radius:8px !important; overflow:hidden; }
       @media (max-width: 768px) {
         .rw-ap-twocol { grid-template-columns: 1fr; }

@@ -68,7 +68,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script>
 const SC = window.sharedChrome;
 const qp = new URLSearchParams(location.search);
@@ -140,7 +140,7 @@ function FormView() {
         <label class="cs-drop" id="cs-drop">
           <input id="cs-file" type="file" multiple accept="image/*,.pdf,.txt,.csv,.xlsx" style="display:none">
           ${UP_ICO}
-          <span style="font-size:14px;color:#374151"><span style="color:var(--brand-600,#2563eb);font-weight:600">Choose files</span> or drag screenshots here</span>
+          <span style="font-size:14px;color:#374151"><span style="color:var(--brand-700,#0f6aa0);font-weight:600">Choose files</span> or drag screenshots here</span>
         </label>
         ${e.files ? `<div class="cs-err">${e.files}</div>` : ''}
         ${CS.files.length ? `<div style="display:flex;flex-direction:column;gap:4px;margin-top:8px">${CS.files.map((f, i) => `<div class="cs-file"><span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(f.name)}</span><span style="color:#9ca3af;flex-shrink:0">${(f.size / 1024 / 1024).toFixed(1)} MB</span><button type="button" data-rm="${i}" aria-label="Remove ${esc(f.name)}">${X_ICO}</button></div>`).join('')}</div>` : ''}

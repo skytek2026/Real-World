@@ -706,7 +706,7 @@ function applyTweaks() {
     .bg-brand-50{background-color:${c[50]}!important}.bg-brand-100{background-color:${c[100]}!important}
     .bg-brand-500{background-color:${c[500]}!important}.bg-brand-500{background-color:${c[600]}!important}
     .bg-brand-700{background-color:${c[700]}!important}
-    .text-brand-500{color:${c[500]}!important}.text-brand-600{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}
+    .text-brand-500{color:${c[500]}!important}.text-brand-700{color:${c[600]}!important}.text-brand-700{color:${c[700]}!important}.text-brand-800{color:${c[800]||c[700]}!important}.hover\\:text-brand-800:hover{color:${c[800]||c[700]}!important}
     .border-brand-300{border-color:${c[300]}!important}.border-brand-500{border-color:${c[500]}!important}
     .ring-brand-100{--tw-ring-color:${c[100]}!important}
     /* Every scrollbar in the app is the thin style. The colour rule here makes current Chrome/Edge
@@ -750,7 +750,7 @@ function applyTweaks() {
     :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.cd-tab,.atab){font-size:13px!important;font-weight:600!important}
     :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.atab):not(.active),:root .cd-tab:not([aria-selected="true"]){color:#4B5563}
     :root :is(.seg-tab,.cov-tab,.cnr-tab,.ptab,.stab-btn,.atab):not(.active):hover,:root .cd-tab:not([aria-selected="true"]):hover{color:#111827}
-    :root .atab.active{color:${c[500]}!important}
+    :root .atab.active{color:${c[700]}!important}
     :root .atab.active::after{background:${c[500]}!important}
     .asset-pill{background:${c[500]}!important}
     .cat-pill{background:${c[500]}!important}

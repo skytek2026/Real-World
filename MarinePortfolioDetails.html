@@ -56,11 +56,11 @@
   .pg-table tbody tr:hover td { background:#f9fafb; }
   .pg-table tr.pg-child td:first-child { padding-left:36px; }
   .pg-table tr.pg-child td { background:#fbfcfe; }
-  .pg-name { display:inline-flex; align-items:center; gap:4px; min-width:0; background:none; border:0; padding:0; font:inherit; color:var(--brand-600,#1485c5); cursor:pointer; text-decoration:none; text-align:left; }
-  .pg-name:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
+  .pg-name { display:inline-flex; align-items:center; gap:4px; min-width:0; background:none; border:0; padding:0; font:inherit; color:var(--brand-700,#0f6aa0); cursor:pointer; text-decoration:none; text-align:left; }
+  .pg-name:hover { color:var(--brand-800,#0d5580); text-decoration:underline; }
   .pg-name:focus-visible, .ds-th-sort:focus-visible { outline:0; border-radius:4px; box-shadow:0 0 0 3px rgba(46,134,192,.32); }
   .pg-name svg { flex-shrink:0; }
-  .pg-foot-btn { color:var(--brand-600,#1485c5); background:none; border:0; padding:0; cursor:pointer; }
+  .pg-foot-btn { color:var(--brand-700,#0f6aa0); background:none; border:0; padding:0; cursor:pointer; }
   .pg-foot-btn[disabled] { color:#9ca3af; cursor:not-allowed; }
   .pg-table .ds-th-sort { width:100%; display:inline-flex; align-items:center; gap:4px; padding:8px 12px; background:none; border:0; font:inherit; font-size:12px; font-weight:600; letter-spacing:.02em; color:#6b7280; cursor:pointer; white-space:nowrap; transition:color 120ms ease, background 120ms ease; }
   .pg-table .ds-th-sort:hover { color:#4b5563; background:#f3f4f6; }
@@ -81,7 +81,7 @@
   /* Analysis tabs (flat row style) */
   .atab-row { display:flex; gap:0; border-bottom:2px solid #e5e7eb; }
   .atab { padding:8px 16px; font-size:14px; font-weight:600; color:#6b7280; cursor:pointer; border:0; background:transparent; display:inline-flex; align-items:center; gap:4px; position:relative; white-space:nowrap; }
-  .atab.active { color:var(--brand-600,#1485c5); }
+  .atab.active { color:var(--brand-700,#0f6aa0); }
   .atab.active::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:2px; background:var(--brand-600,#2563eb); border-radius:2px 2px 0 0; }
   .atab:hover:not(.active) { color:#374151; }
   /* PSC stat boxes */
@@ -105,18 +105,18 @@
   .pol-table th:first-child, .pol-table td:first-child { left:0; width:38px; min-width:38px; max-width:38px; }
   .pol-table th:nth-child(2), .pol-table td:nth-child(2) { left:38px; box-shadow:inset -1px 0 0 #e5e7eb; }
   .pol-table tr:hover td:nth-child(-n+2) { background:#f9fafb; }
-  .pol-table td.lnk { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; }
-  .pol-table td.lnk:hover { color:var(--brand-700,#1d4ed8); }
+  .pol-table td.lnk { color:var(--brand-700,#0f6aa0); font-weight:600; cursor:pointer; }
+  .pol-table td.lnk:hover { color:var(--brand-800,#0d5580); }
   .pol-table td.lnk a, .pcard-sub a.lnk { color:inherit; text-decoration:none; }
-  .pol-table td.lnk a:hover, .pcard-sub a.lnk:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
-  .pcard-sub a.lnk { color:var(--brand-600,#2563eb); font-weight:600; }
+  .pol-table td.lnk a:hover, .pcard-sub a.lnk:hover { color:var(--brand-800,#0d5580); text-decoration:underline; }
+  .pcard-sub a.lnk { color:var(--brand-700,#0f6aa0); font-weight:600; }
   /* Mobile policy cards */
   .pol-cards { display:none; }
   .pcard { padding:16px 16px; border-bottom:1px solid #f3f4f6; display:flex; flex-direction:column; gap:12px; }
   .pcard:last-child { border-bottom:0; }
   .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
-  .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-600,#2563eb); word-break:break-word; }
+  .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-700,#0f6aa0); word-break:break-word; }
   .pcard-sub { display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-size:14px; color:#6b7280; }
   .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
@@ -127,7 +127,7 @@
   .pcard-more { display:none; }
   .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e5e7eb; animation:pcardIn .22s ease; }
   @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
-  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:4px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; color:var(--brand-600,#2563eb); }
+  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:4px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; color:var(--brand-700,#0f6aa0); }
   .pcard-chev { transition:transform .2s ease; }
   .pcard.open .pcard-chev { transform:rotate(180deg); }
   /* Stat badge */
@@ -174,12 +174,12 @@
   .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-700,#0f6aa0);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-800,#0d5580);}
   /* Risk Score info popups (ported from Vessel Details) */
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
-  .rs-info:hover{color:#1485c5;}
+  .rs-info:hover{color:#0F6AA0;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
   .rs-tip.l{left:-6px;}
@@ -228,7 +228,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <link rel="stylesheet" href="shared/pagination.css" />
@@ -299,7 +299,7 @@ function PortfolioGroupsBody() {
       <button type="button" class="inline-flex items-center gap-1 text-xs font-semibold tracking-micro pg-foot-btn" disabled title="You don\u2019t have permission to add groups">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>ADD GROUP</span>
       </button>
-      <a href="#" onclick="return false" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro"><span>ALL GROUPS</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+      <a href="#" onclick="return false" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro"><span>ALL GROUPS</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
     </div>
   </div>`;
 }
@@ -466,7 +466,7 @@ function PanelPortfolioDetails() {
       </div>
     </div>
     <div class="ds-card-foot ds-card-foot--between mt-auto">
-      <button type="button" data-portfolio-dl data-name="${PORTFOLIO.name}" title="Download an Excel file of this portfolio’s assets" style="min-width:0;white-space:normal;text-align:left;" class="disabled:opacity-60 disabled:cursor-wait inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+      <button type="button" data-portfolio-dl data-name="${PORTFOLIO.name}" title="Download an Excel file of this portfolio’s assets" style="min-width:0;white-space:normal;text-align:left;" class="disabled:opacity-60 disabled:cursor-wait inline-flex items-center gap-1 text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">
         <svg style="flex-shrink:0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         <span>DOWNLOAD PORTFOLIO DETAILS</span>
       </button>
@@ -505,7 +505,7 @@ function PortCallsContent() {
       <tbody>
         ${PORT_CALLS_2025.map(p => `
         <tr style="border-bottom:1px solid #f3f4f6;">
-          <td style="padding:8px 8px;color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer;">${p.port}</td>
+          <td style="padding:8px 8px;color:var(--brand-700,#0f6aa0);font-weight:600;cursor:pointer;">${p.port}</td>
           <td style="padding:8px 8px;color:#374151;"><span style="display:inline-flex;align-items:center;gap:8px;"><img src="flags/${p.cc}.svg" width="18" style="border-radius:4px;vertical-align:middle;flex-shrink:0;" alt="">${p.country}</span></td>
           <td style="padding:8px 8px;color:#374151;">
             <span style="display:inline-flex;align-items:center;gap:8px;">
@@ -560,12 +560,12 @@ function ActivityGrid() {
       <div>
         <div class="text-xs text-ink-500">Max. length Spent in Region:</div>
         <span class="stat-pill">45 Days 12 Hrs 34 Mins</span>
-        <div class="text-xs text-brand-600 font-semibold mt-1 cursor-pointer hover:underline">MV Horizon Explorer</div>
+        <div class="text-xs text-brand-700 font-semibold mt-1 cursor-pointer hover:underline">MV Horizon Explorer</div>
       </div>
       <div>
         <div class="text-xs text-ink-500">Max. No. of entries in region:</div>
         <span class="stat-pill" style="width:auto;display:inline-block;padding:4px 16px;">127</span>
-        <div class="text-xs text-brand-600 font-semibold mt-1 cursor-pointer hover:underline">MV Pacific Trader</div>
+        <div class="text-xs text-brand-700 font-semibold mt-1 cursor-pointer hover:underline">MV Pacific Trader</div>
       </div>
     </div>`;
 }
@@ -602,9 +602,9 @@ function RiskAssocContent() {
   <table class="w-full text-xs min-w-[900px]">
     <thead class="bg-ink-50 border-b border-ink-200"><tr>${th('Vessel')}${th('Relationship')}${th('Connected Entity')}${th('Entity Type')}${th('Evidence')}</tr></thead>
     <tbody>${slice.map((r, i) => `<tr class="border-b border-ink-100 ${i%2?'bg-ink-50':'bg-white'} hover:bg-brand-50">
-      <td class="px-3 py-3 whitespace-nowrap"><a href="VesselDetails.html" class="text-brand-600 hover:underline">${r[0]}</a></td>
+      <td class="px-3 py-3 whitespace-nowrap"><a href="VesselDetails.html" class="text-brand-700 hover:underline">${r[0]}</a></td>
       <td class="px-3 py-3 text-ink-700" style="max-width:420px;">${r[1].join(arrow)}</td>
-      <td class="px-3 py-3" style="max-width:240px;"><a href="CompanyDetails.html" class="text-brand-600 hover:underline block truncate" title="${r[2].replace(/"/g,'&quot;')}">${r[2]}</a></td>
+      <td class="px-3 py-3" style="max-width:240px;"><a href="CompanyDetails.html" class="text-brand-700 hover:underline block truncate" title="${r[2].replace(/"/g,'&quot;')}">${r[2]}</a></td>
       <td class="px-3 py-3 text-ink-700">Company</td>
       <td class="px-3 py-3 text-ink-700">${r[3]}</td>
     </tr>`).join('')}</tbody>
@@ -725,7 +725,7 @@ function PanelRiskBreakdown() {
       2024: { good:18, avg:2, bad:1 },
     };
     const deltaPill = (d, extra='') => { const up = d >= 0, p = yearPill(up ? 60 : 10);
-      return `<div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
+      return `<div style="background:#eff6ff;color:#0F6AA0;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
     const donut = (year, score, max, sw, numPx) => {
       const dist = RS_DIST[year], total = RS_BANDS.reduce((t, b) => t + dist[b.k], 0);
       const r = 50 - sw / 2, C = 2 * Math.PI * r, live = RS_BANDS.filter(b => dist[b.k] > 0), gap = live.length > 1 ? 0.9 : 0;
@@ -801,7 +801,7 @@ function PanelCompliance() {
       </div>
     </div>
     <div class="ds-card-foot ds-card-foot--start mt-auto">
-      <button class="text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">VIEW POLICIES</button>
+      <button class="text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">VIEW POLICIES</button>
     </div>
   </div>`;
 }

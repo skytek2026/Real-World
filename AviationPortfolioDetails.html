@@ -48,19 +48,19 @@
   .pol-table{width:100%;border-collapse:collapse;font-size:12px}
   .pol-table th{padding:8px 12px;text-align:left;font-size:12px;font-weight:600;color:var(--text-muted,#6B7280);border-bottom:1px solid var(--border-default,#E5E7EB);white-space:nowrap;background:var(--slate-50,#F9FAFB);cursor:default;text-transform:uppercase;letter-spacing:.04em}
   .pol-table th.sortable{cursor:pointer}
-  .pol-table th.sortable:hover{color:var(--brand-600,#2563eb)}
+  .pol-table th.sortable:hover{color:var(--brand-700,#0f6aa0)}
   .pol-table td{padding:12px 12px;border-bottom:1px solid #f3f4f6;color:#374151;white-space:nowrap;vertical-align:middle}
   .pol-table tbody tr:last-child td{border-bottom:0}
   .pol-table tbody tr:hover td{background:#f9fafb}
-  .pol-table td.id-cell{color:var(--brand-600,#2563eb);font-weight:600;cursor:pointer}
-  .pol-table td.id-cell:hover{color:var(--brand-700,#1d4ed8)}
+  .pol-table td.id-cell{color:var(--brand-700,#0f6aa0);font-weight:600;cursor:pointer}
+  .pol-table td.id-cell:hover{color:var(--brand-800,#0d5580)}
   /* Mobile policy cards */
   .pol-cards{display:none}
   .pcard{padding:16px 16px;border-bottom:1px solid #f3f4f6;display:flex;flex-direction:column;gap:12px}
   .pcard:last-child{border-bottom:0}
   .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
   .pcard-id{min-width:0;display:flex;flex-direction:column;gap:4px}
-  .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-600,#2563eb);text-decoration:none;word-break:break-word}
+  .pcard-title{font-size:16px;font-weight:700;line-height:1.25;color:var(--brand-700,#0f6aa0);text-decoration:none;word-break:break-word}
   .pcard-sub{display:flex;align-items:center;gap:4px;flex-wrap:wrap;font-size:14px;color:#6b7280}
   .pcard-key{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px}
   .pcard-kv{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -71,7 +71,7 @@
   .pcard-more{display:none}
   .pcard.open .pcard-more{display:block;padding-top:12px;border-top:1px dashed #e5e7eb;animation:pcardIn .22s ease}
   @keyframes pcardIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
-  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:4px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--brand-600,#2563eb)}
+  .pcard-toggle{align-self:flex-start;display:inline-flex;align-items:center;gap:4px;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;color:var(--brand-700,#0f6aa0)}
   .pcard-chev{transition:transform .2s ease}
   .pcard.open .pcard-chev{transform:rotate(180deg)}
   .sort-ico{display:inline-flex;flex-direction:column;gap:1px;margin-left:4px;vertical-align:middle;opacity:.55}
@@ -101,8 +101,8 @@
   .ds-card-foot{padding:12px 16px;border-top:1px solid #ECEEF2;background:#F9FAFB;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom-left-radius:inherit;border-bottom-right-radius:inherit;}
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.01em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8);}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 4px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.01em;text-transform:uppercase;color:var(--brand-700,#0f6aa0);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-800,#0d5580);}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
@@ -120,7 +120,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/aviation-map.js"></script>
@@ -286,14 +286,14 @@ function PanelDetails() {
       ${rows.map(([k,v]) => `
         <div class="flex items-center justify-between py-3 border-b border-ink-50 last:border-0 text-sm">
           <span class="text-ink-500 text-xs">${k}</span>
-          <span class="${k==='Id'?'text-brand-600 font-semibold text-xs':'font-semibold text-ink-800 text-xs'}">${v}</span>
+          <span class="${k==='Id'?'text-brand-700 font-semibold text-xs':'font-semibold text-ink-800 text-xs'}">${v}</span>
         </div>`).join('')}
     </div>
     <div class="ds-card-foot ds-card-foot--between shrink-0 mt-auto">
-      <button class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+      <button class="inline-flex items-center gap-1 text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">
         <span>ADD POLICY</span>
       </button>
-      <button class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+      <button class="inline-flex items-center gap-1 text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">
         <span>DOWNLOAD</span>
       </button>
     </div>
@@ -412,7 +412,7 @@ function PanelDestinationsContent() {
                 <span style="display:inline-flex;align-items:center;gap:8px;">${flag(d.cc, 20, 14)} ${d.country}</span>
               </td>
               <td style="padding:12px 16px;font-size:14px;color:#374151;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">
-                <span style="color:var(--brand-600,#2563eb);font-weight:600;">${d.code}</span> <span style="color:#6b7280;">- ${d.name}</span>
+                <span style="color:var(--brand-700,#0f6aa0);font-weight:600;">${d.code}</span> <span style="color:#6b7280;">- ${d.name}</span>
               </td>
               <td style="padding:12px 16px;font-size:14px;color:#111827;text-align:right;font-variant-numeric:tabular-nums;border-bottom:${i===dests.length-1?'0':'1px solid #f3f4f6'};">${d.no}</td>
             </tr>`).join('')}
@@ -503,7 +503,7 @@ function PolicySection() {
             ].map(o => `
               <button data-map-type="${o.id}" class="map-type-opt w-full flex items-center justify-between px-3 py-2 text-sm text-ink-700 hover:bg-ink-50 transition-colors">
                 <span data-label>${o.label}</span>
-                <span class="text-brand-600 opacity-0" data-check><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="text-brand-700 opacity-0" data-check><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
               </button>`).join('')}
           </div>
         </div>
@@ -528,14 +528,14 @@ function PolicySection() {
         <tbody>
           ${LIMIT_POLICIES.slice((policyPage-1)*policyPerPage, policyPage*policyPerPage).map(l => `
             <tr>
-              <td><a href="#" style="color:var(--brand-600,#2563eb);font-weight:600;text-decoration:none;">${l.hdr}</a></td>
+              <td><a href="#" style="color:var(--brand-700,#0f6aa0);font-weight:600;text-decoration:none;">${l.hdr}</a></td>
               <td>${l.name}</td>
               <td>${l.type}</td>
               <td class="tabular-nums">${l.value}</td>
               <td>${l.peril}</td>
-              <td style="color:var(--brand-600,#2563eb);">${l.covIds}</td>
-              <td style="color:var(--brand-600,#2563eb);">${l.cov}</td>
-              <td style="color:var(--brand-600,#2563eb);">${l.port}</td>
+              <td style="color:var(--brand-700,#0f6aa0);">${l.covIds}</td>
+              <td style="color:var(--brand-700,#0f6aa0);">${l.cov}</td>
+              <td style="color:var(--brand-700,#0f6aa0);">${l.port}</td>
             </tr>`).join('')}
         </tbody>
       </table>
@@ -605,7 +605,7 @@ function PolicySection() {
             return `
               <tr>
                 <td><input type="checkbox" class="h-3.5 w-3.5 rounded accent-blue-600" /></td>
-                <td><a href="#" style="color:var(--brand-600,#2563eb);font-weight:600;text-decoration:none;">Policy ${p.id}</a></td>
+                <td><a href="#" style="color:var(--brand-700,#0f6aa0);font-weight:600;text-decoration:none;">Policy ${p.id}</a></td>
                 <td>${p.asset}</td>
                 <td>
                   <div style="display:flex;align-items:center;gap:8px;white-space:nowrap;">
@@ -619,9 +619,9 @@ function PolicySection() {
                 <td>${p.start} - ${p.end}</td>
                 <td>${p.line}</td>
                 <td>${p.model}</td>
-                <td><a href="#" style="color:var(--brand-600,#2563eb);text-decoration:none;">${p.airline}</a></td>
+                <td><a href="#" style="color:var(--brand-700,#0f6aa0);text-decoration:none;">${p.airline}</a></td>
                 <td>${flagImg}<span>${p.cc === 'fr' ? 'France' : p.cc === 'nl' ? 'Netherlands' : p.cc.toUpperCase()}</span></td>
-                <td><a href="#" style="color:var(--brand-600,#2563eb);text-decoration:none;">${p.reg}</a></td>
+                <td><a href="#" style="color:var(--brand-700,#0f6aa0);text-decoration:none;">${p.reg}</a></td>
                 <td style="font-family:monospace;font-size:12px;">${p.hex}</td>
                 <td>${p.year}</td>
                 <td>${p.hull}</td>

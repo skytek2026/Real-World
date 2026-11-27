@@ -22,7 +22,7 @@
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-  a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-700,#1d4ed8)}
+  a{color:var(--brand-700,#0f6aa0);text-decoration:none}a:hover{color:var(--brand-800,#0d5580)}
   .scroll-thin::-webkit-scrollbar{width:5px}.scroll-thin::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:999px}
   .leaflet-control-zoom,.leaflet-bar{border:1px solid #e5e7eb!important;box-shadow:0 1px 2px rgba(15,23,42,.05)!important;border-radius:8px!important;overflow:hidden}
   .leaflet-bar a{background:#fff!important;color:#374151!important;line-height:30px!important}
@@ -69,7 +69,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script type="text/babel">
 /* CreateNewRegion screen (previously CreateNewRegion.tsx; inlined so the page also works when opened from disk) */
 /* Add Region — create a monitored region by drawing on the map or adding HRA / Port / Country / Sea coverage. */
@@ -181,7 +181,7 @@ function AddRegion() {
     <div className="p-4 flex flex-col gap-3">
       <div className="bg-white rounded-lg border border-ink-200 shadow-card overflow-hidden">
         <div className="px-4 py-3 border-b border-ink-200 flex items-center gap-2">
-          <span className="text-brand-600 flex">{icon('MapPlus',16) || icon('Map',16)}</span>
+          <span className="text-brand-700 flex">{icon('MapPlus',16) || icon('Map',16)}</span>
           <h1 className="text-sm font-semibold text-ink-900">Add Region</h1>
         </div>
         <div className="cnr-cols grid" style={{gridTemplateColumns:'minmax(0,1fr) minmax(0,1fr)'}}>

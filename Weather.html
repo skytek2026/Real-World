@@ -85,7 +85,7 @@
   .wx-kv dt{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9ca3af}
   .wx-kv dd{margin:4px 0 0;font-size:14px;color:#374151}
   .wx-kv-wide{grid-column:1 / -1}
-  .wx-link{font-weight:600;color:var(--brand-600,#1485c5);text-decoration:none}.wx-link:hover{color:var(--brand-700,#1d6ae5);text-decoration:underline;text-underline-offset:2px}.wx-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;border-radius:4px}
+  .wx-link{font-weight:600;color:var(--brand-700,#0f6aa0);text-decoration:none}.wx-link:hover{color:var(--brand-800,#0d5580);text-decoration:underline;text-underline-offset:2px}.wx-link:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;border-radius:4px}
   html { scrollbar-width:thin; scrollbar-color:#1a92d1 #f3f4f6; }
 </style>
 </head>
@@ -103,7 +103,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script src="shared/storm-track.js?v=5"></script>
 <script>
 const SC = window.sharedChrome;
@@ -397,7 +397,7 @@ function MapView() {
         ].map(o => `
           <button data-map-type="${o.id}" class="map-type-opt w-full flex items-center justify-between px-3 py-2 text-sm text-ink-700 hover:bg-ink-50 transition-colors">
             <span data-label>${o.label}</span>
-            <span class="text-brand-600 opacity-0" data-check>${SC.I.check}</span>
+            <span class="text-brand-700 opacity-0" data-check>${SC.I.check}</span>
           </button>`).join('')}
       </div>
     </div>

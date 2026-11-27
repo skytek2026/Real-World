@@ -30,7 +30,7 @@
   .border-ink-100 { border-color:#f3f4f6; }
   .border-ink-200 { border-color:#e5e7eb; }
   .shadow-card { box-shadow:0 2px 4px 0 rgb(15 23 42 / 0.08), 0 1px 2px 0 rgb(15 23 42 / 0.06); }
-  .text-brand-600 { color:#1485c5; }
+  .text-brand-700 { color:#0F6AA0; }
   .bg-brand-500 { background:#1485c5; }
   .bg-brand-050 { background:#eff6ff; }
   /* Scrollbars — DS Motion spec: 6px thin bar, brand-blue thumb on light-grey track */
@@ -53,7 +53,7 @@
   .rs-node:hover .rs-tip, .rs-info:hover .rs-tip{display:block;}
   .rs-node:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#6b7280;cursor:pointer;margin-top:1px;}
-  .rs-info:hover{color:#1485c5;}
+  .rs-info:hover{color:#0F6AA0;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
   .sts-dash-l{border-left-style:dashed;}
@@ -121,13 +121,13 @@
   .map-btn:hover { background:#f3f4f6; }
   .map-btn svg { width:16px; height:16px; }
   .map-btn { position:relative; }
-  .map-btn.is-on { background:#eff6ff; color:#1485c5; border-color:#b8ddf5; }
+  .map-btn.is-on { background:#eff6ff; color:#0F6AA0; border-color:#b8ddf5; }
   .ev-row { display:flex; align-items:center; gap:8px; padding:8px 12px; font-size:14px; color:#374151; cursor:pointer; }
   .ev-row:hover { background:var(--brand-50,#eff6ff); }
   .ev-cb { width:15px; height:15px; accent-color:var(--brand-600,#1485c5); cursor:pointer; flex-shrink:0; margin:0; }
   .ev-cb:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:1px; }
-  #map-events-count { color:var(--brand-600,#1485c5) !important; font-weight:600; }
-  .map-btn.has-active:not(.is-on) { color:#1485c5; }
+  #map-events-count { color:var(--brand-700,#0f6aa0) !important; font-weight:600; }
+  .map-btn.has-active:not(.is-on) { color:#0F6AA0; }
   .map-btn:disabled { color:#d1d5db; cursor:not-allowed; background:#fff; }
   #map-layers-menu.hidden, #map-events-menu.hidden, #map-regions-menu.hidden, #map-weather-menu.hidden, .rg-children.hidden { display:none !important; }
   .env-sw-l { display:inline-flex; align-items:center; gap:8px; font-size:14px; color:#4b5563; }
@@ -139,7 +139,7 @@
   .env-msg { display:none; }
   .env-off .env-msg { display:flex; align-items:center; justify-content:center; min-height:180px; font-size:14px; color:#4b5563; text-align:center; }
   .env-msg-in { display:flex; flex-direction:column; align-items:center; gap:8px; }
-  .env-msg-ic { width:44px; height:44px; border-radius:50%; background:var(--brand-50,#eff6ff); color:var(--brand-600,#1485c5); display:inline-flex; align-items:center; justify-content:center; }
+  .env-msg-ic { width:44px; height:44px; border-radius:50%; background:var(--brand-50,#eff6ff); color:var(--brand-700,#0f6aa0); display:inline-flex; align-items:center; justify-content:center; }
   .env-off > :not(.env-head):not(.env-msg) { display:none !important; }
   .env-period-sel { appearance:none; -webkit-appearance:none; height:32px; padding:0 32px 0 12px; font-size:14px; font-weight:500; color:#1f2937; background:#fff; border:1px solid #e5e7eb; border-radius:8px; cursor:pointer; box-shadow:none; }
   .env-period-sel:hover { border-color:#d1d5db; }
@@ -153,8 +153,8 @@
   .trp-body--presets .trp-presets { border-right:0; min-width:300px; padding:8px; background:#fff; }
   .trp-body--presets .trp-preset { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 12px; font-size:14px; }
   .trp-preset-d { font-size:12px; color:#6b7280; font-weight:400; font-variant-numeric:tabular-nums; }
-  .trp-preset.is-active .trp-preset-d { color:var(--brand-600,#1485c5); }
-  .trp-preset.is-active { background:var(--brand-50,#eff6ff); color:var(--brand-600,#1485c5); font-weight:600; }
+  .trp-preset.is-active .trp-preset-d { color:var(--brand-700,#0f6aa0); }
+  .trp-preset.is-active { background:var(--brand-50,#eff6ff); color:var(--brand-700,#0f6aa0); font-weight:600; }
   .trp-preset:focus-visible, .trp-day:focus-visible, .trp-nav:focus-visible, .trp-btn:focus-visible, .trp-switch:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb,var(--brand-600,#1485c5) 25%,transparent); }
   .trp-months { display:flex; gap:20px; padding:12px 16px; }
   .trp-mhead { display:flex; align-items:center; justify-content:space-between; padding:0 2px 8px; }
@@ -169,7 +169,7 @@
   .trp-day:disabled { color:#d1d5db; cursor:not-allowed; }
   .trp-day.is-today { font-weight:700; }
   .trp-day.is-today::after { content:''; position:absolute; bottom:4px; width:4px; height:4px; border-radius:50%; background:var(--brand-600,#1485c5); }
-  .trp-day.is-in { background:var(--brand-50,#eff6ff); color:var(--brand-600,#1485c5); border-radius:0; }
+  .trp-day.is-in { background:var(--brand-50,#eff6ff); color:var(--brand-700,#0f6aa0); border-radius:0; }
   .trp-day.is-start, .trp-day.is-end { background:var(--brand-600,#1485c5); color:#fff; font-weight:600; }
   .trp-day.is-start { border-radius:4px 0 0 4px; }
   .trp-day.is-end { border-radius:0 4px 4px 0; }
@@ -241,7 +241,7 @@
   .sts-card--orange { background:#FFFBEB; border-color:#FEF3C7; border-left:4px dashed #D97706; }
   .sts-sec-label { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .sts-vessel { margin-top:4px; }
-  .sts-vessel-name { display:flex; align-items:center; gap:4px; font-size:14px; font-weight:600; color:var(--brand-600,#1485c5); }
+  .sts-vessel-name { display:flex; align-items:center; gap:4px; font-size:14px; font-weight:600; color:var(--brand-700,#0f6aa0); }
   .sts-kv { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:8px 0 0; }
   .sts-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#6b7280; }
   .sts-kv dd { margin:2px 0 0; font-size:14px; color:#374151; font-variant-numeric:tabular-nums; min-height:18px; display:flex; align-items:center; }
@@ -310,14 +310,14 @@
   .sc-card-kid-rel { font-size:12px; color:#6b7280; }
   .sc-card-kid-name { display:flex; align-items:center; gap:4px; margin-top:4px; font-size:14px; color:#111827; font-weight:500; }
   .sc-card-kid .sc-lists { border-top-color:var(--brand-100,#dbeafe); margin-top:8px; padding-top:12px; }
-  .sc-toggle { all:unset; display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:var(--brand-600,#1485c5); font-weight:500; border-radius:4px; }
-  .sc-toggle:hover { color:var(--brand-700,#1d6ae5); }
+  .sc-toggle { all:unset; display:inline-flex; align-items:center; gap:8px; cursor:pointer; color:var(--brand-700,#0f6aa0); font-weight:500; border-radius:4px; }
+  .sc-toggle:hover { color:var(--brand-800,#0d5580); }
   .sc-toggle:hover > span { text-decoration:underline; text-underline-offset:2px; }
   .sc-toggle:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; }
   .sc-rel { display:inline-block; padding-left:24px; }
   .sc-count { font-size:12px; font-weight:600; color:#4b5563; background:#f3f4f6; border-radius:9999px; padding:1px 8px; }
-  .sc-link { color:var(--brand-600,#1485c5); font-weight:500; }
-  .sc-link:hover { color:var(--brand-700,#1d6ae5); text-decoration:underline; text-underline-offset:2px; }
+  .sc-link { color:var(--brand-700,#0f6aa0); font-weight:500; }
+  .sc-link:hover { color:var(--brand-800,#0d5580); text-decoration:underline; text-underline-offset:2px; }
   .sc-child { background:var(--brand-50,#eff6ff); }
   .sc-child > td:first-child { padding-left:44px; position:relative; }
   .sc-child > td:first-child::before { content:''; position:absolute; left:19px; top:0; bottom:0; border-left:1px solid var(--brand-100,#dbeafe); }
@@ -332,7 +332,7 @@
   .trk-acts { display:flex; gap:2px; }
   .trk-ib { width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; border-radius:8px; color:#6b7280; cursor:pointer; }
   .trk-ib:hover { background:#f3f4f6; color:#111827; }
-  .trk-ib[aria-pressed="true"] { background:#eff6ff; color:#1485c5; }
+  .trk-ib[aria-pressed="true"] { background:#eff6ff; color:#0F6AA0; }
   .trk-ib:focus-visible, .trk-cta:focus-visible { outline:none; box-shadow:0 0 0 3px rgb(45 127 251/.25); }
   .trk-b { padding:4px 0; }
   .trk-r { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; padding:4px 16px; line-height:1.4; }
@@ -343,7 +343,7 @@
   .timeline-overlay { transition:opacity .15s; }
   .timeline-overlay.is-dimmed { opacity:0; pointer-events:none; }
   .trk-ts { font-size:12px; color:#6b7280; font-variant-numeric:tabular-nums; }
-  .trk-cta { display:inline-flex; align-items:center; gap:4px; height:32px; padding:0 16px; font:inherit; font-size:14px; font-weight:600; color:#1485c5; background:#fff; border:1px solid #93c5fd; border-radius:8px; cursor:pointer; }
+  .trk-cta { display:inline-flex; align-items:center; gap:4px; height:32px; padding:0 16px; font:inherit; font-size:14px; font-weight:600; color:#0F6AA0; background:#fff; border:1px solid #93c5fd; border-radius:8px; cursor:pointer; }
   .trk-cta:hover { background:#eff6ff; border-color:#1485c5; }
   /* Inspection Data: table on wider screens, one card per inspection on phones */
   .insp-cards { display:none; }
@@ -360,8 +360,8 @@
   .insp-kv { display:grid; grid-template-columns:1fr 1fr; gap:8px 16px; margin:12px 0 0; padding-top:12px; border-top:1px solid #f3f4f6; }
   .insp-kv dt { font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#9ca3af; }
   .insp-kv dd { margin:2px 0 0; font-size:14px; color:#374151; }
-  .defects-link { color:var(--brand-600,#1485c5); font-weight:600; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
-  .defects-link:hover { color:var(--brand-700,#1d6ae5); text-decoration-thickness:2px; }
+  .defects-link { color:var(--brand-700,#0f6aa0); font-weight:600; text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px; }
+  .defects-link:hover { color:var(--brand-800,#0d5580); text-decoration-thickness:2px; }
   .defects-link:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; border-radius:4px; }
   .tl-step { width:26px; height:26px; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; border:0; border-radius:8px; background:rgba(255,255,255,.12); color:#e5e7eb; cursor:pointer; touch-action:manipulation; }
   .tl-step:hover:not(:disabled) { background:rgba(255,255,255,.22); color:#fff; }
@@ -403,14 +403,14 @@
   .sts-facet-row { display:flex; align-items:center; gap:8px; padding:8px 12px; font-size:14px; color:#111827; cursor:pointer; }
   .sts-facet-row:hover { background:#f9fafb; }
   .ds-fdrawer{--z-drawer:1080;--bg-surface:#fff;--bg-muted:#f3f4f6;--bg-sunken:#f9fafb;--border-subtle:#f3f4f6;--border-default:#e5e7eb;--text-primary:#111827;--text-secondary:#374151;--text-muted:#6b7280;--danger-500:#DC2626;--radius-sm:6px;--radius-pill:999px;--shadow-focus:0 0 0 3px rgb(45 127 251/.32);--motion-fast:140ms;--motion-base:200ms;--ease-out:cubic-bezier(.2,.8,.2,1);--font-display:inherit;--fdrawer-width:        360px;--fdrawer-max-width:    92vw;--fdrawer-scrim:        rgba(15, 23, 42, 0.38);--fdrawer-shadow:       -10px 0 30px rgba(15, 23, 42, 0.16);--fdrawer-pad-x:        18px;--fdrawer-head-pad:     16px 20px;--fdrawer-slide:        300ms;--fdrawer-slide-ease:   cubic-bezier(0.4, 0, 0.2, 1);--fdrawer-scrim-motion: 250ms;--fdrawer-acc-motion:   220ms;--fdrawer-list-max:     210px;}
-  .ds-fdrawer { position: fixed; inset: 0; z-index: var(--z-drawer); visibility: hidden; } .ds-fdrawer.is-open { visibility: visible; } .ds-fdrawer-scrim { position: absolute; inset: 0; background: var(--fdrawer-scrim); opacity: 0; transition: opacity var(--fdrawer-scrim-motion) var(--ease-out); } .ds-fdrawer.is-open .ds-fdrawer-scrim { opacity: 1; } .ds-fdrawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: var(--fdrawer-width); max-width: var(--fdrawer-max-width); background: var(--bg-surface); box-shadow: var(--fdrawer-shadow); display: flex; flex-direction: column; transform: translateX(100%); transition: transform var(--fdrawer-slide) var(--fdrawer-slide-ease); } .ds-fdrawer.is-open .ds-fdrawer-panel { transform: translateX(0); } .ds-fdrawer-head { display: flex; align-items: center; justify-content: space-between; padding: var(--fdrawer-head-pad); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text-primary); flex: 0 0 auto; } .ds-fdrawer-close { border: 0; background: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 8px; display: inline-flex; transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-close:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-close:focus-visible { outline: 0; box-shadow: var(--shadow-focus); } .ds-fdrawer-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 4px var(--fdrawer-pad-x) 12px; display: flex; flex-direction: column; } .ds-fdrawer-section { padding: 16px 0; border-bottom: 1px solid var(--border-subtle); flex: 0 0 auto; transition: padding var(--motion-base) var(--ease-out); } .ds-fdrawer-section:not(.is-open) { padding: 12px 0; } .ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; } .ds-fdrawer-section:last-child { border-bottom: 0; } .ds-fdrawer-acc-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; } .ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); } .ds-fdrawer-sec-title { font-size:12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 8px; } .ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-600); } .ds-fdrawer-acc-chev { color: var(--brand-600); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); } .ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; } .ds-fdrawer-acc-body { display: none; padding-top: 12px; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { display: flex; flex-direction: column; flex: 1; min-height: 0; animation: ds-fdrawer-acc-in var(--fdrawer-acc-motion) var(--ease-out); } @keyframes ds-fdrawer-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } } .ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; } .ds-fdrawer-act { flex: 1; padding: 4px 8px; border: 1px solid var(--border-default); border-radius: var(--radius-sm); background: var(--bg-surface); font: inherit; font-size:12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); } .ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; } .ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; } .ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; } .ds-fdrawer-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 8px 12px; border: 0; border-radius: var(--radius-sm); background: transparent; font-size: 14px; font-weight: 500; color: var(--text-secondary); cursor: pointer; white-space: nowrap; } .ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; } .ds-fdrawer-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 16px var(--fdrawer-pad-x); border-top: 1px solid var(--border-subtle); flex: 0 0 auto; } .ds-fdrawer-foot > * { justify-content: center; height: 40px; padding: 0 16px; } .ds-fdrawer-foot > *:disabled { opacity: 0.45; cursor: default; pointer-events: none; } @media (prefers-reduced-motion: reduce) { .ds-fdrawer-panel, .ds-fdrawer-scrim { transition-duration: 1ms; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { animation-duration: 1ms; } }
+  .ds-fdrawer { position: fixed; inset: 0; z-index: var(--z-drawer); visibility: hidden; } .ds-fdrawer.is-open { visibility: visible; } .ds-fdrawer-scrim { position: absolute; inset: 0; background: var(--fdrawer-scrim); opacity: 0; transition: opacity var(--fdrawer-scrim-motion) var(--ease-out); } .ds-fdrawer.is-open .ds-fdrawer-scrim { opacity: 1; } .ds-fdrawer-panel { position: absolute; top: 0; right: 0; height: 100%; width: var(--fdrawer-width); max-width: var(--fdrawer-max-width); background: var(--bg-surface); box-shadow: var(--fdrawer-shadow); display: flex; flex-direction: column; transform: translateX(100%); transition: transform var(--fdrawer-slide) var(--fdrawer-slide-ease); } .ds-fdrawer.is-open .ds-fdrawer-panel { transform: translateX(0); } .ds-fdrawer-head { display: flex; align-items: center; justify-content: space-between; padding: var(--fdrawer-head-pad); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-display); font-size: 14px; font-weight: 700; color: var(--text-primary); flex: 0 0 auto; } .ds-fdrawer-close { border: 0; background: none; cursor: pointer; color: var(--text-muted); padding: 4px; border-radius: 8px; display: inline-flex; transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-close:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-close:focus-visible { outline: 0; box-shadow: var(--shadow-focus); } .ds-fdrawer-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 4px var(--fdrawer-pad-x) 12px; display: flex; flex-direction: column; } .ds-fdrawer-section { padding: 16px 0; border-bottom: 1px solid var(--border-subtle); flex: 0 0 auto; transition: padding var(--motion-base) var(--ease-out); } .ds-fdrawer-section:not(.is-open) { padding: 12px 0; } .ds-fdrawer-section.is-open { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; } .ds-fdrawer-section:last-child { border-bottom: 0; } .ds-fdrawer-acc-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: none; border: 0; padding: 0; cursor: pointer; } .ds-fdrawer-acc-head:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); } .ds-fdrawer-sec-title { font-size:12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0; display: flex; align-items: center; gap: 8px; } .ds-fdrawer-section:not(.is-open) .ds-fdrawer-sec-title { color: var(--brand-700,#0f6aa0); } .ds-fdrawer-acc-chev { color: var(--brand-700,#0f6aa0); transition: transform var(--motion-base) var(--ease-out); flex-shrink: 0; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-chev { transform: rotate(180deg); } .ds-fdrawer-dot { width: 6px; height: 6px; border-radius: var(--radius-pill); background: var(--danger-500); display: inline-block; } .ds-fdrawer-acc-body { display: none; padding-top: 12px; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { display: flex; flex-direction: column; flex: 1; min-height: 0; animation: ds-fdrawer-acc-in var(--fdrawer-acc-motion) var(--ease-out); } @keyframes ds-fdrawer-acc-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } } .ds-fdrawer-acts { display: flex; gap: 4px; padding: 0 0 8px; } .ds-fdrawer-act { flex: 1; padding: 4px 8px; border: 1px solid var(--border-default); border-radius: var(--radius-sm); background: var(--bg-surface); font: inherit; font-size:12px; font-weight: 600; color: var(--text-secondary); cursor: pointer; transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out); } .ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-800,#0d5580); } .ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; } .ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; } .ds-fdrawer-section.is-open .ds-fdrawer-list { max-height: none; flex: 1 1 0; min-height: 0; } .ds-fdrawer-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 8px 12px; border: 0; border-radius: var(--radius-sm); background: transparent; font-size: 14px; font-weight: 500; color: var(--text-secondary); cursor: pointer; white-space: nowrap; } .ds-fdrawer-item:hover { background: var(--bg-muted); color: var(--text-primary); } .ds-fdrawer-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--brand-600); cursor: pointer; margin: 0; flex-shrink: 0; } .ds-fdrawer-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 16px var(--fdrawer-pad-x); border-top: 1px solid var(--border-subtle); flex: 0 0 auto; } .ds-fdrawer-foot > * { justify-content: center; height: 40px; padding: 0 16px; } .ds-fdrawer-foot > *:disabled { opacity: 0.45; cursor: default; pointer-events: none; } @media (prefers-reduced-motion: reduce) { .ds-fdrawer-panel, .ds-fdrawer-scrim { transition-duration: 1ms; } .ds-fdrawer-section.is-open .ds-fdrawer-acc-body { animation-duration: 1ms; } }
   .ds-fdrawer-item input[type="radio"]{width:15px;height:15px;accent-color:var(--brand-600);cursor:pointer;margin:0;flex-shrink:0}
   .sts-ibtn{width:32px;padding:0;justify-content:center;color:#4b5563}
   .sts-ibtn.has-active::after{display:none}
   .sts-ibtn .ds-fdrawer-dot{position:absolute;top:5px;right:5px}
   .sts-btn--primary{background:var(--brand-500,#1a92d1);border-color:var(--brand-500,#1a92d1);color:#fff}
   .sts-btn--primary:hover:not(:disabled){background:var(--brand-600,#1485c5)!important;border-color:var(--brand-600,#1485c5)!important}
-  .env-period-sel.is-set { color:#1485c5; border-color:#b8ddf5; background:#eff6ff; }
+  .env-period-sel.is-set { color:#0F6AA0; border-color:#b8ddf5; background:#eff6ff; }
   .rg-head { padding-right:8px; }
   .rg-toggle { width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; color:#6b7280; border-radius:8px; cursor:pointer; flex-shrink:0; transition:transform .15s; }
   .rg-toggle:hover { background:#e5e7eb; color:#111827; }
@@ -464,14 +464,14 @@
   .br-tbd { display:none; }
   .br-card[data-br="Alerts"] > :not(:first-child):not(.br-tbd) { display:none !important; }
   .br-card[data-br="Alerts"] > .br-tbd { flex:1; min-height:240px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; font-size:14px; font-weight:600; color:var(--text-muted,#6b7280); }
-  .br-tbd-ico { width:44px; height:44px; border-radius:999px; display:grid; place-items:center; background:var(--brand-50,#eff6ff); color:var(--brand-600,#1485c5); }
+  .br-tbd-ico { width:44px; height:44px; border-radius:999px; display:grid; place-items:center; background:var(--brand-50,#eff6ff); color:var(--brand-700,#0f6aa0); }
   .br-tbd-ico svg { width:20px; height:20px; }
   .nc-hint { font-weight:500; color:var(--text-muted,#6b7280); }
   .nc-hint:empty { display:none; }
   .hist-range { width:100%; display:flex; align-items:center; gap:12px; padding:12px 12px; background:#fff; border:1px solid var(--border-default,#e5e7eb); border-radius:8px; cursor:pointer; text-align:left; font:inherit; box-shadow:none; transition:border-color 140ms cubic-bezier(.16,1,.3,1), box-shadow 140ms cubic-bezier(.16,1,.3,1), background 140ms; }
   .hist-range:hover { border-color:var(--border-strong,#d1d5db); background:var(--slate-50,#f9fafb); }
   .hist-range:focus-visible, .hist-range[aria-expanded="true"] { outline:none; border-color:var(--brand-400,#43a8df); box-shadow:var(--shadow-focus,0 0 0 3px rgba(46,134,192,.32)); }
-  .hist-range-ico { width:36px; height:36px; border-radius:8px; background:var(--brand-050,#eff6ff); color:var(--brand-600,#1485c5); display:grid; place-items:center; flex-shrink:0; }
+  .hist-range-ico { width:36px; height:36px; border-radius:8px; background:var(--brand-050,#eff6ff); color:var(--brand-700,#0f6aa0); display:grid; place-items:center; flex-shrink:0; }
   .hist-range-body { flex:1; min-width:0; display:grid; gap:4px; }
   .hist-range-top { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
   .hist-range-tag { font-size:12px; font-weight:600; color:var(--brand-700,#0f6aa0); }
@@ -481,8 +481,8 @@
   .hist-range-arrow { color:var(--text-muted,#9ca3af); flex-shrink:0; }
   .hist-range-chev { color:var(--text-muted,#6b7280); flex-shrink:0; transition:transform 200ms cubic-bezier(.16,1,.3,1); }
   .hist-range[aria-expanded="true"] .hist-range-chev { transform:rotate(180deg); }
-  .hist-cal-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; color:var(--brand-600,#1485c5); cursor:pointer; box-shadow:none; flex-shrink:0; position:relative; }
-  .hist-cal-btn:hover { background:#f9fafb; border-color:#d1d5db; color:var(--brand-700,#1d6ae5); }
+  .hist-cal-btn { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; color:var(--brand-700,#0f6aa0); cursor:pointer; box-shadow:none; flex-shrink:0; position:relative; }
+  .hist-cal-btn:hover { background:#f9fafb; border-color:#d1d5db; color:var(--brand-800,#0d5580); }
   .hist-cal-btn:focus-visible { outline:none; box-shadow:0 0 0 3px color-mix(in srgb, var(--brand-600,#1485c5) 25%, transparent); }
   .hist-cal-btn[aria-expanded="true"] { background:var(--brand-50,#eff6ff); border-color:var(--brand-300,#93c5fd); }
   .hist-pager { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; padding:8px 12px; border-top:1px solid #e5e7eb; }
@@ -518,12 +518,12 @@
   .ds-card-foot--start{justify-content:flex-start;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot--between{justify-content:space-between;}
-  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5);transition:background .15s,color .15s;white-space:nowrap;}
-  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-700,#0f6aa0);}
+  .ds-card-foot button{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-700,#0f6aa0);transition:background .15s,color .15s;white-space:nowrap;}
+  .ds-card-foot button:hover{background:#f3f4f6;color:var(--brand-800,#0d5580);}
 
   /* ── DS color conformance: override off-palette Tailwind utilities ── */
   .bg-blue-100{background-color:#dbeafe!important}.text-blue-700{color:#1d4ed8!important}
-  .bg-blue-600{background-color:#1485c5!important}.text-blue-600{color:#1485c5!important}
+  .bg-blue-600{background-color:#1485c5!important}.text-blue-600{color:#0F6AA0!important}
   .bg-amber-100{background-color:#fef3c7!important}.text-amber-700{color:#b45309!important}.text-amber-500{color:#d97706!important}
   .bg-yellow-100{background-color:#fef3c7!important}.text-yellow-700{color:#b45309!important}
   .bg-orange-50{background-color:#fffbeb!important}.bg-[#d97706]{background-color:#d97706!important}.text-[#d97706]{color:#d97706!important}.text-orange-600{color:#b45309!important}
@@ -593,7 +593,7 @@
   #he-vessel-map .leaflet-control-scale { margin-left:8px !important; margin-bottom:4px !important; }
   #he-vessel-map .leaflet-control-scale-line { background:rgba(255,255,255,.85); border:1px solid #d1d5db !important; border-radius:4px; box-shadow:inset 0 -2px 0 #374151; color:#111827; font-size:12px; line-height:1.3; padding:1px 8px 2px; font-variant-numeric:tabular-nums; box-sizing:content-box; }
   #he-vessel-map .leaflet-top.leaflet-left .leaflet-bar { margin-left:8px !important; }
-  #he-map-events-count { color:var(--brand-600,#1485c5) !important; font-weight:600; }
+  #he-map-events-count { color:var(--brand-700,#0f6aa0) !important; font-weight:600; }
   #he-map-events-menu.hidden, #he-map-regions-menu.hidden, #he-map-weather-menu.hidden { display:none !important; }
   #he-vessel-map .leaflet-popup-pane { z-index:700; }
   #he-vessel-tracking-card > .flex-1.relative { border-radius:0 0 7px 7px; overflow:hidden; }
@@ -672,7 +672,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -1128,7 +1128,7 @@ function VesselDetailsSplitCard() {
       <span class="text-ink-500 shrink-0">${label}</span>
       <span class="vd-split-v min-w-0 flex flex-wrap items-center justify-end gap-1 text-right ${isBold?'font-semibold text-ink-900':'text-ink-700'}">${value}</span>
     </div>`;
-  const head = (ico, t) => `<div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-500 pb-2 mb-1 border-b border-ink-200"><span class="inline-flex text-brand-600 [&_svg]:h-3.5 [&_svg]:w-3.5">${ico}</span>${t}</div>`;
+  const head = (ico, t) => `<div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-500 pb-2 mb-1 border-b border-ink-200"><span class="inline-flex text-brand-700 [&_svg]:h-3.5 [&_svg]:w-3.5">${ico}</span>${t}</div>`;
   return `
   <div class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col vd-split-card">
     <div class="px-4 py-3 border-b border-ink-200"><span style="font-size:14px;font-weight:700;color:#111827;">Details</span></div>
@@ -1162,12 +1162,12 @@ function VesselDetailsSplitCard() {
         ${(() => {
           const CN = { mh:'Marshall Islands', mc:'Monaco', it:'Italy', in:'India' };
           const fl = cc => `<span title="${CN[cc]}" class="inline-flex">${flag(cc)}</span>`;
-          const ent = (name, ccs) => `<span class="inline-flex items-center gap-1 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-600 hover:underline text-right">${name}</a></span>`;
+          const ent = (name, ccs) => `<span class="inline-flex items-center gap-1 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-700 hover:underline text-right">${name}</a></span>`;
           return `
         ${row('Flag:', `<span class="inline-flex items-center gap-1">${flag('mh')} Marshall Islands</span>`)}
-        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-xs font-bold" style="background:#B45309">i</span>View company details</a>`)}
+        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1 font-semibold text-brand-700 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-xs font-bold" style="background:#B45309">i</span>View company details</a>`)}
         ${row('Classification Society:', 'American Bureau of Shipping')}
-        ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-600 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
+        ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-700 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
         ${row('Group Owner:', ent('Scorpio Group', ['mc','it','mc']))}
         ${row('Third Party Operator:', 'N/A')}
         ${row('Operator:', ent('Scorpio Tankers Incorporated', ['mc','it','mc']))}
@@ -1237,7 +1237,7 @@ function VesselDetailsCard() {
       </div>`;
     footer = `
     <div class="ds-card-foot ds-card-foot--between" style="gap:4px;padding-left:8px;padding-right:8px;">
-      <button style="padding:0 4px" class="inline-flex items-center gap-1 text-xs text-brand-600 font-semibold hover:text-brand-700 tracking-micro whitespace-nowrap">
+      <button style="padding:0 4px" class="inline-flex items-center gap-1 text-xs text-brand-700 font-semibold hover:text-brand-800 tracking-micro whitespace-nowrap">
         <span class="inline-flex items-center [&_svg]:h-3 [&_svg]:w-3">${SC.I.plus}</span>
         <span>ADD TO PORTFOLIO</span>
       </button>
@@ -1248,12 +1248,12 @@ function VesselDetailsCard() {
         ${(() => {
           const CN = { mh:'Marshall Islands', mc:'Monaco', it:'Italy', in:'India' };
           const fl = cc => `<span title="${CN[cc]}" class="inline-flex">${flag(cc)}</span>`;
-          const ent = (name, ccs) => `<span class="inline-flex items-center gap-1 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-600 hover:underline text-right">${name}</a></span>`;
+          const ent = (name, ccs) => `<span class="inline-flex items-center gap-1 justify-end flex-wrap">${ccs.map(fl).join('')}<a href="CompanyDetails.html" class="font-semibold text-brand-700 hover:underline text-right">${name}</a></span>`;
           return `
         ${row('Flag:', `<span class="inline-flex items-center gap-1">${flag('mh')} Marshall Islands</span>`)}
-        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1 font-semibold text-brand-600 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-xs font-bold" style="background:#B45309">i</span>View company details</a>`)}
+        ${row('Associations:', `<a href="#" class="inline-flex items-center gap-1 font-semibold text-brand-700 hover:underline"><span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-white text-xs font-bold" style="background:#B45309">i</span>View company details</a>`)}
         ${row('Classification Society:', 'American Bureau of Shipping')}
-        ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-600 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
+        ${row('P &amp; I Club:', `<a href="#" class="font-semibold text-brand-700 hover:underline text-right">Britannia Steam Ship Insurance Association Ltd., The</a>`)}
         ${row('Group Owner:', ent('Scorpio Group', ['mc','it','mc']))}
         ${row('Third Party Operator:', 'N/A')}
         ${row('Operator:', ent('Scorpio Tankers Incorporated', ['mc','it','mc']))}
@@ -1292,7 +1292,7 @@ function PolicyDetailsTable() {
         return `<table class="text-xs w-full" style="border-collapse:separate;border-spacing:0;min-width:${140 + PF.length * 150}px">
           <thead><tr>
             <th class="${td} text-left font-semibold text-ink-700 bg-ink-50" style="position:sticky;left:0;top:0;z-index:2;width:140px">Portfolios:</th>
-            ${PF.map(p => `<th class="${td} text-left font-semibold text-ink-700 bg-ink-50 border-l border-ink-100" style="position:sticky;top:0;z-index:1"><a href="MarinePortfolioDetails.html" class="text-brand-600 hover:underline">${p.name}</a></th>`).join('')}
+            ${PF.map(p => `<th class="${td} text-left font-semibold text-ink-700 bg-ink-50 border-l border-ink-100" style="position:sticky;top:0;z-index:1"><a href="MarinePortfolioDetails.html" class="text-brand-700 hover:underline">${p.name}</a></th>`).join('')}
           </tr></thead>
           <tbody>${ROWS.map(([l, k]) => `<tr>
             <td class="${td} text-ink-500 bg-white" style="position:sticky;left:0;z-index:1;max-width:140px;overflow:hidden;text-overflow:ellipsis" title="${l}">${l}:</td>
@@ -1388,7 +1388,7 @@ function PortCallsCard() {
 
         <!-- Destination port outlined -->
         <div style="width:100%;border:1.5px solid var(--brand-300,#43a8df);border-radius:8px;padding:8px 12px;background:var(--brand-50,#eff6ff);">
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-600,#1485c5);margin-bottom:4px;">Destination Port</div>
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--brand-700,#0f6aa0);margin-bottom:4px;">Destination Port</div>
           <div class="flex items-center justify-center gap-1 min-w-0">
             ${flag('de')}
             <span class="text-xs text-ink-600 truncate">Germany</span>
@@ -1409,7 +1409,7 @@ function PortCallsCard() {
     </div>
     ${body}
     <div class="ds-card-foot ds-card-foot--center">
-      <button onclick="window.location.href='VoyageHistory.html'" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700 tracking-micro">
+      <button onclick="window.location.href='VoyageHistory.html'" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-700 hover:text-brand-800 tracking-micro">
         <span>VOYAGE HISTORY</span>
         <span class="inline-flex items-center [&_svg]:h-3.5 [&_svg]:w-3.5">${SC.I.chev}</span>
       </button>
@@ -1468,7 +1468,7 @@ function CasualtyRiskCard() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -1642,7 +1642,7 @@ function CasualtyRiskCard() {
             <tr style="border-bottom:1px solid #e5e7eb;">
               <th style="text-align:left;padding:8px 4px;font-size:12px;font-weight:700;color:#111827;">Name</th>
               <th style="text-align:right;padding:8px 8px;font-size:12px;font-weight:700;color:#111827;">Score</th>
-              <th style="text-align:right;padding:8px 4px;font-size:12px;font-weight:700;color:#1485c5;">Impact</th>
+              <th style="text-align:right;padding:8px 4px;font-size:12px;font-weight:700;color:#0F6AA0;">Impact</th>
             </tr>
           </thead>
           <tbody>
@@ -1716,7 +1716,7 @@ function CasualtyRiskCardCopy7() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy7="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy7="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -1905,7 +1905,7 @@ function CasualtyRiskCardCopy7() {
             <tr style="border-bottom:1px solid #e5e7eb;">
               <th style="text-align:left;padding:8px 4px;font-size:12px;font-weight:700;color:#111827;">Name</th>
               <th style="text-align:right;padding:8px 8px;font-size:12px;font-weight:700;color:#111827;">Score</th>
-              <th style="text-align:right;padding:8px 4px;font-size:12px;font-weight:700;color:#1485c5;">Impact</th>
+              <th style="text-align:right;padding:8px 4px;font-size:12px;font-weight:700;color:#0F6AA0;">Impact</th>
             </tr>
           </thead>
           <tbody>
@@ -1992,7 +1992,7 @@ function CasualtyRiskCardCopy8() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto] gap-4 items-start">
             <div class="flex flex-col items-start gap-1">
               <span class="text-xs text-ink-700">${c.date}</span>
-              <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy8="${i}">
+              <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy8="${i}">
                 ${expanded ? 'less' : 'more'}
                 <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
@@ -2094,7 +2094,7 @@ function CasualtyRiskCardCopy8() {
             </div>
           </div>
           <div style="background:transparent;border:0;border-radius:8px;padding:0 12px;text-align:center;width:100%;">
-            <div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:flex;align-items:center;gap:4px;white-space:nowrap;display:inline-flex;">
+            <div style="background:#eff6ff;color:#0F6AA0;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:flex;align-items:center;gap:4px;white-space:nowrap;display:inline-flex;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta25}
             </div>
@@ -2110,7 +2110,7 @@ function CasualtyRiskCardCopy8() {
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:700;color:#111827;line-height:1;">${rs2025}</span>
             </div>
-            <div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:flex;align-items:center;gap:4px;white-space:nowrap;">
+            <div style="background:#eff6ff;color:#0F6AA0;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:flex;align-items:center;gap:4px;white-space:nowrap;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta2025}
             </div>
@@ -2122,7 +2122,7 @@ function CasualtyRiskCardCopy8() {
               <div style="position:absolute;width:44px;height:44px;background:#f9fafb;border-radius:50%;"></div>
               <span style="position:relative;font-size:20px;font-weight:700;color:#111827;line-height:1;">${rs2024}</span>
             </div>
-            <div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:flex;align-items:center;gap:4px;white-space:nowrap;">
+            <div style="background:#eff6ff;color:#0F6AA0;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:flex;align-items:center;gap:4px;white-space:nowrap;">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
               + ${rsDelta24}
             </div>
@@ -2185,7 +2185,7 @@ function CasualtyRiskCardCopy() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -2398,7 +2398,7 @@ function CasualtyRiskCardCopy4() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy4="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy4="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -2592,7 +2592,7 @@ function CasualtyRiskCardCopy2() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy2="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy2="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -2824,8 +2824,8 @@ function CasualtyRiskCardCopy5() {
     body = `
     <div class="flex-1 overflow-y-auto scroll-thin">
       <div class="px-4 py-2 grid grid-cols-[1fr_auto_auto] gap-4 border-b border-ink-200 sticky top-0 bg-white">
-        <button class="text-xs font-semibold text-ink-900 inline-flex items-center gap-1 hover:text-brand-600 cursor-pointer" data-casualty-sort-copy5="date">Date ${sortArrow('date')}</button>
-        <button class="text-xs font-semibold text-ink-900 inline-flex items-center gap-1 hover:text-brand-600 cursor-pointer" data-casualty-sort-copy5="severity">Severity ${sortArrow('severity')}</button>
+        <button class="text-xs font-semibold text-ink-900 inline-flex items-center gap-1 hover:text-brand-700 cursor-pointer" data-casualty-sort-copy5="date">Date ${sortArrow('date')}</button>
+        <button class="text-xs font-semibold text-ink-900 inline-flex items-center gap-1 hover:text-brand-700 cursor-pointer" data-casualty-sort-copy5="severity">Severity ${sortArrow('severity')}</button>
         <span></span>
       </div>
       ${rows.map((c) => {
@@ -2836,7 +2836,7 @@ function CasualtyRiskCardCopy5() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy5="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy5="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -3039,7 +3039,7 @@ function CasualtyRiskCardCopy3() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy3="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy3="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -3267,7 +3267,7 @@ function CasualtyRiskCardCopy6() {
           <div class="px-4 py-3 grid grid-cols-[1fr_auto_auto] gap-4 items-center">
             <span class="text-xs text-ink-700">${c.date}</span>
             ${severityBadge(c)}
-            <button class="text-xs text-brand-600 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy6="${i}">
+            <button class="text-xs text-brand-700 font-medium inline-flex items-center gap-0.5 hover:underline" data-casualty-copy6="${i}">
               ${expanded ? 'less' : 'more'}
               <svg class="w-3 h-3 transition-transform" style="transform:${expanded?'rotate(180deg)':'rotate(0deg)'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
@@ -3647,16 +3647,16 @@ function InspectionTable() {
             const sanctionBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>Sanctioned <svg class="w-3 h-3 text-[#ea580c]" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
             const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
             const compBadge = (c) => c === 'sanctioned' ? sanctionBadge : c === 'ok-warn' ? warnBadge : okBadge;
-            const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
+            const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
             const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
             return `
             <tr class="border-b border-ink-100 last:border-b-0 ${border}">
               <td class="px-3 py-2">
                 <div class="flex flex-col gap-0.5">
-                  <div class="flex items-center min-h-8 gap-1 whitespace-nowrap font-semibold text-brand-600">${vesselIcon}${r.v1.name}</div>
+                  <div class="flex items-center min-h-8 gap-1 whitespace-nowrap font-semibold text-brand-700">${vesselIcon}${r.v1.name}</div>
                   <div class="h-2 flex items-center pl-0.5">${arrowIcon}</div>
-                  ${r.mid ? `<div class="flex items-center min-h-8 gap-1 whitespace-nowrap font-semibold text-brand-600">${vesselIcon}${r.mid.name}</div><div class="h-2 flex items-center pl-0.5">${arrowIcon}</div>` : ''}
-                  <div class="flex items-center min-h-8 gap-1 whitespace-nowrap font-semibold text-brand-600">${vesselIcon}${r.v2.name}</div>
+                  ${r.mid ? `<div class="flex items-center min-h-8 gap-1 whitespace-nowrap font-semibold text-brand-700">${vesselIcon}${r.mid.name}</div><div class="h-2 flex items-center pl-0.5">${arrowIcon}</div>` : ''}
+                  <div class="flex items-center min-h-8 gap-1 whitespace-nowrap font-semibold text-brand-700">${vesselIcon}${r.v2.name}</div>
                 </div>
               </td>
               <td class="px-3 py-2">
@@ -3697,7 +3697,7 @@ function InspectionTable() {
               <td class="px-3 py-2 text-ink-700 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-0.5"><div class="flex items-center min-h-8 text-transparent select-none">—</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.mid.end}</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.end}</div></div>` : r.end}</td>
               <td class="px-3 py-2 font-medium text-ink-900 ${r.mid?'align-top':'align-middle'}">${r.mid ? `<div class="flex flex-col gap-0.5"><div class="flex items-center min-h-8 text-transparent select-none">—</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.mid.duration}</div><div class="h-2"></div><div class="flex items-center min-h-8 whitespace-nowrap">${r.duration}</div></div>` : r.duration}</td>
               <td class="px-3 py-2 align-middle">
-                <button class="inline-flex items-center gap-1 px-3 py-2 border border-brand-600 text-brand-600 text-xs font-semibold rounded-lg hover:bg-brand-50 transition-colors">
+                <button class="inline-flex items-center gap-1 px-3 py-2 border border-brand-600 text-brand-700 text-xs font-semibold rounded-lg hover:bg-brand-50 transition-colors">
                   Create Analysis <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
                 </button>
               </td>
@@ -3711,7 +3711,7 @@ function InspectionTable() {
             const sanctionBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-red-700"><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span>Sanctioned <svg class="w-3 h-3 text-[#ea580c]" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15" stroke="currentColor" stroke-width="2"/></svg></span>`;
             const warnBadge = `<span class="inline-flex items-center gap-1 text-xs font-semibold text-green-700"><span class="w-1.5 h-1.5 rounded-full bg-[#16a34a]"></span>Ok <span class="sts-tipwrap" tabindex="0" aria-label="Vessel was previously sanctioned"><svg class="w-3 h-3 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg><span class="sts-tip">Vessel was previously sanctioned</span></span></span>`;
             const compBadge = (c) => c === 'sanctioned' ? sanctionBadge : c === 'ok-warn' ? warnBadge : okBadge;
-            const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
+            const vesselIcon = `<svg class="w-3.5 h-3.5 text-brand-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>`;
             const arrowIcon = `<svg class="w-3 h-3 text-ink-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>`;
             const vessel = v => `
           <div class="sts-vessel">
@@ -3744,7 +3744,7 @@ function InspectionTable() {
           ${vessel(r.v2)}
           <div class="sts-card-foot">
             <span class="sts-sec-label">Actions</span>
-            <button class="inline-flex items-center gap-1 px-3 py-2 border border-brand-600 text-brand-600 text-xs font-semibold rounded-lg hover:bg-brand-50 transition-colors">
+            <button class="inline-flex items-center gap-1 px-3 py-2 border border-brand-600 text-brand-700 text-xs font-semibold rounded-lg hover:bg-brand-50 transition-colors">
                   Create Analysis <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
                 </button>
           </div>
@@ -3774,7 +3774,7 @@ function InspectionTable() {
               <td class="px-3 py-3 text-ink-700">${r.region}${r.regionFlag ? flagIcon : ''}</td>
               <td class="px-3 py-3">
                 <div class="text-ink-700">${r.desc}</div>
-                <button class="mt-1 inline-flex items-center gap-0.5 text-brand-600 font-semibold text-xs hover:underline">
+                <button class="mt-1 inline-flex items-center gap-0.5 text-brand-700 font-semibold text-xs hover:underline">
                   Show more
                   <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                 </button>
@@ -3823,7 +3823,7 @@ function InspectionTable() {
                   <span class="text-ink-700">${r.country}</span>
                 </div>
               </td>
-              <td class="px-3 py-2 text-ink-700"><a href="PortDetails.html" class="text-brand-600 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</td>
+              <td class="px-3 py-2 text-ink-700"><a href="PortDetails.html" class="text-brand-700 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</td>
               <td class="px-3 py-2 text-ink-700">${r.psc}</td>
               <td class="px-3 py-2 text-ink-700">${r.type}</td>
               <td class="px-3 py-2 text-left text-ink-700">${r.defects > 0 ? `<a href="#" class="defects-link" data-defects="${r.date}" title="View ${r.defects} defects from the ${r.port} inspection">${r.defects}</a>` : r.defects}</td>
@@ -3836,7 +3836,7 @@ function InspectionTable() {
         ${INSPECTIONS.map(r => `
         <article class="insp-card" role="listitem">
           <div class="insp-card-top">
-            <div class="insp-port"><a href="PortDetails.html" class="text-brand-600 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</div>
+            <div class="insp-port"><a href="PortDetails.html" class="text-brand-700 font-medium hover:underline" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${r.port.replace(/'/g,"\\'")}', country:'${r.country.replace(/'/g,"\\'")}'}))">${r.port}</a>${r.portFlag ? ` ${flag(r.portFlag)}` : ''}</div>
             <span class="insp-date">${r.date}</span>
           </div>
           <div class="insp-country">${flag(r.cc)}<span>${r.country}</span></div>
@@ -4335,7 +4335,7 @@ function VesselTrackingCard() {
   return `
   <div id="vessel-tracking-card" class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
     <div class="px-4 py-3 border-b border-ink-200 flex items-center gap-2">
-      <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+      <svg class="w-4 h-4 text-brand-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
       <span class="card-title text-sm font-semibold text-ink-900">Vessel Track</span>
     </div>
     <div id="map-wrapper" class="flex-1 relative" style="min-height:420px;">
@@ -4518,7 +4518,7 @@ function HistoricalEventsCard() {
     </div>
     <div id="hist-list-wrap" class="flex-1 min-h-0 flex flex-col">${HistListHtml()}</div>
     <div class="px-4 py-3 border-t border-ink-200 flex justify-center">
-      <button class="px-4 py-2 text-sm font-semibold text-brand-600 border border-ink-200 rounded-lg hover:bg-brand-50 transition-colors inline-flex items-center justify-center gap-2">
+      <button class="px-4 py-2 text-sm font-semibold text-brand-700 border border-ink-200 rounded-lg hover:bg-brand-50 transition-colors inline-flex items-center justify-center gap-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
         Download Historical Events
       </button>
@@ -5352,7 +5352,7 @@ function Content() {
     <section class="vd-he-row" aria-label="Voyage Track">
       <div class="vd-he-card bg-white rounded-lg border border-ink-200 shadow-card">
         <div class="px-4 py-3 border-b border-ink-200 flex items-center gap-2">
-          <svg class="w-4 h-4 text-brand-600 lucide lucide-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+          <svg class="w-4 h-4 text-brand-700 lucide lucide-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
           <span class="card-title text-sm font-semibold text-ink-900">Voyage Track</span>
         </div>
         <div class="vd-he-body"><div class="he-grid">${HE_TRACK.html()}</div></div>
@@ -5465,7 +5465,7 @@ function VesselTrackingCard() {
   return `
   <div id="he-vessel-tracking-card" class="bg-white rounded-lg border border-ink-200 shadow-card flex flex-col h-full">
     <div class="px-4 py-3 border-b border-ink-200 flex items-center gap-2">
-      <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+      <svg class="w-4 h-4 text-brand-700" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
       <span class="card-title text-sm font-semibold text-ink-900">Vessel Tracking</span>
     </div>
     <div id="he-map-wrapper" class="flex-1 relative" style="min-height:420px;">
@@ -5644,7 +5644,7 @@ function HistoricalEventsCard() {
     </div>
     <div id="he-hist-list-wrap" class="flex-1 min-h-0 flex flex-col">${HistListHtml()}</div>
     <div class="px-4 py-3 border-t border-ink-200 flex justify-center">
-      <button class="px-4 py-2 text-sm font-semibold text-brand-600 border border-ink-200 rounded-lg hover:bg-brand-50 transition-colors inline-flex items-center justify-center gap-2">
+      <button class="px-4 py-2 text-sm font-semibold text-brand-700 border border-ink-200 rounded-lg hover:bg-brand-50 transition-colors inline-flex items-center justify-center gap-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
         Download Historical Events
       </button>

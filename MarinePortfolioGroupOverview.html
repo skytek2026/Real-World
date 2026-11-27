@@ -12,7 +12,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-700,#1d4ed8);text-decoration:underline}
+a{color:var(--brand-700,#0f6aa0);text-decoration:none}a:hover{color:var(--brand-800,#0d5580);text-decoration:underline}
 a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;border-radius:4px}
 .pgo-page{padding:20px 16px}
 @media (min-width:1024px){.pgo-page{padding:20px 24px}}
@@ -31,7 +31,7 @@ a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;bo
 .pgo-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px solid #f3f4f6}
 .pgo-row:last-child{border-bottom:0}
 .pgo-row dt{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b7280;flex-shrink:0}
-.pgo-row dt svg{width:15px;height:15px;flex-shrink:0;color:var(--brand-600,#1485c5)}
+.pgo-row dt svg{width:15px;height:15px;flex-shrink:0;color:var(--brand-700,#0f6aa0)}
 .pgo-row dd{margin:0;font-size:14px;font-weight:600;color:#111827;text-align:right;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}
 .pgo-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 12px;border-radius:999px;font-size:12px;font-weight:700}
 .pgo-badge i{width:6px;height:6px;border-radius:50%;background:currentColor}
@@ -40,8 +40,8 @@ a:focus-visible{outline:2px solid var(--brand-400,#60a5fa);outline-offset:2px;bo
 .pgo-flags img{width:20px;height:14px;border-radius:4px;object-fit:cover;box-shadow:0 0 0 1px rgba(15,23,42,.12)}
 .pgo-more{font-size:12px;font-weight:600;color:#6b7280}
 .pgo-foot{display:flex;justify-content:center;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid #eceef2;background:#f9fafb;margin-top:auto}
-.pgo-ghost{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font:600 11px/1 'Inter',sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-600,#1485c5)}
-.pgo-ghost:hover{background:#f3f4f6;color:var(--brand-700,#1d4ed8)}
+.pgo-ghost{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px;border-radius:8px;background:transparent;border:0;cursor:pointer;font:600 11px/1 'Inter',sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--brand-700,#0f6aa0)}
+.pgo-ghost:hover{background:#f3f4f6;color:var(--brand-800,#0d5580)}
 .pgo-ghost:focus-visible{outline:2px solid #60a5fa;outline-offset:1px}
 .pgo-ghost svg{width:14px;height:14px}
 .pgo-strip--top{align-self:center;max-width:calc(100% - 28px);margin:12px 12px 4px}
@@ -87,18 +87,18 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .pol-table th:first-child, .pol-table td:first-child { left:0; width:38px; min-width:38px; max-width:38px; }
   .pol-table th:nth-child(2), .pol-table td:nth-child(2) { left:38px; box-shadow:inset -1px 0 0 #e5e7eb; }
   .pol-table tr:hover td:nth-child(-n+2) { background:#f9fafb; }
-  .pol-table td.lnk { color:var(--brand-600,#2563eb); font-weight:600; cursor:pointer; }
-  .pol-table td.lnk:hover { color:var(--brand-700,#1d4ed8); }
+  .pol-table td.lnk { color:var(--brand-700,#0f6aa0); font-weight:600; cursor:pointer; }
+  .pol-table td.lnk:hover { color:var(--brand-800,#0d5580); }
   .pol-table td.lnk a, .pcard-sub a.lnk { color:inherit; text-decoration:none; }
-  .pol-table td.lnk a:hover, .pcard-sub a.lnk:hover { color:var(--brand-700,#1d4ed8); text-decoration:underline; }
-  .pcard-sub a.lnk { color:var(--brand-600,#2563eb); font-weight:600; }
+  .pol-table td.lnk a:hover, .pcard-sub a.lnk:hover { color:var(--brand-800,#0d5580); text-decoration:underline; }
+  .pcard-sub a.lnk { color:var(--brand-700,#0f6aa0); font-weight:600; }
   /* Mobile policy cards */
   .pol-cards { display:none; }
   .pcard { padding:16px 16px; border-bottom:1px solid #f3f4f6; display:flex; flex-direction:column; gap:12px; }
   .pcard:last-child { border-bottom:0; }
   .pcard-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .pcard-id { min-width:0; display:flex; flex-direction:column; gap:4px; }
-  .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-600,#2563eb); word-break:break-word; }
+  .pcard-title { font-size:16px; font-weight:700; line-height:1.25; color:var(--brand-700,#0f6aa0); word-break:break-word; }
   .pcard-sub { display:flex; align-items:center; gap:4px; flex-wrap:wrap; font-size:14px; color:#6b7280; }
   .pcard-key { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 12px; }
   .pcard-kv { display:flex; flex-direction:column; gap:2px; min-width:0; }
@@ -109,7 +109,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   .pcard-more { display:none; }
   .pcard.open .pcard-more { display:block; padding-top:12px; border-top:1px dashed #e5e7eb; animation:pcardIn .22s ease; }
   @keyframes pcardIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
-  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:4px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; color:var(--brand-600,#2563eb); }
+  .pcard-toggle { align-self:flex-start; display:inline-flex; align-items:center; gap:4px; min-height:44px; padding:0 2px; border:0; background:none; cursor:pointer; font-family:inherit; font-size:14px; font-weight:600; color:var(--brand-700,#0f6aa0); }
   .pcard-chev { transition:transform .2s ease; }
   .pcard.open .pcard-chev { transform:rotate(180deg); }
   /* Stat badge */
@@ -139,7 +139,7 @@ html[data-theme="dark"] .pgo-badge--bad{background:rgba(239,68,68,.16);color:#fc
   /* Risk Score info popups (ported from Vessel Details) */
   .rs-tip{position:absolute;top:calc(100% + 9px);width:188px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 10px 28px rgba(15,23,42,.18);padding:8px 12px;opacity:0;visibility:hidden;transition:opacity .12s;z-index:40;}
   .rs-info{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#9ca3af;cursor:pointer;margin-top:1px;}
-  .rs-info:hover{color:#1485c5;}
+  .rs-info:hover{color:#0F6AA0;}
   .rs-info:hover .rs-tip{opacity:1;visibility:visible;}
   .rs-tip.c{left:50%;transform:translateX(-50%);}
   .rs-tip.l{left:-6px;}
@@ -184,7 +184,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script src="shared/marine-asset-details.js"></script>
@@ -294,7 +294,7 @@ function PanelRiskBreakdown() {
       2024: { good:18, avg:2, bad:1 },
     };
     const deltaPill = (d, extra='') => { const up = d >= 0, p = yearPill(up ? 60 : 10);
-      return `<div style="background:#eff6ff;color:#1485c5;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
+      return `<div style="background:#eff6ff;color:#0F6AA0;border:1px solid #b8ddf5;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="${up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7'}"/></svg>${up ? '+' : '−'} ${Math.abs(d)}${extra}</div>`; };
     const donut = (year, score, max, sw, numPx) => {
       const dist = RS_DIST[year], total = RS_BANDS.reduce((t, b) => t + dist[b.k], 0);
       const r = 50 - sw / 2, C = 2 * Math.PI * r, live = RS_BANDS.filter(b => dist[b.k] > 0), gap = live.length > 1 ? 0.9 : 0;

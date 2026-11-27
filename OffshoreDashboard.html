@@ -127,7 +127,7 @@
   .ds-card-foot--between{justify-content:space-between;}
   .ds-card-foot--center{justify-content:center;}
   .ds-card-foot .ds-btn{text-transform:uppercase;letter-spacing:.05em;font-weight:600;color:var(--brand-700, #0F6AA0);}
-  .ds-card-foot .ds-btn:hover{color:var(--brand-700,#1d4ed8);background:#f3f4f6;}
+  .ds-card-foot .ds-btn:hover{color:var(--brand-800,#0d5580);background:#f3f4f6;}
   </style>
 
 <style>
@@ -237,7 +237,7 @@ html[data-theme="dark"] .ds-fdrawer {
   cursor: pointer;
   transition: background var(--motion-fast) var(--ease-out), border-color var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out);
 }
-.ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-700); }
+.ds-fdrawer-act:hover { background: var(--bg-sunken); border-color: var(--brand-300); color: var(--brand-800,#0d5580); }
 .ds-fdrawer-act:disabled { opacity: 0.45; cursor: default; pointer-events: none; }
 /* Option list. Capped when collapsed-ish; the open section lets it fill. */
 .ds-fdrawer-list { display: flex; flex-direction: column; max-height: var(--fdrawer-list-max); overflow-y: auto; }
@@ -298,7 +298,7 @@ html[data-theme="dark"] .map-filter-count { box-shadow:0 0 0 2px #161f2e; }
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script>
 const SC = window.sharedChrome;
 const Ico = SC.I;

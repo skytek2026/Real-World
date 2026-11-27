@@ -12,7 +12,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-700,#1d4ed8);text-decoration:underline}
+a{color:var(--brand-700,#0f6aa0);text-decoration:none}a:hover{color:var(--brand-800,#0d5580);text-decoration:underline}
 .scroll-thin{scrollbar-width:thin;scrollbar-color:#1a92d1 #f3f4f6}
 
 /* Developer preview bar: visibly not part of the product UI */
@@ -25,7 +25,7 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 
 /* The ghost record: the row you expected, with nothing in it */
 .e4-ghost{position:relative;display:flex;align-items:center;gap:12px;width:100%;max-width:380px;padding:16px 16px;border:1.5px dashed #d1d5db;border-radius:12px;background:#fff}
-.e4-ghost-ico{flex-shrink:0;width:44px;height:44px;border-radius:8px;display:grid;place-items:center;background:var(--brand-50,#eff6ff);color:var(--brand-600,#2563eb)}
+.e4-ghost-ico{flex-shrink:0;width:44px;height:44px;border-radius:8px;display:grid;place-items:center;background:var(--brand-50,#eff6ff);color:var(--brand-700,#0f6aa0)}
 .e4-ghost-ico svg{width:22px;height:22px}
 .e4-ghost-body{flex:1;min-width:0}
 .e4-ghost-id{font-size:14px;font-weight:600;color:#111827;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -53,7 +53,7 @@ a{color:var(--brand-600,#2563eb);text-decoration:none}a:hover{color:var(--brand-
 .e4-tech > div{display:flex;flex-wrap:wrap;justify-content:center;gap:0 8px}
 .e4-tech dt{color:#9ca3af}
 .e4-tech dd{color:#4b5563;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
-.e4-copy{border:0;background:none;color:var(--brand-600,#2563eb);font:600 12px/1 'Inter',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;margin:-4px -4px;border-radius:8px}
+.e4-copy{border:0;background:none;color:var(--brand-700,#0f6aa0);font:600 12px/1 'Inter',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;margin:-4px -4px;border-radius:8px}
 .e4-copy:hover{background:var(--brand-50,#eff6ff)}
 .e4-copy svg{width:13px;height:13px}
 @media (max-width:639px){
@@ -90,7 +90,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script>
 const SC = window.sharedChrome;
 const esc = v => String(v == null ? '' : v).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));

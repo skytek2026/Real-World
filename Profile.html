@@ -49,7 +49,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 }/*EDITMODE-END*/;
 </script>
 <script src="shared/lucide-local.js"></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -96,7 +96,7 @@ function Content() {
       ${ST.editMode ? `
       <input id="av-file" type="file" accept="image/jpeg,image/png,image/webp" style="display:none" />
       <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:4px">
-        <button id="av-upload-link" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--brand-600,#2563eb);cursor:pointer">${src ? 'Change photo' : 'Upload photo'}</button>
+        <button id="av-upload-link" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--brand-700,#0f6aa0);cursor:pointer">${src ? 'Change photo' : 'Upload photo'}</button>
         ${src ? `<span style="color:#d1d5db">|</span><button id="av-remove" type="button" style="background:none;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:#dc2626;cursor:pointer">Remove</button>` : ''}
       </div>
       <div style="font-size:12px;color:${ST.avError ? '#dc2626' : '#6b7280'};margin-bottom:12px">${ST.avError || 'JPG, PNG or WebP · max 5 MB'}</div>` : ''}`; })()}

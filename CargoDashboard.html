@@ -71,7 +71,7 @@
   .ds-th-sort .ds-sort-ind{display:inline-flex;flex-shrink:0;color:var(--text-muted,#6B7280);opacity:.4;transition:opacity .12s ease}
   .ds-th-sort:hover .ds-sort-ind{opacity:.7}
   .ds-th--active .ds-th-sort,.ds-th--active .ds-th-sort:hover{color:var(--text-primary,#111827)}
-  .ds-th--active .ds-sort-ind{opacity:1;color:var(--brand-600,#1485c5)}
+  .ds-th--active .ds-sort-ind{opacity:1;color:var(--brand-700,#0f6aa0)}
   /* Status badges */
   .badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
   .badge-green{background:#dcfce7;color:#15803d}
@@ -83,14 +83,14 @@
   .stat-card .ds-card-head{padding:12px 16px;border-bottom:1px solid var(--border-subtle,#ECEEF2);display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px}
   .stat-card .ds-card-title{font-family:'Exo',var(--font-display,sans-serif);font-size:14px;font-weight:600;line-height:1.25;margin:0;color:var(--text-primary,#111827)}
   .stat-card .ds-card-body{padding:16px;display:flex;flex-direction:column;gap:8px}
-  .stat-card .ds-metric-value{font-family:'Exo',var(--font-display,sans-serif);font-size:32px;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--brand-600,#1485c5)}
+  .stat-card .ds-metric-value{font-family:'Exo',var(--font-display,sans-serif);font-size:32px;font-weight:700;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--brand-700,#0f6aa0)}
   .stat-card .ds-metric-value--neutral{color:var(--text-primary,#111827)}
   .stat-card .ds-metric-value--success{color:var(--success-700,#15803D)}
   .stat-card .ds-metric-value--warning{color:var(--warning-500,#D97706)}
   .stat-card .ds-metric-value--danger{color:var(--danger-500,#dc2626)}
   .stat-card .stat-desc{font-size:12px;line-height:16px;color:var(--text-secondary,#4B5563)}
   .row-del-btn:hover{background:#fef2f2 !important;border-color:#dc2626 !important;color:#dc2626 !important;}
-  .row-arch-btn:hover{background:#eff6ff !important;border-color:#b8ddf5 !important;color:var(--brand-600,#1485c5) !important;}
+  .row-arch-btn:hover{background:#eff6ff !important;border-color:#b8ddf5 !important;color:var(--brand-700,#0f6aa0) !important;}
   /* Skytek secondary buttons — hover / active / focus (DS: white → slate-50 → slate-100) */
   #download-template:hover,#export-excel-btn:hover,#wb-cancel:hover{background:var(--slate-50,#F9FAFB);border-color:var(--border-strong,#D1D5DB);}
   #download-template:active,#export-excel-btn:active,#wb-cancel:active{background:var(--slate-100,#F3F4F6);}
@@ -115,7 +115,7 @@
   .dp-presets{display:flex;flex-direction:column;background:var(--slate-50,#F9FAFB);border-right:1px solid var(--border-subtle,#ECEEF2);padding:12px;gap:2px;min-width:148px;}
   .dp-preset{text-align:center;padding:8px 12px;border:1px solid transparent;background:transparent;border-radius:var(--radius-md,6px);font-family:inherit;font-size:14px;font-weight:500;color:var(--text-secondary,#4B5563);cursor:pointer;white-space:nowrap;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
   .dp-preset:hover{background:var(--slate-100,#F3F4F6);color:var(--text-primary,#111827);}
-  .dp-preset.is-active{background:var(--brand-050,#eff6ff);border-color:var(--brand-300,#b8ddf5);font-weight:600;color:var(--brand-600,#1485c5);}
+  .dp-preset.is-active{background:var(--brand-050,#eff6ff);border-color:var(--brand-300,#b8ddf5);font-weight:600;color:var(--brand-700,#0f6aa0);}
   .dp-main{display:flex;flex-direction:column;}
   .dp-cals{position:relative;display:flex;gap:24px;padding:16px 20px 8px;}
   .dp-nav{position:absolute;top:14px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border:0;background:transparent;border-radius:var(--radius-md,6px);color:var(--text-muted,#6B7280);cursor:pointer;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
@@ -130,7 +130,7 @@
   .dp-empty{height:32px;}
   .dp-day{height:32px;border:0;background:transparent;font-family:inherit;font-size:14px;color:var(--text-primary,#111827);cursor:pointer;border-radius:0;transition:background var(--motion-fast,140ms),color var(--motion-fast,140ms);}
   .dp-day:not(.dp-sel):hover{background:var(--slate-100,#F3F4F6);border-radius:var(--radius-sm,4px);}
-  .dp-day.dp-in{background:var(--brand-050,#eff6ff);border-radius:0;color:var(--brand-600,#1485c5);}
+  .dp-day.dp-in{background:var(--brand-050,#eff6ff);border-radius:0;color:var(--brand-700,#0f6aa0);}
   .dp-day.dp-sel{background:var(--brand-600,#1485c5);color:var(--white,#fff);font-weight:600;}
   .dp-day.dp-single{border-radius:var(--radius-sm,4px);}
   .dp-day.dp-start{border-radius:var(--radius-sm,4px) 0 0 var(--radius-sm,4px);}
@@ -156,14 +156,14 @@
   /* Status filter button + menu */
   .cargo-filter-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#6b7280;cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
   .cargo-filter-btn:hover{background:#f9fafb;color:#374151;border-color:#d1d5db;}
-  .cargo-filter-btn.is-active{border-color:#43a8df;color:var(--brand-600,#1485c5);background:#eff6ff;}
+  .cargo-filter-btn.is-active{border-color:#43a8df;color:var(--brand-700,#0f6aa0);background:#eff6ff;}
   .cargo-filter-dot{position:absolute;top:-3px;right:-3px;width:8px;height:8px;border-radius:50%;background:var(--brand-600,#1485c5);border:2px solid #fff;}
   .cargo-filter-menu{position:absolute;top:calc(100% + 6px);left:0;z-index:60;min-width:184px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 12px 32px rgba(15,23,42,.14);padding:8px;}
   .cargo-filter-menu[hidden]{display:none;}
   .cargo-filter-menu-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#9ca3af;padding:8px 8px 4px;}
   .cargo-filter-opt{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;height:32px;padding:0 8px;border:0;border-radius:8px;background:transparent;color:#374151;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;text-align:left;}
   .cargo-filter-opt:hover{background:#f3f4f6;}
-  .cargo-filter-opt.is-active{color:var(--brand-600,#1485c5);font-weight:600;}
+  .cargo-filter-opt.is-active{color:var(--brand-700,#0f6aa0);font-weight:600;}
   /* Card */
   .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 1px 3px rgba(15,23,42,.06)}
   /* ── Cargo map controls (ported from Marine Dashboard) ───────────────── */
@@ -185,7 +185,7 @@
   .decl-kv dd { margin:4px 0 0; font-size:14px; color:#374151; overflow-wrap:anywhere; }
   .decl-kv-wide { grid-column:1 / -1; }
   .clash-vessels { line-height:1.75; }
-  .decl-toggle { all:unset; display:inline-flex; align-items:center; gap:4px; margin-top:12px; font-size:14px; font-weight:600; color:var(--brand-600,#1485c5); cursor:pointer; border-radius:4px; }
+  .decl-toggle { all:unset; display:inline-flex; align-items:center; gap:4px; margin-top:12px; font-size:14px; font-weight:600; color:var(--brand-700,#0f6aa0); cursor:pointer; border-radius:4px; }
   .decl-toggle:focus-visible { outline:2px solid var(--brand-400,#60a5fa); outline-offset:2px; }
   .decl-card-detail { background:#eff6ff; border-top:1px solid #b8ddf5; }
   .decl-card-detail .cargo-detail-layout { padding:12px !important; }
@@ -301,7 +301,7 @@
   .pp-row:last-child{border-bottom:0;}
   .pp-k{color:#6b7280;font-weight:500;}
   .pp-v{font-weight:700;color:#111827;}
-  .pp-cta{display:block;width:calc(100% - 28px);margin:4px 12px 12px;background:transparent;color:var(--brand-600,#1485c5)!important;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;line-height:32px;font-weight:500;font-size:14px;cursor:pointer;text-align:center;transition:background .15s;}
+  .pp-cta{display:block;width:calc(100% - 28px);margin:4px 12px 12px;background:transparent;color:var(--brand-700,#0f6aa0)!important;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 12px;height:32px;line-height:32px;font-weight:500;font-size:14px;cursor:pointer;text-align:center;transition:background .15s;}
   .pp-cta:hover{background:var(--brand-50,#eff6ff);}
   /* Mobile responsive */
   .mobile-tab-select{display:none;width:100%;padding:8px 12px;border:1px solid #e5e7eb;border-radius:9999px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 12px center;font-family:inherit;cursor:pointer;outline:none;-webkit-appearance:none;appearance:none;}
@@ -343,7 +343,7 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 </script>
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <link rel="stylesheet" href="shared/pagination.css" />
 <script src="shared/pagination.js"></script>
 <script>
@@ -574,7 +574,7 @@ function renderHeader() {
       </button>
     </div>` : `
     <div id="drop-zone" style="margin:16px;border:2px dashed var(--brand-300,#b8ddf5);border-radius:8px;padding:36px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--brand-050,#eff6ff);cursor:pointer;transition:background 150ms,border-color 150ms;">
-      <div style="width:48px;height:48px;background:var(--brand-100,#dbeafe);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--brand-600,#1485c5);">
+      <div style="width:48px;height:48px;background:var(--brand-100,#dbeafe);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--brand-700,#0f6aa0);">
         ${SC.I.upload}
       </div>
       <div style="text-align:center;">
@@ -691,7 +691,7 @@ function renderPortfolioSummary() {
         <div class="ds-card-body">
           <span class="ds-metric-value ds-metric-value--warning">${st.peakExposure}</span>
           <div class="stat-desc" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;">
-            <a href="PortDetails.html" style="display:inline-flex;align-items:center;gap:4px;color:var(--brand-600,#1485c5);text-decoration:none;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'Fujairah'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
+            <a href="PortDetails.html" style="display:inline-flex;align-items:center;gap:4px;color:var(--brand-700,#0f6aa0);text-decoration:none;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'Fujairah'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
               Fujairah
             </a>
@@ -732,7 +732,7 @@ function declDetail(i) {
                         ].map(o => `
                           <button class="map-type-opt" data-map-type="${o.id}">
                             <span data-label>${o.label}</span>
-                            <span style="color:var(--brand-600,#1485c5);opacity:0;" data-check>${SC.I.check}</span>
+                            <span style="color:var(--brand-700,#0f6aa0);opacity:0;" data-check>${SC.I.check}</span>
                           </button>`).join('')}
                       </div>
                     </div>
@@ -781,13 +781,13 @@ function renderDeclarationsTable() {
               </span>
             </td>
             <td>${statusBadge(v)}</td>
-            <td style="font-weight:600;"><a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation();" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.name}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
+            <td style="font-weight:600;"><a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation();" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.name}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:#4b5563;font-variant-numeric:tabular-nums;">${v.imo}</td>
             <td style="font-variant-numeric:tabular-nums;">${v.estLoad}</td>
             <td style="color:${v.actLoad ? '#d97706' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</td>
-            <td><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
+            <td><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:#6b7280;">${v.dischDate || '—'}</td>
-            <td><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
+            <td><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
             <td style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</td>
             <td>${v.breachRegion ? `<span style="color:#dc2626;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</td>
             <td style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</td>
@@ -811,16 +811,16 @@ function renderDeclarationsTable() {
     <article class="decl-card${expanded ? ' is-expanded' : ''}${v._new ? ' decl-card--new' : ''}" role="listitem">
       <div class="decl-card-main" data-card-row="${i}">
         <dl class="decl-kv decl-kv--top">
-          <div><dt>Vessel Name</dt><dd style="font-weight:600;"><a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation();" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.name}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+          <div><dt>Vessel Name</dt><dd style="font-weight:600;"><a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation();" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.name}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
           <div><dt>Status</dt><dd>${statusBadge(v)}</dd></div>
         </dl>
         <dl class="decl-kv">
               <div><dt>Vessel IMO</dt><dd style="color:#4b5563;font-variant-numeric:tabular-nums;">${v.imo}</dd></div>
               <div><dt>Est. Load Date</dt><dd style="font-variant-numeric:tabular-nums;">${v.estLoad}</dd></div>
               <div><dt>Actual Loading Date</dt><dd style="color:${v.actLoad ? '#d97706' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actLoad ? '600' : '400'};">${v.actLoad || '—'}</dd></div>
-              <div><dt>Load Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+              <div><dt>Load Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.loadPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.loadPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
               <div><dt>Discharge Date</dt><dd style="color:#6b7280;">${v.dischDate || '—'}</dd></div>
-              <div><dt>Discharge Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+              <div><dt>Discharge Port</dt><dd><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="event.stopPropagation(); sessionStorage.setItem('selectedPort', JSON.stringify({name:'${v.dischPort.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${v.dischPort}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
               <div><dt>Actual Discharge Date</dt><dd style="color:${v.actDisch ? '#1d4ed8' : '#9ca3af'};font-variant-numeric:tabular-nums;font-weight:${v.actDisch ? '600' : '400'};">${v.actDisch || '—'}</dd></div>
               <div><dt>Breach</dt><dd>${v.breachRegion ? `<span style="color:#dc2626;font-size:12px;font-weight:600;">${v.breachRegion}</span>` : '<span style="color:#9ca3af;">—</span>'}</dd></div>
               <div><dt>Breach Start Date</dt><dd style="color:${v.breachStart ? '#dc2626' : '#9ca3af'};font-variant-numeric:tabular-nums;">${v.breachStart || '—'}</dd></div>
@@ -853,9 +853,9 @@ function renderClashAlertsTable() {
       <tbody>
         ${CLASH_ALERTS.map(a => `
         <tr>
-          <td style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
+          <td style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></td>
           <td style="font-variant-numeric:tabular-nums;">${a.date}</td>
-          <td style="color:#6b7280;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</td>
+          <td style="color:#6b7280;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</td>
           <td style="font-weight:700;color:#dc2626;">${a.exposure}</td>
         </tr>`).join('')}
       </tbody>
@@ -865,12 +865,12 @@ function renderClashAlertsTable() {
     ${CLASH_ALERTS.map(a => `
     <article class="decl-card" role="listitem">
       <dl class="decl-kv decl-kv--top">
-        <div><dt>Port</dt><dd style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
+        <div><dt>Port</dt><dd style="font-weight:600;"><a href="PortDetails.html" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onclick="sessionStorage.setItem('selectedPort', JSON.stringify({name:'${a.location.split(',')[0].trim().replace(/'/g,"\\'")}'}));" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${a.location}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a></dd></div>
         <div><dt>Exposure ($)</dt><dd style="font-weight:700;color:#dc2626;">${a.exposure}</dd></div>
       </dl>
       <dl class="decl-kv">
         <div><dt>Date</dt><dd style="font-variant-numeric:tabular-nums;">${a.date}</dd></div>
-        <div class="decl-kv-wide"><dt>Vessels</dt><dd class="clash-vessels" style="color:#6b7280;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-600,#1485c5);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</dd></div>
+        <div class="decl-kv-wide"><dt>Vessels</dt><dd class="clash-vessels" style="color:#6b7280;">${[a.vessel, ...a.vessels].map(nm => `<a href="VesselDetails.html" target="_blank" rel="noopener" style="color:var(--brand-700,#0f6aa0);text-decoration:none;display:inline-flex;align-items:center;gap:4px;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${nm}<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.7;"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>`).join(', ')}</dd></div>
       </dl>
     </article>`).join('')}
   </div>`;
@@ -1069,7 +1069,7 @@ function reanalyseRow(i) {
   strip.innerHTML = `
     <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;padding:0 12px;">
       <div class="up-track" style="flex:1;"><div class="up-fill" style="width:1%;"></div></div>
-      <span class="wb-reana-pct" style="font-size:12px;font-weight:700;color:var(--brand-600,#1485c5);font-variant-numeric:tabular-nums;min-width:34px;text-align:right;">1%</span>
+      <span class="wb-reana-pct" style="font-size:12px;font-weight:700;color:var(--brand-700,#0f6aa0);font-variant-numeric:tabular-nums;min-width:34px;text-align:right;">1%</span>
     </div>`;
   const fill = strip.querySelector('.up-fill');
   const pctEl = strip.querySelector('.wb-reana-pct');
@@ -1367,7 +1367,7 @@ function showToast(opts) {
     <div class="ds-toast-body">
       <div class="ds-toast-title"></div>
       ${o.desc ? '<div class="ds-toast-desc"></div>' : ''}
-      ${o.action ? '<div class="ds-toast-actions"><button type="button" class="ds-toast-action" style="height:24px;padding:0 4px;border:0;background:transparent;color:var(--brand-600,#1485c5);font:inherit;font-size:14px;font-weight:600;cursor:pointer;"></button></div>' : ''}
+      ${o.action ? '<div class="ds-toast-actions"><button type="button" class="ds-toast-action" style="height:24px;padding:0 4px;border:0;background:transparent;color:var(--brand-700,#0f6aa0);font:inherit;font-size:14px;font-weight:600;cursor:pointer;"></button></div>' : ''}
     </div>
     <div class="ds-toast-side">
       <button type="button" class="ds-toast-dismiss" aria-label="Dismiss notification">

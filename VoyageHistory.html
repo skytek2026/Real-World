@@ -21,7 +21,7 @@
   .bg-ink-100 { background:#f3f4f6; } .bg-ink-50 { background:#f9fafb; }
   .border-ink-100 { border-color:#f3f4f6; } .border-ink-200 { border-color:#e5e7eb; }
   .shadow-card { box-shadow:0 2px 4px 0 rgb(15 23 42 / 0.08), 0 1px 2px 0 rgb(15 23 42 / 0.06); }
-  .text-brand-600 { color:var(--brand-600,#1485c5); } .bg-brand-500 { background:var(--brand-600,#1485c5); }
+  .text-brand-700 { color:var(--brand-700,#0f6aa0); } .bg-brand-500 { background:var(--brand-600,#1485c5); }
   .bg-brand-050 { background:var(--brand-050,#eff6ff); }
   .font-display { font-family:'Exo','Inter',sans-serif; }
   .tracking-micro { letter-spacing:0.04em; }
@@ -46,7 +46,7 @@
   .btn-primary:hover { background:var(--brand-500,#1a92d1); }
   .icon-btn { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border:1px solid #e5e7eb; border-radius:8px; background:#fff; color:#4b5563; cursor:pointer; transition:background .14s,color .14s,border-color .14s; }
   .icon-btn:hover { background:#f9fafb; color:#111827; }
-  .icon-btn.is-on { background:var(--brand-050,#eff6ff); border-color:var(--brand-300,#b8ddf5); color:var(--brand-600,#1485c5); }
+  .icon-btn.is-on { background:var(--brand-050,#eff6ff); border-color:var(--brand-300,#b8ddf5); color:var(--brand-700,#0f6aa0); }
   /* Tables */
   .vh-table { width:100%; border-collapse:collapse; font-size:14px; }
   .vh-table th { text-align:left; padding:12px 16px; font-size:12px; font-weight:600; color:#6b7280; letter-spacing:.04em; text-transform:uppercase; border-bottom:1px solid #e5e7eb; white-space:nowrap; }
@@ -57,7 +57,7 @@
   .vh-table tbody tr:hover td { background:#f8fb ; }
   .vh-table tbody tr:hover td { background:#f9fafb; }
   .num { font-variant-numeric:tabular-nums; }
-  .sort-ico { color:#1485c5; opacity:.7; }
+  .sort-ico { color:#0F6AA0; opacity:.7; }
   /* Status badge */
   .badge-status { display:inline-flex; align-items:center; gap:4px; padding:4px 12px; border-radius:999px; font-size:12px; font-weight:600; background:#f0fdf4; color:#15803d; border:1px solid #dcfce7; }
   .badge-status .dot { width:6px; height:6px; border-radius:50%; background:#16a34a; }
@@ -132,7 +132,7 @@
 <script src="shared/lucide-local.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="shared/chrome.js?v=30"></script>
+<script src="shared/chrome.js?v=31"></script>
 <script>
 const SC = window.sharedChrome;
 
@@ -382,7 +382,7 @@ function voyageStatsBody() {
   </div>
   ${legend()}
   <div class="flex justify-center py-3 border-t border-ink-100 mt-3">
-    <button id="details-toggle" class="inline-flex items-center gap-1 text-xs font-semibold tracking-micro uppercase text-brand-600 hover:text-brand-700" style="cursor:pointer;">
+    <button id="details-toggle" class="inline-flex items-center gap-1 text-xs font-semibold tracking-micro uppercase text-brand-700 hover:text-brand-800" style="cursor:pointer;">
       ${state.showDetails ? '– Hide Details' : '+ Show Details'}
     </button>
   </div>
@@ -400,7 +400,7 @@ function voyageStatsBody() {
           <tr>
             <td>
               <span class="inline-flex items-center gap-2">
-                <span class="text-brand-600 inline-flex items-center">${svg(IC[r.icon],15)}</span>
+                <span class="text-brand-700 inline-flex items-center">${svg(IC[r.icon],15)}</span>
                 <span class="text-ink-700">${r.label}</span>
               </span>
             </td>
@@ -434,7 +434,7 @@ function portCallsBody() {
           ${TOP_PORTS.map((p,i) => `
             <tr>
               <td class="num text-ink-400">${i+1}</td>
-              <td><span class="inline-flex items-center gap-2"><span class="text-brand-600 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
+              <td><span class="inline-flex items-center gap-2"><span class="text-brand-700 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
               <td><span class="inline-flex items-center gap-2 whitespace-nowrap">${flag(p.cc)}<span class="text-ink-700">${p.country}</span></span></td>
               <td class="num font-semibold text-ink-900">${p.calls}</td>
               <td><span class="inline-flex items-center gap-2" style="min-width:120px;"><span class="h-1.5 rounded-full bg-ink-100 overflow-hidden" style="width:80px;display:inline-block;"><span class="block h-full rounded-full" style="width:${Math.round(p.calls/TOP_PORT_MAX*100)}%;background:var(--brand-600,#1485c5);"></span></span><span class="num text-xs text-ink-500">${Math.round(p.calls/TOP_PORT_MAX*100)}%</span></span></td>
@@ -459,7 +459,7 @@ function portCallsBody() {
       <tbody>
         ${vhSort(PORT_CALLS,'pc',['arrD','depD']).map(p => `
           <tr>
-            <td><span class="inline-flex items-center gap-2"><span class="text-brand-600 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
+            <td><span class="inline-flex items-center gap-2"><span class="text-brand-700 inline-flex items-center">${svg(IC.anchor,15)}</span><span class="font-medium text-ink-900">${p.port}</span></span></td>
             <td><span class="inline-flex items-center gap-2">${flag(p.cc)}<span class="text-ink-700">${p.country}</span></span></td>
             <td class="num text-ink-700">${p.arr}</td>
             <td class="num text-ink-700">${p.arrD}</td>
@@ -484,7 +484,7 @@ function regionsBody() {
       <tbody>
         ${vhSort(REGIONS,'rg',[],['dur']).map(r => `
           <tr>
-            <td><span class="inline-flex items-center gap-2"><span class="text-brand-600 inline-flex items-center">${svg(IC.navigation,15)}</span><span class="font-medium text-ink-900">${r.region}</span></span></td>
+            <td><span class="inline-flex items-center gap-2"><span class="text-brand-700 inline-flex items-center">${svg(IC.navigation,15)}</span><span class="font-medium text-ink-900">${r.region}</span></span></td>
             <td class="text-ink-700">${r.type}</td>
             <td class="num text-ink-700">${r.entry}</td>
             <td class="num text-ink-700">${r.exit}</td>
@@ -516,7 +516,7 @@ function eventsCard() {
   return `
   <div class="card overflow-hidden">
     <div class="card-head border-b border-ink-100">
-      <span class="text-brand-600 inline-flex items-center">${svg(IC.activity,18)}</span>
+      <span class="text-brand-700 inline-flex items-center">${svg(IC.activity,18)}</span>
       <span class="card-title">Voyage Events</span>
     </div>
     <div class="p-5 pb-4">

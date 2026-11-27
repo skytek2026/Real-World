@@ -90,7 +90,7 @@ function buildFlightPopupHTML(p) {
       ${row('Speed', p.spd)}
     </div>
     <div style="padding:12px 16px 16px;display:flex;justify-content:center;">
-      <button style="padding:0 16px;height:32px;border:1px solid transparent;color:var(--brand-600,#2563eb);border-radius:var(--radius-md,8px);font-size:14px;font-weight:500;background:transparent;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AircraftDetails.html'">View Details</button>
+      <button style="padding:0 16px;height:32px;border:1px solid transparent;color:var(--brand-700,#0f6aa0);border-radius:var(--radius-md,8px);font-size:14px;font-weight:500;background:transparent;cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AircraftDetails.html'">View Details</button>
     </div>`;
 }
 
@@ -116,7 +116,7 @@ function buildAirportPopupHTML(a) {
       ${row('Runways', a.runways + ' runway' + (a.runways !== 1 ? 's' : ''))}
     </div>
     <div style="padding:8px 16px 16px;display:flex;justify-content:center;">
-      <button style="background:transparent;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 16px;height:32px;font-size:14px;font-weight:500;color:var(--brand-600,#2563eb);cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AirportDetails.html'">View Details</button>
+      <button style="background:transparent;border:1px solid transparent;border-radius:var(--radius-md,8px);padding:0 16px;height:32px;font-size:14px;font-weight:500;color:var(--brand-700,#0f6aa0);cursor:pointer;" onmouseover="this.style.background='var(--brand-50,#eff6ff)'" onmouseout="this.style.background='transparent'" onclick="window.location.href='AirportDetails.html'">View Details</button>
     </div>`;
 }
 

@@ -282,7 +282,7 @@ function listView() {
       <div class="rb-tpl-grid">
         ${TEMPLATES.map(t => `
           <button class="rb-tpl" data-tpl="${t.id}">
-            <span style="display:flex;align-items:center;gap:8px;color:var(--brand-600,#2563eb)">${ic(t.icon, 15)}<span style="font-size:14px;font-weight:700;color:#111827">${t.name}</span></span>
+            <span style="display:flex;align-items:center;gap:8px;color:var(--brand-700,#0f6aa0)">${ic(t.icon, 15)}<span style="font-size:14px;font-weight:700;color:#111827">${t.name}</span></span>
             <span style="font-size:12px;color:#6b7280;line-height:1.45">${t.desc}</span>
             <span style="font-size:12px;font-weight:600;color:#9ca3af">${t.sections.length} sections · ${t.metrics.length} metrics</span>
           </button>`).join('')}
@@ -398,7 +398,7 @@ function metricsPanel() {
           <div class="rb-order-row">
             <span style="color:#d1d5db">${ic('GripVertical', 14)}</span>
             <span style="flex:1;font-size:14px;font-weight:600;color:#111827">${(METRICS.find(x => x.id === m) || {}).name}</span>
-            <span style="font-size:12px;font-weight:700;color:var(--brand-600,#2563eb);font-variant-numeric:tabular-nums">${metricValue(m, t)}</span>
+            <span style="font-size:12px;font-weight:700;color:var(--brand-700,#0f6aa0);font-variant-numeric:tabular-nums">${metricValue(m, t)}</span>
             <button class="rb-mini" data-mup="${i}" ${i === 0 ? 'disabled' : ''} title="Move up">${ic('ChevronUp', 13)}</button>
             <button class="rb-mini" data-mdn="${i}" ${i === d.metrics.length - 1 ? 'disabled' : ''} title="Move down">${ic('ChevronDown', 13)}</button>
             <button class="rb-mini rb-danger" data-mrm="${m}" title="Remove">${ic('X', 13)}</button>
@@ -424,7 +424,7 @@ function sectionsPanel() {
           <div class="rb-sec${open ? ' open' : ''}">
             <div class="rb-order-row">
               <span style="color:#d1d5db">${ic('GripVertical', 14)}</span>
-              <span style="color:var(--brand-600,#2563eb);display:flex">${ic(def.icon, 14)}</span>
+              <span style="color:var(--brand-700,#0f6aa0);display:flex">${ic(def.icon, 14)}</span>
               <span style="flex:1;font-size:14px;font-weight:600;color:#111827">${def.name}</span>
               <button class="rb-mini" data-sup="${i}" ${i === 0 ? 'disabled' : ''} title="Move up">${ic('ChevronUp', 13)}</button>
               <button class="rb-mini" data-sdn="${i}" ${i === d.sections.length - 1 ? 'disabled' : ''} title="Move down">${ic('ChevronDown', 13)}</button>
@@ -615,7 +615,7 @@ const CSS = `
 .rb-icon-btn{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5e7eb;border-radius:8px;color:#4b5563;cursor:pointer}
 .rb-icon-btn:hover{background:#f9fafb;border-color:#d1d5db}
 .rb-icon-btn.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626}
-.rb-link{display:inline-flex;align-items:center;gap:8px;background:0;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--brand-600,#2563eb);cursor:pointer}
+.rb-link{display:inline-flex;align-items:center;gap:8px;background:0;border:0;padding:0;font:inherit;font-size:14px;font-weight:600;color:var(--brand-700,#0f6aa0);cursor:pointer}
 .rb-link:hover span{text-decoration:underline}
 .rb-search{width:100%;height:34px;padding:0 12px 0 36px;border:1px solid #e5e7eb;border-radius:9999px;font-family:inherit;font-size:14px;color:#374151;background:#f9fafb;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
 .rb-search:focus{border-color:var(--brand-300,#93c5fd);box-shadow:0 0 0 3px rgba(37,99,235,.12);background:#fff}
@@ -654,7 +654,7 @@ const CSS = `
 .rb-order-row{display:flex;align-items:center;gap:8px;padding:8px 8px;background:#fff;border:1px solid #e5e7eb;border-radius:8px}
 .rb-mini{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;border-radius:8px;background:#fff;color:#4b5563;cursor:pointer;flex-shrink:0}
 .rb-mini:hover{background:#f3f4f6}
-.rb-mini.on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-600,#2563eb)}
+.rb-mini.on{background:var(--brand-50,#eff6ff);border-color:var(--brand-200,#b8ddf5);color:var(--brand-700,#0f6aa0)}
 .rb-mini:disabled{opacity:.35;cursor:not-allowed}
 .rb-mini.rb-danger:hover{background:#fef2f2;border-color:#fecaca;color:#dc2626}
 .rb-sec{border-radius:8px}
@@ -664,7 +664,7 @@ const CSS = `
 .rb-cfg-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .rb-cfg-label{font-size:12px;font-weight:600;color:#4b5563;min-width:88px}
 .rb-chip-add{display:inline-flex;align-items:center;gap:4px;height:26px;padding:0 12px;border:1px dashed #d1d5db;border-radius:9999px;background:#fff;font-family:inherit;font-size:12px;font-weight:600;color:#4b5563;cursor:pointer}
-.rb-chip-add:hover{border-color:var(--brand-400,#60a5fa);color:var(--brand-700,#1d4ed8);background:var(--brand-50,#eff6ff)}
+.rb-chip-add:hover{border-color:var(--brand-400,#60a5fa);color:var(--brand-800,#0d5580);background:var(--brand-50,#eff6ff)}
 .rb-empty{font-size:12px;color:#9ca3af}
 .rb-title-input{height:32px;min-width:200px;max-width:340px;border:1px solid transparent;border-radius:8px;padding:0 8px;font-family:inherit;font-size:14px;font-weight:700;color:#111827;background:0;outline:none}
 .rb-title-input:hover{background:#f9fafb}
