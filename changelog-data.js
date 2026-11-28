@@ -38,6 +38,33 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.6.0",
+    "dateISO": "2026-11-28T17:00:00Z",
+    "date": "28/11/2026",
+    "time": "17:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Components",
+    "impact": "Minor",
+    "summary": "Seven new components from the prototype audit: domain & feature tiles (with locked state), fact list, score ring, route card, upload drop zone, article card and map legend.",
+    "changes": [
+      "Components → Domain & feature tiles: 275 × 199 / 275 × 143, locked state for unlicensed modules (aria-disabled, “Not available to your organization”).",
+      "Components → Fact list: semantic <dl>, one or two columns, “—” for missing values.",
+      "Components → Score ring: 120px / 64px; arc colour follows the risk score bands automatically; accessible name.",
+      "Components → Route card: departure and destination boxes with a dashed leg for distance and status.",
+      "Components → Upload drop zone: always paired with a Browse files button (WCAG 2.1.1); drag-over and error states.",
+      "Components → Article card: category-coloured banner, tag, bookmark button, 3-line excerpt.",
+      "Components → Map legend: storm track, forecast cone, current position; placed inside the map's padding.",
+      "Icons: fileText, container, upload and bookmark added (Lucide).",
+      "New classes: .ds-tile, .ds-feature-tile, .ds-facts, .ds-score-ring, .ds-route, .ds-dropzone, .ds-article, .ds-map-legend."
+    ],
+    "reason": "Prototype audit: patterns used across the product with no design-system definition.",
+    "affected": [
+      "Components",
+      "Icons",
+      "styles.css"
+    ]
+  },
+  {
     "version": "v4.5.1",
     "dateISO": "2026-11-28T15:30:00Z",
     "date": "28/11/2026",

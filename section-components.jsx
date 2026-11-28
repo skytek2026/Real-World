@@ -889,6 +889,128 @@ const PaginationBlock = () => (
   </ComponentBlock>
 );
 
+
+/* ══ v4.5.0 components ══════════════════════════════════════════════ */
+const ScoreRing = ({ value, size = "lg", year, delta }) => {
+  const d = size === "lg" ? 120 : 64, sw = size === "lg" ? 11 : 7, r = (d - sw) / 2, c = 2 * Math.PI * r;
+  const band = value <= 25 ? "good" : value <= 50 ? "average" : "poor";
+  return (
+    <div className={`ds-score-ring ds-score-ring--${size}`}>
+      {year && <span className="ds-score-ring-year">{year}</span>}
+      <svg width={d} height={d} viewBox={`0 0 ${d} ${d}`} role="img" aria-label={`Risk score ${value} of 100, ${band === "poor" ? "below average" : band}`}>
+        <circle cx={d / 2} cy={d / 2} r={r} fill="none" stroke="var(--slate-150)" strokeWidth={sw} />
+        <circle cx={d / 2} cy={d / 2} r={r} fill="none" className={`ds-score-ring-arc is-${band}`} strokeWidth={sw} strokeLinecap="round"
+          strokeDasharray={`${Math.max(0.04, value / 100) * c} ${c}`} transform={`rotate(-90 ${d / 2} ${d / 2})`} />
+        <text x="50%" y="50%" dominantBaseline="central" textAnchor="middle" className="ds-score-ring-value">{value}</text>
+      </svg>
+      {delta && <span className="ds-score-ring-delta">{delta}</span>}
+    </div>
+  );
+};
+
+const TilesBlock = () => (
+  <ComponentBlock id="c-tiles" name="Domain & feature tiles"
+    purpose="Dashboard entry points. A domain tile summarises one line of business; a feature tile opens a module. A module the organisation has not licensed shows the locked state instead of disappearing."
+    variants={<>domain tile · feature tile · feature tile locked</>}
+    states={<>default · hover (card-shadow-hover) · focus (shadow-focus) · locked (not interactive)</>}
+    rules={<>Domain tile 275 × 199, feature tile 275 × 143, both <code className="inline">radius-xl</code>, <code className="inline">card-shadow-rest</code>, padding <code className="inline">space-5</code>. Icon, title and value use <code className="inline">brand-700</code>. Locked: <code className="inline">slate-050</code>, no shadow, muted text, <code className="inline">aria-disabled="true"</code>, and the message “Not available to your organization”.</>}>
+    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+      <div className="ds-tile" tabIndex={0}>
+        <div className="ds-tile-head"><Icon d={I.ship} size={40} /><div className="ds-tile-title">Marine</div><div className="ds-tile-value">$1.8B</div></div>
+        <div className="ds-tile-foot"><span>Assets <strong>1,247</strong></span><span>Portfolios <strong>8</strong></span></div>
+      </div>
+      <div className="ds-feature-tile" tabIndex={0}><Icon d={I.fileText} size={28} /><div className="ds-tile-title ds-tile-title--sm">Reports</div><div className="ds-tile-foot"><span>Weekly <strong>24</strong></span><span>Custom <strong>8</strong></span></div></div>
+      <div className="ds-feature-tile is-locked" aria-disabled="true"><Icon d={I.container} size={28} /><div className="ds-tile-title ds-tile-title--sm">Cargo</div><div className="t-caption">Not available to your organization</div></div>
+    </div>
+  </ComponentBlock>
+);
+
+const FactListBlock = () => (
+  <ComponentBlock id="c-facts" name="Fact list"
+    purpose="Label–value pairs for an asset's properties on detail pages. One uniform layout so facts are easy to scan and compare."
+    variants={<>one column · two columns</>}
+    rules={<>Semantic <code className="inline">&lt;dl&gt;</code>. Label 13px <code className="inline">text-muted</code>; value 13px <code className="inline">text-primary</code>, right-aligned; rows 5px top and bottom with a <code className="inline">border-subtle</code> rule. Missing values show “—”, never an empty cell. Status values use their badge or status dot; flags use the flag chip.</>}>
+    <dl className="ds-facts ds-facts--2col">
+      {[["Name", <strong>FRESH BREEZE</strong>], ["Ship builder", "Hyundai Heavy Industries"], ["Flag", "Spain"], ["Length (m)", "274.0"], ["IMO", "9419265"], ["Deadweight", "158,000 t"], ["Call sign", "EAVP"], ["TEU", "—"]].map(([k, v]) => (
+        <div className="ds-fact" key={k}><dt>{k}</dt><dd>{v}</dd></div>
+      ))}
+    </dl>
+  </ComponentBlock>
+);
+
+const ScoreRingBlock = () => (
+  <ComponentBlock id="c-score-ring" name="Score ring"
+    purpose="Shows a 0–100 risk score at a glance, with the year and the change from the previous period. Colour comes from the risk score bands."
+    variants={<>large (120px, current period) · small (64px, previous periods)</>}
+    rules={<>Arc colour follows the <strong>Risk score bands</strong> (Asset identity & status): ≤25 success, ≤50 warning, &gt;50 danger. Track <code className="inline">slate-150</code>. Value in Exo bold. Always pair with the band legend on first use on a page. The SVG has an accessible name: “Risk score 24 of 100, good”.</>}>
+    <div style={{ display: "flex", gap: 24, alignItems: "flex-end", flexWrap: "wrap" }}>
+      <ScoreRing value={24} year="2026" delta="−8" />
+      <ScoreRing value={32} size="sm" year="2025" delta="+26" />
+      <ScoreRing value={6} size="sm" year="2024" delta="+2" />
+      <ScoreRing value={68} size="sm" year="Example" />
+    </div>
+  </ComponentBlock>
+);
+
+const RouteCardBlock = () => (
+  <ComponentBlock id="c-route" name="Route card"
+    purpose="A voyage from departure to destination: ports, times, draught, distance and current state."
+    variants={<>in progress · arrived (destination shows arrival time)</>}
+    rules={<>Departure box <code className="inline">bg-sunken</code> / <code className="inline">border-default</code>; destination box <code className="inline">brand-050</code> / <code className="inline">brand-200</code>, both <code className="inline">radius-lg</code>. Port names 14px bold; times in UTC, tabular. A dashed connector carries distance and navigational status. Labels are uppercase <code className="inline">t-overline</code>.</>}>
+    <div className="ds-route" style={{ maxWidth: 300 }}>
+      <div className="ds-route-port"><div className="ds-route-label">Departure port</div><div className="ds-route-name">Singapore</div><div className="t-caption">Arr 2025-12-28 11:00 · 12.4 m</div><div className="t-caption">Dep 2025-12-30 18:30 · 12.2 m</div></div>
+      <div className="ds-route-leg"><span>3,031 nm</span><span>Underway using engine</span></div>
+      <div className="ds-route-port is-destination"><div className="ds-route-label">Destination port</div><div className="ds-route-name">Hamburg</div></div>
+    </div>
+  </ComponentBlock>
+);
+
+const DropzoneBlock = () => (
+  <ComponentBlock id="c-dropzone" name="Upload drop zone"
+    purpose="Lets users drag a file in or browse for one, with the accepted format stated up front."
+    states={<>default · drag-over (brand-100, brand-500 border) · uploading (progress) · error (danger border + message)</>}
+    rules={<>Dashed 1.5px <code className="inline">brand-300</code> border on <code className="inline">brand-050</code>, <code className="inline">radius-lg</code>. Always offer a “Browse files” button: drag and drop alone is not keyboard-accessible (WCAG 2.1.1). State accepted types and size limits in plain words. Errors name the problem and the fix.</>}>
+    <div className="ds-dropzone">
+      <span className="ds-dropzone-icon"><Icon d={I.upload} size={20} /></span>
+      <div className="t-body-sm" style={{ color: "var(--text-secondary)", maxWidth: 380 }}>Upload an underwriting declarations workbook; every vessel is screened against AIS.</div>
+      <strong style={{ fontSize: 13 }}>Drag & drop your .xlsx file here</strong>
+      <span className="t-caption">or</span>
+      <button className="ds-btn ds-btn--primary ds-btn--sm">Browse files</button>
+      <span className="t-caption">Supports .xlsx files only</span>
+    </div>
+  </ComponentBlock>
+);
+
+const ArticleCardBlock = () => (
+  <ComponentBlock id="c-article" name="Article card"
+    purpose="A news item from trade press: category, headline, excerpt, source and age."
+    variants={<>standard · featured (wider, larger headline)</>}
+    rules={<>Banner uses the category colour (Marine <code className="inline">chart-cat-6</code>, Property <code className="inline">chart-cat-4</code>, Aviation <code className="inline">info-500</code>, Offshore <code className="inline">chart-cat-3</code>) with a white icon and a category tag. Headline Exo 16/600; excerpt clamps to 3 lines. The whole card is one link; the bookmark is a separate button with an accessible name.</>}>
+    <article className="ds-article" style={{ maxWidth: 320 }}>
+      <div className="ds-article-banner" style={{ background: "var(--chart-cat-6)" }}><span className="ds-article-icon"><Icon d={I.ship} size={40} /></span><span className="ds-article-tag" style={{ color: "var(--chart-cat-6)" }}>MARINE</span><button className="ds-article-bookmark" aria-label="Bookmark article"><Icon d={I.bookmark} size={13} /></button></div>
+      <div className="ds-article-body">
+        <h4 className="ds-article-title">Red Sea attacks push hull war premiums to multi-decade highs</h4>
+        <p className="ds-article-excerpt">Underwriters are quoting additional war-risk premiums on Bab el-Mandeb voyages at levels not seen since the Iran-Iraq tanker war.</p>
+        <div className="ds-article-foot"><span>Lloyd’s List</span><span>2h ago</span></div>
+      </div>
+    </article>
+  </ComponentBlock>
+);
+
+const MapLegendBlock = () => (
+  <ComponentBlock id="c-map-legend" name="Map legend"
+    purpose="Explains the symbols on a map: storm tracks, forecast cones, markers and region fills."
+    rules={<>White panel, <code className="inline">border-default</code>, <code className="inline">radius-md</code>, bottom-left over the map, inside the map's padding so nothing is clipped. Title <code className="inline">t-overline</code>; one row per symbol, swatch 18px wide, label <code className="inline">t-caption</code>. Forecast cone: brand-500 at 35% opacity; past track brand-300; forecast track slate-600 dashed; current position danger-500 dot.</>}>
+    <div className="ds-map-legend">
+      <div className="ds-map-legend-title">Track legend</div>
+      <div className="ds-map-legend-row"><span className="ds-swatch ds-swatch--dot" style={{ background: "var(--danger-500)" }} />Current position</div>
+      <div className="ds-map-legend-row"><span className="ds-swatch" style={{ background: "var(--brand-300)" }} />Past track</div>
+      <div className="ds-map-legend-row"><span className="ds-swatch ds-swatch--dashed" />Forecast track</div>
+      <div className="ds-map-legend-row"><span className="ds-swatch ds-swatch--area" />Forecast cone</div>
+    </div>
+  </ComponentBlock>
+);
+
 const ComponentsSection = () => (
   <>
     <ButtonsBlock />
@@ -897,11 +1019,18 @@ const ComponentsSection = () => (
     <AlertsBlock />
     <CardsBlock />
     <MetricCardsBlock />
+    <TilesBlock />
+    <FactListBlock />
+    <ScoreRingBlock />
+    <RouteCardBlock />
     <TablesBlock />
     <NavTabsBlock />
     <OverlayBlock />
     <LoadingBlock />
     <PaginationBlock />
+    <DropzoneBlock />
+    <ArticleCardBlock />
+    <MapLegendBlock />
   </>
 );
 

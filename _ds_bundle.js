@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"6299932249cb","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"8082c6dc211a","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"5936b626be34","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"4d4c9ca834fe","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"0a4215cbd1f7","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"afd7d78027ab","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"52a28f0f1bff","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"8082c6dc211a","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"6858b9fa1218","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"4d4c9ca834fe","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"0a4215cbd1f7","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,33 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.6.0",
+    "dateISO": "2026-11-28T17:00:00Z",
+    "date": "28/11/2026",
+    "time": "17:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Components",
+    "impact": "Minor",
+    "summary": "Seven new components from the prototype audit: domain & feature tiles (with locked state), fact list, score ring, route card, upload drop zone, article card and map legend.",
+    "changes": [
+      "Components → Domain & feature tiles: 275 × 199 / 275 × 143, locked state for unlicensed modules (aria-disabled, “Not available to your organization”).",
+      "Components → Fact list: semantic <dl>, one or two columns, “—” for missing values.",
+      "Components → Score ring: 120px / 64px; arc colour follows the risk score bands automatically; accessible name.",
+      "Components → Route card: departure and destination boxes with a dashed leg for distance and status.",
+      "Components → Upload drop zone: always paired with a Browse files button (WCAG 2.1.1); drag-over and error states.",
+      "Components → Article card: category-coloured banner, tag, bookmark button, 3-line excerpt.",
+      "Components → Map legend: storm track, forecast cone, current position; placed inside the map's padding.",
+      "Icons: fileText, container, upload and bookmark added (Lucide).",
+      "New classes: .ds-tile, .ds-feature-tile, .ds-facts, .ds-score-ring, .ds-route, .ds-dropzone, .ds-article, .ds-map-legend."
+    ],
+    "reason": "Prototype audit: patterns used across the product with no design-system definition.",
+    "affected": [
+      "Components",
+      "Icons",
+      "styles.css"
+    ]
+  },
   {
     "version": "v4.5.1",
     "dateISO": "2026-11-28T15:30:00Z",
@@ -3543,7 +3570,11 @@ const I = {
   arrowRight: "M5 12h14m-7-7 7 7-7 7",
   more: "M5 12h.01M12 12h.01M19 12h.01",
   eye: "M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
-  flag: "M4 21V4m0 0h12l-2 4 2 4H4"
+  flag: "M4 21V4m0 0h12l-2 4 2 4H4",
+  fileText: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v4a2 2 0 0 0 2 2h4M10 9H8M16 13H8M16 17H8",
+  container: "M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5ZM10 21.9V14L2.1 9.1M10 14l11.9-6.9M14 19.8v-8.1M18 17.5V9.4",
+  upload: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12",
+  bookmark: "m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"
 };
 const Icon = ({
   d,
@@ -9179,7 +9210,338 @@ const PaginationBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
 }, "tablet")), /*#__PURE__*/React.createElement("td", null, "Single row, compact: count on left, prev / page-of-total / next on right"), /*#__PURE__*/React.createElement("td", null, "36 \xD7 36 px"), /*#__PURE__*/React.createElement("td", null, "Current only")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", null, "\u2265 1024px"), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
   className: "t-caption"
 }, "desktop")), /*#__PURE__*/React.createElement("td", null, "Full numbered list with ellipsis + rows-per-page selector"), /*#__PURE__*/React.createElement("td", null, "32 \xD7 32 px"), /*#__PURE__*/React.createElement("td", null, "Up to 7 + ellipsis"))))))));
-const ComponentsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ButtonsBlock, null), /*#__PURE__*/React.createElement(FormsBlock, null), /*#__PURE__*/React.createElement(BadgesBlock, null), /*#__PURE__*/React.createElement(AlertsBlock, null), /*#__PURE__*/React.createElement(CardsBlock, null), /*#__PURE__*/React.createElement(MetricCardsBlock, null), /*#__PURE__*/React.createElement(TablesBlock, null), /*#__PURE__*/React.createElement(NavTabsBlock, null), /*#__PURE__*/React.createElement(OverlayBlock, null), /*#__PURE__*/React.createElement(LoadingBlock, null), /*#__PURE__*/React.createElement(PaginationBlock, null));
+
+/* ══ v4.5.0 components ══════════════════════════════════════════════ */
+const ScoreRing = ({
+  value,
+  size = "lg",
+  year,
+  delta
+}) => {
+  const d = size === "lg" ? 120 : 64,
+    sw = size === "lg" ? 11 : 7,
+    r = (d - sw) / 2,
+    c = 2 * Math.PI * r;
+  const band = value <= 25 ? "good" : value <= 50 ? "average" : "poor";
+  return /*#__PURE__*/React.createElement("div", {
+    className: `ds-score-ring ds-score-ring--${size}`
+  }, year && /*#__PURE__*/React.createElement("span", {
+    className: "ds-score-ring-year"
+  }, year), /*#__PURE__*/React.createElement("svg", {
+    width: d,
+    height: d,
+    viewBox: `0 0 ${d} ${d}`,
+    role: "img",
+    "aria-label": `Risk score ${value} of 100, ${band === "poor" ? "below average" : band}`
+  }, /*#__PURE__*/React.createElement("circle", {
+    cx: d / 2,
+    cy: d / 2,
+    r: r,
+    fill: "none",
+    stroke: "var(--slate-150)",
+    strokeWidth: sw
+  }), /*#__PURE__*/React.createElement("circle", {
+    cx: d / 2,
+    cy: d / 2,
+    r: r,
+    fill: "none",
+    className: `ds-score-ring-arc is-${band}`,
+    strokeWidth: sw,
+    strokeLinecap: "round",
+    strokeDasharray: `${Math.max(0.04, value / 100) * c} ${c}`,
+    transform: `rotate(-90 ${d / 2} ${d / 2})`
+  }), /*#__PURE__*/React.createElement("text", {
+    x: "50%",
+    y: "50%",
+    dominantBaseline: "central",
+    textAnchor: "middle",
+    className: "ds-score-ring-value"
+  }, value)), delta && /*#__PURE__*/React.createElement("span", {
+    className: "ds-score-ring-delta"
+  }, delta));
+};
+const TilesBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
+  id: "c-tiles",
+  name: "Domain & feature tiles",
+  purpose: "Dashboard entry points. A domain tile summarises one line of business; a feature tile opens a module. A module the organisation has not licensed shows the locked state instead of disappearing.",
+  variants: /*#__PURE__*/React.createElement(React.Fragment, null, "domain tile \xB7 feature tile \xB7 feature tile locked"),
+  states: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 hover (card-shadow-hover) \xB7 focus (shadow-focus) \xB7 locked (not interactive)"),
+  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Domain tile 275 \xD7 199, feature tile 275 \xD7 143, both ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "radius-xl"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "card-shadow-rest"), ", padding ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "space-5"), ". Icon, title and value use ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "brand-700"), ". Locked: ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "slate-050"), ", no shadow, muted text, ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "aria-disabled=\"true\""), ", and the message \u201CNot available to your organization\u201D.")
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 12,
+    flexWrap: "wrap"
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile",
+  tabIndex: 0
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile-head"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.ship,
+  size: 40
+}), /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile-title"
+}, "Marine"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile-value"
+}, "$1.8B")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile-foot"
+}, /*#__PURE__*/React.createElement("span", null, "Assets ", /*#__PURE__*/React.createElement("strong", null, "1,247")), /*#__PURE__*/React.createElement("span", null, "Portfolios ", /*#__PURE__*/React.createElement("strong", null, "8")))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-feature-tile",
+  tabIndex: 0
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.fileText,
+  size: 28
+}), /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile-title ds-tile-title--sm"
+}, "Reports"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile-foot"
+}, /*#__PURE__*/React.createElement("span", null, "Weekly ", /*#__PURE__*/React.createElement("strong", null, "24")), /*#__PURE__*/React.createElement("span", null, "Custom ", /*#__PURE__*/React.createElement("strong", null, "8")))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-feature-tile is-locked",
+  "aria-disabled": "true"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.container,
+  size: 28
+}), /*#__PURE__*/React.createElement("div", {
+  className: "ds-tile-title ds-tile-title--sm"
+}, "Cargo"), /*#__PURE__*/React.createElement("div", {
+  className: "t-caption"
+}, "Not available to your organization"))));
+const FactListBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
+  id: "c-facts",
+  name: "Fact list",
+  purpose: "Label\u2013value pairs for an asset's properties on detail pages. One uniform layout so facts are easy to scan and compare.",
+  variants: /*#__PURE__*/React.createElement(React.Fragment, null, "one column \xB7 two columns"),
+  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Semantic ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "<dl>"), ". Label 13px ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "text-muted"), "; value 13px ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "text-primary"), ", right-aligned; rows 5px top and bottom with a ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "border-subtle"), " rule. Missing values show \u201C\u2014\u201D, never an empty cell. Status values use their badge or status dot; flags use the flag chip.")
+}, /*#__PURE__*/React.createElement("dl", {
+  className: "ds-facts ds-facts--2col"
+}, [["Name", /*#__PURE__*/React.createElement("strong", null, "FRESH BREEZE")], ["Ship builder", "Hyundai Heavy Industries"], ["Flag", "Spain"], ["Length (m)", "274.0"], ["IMO", "9419265"], ["Deadweight", "158,000 t"], ["Call sign", "EAVP"], ["TEU", "—"]].map(([k, v]) => /*#__PURE__*/React.createElement("div", {
+  className: "ds-fact",
+  key: k
+}, /*#__PURE__*/React.createElement("dt", null, k), /*#__PURE__*/React.createElement("dd", null, v)))));
+const ScoreRingBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
+  id: "c-score-ring",
+  name: "Score ring",
+  purpose: "Shows a 0\u2013100 risk score at a glance, with the year and the change from the previous period. Colour comes from the risk score bands.",
+  variants: /*#__PURE__*/React.createElement(React.Fragment, null, "large (120px, current period) \xB7 small (64px, previous periods)"),
+  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Arc colour follows the ", /*#__PURE__*/React.createElement("strong", null, "Risk score bands"), " (Asset identity & status): \u226425 success, \u226450 warning, >50 danger. Track ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "slate-150"), ". Value in Exo bold. Always pair with the band legend on first use on a page. The SVG has an accessible name: \u201CRisk score 24 of 100, good\u201D.")
+}, /*#__PURE__*/React.createElement("div", {
+  style: {
+    display: "flex",
+    gap: 24,
+    alignItems: "flex-end",
+    flexWrap: "wrap"
+  }
+}, /*#__PURE__*/React.createElement(ScoreRing, {
+  value: 24,
+  year: "2026",
+  delta: "\u22128"
+}), /*#__PURE__*/React.createElement(ScoreRing, {
+  value: 32,
+  size: "sm",
+  year: "2025",
+  delta: "+26"
+}), /*#__PURE__*/React.createElement(ScoreRing, {
+  value: 6,
+  size: "sm",
+  year: "2024",
+  delta: "+2"
+}), /*#__PURE__*/React.createElement(ScoreRing, {
+  value: 68,
+  size: "sm",
+  year: "Example"
+})));
+const RouteCardBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
+  id: "c-route",
+  name: "Route card",
+  purpose: "A voyage from departure to destination: ports, times, draught, distance and current state.",
+  variants: /*#__PURE__*/React.createElement(React.Fragment, null, "in progress \xB7 arrived (destination shows arrival time)"),
+  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Departure box ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "bg-sunken"), " / ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "border-default"), "; destination box ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "brand-050"), " / ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "brand-200"), ", both ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "radius-lg"), ". Port names 14px bold; times in UTC, tabular. A dashed connector carries distance and navigational status. Labels are uppercase ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "t-overline"), ".")
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-route",
+  style: {
+    maxWidth: 300
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-route-port"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-route-label"
+}, "Departure port"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-route-name"
+}, "Singapore"), /*#__PURE__*/React.createElement("div", {
+  className: "t-caption"
+}, "Arr 2025-12-28 11:00 \xB7 12.4 m"), /*#__PURE__*/React.createElement("div", {
+  className: "t-caption"
+}, "Dep 2025-12-30 18:30 \xB7 12.2 m")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-route-leg"
+}, /*#__PURE__*/React.createElement("span", null, "3,031 nm"), /*#__PURE__*/React.createElement("span", null, "Underway using engine")), /*#__PURE__*/React.createElement("div", {
+  className: "ds-route-port is-destination"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-route-label"
+}, "Destination port"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-route-name"
+}, "Hamburg"))));
+const DropzoneBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
+  id: "c-dropzone",
+  name: "Upload drop zone",
+  purpose: "Lets users drag a file in or browse for one, with the accepted format stated up front.",
+  states: /*#__PURE__*/React.createElement(React.Fragment, null, "default \xB7 drag-over (brand-100, brand-500 border) \xB7 uploading (progress) \xB7 error (danger border + message)"),
+  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Dashed 1.5px ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "brand-300"), " border on ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "brand-050"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "radius-lg"), ". Always offer a \u201CBrowse files\u201D button: drag and drop alone is not keyboard-accessible (WCAG 2.1.1). State accepted types and size limits in plain words. Errors name the problem and the fix.")
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-dropzone"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "ds-dropzone-icon"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.upload,
+  size: 20
+})), /*#__PURE__*/React.createElement("div", {
+  className: "t-body-sm",
+  style: {
+    color: "var(--text-secondary)",
+    maxWidth: 380
+  }
+}, "Upload an underwriting declarations workbook; every vessel is screened against AIS."), /*#__PURE__*/React.createElement("strong", {
+  style: {
+    fontSize: 13
+  }
+}, "Drag & drop your .xlsx file here"), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, "or"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-btn ds-btn--primary ds-btn--sm"
+}, "Browse files"), /*#__PURE__*/React.createElement("span", {
+  className: "t-caption"
+}, "Supports .xlsx files only")));
+const ArticleCardBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
+  id: "c-article",
+  name: "Article card",
+  purpose: "A news item from trade press: category, headline, excerpt, source and age.",
+  variants: /*#__PURE__*/React.createElement(React.Fragment, null, "standard \xB7 featured (wider, larger headline)"),
+  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Banner uses the category colour (Marine ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "chart-cat-6"), ", Property ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "chart-cat-4"), ", Aviation ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "info-500"), ", Offshore ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "chart-cat-3"), ") with a white icon and a category tag. Headline Exo 16/600; excerpt clamps to 3 lines. The whole card is one link; the bookmark is a separate button with an accessible name.")
+}, /*#__PURE__*/React.createElement("article", {
+  className: "ds-article",
+  style: {
+    maxWidth: 320
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-article-banner",
+  style: {
+    background: "var(--chart-cat-6)"
+  }
+}, /*#__PURE__*/React.createElement("span", {
+  className: "ds-article-icon"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.ship,
+  size: 40
+})), /*#__PURE__*/React.createElement("span", {
+  className: "ds-article-tag",
+  style: {
+    color: "var(--chart-cat-6)"
+  }
+}, "MARINE"), /*#__PURE__*/React.createElement("button", {
+  className: "ds-article-bookmark",
+  "aria-label": "Bookmark article"
+}, /*#__PURE__*/React.createElement(Icon, {
+  d: I.bookmark,
+  size: 13
+}))), /*#__PURE__*/React.createElement("div", {
+  className: "ds-article-body"
+}, /*#__PURE__*/React.createElement("h4", {
+  className: "ds-article-title"
+}, "Red Sea attacks push hull war premiums to multi-decade highs"), /*#__PURE__*/React.createElement("p", {
+  className: "ds-article-excerpt"
+}, "Underwriters are quoting additional war-risk premiums on Bab el-Mandeb voyages at levels not seen since the Iran-Iraq tanker war."), /*#__PURE__*/React.createElement("div", {
+  className: "ds-article-foot"
+}, /*#__PURE__*/React.createElement("span", null, "Lloyd\u2019s List"), /*#__PURE__*/React.createElement("span", null, "2h ago")))));
+const MapLegendBlock = () => /*#__PURE__*/React.createElement(ComponentBlock, {
+  id: "c-map-legend",
+  name: "Map legend",
+  purpose: "Explains the symbols on a map: storm tracks, forecast cones, markers and region fills.",
+  rules: /*#__PURE__*/React.createElement(React.Fragment, null, "White panel, ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "border-default"), ", ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "radius-md"), ", bottom-left over the map, inside the map's padding so nothing is clipped. Title ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "t-overline"), "; one row per symbol, swatch 18px wide, label ", /*#__PURE__*/React.createElement("code", {
+    className: "inline"
+  }, "t-caption"), ". Forecast cone: brand-500 at 35% opacity; past track brand-300; forecast track slate-600 dashed; current position danger-500 dot.")
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-map-legend"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "ds-map-legend-title"
+}, "Track legend"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-map-legend-row"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "ds-swatch ds-swatch--dot",
+  style: {
+    background: "var(--danger-500)"
+  }
+}), "Current position"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-map-legend-row"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "ds-swatch",
+  style: {
+    background: "var(--brand-300)"
+  }
+}), "Past track"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-map-legend-row"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "ds-swatch ds-swatch--dashed"
+}), "Forecast track"), /*#__PURE__*/React.createElement("div", {
+  className: "ds-map-legend-row"
+}, /*#__PURE__*/React.createElement("span", {
+  className: "ds-swatch ds-swatch--area"
+}), "Forecast cone")));
+const ComponentsSection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ButtonsBlock, null), /*#__PURE__*/React.createElement(FormsBlock, null), /*#__PURE__*/React.createElement(BadgesBlock, null), /*#__PURE__*/React.createElement(AlertsBlock, null), /*#__PURE__*/React.createElement(CardsBlock, null), /*#__PURE__*/React.createElement(MetricCardsBlock, null), /*#__PURE__*/React.createElement(TilesBlock, null), /*#__PURE__*/React.createElement(FactListBlock, null), /*#__PURE__*/React.createElement(ScoreRingBlock, null), /*#__PURE__*/React.createElement(RouteCardBlock, null), /*#__PURE__*/React.createElement(TablesBlock, null), /*#__PURE__*/React.createElement(NavTabsBlock, null), /*#__PURE__*/React.createElement(OverlayBlock, null), /*#__PURE__*/React.createElement(LoadingBlock, null), /*#__PURE__*/React.createElement(PaginationBlock, null), /*#__PURE__*/React.createElement(DropzoneBlock, null), /*#__PURE__*/React.createElement(ArticleCardBlock, null), /*#__PURE__*/React.createElement(MapLegendBlock, null));
 window.ComponentsSection = ComponentsSection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-components.jsx", error: String((e && e.message) || e) }); }
 
