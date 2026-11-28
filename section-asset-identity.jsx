@@ -267,8 +267,8 @@ const RiskBandSection = () => (
         <span className="ds-badge ds-badge--critical ds-badge--dot">Critical</span>
       </div>
       <div className="panel-foot">
-        Product alignment needed (audit 28 Nov 2026): All Portfolios and Weekly Fleet Report colour scores at ≤10 / ≤25; Company Details and Reports at &lt;40 / &lt;75; Regions,
-        Marine Region Details and Offshore Region Details show Critical in purple. All should follow the bands above.
+        Product aligned 28 Nov 2026 (Real World commit 163578f): All Portfolios, Weekly Fleet Report and Company Details now use these bands (Reports already did);
+        Regions, Marine Region Details and Offshore Region Details show Critical in danger-800 instead of purple.
       </div>
     </div>
   </div>
@@ -437,8 +437,8 @@ const StatusVocabSection = () => (
     </table>
     <div className="panel" style={{ marginTop: 12 }}>
       <div className="panel-foot">
-        Product alignment needed (audit 28 Nov 2026): hurricanes and storms show <em>Active</em> in red (use <em>Ongoing</em>); <em>Inactive</em> organisations are red (use neutral);
-        CAT 4 uses orange (use danger); company types (Energy amber, Investment green) and access modules (Weather green, Risk amber) use status colours (use neutral).
+        Product aligned 28 Nov 2026 (Real World commit 163578f): hazards say <em>Ongoing</em> (Offshore, Property, Weather, Weather Event Details); <em>Inactive</em> is neutral;
+        hurricane categories follow CAT 1–3 warning / CAT 4–5 danger with storm types neutral; company-type and access badges are neutral.
       </div>
     </div>
   </div>

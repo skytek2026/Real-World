@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"713ec0e85aef","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"125e3620d3a2","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"5936b626be34","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"4d4c9ca834fe","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"0a4215cbd1f7","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"6299932249cb","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"8082c6dc211a","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"5936b626be34","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"4d4c9ca834fe","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"0a4215cbd1f7","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,26 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.5.1",
+    "dateISO": "2026-11-28T15:30:00Z",
+    "date": "28/11/2026",
+    "time": "15:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Rules",
+    "impact": "Patch",
+    "summary": "The Real World product now follows the v4.5.0 risk and status rules; the alignment notes are updated.",
+    "changes": [
+      "Risk score bands applied in All Portfolios, Weekly Fleet Report (labels Good / Average / Below average) and Company Details; Reports' amber fill corrected to warning-500.",
+      "Critical risk level is danger-800 (not purple) on Regions, Marine Region Details and Offshore Region Details.",
+      "Hazards say Ongoing (danger) instead of Active on Offshore, Property, Weather and Weather Event Details; Inactive is neutral; CAT 4–5 danger, CAT 1–3 warning, storm types neutral; company-type and access badges neutral.",
+      "Real World commit 163578f; rendered colours verified on 8 pages."
+    ],
+    "reason": "Bring the product into line with the rules added in v4.5.0.",
+    "affected": [
+      "Asset identity & status"
+    ]
+  },
   {
     "version": "v4.5.0",
     "dateISO": "2026-11-28T14:00:00Z",
@@ -4945,7 +4965,7 @@ const RiskBandSection = () => /*#__PURE__*/React.createElement("div", {
   className: "ds-badge ds-badge--critical ds-badge--dot"
 }, "Critical")), /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
-}, "Product alignment needed (audit 28 Nov 2026): All Portfolios and Weekly Fleet Report colour scores at \u226410 / \u226425; Company Details and Reports at <40 / <75; Regions, Marine Region Details and Offshore Region Details show Critical in purple. All should follow the bands above.")));
+}, "Product aligned 28 Nov 2026 (Real World commit 163578f): All Portfolios, Weekly Fleet Report and Company Details now use these bands (Reports already did); Regions, Marine Region Details and Offshore Region Details show Critical in danger-800 instead of purple.")));
 
 /* ── Event / alert-type color coding ──────────────────────────────── */
 
@@ -5133,7 +5153,7 @@ const StatusVocabSection = () => /*#__PURE__*/React.createElement("div", {
   }
 }, /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
-}, "Product alignment needed (audit 28 Nov 2026): hurricanes and storms show ", /*#__PURE__*/React.createElement("em", null, "Active"), " in red (use ", /*#__PURE__*/React.createElement("em", null, "Ongoing"), "); ", /*#__PURE__*/React.createElement("em", null, "Inactive"), " organisations are red (use neutral); CAT 4 uses orange (use danger); company types (Energy amber, Investment green) and access modules (Weather green, Risk amber) use status colours (use neutral).")));
+}, "Product aligned 28 Nov 2026 (Real World commit 163578f): hazards say ", /*#__PURE__*/React.createElement("em", null, "Ongoing"), " (Offshore, Property, Weather, Weather Event Details); ", /*#__PURE__*/React.createElement("em", null, "Inactive"), " is neutral; hurricane categories follow CAT 1\u20133 warning / CAT 4\u20135 danger with storm types neutral; company-type and access badges are neutral.")));
 const AssetIdentitySection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FlagSection, null), /*#__PURE__*/React.createElement(IdentitySection, null), /*#__PURE__*/React.createElement(StatusSection, null), /*#__PURE__*/React.createElement(SeveritySection, null), /*#__PURE__*/React.createElement(RiskBandSection, null), /*#__PURE__*/React.createElement(EventTypeSection, null), /*#__PURE__*/React.createElement(SanctionSection, null), /*#__PURE__*/React.createElement(StatusVocabSection, null));
 window.AssetIdentitySection = AssetIdentitySection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-asset-identity.jsx", error: String((e && e.message) || e) }); }

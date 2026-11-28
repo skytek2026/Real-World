@@ -38,6 +38,26 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.5.1",
+    "dateISO": "2026-11-28T15:30:00Z",
+    "date": "28/11/2026",
+    "time": "15:30 UTC",
+    "updatedBy": "Claude",
+    "category": "Rules",
+    "impact": "Patch",
+    "summary": "The Real World product now follows the v4.5.0 risk and status rules; the alignment notes are updated.",
+    "changes": [
+      "Risk score bands applied in All Portfolios, Weekly Fleet Report (labels Good / Average / Below average) and Company Details; Reports' amber fill corrected to warning-500.",
+      "Critical risk level is danger-800 (not purple) on Regions, Marine Region Details and Offshore Region Details.",
+      "Hazards say Ongoing (danger) instead of Active on Offshore, Property, Weather and Weather Event Details; Inactive is neutral; CAT 4–5 danger, CAT 1–3 warning, storm types neutral; company-type and access badges neutral.",
+      "Real World commit 163578f; rendered colours verified on 8 pages."
+    ],
+    "reason": "Bring the product into line with the rules added in v4.5.0.",
+    "affected": [
+      "Asset identity & status"
+    ]
+  },
+  {
     "version": "v4.5.0",
     "dateISO": "2026-11-28T14:00:00Z",
     "date": "28/11/2026",
