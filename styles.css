@@ -293,7 +293,7 @@
   --scrollbar-track:       var(--slate-100);   /* light grey */
   --scrollbar-thumb:       var(--brand-500);   /* theme color */
   --scrollbar-thumb-hover: var(--brand-600);   /* darker on hover */
-  --scroll-offset:         64px;   /* v4.4.0: sticky top bar (48px) + 16px; scroll-padding for anchors and focus */
+  --scroll-offset:         72px;   /* v4.4.2: sticky top bar (56px) + 16px; scroll-padding for anchors and focus */
   /* ---- consolidated from a later :root block ---- */
   /* Chart palette: categorical (ordered, color-blind safe) */
   --chart-cat-1: var(--brand-600);   /* brand blue (brand-600) */

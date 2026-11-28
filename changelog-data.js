@@ -38,6 +38,27 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.4.2",
+    "dateISO": "2026-11-28T12:00:00Z",
+    "date": "28/11/2026",
+    "time": "12:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Layout",
+    "impact": "Patch",
+    "summary": "App shell corrected to match the product: 56px icon rail (expands to 212px with labels) and a 56px top bar; --scroll-offset 64px → 72px.",
+    "changes": [
+      "Layout system: the shell is a 56px icon-only rail by default, expanding to 212px with labels from the menu button (content shifts, the rail never overlays it), and a 56px top utility bar. Previously documented as a 220px rail and a 48px bar.",
+      "--scroll-offset 64px → 72px (top bar 56 + 16), so anchors and focused fields clear the real top bar (stylesheet, tokens.json, Scrolling table, manifest).",
+      "Audit note: the 'Sanctioned' example in Apply uses a neutral badge for a 0 change, not for the status; Sanctioned remains danger everywhere. No change needed."
+    ],
+    "reason": "Prototype vs design-system audit: the documented shell (220 / 48) did not match the product (56 / 212 expanded, 56), and the scroll offset was derived from the wrong bar height.",
+    "affected": [
+      "Layout system",
+      "Scrolling & overflow",
+      "Tokens"
+    ]
+  },
+  {
     "version": "v4.4.1",
     "dateISO": "2026-11-28T00:30:00Z",
     "date": "28/11/2026",

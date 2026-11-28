@@ -4,10 +4,10 @@ const LayoutSection = () => (
   <>
     <div className="subsection">
       <h3 className="subsection-title">App shell</h3>
-      <p className="subsection-desc">A persistent left rail (220px), a top utility bar (48px), and a content region. The shell never scrolls; only the content region scrolls.</p>
+      <p className="subsection-desc">A persistent left rail: 56px with icons only by default, expanding to 212px with labels from the menu button (the content region shifts; the rail never overlays it). A 56px top utility bar, and a content region. The shell never scrolls; only the content region scrolls.</p>
       <div className="surface" style={{ padding: 0 }}>
         <div className="surface-toolbar"><span className="dot r"/><span className="dot y"/><span className="dot g"/><span style={{ marginLeft: 8 }}>app shell · 1280px</span></div>
-        <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", height: 420, background: "var(--bg-app)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "212px 1fr", height: 420, background: "var(--bg-app)" }}>
           <div className="ds-sidebar" style={{ width: "100%", padding: "12px 0" }}>
             <div style={{ padding: "0 16px 16px", display: "flex", alignItems: "center", gap: 8, borderBottom: "1px solid var(--border-subtle)" }}>
               <div className="app-nav-brand-mark" style={{ width: 22, height: 22, fontSize: 11 }}>S</div>
@@ -22,7 +22,7 @@ const LayoutSection = () => (
             <div style={{ padding: "12px 0 4px 20px", fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Account</div>
             <a className="ds-sidebar-item"><Icon d={I.settings} /> Settings</a>
           </div>
-          <div style={{ display: "grid", gridTemplateRows: "48px 1fr", minWidth: 0 }}>
+          <div style={{ display: "grid", gridTemplateRows: "56px 1fr", minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "0 16px", background: "white", borderBottom: "1px solid var(--border-default)" }}>
               <div style={{ position: "relative", flex: 1, maxWidth: 320 }}>
                 <input className="ds-input" placeholder="Search vessels, regions…" style={{ paddingLeft: 28 }} />

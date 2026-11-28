@@ -764,7 +764,7 @@ html, .ds-scroll, [data-scroll] {
         <div>
           <div className="t-label" style={{ marginBottom: 8 }}>Tokens</div>
           <div className="panel">
-            {[["--scrollbar-size","6px","Bar thickness"],["--scroll-offset","64px","Top bar (48) + 16: scroll-padding for anchors and focus"],["--popover-max-height","—","Menus and popovers scroll inside this height"]].map(([t, v, w]) => (
+            {[["--scrollbar-size","6px","Bar thickness"],["--scroll-offset","72px","Top bar (56) + 16: scroll-padding for anchors and focus"],["--popover-max-height","—","Menus and popovers scroll inside this height"]].map(([t, v, w]) => (
               <div key={t} className="token-row" style={{ gridTemplateColumns: "200px 80px 1fr" }}><code>{t}</code><span className="t-mono" style={{ color: "var(--brand-700)" }}>{v}</span><span className="t-caption">{w}</span></div>
             ))}
           </div>

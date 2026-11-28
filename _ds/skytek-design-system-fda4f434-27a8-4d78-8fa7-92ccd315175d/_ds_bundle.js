@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"c82bea1ad30c","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"9bd622491ae9","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"8618928fd0a1","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"c3c08e761160","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"991bc2ffba91","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"9bd622491ae9","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"4d4c9ca834fe","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"ac2944bd0ef9","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,27 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.4.2",
+    "dateISO": "2026-11-28T12:00:00Z",
+    "date": "28/11/2026",
+    "time": "12:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Layout",
+    "impact": "Patch",
+    "summary": "App shell corrected to match the product: 56px icon rail (expands to 212px with labels) and a 56px top bar; --scroll-offset 64px → 72px.",
+    "changes": [
+      "Layout system: the shell is a 56px icon-only rail by default, expanding to 212px with labels from the menu button (content shifts, the rail never overlays it), and a 56px top utility bar. Previously documented as a 220px rail and a 48px bar.",
+      "--scroll-offset 64px → 72px (top bar 56 + 16), so anchors and focused fields clear the real top bar (stylesheet, tokens.json, Scrolling table, manifest).",
+      "Audit note: the 'Sanctioned' example in Apply uses a neutral badge for a 0 change, not for the status; Sanctioned remains danger everywhere. No change needed."
+    ],
+    "reason": "Prototype vs design-system audit: the documented shell (220 / 48) did not match the product (56 / 212 expanded, 56), and the scroll offset was derived from the wrong bar height.",
+    "affected": [
+      "Layout system",
+      "Scrolling & overflow",
+      "Tokens"
+    ]
+  },
   {
     "version": "v4.4.1",
     "dateISO": "2026-11-28T00:30:00Z",
@@ -17072,7 +17093,7 @@ html, .ds-scroll, [data-scroll] {
   }
 }, "Tokens"), /*#__PURE__*/React.createElement("div", {
   className: "panel"
-}, [["--scrollbar-size", "6px", "Bar thickness"], ["--scroll-offset", "64px", "Top bar (48) + 16: scroll-padding for anchors and focus"], ["--popover-max-height", "—", "Menus and popovers scroll inside this height"]].map(([t, v, w]) => /*#__PURE__*/React.createElement("div", {
+}, [["--scrollbar-size", "6px", "Bar thickness"], ["--scroll-offset", "72px", "Top bar (56) + 16: scroll-padding for anchors and focus"], ["--popover-max-height", "—", "Menus and popovers scroll inside this height"]].map(([t, v, w]) => /*#__PURE__*/React.createElement("div", {
   key: t,
   className: "token-row",
   style: {
@@ -17506,7 +17527,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
   className: "subsection-title"
 }, "App shell"), /*#__PURE__*/React.createElement("p", {
   className: "subsection-desc"
-}, "A persistent left rail (220px), a top utility bar (48px), and a content region. The shell never scrolls; only the content region scrolls."), /*#__PURE__*/React.createElement("div", {
+}, "A persistent left rail: 56px with icons only by default, expanding to 212px with labels from the menu button (the content region shifts; the rail never overlays it). A 56px top utility bar, and a content region. The shell never scrolls; only the content region scrolls."), /*#__PURE__*/React.createElement("div", {
   className: "surface",
   style: {
     padding: 0
@@ -17526,7 +17547,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }, "app shell \xB7 1280px")), /*#__PURE__*/React.createElement("div", {
   style: {
     display: "grid",
-    gridTemplateColumns: "220px 1fr",
+    gridTemplateColumns: "212px 1fr",
     height: 420,
     background: "var(--bg-app)"
   }
@@ -17599,7 +17620,7 @@ const LayoutSection = () => /*#__PURE__*/React.createElement(React.Fragment, nul
 }), " Settings")), /*#__PURE__*/React.createElement("div", {
   style: {
     display: "grid",
-    gridTemplateRows: "48px 1fr",
+    gridTemplateRows: "56px 1fr",
     minWidth: 0
   }
 }, /*#__PURE__*/React.createElement("div", {

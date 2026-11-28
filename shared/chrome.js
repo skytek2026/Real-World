@@ -42,7 +42,7 @@
       .bg-ink-100.text-ink-500, .bg-ink-100 > .text-ink-500, [style*="background:#eff6ff"] [style*="color:#6b7280"], [style*="background:#eff6ff"] .text-ink-500 { color: #4B5563 !important; }   /* muted text on grey / tinted surfaces: ink-600 */
       .ds-btn { white-space: nowrap; }
       /* DS v4.4.0 Scrolling & overflow */
-      :root { --scrollbar-size:6px; --scrollbar-thumb:#1a92d1; --scrollbar-thumb-hover:#1485c5; --scrollbar-track:#f3f4f6; --scroll-offset:64px; }
+      :root { --scrollbar-size:6px; --scrollbar-thumb:#1a92d1; --scrollbar-thumb-hover:#1485c5; --scrollbar-track:#f3f4f6; --scroll-offset:72px; } /* DS v4.4.2: top bar 56px + 16px */
       html { scroll-padding-top: var(--scroll-offset); }
       .ds-scroll-y { overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; scrollbar-gutter:stable; }
       .ds-scroll-x { overflow-x:auto; overflow-y:hidden; overscroll-behavior-x:contain; }
