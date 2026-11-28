@@ -518,6 +518,7 @@ const NavTabsBlock = () => {
     id="c-tabs"
     name="Tabs, Breadcrumbs & Page header"
     purpose="Top-of-page navigation primitives. Tabs switch views within a single resource; breadcrumbs show hierarchy."
+    rules={<>Tabs are <code className="inline">34px</code>: 13px / 600 labels, padding 8px 20px. An icon goes <em>before</em> the label at 14px and takes the label colour. A count or score badge goes <em>after</em> the label as <code className="inline">.ds-tab-badge</code> (11px / 14px, padding 2px 6px = 18px), so it never stretches the tab; it keeps its own tone on the selected pill. One badge per tab at most.</>}
   >
     <div className="ds-card">
       <div style={{ padding: "16px 20px 0", display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "var(--text-muted)" }}>

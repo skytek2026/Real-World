@@ -38,6 +38,31 @@
 
 window.CHANGELOG_ENTRIES = [
   {
+    "version": "v4.5.0",
+    "dateISO": "2026-11-28T14:00:00Z",
+    "date": "28/11/2026",
+    "time": "14:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Rules",
+    "impact": "Minor",
+    "summary": "New rules from the prototype audit: one risk-score scale, a risk-level scale, a status vocabulary, tab badge and icon sizing, and the skip link.",
+    "changes": [
+      "Asset identity & status → Risk score bands: Good 0–25 (success), Average 26–50 (warning), Below average 51–100 (danger); text .ds-score--good/--average/--poor (700 shades), fills 500.",
+      "Risk level for regions and ports: Low success, Medium warning, High danger, Critical .ds-badge--critical (danger-800), never purple.",
+      "Asset identity & status → Status vocabulary: every status word with one tone; type and category labels use the neutral badge. Recommends Ongoing (not Active) for hazards, neutral for Inactive, CAT 4–5 danger.",
+      "Tabs: 34px; icon before the label at 14px; badge after the label as .ds-tab-badge (18px), one per tab.",
+      "Accessibility: skip link rule (WCAG 2.4.1) and .ds-skip-link class.",
+      "Both new sections list the product pages that still need aligning."
+    ],
+    "reason": "Prototype audit: three different risk-score scales in the product, status words with conflicting tones, and no rule for tab badges (the Vessel Details tab bug).",
+    "affected": [
+      "Asset identity & status",
+      "Tabs",
+      "Accessibility",
+      "styles.css"
+    ]
+  },
+  {
     "version": "v4.4.2",
     "dateISO": "2026-11-28T12:00:00Z",
     "date": "28/11/2026",

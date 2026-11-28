@@ -3488,3 +3488,14 @@ html { scroll-padding-top: var(--scroll-offset); }          /* anchors and focus
 .leaflet-container .leaflet-bottom .leaflet-control { margin-bottom: 12px; }
 .leaflet-container .leaflet-left .leaflet-control { margin-left: 12px; }
 .leaflet-container .leaflet-right .leaflet-control { margin-right: 12px; }
+
+
+/* ── v4.5.0: risk score bands, risk level, tab badge, skip link ───────────────── */
+.ds-score--good    { color: var(--success-700); }
+.ds-score--average { color: var(--warning-700); }
+.ds-score--poor    { color: var(--danger-700); }
+.ds-badge--critical { background: var(--danger-100); color: var(--danger-800); border-color: var(--border-danger); }
+.ds-badge--critical.ds-badge--dot::before { background: var(--danger-800); }
+.ds-tab-badge { display: inline-flex; align-items: center; margin-left: 6px; padding: 2px 6px; border-radius: var(--radius-pill); font-size: 11px; line-height: 14px; font-weight: 700; }
+.ds-skip-link { position: fixed; left: 8px; top: -48px; z-index: var(--z-tooltip); padding: 8px 16px; border-radius: var(--radius-lg); background: var(--brand-500); color: var(--text-on-brand); font: 600 14px/20px var(--font-sans); text-decoration: none; transition: top var(--motion-fast) var(--ease-out); }
+.ds-skip-link:focus { top: 8px; outline: none; box-shadow: var(--shadow-focus); }

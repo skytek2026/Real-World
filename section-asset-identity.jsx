@@ -238,6 +238,42 @@ const SeveritySection = () => (
   </div>
 );
 
+
+/* ── Risk score bands (v4.5.0) ───────────────────────────────────── */
+const RiskBandSection = () => (
+  <div className="subsection">
+    <h3 className="subsection-title">Risk score bands</h3>
+    <p className="subsection-desc" style={{ maxWidth: 820 }}>
+      The 0–100 risk score uses <strong>one scale on every surface</strong>: tables, rings, cards, reports and exports. The bands are the ones users already see in the score legend.
+      Score text uses the 700 shades (4.5:1 on white); rings, bars and dots use the 500 fills.
+    </p>
+    <table className="spec-table">
+      <thead><tr><th>Band</th><th>Score</th><th>Text</th><th>Fill</th><th>Legend label</th></tr></thead>
+      <tbody>
+        <tr><td><strong className="ds-score--good">Good</strong></td><td>0–25</td><td><code className="inline">.ds-score--good</code> · success-700</td><td>success-500</td><td>Good [0 → 25]</td></tr>
+        <tr><td><strong className="ds-score--average">Average</strong></td><td>26–50</td><td><code className="inline">.ds-score--average</code> · warning-700</td><td>warning-500</td><td>Average [25+ → 50]</td></tr>
+        <tr><td><strong className="ds-score--poor">Below average</strong></td><td>51–100</td><td><code className="inline">.ds-score--poor</code> · danger-700</td><td>danger-500</td><td>Below average [50+ → 100]</td></tr>
+      </tbody>
+    </table>
+    <h4 style={{ fontSize: 13, fontWeight: 700, margin: "20px 0 8px" }}>Risk level (regions and ports)</h4>
+    <p className="subsection-desc" style={{ maxWidth: 820 }}>
+      Regions and ports carry a categorical risk level, not a score. It is an ordered scale, so it uses the status ramp; <strong>Critical is dark red, never purple</strong> (purple is the AIS Spoofing event colour).
+    </p>
+    <div className="panel">
+      <div className="panel-body" style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <span className="ds-badge ds-badge--success ds-badge--dot">Low</span>
+        <span className="ds-badge ds-badge--warning ds-badge--dot">Medium</span>
+        <span className="ds-badge ds-badge--danger ds-badge--dot">High</span>
+        <span className="ds-badge ds-badge--critical ds-badge--dot">Critical</span>
+      </div>
+      <div className="panel-foot">
+        Product alignment needed (audit 28 Nov 2026): All Portfolios and Weekly Fleet Report colour scores at ≤10 / ≤25; Company Details and Reports at &lt;40 / &lt;75; Regions,
+        Marine Region Details and Offshore Region Details show Critical in purple. All should follow the bands above.
+      </div>
+    </div>
+  </div>
+);
+
 /* ── Event / alert-type color coding ──────────────────────────────── */
 
 const ALERT_TYPES = [
@@ -366,14 +402,58 @@ const SanctionSection = () => (
 
 /* ── Section export ───────────────────────────────────────────────── */
 
+
+/* ── Status vocabulary (v4.5.0) ──────────────────────────────────── */
+const STATUS_WORDS = [
+  ["Clear (shown as OK)", "success", "Compliance", "Screened, no hit."],
+  ["Warning", "warning", "Compliance", "Watch-list or partial match; needs review."],
+  ["Sanctioned", "danger", "Compliance", "Positive match."],
+  ["Active", "success", "Account · organisation · user", "Enabled and in use. Not used for hazards."],
+  ["Pending", "warning", "Account · invitation", "Waiting on an action."],
+  ["Inactive", "neutral", "Account · organisation", "Switched off. Not a problem state, so never danger."],
+  ["Completed", "success", "Voyage · process", "Finished."],
+  ["Started", "info", "Voyage · process", "In progress."],
+  ["BREACH", "danger", "Voyage flag", "Always paired with the voyage status; never shown alone."],
+  ["Ongoing", "danger", "Hazard event", "Storm, quake or fire still in progress. Replaces \"Active\" on hazards."],
+  ["Monitoring", "warning", "Hazard event · risk area", "Being watched; no current impact."],
+  ["Past", "neutral", "Hazard event", "Over."],
+  ["Level 1 / Level 2–3", "danger / warning", "Advisory (NOTAM)", "Level 1 is the most severe."],
+  ["CAT 1–3 / CAT 4–5", "warning / danger", "Hurricane category", "No orange: the category is a severity, so it uses the status ramp."],
+];
+const StatusVocabSection = () => (
+  <div className="subsection">
+    <h3 className="subsection-title">Status vocabulary</h3>
+    <p className="subsection-desc" style={{ maxWidth: 820 }}>
+      Every status word in the product, with its one tone. A word means one thing: if two surfaces need different tones, they need different words.
+      Labels that name a <em>type or category</em> (company type, access module, weather type) are not status: they use the <strong>neutral</strong> badge, never success, warning or danger.
+    </p>
+    <table className="spec-table">
+      <thead><tr><th>Word</th><th>Tone</th><th>Used for</th><th>Meaning</th></tr></thead>
+      <tbody>
+        {STATUS_WORDS.map(([w, t, u, m]) => (
+          <tr key={w}><td><span className={`ds-badge ds-badge--${t.split(" ")[0]}`}>{w}</span></td><td><code className="inline">{t}</code></td><td>{u}</td><td>{m}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    <div className="panel" style={{ marginTop: 12 }}>
+      <div className="panel-foot">
+        Product alignment needed (audit 28 Nov 2026): hurricanes and storms show <em>Active</em> in red (use <em>Ongoing</em>); <em>Inactive</em> organisations are red (use neutral);
+        CAT 4 uses orange (use danger); company types (Energy amber, Investment green) and access modules (Weather green, Risk amber) use status colours (use neutral).
+      </div>
+    </div>
+  </div>
+);
+
 const AssetIdentitySection = () => (
   <>
     <FlagSection />
     <IdentitySection />
     <StatusSection />
     <SeveritySection />
+    <RiskBandSection />
     <EventTypeSection />
     <SanctionSection />
+    <StatusVocabSection />
   </>
 );
 

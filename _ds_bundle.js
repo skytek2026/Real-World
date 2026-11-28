@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"991bc2ffba91","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"9d2336ef4f75","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"9bd622491ae9","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"4d4c9ca834fe","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"ac2944bd0ef9","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"SkytekDesignSystem_fda4f4","components":[],"sourceHashes":{"app.jsx":"071204816197","changelog-data.js":"713ec0e85aef","charts-lib.jsx":"ca3992d6434e","components/rw-modal-demos.js":"963abccc4df0","components/rw-modal.js":"f0a26e37e953","copy-utilities.js":"73fe93021d23","icons.jsx":"08796654338d","section-apply.jsx":"f5c7bb331aad","section-asset-identity.jsx":"125e3620d3a2","section-buttons-deep.jsx":"d5893d8a7418","section-charts.jsx":"101a8c7962d4","section-components.jsx":"5936b626be34","section-data-primitives.jsx":"993684d50bc3","section-datetime.jsx":"b670893bf5c3","section-domain.jsx":"065a3acdf8b9","section-elevation-usage.jsx":"2f0af26cd3ba","section-elevation.jsx":"6b549c8ef895","section-event-log.jsx":"012e7b2af41b","section-export.jsx":"840faa537898","section-filterdrawer.jsx":"cfed59542120","section-forms-deep.jsx":"84fda37e33d4","section-foundations-meta.jsx":"2bf01b8e630e","section-foundations.jsx":"0b7f773119d7","section-foundations2.jsx":"4d4c9ca834fe","section-handoff.jsx":"73ff7021b531","section-layout-interaction-a11y.jsx":"0a4215cbd1f7","section-modal.jsx":"801dff64b9b0","section-popover.jsx":"14fdf0ef548b","section-states.jsx":"0b7d6ba7a243","section-stewardship.jsx":"243a7753d964","section-toast.jsx":"ad61e0e7b76b","section-token-index.jsx":"c53859c71dbe","section-tooltips.jsx":"3094e504ef07","section-voice.jsx":"781aaeca9d49","tweaks-panel.jsx":"3231aeb591fb"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -774,6 +774,31 @@ try { (() => {
    ============================================================================ */
 
 window.CHANGELOG_ENTRIES = [
+  {
+    "version": "v4.5.0",
+    "dateISO": "2026-11-28T14:00:00Z",
+    "date": "28/11/2026",
+    "time": "14:00 UTC",
+    "updatedBy": "Claude",
+    "category": "Rules",
+    "impact": "Minor",
+    "summary": "New rules from the prototype audit: one risk-score scale, a risk-level scale, a status vocabulary, tab badge and icon sizing, and the skip link.",
+    "changes": [
+      "Asset identity & status → Risk score bands: Good 0–25 (success), Average 26–50 (warning), Below average 51–100 (danger); text .ds-score--good/--average/--poor (700 shades), fills 500.",
+      "Risk level for regions and ports: Low success, Medium warning, High danger, Critical .ds-badge--critical (danger-800), never purple.",
+      "Asset identity & status → Status vocabulary: every status word with one tone; type and category labels use the neutral badge. Recommends Ongoing (not Active) for hazards, neutral for Inactive, CAT 4–5 danger.",
+      "Tabs: 34px; icon before the label at 14px; badge after the label as .ds-tab-badge (18px), one per tab.",
+      "Accessibility: skip link rule (WCAG 2.4.1) and .ds-skip-link class.",
+      "Both new sections list the product pages that still need aligning."
+    ],
+    "reason": "Prototype audit: three different risk-score scales in the product, status words with conflicting tones, and no rule for tab badges (the Vessel Details tab bug).",
+    "affected": [
+      "Asset identity & status",
+      "Tabs",
+      "Accessibility",
+      "styles.css"
+    ]
+  },
   {
     "version": "v4.4.2",
     "dateISO": "2026-11-28T12:00:00Z",
@@ -4866,6 +4891,62 @@ const SeveritySection = () => /*#__PURE__*/React.createElement("div", {
   className: "panel-foot"
 }, "Pair with a count where it aids triage (e.g. a tab badge), but the chip alone must read severity at a glance.")));
 
+/* ── Risk score bands (v4.5.0) ───────────────────────────────────── */
+const RiskBandSection = () => /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Risk score bands"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc",
+  style: {
+    maxWidth: 820
+  }
+}, "The 0\u2013100 risk score uses ", /*#__PURE__*/React.createElement("strong", null, "one scale on every surface"), ": tables, rings, cards, reports and exports. The bands are the ones users already see in the score legend. Score text uses the 700 shades (4.5:1 on white); rings, bars and dots use the 500 fills."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Band"), /*#__PURE__*/React.createElement("th", null, "Score"), /*#__PURE__*/React.createElement("th", null, "Text"), /*#__PURE__*/React.createElement("th", null, "Fill"), /*#__PURE__*/React.createElement("th", null, "Legend label"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", {
+  className: "ds-score--good"
+}, "Good")), /*#__PURE__*/React.createElement("td", null, "0\u201325"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-score--good"), " \xB7 success-700"), /*#__PURE__*/React.createElement("td", null, "success-500"), /*#__PURE__*/React.createElement("td", null, "Good [0 \u2192 25]")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", {
+  className: "ds-score--average"
+}, "Average")), /*#__PURE__*/React.createElement("td", null, "26\u201350"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-score--average"), " \xB7 warning-700"), /*#__PURE__*/React.createElement("td", null, "warning-500"), /*#__PURE__*/React.createElement("td", null, "Average [25+ \u2192 50]")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("strong", {
+  className: "ds-score--poor"
+}, "Below average")), /*#__PURE__*/React.createElement("td", null, "51\u2013100"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, ".ds-score--poor"), " \xB7 danger-700"), /*#__PURE__*/React.createElement("td", null, "danger-500"), /*#__PURE__*/React.createElement("td", null, "Below average [50+ \u2192 100]")))), /*#__PURE__*/React.createElement("h4", {
+  style: {
+    fontSize: 13,
+    fontWeight: 700,
+    margin: "20px 0 8px"
+  }
+}, "Risk level (regions and ports)"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc",
+  style: {
+    maxWidth: 820
+  }
+}, "Regions and ports carry a categorical risk level, not a score. It is an ordered scale, so it uses the status ramp; ", /*#__PURE__*/React.createElement("strong", null, "Critical is dark red, never purple"), " (purple is the AIS Spoofing event colour)."), /*#__PURE__*/React.createElement("div", {
+  className: "panel"
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-body",
+  style: {
+    display: "flex",
+    gap: 8,
+    flexWrap: "wrap"
+  }
+}, /*#__PURE__*/React.createElement("span", {
+  className: "ds-badge ds-badge--success ds-badge--dot"
+}, "Low"), /*#__PURE__*/React.createElement("span", {
+  className: "ds-badge ds-badge--warning ds-badge--dot"
+}, "Medium"), /*#__PURE__*/React.createElement("span", {
+  className: "ds-badge ds-badge--danger ds-badge--dot"
+}, "High"), /*#__PURE__*/React.createElement("span", {
+  className: "ds-badge ds-badge--critical ds-badge--dot"
+}, "Critical")), /*#__PURE__*/React.createElement("div", {
+  className: "panel-foot"
+}, "Product alignment needed (audit 28 Nov 2026): All Portfolios and Weekly Fleet Report colour scores at \u226410 / \u226425; Company Details and Reports at <40 / <75; Regions, Marine Region Details and Offshore Region Details show Critical in purple. All should follow the bands above.")));
+
 /* ── Event / alert-type color coding ──────────────────────────────── */
 
 const ALERT_TYPES = [["Sanctioned", "event-chip--sanctioned", "Positive sanctions match on the asset or a related subject.", "danger token"], ["AIS Silence", "event-chip--ais-silence", "AIS transponder signal lost for a sustained period.", "blue"], ["AIS Spoofing", "event-chip--ais-spoofing", "Reported position contradicts satellite tracking.", "purple"], ["Route Deviation", "event-chip--route-dev", "Vessel departs its filed route.", "warning token"], ["Drifting", "event-chip--drifting", "Stationary or near-zero power for an extended window.", "cyan"], ["Loitering", "event-chip--loitering", "Extended dwell in a sensitive area.", "orange"], ["Name/Flag Change", "event-chip--name-flag", "Identity changed: a classic evasion signal.", "pink"], ["Unusual Movement", "event-chip--unusual", "Erratic course or speed pattern.", "warning token"], ["STS Transfer", "event-chip--sts", "Ship-to-ship transfer detected.", "orange"]];
@@ -5026,7 +5107,34 @@ const SanctionSection = () => /*#__PURE__*/React.createElement("div", {
 
 /* ── Section export ───────────────────────────────────────────────── */
 
-const AssetIdentitySection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FlagSection, null), /*#__PURE__*/React.createElement(IdentitySection, null), /*#__PURE__*/React.createElement(StatusSection, null), /*#__PURE__*/React.createElement(SeveritySection, null), /*#__PURE__*/React.createElement(EventTypeSection, null), /*#__PURE__*/React.createElement(SanctionSection, null));
+/* ── Status vocabulary (v4.5.0) ──────────────────────────────────── */
+const STATUS_WORDS = [["Clear (shown as OK)", "success", "Compliance", "Screened, no hit."], ["Warning", "warning", "Compliance", "Watch-list or partial match; needs review."], ["Sanctioned", "danger", "Compliance", "Positive match."], ["Active", "success", "Account · organisation · user", "Enabled and in use. Not used for hazards."], ["Pending", "warning", "Account · invitation", "Waiting on an action."], ["Inactive", "neutral", "Account · organisation", "Switched off. Not a problem state, so never danger."], ["Completed", "success", "Voyage · process", "Finished."], ["Started", "info", "Voyage · process", "In progress."], ["BREACH", "danger", "Voyage flag", "Always paired with the voyage status; never shown alone."], ["Ongoing", "danger", "Hazard event", "Storm, quake or fire still in progress. Replaces \"Active\" on hazards."], ["Monitoring", "warning", "Hazard event · risk area", "Being watched; no current impact."], ["Past", "neutral", "Hazard event", "Over."], ["Level 1 / Level 2–3", "danger / warning", "Advisory (NOTAM)", "Level 1 is the most severe."], ["CAT 1–3 / CAT 4–5", "warning / danger", "Hurricane category", "No orange: the category is a severity, so it uses the status ramp."]];
+const StatusVocabSection = () => /*#__PURE__*/React.createElement("div", {
+  className: "subsection"
+}, /*#__PURE__*/React.createElement("h3", {
+  className: "subsection-title"
+}, "Status vocabulary"), /*#__PURE__*/React.createElement("p", {
+  className: "subsection-desc",
+  style: {
+    maxWidth: 820
+  }
+}, "Every status word in the product, with its one tone. A word means one thing: if two surfaces need different tones, they need different words. Labels that name a ", /*#__PURE__*/React.createElement("em", null, "type or category"), " (company type, access module, weather type) are not status: they use the ", /*#__PURE__*/React.createElement("strong", null, "neutral"), " badge, never success, warning or danger."), /*#__PURE__*/React.createElement("table", {
+  className: "spec-table"
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Word"), /*#__PURE__*/React.createElement("th", null, "Tone"), /*#__PURE__*/React.createElement("th", null, "Used for"), /*#__PURE__*/React.createElement("th", null, "Meaning"))), /*#__PURE__*/React.createElement("tbody", null, STATUS_WORDS.map(([w, t, u, m]) => /*#__PURE__*/React.createElement("tr", {
+  key: w
+}, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("span", {
+  className: `ds-badge ds-badge--${t.split(" ")[0]}`
+}, w)), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", {
+  className: "inline"
+}, t)), /*#__PURE__*/React.createElement("td", null, u), /*#__PURE__*/React.createElement("td", null, m))))), /*#__PURE__*/React.createElement("div", {
+  className: "panel",
+  style: {
+    marginTop: 12
+  }
+}, /*#__PURE__*/React.createElement("div", {
+  className: "panel-foot"
+}, "Product alignment needed (audit 28 Nov 2026): hurricanes and storms show ", /*#__PURE__*/React.createElement("em", null, "Active"), " in red (use ", /*#__PURE__*/React.createElement("em", null, "Ongoing"), "); ", /*#__PURE__*/React.createElement("em", null, "Inactive"), " organisations are red (use neutral); CAT 4 uses orange (use danger); company types (Energy amber, Investment green) and access modules (Weather green, Risk amber) use status colours (use neutral).")));
+const AssetIdentitySection = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(FlagSection, null), /*#__PURE__*/React.createElement(IdentitySection, null), /*#__PURE__*/React.createElement(StatusSection, null), /*#__PURE__*/React.createElement(SeveritySection, null), /*#__PURE__*/React.createElement(RiskBandSection, null), /*#__PURE__*/React.createElement(EventTypeSection, null), /*#__PURE__*/React.createElement(SanctionSection, null), /*#__PURE__*/React.createElement(StatusVocabSection, null));
 window.AssetIdentitySection = AssetIdentitySection;
 })(); } catch (e) { __ds_ns.__errors.push({ path: "section-asset-identity.jsx", error: String((e && e.message) || e) }); }
 
@@ -8156,7 +8264,12 @@ const NavTabsBlock = () => {
   return /*#__PURE__*/React.createElement(ComponentBlock, {
     id: "c-tabs",
     name: "Tabs, Breadcrumbs & Page header",
-    purpose: "Top-of-page navigation primitives. Tabs switch views within a single resource; breadcrumbs show hierarchy."
+    purpose: "Top-of-page navigation primitives. Tabs switch views within a single resource; breadcrumbs show hierarchy.",
+    rules: /*#__PURE__*/React.createElement(React.Fragment, null, "Tabs are ", /*#__PURE__*/React.createElement("code", {
+      className: "inline"
+    }, "34px"), ": 13px / 600 labels, padding 8px 20px. An icon goes ", /*#__PURE__*/React.createElement("em", null, "before"), " the label at 14px and takes the label colour. A count or score badge goes ", /*#__PURE__*/React.createElement("em", null, "after"), " the label as ", /*#__PURE__*/React.createElement("code", {
+      className: "inline"
+    }, ".ds-tab-badge"), " (11px / 14px, padding 2px 6px = 18px), so it never stretches the tab; it keeps its own tone on the selected pill. One badge per tab at most.")
   }, /*#__PURE__*/React.createElement("div", {
     className: "ds-card"
   }, /*#__PURE__*/React.createElement("div", {
@@ -17860,7 +17973,7 @@ const InteractionSection = () => /*#__PURE__*/React.createElement(React.Fragment
 }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Token"), /*#__PURE__*/React.createElement("th", null, "Duration"), /*#__PURE__*/React.createElement("th", null, "Use"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-instant")), /*#__PURE__*/React.createElement("td", null, "80ms"), /*#__PURE__*/React.createElement("td", null, "Pressed states, checkbox toggles")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-fast")), /*#__PURE__*/React.createElement("td", null, "140ms"), /*#__PURE__*/React.createElement("td", null, "Hover, focus, button color change")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-base")), /*#__PURE__*/React.createElement("td", null, "200ms"), /*#__PURE__*/React.createElement("td", null, "Tooltips, popovers, expand/collapse")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "--motion-slow")), /*#__PURE__*/React.createElement("td", null, "320ms"), /*#__PURE__*/React.createElement("td", null, "Drawer / modal enter & exit"))))));
 const A11ySection = () => /*#__PURE__*/React.createElement("table", {
   className: "spec-table"
-}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified: see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets at least 24 \xD7 24px everywhere; 44 \xD7 44px on touch screens."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.8, 24px); 2.5.5 (44px) is AAA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " is 40px: on touch, extend its hit area to ", /*#__PURE__*/React.createElement("code", null, "--hit-min"), " (44px) with padding or an invisible hit area; primary actions use ", /*#__PURE__*/React.createElement("code", null, "--hit-comfortable"), " (48px); row hit areas span the full row. Form fields are 16px on touch screens so iOS does not zoom.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon, never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
+}, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Rule"), /*#__PURE__*/React.createElement("th", null, "Standard"), /*#__PURE__*/React.createElement("th", null, "How to verify"))), /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Body text contrast \u2265 4.5:1; large text \u2265 3:1."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.3)"), /*#__PURE__*/React.createElement("td", null, "Token contrast verified: see Engineering Handoff > tokens.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "UI control contrast \u2265 3:1 against adjacent surface."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (1.4.11)"), /*#__PURE__*/React.createElement("td", null, "All ", /*#__PURE__*/React.createElement("code", null, "ds-btn--secondary"), " and ", /*#__PURE__*/React.createElement("code", null, "ds-input"), " borders verified \u2265 3:1.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Visible focus on every interactive element."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.4.7)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ":focus-visible"), " applies ", /*#__PURE__*/React.createElement("code", null, "--shadow-focus"), "; never override with ", /*#__PURE__*/React.createElement("code", null, "outline:none"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "A \u201CSkip to main content\u201D link is the first focusable element. It is hidden until focused, then moves focus to the main content region."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.4.1 Bypass Blocks (A)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, ".ds-skip-link"), " \u2192 ", /*#__PURE__*/React.createElement("code", null, "#main-content"), " (the main region, ", /*#__PURE__*/React.createElement("code", null, "tabindex=\"-1\""), ")")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Touch targets at least 24 \xD7 24px everywhere; 44 \xD7 44px on touch screens."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.5.8, 24px); 2.5.5 (44px) is AAA"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-btn--lg"), " is 40px: on touch, extend its hit area to ", /*#__PURE__*/React.createElement("code", null, "--hit-min"), " (44px) with padding or an invisible hit area; primary actions use ", /*#__PURE__*/React.createElement("code", null, "--hit-comfortable"), " (48px); row hit areas span the full row. Form fields are 16px on touch screens so iOS does not zoom.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Inputs always labeled (visible label or ", /*#__PURE__*/React.createElement("code", null, "aria-label"), ")."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "FormItem"), " generates ", /*#__PURE__*/React.createElement("code", null, "htmlFor"), "+", /*#__PURE__*/React.createElement("code", null, "id"), " automatically.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Errors announced via ", /*#__PURE__*/React.createElement("code", null, "aria-invalid"), " + ", /*#__PURE__*/React.createElement("code", null, "aria-describedby"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (3.3.1)"), /*#__PURE__*/React.createElement("td", null, "Inherited from React Hook Form Form primitive.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Tables use proper ", /*#__PURE__*/React.createElement("code", null, "<th scope>"), "; not for layout."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.3.1)"), /*#__PURE__*/React.createElement("td", null, "Replace legacy ", /*#__PURE__*/React.createElement("code", null, "common/components/table"), " with ", /*#__PURE__*/React.createElement("code", null, "app/ui/Table"), ".")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Modals trap focus; ", /*#__PURE__*/React.createElement("code", null, "Esc"), " closes."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AA (2.1.2)"), /*#__PURE__*/React.createElement("td", null, "Inherited from Radix Dialog.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Status colors are paired with text or icon, never alone."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 A (1.4.1)"), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement("code", null, "ds-badge--dot"), " + label; ", /*#__PURE__*/React.createElement("code", null, "ds-rating"), " always shows letter.")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, "Respect ", /*#__PURE__*/React.createElement("code", null, "prefers-reduced-motion"), "."), /*#__PURE__*/React.createElement("td", null, "WCAG 2.2 AAA (2.3.3)"), /*#__PURE__*/React.createElement("td", null, "Global CSS rule disables non-essential transitions."))));
 window.LayoutSection = LayoutSection;
 window.InteractionSection = InteractionSection;
 window.A11ySection = A11ySection;
