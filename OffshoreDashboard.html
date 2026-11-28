@@ -411,10 +411,10 @@ const REGIONS_TOP = [
 ];
 
 const WEATHER = [
-  { event:'Hurricane Delta',    date:'2024-11-01', knots:'155', category:'Category 5',   status:'Active' },
-  { event:'North Sea Storm',    date:'2024-10-29', knots:'95',  category:'Severe Storm', status:'Active' },
+  { event:'Hurricane Delta',    date:'2024-11-01', knots:'155', category:'Category 5',   status:'Ongoing' },
+  { event:'North Sea Storm',    date:'2024-10-29', knots:'95',  category:'Severe Storm', status:'Ongoing' },
   { event:'Typhoon Mawar',      date:'2024-10-28', knots:'125', category:'Category 4',   status:'Past'   },
-  { event:'Cyclone Freddy',     date:'2024-11-02', knots:'85',  category:'Category 3',   status:'Active' },
+  { event:'Cyclone Freddy',     date:'2024-11-02', knots:'85',  category:'Category 3',   status:'Ongoing' },
   { event:'Winter Storm Titan', date:'2024-11-03', knots:'105', category:'Winter Storm', status:'Past'   },
 ];
 
@@ -657,11 +657,10 @@ function RegionsCard() {
 
 function WeatherCard() {
   const badge = (txt, cat) => {
-    const bg = cat.includes('5') ? 'bg-red-100 text-red-700' : 
-               cat.includes('4') ? 'bg-orange-100 text-orange-700' :
-               cat.includes('3') ? 'bg-amber-100 text-amber-700' :
-               cat.includes('Winter') ? 'bg-[#fee2e2] text-[#b91c1c]' :
-               'bg-orange-100 text-orange-700';
+    // DS v4.5.0: CAT 4–5 danger, CAT 1–3 warning; storm types are categories, so neutral
+    const isCat = /^Category\s*\d/.test(cat);
+    const bg = !isCat ? 'bg-[#f3f4f6] text-[#374151]' :
+               /[45]/.test(cat) ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700';
     return `<span class="px-2 py-0.5 rounded-lg text-xs font-semibold ${bg}">${txt}</span>`;
   };
   return `
@@ -676,9 +675,9 @@ function WeatherCard() {
     </div>
     <div class="flex-1 overflow-y-auto scroll-thin divide-y divide-ink-50">
       ${WEATHER.map(w => {
-        const isActive = w.status === 'Active';
+        const isActive = w.status === 'Ongoing';
         const statusStyle = isActive
-          ? 'background:#dcfce7;color:#15803d;'
+          ? 'background:#fee2e2;color:#b91c1c;'   /* DS v4.5.0: Ongoing hazard = danger */
           : 'background:#f3f4f6;color:#4B5563;';
         return `
         <div class="px-3 py-2 hover:bg-ink-50 text-xs border-t border-ink-100 first:border-0 grid grid-cols-[minmax(0,1fr)_auto_auto] gap-3 items-center">

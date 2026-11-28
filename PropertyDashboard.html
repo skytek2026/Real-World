@@ -365,9 +365,9 @@ const REGIONS = [
 ];
 
 const WEATHER_RISKS = [
-  { area:'California Wildfire Zone', updated:'2025-07-01 14:30 UTC', status:'Active',     risk:'Wildfire Risk',       color:'#ea580c' },
-  { area:'Hurricane Track - Florida', updated:'2025-07-01 13:45 UTC', status:'Active',     risk:'Hurricane Category 2',color:'#ea580c' },
-  { area:'Texas Tornado Alley',       updated:'2025-07-01 12:15 UTC', status:'Active',     risk:'Severe Weather',      color:'#ea580c' },
+  { area:'California Wildfire Zone', updated:'2025-07-01 14:30 UTC', status:'Ongoing',    risk:'Wildfire Risk',       color:'#dc2626' },
+  { area:'Hurricane Track - Florida', updated:'2025-07-01 13:45 UTC', status:'Ongoing',    risk:'Hurricane Category 2',color:'#dc2626' },
+  { area:'Texas Tornado Alley',       updated:'2025-07-01 12:15 UTC', status:'Ongoing',    risk:'Severe Weather',      color:'#dc2626' },
   { area:'New Madrid Seismic Zone',   updated:'2025-07-01 11:20 UTC', status:'Monitoring', risk:'Earthquake Risk',     color:'#eab308' },
   { area:'Pacific Northwest Storm',   updated:'2025-06-30 22:10 UTC', status:'Past',       risk:'Storm Damage',        color:'#6b7280' },
 ];
@@ -490,7 +490,7 @@ function RegionCard() {
 function WeatherCard() {
   const dot = (color) => `<div class="w-2 h-2 rounded-full shrink-0" style="background:${color}"></div>`;
   const badge = (txt, color) => {
-    const bg = color === '#ea580c' ? 'bg-red-100 text-red-700' : color === '#eab308' ? 'bg-amber-100 text-amber-700' : 'bg-ink-100 text-ink-600';
+    const bg = color === '#dc2626' ? 'bg-red-100 text-red-700' : color === '#eab308' ? 'bg-amber-100 text-amber-700' : 'bg-ink-100 text-ink-600';
     return `<span class="px-2 py-0.5 rounded-lg text-xs font-semibold ${bg}">${txt}</span>`;
   };
   return `

@@ -274,7 +274,7 @@ function flag(cc, w=18, h=13) {
 
 /* ── Storm data ─────────────────────────────────────────────────────── */
 const DEFAULT_STORM = {
-  id:1, name:'TC Hidaya', type:'Tropical Cyclone', cat:'Category 2', status:'Active',
+  id:1, name:'TC Hidaya', type:'Tropical Cyclone', cat:'Category 2', status:'Ongoing',
   lat:-17.2, lng:57.4, wind:110, pressure:978, movement:'SE at 12 km/h',
   color:'#ea580c', glow:'rgba(239,68,68,.35)', radius:17,
   updated:'2025-07-04 18:00 UTC',
@@ -979,7 +979,7 @@ window.render = function() {
               </div>
               <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
                 <span style="font-size:12px;color:#6b7280;font-variant-numeric:tabular-nums">${stormUpdated}</span>
-                <span style="padding:4px 12px;border-radius:999px;background:#c2410c;color:#fff;font-size:12px;font-weight:700;letter-spacing:.02em">${STORM.status || 'Active'}</span>
+                <span style="padding:4px 12px;border-radius:999px;background:#b91c1c;color:#fff;font-size:12px;font-weight:700;letter-spacing:.02em">${STORM.status || 'Ongoing'}</span>
               </div>
             </div>
             <div style="flex:1;position:relative;overflow:hidden;min-height:0">

@@ -228,7 +228,7 @@ function initMap() {
     [35.5,-122.0],[37.0,-123.0],[38.5,-124.0],[40.0,-124.8],[42.0,-124.5],
   ];
   const regionRisk      = 'High';
-  const regionRiskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#9333ea'}[regionRisk] || '#6b7280';
+  const regionRiskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#991b1b'}[regionRisk] || '#6b7280';
   const regionDotColor  = '#2563eb';
   const regionExposure  = '$5.5B';
   const regionAssets    = 1247;
@@ -276,7 +276,7 @@ function initMap() {
       html:`<div class="port-marker">${MRD_ANCHOR}</div>`,
       iconSize:[30,30], iconAnchor:[15,15],
     });
-    const portRiskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#9333ea'}[p.risk] || '#6b7280';
+    const portRiskColor = {Low:'#16a34a',Medium:'#d97706',High:'#dc2626',Critical:'#991b1b'}[p.risk] || '#6b7280';
     const portPopupHTML = `
       <div style="font-family:'Inter',sans-serif;width:250px;border-radius:12px;overflow:hidden">
         <div style="background:var(--brand-500,#1a92d1);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:8px">

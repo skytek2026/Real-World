@@ -169,7 +169,7 @@ function openStormDetails(id) {
 /* ── Storm data ───────────────────────────────────────────────────────────── */
 const SYSTEMS = [
   {
-    id:1, name:'TC Hidaya', type:'Tropical Cyclone', cat:'Category 2', status:'Active',
+    id:1, name:'TC Hidaya', type:'Tropical Cyclone', cat:'Category 2', status:'Ongoing',
     lat:-17.2, lng:57.4, wind:110, pressure:978, movement:'SE at 12 km/h',
     color:'#ea580c', glow:'rgba(239,68,68,.35)', radius:17,
     updated:'2025-07-04 18:00 UTC',
@@ -182,27 +182,27 @@ const SYSTEMS = [
     ],
   },
   {
-    id:2, name:'TC Ialy', type:'Tropical Depression', cat:'Depression', status:'Active',
+    id:2, name:'TC Ialy', type:'Tropical Depression', cat:'Depression', status:'Ongoing',
     lat:-15.3, lng:56.2, wind:55, pressure:997, movement:'S at 6 km/h',
     color:'#d97706', glow:'rgba(249,115,22,.3)', radius:10, track:[],
   },
   {
-    id:3, name:'Disturbance 95S', type:'Tropical Disturbance', cat:'Disturbance', status:'Active',
+    id:3, name:'Disturbance 95S', type:'Tropical Disturbance', cat:'Disturbance', status:'Ongoing',
     lat:10.1, lng:52.3, wind:30, pressure:1008, movement:'NW at 8 km/h',
     color:'#d97706', glow:'rgba(249,115,22,.25)', radius:8, track:[],
   },
   {
-    id:4, name:'Ex-TC Javen', type:'Extratropical Cyclone', cat:'Extratropical', status:'Active',
+    id:4, name:'Ex-TC Javen', type:'Extratropical Cyclone', cat:'Extratropical', status:'Ongoing',
     lat:-22.5, lng:113.5, wind:75, pressure:988, movement:'SW at 18 km/h',
     color:'#eab308', glow:'rgba(234,179,8,.35)', radius:12, track:[],
   },
   {
-    id:5, name:'Disturbance 96S', type:'Tropical Disturbance', cat:'Disturbance', status:'Active',
+    id:5, name:'Disturbance 96S', type:'Tropical Disturbance', cat:'Disturbance', status:'Ongoing',
     lat:-15.9, lng:56.9, wind:20, pressure:1010, movement:'SE at 10 km/h',
     color:'#1a92d1', glow:'rgba(59,130,246,.3)', radius:8, track:[],
   },
   {
-    id:6, name:'Hurricane Milena', type:'Hurricane', cat:'Category 3', status:'Active',
+    id:6, name:'Hurricane Milena', type:'Hurricane', cat:'Category 3', status:'Ongoing',
     lat:27.4, lng:-82.3, wind:120, pressure:958, movement:'NNE at 15 km/h',
     color:'#ea580c', glow:'rgba(239,68,68,.35)', radius:18,
     updated:'2025-07-04 18:00 UTC',
@@ -214,7 +214,7 @@ const SYSTEMS = [
     ],
   },
   {
-    id:7, name:'Typhoon Renji', type:'Typhoon', cat:'Category 4', status:'Active',
+    id:7, name:'Typhoon Renji', type:'Typhoon', cat:'Category 4', status:'Ongoing',
     lat:33.9, lng:137.3, wind:140, pressure:944, movement:'NE at 22 km/h',
     color:'#dc2626', glow:'rgba(220,38,38,.4)', radius:19,
     updated:'2025-07-04 18:00 UTC',
@@ -435,7 +435,7 @@ function ListView() {
           <td style="font-variant-numeric:tabular-nums;font-weight:500">${s.wind} km/h</td>
           <td style="font-variant-numeric:tabular-nums">${s.pressure} hPa</td>
           <td>${s.movement}</td>
-          <td><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0fdf4;color:#15803d">Active</span></td>
+          <td><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#fef2f2;color:#b91c1c">Ongoing</span></td>
         </tr>`).join('')}
       </tbody>
     </table>
@@ -449,7 +449,7 @@ function ListView() {
               <a href="WeatherEventDetails.html" class="wx-link" data-storm-id="${s.id}">${s.name}</a>
             </span>
           </dd></div>
-          <div><dt>Status</dt><dd><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f0fdf4;color:#15803d">Active</span></dd></div>
+          <div><dt>Status</dt><dd><span style="font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:#fef2f2;color:#b91c1c">Ongoing</span></dd></div>
         </dl>
         <dl class="wx-kv">
           <div><dt>Type</dt><dd>${s.type}</dd></div>
@@ -483,7 +483,7 @@ function Content() {
             <span class="ds-tab-label">${lico('List', 13)} List</span>
           </button>
         </div>
-        <span style="margin-left:auto;background:#ea580c;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;white-space:nowrap">${SYSTEMS.filter(s=>s.status==='Active').length} Active</span>
+        <span style="margin-left:auto;background:#b91c1c;color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;white-space:nowrap">${SYSTEMS.filter(s=>s.status==='Ongoing').length} Ongoing</span>
       </div>
       ${viewMode === 'Map' ? MapView() : ListView()}
     </div>

@@ -529,9 +529,9 @@ const RISK_INDICATORS = [
 
 /* ─────────────────────────── Risk donut ─────────────────────────── */
 function riskTier(score) {
-  if (score <= 10) return { label:'GOOD',         c:'#16a34a', glow:'#86efac' };
-  if (score <= 25) return { label:'AVERAGE RISK', c:'#d97706', glow:'#fef3c7' };
-  return                  { label:'HIGH RISK',    c:'#ea580c', glow:'#fca5a5' };
+  if (score <= 25) return { label:'GOOD',          c:'#16a34a', glow:'#86efac' };   // DS v4.5.0 risk score bands
+  if (score <= 50) return { label:'AVERAGE',       c:'#d97706', glow:'#fef3c7' };
+  return                  { label:'BELOW AVERAGE', c:'#dc2626', glow:'#fca5a5' };
 }
 function RiskGauge(score) {
   const risk = riskTier(score);
@@ -570,7 +570,7 @@ function RiskGauge(score) {
     const filled = mid <= score;
     return `<path d="${arcD(a1, a2, R)}" fill="none" stroke="${filled ? gaugeColor(mid) : '#e5e7eb'}" stroke-width="${SW}" stroke-linecap="butt"/>`;
   }).join('');
-  const glowColor = score <= 10 ? '#86efac' : score <= 25 ? '#fcd34d' : '#fca5a5';
+  const glowColor = score <= 25 ? '#86efac' : score <= 50 ? '#fcd34d' : '#fca5a5';
   const fillTipA  = gAngle(Math.min(score, GAUGE_MAX));
   const fillTipB  = gAngle(Math.max(0, Math.min(score, GAUGE_MAX) - GAUGE_MAX * 0.08));
   const glowPath  = score > 0
@@ -602,7 +602,7 @@ function RiskGuide(score) {
     { name:'Below Avg.', range:'25 – 100', pct:31, c:'#dc2626', bg:'#fef2f2', bd:'#fee2e2', icoBg:'#fee2e2',
       ico:`<svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>` },
   ];
-  const activeIdx = score <= 10 ? 0 : score <= 25 ? 1 : 2;
+  const activeIdx = score <= 25 ? 0 : score <= 50 ? 1 : 2;
   return `
   <div class="risk-guide">
     ${cards.map((c, i) => `

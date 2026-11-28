@@ -252,8 +252,8 @@ const SEARCH_ICO    = `<svg width="14" height="14" viewBox="0 0 24 24" fill="non
 const PLUS_ICO      = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
 
 function riskClass(r) {
-  if (r <= 10) return 'risk-low';
-  if (r <= 25) return 'risk-mid';
+  if (r <= 25) return 'risk-low';   // DS v4.5.0 bands: Good 0–25
+  if (r <= 50) return 'risk-mid';   // Average 26–50; Below average 51–100
   return 'risk-high';
 }
 

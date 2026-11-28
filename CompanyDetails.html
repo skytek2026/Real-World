@@ -370,8 +370,8 @@ const IC = {
 };
 
 function riskColor(r) {
-  if (r < 40) return '#15803d';
-  if (r < 75) return '#b45309';
+  if (r <= 25) return '#15803d';   // DS v4.5.0 bands (text, 700 shades)
+  if (r <= 50) return '#b45309';
   return '#b91c1c';
 }
 
